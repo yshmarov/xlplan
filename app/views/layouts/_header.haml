@@ -8,6 +8,7 @@
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
       - if current_user
+        %li.nav-item= link_to "Categories", categories_path, class: "nav-link"
         %li.nav-item= link_to "Services", services_path, class: "nav-link"
         %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
         %li.nav-item= link_to "Machines", machines_path, class: "nav-link"
