@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @location.name
+%p
+  %b Tel:
+  = @location.tel
+%p
+  %b Email:
+  = @location.email
+%p
+  %b Address:
+  = @location.address
+%p
+  %b Balance:
+  = @location.balance
+%p
+  %b Status:
+  = @location.status
+
+= link_to 'Edit', edit_location_path(@location)
+\|
+= link_to 'Back', locations_path
