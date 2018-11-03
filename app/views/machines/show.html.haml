@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @machine.name
+%p
+  %b Location:
+  = @machine.location
+%p
+  %b Status:
+  = @machine.status
+
+= link_to 'Edit', edit_machine_path(@machine)
+\|
+= link_to 'Back', machines_path
