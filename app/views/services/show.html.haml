@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @service.name
+%p
+  %b Description:
+  = @service.description
+%p
+  %b Duration:
+  = @service.duration
+%p
+  %b Client price:
+  = @service.client_price
+%p
+  %b Employee percent:
+  = @service.employee_percent
+%p
+  %b Employee price:
+  = @service.employee_price
+%p
+  %b Quantity:
+  = @service.quantity
+%p
+  %b Status:
+  = @service.status
+
+= link_to 'Edit', edit_service_path(@service)
+\|
+= link_to 'Back', services_path

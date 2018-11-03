@@ -1,0 +1,18 @@
+-# frozen_string_literal: true
+= simple_form_for(@service) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :name, autofocus: true
+    = f.input :description
+    = f.input :duration
+    = f.input :client_price
+    = f.input :employee_percent
+    /= f.input :employee_price
+    = f.input :quantity
+    /= f.input :status
+    = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
+
+  .form-actions
+    = f.button :submit
