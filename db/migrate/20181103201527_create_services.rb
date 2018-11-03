@@ -9,6 +9,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.integer :employee_price, default: 0, null: false
       t.integer :quantity, default: 1, null: false
       t.integer :status, default: 0, null: false
+      t.belongs_to :category, foreign_key: true
 
       t.timestamps
     end

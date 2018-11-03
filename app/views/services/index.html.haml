@@ -3,6 +3,7 @@
 %table
   %thead
     %tr
+      %th Category
       %th Name
       %th Description
       %th Duration
@@ -18,6 +19,7 @@
   %tbody
     - @services.each do |service|
       %tr
+        %td= service.category
         %td= service.name
         %td= service.description
         %td= service.duration

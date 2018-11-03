@@ -4,7 +4,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name, autofocus: true
+    = f.association :category, autofocus: true
+    = f.input :name
     = f.input :description
     = f.input :duration
     = f.input :client_price
