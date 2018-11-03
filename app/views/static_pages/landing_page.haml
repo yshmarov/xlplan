@@ -1,29 +1,25 @@
-%body.text-center
+%p
+.text-center
   .cover-container.d-flex.w-100.h-100.p-3.mx-auto.flex-column
-    %header.masthead.mb-auto
-      .inner
-        %h3.masthead-brand JobDone
-        %nav.nav.nav-masthead.justify-content-center
-          %a.nav-link.active{:href => "#"} Home
-          %a.nav-link{:href => "#"} Features
-          %a.nav-link{:href => "#"} Pricing
-          %a.nav-link{:href => "#"} Contact
-    %main.inner.cover{:role => "main"}
-      %h1.cover-heading #1 App To Manage Your Business
-      %p.lead
-        JobDone is the easiest program to keep track of all your clients, schedule and money.
-      %p.lead
-        Most likely, your strongest competitors are already using JobDone. Don't stay behind.
-      %p.lead #1 Service Business Scheduling System according to ME
-      %p.lead
-        %a.btn.btn-lg.btn-secondary{:href => "#"} Try now
-    %footer.mastfoot.mt-auto
-      .inner
-        %p
-          JobDone,
-          = Time.now.year
-          Powered by
-          = succeed "," do
-            %a{:href => "https://askdemos.com/"} Askdemos
-          = succeed "." do
-            %a{:href => "https://twitter.com/yaro_the_slav"} @yaro_the_slav
+    .row
+      .col-lg
+        .display-4
+          Software that helps service businesses schedule, invoice, and get paid — faster.
+      .col-lg
+        .embed-responsive.embed-responsive-16by9
+          %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/H16ldnm_-ak?rel=0", :width => "560"}
+  %br
+  = link_to 'Try It Free', new_user_registration_path, class: 'btn btn-lg btn-primary'
+  %p
+  %hr
+  %br
+  %footer.mastfoot.mt-auto
+    .inner
+      %p
+        JobDone,
+        = Time.now.year
+        Powered by
+        = succeed "," do
+          %a{:href => "https://askdemos.com/"} Askdemos
+        = succeed "." do
+          %a{:href => "https://twitter.com/yaro_the_slav"} @yaro_the_slav

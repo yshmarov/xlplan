@@ -1,24 +1,34 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-  = link_to 'JobDone', root_path, :class => 'navbar-brand'
+  %a.navbar-brand{:href => "/"}
+    /= image_tag "jobdone.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "avatar"
+    .fa.fa-calendar
+    JobDone
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      %li.nav-item= link_to "Services", services_path, class: "nav-link"
-      %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
-      %li.nav-item= link_to "Machines", machines_path, class: "nav-link"
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          Dropdown
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          %a.dropdown-item{:href => "#"} Action
-          %a.dropdown-item{:href => "#"} Another action
-          .dropdown-divider
-          %a.dropdown-item{:href => "#"} Something else here
-    %ul.nav.navbar-nav.navbar-right
-      - if user_signed_in?
-        %li= link_to current_user.email, edit_user_registration_path, class: "nav-link"
-        %li= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "nav-link"
+      - if current_user
+        %li.nav-item= link_to "Services", services_path, class: "nav-link"
+        %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
+        %li.nav-item= link_to "Machines", machines_path, class: "nav-link"
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Dropdown
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            %a.dropdown-item{:href => "#"} Action
+            %a.dropdown-item{:href => "#"} Another action
+            .dropdown-divider
+            %a.dropdown-item{:href => "#"} Something else here
       - else
-        %li= link_to 'Sign in', new_user_session_path, class: "nav-link"
-        %li= link_to 'Sign up', new_user_registration_path, class: "nav-link"
+        %li.nav-item= link_to "Features", services_path, class: "nav-link"
+        %li.nav-item= link_to "Industries", locations_path, class: "nav-link"
+        %li.nav-item= link_to "Pricing", machines_path, class: "nav-link"
+        %li.nav-item= link_to "Why JobDone?", machines_path, class: "nav-link"
+    %ul.nav.navbar-nav.navbar-right
+      - if current_user
+        %li= link_to current_user.email, edit_user_registration_path, class: "nav-link"
+        %li= link_to "Logout", destroy_user_session_path, :method => :delete, class: "nav-link"
+      - else
+        %li= link_to 'Login', new_user_session_path, class: "nav-link"
+        .form-inline
+          = link_to 'Free trial', new_user_registration_path, class: 'btn btn-light'

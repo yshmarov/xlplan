@@ -16,7 +16,7 @@
   @import "font-awesome";
 
 table {
-  @extend .table, .table-hover
+  @extend .table, .table-hover, .table-responsive-md, .table-bordered, .table-sm
 }
 
 /* thead { @extend .bg-primary } */  
