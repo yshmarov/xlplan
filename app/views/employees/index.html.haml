@@ -8,6 +8,7 @@
       %th Specialization
       %th Employment date
       %th Termination date
+      %th Balance
       %th Status
       %th
       %th
@@ -21,6 +22,7 @@
         %td= employee.specialization
         %td= employee.employment_date
         %td= employee.termination_date
+        %td= employee.balance
         %td= employee.status
         %td= link_to 'Show', employee
         %td= link_to 'Edit', edit_employee_path(employee)

@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_11_04_205938) do
     t.string "specialization"
     t.date "employment_date"
     t.date "termination_date"
+    t.integer "balance", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

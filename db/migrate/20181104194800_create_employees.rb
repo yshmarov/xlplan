@@ -6,6 +6,7 @@ class CreateEmployees < ActiveRecord::Migration[5.2]
       t.string :specialization
       t.date :employment_date
       t.date :termination_date
+      t.integer :balance, default: 0, null: false
       t.integer :status, default: 0, null: false
 
       t.timestamps

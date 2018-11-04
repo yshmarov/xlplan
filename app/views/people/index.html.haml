@@ -4,13 +4,10 @@
   %thead
     %tr
       %th First name
-      %th Middle name
       %th Last name
       %th Date of birth
-      %th Sex
       %th Email
       %th Phone number
-      %th Address
       %th Description
       %th Status
       %th Invited by
@@ -23,13 +20,10 @@
     - @people.each do |person|
       %tr
         %td= person.first_name
-        %td= person.middle_name
         %td= person.last_name
         %td= person.date_of_birth
-        %td= person.sex
         %td= person.email
         %td= person.phone_number
-        %td= person.address
         %td= person.description
         %td= person.status
         %td= person.user.invited_by if person.user.present?

@@ -13,4 +13,5 @@ Service.create!(name: 'Haircut', description: 'Male bold', duration: 60, client_
 Service.create!(name: 'Nail polishing', description: '2', duration: 30, client_price: 400, employee_percent: 50, employee_price: 120, quantity: 1, status: 0, category_id: 2)
 Location.create!(name: 'Pyat', tel: 675760, balance: 0, status: 0)
 Machine.create!(name: 'M1', location_id: 1, status: 0)
-
+Employee.create!(person_id:1, location_id:1)
+Category.create!(employee_id:1, service_id:1)
