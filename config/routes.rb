@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   #devise_for :users, controllers: { registrations: "registrations", invitations: 'invitations'}
   #devise_for :users
 
-  resources :people
+  resources :people do 
+  	member do
+  		patch :invite_user
+    end
+  end
   resources :categories
   resources :machines
   resources :locations

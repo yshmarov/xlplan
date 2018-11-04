@@ -1,28 +1,37 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :edit, :update, :destroy]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :invite_user]
 
-  # GET /people
-  # GET /people.json
+	def invite_user
+    @user = User.invite!(email: @person.email, person_id: @person.id)
+		redirect_to people_url
+    #redirect_to user_invitation_path
+    #if @user.save
+    #  redirect_to @person, notice: 'Invited.'
+    #else
+    #  redirect_to @person, notice: 'Not invited.'
+    #end
+    #= simple_form_for(User.new, url: user_invitation_path) do |z|
+    #  = z.input :email, input_html: {value: person.email}, as: :hidden
+    #  = z.input :person_id, input_html: {value: person.id}, as: :hidden
+    #  = z.button :submit, 'Invite', class: "btn btn-success btn-xs"
+		#redirect_to @person, notice: "User invited"
+		#redirect_to @person
+	end
+
   def index
     @people = Person.all
   end
 
-  # GET /people/1
-  # GET /people/1.json
   def show
   end
 
-  # GET /people/new
   def new
     @person = Person.new
   end
 
-  # GET /people/1/edit
   def edit
   end
 
-  # POST /people
-  # POST /people.json
   def create
     @person = Person.new(person_params)
 
