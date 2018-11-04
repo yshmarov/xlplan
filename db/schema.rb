@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_04_220333) do
+ActiveRecord::Schema.define(version: 2018_11_04_222056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,26 @@ ActiveRecord::Schema.define(version: 2018_11_04_220333) do
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_employees_on_location_id"
     t.index ["person_id"], name: "index_employees_on_person_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "client_id"
+    t.datetime "start"
+    t.integer "status", default: 0, null: false
+    t.bigint "service_id"
+    t.bigint "location_id"
+    t.bigint "employee_id"
+    t.string "service_name", default: "0", null: false
+    t.string "service_description", default: "0", null: false
+    t.integer "service_duration", default: 0, null: false
+    t.integer "client_price", default: 0, null: false
+    t.integer "employee_price", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_events_on_client_id"
+    t.index ["employee_id"], name: "index_events_on_employee_id"
+    t.index ["location_id"], name: "index_events_on_location_id"
+    t.index ["service_id"], name: "index_events_on_service_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -145,6 +165,10 @@ ActiveRecord::Schema.define(version: 2018_11_04_220333) do
   add_foreign_key "employee_categories", "employees"
   add_foreign_key "employees", "locations"
   add_foreign_key "employees", "people"
+  add_foreign_key "events", "clients"
+  add_foreign_key "events", "employees"
+  add_foreign_key "events", "locations"
+  add_foreign_key "events", "services"
   add_foreign_key "machines", "locations"
   add_foreign_key "services", "categories"
   add_foreign_key "users", "people"

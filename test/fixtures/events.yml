@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client: one
+  start: 2018-11-04 22:20:56
+  status: 1
+  service: one
+  location: one
+  employee: one
+  service_name: MyString
+  service_description: MyString
+  service_duration: 1
+  client_price: 1
+  employee_price: 1
+
+two:
+  client: two
+  start: 2018-11-04 22:20:56
+  status: 1
+  service: two
+  location: two
+  employee: two
+  service_name: MyString
+  service_description: MyString
+  service_duration: 1
+  client_price: 1
+  employee_price: 1
