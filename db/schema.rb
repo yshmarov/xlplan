@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2018_11_04_105504) do
 
   create_table "services", force: :cascade do |t|
     t.string "name", limit: 144, null: false
-    t.string "description", limit: 255, null: false
+    t.string "description", limit: 255
     t.integer "duration", default: 30, null: false
     t.integer "client_price", default: 0, null: false
     t.integer "employee_percent", default: 100, null: false

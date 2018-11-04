@@ -1,6 +1,6 @@
 class Service < ApplicationRecord
   validates :name, uniqueness: true
-  validates :name, :description, :duration, :client_price, :employee_price, :quantity, :status, :category_id, presence: true
+  validates :name, :duration, :client_price, :employee_price, :quantity, :status, :category_id, presence: true
 
   belongs_to :category
   #has_many :employee_services
