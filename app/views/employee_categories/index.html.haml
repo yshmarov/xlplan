@@ -1,0 +1,23 @@
+%h1 Listing employee_categories
+
+%table
+  %thead
+    %tr
+      %th Employee
+      %th Category
+      %th
+      %th
+      %th
+
+  %tbody
+    - @employee_categories.each do |employee_category|
+      %tr
+        %td= employee_category.employee
+        %td= employee_category.category
+        %td= link_to 'Show', employee_category
+        %td= link_to 'Edit', edit_employee_category_path(employee_category)
+        %td= link_to 'Destroy', employee_category, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Employee category', new_employee_category_path

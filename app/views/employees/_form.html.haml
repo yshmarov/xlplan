@@ -9,7 +9,7 @@
     = f.input :specialization
     = f.input :employment_date, start_year: Date.today.year - 25, end_year: Date.today.year, include_blank: true
     = f.input :termination_date, start_year: Date.today.year - 10, end_year: Date.today.year, include_blank: true
-    = f.input :status
+    = f.input :status, :as => :radio_buttons, :collection => Employee.statuses.keys.to_a, label:false
 
   .form-actions
     = f.button :submit
