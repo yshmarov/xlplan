@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @employee.person
+%p
+  %b Location:
+  = @employee.location
+%p
+  %b Specialization:
+  = @employee.specialization
+%p
+  %b Employment date:
+  = @employee.employment_date
+%p
+  %b Termination date:
+  = @employee.termination_date
+%p
+  %b Status:
+  = @employee.status
+
+= link_to 'Edit', edit_employee_path(@employee)
+\|
+= link_to 'Back', employees_path

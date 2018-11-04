@@ -3,6 +3,7 @@ class Location < ApplicationRecord
   validates :name, :balance, :status, presence: true
 
   has_many :machines
+  has_many :employees
 
   after_touch :update_balance
   def update_balance

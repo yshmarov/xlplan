@@ -1,0 +1,15 @@
+-# frozen_string_literal: true
+= simple_form_for(@employee) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.association :person
+    = f.association :location, autofocus: true
+    = f.input :specialization
+    = f.input :employment_date, start_year: Date.today.year - 25, end_year: Date.today.year, include_blank: true
+    = f.input :termination_date, start_year: Date.today.year - 10, end_year: Date.today.year, include_blank: true
+    = f.input :status
+
+  .form-actions
+    = f.button :submit
