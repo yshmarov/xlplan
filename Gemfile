@@ -62,3 +62,5 @@ gem 'simple_form'
 gem "font-awesome-rails"
 gem 'exception_notification'
 gem 'devise'
+gem 'devise_invitable', '~> 1.7.0'
+

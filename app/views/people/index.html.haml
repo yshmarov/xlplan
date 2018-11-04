@@ -13,6 +13,8 @@
       %th Address
       %th Description
       %th Status
+      %th User
+      %th Invited by
       %th
       %th
       %th
@@ -30,6 +32,25 @@
         %td= person.address
         %td= person.description
         %td= person.status
+        %td
+          - if person.user.present?
+            = person.user.invited_by_id
+        %td
+          - if person.user.present?
+            - if person.user.invitation_accepted_at?
+              Active
+              /= link_to 'x account', person.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-xs"
+            - else 
+              Invitation sent
+              /= link_to 'x invitation', person.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-xs"
+          - else
+            - if person.email.present?
+              = simple_form_for(User.new, url: user_invitation_path) do |z|
+                = z.input :email, input_html: {value: person.email}, as: :hidden
+                = z.input :person_id, input_html: {value: person.id}, as: :hidden
+                = z.button :submit, 'Invite', class: "btn btn-success btn-xs"
+            - else
+              Add email to invite user
         %td= link_to 'Show', person
         %td= link_to 'Edit', edit_person_path(person)
         %td= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }
@@ -37,3 +58,6 @@
 %br
 
 = link_to 'New Person', new_person_path
+
+
+
