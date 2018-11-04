@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Person:
+  = @client.person
+%p
+  %b Employee:
+  = @client.employee
+%p
+  %b Balance:
+  = @client.balance
+%p
+  %b Status:
+  = @client.status
+
+= link_to 'Edit', edit_client_path(@client)
+\|
+= link_to 'Back', clients_path

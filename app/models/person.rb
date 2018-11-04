@@ -4,6 +4,7 @@ class Person < ApplicationRecord
   scope :has_account, -> { includes(:users).where.not(users: {person_id: nil}) }
   has_one :user
   has_one :employee
+  has_one :client
 
   validates :first_name, :last_name, :status, presence: true
   validates :email, uniqueness: true
