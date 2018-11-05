@@ -1,3 +1,5 @@
+/*global $*/
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -10,10 +12,25 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
+//= require moment 
+//= require fullcalendar
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+
+function eventCalendar() {
+  return $('#calendar').fullCalendar({ });
+};
+function clearCalendar() {
+  $('#calendar').fullCalendar('delete'); 
+  $('#calendar').html('');
+};
+
+$(document).on('turbolinks:load', function(){
+  eventCalendar();  
+});
+$(document).on('turbolinks:before-cache', clearCalendar);

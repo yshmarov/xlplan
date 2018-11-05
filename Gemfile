@@ -63,4 +63,5 @@ gem "font-awesome-rails"
 gem 'exception_notification'
 gem 'devise'
 gem 'devise_invitable', '~> 1.7.0'
-
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'
