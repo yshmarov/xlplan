@@ -1,5 +1,3 @@
-/- set_var 'events', @events.map{|e| {title: e.room.office.name  + " " + e.room.name + " " + e.user.email, start: e.starts_at, end: e.ends_at, url: edit_event_path(e)}}
-- set_var 'events', @events.map{|e| {title: e.employee.person.to_s  + "/" + e.client.person.to_s, start: e.starts_at, end: e.ends_at, url: edit_event_path(e)}}
 %h1 Listing events
 
 %table
@@ -43,5 +41,3 @@
 %br
 
 = link_to 'New Event', new_event_path
-
-#calendar
