@@ -4,6 +4,7 @@ class Location < ApplicationRecord
 
   has_many :machines
   has_many :employees
+  has_many :events
 
   after_touch :update_balance
   def update_balance

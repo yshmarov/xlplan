@@ -1,4 +1,5 @@
 /*global $*/
+/*global app*/
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
@@ -23,7 +24,22 @@
 //= require fullcalendar
 
 function eventCalendar() {
-  return $('#calendar').fullCalendar({ });
+  return $('#calendar').fullCalendar({ 
+        lang: 'en',
+        defaultView: 'agendaWeek',
+        firstDay: 1,
+        minTime: "06:00:00",
+        maxTime: "22:00:00",
+        allDaySlot: false,
+        height: 510,
+        slotMinutes: 30,
+        events: app.vars.events,
+        header: {
+            center: 'month,agendaWeek,timelineDay'
+        }
+
+
+  });
 };
 function clearCalendar() {
   $('#calendar').fullCalendar('delete'); 
@@ -34,3 +50,4 @@ $(document).on('turbolinks:load', function(){
   eventCalendar();  
 });
 $(document).on('turbolinks:before-cache', clearCalendar);
+
