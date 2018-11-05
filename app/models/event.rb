@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   belongs_to :location
   belongs_to :employee
 
-  validates :client_id, :start, :status, :service_id, :location_id, :employee_id,
+  validates :client_id, :starts_at, :status, :service_id, :location_id, :employee_id,
             :service_name, :service_description, :service_duration, :client_price,
             :employee_price, presence: true
 
@@ -16,8 +16,8 @@ class Event < ApplicationRecord
     update_column :service_duration, (service.duration)
     update_column :client_price, (service.client_price)
     update_column :employee_price, (service.employee_price)
+    update_column :ends_at, (starts_at + service_duration*60)
   end
-
 
   def to_s
     id

@@ -2,7 +2,8 @@ class CreateEvents < ActiveRecord::Migration[5.2]
   def change
     create_table :events do |t|
       t.belongs_to :client, foreign_key: true
-      t.datetime :start
+      t.datetime :starts_at
+      t.datetime :ends_at
       t.integer :status, default: 0, null: false
       t.belongs_to :service, foreign_key: true
       t.belongs_to :location, foreign_key: true

@@ -5,8 +5,8 @@
 
   .form-inputs
     = f.association :client, autofocus: true
-    = f.input :start
-    = f.input :status, :as => :radio_buttons, :collection => Event.statuses.keys.to_a, label:false
+    = f.input :starts_at
+    /= f.input :status, :as => :radio_buttons, :collection => Event.statuses.keys.to_a, label:false
     = f.association :service
     = f.association :location
     = f.association :employee
@@ -15,6 +15,7 @@
     /= f.input :service_duration
     /= f.input :client_price
     /= f.input :employee_price
+    /= f.input :ends_at
 
   .form-actions
     = f.button :submit

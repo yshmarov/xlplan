@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 2018_11_04_222056) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "client_id"
-    t.datetime "start"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.integer "status", default: 0, null: false
     t.bigint "service_id"
     t.bigint "location_id"

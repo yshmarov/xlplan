@@ -13,14 +13,14 @@
 // about supported directives.
 //
 //= require jquery3
-//= require moment 
-//= require fullcalendar
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
 //= require popper
 //= require bootstrap-sprockets
+//= require moment 
+//= require fullcalendar
 
 function eventCalendar() {
   return $('#calendar').fullCalendar({ });
