@@ -8,6 +8,17 @@ class Event < ApplicationRecord
             :service_name, :service_description, :service_duration, :client_price,
             :employee_price, presence: true
 
+  after_save :update_associated_columns
+  #after_update :update_associated_columns
+  def update_associated_columns
+    update_column :service_name, (service.name)
+    update_column :service_description, (service.description)
+    update_column :service_duration, (service.duration)
+    update_column :client_price, (service.client_price)
+    update_column :employee_price, (service.employee_price)
+  end
+
+
   def to_s
     id
   end
