@@ -1,0 +1,51 @@
+%h3.text-center
+  = Date.today.strftime('%A, %d %B')
+.row
+  .col-md-4
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-user
+      = Client.count
+      %div 
+        %b Clients
+  .col-md-4
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-calendar
+      = Event.count
+      %div 
+        %b Events
+  .col-md-4
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar
+      = Event.all.map(&:client_price).sum
+      %div 
+        %b Earnings
+%br
+
+Events 
+Events total today
+Events this month
+Events total past - events, earnings
+
+Earnings
+this year
+total
+Planned earning today
+
+Categories/Services pie chart (last 3 months)
+
+ADD <PERIODICITY> for Service - how often is a client expected to use it?
+
+dashboard
+calls
+schedule
+follow up
+search
+reports
+help
+
+
+rename events to jobs?
+invoice?
+
+
+
