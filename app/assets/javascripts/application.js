@@ -26,7 +26,7 @@
 function eventCalendar() {
   return $('#calendar').fullCalendar({ 
         lang: 'en',
-        defaultView: 'agendaWeek',
+        defaultView: 'agendaDay',
         firstDay: 1,
         minTime: "06:00:00",
         maxTime: "22:00:00",
@@ -34,7 +34,7 @@ function eventCalendar() {
         slotMinutes: 30,
         events: app.vars.events,
         header: {
-            center: 'month,agendaWeek,timelineDay'
+            center: 'month,agendaWeek,agendaDay'
         }
 
 
