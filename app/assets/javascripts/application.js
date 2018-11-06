@@ -31,7 +31,6 @@ function eventCalendar() {
         minTime: "06:00:00",
         maxTime: "22:00:00",
         allDaySlot: false,
-        height: 510,
         slotMinutes: 30,
         events: app.vars.events,
         header: {

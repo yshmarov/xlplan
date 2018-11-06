@@ -5,7 +5,7 @@
 
   .form-inputs
     = f.association :client, autofocus: true
-    = f.input :starts_at
+    = f.input :starts_at, :minute_step => 30, start_year: Date.today.year
     /= f.input :status, :as => :radio_buttons, :collection => Event.statuses.keys.to_a, label:false
     = f.association :service
     = f.association :location
