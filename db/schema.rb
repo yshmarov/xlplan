@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_04_222056) do
+ActiveRecord::Schema.define(version: 2018_11_07_193827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2018_11_04_222056) do
     t.index ["person_id"], name: "index_employees_on_person_id"
   end
 
-  create_table "events", force: :cascade do |t|
+  create_table "jobs", force: :cascade do |t|
     t.bigint "client_id"
     t.datetime "starts_at"
     t.datetime "ends_at"
@@ -71,10 +71,10 @@ ActiveRecord::Schema.define(version: 2018_11_04_222056) do
     t.integer "employee_price", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_events_on_client_id"
-    t.index ["employee_id"], name: "index_events_on_employee_id"
-    t.index ["location_id"], name: "index_events_on_location_id"
-    t.index ["service_id"], name: "index_events_on_service_id"
+    t.index ["client_id"], name: "index_jobs_on_client_id"
+    t.index ["employee_id"], name: "index_jobs_on_employee_id"
+    t.index ["location_id"], name: "index_jobs_on_location_id"
+    t.index ["service_id"], name: "index_jobs_on_service_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -166,10 +166,10 @@ ActiveRecord::Schema.define(version: 2018_11_04_222056) do
   add_foreign_key "employee_categories", "employees"
   add_foreign_key "employees", "locations"
   add_foreign_key "employees", "people"
-  add_foreign_key "events", "clients"
-  add_foreign_key "events", "employees"
-  add_foreign_key "events", "locations"
-  add_foreign_key "events", "services"
+  add_foreign_key "jobs", "clients"
+  add_foreign_key "jobs", "employees"
+  add_foreign_key "jobs", "locations"
+  add_foreign_key "jobs", "services"
   add_foreign_key "machines", "locations"
   add_foreign_key "services", "categories"
   add_foreign_key "users", "people"

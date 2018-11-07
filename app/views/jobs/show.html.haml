@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Client:
+  = @job.client
+%p
+  %b Starts at:
+  = @job.starts_at
+%p
+  %b Ends at:
+  = @job.ends_at
+%p
+  %b Status:
+  = @job.status
+%p
+  %b Service:
+  = @job.service
+%p
+  %b Location:
+  = @job.location
+%p
+  %b Employee:
+  = @job.employee
+%p
+  %b Service name:
+  = @job.service_name
+%p
+  %b Service description:
+  = @job.service_description
+%p
+  %b Service duration:
+  = @job.service_duration
+%p
+  %b Client price:
+  = @job.client_price
+%p
+  %b Employee price:
+  = @job.employee_price
+
+= link_to 'Edit', edit_job_path(@job)
+\|
+= link_to 'Back', jobs_path

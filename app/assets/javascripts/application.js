@@ -32,7 +32,7 @@ function eventCalendar() {
         maxTime: "22:00:00",
         allDaySlot: false,
         slotMinutes: 30,
-        events: app.vars.events,
+        events: app.vars.jobs,
         header: {
             center: 'month,agendaWeek,agendaDay'
         }

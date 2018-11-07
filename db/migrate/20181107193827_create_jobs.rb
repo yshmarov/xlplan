@@ -1,6 +1,6 @@
-class CreateEvents < ActiveRecord::Migration[5.2]
+class CreateJobs < ActiveRecord::Migration[5.2]
   def change
-    create_table :events do |t|
+    create_table :jobs do |t|
       t.belongs_to :client, foreign_key: true
       t.datetime :starts_at
       t.datetime :ends_at

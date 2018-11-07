@@ -1,0 +1,43 @@
+%h1 Listing jobs
+
+%table
+  %thead
+    %tr
+      %th Client
+      %th Starts at
+      %th Ends at
+      %th Status
+      %th Service
+      %th Location
+      %th Employee
+      %th Service name
+      %th Service description
+      %th Service duration
+      %th Client price
+      %th Employee price
+      %th
+      %th
+      %th
+
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= job.client
+        %td= job.starts_at
+        %td= job.ends_at
+        %td= job.status
+        %td= job.service
+        %td= job.location
+        %td= job.employee
+        %td= job.service_name
+        %td= job.service_description
+        %td= job.service_duration
+        %td= job.client_price
+        %td= job.employee_price
+        %td= link_to 'Show', job
+        %td= link_to 'Edit', edit_job_path(job)
+        %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Job', new_job_path

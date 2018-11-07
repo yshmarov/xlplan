@@ -3,7 +3,7 @@ class Service < ApplicationRecord
   validates :name, :duration, :client_price, :employee_price, :quantity, :status, :category_id, presence: true
 
   belongs_to :category
-  has_many :events
+  has_many :jobs
   #has_many :employee_services
 
   #after_update :update_employee_price

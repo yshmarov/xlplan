@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
   end
 
   def calendar
-    @events = Event.all
+    @jobs = Job.all
   end
 
 end

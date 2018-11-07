@@ -10,21 +10,21 @@
   .col-md-4
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-calendar
-      = Event.count
+      = Job.count
       %div 
-        %b Events
+        %b Jobs
   .col-md-4
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-dollar
-      = Event.all.map(&:client_price).sum
+      = Job.all.map(&:client_price).sum
       %div 
         %b Earnings
 %br
 
-Events 
-Events total today
-Events this month
-Events total past - events, earnings
+Jobs 
+Jobs total today
+Jobs this month
+Jobs total past - events, earnings
 
 Earnings
 this year

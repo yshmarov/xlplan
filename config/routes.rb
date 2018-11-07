@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :employee_categories
   resources :locations
   resources :machines
-  resources :events
+  resources :jobs
   get 'dashboard', to: 'static_pages#dashboard'
   get 'calendar', to: 'static_pages#calendar'
   root to: 'static_pages#landing_page'
