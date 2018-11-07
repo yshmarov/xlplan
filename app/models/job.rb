@@ -8,6 +8,9 @@ class Job < ApplicationRecord
             :service_name, :service_description, :service_duration, :client_price,
             :employee_price, presence: true
 
+  monetize :client_price, as: :client_price_cents
+  monetize :employee_price, as: :employee_price_cents
+
   after_save :update_associated_columns
   #after_update :update_associated_columns
   def update_associated_columns

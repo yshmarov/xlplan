@@ -32,10 +32,10 @@
   = @job.service_duration
 %p
   %b Client price:
-  = @job.client_price
+  = number_to_currency(@job.client_price_cents, :unit => "#{@job.service.client_price_currency}, ")
 %p
   %b Employee price:
-  = @job.employee_price
+  = number_to_currency(@job.employee_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
 
 = link_to 'Edit', edit_job_path(@job)
 \|

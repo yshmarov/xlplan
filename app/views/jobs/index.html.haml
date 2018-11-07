@@ -32,8 +32,8 @@
         %td= job.service_name
         %td= job.service_description
         %td= job.service_duration
-        %td= job.client_price
-        %td= job.employee_price
+        %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
+        %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
         %td= link_to 'Show', job
         %td= link_to 'Edit', edit_job_path(job)
         %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }
