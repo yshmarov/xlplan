@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_07_193827) do
+ActiveRecord::Schema.define(version: 2018_11_07_211107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,14 +118,16 @@ ActiveRecord::Schema.define(version: 2018_11_07_193827) do
     t.string "name", limit: 144, null: false
     t.string "description", limit: 255
     t.integer "duration", default: 30, null: false
-    t.integer "client_price", default: 0, null: false
     t.integer "employee_percent", default: 100, null: false
-    t.integer "employee_price", default: 0, null: false
     t.integer "quantity", default: 1, null: false
     t.integer "status", default: 0, null: false
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "client_price_cents", default: 0, null: false
+    t.string "client_price_currency", default: "USD", null: false
+    t.integer "employee_price_cents", default: 0, null: false
+    t.string "employee_price_currency", default: "USD", null: false
     t.index ["category_id"], name: "index_services_on_category_id"
     t.index ["name"], name: "index_services_on_name", unique: true
   end

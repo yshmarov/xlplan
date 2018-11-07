@@ -14,13 +14,14 @@
   = @service.duration
 %p
   %b Client price:
-  = @service.client_price
+  = number_to_currency(@service.client_price, :unit => "#{@service.client_price_currency}, ")
 %p
   %b Employee percent:
   = @service.employee_percent
 %p
   %b Employee price:
-  = @service.employee_price
+  = number_to_currency(@service.employee_price, :unit => "#{@service.employee_price_currency}, ")
+
 %p
   %b Quantity:
   = @service.quantity

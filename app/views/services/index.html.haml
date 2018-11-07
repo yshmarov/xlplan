@@ -23,9 +23,9 @@
         %td= service.name
         %td= service.description
         %td= service.duration
-        %td= service.client_price
+        %td= number_to_currency(service.client_price, :unit => "#{service.client_price_currency}, ")
         %td= service.employee_percent
-        %td= service.employee_price
+        %td= number_to_currency(service.employee_price, :unit => "#{service.client_price_currency}, ")
         %td= service.quantity
         %td= service.status
         %td= link_to 'Show', service

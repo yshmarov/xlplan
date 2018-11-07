@@ -1,6 +1,8 @@
 class Service < ApplicationRecord
   validates :name, uniqueness: true
-  validates :name, :duration, :client_price, :employee_price, :quantity, :status, :category_id, presence: true
+  validates :name, :duration, :client_price_cents, :employee_price_cents, :quantity, :status, :category_id, presence: true
+  monetize :client_price_cents
+  monetize :employee_price_cents
 
   belongs_to :category
   has_many :jobs
@@ -9,7 +11,7 @@ class Service < ApplicationRecord
   #after_update :update_employee_price
   after_save :update_employee_price
   def update_employee_price
-    update_column :employee_price, (client_price*employee_percent/100)
+    update_column :employee_price_cents, (client_price_cents*employee_percent/100)
   end
   
   def to_s
