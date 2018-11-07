@@ -1,8 +1,8 @@
 class Job < ApplicationRecord
-  belongs_to :client
+  belongs_to :client, touch: true
   belongs_to :service
   belongs_to :location
-  belongs_to :employee
+  belongs_to :employee, touch: true
 
   validates :client_id, :starts_at, :status, :service_id, :location_id, :employee_id,
             :service_name, :service_description, :service_duration, :client_price,
@@ -11,8 +11,9 @@ class Job < ApplicationRecord
   monetize :client_price, as: :client_price_cents
   monetize :employee_price, as: :employee_price_cents
 
-  after_save :update_associated_columns
+  #after_save :update_associated_columns
   #after_update :update_associated_columns
+  after_create :update_associated_columns
   def update_associated_columns
     update_column :service_name, (service.name)
     update_column :service_description, (service.description)

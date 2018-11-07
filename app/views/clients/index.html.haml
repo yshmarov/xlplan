@@ -16,7 +16,7 @@
       %tr
         %td= client.person
         %td= client.employee
-        %td= client.balance
+        %td= number_to_currency(client.balance_cents, :unit => "$")
         %td= client.status
         %td= link_to 'Show', client
         %td= link_to 'Edit', edit_client_path(client)

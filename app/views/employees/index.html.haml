@@ -22,7 +22,7 @@
         %td= employee.specialization
         %td= employee.employment_date
         %td= employee.termination_date
-        %td= employee.balance
+        %td= number_to_currency(employee.balance_cents, :unit => "$")
         %td= employee.status
         %td= link_to 'Show', employee
         %td= link_to 'Edit', edit_employee_path(employee)
