@@ -1,43 +1,49 @@
-%h1 Listing jobs
-
-%table
-  %thead
-    %tr
-      %th Client
-      %th Starts at
-      %th Ends at
-      %th Status
-      %th Service
-      %th Location
-      %th Employee
-      %th Service name
-      %th Service description
-      %th Service duration
-      %th Client price
-      %th Employee price
-      %th
-      %th
-      %th
-
-  %tbody
-    - @jobs.each do |job|
-      %tr
-        %td= job.client
-        %td= job.starts_at
-        %td= job.ends_at
-        %td= status_label(job.status)
-        %td= job.service
-        %td= job.location
-        %td= job.employee
-        %td= job.service_name
-        %td= job.service_description
-        %td= job.service_duration
-        %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
-        %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
-        %td= link_to 'Show', job
-        %td= link_to 'Edit', edit_job_path(job)
-        %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }
-
+- model_class = Job
 %br
-
-= link_to 'New Job', new_job_path
+.card.card-default
+  .container
+    .card-heading.text-center
+      %h4.card-title.pull-left{:style => "padding-top: 7.5px;"} 
+        %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+      %h4.card-title.pull-right{:style => "padding-top: 7.5px;"} 
+        = link_to 'New Job', new_job_path, class: 'btn btn-sm btn-primary'
+  %table
+    %thead
+      %tr
+        %th Client
+        %th Starts at
+        %th Ends at
+        %th Status
+        %th Service
+        %th Location
+        %th Employee
+        %th Service name
+        %th Service description
+        %th Service duration
+        %th Client price
+        %th Employee price
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @jobs.each do |job|
+        %tr
+          %td= job.client
+          %td= job.starts_at
+          %td= job.ends_at
+          %td= status_label(job.status)
+          %td= job.service
+          %td= job.location
+          %td= job.employee
+          %td= job.service_name
+          %td= job.service_description
+          %td= job.service_duration
+          %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
+          %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
+          %td= link_to 'Show', job, class: 'btn btn-sm btn-primary'
+          %td= link_to 'Edit', edit_job_path(job), class: 'btn btn-sm btn-warning'
+          %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+  .container
+    = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%br

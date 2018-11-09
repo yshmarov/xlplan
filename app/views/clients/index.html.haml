@@ -1,27 +1,33 @@
-%h1 Listing clients
-
-%table
-  %thead
-    %tr
-      %th Person
-      %th Employee
-      %th Balance
-      %th Status
-      %th
-      %th
-      %th
-
-  %tbody
-    - @clients.each do |client|
-      %tr
-        %td= client.person
-        %td= client.employee
-        %td= number_to_currency(client.balance_cents, :unit => "$")
-        %td= status_label(client.status)
-        %td= link_to 'Show', client
-        %td= link_to 'Edit', edit_client_path(client)
-        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }
-
+- model_class = Client
 %br
-
-= link_to 'New Client', new_client_path
+.card.card-default
+  .container
+    .card-heading.text-center
+      %h4.card-title.pull-left{:style => "padding-top: 7.5px;"} 
+        %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+      %h4.card-title.pull-right{:style => "padding-top: 7.5px;"} 
+        = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
+  %table
+    %thead
+      %tr
+        %th Person
+        %th Employee
+        %th Balance
+        %th Status
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @clients.each do |client|
+        %tr
+          %td= client.person
+          %td= client.employee
+          %td= number_to_currency(client.balance_cents, :unit => "$")
+          %td= status_label(client.status)
+          %td= link_to 'Show', client, class: 'btn btn-sm btn-primary'
+          %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
+          %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+  .container
+    = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%br

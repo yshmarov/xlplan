@@ -1,34 +1,39 @@
-%h1 Listing employees
-
-%table
-  %thead
-    %tr
-      %th Person
-      %th Location
-      %th Specialization
-      %th Employment date
-      %th Termination date
-      %th Balance
-      %th Status
-      %th
-      %th
-      %th
-
-  %tbody
-    - @employees.each do |employee|
-      %tr
-        %td= employee.person
-        %td= employee.location
-        %td= employee.specialization
-        %td= employee.employment_date
-        %td= employee.termination_date
-        %td= number_to_currency(employee.balance_cents, :unit => "$")
-        %td= status_label(employee.status)
-        %td= link_to 'Show', employee
-        %td= link_to 'Edit', edit_employee_path(employee)
-        %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }
-
+- model_class = Employee
 %br
-
-= link_to 'New Employee', new_employee_path
-= will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+.card.card-default
+  .container
+    .card-heading.text-center
+      %h4.card-title.pull-left{:style => "padding-top: 7.5px;"} 
+        %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+      %h4.card-title.pull-right{:style => "padding-top: 7.5px;"} 
+        = link_to 'New Employee', new_employee_path, class: 'btn btn-sm btn-primary'
+  %table
+    %thead
+      %tr
+        %th Person
+        %th Location
+        %th Specialization
+        %th Employment date
+        %th Termination date
+        %th Balance
+        %th Status
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @employees.each do |employee|
+        %tr
+          %td= employee.person
+          %td= employee.location
+          %td= employee.specialization
+          %td= employee.employment_date
+          %td= employee.termination_date
+          %td= number_to_currency(employee.balance_cents, :unit => "$")
+          %td= status_label(employee.status)
+          %td= link_to 'Show', employee, class: 'btn btn-sm btn-primary'
+          %td= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-sm btn-warning'
+          %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+  .container
+    = will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%br
