@@ -1,16 +1,187 @@
-%p
-.text-center
-  .cover-container.d-flex.w-100.h-100.p-3.mx-auto.flex-column
-    .row
-      .col-lg
+</div>
+.container.text-center
+  %br
+  .row
+    .col-lg
+      .text-left
         .display-4
           Software that helps service businesses schedule, invoice, and get paid — faster.
-      .col-lg
-        .embed-responsive.embed-responsive-16by9
-          %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ed34BN7SsT4?rel=0", :width => "560"}
+      .text-center
+        %br
+        = link_to 'Try It Free', new_user_registration_path, class: 'btn btn-lg btn-primary'
+        %p
+    .col
+      .embed-responsive.embed-responsive-16by9
+        %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ed34BN7SsT4?rel=0", :width => "560"}
+  %hr
   %br
-  = link_to 'Try It Free', new_user_registration_path, class: 'btn btn-lg btn-primary'
-  %p
+  .display-4
+    Say goodbye to paper and excel accounting!
+  %br
+  .card-deck
+    .card
+      .my-3.py-3
+        %i.fa.fa-hospital{:style => "font-size:200px;color:orange;"}
+        %h1
+          %span.badge.badge-warning 1
+        %h2.display-5
+          Your schedule
+        %p.lead
+          Let your clients book you online. And don't miss an appointment again. 
+    .card
+      .my-3.py-3
+        %i.fa.fa-user{:style => "font-size:200px;color:orange;"}
+        %h1
+          %span.badge.badge-warning 2
+        %h2.display-5
+          Follow up
+        %p.lead
+          Look professional: Book client's calendar, and send them reminders. 
+        %p
+        %small.text-muted.container
+          How many times did Anna visit? Now you know! See your relationships history.
+    .card
+      .my-3.py-3
+        %i.fa.fa-signal{:style => "font-size:200px;color:orange;"}
+        %h1
+          %span.badge.badge-warning 3
+        %h2.display-5
+          Business Analytics
+        %p.lead
+          For smarter descisions
+        %small.text-muted.container
+          How much did I earn last month? Who are my most active clients? How many appointments did I have? What's planned?
+        %p
+        = link_to 'See how JobDone works', new_user_registration_path, class: 'btn btn-warning'
+  /%br
+  /%hr
+  /%br
+  /.display-4 Why?
+  /%br
+  /.card
+  /  .card-body
+  /    .row
+  /      .col-lg-auto
+  /        .col-md-12
+  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+  /      .col-lg
+  /        .text-left
+  /          %h4 Engage
+  /          Create a conversation with your audience. Receive feedback on your event.
+  /.card
+  /  .card-body
+  /    .row
+  /      .col-lg-auto
+  /        .col-md-12
+  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+  /      .col-lg
+  /        .text-left
+  /          %h4 Prioritize
+  /          Because time is limited, speakers can now focus on popular questions.
+  /.card
+  /  .card-body
+  /    .row
+  /      .col-lg-auto
+  /        .col-md-12
+  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+  /      .col-lg
+  /        .text-left
+  /          %h4 Bottom of the iceberg
+  /          Learn questons that would not be asked otherwise.
+  /.card
+  /  .card-body
+  /    .row
+  /      .col-lg-auto
+  /        .col-md-12
+  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+  /      .col-lg
+  /        .text-left
+  /          %h4 Follow-up
+  /          Get contact details of interested audience members. Answer unanswered questions later on. 
+  %br
+  %hr
+  %br
+  .display-4 A solution for your business
+  %br
+  .card-group
+    .card
+      .card-body
+        %h5.card-title Private lessons
+        %p.card-text 
+          Tutors, Fitness trainers
+    .card
+      .card-body
+        %h5.card-title Beauty industy
+        %p.card-text Beauty saloon, Barbershop, SPA, Cosmetology, Tattoo
+    .card
+      .card-body
+        %h5.card-title Private clinic
+        %p.card-text Massage, Dentists, Psychologists, Veterinary
+    .card
+      .card-body
+        %h5.card-title Consulting
+        %p.card-text Lawyer
+  /%br
+  /%hr
+  /%br
+  /.display-4 Core Features
+  /%br
+  /.card-group
+  /  .card
+  /    .card-body
+  /      %i.fa.fa-cloud-upload.fa-3x{:style => "font-size:50px;color:orange;"}
+  /      %h5.card-title In the cloud
+  /      %p.card-text
+  /        %small.text-muted No installation or download required
+  /  .card
+  /    .card-body
+  /      %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:orange;"}
+  /      %h5.card-title Anonimity
+  /      %p.card-text
+  /        %small.text-muted Participants can comfortably raise questions anonymously.
+  /  .card
+  /    .card-body
+  /      %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:orange;"}
+  /      %h5.card-title Security
+  /      %p.card-text
+  /        %small.text-muted
+  /          Your data is private and encrypted. It is also logically separated from other events.
+  /  .card
+  /    .card-body
+  /      %i.fa.fa-signal.fa-3x{:style => "font-size:50px;color:orange;"}
+  /      %h5.card-title Analytics
+  /      %p.card-text
+  /        %small.text-muted Detaled audience engagement reports.
+  /  .card
+  /    .card-body
+  /      %i.fa.fa-download.fa-3x{:style => "font-size:50px;color:orange;"}
+  /      %h5.card-title Export
+  /      %p.card-text
+  /        %small.text-muted You own your data. Export to PDF and Excel.
+  /%br
+  /= link_to 'See more features', root_path, class: 'btn btn-warning'
+  /%br
+  /%hr
+  /%br
+  /.row
+  /  .col-4
+  /    .display-4 Don't just take our word for it
+  /  .col-8
+  /    .row.text-center
+  /      /.col
+  /      /  = image_tag "pg-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "pg-askdemos-partner"
+  /      .col
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-askdemos-partner"
+  /      .col
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "visuality-askdemos-partner"
+  /    %br
+  /    .row.text-center
+  /      .col
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "ewl-askdemos-partner"
+  /      .col
+  /        = image_tag "jobdone.png", style: 'height:auto;width:35%;', :alt => "vistula-askdemos-partner"
+  /      .col
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-askdemos-partner"
   %hr
   %br
   %footer.mastfoot.mt-auto
@@ -20,6 +191,7 @@
         = Time.now.year
         Powered by
         = succeed "," do
-          %a{:href => "https://askdemos.com/"} Askdemos
+          %a{:href => "https://doesmystartupideasuck.herokuapp.com"} DMSIS
         = succeed "." do
           %a{:href => "https://twitter.com/yaro_the_slav"} @yaro_the_slav
+  %br
