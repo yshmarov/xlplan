@@ -1,33 +1,38 @@
 - model_class = Client
-%br
-.card.card-default
-  .container
-    .card-heading.text-center
-      %h4.card-title.pull-left{:style => "padding-top: 7.5px;"} 
-        %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-      %h4.card-title.pull-right{:style => "padding-top: 7.5px;"} 
-        = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
-  %table
-    %thead
-      %tr
-        %th Person
-        %th Employee
-        %th Balance
-        %th Status
-        %th
-        %th
-        %th
-  
-    %tbody
-      - @clients.each do |client|
+= search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
+  %br
+  .card.card-default
+    .container
+      .card-heading.text-center
+        %h4.card-title.pull-left{:style => "padding-top: 7.5px;"} 
+          %b
+            =t '.title', :default => model_class.model_name.human.pluralize.titleize
+            = f.search_field :person_last_name_cont, autofocus: true, placeholder: "Surname"
+            = f.submit
+            = link_to '', clients_path, class: "btn btn-sm btn-secondary fa fa-refresh", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %h4.card-title.pull-right{:style => "padding-top: 7.5px;"} 
+          = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
+    %table
+      %thead
         %tr
-          %td= client.person
-          %td= client.employee
-          %td= number_to_currency(client.balance_cents, :unit => "$")
-          %td= status_label(client.status)
-          %td= link_to 'Show', client, class: 'btn btn-sm btn-primary'
-          %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
-          %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-  .container
-    = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+          %th= sort_link @ransack_clients, :person_last_name, "Person last name"
+          %th= sort_link @ransack_clients, :balance, "Balance"
+          %th= sort_link @ransack_clients, :status, "Status"
+          %th Created
+          %th
+          %th
+          %th
+    
+      %tbody
+        - @clients.each do |client|
+          %tr
+            %td= client.person
+            %td= number_to_currency(client.balance_cents, :unit => "$")
+            %td= status_label(client.status)
+            %td= client.employee
+            %td= link_to 'Show', client, class: 'btn btn-sm btn-primary'
+            %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
+            %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    .container
+      = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

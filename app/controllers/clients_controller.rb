@@ -2,7 +2,11 @@ class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
-    @clients = Client.paginate(:page => params[:page], :per_page => 10)
+    #@q = Client.ransack(params[:q])
+    #@clients = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
+
+    @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
+    @clients = @ransack_clients.result.includes(:person).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
