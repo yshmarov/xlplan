@@ -27,7 +27,7 @@
         %td= service.employee_percent
         %td= number_to_currency(service.employee_price, :unit => "#{service.employee_price_currency}, ")
         %td= service.quantity
-        %td= service.status
+        %td= status_label(service.status)
         %td= link_to 'Show', service
         %td= link_to 'Edit', edit_service_path(service)
         %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }

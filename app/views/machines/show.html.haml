@@ -8,7 +8,7 @@
   = @machine.location
 %p
   %b Status:
-  = @machine.status
+  = status_label(@machine.status
 
 = link_to 'Edit', edit_machine_path(@machine)
 \|

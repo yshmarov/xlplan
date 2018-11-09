@@ -20,7 +20,7 @@
   = @employee.balance
 %p
   %b Status:
-  = @employee.status
+  = status_label(@employee.status)
 
 = link_to 'Edit', edit_employee_path(@employee)
 \|

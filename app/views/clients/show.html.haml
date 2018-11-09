@@ -11,7 +11,7 @@
   = @client.balance
 %p
   %b Status:
-  = @client.status
+  = status_label(@client.status)
 
 = link_to 'Edit', edit_client_path(@client)
 \|

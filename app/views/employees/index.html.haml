@@ -23,7 +23,7 @@
         %td= employee.employment_date
         %td= employee.termination_date
         %td= number_to_currency(employee.balance_cents, :unit => "$")
-        %td= employee.status
+        %td= status_label(employee.status)
         %td= link_to 'Show', employee
         %td= link_to 'Edit', edit_employee_path(employee)
         %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }

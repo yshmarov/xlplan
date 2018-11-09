@@ -25,7 +25,7 @@
         %td= job.client
         %td= job.starts_at
         %td= job.ends_at
-        %td= job.status
+        %td= status_label(job.status)
         %td= job.service
         %td= job.location
         %td= job.employee

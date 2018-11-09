@@ -17,7 +17,7 @@
   = @location.balance
 %p
   %b Status:
-  = @location.status
+  = status_label(@location.status)
 
 = link_to 'Edit', edit_location_path(@location)
 \|

@@ -27,7 +27,7 @@
   = @service.quantity
 %p
   %b Status:
-  = @service.status
+  = status_label(@service.status)
 
 = link_to 'Edit', edit_service_path(@service)
 \|

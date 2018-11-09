@@ -27,7 +27,7 @@ class Job < ApplicationRecord
     id
   end
 
-  enum status: [:"Planned", :"Confirmed", :"Client_no_appear", 
-                :"Rejected_by_us", :"Cancelled_by_client", :"Confirmed_by_client"]
+  enum status: [:"Planned", :"Confirmed", :"Confirmed_by_client", 
+                :"No_show", :"Rejected_by_us", :"Cancelled_by_client"]
 
 end

@@ -11,7 +11,7 @@
   = @job.ends_at
 %p
   %b Status:
-  = @job.status
+  = status_label(@job.status)
 %p
   %b Service:
   = @job.service
