@@ -59,7 +59,7 @@ gem "haml-rails", "~> 1.0"
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'simple_form'
-gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.5.0'
 gem 'exception_notification'
 gem 'devise'
 gem 'devise_invitable', '~> 1.7.0'
