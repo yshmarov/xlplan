@@ -8,24 +8,21 @@
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
       - if current_user
-        %li.nav-item= link_to "Categories", categories_path, class: "nav-link"
-        %li.nav-item= link_to "Services", services_path, class: "nav-link"
-        %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
-        %li.nav-item= link_to "Machines", machines_path, class: "nav-link"
-        %li.nav-item= link_to "People", people_path, class: "nav-link"
-        %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
-        %li.nav-item= link_to "Employee Categories", employee_categories_path, class: "nav-link"
-        %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
-        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
+        %li.nav-item= link_to "Dashboard", dashboard_path, class: "nav-link"
         %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link"
+        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
+        %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
+        %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
+            Settings
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            %a.dropdown-item{:href => "#"} Action
-            %a.dropdown-item{:href => "#"} Another action
-            .dropdown-divider
-            %a.dropdown-item{:href => "#"} Something else here
+            = link_to "People", people_path, class: "dropdown-item navdrop-link"
+            = link_to "Services", services_path, class: "dropdown-item navdrop-link"
+            = link_to "Service Categories", categories_path, class: "dropdown-item navdrop-link"
+            = link_to "Employee Service Categories", employee_categories_path, class: "dropdown-item navdrop-link"
+            = link_to "Locations", locations_path, class: "dropdown-item navdrop-link"
+            = link_to "Machines", machines_path, class: "dropdown-item navdrop-link"
       - else
         %li.nav-item= link_to "Features", services_path, class: "nav-link"
         %li.nav-item= link_to "Industries", locations_path, class: "nav-link"
@@ -33,8 +30,12 @@
         %li.nav-item= link_to "Why JobDone?", machines_path, class: "nav-link"
     %ul.nav.navbar-nav.navbar-right
       - if current_user
-        %li= link_to current_user.email, edit_user_registration_path, class: "nav-link"
-        %li= link_to "Logout", destroy_user_session_path, :method => :delete, class: "nav-link"
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            = current_user.email
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            = link_to 'Account Settings', edit_user_registration_path, class: "dropdown-item navdrop-link"
+            = link_to "Logout", destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"
       - else
         %li= link_to 'Login', new_user_session_path, class: "nav-link"
         .form-inline
