@@ -1,49 +1,60 @@
 - model_class = Job
-%br
-.card.card-default
-  .container
-    .card-heading.text-center
-      %h4.card-title.pull-left{:style => "padding-top: 7.5px;"} 
-        %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-      %h4.card-title.pull-right{:style => "padding-top: 7.5px;"} 
-        = link_to 'New Job', new_job_path, class: 'btn btn-sm btn-primary'
-  %table
-    %thead
-      %tr
-        %th Client
-        %th Starts at
-        %th Ends at
-        %th Status
-        %th Service
-        %th Location
-        %th Employee
-        %th Service name
-        %th Service description
-        %th Service duration
-        %th Client price
-        %th Employee price
-        %th
-        %th
-        %th
-  
-    %tbody
-      - @jobs.each do |job|
+= search_form_for @q, url: jobs_path do |f|
+  %br
+  .card.card-default
+    .container
+      .card-heading.text-center
+        %h4.card-title.pull-left{:style => "padding-top: 7.5px;"} 
+          %b
+            =t '.title', :default => model_class.model_name.human.pluralize.titleize
+            /= f.search_field :id_eq, autofocus: true, placeholder: "Surname"
+            = f.submit
+            = link_to '', jobs_path, class: "btn btn-sm btn-secondary fa fa-refresh", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %h4.card-title.pull-right{:style => "padding-top: 7.5px;"} 
+          = link_to 'New Job', new_job_path, class: 'btn btn-sm btn-primary'
+    %table
+      %thead
         %tr
-          %td= job.client
-          %td= job.starts_at
-          %td= job.ends_at
-          %td= status_label(job.status)
-          %td= job.service
-          %td= job.location
-          %td= job.employee
-          %td= job.service_name
-          %td= job.service_description
-          %td= job.service_duration
-          %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
-          %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
-          %td= link_to 'Show', job, class: 'btn btn-sm btn-primary'
-          %td= link_to 'Edit', edit_job_path(job), class: 'btn btn-sm btn-warning'
-          %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-  .container
-    = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+          %th 
+            Client
+            = f.search_field :client_person_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
+          %th
+            Starts at
+            .input-daterange
+              = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to"
+              = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to"
+          %th Ends at
+          %th 
+            Status
+            = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}
+          %th Location
+          %th 
+            Employee
+            = f.search_field :employee_person_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
+          %th Service name
+          %th Service duration
+          %th Client price
+          %th Employee price
+          %th
+          %th
+          %th
+    
+      %tbody
+        - @jobs.each do |job|
+          %tr
+            %td= job.client
+            %td= job.starts_at
+            %td= job.ends_at
+            %td= status_label(job.status)
+            %td= job.location
+            %td= job.employee
+            %td= job.service.full_name
+            %td= job.service_duration
+            %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
+            %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
+            %td= link_to 'Show', job, class: 'btn btn-sm btn-primary'
+            %td= link_to 'Edit', edit_job_path(job), class: 'btn btn-sm btn-warning'
+            %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    .container
+      = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

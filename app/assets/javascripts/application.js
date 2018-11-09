@@ -16,6 +16,7 @@
 //= require jquery3
 //= require rails-ujs
 //= require selectize
+//= require bootstrap-datepicker
 //= require activestorage
 //= require turbolinks
 //= require_tree .
@@ -55,6 +56,14 @@ $(document).on('turbolinks:load', function(){
   }
 
 
+	$('.datepicker').datepicker({
+     orientation: 'auto bottom',
+     format: 'yyyy-mm-dd'
+	});
+ 	$('.input-daterange').datepicker({
+     orientation: 'auto bottom',
+     format: 'yyyy-mm-dd'
+    });
 
   eventCalendar();  
 });

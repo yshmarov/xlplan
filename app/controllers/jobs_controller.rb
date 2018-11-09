@@ -2,7 +2,9 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
-    @jobs = Job.paginate(:page => params[:page], :per_page => 10)
+    #@jobs = Job.paginate(:page => params[:page], :per_page => 10)
+    @q = Job.ransack(params[:q])
+    @jobs = @q.result.includes(:location, :client, :employee, :service).paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
