@@ -18,6 +18,10 @@ class Service < ApplicationRecord
     name
   end
 
+  def full_name
+    name.to_s+'('+description.to_s+'/'+category.to_s+')('+client_price_cents.to_i.to_s+'/'+employee_price_cents.to_i.to_s+')'
+  end
+
   #def total_price
   #  client_price*quantity
   #end

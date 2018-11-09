@@ -15,6 +15,7 @@
 //
 //= require jquery3
 //= require rails-ujs
+//= require selectize
 //= require activestorage
 //= require turbolinks
 //= require_tree .
@@ -46,6 +47,15 @@ function clearCalendar() {
 };
 
 $(document).on('turbolinks:load', function(){
+
+  if ($('.selectize')){
+      $('.selectize').selectize({
+          sortField: 'text'
+      });
+  }
+
+
+
   eventCalendar();  
 });
 $(document).on('turbolinks:before-cache', clearCalendar);
