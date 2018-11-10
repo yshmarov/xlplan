@@ -39,16 +39,18 @@
     %table
       %thead
         %tr
-          %th Client
-          %th Starts at
+          %th= sort_link @q, :client_person_last_name, "Client"
+          %th= sort_link @q, :starts_at, "Starts at"
           %th Ends at
-          %th Status
-          %th Location
-          %th Employee
+          %th= sort_link @q, :status, "Status"
+          %th= sort_link @q, :location_id, "Location"
+          %th= sort_link @q, :employee_person_last_name_cont, "Employee"
           %th Service name
-          %th Service duration
-          %th Client price
-          %th Employee price
+          %th= sort_link @q, :service_duration, "Service duration"
+          /%th Client price
+          /%th Employee price
+          %th= sort_link @q, :client_price, "Client price"
+          %th= sort_link @q, :employee_price, "Employee price"
           %th
           %th
           %th
