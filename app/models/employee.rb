@@ -9,6 +9,8 @@ class Employee < ApplicationRecord
   monetize :balance, as: :balance_cents
   after_touch :update_balance
 
+  #scope :active, -> { where(status: 0) }
+
   def to_s
     person
   end
