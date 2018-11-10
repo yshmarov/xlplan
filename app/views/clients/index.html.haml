@@ -16,6 +16,7 @@
       %thead
         %tr
           %th= sort_link @ransack_clients, :person_last_name, "Person last name"
+          %th Jobs
           %th= sort_link @ransack_clients, :balance, "Balance"
           %th= sort_link @ransack_clients, :status, "Status"
           %th Created
@@ -27,6 +28,7 @@
         - @clients.each do |client|
           %tr
             %td= client.person
+            %td= client.jobs.count
             %td= number_to_currency(client.balance_cents, :unit => "$")
             %td= status_label(client.status)
             %td= client.employee

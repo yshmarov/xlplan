@@ -10,6 +10,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    @jobs = @client.jobs
   end
 
   def new

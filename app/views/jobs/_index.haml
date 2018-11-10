@@ -1,0 +1,42 @@
+- model_class = Job
+%br
+.card.card-default
+.container
+  .card-heading
+    %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+      %b
+        =t '.title', :default => model_class.model_name.human.pluralize.titleize
+%table
+  %thead
+    %tr
+      %th Client
+      %th Starts at
+      %th Ends at
+      %th Status
+      %th Location
+      %th Employee
+      %th Service name
+      %th Service duration
+      %th Client price
+      %th Employee price
+      %th
+      %th
+      %th
+
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= job.client
+        %td= job.starts_at
+        %td= job.ends_at
+        %td= status_label(job.status)
+        %td= job.location
+        %td= job.employee
+        %td= job.service.full_name
+        %td= job.service_duration
+        %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
+        %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
+        %td= link_to 'Show', job, class: 'btn btn-sm btn-primary'
+        %td= link_to 'Edit', edit_job_path(job), class: 'btn btn-sm btn-warning'
+        %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+%br
