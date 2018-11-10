@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_07_211107) do
+ActiveRecord::Schema.define(version: 2018_11_10_115305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_11_07_211107) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "jobs_count"
     t.index ["employee_id"], name: "index_clients_on_employee_id"
     t.index ["person_id"], name: "index_clients_on_person_id"
   end
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2018_11_07_211107) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "jobs_count"
     t.index ["location_id"], name: "index_employees_on_location_id"
     t.index ["person_id"], name: "index_employees_on_person_id"
   end
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 2018_11_07_211107) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "jobs_count"
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
@@ -128,6 +131,7 @@ ActiveRecord::Schema.define(version: 2018_11_07_211107) do
     t.string "client_price_currency", default: "USD", null: false
     t.integer "employee_price_cents", default: 0, null: false
     t.string "employee_price_currency", default: "USD", null: false
+    t.integer "jobs_count"
     t.index ["category_id"], name: "index_services_on_category_id"
     t.index ["name"], name: "index_services_on_name", unique: true
   end

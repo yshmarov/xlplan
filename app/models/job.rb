@@ -1,8 +1,12 @@
 class Job < ApplicationRecord
-  belongs_to :client, touch: true
-  belongs_to :service
-  belongs_to :location
-  belongs_to :employee, touch: true
+  belongs_to :client, touch: true, counter_cache: true
+  belongs_to :service, counter_cache: true
+  belongs_to :location, counter_cache: true
+  belongs_to :employee, touch: true, counter_cache: true
+  #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
+  #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }
+  #Location.find_each { |location| Location.reset_counters(location.id, :jobs_count) }
+  #Employee.find_each { |employee| Employee.reset_counters(employee.id, :jobs_count) }
 
   validates :client_id, :starts_at, :status, :service_id, :location_id, :employee_id,
             :service_name, :service_description, :service_duration, :client_price,
