@@ -9,6 +9,7 @@ class EmployeesController < ApplicationController
   end
 
   def show
+    @jobs = @employee.jobs
   end
 
   def new
