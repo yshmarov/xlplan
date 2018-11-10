@@ -1,39 +1,46 @@
 - model_class = Employee
-%br
-.card.card-default
-  .container
-    .card-heading.text-center
-      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-        %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-      %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-        = link_to 'New Employee', new_employee_path, class: 'btn btn-sm btn-primary'
-  %table
-    %thead
-      %tr
-        %th Person
-        %th Location
-        %th Specialization
-        %th Employment date
-        %th Termination date
-        %th Balance
-        %th Status
-        %th
-        %th
-        %th
-  
-    %tbody
-      - @employees.each do |employee|
+= search_form_for @ransack_employees, as: :employees_search, url: employees_path do |f|
+  %br
+  .card.card-default
+    .container
+      .card-heading
+        %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+          %b
+            =t '.title', :default => model_class.model_name.human.pluralize.titleize
+            = f.search_field :person_last_name_cont, autofocus: true, placeholder: "Surname"
+            = f.submit
+            = link_to '', employees_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+          = link_to 'New Employee', new_employee_path, class: 'btn btn-sm btn-primary'
+    %table
+      %thead
         %tr
-          %td= employee.person
-          %td= employee.location
-          %td= employee.specialization
-          %td= employee.employment_date
-          %td= employee.termination_date
-          %td= number_to_currency(employee.balance_cents, :unit => "$")
-          %td= status_label(employee.status)
-          %td= link_to 'Show', employee, class: 'btn btn-sm btn-primary'
-          %td= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-sm btn-warning'
-          %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-  .container
-    = will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+          %th= sort_link @ransack_employees, :person_last_name, "Name"
+          %th Location
+          %th Specialization
+          %th Employment date
+          %th Termination date
+          %th= sort_link @ransack_employees, :jobs_count, "Jobs"
+          %th= sort_link @ransack_employees, :balance, "Balance"
+          %th= sort_link @ransack_employees, :status, "Status"
+          %th
+          %th
+          %th
+    
+      %tbody
+        - @employees.each do |employee|
+          %tr
+            %td= employee.person
+            %td= employee.location
+            %td= employee.specialization
+            %td= employee.employment_date
+            %td= employee.termination_date
+            %td= employee.jobs_count
+            %td= number_to_currency(employee.balance_cents, :unit => "$")
+            %td= status_label(employee.status)
+            %td= link_to 'Show', employee, class: 'btn btn-sm btn-primary'
+            %td= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-sm btn-warning'
+            %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    .container
+      = will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
