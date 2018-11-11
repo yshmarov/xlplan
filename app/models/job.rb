@@ -13,6 +13,9 @@ class Job < ApplicationRecord
             :service_name, :service_description, :service_duration, :client_price,
             :employee_price, presence: true
 
+  enum status: [:"Planned", :"Confirmed", :"Confirmed_by_client", 
+                :"No_show", :"Rejected_by_us", :"Cancelled_by_client"]
+
   monetize :client_price, as: :client_price_cents
   monetize :employee_price, as: :employee_price_cents
 
@@ -37,16 +40,26 @@ class Job < ApplicationRecord
     id
   end
 
+  def event_happened
+    if status == 'Confirmed_by_client' || status == 'Confirmed'
+      1
+    elsif status == 'No_show' || status == 'Rejected_by_us' || status == 'Cancelled_by_client' || status == 'Planned'
+      0
+    end
+  end
+
+  def client_due
+    client_price * event_happened
+  end
+
+  def due_to_employee
+    employee_price * event_happened
+  end
+
   def color
-    if status == 'Confirmed_by_client'
+    if status == 'Confirmed_by_client' || status == 'Confirmed'
       'green'
-    elsif status == 'Confirmed'
-      'green'
-    elsif status == 'No_show'
-      'red'
-    elsif status == 'Rejected_by_us'
-      'red'
-    elsif status == 'Cancelled_by_client'
+    elsif status == 'No_show' || status == 'Rejected_by_us' || status == 'Cancelled_by_client'
       'red'
     elsif status == 'Planned'
       'blue'
@@ -54,8 +67,5 @@ class Job < ApplicationRecord
       'black'
     end
   end
-
-  enum status: [:"Planned", :"Confirmed", :"Confirmed_by_client", 
-                :"No_show", :"Rejected_by_us", :"Cancelled_by_client"]
 
 end

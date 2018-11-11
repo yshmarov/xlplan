@@ -40,17 +40,18 @@
       %thead
         %tr
           %th= sort_link @q, :client_person_last_name, "Client"
-          %th= sort_link @q, :starts_at, "Starts at"
-          %th Ends at
+          %th= sort_link @q, :starts_at, "Time"
           %th= sort_link @q, :status, "Status"
           %th= sort_link @q, :location_id, "Location"
-          %th= sort_link @q, :employee_person_last_name_cont, "Employee"
-          %th Service
-          %th= sort_link @q, :service_duration, "Duration"
+          %th= sort_link @q, :employee_person_last_name, "Employee"
+          %th= sort_link @q, :service_name, "Service"
+          /%th= sort_link @q, :service_duration, "Duration"
           /%th Client price
           /%th Employee price
           %th= sort_link @q, :client_price, "Client,$"
           %th= sort_link @q, :employee_price, "Employee,$"
+          %th ToC$
+          %th ToE$
           %th
           %th
           %th
@@ -59,15 +60,16 @@
         - @jobs.each do |job|
           %tr
             %td= job.client
-            %td= job.starts_at
-            %td= job.ends_at
+            %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
             %td= status_label(job.status)
             %td= job.location
             %td= job.employee
             %td= job.service.full_name
-            %td= job.service_duration
+            /%td= job.service_duration
             %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
             %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
+            %td= job.client_due
+            %td= job.due_to_employee
             %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
             %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
             %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
