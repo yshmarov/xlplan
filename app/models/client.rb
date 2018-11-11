@@ -12,7 +12,7 @@ class Client < ApplicationRecord
   after_touch :update_balance
 
   def to_s
-    person
+    person.full_name
   end
 
   enum status: [:"Active", :"Inactive"]

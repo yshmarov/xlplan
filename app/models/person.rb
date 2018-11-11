@@ -22,6 +22,10 @@ class Person < ApplicationRecord
     last_name.capitalize + " " + first_name.capitalize
   end
 
+  def full_name
+    last_name.capitalize + " " + first_name.capitalize
+  end
+
   def account_status
     if user.present?
       if user.invitation_accepted_at?

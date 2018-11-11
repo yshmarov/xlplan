@@ -16,7 +16,7 @@ class Employee < ApplicationRecord
   enum status: [:"Active", :"Inactive"]
 
   def to_s
-    person
+    person.full_name
   end
 
   def termination_date_cannot_be_before_employment_date

@@ -59,15 +59,17 @@
       %tbody
         - @jobs.each do |job|
           %tr
-            %td= job.client
+            %td= link_to job.client, client_path(job.client)
             %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
             %td= status_label(job.status)
-            %td= job.location
-            %td= job.employee
-            %td= job.service.full_name
+            %td= link_to job.location, location_path(job.location)
+            %td= link_to job.employee, employee_path(job.employee)
+            %td= link_to job.service.full_name, service_path(job.service)
             /%td= job.service_duration
-            %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
-            %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
+            /%td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
+            /%td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
+            %td= job.client_price_cents
+            %td= job.employee_price_cents
             %td= job.client_due
             %td= job.due_to_employee
             %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
