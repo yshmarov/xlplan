@@ -6,6 +6,7 @@ class Location < ApplicationRecord
   has_many :employees
   has_many :jobs
 
+  monetize :balance, as: :balance_cents
   after_touch :update_balance
   def update_balance
     update_column :balance, (balance)
@@ -16,5 +17,9 @@ class Location < ApplicationRecord
   end
 
   enum status: [:"Active", :"Inactive"]
+
+  def update_balance
+    update_column :balance, (jobs.map(&:client_price).sum)
+  end
 
 end

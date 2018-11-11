@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :service, counter_cache: true
-  belongs_to :location, counter_cache: true
+  belongs_to :location, touch: true, counter_cache: true
   belongs_to :employee, touch: true, counter_cache: true
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
   #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }
@@ -22,8 +22,8 @@ class Job < ApplicationRecord
     update_column :service_name, (service.name)
     update_column :service_description, (service.description)
     update_column :service_duration, (service.duration)
-    update_column :client_price, (service.client_price)
-    update_column :employee_price, (service.employee_price)
+    update_column :client_price, (service.client_price_cents)
+    update_column :employee_price, (service.employee_price_cents)
     update_column :ends_at, (starts_at + service_duration*60)
   end
 

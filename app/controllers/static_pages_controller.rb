@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   end
 
   def dashboard
+    @job_statuses = Job.unscoped.group("status").count
     next_bdays = (Date.today + 0.day).yday
     #next 5 bdays
     @people = Person.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)

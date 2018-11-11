@@ -20,9 +20,9 @@
           %th Specialization
           %th Employment date
           %th Termination date
-          %th= sort_link @ransack_employees, :jobs_count, "Jobs"
-          %th= sort_link @ransack_employees, :balance, "Balance"
           %th= sort_link @ransack_employees, :status, "Status"
+          %th= sort_link @ransack_employees, :balance, "Balance"
+          %th= sort_link @ransack_employees, :jobs_count, "Jobs"
           %th
           %th
           %th
@@ -35,9 +35,9 @@
             %td= employee.specialization
             %td= employee.employment_date
             %td= employee.termination_date
-            %td= employee.jobs_count
-            %td= number_to_currency(employee.balance_cents, :unit => "$")
             %td= status_label(employee.status)
+            %td= number_to_currency(employee.balance_cents, :unit => "$")
+            %td= employee.jobs_count
             %td= link_to 'Show', employee, class: 'btn btn-sm btn-primary'
             %td= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-sm btn-warning'
             %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'

@@ -7,11 +7,12 @@
       %th Name
       %th Description
       %th Duration
-      %th Client price
-      %th Employee percent
-      %th Employee price
+      %th Client $
+      %th Employee %
+      %th Employee $
       %th Quantity
       %th Status
+      %th Jobs
       %th
       %th
       %th
@@ -28,6 +29,7 @@
         %td= number_to_currency(service.employee_price, :unit => "#{service.employee_price_currency}, ")
         %td= service.quantity
         %td= status_label(service.status)
+        %td= service.jobs_count
         %td= link_to 'Show', service
         %td= link_to 'Edit', edit_service_path(service)
         %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }

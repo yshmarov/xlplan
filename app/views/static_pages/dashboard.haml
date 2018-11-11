@@ -60,6 +60,16 @@
             %td.list-group-item.list-group-item-warning
               = person.date_of_birth.strftime('%b, %d')
               = link_to person, person_path(person)
+  .col-md-3
+    %h3.text-center
+      Job statuses
+    %table.table-condensed.table
+      %tbody
+        - @job_statuses.each do |key, value|
+          %tr
+            /%td.list-group-item.list-group-item-warning
+            %td
+              = "#{key} - #{value}"
 
 /Jobs 
 /Jobs total today
