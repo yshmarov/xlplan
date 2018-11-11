@@ -39,8 +39,18 @@ class Job < ApplicationRecord
   def color
     if status == 'Confirmed_by_client'
       'green'
-    else
+    elsif status == 'Confirmed'
+      'green'
+    elsif status == 'No_show'
+      'red'
+    elsif status == 'Rejected_by_us'
+      'red'
+    elsif status == 'Cancelled_by_client'
+      'red'
+    elsif status == 'Planned'
       'blue'
+    else
+      'black'
     end
   end
 
