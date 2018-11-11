@@ -1,74 +1,86 @@
 %h3.text-center
   My stats
 .row
-  .col-md-3
+  .col-md-2
+  .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-calendar
       /= Job.where(employee_id: current_user.person.employee.id).count
       = current_user.person.employee.jobs_count
       %div 
         %b My Jobs
-  .col-md-3
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar
-      = number_to_currency(Job.where(employee_id: current_user.person.employee.id).map(&:employee_price_cents).sum, :unit => "USD, ")
-      %div 
-        %b My earnings
-  .col-md-3
+  .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-dollar
       = (Job.where(employee_id: current_user.person.employee.id).map(&:service_duration).sum)/60.to_d
       %div 
         %b Hours worked
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar
+      = number_to_currency(@my_total_earnings, :unit => "USD, ")
+      %div 
+        %b My earnings
 %br
 %h3.text-center
   Total stats
 .row
-  .col-md-3
+  .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-user
       = Client.count
       %div 
         %b Clients
-  .col-md-3
+  .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-calendar
       = Job.count
       %div 
         %b Jobs
-  .col-md-3
+  .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-dollar
-      = number_to_currency(Job.all.map(&:client_price_cents).sum, :unit => "USD, ")
+      = (Job.all.map(&:service_duration).sum)/60.to_d
+      %div 
+        %b Hours worked
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar
+      = number_to_currency(@total_earnings, :unit => "USD, ")
       %div 
         %b Earnings
-  .col-md-3
+  .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-dollar
-      = number_to_currency(Job.all.map(&:employee_price_cents).sum, :unit => "USD, ")
+      = number_to_currency(@total_expences, :unit => "USD, ")
       %div 
         %b Expences
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar
+      = number_to_currency(@net_income, :unit => "USD, ")
+      %div 
+        %b Net income
 %br
 .row
-  .col-md-6
+  .col-md-4
     %h3.text-center
       Upcoming birthdays
     %table.table-condensed.table
       %tbody
         - @people.each do |person|
           %tr
-            %td.list-group-item.list-group-item-warning
+            %td.card-header
               = person.date_of_birth.strftime('%b, %d')
               = link_to person, person_path(person)
-  .col-md-3
+  .col-md-4
     %h3.text-center
-      Job statuses
+      Job Status
     %table.table-condensed.table
       %tbody
         - @job_statuses.each do |key, value|
           %tr
-            /%td.list-group-item.list-group-item-warning
-            %td
+            %td.card-header
               = "#{key} - #{value}"
 
 /Jobs 
