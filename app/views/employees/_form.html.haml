@@ -7,8 +7,12 @@
     = f.association :person
     = f.association :location, autofocus: true
     = f.input :specialization
-    = f.input :employment_date, start_year: Date.today.year - 25, end_year: Date.today.year, include_blank: true
-    = f.input :termination_date, start_year: Date.today.year - 10, end_year: Date.today.year, include_blank: true
+    = f.label :'Employment date'
+    = f.date_field :employment_date, value: @employee.employment_date || (Time.now).strftime('%Y-%m-%d'), class: "form-control"
+    = f.label :'Termination date'
+    = f.date_field :termination_date, value: @employee.termination_date || nil, class: "form-control"
+    /= f.input :employment_date, start_year: Date.today.year - 25, end_year: Date.today.year, include_blank: true
+    /= f.input :termination_date, start_year: Date.today.year - 10, end_year: Date.today.year, include_blank: true
     = f.input :status, :as => :radio_buttons, :collection => Employee.statuses.keys.to_a, label:false
 
   .form-actions
