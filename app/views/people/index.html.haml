@@ -46,9 +46,9 @@
                 = z.button :submit, 'Invite', class: "btn btn-success btn-xs"
             - else
               Add email to invite user
-        %td= link_to 'Show', person
-        %td= link_to 'Edit', edit_person_path(person)
-        %td= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', person, class: 'btn btn-sm btn-primary'
+        %td= link_to 'Edit', edit_person_path(person), class: 'btn btn-sm btn-warning'
+        %td= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 
 %br
 
