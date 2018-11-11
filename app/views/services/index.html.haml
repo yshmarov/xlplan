@@ -1,39 +1,63 @@
-%h1 Listing services
+- model_class = Service
+= search_form_for @q, url: services_path do |f|
+  %br
+  .card.card-default
+    .container
+      .card-heading
+        %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+          %b
+            =t '.title', :default => model_class.model_name.human.pluralize.titleize
+        %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+          %button.btn.btn-sm.btn-default{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+            .fa.fa-search
+            Search
+          = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
+    #accordion.collapse
+      %table
+        %thead
+          %tr
+            %th 
+              Category
+              = f.search_field :category_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Category"
+            %th
+              Name
+              = f.text_field :name_cont, class: "form-control", placeholder: "Name"
+            %th= f.submit
+            %th= link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
-%table
-  %thead
-    %tr
-      %th Category
-      %th Name
-      %th Description
-      %th Duration
-      %th Client $
-      %th Employee %
-      %th Employee $
-      %th Quantity
-      %th Status
-      %th Jobs
-      %th
-      %th
-      %th
-
-  %tbody
-    - @services.each do |service|
-      %tr
-        %td= service.category
-        %td= service.name
-        %td= service.description
-        %td= service.duration
-        %td= number_to_currency(service.client_price, :unit => "#{service.client_price_currency}, ")
-        %td= service.employee_percent
-        %td= number_to_currency(service.employee_price, :unit => "#{service.employee_price_currency}, ")
-        %td= service.quantity
-        %td= status_label(service.status)
-        %td= service.jobs_count
-        %td= link_to 'Show', service
-        %td= link_to 'Edit', edit_service_path(service)
-        %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }
-
+    %table
+      %thead
+        %tr
+          %th= sort_link @q, :category_name, "Category"
+          %th= sort_link @q, :name, "Name"
+          %th Description
+          %th= sort_link @q, :duration, "Duration"
+          %th= sort_link @q, :client_price_cents, "Client $"
+          %th= sort_link @q, :employee_percent, "Employee %"
+          %th= sort_link @q, :employee_price_cents, "Employee $"
+          %th Quantity
+          %th= sort_link @q, :status, "Status"
+          %th= sort_link @q, :jobs_count, "Jobs"
+          %th
+          %th
+          %th
+    
+      %tbody
+        - @services.each do |service|
+          %tr
+            %td= service.category
+            %td= service.name
+            %td= service.description
+            %td= service.duration
+            %td= number_to_currency(service.client_price, :unit => "#{service.client_price_currency}, ")
+            %td= service.employee_percent
+            %td= number_to_currency(service.employee_price, :unit => "#{service.employee_price_currency}, ")
+            %td= service.quantity
+            %td= status_label(service.status)
+            %td= service.jobs_count
+            %td= link_to 'Show', service
+            %td= link_to 'Edit', edit_service_path(service)
+            %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }
+    .container
+      = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
-
-= link_to 'New Service', new_service_path

@@ -2,7 +2,9 @@ class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
   def index
-    @services = Service.all
+    #@services = Service.all
+    @q = Service.ransack(params[:q])
+    @services = @q.result.includes(:category).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
   end
 
   def show

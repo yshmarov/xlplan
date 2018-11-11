@@ -11,7 +11,7 @@
           %button.btn.btn-sm.btn-default{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
             Search
-          = link_to 'New Job', new_job_path, class: 'btn btn-sm btn-primary'
+          = link_to t('.new', :default => t("helpers.links.new")), new_job_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
       %table
         %thead
@@ -68,9 +68,9 @@
             %td= job.service_duration
             %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
             %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
-            %td= link_to 'Show', job, class: 'btn btn-sm btn-primary'
-            %td= link_to 'Edit', edit_job_path(job), class: 'btn btn-sm btn-warning'
-            %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+            %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
+            %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
+            %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
     .container
       = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
