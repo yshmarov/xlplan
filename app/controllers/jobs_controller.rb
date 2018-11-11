@@ -8,6 +8,9 @@ class JobsController < ApplicationController
   end
 
   def show
+    @commentable = @job
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def new
