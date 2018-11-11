@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def dashboard
+  def stats
     @job_statuses = Job.unscoped.group("status").count
     next_bdays = (Date.today + 0.day).yday
     #next 5 bdays

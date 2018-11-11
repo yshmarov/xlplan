@@ -19,7 +19,8 @@ class Service < ApplicationRecord
   end
 
   def full_name
-    name.to_s+'('+description.to_s+'/'+category.to_s+')('+client_price.to_i.to_s+'/'+employee_price.to_i.to_s+')'
+    name.to_s+'('+description.to_s+'/'+category.to_s+')'+','+duration.to_s+'min'
+    #name.to_s+'('+description.to_s+'/'+category.to_s+')('+client_price.to_i.to_s+'/'+employee_price.to_i.to_s+')'+','+duration.to_s+'min'
   end
 
   #def total_price
