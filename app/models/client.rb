@@ -2,6 +2,8 @@ class Client < ApplicationRecord
   belongs_to :person
   belongs_to :employee
   has_many :jobs
+  has_many :comments, as: :commentable
+
 
   validates :person_id, :employee_id, :status, presence: true
   validates :person_id, uniqueness: true

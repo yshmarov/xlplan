@@ -3,6 +3,7 @@ class Job < ApplicationRecord
   belongs_to :service, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
   belongs_to :employee, touch: true, counter_cache: true
+  has_many :comments, as: :commentable
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
   #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }
   #Location.find_each { |location| Location.reset_counters(location.id, :jobs_count) }

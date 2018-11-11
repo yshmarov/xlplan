@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_10_115305) do
+ActiveRecord::Schema.define(version: 2018_11_11_161058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,17 @@ ActiveRecord::Schema.define(version: 2018_11_10_115305) do
     t.integer "jobs_count", default: 0, null: false
     t.index ["employee_id"], name: "index_clients_on_employee_id"
     t.index ["person_id"], name: "index_clients_on_person_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "person_id"
+    t.text "content"
+    t.integer "commentable_id"
+    t.string "commentable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
+    t.index ["person_id"], name: "index_comments_on_person_id"
   end
 
   create_table "employee_categories", force: :cascade do |t|
@@ -168,6 +179,7 @@ ActiveRecord::Schema.define(version: 2018_11_10_115305) do
 
   add_foreign_key "clients", "employees"
   add_foreign_key "clients", "people"
+  add_foreign_key "comments", "people"
   add_foreign_key "employee_categories", "categories"
   add_foreign_key "employee_categories", "employees"
   add_foreign_key "employees", "locations"

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'comments/index'
+  get 'comments/new'
   devise_for :users, controllers: { invitations: 'invitations'}
   #devise_for :users, controllers: { registrations: "registrations", invitations: 'invitations'}
   #devise_for :users
@@ -8,7 +10,9 @@ Rails.application.routes.draw do
   		patch :invite_user
     end
   end
-  resources :clients
+  resources :clients do
+    resources :comments
+  end
   resources :employees
 
   resources :categories
@@ -16,7 +20,9 @@ Rails.application.routes.draw do
   resources :employee_categories
   resources :locations
   resources :machines
-  resources :jobs
+  resources :jobs do
+    resources :comments
+  end
   get 'stats', to: 'static_pages#stats'
   get 'calendar', to: 'static_pages#calendar'
   root to: 'static_pages#landing_page'

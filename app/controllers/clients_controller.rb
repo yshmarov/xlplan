@@ -11,6 +11,9 @@ class ClientsController < ApplicationController
 
   def show
     @jobs = @client.jobs
+    @commentable = @client
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
   def new
