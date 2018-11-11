@@ -36,6 +36,14 @@ class Job < ApplicationRecord
     id
   end
 
+  def color
+    if status == 'Confirmed_by_client'
+      'green'
+    else
+      'blue'
+    end
+  end
+
   enum status: [:"Planned", :"Confirmed", :"Confirmed_by_client", 
                 :"No_show", :"Rejected_by_us", :"Cancelled_by_client"]
 

@@ -23,6 +23,10 @@ class Service < ApplicationRecord
     #name.to_s+'('+description.to_s+'/'+category.to_s+')('+client_price.to_i.to_s+'/'+employee_price.to_i.to_s+')'+','+duration.to_s+'min'
   end
 
+  def full_name_with_price
+    name.to_s+'('+description.to_s+'/'+category.to_s+')('+client_price.to_i.to_s+'/'+employee_price.to_i.to_s+')'+','+duration.to_s+'min'
+  end
+
   #def total_price
   #  client_price*quantity
   #end
