@@ -10,6 +10,7 @@ class EmployeesController < ApplicationController
 
   def show
     @jobs = @employee.jobs
+    @employee_categories = @employee.employee_categories
   end
 
   def new

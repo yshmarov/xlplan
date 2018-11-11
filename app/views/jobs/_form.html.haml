@@ -13,12 +13,12 @@
     /= f.association :service
     = f.label :service
     = f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'
-    /= f.association :location
-    = f.label :location
-    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: false}, class: 'selectize'
     /= f.association :employee
     = f.label :employee
     = f.select :employee_id, Employee.all.map{|c| [c.person, c.id]}, {include_blank: false}, class: 'selectize'
+    /= f.association :location
+    = f.label :location
+    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: false}, class: 'selectize'
     /= f.input :service_name
     /= f.input :service_description
     /= f.input :service_duration
