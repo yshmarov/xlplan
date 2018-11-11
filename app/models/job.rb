@@ -27,6 +27,11 @@ class Job < ApplicationRecord
     update_column :ends_at, (starts_at + service_duration*60)
   end
 
+  after_update :update_ends_at
+  def update_ends_at
+    update_column :ends_at, (starts_at + service_duration*60)
+  end
+
   def to_s
     id
   end
