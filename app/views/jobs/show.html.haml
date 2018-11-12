@@ -31,11 +31,24 @@
   %b Service duration:
   = @job.service_duration
 %p
-  %b Client price:
+  %b Client projected price:
   = number_to_currency(@job.client_price_cents, :unit => "#{@job.service.client_price_currency}, ")
 %p
-  %b Employee price:
+  %b Employee projected price:
   = number_to_currency(@job.employee_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
+%p
+  %b Client due price:
+  = number_to_currency(@job.client_due_price_cents, :unit => "#{@job.service.client_price_currency}, ")
+%p
+  %b Employee due price:
+  = number_to_currency(@job.employee_due_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
+%p
+  %b Description:
+  = @job.description
+
+
+
+
 
 = link_to 'Edit', edit_job_path(@job)
 \|

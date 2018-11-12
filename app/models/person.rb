@@ -16,7 +16,7 @@ class Person < ApplicationRecord
     self.email.split(/@/).first
   end
 
-  enum status: [:"Active", :"Inactive"]
+  enum status: [:"active", :"inactive"]
 
   def to_s
     last_name.capitalize + " " + first_name.capitalize

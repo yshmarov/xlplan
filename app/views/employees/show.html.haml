@@ -17,7 +17,8 @@
   = @employee.termination_date
 %p
   %b Balance:
-  = @employee.balance
+  = number_to_currency(@employee.balance_cents, :unit => "$")
+
 %p
   %b Status:
   = status_label(@employee.status)

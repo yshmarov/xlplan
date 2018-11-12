@@ -1,14 +1,14 @@
-%p#notice= notice
 
 %p
   %b Person:
   = @client.person
 %p
-  %b Employee:
+  %b Created by:
   = @client.employee
 %p
   %b Balance:
-  = @client.balance
+  = number_to_currency(@client.balance_cents, :unit => "$")
+
 %p
   %b Status:
   = status_label(@client.status)

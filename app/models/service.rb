@@ -31,6 +31,6 @@ class Service < ApplicationRecord
   #  client_price*quantity
   #end
 
-  enum status: [:"Active", :"Inactive"]
+  enum status: [:"active", :"inactive"]
 
 end

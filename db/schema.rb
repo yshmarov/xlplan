@@ -81,7 +81,10 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.string "service_description", default: "0", null: false
     t.integer "service_duration", default: 0, null: false
     t.integer "client_price", default: 0, null: false
+    t.integer "client_due_price", default: 0, null: false
     t.integer "employee_price", default: 0, null: false
+    t.integer "employee_due_price", default: 0, null: false
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_jobs_on_client_id"

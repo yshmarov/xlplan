@@ -70,8 +70,8 @@
             /%td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
             %td= job.client_price_cents
             %td= job.employee_price_cents
-            %td= job.client_due
-            %td= job.due_to_employee
+            %td= job.client_due_price_cents
+            %td= job.employee_due_price_cents
             %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
             %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
             %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'

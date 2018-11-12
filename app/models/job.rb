@@ -13,11 +13,13 @@ class Job < ApplicationRecord
             :service_name, :service_description, :service_duration, :client_price,
             :employee_price, presence: true
 
-  enum status: [:"Planned", :"Confirmed", :"Confirmed_by_client", 
-                :"No_show", :"Rejected_by_us", :"Cancelled_by_client"]
+  enum status: [:"planned", :"confirmed", :"confirmed_by_client", 
+                :"no_show", :"rejected_by_us", :"cancelled_by_client"]
 
   monetize :client_price, as: :client_price_cents
   monetize :employee_price, as: :employee_price_cents
+  monetize :client_due_price, as: :client_due_price_cents
+  monetize :employee_due_price, as: :employee_due_price_cents
 
   #after_save :update_associated_columns
   #after_update :update_associated_columns
@@ -36,32 +38,37 @@ class Job < ApplicationRecord
     update_column :ends_at, (starts_at + service_duration*60)
   end
 
+
+  def event_happened
+    if status == 'confirmed_by_client' || status == 'confirmed'
+      true
+    elsif status == 'no_show' || status == 'rejected_by_us' || status == 'cancelled_by_client' || status == 'planned'
+      false
+    end
+  end
+
+  after_update :update_due_prices
+  def update_due_prices
+    if self.event_happened
+      update_column :client_due_price, (client_price)
+      update_column :employee_due_price, (employee_price)
+    else
+      update_column :client_due_price, (0)
+      update_column :employee_due_price, (0)
+    end
+  end
+
+
   def to_s
     id
   end
 
-  def event_happened
-    if status == 'Confirmed_by_client' || status == 'Confirmed'
-      1
-    elsif status == 'No_show' || status == 'Rejected_by_us' || status == 'Cancelled_by_client' || status == 'Planned'
-      0
-    end
-  end
-
-  def client_due
-    client_price * event_happened
-  end
-
-  def due_to_employee
-    employee_price * event_happened
-  end
-
   def color
-    if status == 'Confirmed_by_client' || status == 'Confirmed'
+    if status == 'confirmed_by_client' || status == 'confirmed'
       'green'
-    elsif status == 'No_show' || status == 'Rejected_by_us' || status == 'Cancelled_by_client'
+    elsif status == 'no_show' || status == 'rejected_by_us' || status == 'cancelled_by_client'
       'red'
-    elsif status == 'Planned'
+    elsif status == 'planned'
       'blue'
     else
       'black'

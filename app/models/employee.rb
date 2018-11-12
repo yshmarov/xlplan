@@ -13,7 +13,7 @@ class Employee < ApplicationRecord
 
   #scope :active, -> { where(status: 0) }
 
-  enum status: [:"Active", :"Inactive"]
+  enum status: [:"active", :"inactive"]
 
   def to_s
     person.full_name

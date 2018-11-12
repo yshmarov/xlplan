@@ -11,13 +11,13 @@
         %b My Jobs
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar
+      %i.fa.fa-dollar-sign
       = (Job.where(employee_id: current_user.person.employee.id).map(&:service_duration).sum)/60.to_d
       %div 
         %b Hours worked
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar
+      %i.fa.fa-dollar-sign
       = number_to_currency(@my_total_earnings, :unit => "USD, ")
       %div 
         %b My earnings
@@ -39,28 +39,37 @@
         %b Jobs
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar
+      %i.fa.fa-dollar-sign
       = (Job.all.map(&:service_duration).sum)/60.to_d
       %div 
         %b Hours worked
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar
+      %i.fa.fa-dollar-sign
       = number_to_currency(@total_earnings, :unit => "USD, ")
       %div 
         %b Earnings
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar
+      %i.fa.fa-dollar-sign
       = number_to_currency(@total_expences, :unit => "USD, ")
       %div 
         %b Expences
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar
+      %i.fa.fa-dollar-sign
       = number_to_currency(@net_income, :unit => "USD, ")
-      %div 
+      %div
         %b Net income
+%br
+.row
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@net_losses, :unit => "USD, ")
+      %div 
+        %b Lost income
+
 %br
 .row
   .col-md-4

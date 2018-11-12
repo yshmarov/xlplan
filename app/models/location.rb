@@ -16,7 +16,7 @@ class Location < ApplicationRecord
     name
   end
 
-  enum status: [:"Active", :"Inactive"]
+  enum status: [:"active", :"inactive"]
 
   def update_balance
     update_column :balance, (jobs.map(&:client_price).sum)

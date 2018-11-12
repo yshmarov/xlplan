@@ -7,23 +7,23 @@ module StatusHelper
 		def status_span_generator(status)
 			case status
 			#Job
-			when 'Planned' 
+			when 'planned' 
 				content_tag(:span, status.titleize, class: 'badge badge-primary')
-			when 'Confirmed'
+			when 'confirmed'
 				content_tag(:span, status.titleize, class: 'badge badge-success')
-			when 'Confirmed_by_client'
+			when 'confirmed_by_client'
 				content_tag(:span, status.titleize, class: 'badge badge-success')
-			when 'No_show'
+			when 'no_show'
 				content_tag(:span, status.titleize, class: 'badge badge-secondary')
-			when 'Rejected_by_us'
+			when 'rejected_by_us'
 				content_tag(:span, status.titleize, class: 'badge badge-danger')
-			when 'Cancelled_by_client'
+			when 'cancelled_by_client'
 				content_tag(:span, status.titleize, class: 'badge badge-danger')
 
 			#Other models
-			when 'Active'
+			when 'active'
 				content_tag(:span, status.titleize, class: 'badge badge-success')
-			when 'Inactive'
+			when 'inactive'
 				content_tag(:span, status.titleize, class: 'badge badge-secondary')
 
 			end
