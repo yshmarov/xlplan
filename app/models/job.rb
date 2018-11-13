@@ -15,6 +15,8 @@ class Job < ApplicationRecord
 
   enum status: [:"planned", :"confirmed", :"confirmed_by_client", 
                 :"no_show", :"rejected_by_us", :"cancelled_by_client"]
+  #enum localization: { home: 0, foreign: 1, none: 2 }
+  #add_index :jobs, :status
 
   monetize :client_price, as: :client_price_cents
   monetize :employee_price, as: :employee_price_cents

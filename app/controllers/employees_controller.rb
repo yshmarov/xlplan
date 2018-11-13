@@ -9,8 +9,10 @@ class EmployeesController < ApplicationController
   end
 
   def show
+    @person = @employee.person
     @jobs = @employee.jobs
     @employee_categories = @employee.employee_categories
+    @employee_total_earnings = @jobs.map(&:employee_due_price_cents).sum
   end
 
   def new

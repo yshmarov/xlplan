@@ -1,5 +1,3 @@
-%p#notice= notice
-
 %p
   %b First name:
   = @person.first_name
@@ -11,7 +9,7 @@
   = @person.last_name
 %p
   %b Date of birth:
-  = @person.date_of_birth
+  = @person.date_of_birth.strftime('%d/%b/%Y')
 %p
   %b Sex:
   = @person.sex
@@ -29,8 +27,18 @@
   = @person.description
 %p
   %b Status:
-  = @person.status
+  = status_label(@person.status)
 
-= link_to 'Edit', edit_person_path(@person)
-\|
-= link_to 'Back', people_path
+%p= @person.user
+%p= @person.user.email
+%p= @person.user.reset_password_sent_at
+%p= @person.user.remember_created_at
+%p= @person.user.confirmed_at
+%p= @person.user.confirmation_sent_at
+%p= @person.user.unconfirmed_email
+%p= @person.user.created_at
+%p= @person.user.updated_at
+%p= @person.user.invitation_sent_at
+%p= @person.user.invitation_accepted_at
+%p= @person.user.invited_by_type
+%p= @person.user.invited_by_id

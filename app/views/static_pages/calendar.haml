@@ -1,5 +1,5 @@
 /- set_var 'jobs', @jobs.map{|e| {title: e.room.office.name  + " " + e.room.name + " " + e.user.email, start: e.starts_at, end: e.ends_at, url: edit_job_path(e)}}
-- set_var 'jobs', @jobs.map{|e| {title: e.service_name.to_s  + "/" + e.employee.person.to_s  + "/" + e.client.person.to_s, start: e.starts_at, end: e.ends_at, url: edit_job_path(e), color: e.color}}
+- set_var 'jobs', @jobs.map{|e| {title: e.service_name.to_s  + "/" + e.employee.person.to_s  + "/" + e.client.person.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
 
 /.text-center
 /  %h1 Calendar

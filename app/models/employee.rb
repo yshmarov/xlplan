@@ -28,7 +28,7 @@ class Employee < ApplicationRecord
   protected
   
   def update_balance
-    update_column :balance, (jobs.map(&:employee_price).sum)
+    update_column :balance, (jobs.map(&:employee_due_price).sum)
   end
 
 end

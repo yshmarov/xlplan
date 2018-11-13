@@ -1,32 +1,97 @@
-%p#notice= notice
+%p
+.row
+  .col-lg-4
+    .card
+      .card-header
+        %b Employment data
+        .float-right
+          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
+          = link_to 'Back', employees_path, class: 'btn btn-sm btn-secondary'
+      .card-body
+        %p
+          %b Location:
+          = link_to @employee.location, location_path(@employee.location)
+        %p
+          %b Specialization:
+          = @employee.specialization
+        %p
+          %b Employment date:
+          = @employee.employment_date.strftime('%d/%b/%Y') if @employee.employment_date.present?
+        %p
+          %b Termination date:
+          = @employee.termination_date.strftime('%d/%b/%Y') if @employee.employment_date.present?
+        %p
+          %b Balance:
+          = number_to_currency(@employee.balance_cents, :unit => "$")
+        %p
+          %b Status:
+          = status_label(@employee.status)
+    .card
+      .card-header
+        %b Personal data
+        .float-right
+          = link_to 'Edit', edit_person_path(@employee.person), class: 'btn btn-sm btn-warning'
+      .card-body
+        %p
+          %b Name:
+          = @employee.person
+        %p
+          %b Phone number:
+          = link_to "tel:#{@person.phone_number}", class: "button" do
+            #{@person.phone_number}
+          /%a{:href => "viber://chat?number=#{@person.phone_number}"}
+          /  Viber
+        %p
+          %b Email:
+          = @person.email
+        %p
+          %b Date of birth:
+          = @person.date_of_birth.strftime('%d/%b/%Y') if @person.date_of_birth.present?
+          (#{@person.age})
+        %p
+          %b Sex:
+          = @person.sex
+        %p
+          %b Address:
+          = @person.address
+        %p
+          %b Description:
+          = @person.description
+        %p
+          %b Status:
+          = status_label(@person.status)
+    .card
+      .card-header
+        %b Account data
+      .card-body
+        %p
+          %b Name:
 
-%p
-  %b Person:
-  = @employee.person
-%p
-  %b Location:
-  = @employee.location
-%p
-  %b Specialization:
-  = @employee.specialization
-%p
-  %b Employment date:
-  = @employee.employment_date
-%p
-  %b Termination date:
-  = @employee.termination_date
-%p
-  %b Balance:
-  = number_to_currency(@employee.balance_cents, :unit => "$")
+  .col-lg-8
+    %ul#myTab.nav.nav-tabs{:role => "tablist"}
+      %li.nav-item
+        %a#home-tab.nav-link.active{"aria-controls" => "home", "aria-selected" => "true", "data-toggle" => "tab", :href => "#jobs", :role => "tab"} Jobs
+      %li.nav-item
+        %a#profile-tab.nav-link{"aria-controls" => "profile", "aria-selected" => "false", "data-toggle" => "tab", :href => "#categories", :role => "tab"} Categories
+      %li.nav-item
+        %a#contact-tab.nav-link{"aria-controls" => "contact", "aria-selected" => "false", "data-toggle" => "tab", :href => "#stats", :role => "tab"} Stats
+    #myTabContent.tab-content
+      #jobs.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+        = render 'jobs/index'
+      #categories.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
+        = render 'employee_categories/index'
+      #stats.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"}
+        .card-header
+          %i.fa.fa-calendar
+          /= Job.where(employee_id: current_user.person.employee.id).count
+          = @employee.jobs_count
+          %b Jobs registered
+        .card-header
+          %i.fa.fa-clock
+          = @employee.jobs.map(&:service_duration).sum/60.to_d
+          %b Hours worked
+        .card-header
+          %i.fa.fa-dollar-sign
+          = number_to_currency(@employee_total_earnings, :unit => "USD, ")
+          %b My earnings
 
-%p
-  %b Status:
-  = status_label(@employee.status)
-
-= link_to 'Edit', edit_employee_path(@employee)
-\|
-= link_to 'Back', employees_path
-
-= render 'employee_categories/index'
-
-= render 'jobs/index'

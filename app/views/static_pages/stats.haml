@@ -1,29 +1,6 @@
+%p
 %h3.text-center
-  My stats
-.row
-  .col-md-2
-  .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-calendar
-      /= Job.where(employee_id: current_user.person.employee.id).count
-      = current_user.person.employee.jobs_count
-      %div 
-        %b My Jobs
-  .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar-sign
-      = (Job.where(employee_id: current_user.person.employee.id).map(&:service_duration).sum)/60.to_d
-      %div 
-        %b Hours worked
-  .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar-sign
-      = number_to_currency(@my_total_earnings, :unit => "USD, ")
-      %div 
-        %b My earnings
-%br
-%h3.text-center
-  Total stats
+  Counters
 .row
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
@@ -33,90 +10,101 @@
         %b Clients
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = (Job.all.map(&:service_duration).sum)/60.to_d
+      %div 
+        %b Hours worked
+%h3.text-center
+  Planned
+.row
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-calendar
-      = Job.count
+      = @planned_job_q
       %div 
         %b Jobs
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-dollar-sign
-      = (Job.all.map(&:service_duration).sum)/60.to_d
-      %div 
-        %b Hours worked
-  .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar-sign
-      = number_to_currency(@total_earnings, :unit => "USD, ")
+      = number_to_currency(@total_planned_earnings, :unit => "USD, ")
       %div 
         %b Earnings
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_expences, :unit => "USD, ")
+      = number_to_currency(@total_planned_expences, :unit => "USD, ")
       %div 
         %b Expences
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
       %i.fa.fa-dollar-sign
-      = number_to_currency(@net_income, :unit => "USD, ")
+      = number_to_currency(@total_planned_net_income, :unit => "USD, ")
       %div
         %b Net income
-%br
+%h3.text-center
+  Confirmed
 .row
   .col-md-2
     %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar-sign
-      = number_to_currency(@net_losses, :unit => "USD, ")
+      %i.fa.fa-calendar
+      = @confirmed_job_q
       %div 
-        %b Lost income
+        %b Jobs
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@total_confirmed_earnings, :unit => "USD, ")
+      %div 
+        %b Earnings
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@total_confirmed_expences, :unit => "USD, ")
+      %div 
+        %b Expences
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@total_confirmed_net_income, :unit => "USD, ")
+      %div
+        %b Net income
+%h3.text-center
+  Lost
+.row
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-calendar
+      = @lost_job_q
+      %div 
+        %b Jobs
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@total_lost_earnings, :unit => "USD, ")
+      %div 
+        %b Earnings
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@total_lost_expences, :unit => "USD, ")
+      %div 
+        %b Expences
+  .col-md-2
+    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@total_net_losses, :unit => "USD, ")
+      %div
+        %b Net income
 
 %br
 .row
   .col-md-4
     %h3.text-center
       Upcoming birthdays
-    %table.table-condensed.table
-      %tbody
-        - @people.each do |person|
-          %tr
-            %td.card-header
-              = person.date_of_birth.strftime('%b, %d')
-              = link_to person, person_path(person)
+    - @people.each do |person|
+      .card.text-center= link_to "#{person.date_of_birth.strftime('%b, %d')} - #{person}", person_path(person)
   .col-md-4
     %h3.text-center
       Job Status
-    %table.table-condensed.table
-      %tbody
-        - @job_statuses.each do |key, value|
-          %tr
-            %td.card-header
-              = "#{key} - #{value}"
-
-/Jobs 
-/Jobs total today
-/Jobs this month
-/Jobs total past - events, earnings
-/
-/Earnings
-/this year
-/total
-/Planned earning today
-/
-/Categories/Services pie chart (last 3 months)
-/
-/ADD <PERIODICITY> for Service - how often is a client expected to use it?
-/
-/dashboard
-/calls
-/schedule
-/follow up
-/search
-/reports
-/help
-/
-/
-/rename events to jobs?
-/invoice?
-
-
-
+    - @job_statuses.each do |key, value|
+      .card.text-center= "#{key} - #{value}"

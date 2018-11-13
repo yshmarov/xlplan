@@ -1,58 +1,70 @@
-%p#notice= notice
+%p
+.row
+  .col-4
+  .col-4-auto
+    .card
+      .card-header
+        %b Job #
+        = @job.id
+        .float-right
+          = link_to 'Edit', edit_job_path(@job), class: 'btn btn-sm btn-warning'
+          = link_to 'Back', jobs_path, class: 'btn btn-sm btn-secondary'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), @job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 
-%p
-  %b Client:
-  = @job.client
-%p
-  %b Starts at:
-  = @job.starts_at
-%p
-  %b Ends at:
-  = @job.ends_at
-%p
-  %b Status:
-  = status_label(@job.status)
-%p
-  %b Service:
-  = @job.service
-%p
-  %b Location:
-  = @job.location
-%p
-  %b Employee:
-  = @job.employee
-%p
-  %b Service name:
-  = @job.service_name
-%p
-  %b Service description:
-  = @job.service_description
-%p
-  %b Service duration:
-  = @job.service_duration
-%p
-  %b Client projected price:
-  = number_to_currency(@job.client_price_cents, :unit => "#{@job.service.client_price_currency}, ")
-%p
-  %b Employee projected price:
-  = number_to_currency(@job.employee_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
-%p
-  %b Client due price:
-  = number_to_currency(@job.client_due_price_cents, :unit => "#{@job.service.client_price_currency}, ")
-%p
-  %b Employee due price:
-  = number_to_currency(@job.employee_due_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
-%p
-  %b Description:
-  = @job.description
+      .card-body
+        %p
+          %b Client:
+          = link_to @job.client, client_path(@job.client)
+        %p
+          %b Starts at:
+          = @job.starts_at.strftime('%d/%m/%Y %H:%M')
+        %p
+          %b Ends at:
+          = @job.ends_at.strftime('%d/%m/%Y %H:%M')
+        %p
+          %b Status:
+          = status_label(@job.status)
+        %p
+          %b Location:
+          = link_to @job.location, location_path(@job.location)
+        %p
+          %b Employee:
+          = link_to @job.employee, employee_path(@job.location)
+        %p
+          %b Service:
+          = link_to @job.service, service_path(@job.service)
+        %p
+          %b Service description:
+          = @job.service_description
+        %p
+          %b Service duration:
+          = @job.service_duration
+        %p
+          %b Client projected price:
+          = number_to_currency(@job.client_price_cents, :unit => "#{@job.service.client_price_currency}, ")
+        %p
+          %b Employee projected price:
+          = number_to_currency(@job.employee_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
+        %p
+          %b Client due price:
+          = number_to_currency(@job.client_due_price_cents, :unit => "#{@job.service.client_price_currency}, ")
+        %p
+          %b Employee due price:
+          = number_to_currency(@job.employee_due_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
+        %hr
+        %p
+          %b Description:
+          = @job.description
+        %hr
+        %p
+          %b Created at:
+          = @job.created_at.strftime('%d/%b/%Y %H:%M')
+        %p
+          %b Updated at:
+          = @job.updated_at.strftime('%d/%b/%Y %H:%M')
 
-
-
-
-
-= link_to 'Edit', edit_job_path(@job)
-\|
-= link_to 'Back', jobs_path
+  .col-4
+%br
 
 /= render "comments/index"
 /= render "comments/form"

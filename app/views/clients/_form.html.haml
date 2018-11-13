@@ -4,7 +4,7 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :person
+    = f.association :person, label: "Responsible"
     = f.association :employee
     = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
 

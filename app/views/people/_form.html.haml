@@ -15,7 +15,8 @@
       More options
     #accordion.collapse
       %p
-      = f.date_field :date_of_birth, value: @person.date_of_birth || (Time.now - 70.years).strftime('%Y-%m-%d'), class: "form-control"
+      = f.label :'Date of birth'
+      = f.date_field :date_of_birth, value: @person.date_of_birth || nil, class: "form-control"
       %p
       = f.label :'Sex'
       %br
