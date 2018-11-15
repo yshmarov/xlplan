@@ -22,6 +22,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
+    @job.created_by = current_user.person.id
 
     respond_to do |format|
       if @job.save

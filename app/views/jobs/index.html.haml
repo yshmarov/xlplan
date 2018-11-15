@@ -36,9 +36,12 @@
             %th= f.submit
             %th= link_to '', jobs_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
-    %table
+    %table#table-overflow
       %thead
         %tr
+          %th
+          %th
+          %th
           %th= sort_link @q, :client_person_last_name, "Client"
           %th= sort_link @q, :starts_at, "Time"
           %th= sort_link @q, :status, "Status"
@@ -52,13 +55,16 @@
           %th= sort_link @q, :employee_price, "Employee,$"
           %th ToC$
           %th ToE$
-          %th
-          %th
-          %th
-    
+          %th Description
+          %th Created by
+          %th Created at
+          %th Updated at
       %tbody
         - @jobs.each do |job|
           %tr
+            %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
+            %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
+            %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
             %td= link_to job.client, client_path(job.client)
             %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
             %td= status_label(job.status)
@@ -72,9 +78,10 @@
             %td= job.employee_price_cents
             %td= job.client_due_price_cents
             %td= job.employee_due_price_cents
-            %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
-            %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
-            %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+            %td= job.description
+            %td= job.created_by
+            %td= job.created_at.strftime('%d/%b/%Y %H:%M')
+            %td= job.updated_at.strftime('%d/%b/%Y %H:%M')
     .container
       = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

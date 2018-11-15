@@ -40,10 +40,10 @@
           %b Service duration:
           = @job.service_duration
         %p
-          %b Client projected price:
+          %b Client planned price:
           = number_to_currency(@job.client_price_cents, :unit => "#{@job.service.client_price_currency}, ")
         %p
-          %b Employee projected price:
+          %b Employee planned price:
           = number_to_currency(@job.employee_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
         %p
           %b Client due price:

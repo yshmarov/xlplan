@@ -2,6 +2,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
   def change
     create_table :jobs do |t|
       t.belongs_to :client, foreign_key: true
+      t.integer :created_by, default: 0, null: false
       t.datetime :starts_at
       t.datetime :ends_at
       t.integer :status, default: 0, null: false

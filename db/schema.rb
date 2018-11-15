@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
 
   create_table "jobs", force: :cascade do |t|
     t.bigint "client_id"
+    t.integer "created_by", default: 0, null: false
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.integer "status", default: 0, null: false

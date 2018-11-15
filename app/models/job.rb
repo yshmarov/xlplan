@@ -49,6 +49,7 @@ class Job < ApplicationRecord
     end
   end
 
+  after_create :update_due_prices
   after_update :update_due_prices
   def update_due_prices
     if self.event_happened
