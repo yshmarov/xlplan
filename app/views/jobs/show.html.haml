@@ -41,21 +41,28 @@
           = @job.service_duration
         %p
           %b Client planned price:
-          = number_to_currency(@job.client_price_cents, :unit => "#{@job.service.client_price_currency}, ")
+          = @job.client_price_cents
+          /= number_to_currency(@job.client_price_cents, :unit => "$")
         %p
           %b Employee planned price:
-          = number_to_currency(@job.employee_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
+          = @job.employee_price_cents
+          /= number_to_currency(@job.employee_price_cents, :unit => "$")
         %p
           %b Client due price:
-          = number_to_currency(@job.client_due_price_cents, :unit => "#{@job.service.client_price_currency}, ")
+          = @job.client_due_price_cents
+          /= number_to_currency(@job.client_due_price_cents, :unit => "$")
         %p
           %b Employee due price:
-          = number_to_currency(@job.employee_due_price_cents, :unit => "#{@job.service.employee_price_currency}, ")
+          = @job.employee_due_price_cents
+          /= number_to_currency(@job.employee_due_price_cents, :unit => "$")
         %hr
         %p
           %b Description:
           = @job.description
         %hr
+        %p
+          %b Created by:
+          = @job.creator
         %p
           %b Created at:
           = @job.created_at.strftime('%d/%b/%Y %H:%M')

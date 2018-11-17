@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :invitable, :validate_on_invite => true
 
-  belongs_to :person
+  belongs_to :employee
 
-  validates :person_id, presence: true
-  validates :person_id, uniqueness: true
+  validates :employee_id, presence: true
+  validates :employee_id, uniqueness: true
 
   def to_s
     email

@@ -15,69 +15,74 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name", limit: 144, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_categories_on_name", unique: true
-  end
-
   create_table "clients", force: :cascade do |t|
-    t.bigint "person_id"
-    t.bigint "employee_id"
+    t.string "first_name", limit: 144, null: false
+    t.string "middle_name", limit: 144
+    t.string "last_name", limit: 144, null: false
+    t.date "date_of_birth"
+    t.string "sex", default: "undisclosed"
+    t.string "email"
+    t.string "phone_number"
+    t.string "address"
+    t.text "description"
+    t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
-    t.integer "status", default: 0, null: false
+    t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.index ["employee_id"], name: "index_clients_on_employee_id"
-    t.index ["person_id"], name: "index_clients_on_person_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "person_id"
+    t.bigint "employee_id"
     t.text "content"
     t.integer "commentable_id"
     t.string "commentable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-    t.index ["person_id"], name: "index_comments_on_person_id"
+    t.index ["employee_id"], name: "index_comments_on_employee_id"
   end
 
-  create_table "employee_categories", force: :cascade do |t|
+  create_table "employee_service_categories", force: :cascade do |t|
     t.bigint "employee_id"
-    t.bigint "category_id"
+    t.bigint "service_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_employee_categories_on_category_id"
-    t.index ["employee_id"], name: "index_employee_categories_on_employee_id"
+    t.index ["employee_id"], name: "index_employee_service_categories_on_employee_id"
+    t.index ["service_category_id"], name: "index_employee_service_categories_on_service_category_id"
   end
 
   create_table "employees", force: :cascade do |t|
-    t.bigint "person_id"
+    t.string "first_name", limit: 144, null: false
+    t.string "middle_name", limit: 144
+    t.string "last_name", limit: 144, null: false
+    t.date "date_of_birth"
+    t.string "sex", default: "undisclosed"
+    t.string "email"
+    t.string "phone_number"
+    t.string "address"
+    t.text "description"
+    t.integer "status", default: 1, null: false
+    t.integer "balance", default: 0, null: false
     t.bigint "location_id"
-    t.string "specialization"
     t.date "employment_date"
     t.date "termination_date"
-    t.integer "balance", default: 0, null: false
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.index ["location_id"], name: "index_employees_on_location_id"
-    t.index ["person_id"], name: "index_employees_on_person_id"
   end
 
   create_table "jobs", force: :cascade do |t|
     t.bigint "client_id"
-    t.integer "created_by", default: 0, null: false
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.integer "status", default: 0, null: false
     t.bigint "service_id"
     t.bigint "location_id"
     t.bigint "employee_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.integer "status", default: 0, null: false
     t.string "service_name", default: "0", null: false
     t.string "service_description", default: "0", null: false
     t.integer "service_duration", default: 0, null: false
@@ -85,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.integer "client_due_price", default: 0, null: false
     t.integer "employee_price", default: 0, null: false
     t.integer "employee_due_price", default: 0, null: false
+    t.integer "created_by", default: 0, null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -100,7 +106,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.string "email", limit: 144
     t.string "address", limit: 255
     t.integer "balance", default: 0, null: false
-    t.integer "status", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
@@ -110,24 +116,15 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
   create_table "machines", force: :cascade do |t|
     t.string "name", limit: 144, null: false
     t.bigint "location_id"
-    t.integer "status", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_machines_on_location_id"
     t.index ["name"], name: "index_machines_on_name", unique: true
   end
 
-  create_table "people", force: :cascade do |t|
-    t.string "first_name", limit: 144, null: false
-    t.string "middle_name", limit: 144
-    t.string "last_name", limit: 144, null: false
-    t.date "date_of_birth"
-    t.string "sex", default: "undisclosed"
-    t.string "email"
-    t.string "phone_number"
-    t.string "address"
-    t.text "description"
-    t.integer "status", default: 0, null: false
+  create_table "service_categories", force: :cascade do |t|
+    t.string "name", limit: 144, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -138,17 +135,15 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.integer "duration", default: 30, null: false
     t.integer "employee_percent", default: 100, null: false
     t.integer "quantity", default: 1, null: false
-    t.integer "status", default: 0, null: false
-    t.bigint "category_id"
+    t.integer "status", default: 1, null: false
+    t.integer "client_price", default: 0, null: false
+    t.integer "employee_price", default: 0, null: false
+    t.bigint "service_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "client_price_cents", default: 0, null: false
-    t.string "client_price_currency", default: "USD", null: false
-    t.integer "employee_price_cents", default: 0, null: false
-    t.string "employee_price_currency", default: "USD", null: false
     t.integer "jobs_count", default: 0, null: false
-    t.index ["category_id"], name: "index_services_on_category_id"
     t.index ["name"], name: "index_services_on_name", unique: true
+    t.index ["service_category_id"], name: "index_services_on_service_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -171,28 +166,26 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
-    t.bigint "person_id"
+    t.bigint "employee_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["employee_id"], name: "index_users_on_employee_id"
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
-    t.index ["person_id"], name: "index_users_on_person_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "clients", "employees"
-  add_foreign_key "clients", "people"
-  add_foreign_key "comments", "people"
-  add_foreign_key "employee_categories", "categories"
-  add_foreign_key "employee_categories", "employees"
+  add_foreign_key "comments", "employees"
+  add_foreign_key "employee_service_categories", "employees"
+  add_foreign_key "employee_service_categories", "service_categories"
   add_foreign_key "employees", "locations"
-  add_foreign_key "employees", "people"
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "employees"
   add_foreign_key "jobs", "locations"
   add_foreign_key "jobs", "services"
   add_foreign_key "machines", "locations"
-  add_foreign_key "services", "categories"
-  add_foreign_key "users", "people"
+  add_foreign_key "services", "service_categories"
+  add_foreign_key "users", "employees"
 end

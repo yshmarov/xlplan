@@ -1,17 +1,36 @@
-
 %p
-  %b Responsible:
-  = @client.person
+  %b First name:
+  = @client.first_name
 %p
-  %b Created by:
-  = @client.employee
+  %b Middle name:
+  = @client.middle_name
 %p
-  %b Balance:
-  = number_to_currency(@client.balance_cents, :unit => "$")
-
+  %b Last name:
+  = @client.last_name
+%p
+  %b Date of birth:
+  = @client.date_of_birth.strftime('%d/%b/%Y') if @client.date_of_birth?
+%p
+  %b Sex:
+  = @client.sex
+%p
+  %b Email:
+  = @client.email
+%p
+  %b Phone number:
+  = @client.phone_number
+%p
+  %b Address:
+  = @client.address
+%p
+  %b Description:
+  = @client.description
 %p
   %b Status:
   = status_label(@client.status)
+%p
+  %b Balance:
+  = number_to_currency(@client.balance_cents, :unit => "$")
 
 = link_to 'Edit', edit_client_path(@client)
 \|

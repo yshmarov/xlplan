@@ -1,9 +1,14 @@
 class Job < ApplicationRecord
+  #counter_cache for job_count
+  #touch to calculate balance
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :service, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
   belongs_to :employee, touch: true, counter_cache: true
+  belongs_to :creator, class_name: 'Employee', foreign_key: :created_by, required: false
   #has_many :comments, as: :commentable
+
+  #console commands to update counters, if needed
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
   #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }
   #Location.find_each { |location| Location.reset_counters(location.id, :jobs_count) }
@@ -13,9 +18,8 @@ class Job < ApplicationRecord
             :service_name, :service_description, :service_duration, :client_price,
             :employee_price, presence: true
 
-  enum status: [:"planned", :"confirmed", :"confirmed_by_client", 
-                :"no_show", :"rejected_by_us", :"cancelled_by_client"]
-  #enum localization: { home: 0, foreign: 1, none: 2 }
+  enum status: { planned: 0, confirmed: 1, confirmed_by_client: 2,
+                  no_show: 3, rejected_by_us:4, cancelled_by_client: 5}
   #add_index :jobs, :status
 
   monetize :client_price, as: :client_price_cents
@@ -26,20 +30,9 @@ class Job < ApplicationRecord
   #after_save :update_associated_columns
   #after_update :update_associated_columns
   after_create :update_associated_columns
-  def update_associated_columns
-    update_column :service_name, (service.name)
-    update_column :service_description, (service.description)
-    update_column :service_duration, (service.duration)
-    update_column :client_price, (service.client_price_cents)
-    update_column :employee_price, (service.employee_price_cents)
-    update_column :ends_at, (starts_at + service_duration*60)
-  end
-
   after_update :update_ends_at
-  def update_ends_at
-    update_column :ends_at, (starts_at + service_duration*60)
-  end
-
+  after_create :update_due_prices
+  after_update :update_due_prices
 
   def event_happened
     if status == 'confirmed_by_client' || status == 'confirmed'
@@ -48,19 +41,6 @@ class Job < ApplicationRecord
       false
     end
   end
-
-  after_create :update_due_prices
-  after_update :update_due_prices
-  def update_due_prices
-    if self.event_happened
-      update_column :client_due_price, (client_price)
-      update_column :employee_due_price, (employee_price)
-    else
-      update_column :client_due_price, (0)
-      update_column :employee_due_price, (0)
-    end
-  end
-
 
   def to_s
     id
@@ -75,6 +55,31 @@ class Job < ApplicationRecord
       'blue'
     else
       'black'
+    end
+  end
+
+  protected
+
+  def update_associated_columns
+    update_column :service_name, (service.name)
+    update_column :service_description, (service.description)
+    update_column :service_duration, (service.duration)
+    update_column :client_price, (service.client_price)
+    update_column :employee_price, (service.employee_price)
+    update_column :ends_at, (starts_at + service_duration*60)
+  end
+
+  def update_ends_at
+    update_column :ends_at, (starts_at + service_duration*60)
+  end
+
+  def update_due_prices
+    if self.event_happened
+      update_column :client_due_price, (client_price)
+      update_column :employee_due_price, (employee_price)
+    else
+      update_column :client_due_price, (0)
+      update_column :employee_due_price, (0)
     end
   end
 

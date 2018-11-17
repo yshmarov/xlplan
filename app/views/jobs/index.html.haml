@@ -18,7 +18,7 @@
           %tr
             %th 
               Client
-              = f.search_field :client_person_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
+              = f.search_field :client_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
             %th
               Starts after
               .input-daterange
@@ -32,7 +32,7 @@
               = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}
             %th 
               Employee
-              = f.search_field :employee_person_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
+              = f.search_field :employee_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
             %th= f.submit
             %th= link_to '', jobs_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
@@ -42,23 +42,21 @@
           %th
           %th
           %th
-          %th= sort_link @q, :client_person_last_name, "Client"
+          %th= sort_link @q, :client_last_name, "Client"
           %th= sort_link @q, :starts_at, "Time"
           %th= sort_link @q, :status, "Status"
           %th= sort_link @q, :location_id, "Location"
-          %th= sort_link @q, :employee_person_last_name, "Employee"
+          %th= sort_link @q, :employee_last_name, "Employee"
           %th= sort_link @q, :service_name, "Service"
           /%th= sort_link @q, :service_duration, "Duration"
-          /%th Client price
-          /%th Employee price
           %th= sort_link @q, :client_price, "Client,$"
           %th= sort_link @q, :employee_price, "Employee,$"
           %th ToC$
           %th ToE$
           %th Description
-          %th Created by
-          %th Created at
-          %th Updated at
+          /%th Created by
+          /%th Created at
+          /%th Updated at
       %tbody
         - @jobs.each do |job|
           %tr
@@ -72,16 +70,14 @@
             %td= link_to job.employee, employee_path(job.employee)
             %td= link_to job.service.full_name, service_path(job.service)
             /%td= job.service_duration
-            /%td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
-            /%td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
             %td= job.client_price_cents
             %td= job.employee_price_cents
             %td= job.client_due_price_cents
             %td= job.employee_due_price_cents
             %td= job.description
-            %td= job.created_by
-            %td= job.created_at.strftime('%d/%b/%Y %H:%M')
-            %td= job.updated_at.strftime('%d/%b/%Y %H:%M')
+            /%td= job.creator
+            /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
+            /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
     .container
       = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

@@ -2,9 +2,6 @@ class Person < ApplicationRecord
 
   #has_one :user, inverse_of: :member
   scope :has_account, -> { includes(:users).where.not(users: {person_id: nil}) }
-  has_one :user
-  has_one :employee
-  has_one :client
 
   validates :first_name, :last_name, :status, presence: true
   validates :email, uniqueness: { case_sensitive: false }
@@ -16,7 +13,7 @@ class Person < ApplicationRecord
     self.email.split(/@/).first
   end
 
-  enum status: [:"active", :"inactive"]
+  enum status: { inactive: 0, active: 1 }
 
   def to_s
     last_name.capitalize + " " + first_name.capitalize

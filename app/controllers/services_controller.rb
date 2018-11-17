@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
   def index
     #@services = Service.all
     @q = Service.ransack(params[:q])
-    @services = @q.result.includes(:category).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
+    @services = @q.result.includes(:service_category).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
   end
 
   def show
@@ -57,6 +57,6 @@ class ServicesController < ApplicationController
     end
 
     def service_params
-      params.require(:service).permit(:name, :description, :duration, :client_price_cents, :employee_percent, :employee_price_cents, :quantity, :status, :category_id, :client_price, :employee_price)
+      params.require(:service).permit(:name, :description, :duration, :client_price_cents, :employee_percent, :employee_price_cents, :quantity, :status, :service_category_id, :client_price, :employee_price)
     end
 end

@@ -7,7 +7,7 @@
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
           %b
             =t '.title', :default => model_class.model_name.human.pluralize.titleize
-            = f.search_field :person_last_name_cont, autofocus: true, placeholder: "Surname"
+            = f.search_field :last_name_cont, autofocus: true, placeholder: "Surname"
             = f.submit
             = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
@@ -15,11 +15,11 @@
     %table
       %thead
         %tr
-          %th= sort_link @ransack_clients, :person_last_name, "Name"
+          %th= sort_link @ransack_clients, :last_name, "Name"
           %th= sort_link @ransack_clients, :status, "Status"
           %th= sort_link @ransack_clients, :balance, "Balance"
           %th= sort_link @ransack_clients, :jobs_count, "Jobs"
-          %th Responsible
+          %th= sort_link @ransack_clients, :employee_id, "Responsible"
           %th
           %th
           %th
@@ -27,7 +27,7 @@
       %tbody
         - @clients.each do |client|
           %tr
-            %td= client.person
+            %td= client.full_name
             %td= status_label(client.status)
             %td= number_to_currency(client.balance_cents, :unit => "$")
             %td= client.jobs_count

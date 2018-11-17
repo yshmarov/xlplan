@@ -6,7 +6,7 @@
   .form-inputs
     /= f.association :client, autofocus: true
     = f.label :client
-    = f.select :client_id, Client.all.map{|c| [c.person, c.id]}, {include_blank: true}, class: 'selectize'
+    = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: true}, class: 'selectize'
     = f.input :starts_at, :minute_step => 15, start_year: Date.today.year
     /= f.input :ends_at
     /= f.input :status, :as => :radio_buttons, :collection => Job.statuses.keys.to_a, label:false
@@ -15,7 +15,7 @@
     = f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'
     /= f.association :employee
     = f.label :employee
-    = f.select :employee_id, Employee.all.map{|c| [c.person, c.id]}, {include_blank: false}, class: 'selectize'
+    = f.select :employee_id, Employee.all.map{|c| [c.full_name, c.id]}, {include_blank: false}, class: 'selectize'
     /= f.association :location
     = f.label :location
     = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: false}, class: 'selectize'

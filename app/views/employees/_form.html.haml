@@ -4,16 +4,40 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :person
+    = f.input :first_name, autofocus: true
+    = f.input :last_name
+    = f.input :phone_number
+    = f.input :email
+    = f.input :description
+    %p
+    %button.btn.btn-primary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+      .fa.fa-cog
+      More options
+    #accordion.collapse
+      %p
+      = f.label :'Date of birth'
+      = f.date_field :date_of_birth, value: @employee.date_of_birth || nil, class: "form-control"
+      %p
+      = f.label :'Sex'
+      %br
+      /= f.input :sex
+      = f.radio_button :sex, 'undisclosed'
+      = f.label :sex_male, "Undisclosed"
+      = f.radio_button :sex, 'female'
+      = f.label :sex_female, "Female"
+      = f.radio_button :sex, 'male'
+      = f.label :sex_male, "Male"
+      = f.radio_button :sex, 'other'
+      = f.label :sex_male, "Other"
+      = f.input :middle_name
+      = f.input :address
+      = f.input :status, :as => :radio_buttons, :collection => Employee.statuses.keys.to_a, label:false
+
     = f.association :location, autofocus: true
-    = f.input :specialization
     = f.label :'Employment date'
     = f.date_field :employment_date, value: @employee.employment_date || (Time.now).strftime('%Y-%m-%d'), class: "form-control"
     = f.label :'Termination date'
     = f.date_field :termination_date, value: @employee.termination_date || nil, class: "form-control"
-    /= f.input :employment_date, start_year: Date.today.year - 25, end_year: Date.today.year, include_blank: true
-    /= f.input :termination_date, start_year: Date.today.year - 10, end_year: Date.today.year, include_blank: true
-    = f.input :status, :as => :radio_buttons, :collection => Employee.statuses.keys.to_a, label:false
-
+    %p
   .form-actions
     = f.button :submit

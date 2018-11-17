@@ -18,10 +18,9 @@
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             Settings
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "People", people_path, class: "dropdown-item navdrop-link"
+            = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
             = link_to "Services", services_path, class: "dropdown-item navdrop-link"
-            = link_to "Service Categories", categories_path, class: "dropdown-item navdrop-link"
-            = link_to "Employee Service Categories", employee_categories_path, class: "dropdown-item navdrop-link"
+            = link_to "Employee Service Categories", employee_service_categories_path, class: "dropdown-item navdrop-link"
             = link_to "Locations", locations_path, class: "dropdown-item navdrop-link"
             = link_to "Machines", machines_path, class: "dropdown-item navdrop-link"
       - else
@@ -33,7 +32,7 @@
       - if current_user
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            = current_user.person
+            = current_user.employee.full_name
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
             = link_to 'Account Settings', edit_user_registration_path, class: "dropdown-item navdrop-link"
             = link_to "Logout", destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"

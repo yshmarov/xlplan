@@ -1,23 +1,23 @@
 Rails.application.routes.draw do
-  get 'comments/index'
-  get 'comments/new'
+  #get 'comments/index'
+  #get 'comments/new'
   devise_for :users, controllers: { invitations: 'invitations'}
   #devise_for :users, controllers: { registrations: "registrations", invitations: 'invitations'}
   #devise_for :users
 
-  resources :people do 
+  resources :employees do 
   	member do
   		patch :invite_user
     end
   end
+
   resources :clients do
     resources :comments
   end
-  resources :employees
 
-  resources :categories
   resources :services
-  resources :employee_categories
+  resources :service_categories
+  resources :employee_service_categories
   resources :locations
   resources :machines
   resources :jobs do

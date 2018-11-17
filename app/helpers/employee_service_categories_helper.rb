@@ -1,0 +1,2 @@
+module EmployeeServiceCategoriesHelper
+end

@@ -2,7 +2,7 @@
 
 %p
   %b Category:
-  = @service.category
+  = @service.service_category
 %p
   %b Name:
   = @service.name
@@ -14,13 +14,13 @@
   = @service.duration
 %p
   %b Client price:
-  = number_to_currency(@service.client_price, :unit => "#{@service.client_price_currency}, ")
+  = number_to_currency(@service.client_price_cents, :unit => "$")
 %p
   %b Employee percent:
   = @service.employee_percent
 %p
   %b Employee price:
-  = number_to_currency(@service.employee_price, :unit => "#{@service.employee_price_currency}, ")
+  = number_to_currency(@service.employee_price_cents, :unit => "$")
 
 %p
   %b Quantity:

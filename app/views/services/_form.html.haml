@@ -4,11 +4,11 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :category, autofocus: true
+    = f.association :service_category, autofocus: true
     = f.input :name
     = f.input :description
     = f.input :duration
-    = f.input :client_price
+    = f.input :client_price_cents
     = f.input :employee_percent
     /= f.input :employee_price
     = f.input :quantity

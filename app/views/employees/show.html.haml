@@ -9,64 +9,57 @@
           = link_to 'Back', employees_path, class: 'btn btn-sm btn-secondary'
       .card-body
         %p
-          %b Location:
-          = link_to @employee.location, location_path(@employee.location)
+          %b First name:
+          = @employee.first_name
         %p
-          %b Specialization:
-          = @employee.specialization
+          %b Middle name:
+          = @employee.middle_name
         %p
-          %b Employment date:
-          = @employee.employment_date.strftime('%d/%b/%Y') if @employee.employment_date.present?
+          %b Last name:
+          = @employee.last_name
         %p
-          %b Termination date:
-          = @employee.termination_date.strftime('%d/%b/%Y') if @employee.employment_date.present?
+          %b Date of birth:
+          = @employee.date_of_birth.strftime('%d/%b/%Y') if @employee.date_of_birth.present?
+          (#{@employee.age})
+        %p
+          %b Sex:
+          = @employee.sex
+        %p
+          %b Email:
+          = @employee.email
+        %p
+          %b Phone number:
+          = link_to "tel:#{@employee.phone_number}", class: "button" do
+            #{@employee.phone_number}
+          /%a{:href => "viber://chat?number=#{@employee.phone_number}"}
+          /  Viber
+        %p
+          %b Address:
+          = @employee.address
+        %p
+          %b Description:
+          = @employee.description
         %p
           %b Balance:
           = number_to_currency(@employee.balance_cents, :unit => "$")
         %p
           %b Status:
           = status_label(@employee.status)
-    .card
-      .card-header
-        %b Personal data
-        .float-right
-          = link_to 'Edit', edit_person_path(@employee.person), class: 'btn btn-sm btn-warning'
-      .card-body
         %p
-          %b Name:
-          = @employee.person
+          %b Location:
+          = link_to @employee.location, location_path(@employee.location)
         %p
-          %b Phone number:
-          = link_to "tel:#{@person.phone_number}", class: "button" do
-            #{@person.phone_number}
-          /%a{:href => "viber://chat?number=#{@person.phone_number}"}
-          /  Viber
+          %b Employment date:
+          = @employee.employment_date.strftime('%d/%b/%Y') if @employee.employment_date.present?
         %p
-          %b Email:
-          = @person.email
-        %p
-          %b Date of birth:
-          = @person.date_of_birth.strftime('%d/%b/%Y') if @person.date_of_birth.present?
-          (#{@person.age})
-        %p
-          %b Sex:
-          = @person.sex
-        %p
-          %b Address:
-          = @person.address
-        %p
-          %b Description:
-          = @person.description
-        %p
-          %b Status:
-          = status_label(@person.status)
+          %b Termination date:
+          = @employee.termination_date.strftime('%d/%b/%Y') if @employee.termination_date.present?
     .card
       .card-header
         %b Account data
       .card-body
         %p
-          %b Name:
-
+          %b Name
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item
@@ -79,7 +72,7 @@
       #jobs.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
         = render 'jobs/index'
       #categories.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
-        = render 'employee_categories/index'
+        /= render 'employee_service_categories/index'
       #stats.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"}
         .card-header
           %i.fa.fa-calendar

@@ -34,8 +34,8 @@
         %td= job.employee
         %td= job.service.full_name
         %td= job.service_duration
-        %td= number_to_currency(job.client_price_cents, :unit => "#{job.service.client_price_currency}, ")
-        %td= number_to_currency(job.employee_price_cents, :unit => "#{job.service.employee_price_currency}, ")
+        %td= number_to_currency(job.client_price_cents, :unit => "$")
+        %td= number_to_currency(job.employee_price_cents, :unit => "$")
         %td= link_to 'Show', job, class: 'btn btn-sm btn-primary'
         %td= link_to 'Edit', edit_job_path(job), class: 'btn btn-sm btn-warning'
         %td= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'

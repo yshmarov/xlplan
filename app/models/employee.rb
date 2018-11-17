@@ -1,22 +1,32 @@
 class Employee < ApplicationRecord
-  belongs_to :person
+  has_one :user
   belongs_to :location
   has_many :jobs
-  has_many :employee_categories
+  has_many :employee_service_categories
+  has_many :service_categories, through: :employee_service_categories
+  has_many :clients
 
-  validates :person_id, :location_id, :status, presence: true
-  validates :person_id, uniqueness: true
+  validates :location_id, :status, presence: true
   validate :termination_date_cannot_be_before_employment_date
   
   monetize :balance, as: :balance_cents
   after_touch :update_balance
 
-  #scope :active, -> { where(status: 0) }
+  enum status: { inactive: 0, active: 1 }
 
-  enum status: [:"active", :"inactive"]
+  def full_name
+    last_name.capitalize + " " + first_name.capitalize
+  end
+
+  def age
+    if date_of_birth.present?
+      now = Time.now.utc.to_date
+      now.year - date_of_birth.year - ((now.month > date_of_birth.month || (now.month == date_of_birth.month && now.day >= date_of_birth.day)) ? 0 : 1)
+    end
+  end
 
   def to_s
-    person.full_name
+    full_name
   end
 
   def termination_date_cannot_be_before_employment_date
