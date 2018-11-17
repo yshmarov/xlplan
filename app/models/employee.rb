@@ -1,4 +1,5 @@
 class Employee < ApplicationRecord
+  include Personable
   has_one :user
   belongs_to :location
   has_many :jobs
@@ -6,28 +7,45 @@ class Employee < ApplicationRecord
   has_many :service_categories, through: :skills
   has_many :clients
 
+  validates :first_name, :last_name, presence: true
   validates :location_id, :status, presence: true
   validate :termination_date_cannot_be_before_employment_date
+  #validates :email, uniqueness: { case_sensitive: false }
+  #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  #validates :email, format: { with: VALID_EMAIL_REGEX }
   
   monetize :balance, as: :balance_cents
   after_touch :update_balance
 
   enum status: { inactive: 0, active: 1 }
 
-  def full_name
-    last_name.capitalize + " " + first_name.capitalize
-  end
+  #################INVITABLE##############
+  #has_one :user, inverse_of: :member
+  scope :has_account, -> { includes(:users).where.not(users: {person_id: nil}) }
 
-  def age
-    if date_of_birth.present?
-      now = Time.now.utc.to_date
-      now.year - date_of_birth.year - ((now.month > date_of_birth.month || (now.month == date_of_birth.month && now.day >= date_of_birth.day)) ? 0 : 1)
+  def account_status
+    if user.present?
+      if user.invitation_accepted_at?
+        'Account Active. Delete account.'
+      else 
+        'Invitation sent. Delete invitation.'
+      end
+    else
+      if email.present?
+        'You can invite'
+        #User.invite!(:email => "new_user@example.com", :name => "John Doe")
+        #= simple_form_for(User.new, url: user_invitation_path) do |z|
+        #  = z.input :email, input_html: {value: person.email}, as: :hidden
+        #  = z.input :person_id, input_html: {value: person.id}, as: :hidden
+        #  = z.button :submit, 'Invite', class: "btn btn-success btn-xs"
+      else
+        'Add email to invite user'
+      end
     end
   end
+  #################INVITABLE##############
 
-  def to_s
-    full_name
-  end
+  protected
 
   def termination_date_cannot_be_before_employment_date
     if termination_date.present? && termination_date <= employment_date
@@ -35,8 +53,6 @@ class Employee < ApplicationRecord
     end
   end
 
-  protected
-  
   def update_balance
     update_column :balance, (jobs.map(&:employee_due_price).sum)
   end
