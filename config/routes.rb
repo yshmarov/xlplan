@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   #devise_for :users, controllers: { registrations: "registrations", invitations: 'invitations'}
   #devise_for :users
 
-
   resources :employees do 
+    resources :skills, only: [:new, :create, :destroy]
   	member do
   		patch :invite_user
     end
   end
-  resources :skills
 
   resources :clients do
     resources :comments

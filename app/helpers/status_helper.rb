@@ -13,7 +13,7 @@ module StatusHelper
 				content_tag(:span, status.titleize, class: 'badge badge-success')
 			when 'confirmed_by_client'
 				content_tag(:span, status.titleize, class: 'badge badge-success')
-			when 'no_show'
+			when 'not_attended'
 				content_tag(:span, status.titleize, class: 'badge badge-secondary')
 			when 'rejected_by_us'
 				content_tag(:span, status.titleize, class: 'badge badge-danger')

@@ -15,11 +15,11 @@ class Job < ApplicationRecord
   #Employee.find_each { |employee| Employee.reset_counters(employee.id, :jobs_count) }
 
   validates :client_id, :starts_at, :status, :service_id, :location_id, :employee_id,
-            :service_name, :service_description, :service_duration, :client_price,
+            :service_name, :service_duration, :client_price,
             :employee_price, presence: true
 
   enum status: { planned: 0, confirmed: 1, confirmed_by_client: 2,
-                  no_show: 3, rejected_by_us:4, cancelled_by_client: 5}
+                  not_attended: 3, rejected_by_us:4, cancelled_by_client: 5}
   #add_index :jobs, :status
 
   monetize :client_price, as: :client_price_cents
@@ -37,7 +37,7 @@ class Job < ApplicationRecord
   def happened
     if status == 'confirmed_by_client' || status == 'confirmed'
       true
-    elsif status == 'no_show' || status == 'rejected_by_us' || status == 'cancelled_by_client' || status == 'planned'
+    elsif status == 'not_attended' || status == 'rejected_by_us' || status == 'cancelled_by_client' || status == 'planned'
       false
     end
   end
@@ -49,7 +49,7 @@ class Job < ApplicationRecord
   def color
     if status == 'confirmed_by_client' || status == 'confirmed'
       'green'
-    elsif status == 'no_show' || status == 'rejected_by_us' || status == 'cancelled_by_client'
+    elsif status == 'not_attended' || status == 'rejected_by_us' || status == 'cancelled_by_client'
       'red'
     elsif status == 'planned'
       'blue'

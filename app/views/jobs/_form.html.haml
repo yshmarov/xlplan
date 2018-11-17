@@ -24,6 +24,7 @@
     /= f.input :service_duration
     /= f.input :client_price
     /= f.input :employee_price
+    /= f.input :status
     = f.input :status, :as => :radio_buttons, :collection => Job.statuses.keys.to_a
     = f.input :description
     %p

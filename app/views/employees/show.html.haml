@@ -39,7 +39,6 @@
         %b Employment
         .float-right
           = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
-          = link_to 'Back', employees_path, class: 'btn btn-sm btn-secondary'
       .card-body
         %p
           %b Balance:
@@ -60,10 +59,14 @@
     .card
       .card-header
         %b Skills
+        .float-right
+          = link_to 'Add Skill', new_employee_skill_path(@employee, @skill), class: 'btn btn-sm btn-primary'
       .card-body
-        = @employee.skills.map{|p| p.service_category}.join(", ")
-        = link_to 'Add Skill', new_skill_path(employee_id: @employee.id)
-    %p
+        - @employee.skills.each do |skill|
+          %p
+            = skill.service_category
+            = link_to "delete", employee_skill_path(@employee, skill), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+        /= @employee.skills.map{|p| p.service_category}.join(", ")
     .card
       .card-header
         %b Account & access
