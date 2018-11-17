@@ -1,10 +1,10 @@
 -# frozen_string_literal: true
-= simple_form_for(@employee_service_category) do |f|
+= simple_form_for(@skill) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :employee_id, input_html: {value: @employee_service_category.employee_id || params[:employee_id]}, as: :hidden
+    = f.input :employee_id, input_html: {value: @skill.employee_id || params[:employee_id]}, as: :hidden
 
     = f.label :service_category
     = f.select :service_category_id, ServiceCategory.all.map{|c| [c.name, c.id]}, {include_blank: true}, class: 'selectize'

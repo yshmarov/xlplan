@@ -2,8 +2,8 @@ class Employee < ApplicationRecord
   has_one :user
   belongs_to :location
   has_many :jobs
-  has_many :employee_service_categories
-  has_many :service_categories, through: :employee_service_categories
+  has_many :skills
+  has_many :service_categories, through: :skills
   has_many :clients
 
   validates :location_id, :status, presence: true

@@ -61,8 +61,8 @@
       .card-header
         %b Skills
       .card-body
-        = @employee.employee_service_categories.map{|p| p.service_category}.join(", ")
-        = link_to 'Add Skill', new_employee_service_category_path(employee_id: @employee.id)
+        = @employee.skills.map{|p| p.service_category}.join(", ")
+        = link_to 'Add Skill', new_skill_path(employee_id: @employee.id)
     %p
     .card
       .card-header

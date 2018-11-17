@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_11_161058) do
+ActiveRecord::Schema.define(version: 2018_11_17_201411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,15 +42,6 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.datetime "updated_at", null: false
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["employee_id"], name: "index_comments_on_employee_id"
-  end
-
-  create_table "employee_service_categories", force: :cascade do |t|
-    t.bigint "employee_id"
-    t.bigint "service_category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_employee_service_categories_on_employee_id"
-    t.index ["service_category_id"], name: "index_employee_service_categories_on_service_category_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -134,6 +125,15 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.index ["service_category_id"], name: "index_services_on_service_category_id"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.bigint "employee_id"
+    t.bigint "service_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_skills_on_employee_id"
+    t.index ["service_category_id"], name: "index_skills_on_service_category_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -175,14 +175,14 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
 
   add_foreign_key "clients", "employees"
   add_foreign_key "comments", "employees"
-  add_foreign_key "employee_service_categories", "employees"
-  add_foreign_key "employee_service_categories", "service_categories"
   add_foreign_key "employees", "locations"
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "employees"
   add_foreign_key "jobs", "locations"
   add_foreign_key "jobs", "services"
   add_foreign_key "services", "service_categories"
+  add_foreign_key "skills", "employees"
+  add_foreign_key "skills", "service_categories"
   add_foreign_key "users", "employees"
   add_foreign_key "workplaces", "locations"
 end

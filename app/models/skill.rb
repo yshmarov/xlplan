@@ -1,4 +1,4 @@
-class EmployeeServiceCategory < ApplicationRecord
+class Skill < ApplicationRecord
   belongs_to :employee
   belongs_to :service_category
   validates :employee_id, :service_category_id, presence: true

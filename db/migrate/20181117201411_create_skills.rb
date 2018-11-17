@@ -1,6 +1,6 @@
-class CreateEmployeeServiceCategories < ActiveRecord::Migration[5.2]
+class CreateSkills < ActiveRecord::Migration[5.2]
   def change
-    create_table :employee_service_categories do |t|
+    create_table :skills do |t|
       t.belongs_to :employee, foreign_key: true
       t.belongs_to :service_category, foreign_key: true
 

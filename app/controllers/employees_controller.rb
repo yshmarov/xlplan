@@ -10,7 +10,7 @@ class EmployeesController < ApplicationController
 
   def show
     @jobs = @employee.jobs
-    @employee_service_categories = @employee.employee_service_categories
+    @skills = @employee.skills
     @employee_total_earnings = @jobs.map(&:employee_due_price_cents).sum
   end
 
