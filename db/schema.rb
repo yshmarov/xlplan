@@ -19,12 +19,11 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.string "first_name", limit: 144, null: false
     t.string "middle_name", limit: 144
     t.string "last_name", limit: 144, null: false
+    t.string "phone_number"
+    t.string "email"
     t.date "date_of_birth"
     t.string "sex", default: "undisclosed"
-    t.string "email"
-    t.string "phone_number"
     t.string "address"
-    t.text "description"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
     t.bigint "employee_id"
@@ -58,12 +57,11 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.string "first_name", limit: 144, null: false
     t.string "middle_name", limit: 144
     t.string "last_name", limit: 144, null: false
+    t.string "phone_number"
+    t.string "email"
     t.date "date_of_birth"
     t.string "sex", default: "undisclosed"
-    t.string "email"
-    t.string "phone_number"
     t.string "address"
-    t.text "description"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
     t.bigint "location_id"

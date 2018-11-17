@@ -8,7 +8,6 @@
       %th Date of birth
       %th Email
       %th Phone number
-      %th Description
       %th Status
       %th Invited by
       %th Account status
@@ -24,7 +23,6 @@
         %td= person.date_of_birth
         %td= person.email
         %td= person.phone_number
-        %td= person.description
         %td= person.status
         %td= person.user.invited_by if person.user.present?
         /%td
