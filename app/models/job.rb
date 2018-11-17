@@ -34,7 +34,7 @@ class Job < ApplicationRecord
   after_create :update_due_prices
   after_update :update_due_prices
 
-  def event_happened
+  def happened
     if status == 'confirmed_by_client' || status == 'confirmed'
       true
     elsif status == 'no_show' || status == 'rejected_by_us' || status == 'cancelled_by_client' || status == 'planned'
@@ -74,7 +74,7 @@ class Job < ApplicationRecord
   end
 
   def update_due_prices
-    if self.event_happened
+    if self.happened
       update_column :client_due_price, (client_price)
       update_column :employee_due_price, (employee_price)
     else
