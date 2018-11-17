@@ -1,5 +1,5 @@
 %h1 New employee_service_category
 
 = render 'form'
-
-= link_to 'Back', employee_service_categories_path
+%p
+= link_to 'Back', employee_path(params[:employee_id]), class: 'btn btn-sm btn-secondary'

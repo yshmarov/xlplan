@@ -3,10 +3,7 @@
   .col-lg-4
     .card
       .card-header
-        %b Employment data
-        .float-right
-          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
-          = link_to 'Back', employees_path, class: 'btn btn-sm btn-secondary'
+        %b Personal
       .card-body
         %p
           %b First name:
@@ -18,6 +15,15 @@
           %b Last name:
           = @employee.last_name
         %p
+          %b Phone number:
+          = link_to "tel:#{@employee.phone_number}", class: "button" do
+            #{@employee.phone_number}
+          /%a{:href => "viber://chat?number=#{@employee.phone_number}"}
+          /  Viber
+        %p
+          %b Email:
+          = @employee.email
+        %p
           %b Date of birth:
           = @employee.date_of_birth.strftime('%d/%b/%Y') if @employee.date_of_birth.present?
           (#{@employee.age})
@@ -25,17 +31,16 @@
           %b Sex:
           = @employee.sex
         %p
-          %b Email:
-          = @employee.email
-        %p
-          %b Phone number:
-          = link_to "tel:#{@employee.phone_number}", class: "button" do
-            #{@employee.phone_number}
-          /%a{:href => "viber://chat?number=#{@employee.phone_number}"}
-          /  Viber
-        %p
           %b Address:
           = @employee.address
+    %p
+    .card
+      .card-header
+        %b Employment
+        .float-right
+          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
+          = link_to 'Back', employees_path, class: 'btn btn-sm btn-secondary'
+      .card-body
         %p
           %b Balance:
           = number_to_currency(@employee.balance_cents, :unit => "$")
@@ -51,12 +56,20 @@
         %p
           %b Termination date:
           = @employee.termination_date.strftime('%d/%b/%Y') if @employee.termination_date.present?
+    %p
     .card
       .card-header
-        %b Account data
+        %b Skills
+      .card-body
+        = @employee.employee_service_categories.map{|p| p.service_category}.join(", ")
+        = link_to 'Add Skill', new_employee_service_category_path(employee_id: @employee.id)
+    %p
+    .card
+      .card-header
+        %b Account & access
       .card-body
         %p
-          %b Name
+          %b ?
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item
