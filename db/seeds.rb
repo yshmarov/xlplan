@@ -5,7 +5,7 @@ Client.create!(first_name: 'Yuliia', last_name: 'Zapetaya', email: 'zapetaya.y@g
 Client.create!(first_name: 'Iryna', last_name: 'Sharovarova', email: 'irina@gmail.com', employee_id: 1)
 Client.create!(first_name: 'Oleksiy', last_name: 'Seleznev', email: 'alex@gmail.com', employee_id: 1)
 Client.create!(first_name: 'Elena', last_name: 'Fedorova', email: 'elena@gmail.com', employee_id: 1)
-Machine.create!(name: 'Workplace 1', location_id: 1)
+Workplace.create!(name: 'Workplace 1', location_id: 1)
 ServiceCategory.create!(name: 'For Men')
 ServiceCategory.create!(name: 'For Women')
 Service.create!(name: 'Haircut', description: 'Male bold', duration: 60, client_price_cents: 250, employee_percent: 50, employee_price: 17, quantity: 1, status: 0, service_category_id: 1)

@@ -1,4 +1,4 @@
-class Machine < ApplicationRecord
+class Workplace < ApplicationRecord
   belongs_to :location
 
   validates :name, uniqueness: true

@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   resources :services
   resources :service_categories
   resources :employee_service_categories
+
   resources :locations
-  resources :machines
+  resources :workplaces
+
   resources :jobs do
     resources :comments
   end

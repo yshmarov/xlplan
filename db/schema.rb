@@ -111,16 +111,6 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
-  create_table "machines", force: :cascade do |t|
-    t.string "name", limit: 144, null: false
-    t.bigint "location_id"
-    t.integer "status", default: 1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_machines_on_location_id"
-    t.index ["name"], name: "index_machines_on_name", unique: true
-  end
-
   create_table "service_categories", force: :cascade do |t|
     t.string "name", limit: 144, null: false
     t.datetime "created_at", null: false
@@ -174,6 +164,15 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workplaces", force: :cascade do |t|
+    t.string "name", limit: 144, null: false
+    t.bigint "location_id"
+    t.integer "status", default: 1, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_workplaces_on_location_id"
+  end
+
   add_foreign_key "clients", "employees"
   add_foreign_key "comments", "employees"
   add_foreign_key "employee_service_categories", "employees"
@@ -183,7 +182,7 @@ ActiveRecord::Schema.define(version: 2018_11_11_161058) do
   add_foreign_key "jobs", "employees"
   add_foreign_key "jobs", "locations"
   add_foreign_key "jobs", "services"
-  add_foreign_key "machines", "locations"
   add_foreign_key "services", "service_categories"
   add_foreign_key "users", "employees"
+  add_foreign_key "workplaces", "locations"
 end

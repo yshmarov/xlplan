@@ -17,7 +17,8 @@
   = number_to_currency(@service.client_price_cents, :unit => "$")
 %p
   %b Employee percent:
-  = @service.employee_percent
+  /= @service.employee_percent
+  = number_to_percentage(@service.employee_percent, precision: 0)
 %p
   %b Employee price:
   = number_to_currency(@service.employee_price_cents, :unit => "$")

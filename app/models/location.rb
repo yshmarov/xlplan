@@ -1,5 +1,5 @@
 class Location < ApplicationRecord
-  has_many :machines
+  has_many :workplaces
   has_many :employees
   has_many :jobs
 
