@@ -1,6 +1,6 @@
 Location.create!(name: 'Pyat', tel: 675760, balance: 0, status: 1)
 Employee.create!(first_name: 'Yaro', last_name: 'Shm', email: 'yshmarov@gmail.com', location_id: 1)
-User.create!(employee_id: 1, email:'yshmarov@gmail.com', password: 'yshmarov@gmail.com')
+User.create!(employee_id: 1, email:'yshmarov@gmail.com', password: 'yshmarov@gmail.com', confirmed_at: DateTime.now)
 Client.create!(first_name: 'Yuliia', last_name: 'Zapetaya', email: 'zapetaya.y@gmail.com', employee_id: 1)
 Client.create!(first_name: 'Iryna', last_name: 'Sharovarova', email: 'irina@gmail.com', employee_id: 1)
 Client.create!(first_name: 'Oleksiy', last_name: 'Seleznev', email: 'alex@gmail.com', employee_id: 1)
