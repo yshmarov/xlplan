@@ -38,7 +38,7 @@
       /%th Quantity
       %th= sort_link @q, :status, "Status"
       %th= sort_link @q, :jobs_count, "Jobs"
-      %th
+      /%th
       %th
       %th
 
@@ -55,7 +55,7 @@
         /%td= service.quantity
         %td= status_label(service.status)
         %td= service.jobs_count
-        %td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
+        /%td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
         %td= link_to 'Edit', edit_service_path(service), class: 'btn btn-sm btn-warning'
         %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 .container

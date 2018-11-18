@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :services
+  resources :services, except: [:show]
   resources :service_categories, except: [:show]
 
   resources :locations do

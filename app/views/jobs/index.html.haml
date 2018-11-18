@@ -36,44 +36,44 @@
             %th= f.submit
             %th= link_to '', jobs_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
-    %table#table-overflow
-      %thead
-        %tr
-          %th= sort_link @q, :client_last_name, "Client"
-          %th= sort_link @q, :starts_at, "Time"
-          %th= sort_link @q, :status, "Status"
-          %th= sort_link @q, :location_id, "Location"
-          %th= sort_link @q, :employee_last_name, "Employee"
-          %th= sort_link @q, :service_name, "Service"
-          /%th= sort_link @q, :service_duration, "Duration"
-          %th= sort_link @q, :client_price, "Client,$"
-          %th= sort_link @q, :employee_price, "Employee,$"
-          /%th Description
-          /%th Created by
-          /%th Created at
-          /%th Updated at
-          %th
-          %th
-          %th
-      %tbody
-        - @jobs.each do |job|
-          %tr
-            %td= link_to job.client, client_path(job.client)
-            %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
-            %td= status_label(job.status)
-            %td= link_to job.location, location_path(job.location)
-            %td= link_to job.employee, employee_path(job.employee)
-            %td= link_to job.service.full_name, service_path(job.service)
-            /%td= job.service_duration
-            %td= job.client_price_cents
-            %td= job.employee_price_cents
-            /%td= job.description
-            /%td= job.creator
-            /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
-            /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
-            %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
-            %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
-            %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-    .container
-      = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%table#table-overflow
+  %thead
+    %tr
+      %th= sort_link @q, :client_last_name, "Client"
+      %th= sort_link @q, :starts_at, "Time"
+      %th= sort_link @q, :status, "Status"
+      %th= sort_link @q, :location_id, "Location"
+      %th= sort_link @q, :employee_last_name, "Employee"
+      %th= sort_link @q, :service_name, "Service"
+      /%th= sort_link @q, :service_duration, "Duration"
+      %th= sort_link @q, :client_price, "Client,$"
+      %th= sort_link @q, :employee_price, "Employee,$"
+      /%th Description
+      /%th Created by
+      /%th Created at
+      /%th Updated at
+      %th
+      %th
+      %th
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= link_to job.client, client_path(job.client)
+        %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
+        %td= status_label(job.status)
+        %td= link_to job.location, location_path(job.location)
+        %td= link_to job.employee, employee_path(job.employee)
+        %td= link_to job.service.full_name, service_path(job.service)
+        /%td= job.service_duration
+        %td= job.client_price_cents
+        %td= job.employee_price_cents
+        /%td= job.description
+        /%td= job.creator
+        /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
+        /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
+        %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
+        %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
+        %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+.container
+  = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
