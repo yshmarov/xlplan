@@ -1,8 +1,8 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
-  def mark_attendance
-    @jobs = Job.where("starts_at < ?", Time.now+10.minutes).where(status: 'planned')
+  def update_status
+    @jobs = Job.update_status
   end
 
   def index

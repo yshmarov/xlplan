@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :jobs do
     resources :comments
-    get :mark_attendance, on: :collection
+    get :update_status, on: :collection
   end
   get 'stats', to: 'static_pages#stats'
   get 'calendar', to: 'static_pages#calendar'
