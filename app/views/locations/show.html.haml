@@ -14,7 +14,7 @@
   = @location.address
 %p
   %b Balance:
-  = @location.balance
+  = @location.balance_cents
 %p
   %b Status:
   = status_label(@location.status)
@@ -22,3 +22,5 @@
 = link_to 'Edit', edit_location_path(@location)
 \|
 = link_to 'Back', locations_path
+%p
+= @workplaces.map{|p| p.name}.join(", ")

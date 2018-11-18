@@ -6,6 +6,7 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @workplaces = @location.workplaces
   end
 
   def new

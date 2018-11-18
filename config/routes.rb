@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :services
   resources :service_categories, except: [:show]
 
-  resources :locations
+  resources :locations 
   resources :workplaces
 
   resources :jobs do

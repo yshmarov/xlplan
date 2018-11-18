@@ -13,12 +13,12 @@ class InvitationsController < Devise::InvitationsController
     params.require(:user).permit(
       :invite,
       :email,
-      :person_id
+      :employee_id
     )
   end
 
   def after_invite_path_for(user)
-    people_path
+    employees_path
   end
 
 end

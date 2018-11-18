@@ -8,6 +8,11 @@ class EmployeesController < ApplicationController
     @employees = @ransack_employees.result.includes(:location).paginate(:page => params[:page], :per_page => 10)
   end
 
+	#def invite_user
+  #  @user = User.invite!(email: @employee.email, employee_id: @employee.id)
+	#	redirect_to users_url
+	#end
+
   def show
     @jobs = @employee.jobs
     @skills = @employee.skills
