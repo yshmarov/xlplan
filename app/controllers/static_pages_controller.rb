@@ -20,16 +20,16 @@ class StaticPagesController < ApplicationController
     @total_planned_net_income = @total_planned_earnings - @total_planned_expences
 
     #company loss stats
-    @lost_job_q = Job.where(status: [:no_show, :rejected_by_us, :cancelled_by_client]).count
-    @total_lost_earnings = Job.where(status: [:no_show, :rejected_by_us, :cancelled_by_client]).map(&:client_price_cents).sum
-    @total_lost_expences = Job.where(status: [:no_show, :rejected_by_us, :cancelled_by_client]).map(&:employee_price_cents).sum
+    @lost_job_q = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).count
+    @total_lost_earnings = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).map(&:client_price_cents).sum
+    @total_lost_expences = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).map(&:employee_price_cents).sum
     @total_net_losses = @total_lost_earnings - @total_lost_expences
 
     #Job statuses
     @job_statuses = Job.unscoped.group("status").count
     #next 5 bdays
     next_bdays = (Date.today + 0.day).yday
-    @people = Person.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
+    @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
   end
 
   def calendar

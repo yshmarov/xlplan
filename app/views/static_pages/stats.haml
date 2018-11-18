@@ -101,8 +101,8 @@
   .col-md-4
     %h3.text-center
       Upcoming birthdays
-    - @people.each do |person|
-      .card.text-center= link_to "#{person.date_of_birth.strftime('%b, %d')} - #{person}", person_path(person)
+    - @clients.each do |client|
+      .card.text-center= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
   .col-md-4
     %h3.text-center
       Job Status
