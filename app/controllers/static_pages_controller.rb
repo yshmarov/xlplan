@@ -8,18 +8,21 @@ class StaticPagesController < ApplicationController
 
   def stats
     #company confirmed earning
+    @confirmed_hours_worked = (Job.where(status: [:confirmed, :confirmed_by_client]).map(&:service_duration).sum)/60.to_d
     @confirmed_job_q = Job.where(status: [:confirmed, :confirmed_by_client]).count
     @total_confirmed_earnings = Job.where(status: [:confirmed, :confirmed_by_client]).map(&:client_due_price_cents).sum
     @total_confirmed_expences = Job.where(status: [:confirmed, :confirmed_by_client]).map(&:employee_due_price_cents).sum
     @total_confirmed_net_income = @total_confirmed_earnings - @total_confirmed_expences
 
     #company planned earnings
+    @planned_hours_worked = (Job.where(status: [:planned]).map(&:service_duration).sum)/60.to_d
     @planned_job_q = Job.where(status: [:planned]).count
     @total_planned_earnings = Job.where(status: [:planned]).map(&:client_price_cents).sum
     @total_planned_expences = Job.where(status: [:planned]).map(&:employee_price_cents).sum
     @total_planned_net_income = @total_planned_earnings - @total_planned_expences
 
     #company loss stats
+    @lost_hours_worked = (Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).map(&:service_duration).sum)/60.to_d
     @lost_job_q = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).count
     @total_lost_earnings = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).map(&:client_price_cents).sum
     @total_lost_expences = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).map(&:employee_price_cents).sum

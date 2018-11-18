@@ -1,98 +1,126 @@
 %p
 %h3.text-center
-  Counters
+  .badge.badge-secondary.btn-block
+    Counters
 .row
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
+      %i.fa.fa-calendar
+      = Job.count
+      %div 
+        %b Jobs
+  .col-md-2
+    .card-header.bg-default
       %i.fa.fa-user
       = Client.count
       %div 
         %b Clients
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
-      %i.fa.fa-dollar-sign
-      = (Job.all.map(&:service_duration).sum)/60.to_d
+    .card-header.bg-default
+      %i.fa.fa-user
+      = Employee.count
       %div 
-        %b Hours worked
+        %b Employees
 %h3.text-center
-  Planned
+  .badge.badge-primary.btn-block
+    Planned
 .row
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-calendar
       = @planned_job_q
       %div 
         %b Jobs
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
+      %i.fa.fa-clock
+      = @planned_hours_worked
+      %div 
+        %b Hours worked
+  .col-md-2
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_planned_earnings, :unit => "USD, ")
+      = @total_planned_earnings
       %div 
         %b Earnings
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_planned_expences, :unit => "USD, ")
+      = @total_planned_expences
       %div 
         %b Expences
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_planned_net_income, :unit => "USD, ")
+      = @total_planned_net_income
       %div
         %b Net income
 %h3.text-center
-  Confirmed
+  .badge.badge-success.btn-block
+    Confirmed
 .row
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-calendar
       = @confirmed_job_q
       %div 
         %b Jobs
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
+      %i.fa.fa-clock
+      = @confirmed_hours_worked
+      %div 
+        %b Hours worked
+  .col-md-2
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_confirmed_earnings, :unit => "USD, ")
+      = @total_confirmed_earnings
       %div 
         %b Earnings
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_confirmed_expences, :unit => "USD, ")
+      = @total_confirmed_expences
       %div 
         %b Expences
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_confirmed_net_income, :unit => "USD, ")
+      = @total_confirmed_net_income
       %div
         %b Net income
 %h3.text-center
-  Lost
+  .badge.badge-danger.btn-block
+    Lost
 .row
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-calendar
       = @lost_job_q
       %div 
         %b Jobs
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
+      %i.fa.fa-clock
+      = @lost_hours_worked
+      %div 
+        %b Hours worked
+  .col-md-2
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_lost_earnings, :unit => "USD, ")
+      = @total_lost_earnings
       %div 
         %b Earnings
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_lost_expences, :unit => "USD, ")
+      = @total_lost_expences
       %div 
         %b Expences
   .col-md-2
-    %button.btn.btn-info.btn-block{:style => "cursor:default;"}
+    .card-header.bg-default
       %i.fa.fa-dollar-sign
-      = number_to_currency(@total_net_losses, :unit => "USD, ")
+      = @total_net_losses
       %div
         %b Net income
 
@@ -102,6 +130,7 @@
     %h3.text-center
       Upcoming birthdays
     - @clients.each do |client|
+      = client.id
       .card.text-center= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
   .col-md-4
     %h3.text-center
