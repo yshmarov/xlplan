@@ -25,39 +25,39 @@
             %th= f.submit
             %th= link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
-    %table
-      %thead
-        %tr
-          %th= sort_link @q, :service_category_name, "Category"
-          %th= sort_link @q, :name, "Name"
-          %th Description
-          %th= sort_link @q, :duration, "Duration"
-          %th= sort_link @q, :client_price, "Client $"
-          %th= sort_link @q, :employee_percent, "Employee %"
-          %th= sort_link @q, :employee_price, "Employee $"
-          %th Quantity
-          %th= sort_link @q, :status, "Status"
-          %th= sort_link @q, :jobs_count, "Jobs"
-          %th
-          %th
-          %th
-    
-      %tbody
-        - @services.each do |service|
-          %tr
-            %td= service.service_category
-            %td= service.name
-            %td= service.description
-            %td= service.duration
-            %td= number_to_currency(service.client_price_cents, :unit => "$")
-            %td= service.employee_percent
-            %td= number_to_currency(service.employee_price_cents, :unit => "$")
-            %td= service.quantity
-            %td= status_label(service.status)
-            %td= service.jobs_count
-            %td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
-            %td= link_to 'Edit', edit_service_path(service), class: 'btn btn-sm btn-warning'
-            %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-    .container
-      = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%table
+  %thead
+    %tr
+      %th= sort_link @q, :service_category_name, "Category"
+      %th= sort_link @q, :name, "Name"
+      %th Description
+      %th= sort_link @q, :duration, "Duration"
+      %th= sort_link @q, :client_price, "Client $"
+      %th= sort_link @q, :employee_percent, "Employee %"
+      %th= sort_link @q, :employee_price, "Employee $"
+      /%th Quantity
+      %th= sort_link @q, :status, "Status"
+      %th= sort_link @q, :jobs_count, "Jobs"
+      %th
+      %th
+      %th
+
+  %tbody
+    - @services.each do |service|
+      %tr
+        %td= service.service_category
+        %td= service.name
+        %td= service.description
+        %td= service.duration
+        %td= number_to_currency(service.client_price_cents, :unit => "$")
+        %td= service.employee_percent
+        %td= number_to_currency(service.employee_price_cents, :unit => "$")
+        /%td= service.quantity
+        %td= status_label(service.status)
+        %td= service.jobs_count
+        %td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
+        %td= link_to 'Edit', edit_service_path(service), class: 'btn btn-sm btn-warning'
+        %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+.container
+  = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

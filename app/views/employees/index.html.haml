@@ -34,7 +34,9 @@
         %td= employee.full_name
         %td= employee.phone_number
         %td= employee.email
-        %td= employee.date_of_birth
+        %td
+          - if employee.date_of_birth.present?
+            #{employee.date_of_birth.strftime('%d/%b/%Y')} (#{employee.age})
         %td= status_label(employee.status)
         %td= number_to_currency(employee.balance_cents, :unit => "$")
         %td= employee.jobs_count

@@ -12,35 +12,37 @@
             = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
-    %table
-      %thead
-        %tr
-          %th= sort_link @ransack_clients, :last_name, "Name"
-          %th Phone number
-          %th Email
-          %th Birthday
-          %th= sort_link @ransack_clients, :status, "Status"
-          %th= sort_link @ransack_clients, :balance, "Balance"
-          %th= sort_link @ransack_clients, :jobs_count, "Jobs"
-          %th= sort_link @ransack_clients, :employee_id, "Responsible"
-          %th
-          %th
-          %th
-    
-      %tbody
-        - @clients.each do |client|
-          %tr
-            %td= client.full_name
-            %td= client.phone_number
-            %td= client.email
-            %td= client.date_of_birth
-            %td= status_label(client.status)
-            %td= number_to_currency(client.balance_cents, :unit => "$")
-            %td= client.jobs_count
-            %td= client.employee
-            %td= link_to 'Show', client, class: 'btn btn-sm btn-primary'
-            %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
-            %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
-    .container
-      = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%table
+  %thead
+    %tr
+      %th= sort_link @ransack_clients, :last_name, "Name"
+      %th Phone number
+      %th Email
+      %th Birthday
+      %th= sort_link @ransack_clients, :status, "Status"
+      %th= sort_link @ransack_clients, :balance, "Balance"
+      %th= sort_link @ransack_clients, :jobs_count, "Jobs"
+      %th= sort_link @ransack_clients, :employee_id, "Responsible"
+      %th
+      %th
+      %th
+
+  %tbody
+    - @clients.each do |client|
+      %tr
+        %td= client.full_name
+        %td= client.phone_number
+        %td= client.email
+        %td
+          - if client.date_of_birth.present?
+            #{client.date_of_birth.strftime('%d/%b/%Y')} (#{client.age})
+        %td= status_label(client.status)
+        %td= number_to_currency(client.balance_cents, :unit => "$")
+        %td= client.jobs_count
+        %td= client.employee
+        %td= link_to 'Show', client, class: 'btn btn-sm btn-primary'
+        %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
+        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+.container
+  = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

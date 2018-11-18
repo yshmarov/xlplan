@@ -6,9 +6,9 @@
       %th Name
       %th Location
       %th Status
-      %th
-      %th
-      %th
+      /%th
+      /%th
+      /%th
 
   %tbody
     - @workplaces.each do |workplace|
@@ -16,10 +16,8 @@
         %td= workplace.name
         %td= workplace.location
         %td= workplace.status
-        %td= link_to 'Show', workplace
-        %td= link_to 'Edit', edit_workplace_path(workplace)
-        %td= link_to 'Destroy', workplace, method: :delete, data: { confirm: 'Are you sure?' }
+        /%td= link_to 'Show', workplace
+        /%td= link_to 'Edit', edit_workplace_path(workplace)
+        /%td= link_to 'Destroy', workplace, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New Workplace', new_workplace_path

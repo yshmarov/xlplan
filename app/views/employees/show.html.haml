@@ -25,8 +25,9 @@
           = @employee.email
         %p
           %b Date of birth:
-          = @employee.date_of_birth.strftime('%d/%b/%Y') if @employee.date_of_birth.present?
-          (#{@employee.age})
+          - if @employee.date_of_birth.present?
+            = @employee.date_of_birth.strftime('%d/%b/%Y') 
+            (#{@employee.age})
         %p
           %b Sex:
           = @employee.sex
