@@ -21,6 +21,12 @@
       = Employee.count
       %div 
         %b Employees
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-hand-paper
+      = Service.count
+      %div 
+        %b Services
 %h3.text-center
   .badge.badge-primary.btn-block
     Planned
@@ -85,7 +91,7 @@
         %b Expences
   .col-md-2
     .card-header.bg-default
-      %i.fa.fa-dollar-sign
+      %i.fa.fa-hand-holding-usd
       = @total_confirmed_net_income
       %div
         %b Net income
