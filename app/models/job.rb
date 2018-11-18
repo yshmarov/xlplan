@@ -8,6 +8,9 @@ class Job < ApplicationRecord
   belongs_to :creator, class_name: 'Employee', foreign_key: :created_by, required: false
   #has_many :comments, as: :commentable
 
+  #scope :mark_attendance, -> { where("ends_at < ?", Time.now).where(status: 'planned') }
+  #Job.where("ends_at < ?", Time.now).where(status: 'planned').count
+
   #console commands to update counters, if needed
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
   #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }

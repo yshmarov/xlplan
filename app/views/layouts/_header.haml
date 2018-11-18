@@ -8,7 +8,8 @@
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
       - if current_user
-        %li.nav-item= link_to "+ New Job", new_job_path, class: "nav-link btn btn-light text-dark"
+        %li.nav-item= link_to "+ New Job", new_job_path, class: "nav-link btn btn-light text-dark mr-sm-2"
+        %li.nav-item= link_to "Mark attendance: #{Job.where("starts_at < ?", Time.now+10.minutes).where(status: 'planned').count}", mark_attendance_jobs_path, class: "nav-link btn btn-light text-dark"
         %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link"
         %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
         %li.nav-item= link_to "Clients", clients_path, class: "nav-link"

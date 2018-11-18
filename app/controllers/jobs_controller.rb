@@ -1,6 +1,10 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
+  def mark_attendance
+    @jobs = Job.where("starts_at < ?", Time.now+10.minutes).where(status: 'planned')
+  end
+
   def index
     #@jobs = Job.paginate(:page => params[:page], :per_page => 10)
     @q = Job.ransack(params[:q])
