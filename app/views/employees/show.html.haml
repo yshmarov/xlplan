@@ -4,16 +4,12 @@
     .card
       .card-header
         %b Personal
+        .float-right
+          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
       .card-body
         %p
-          %b First name:
-          = @employee.first_name
-        %p
-          %b Middle name:
-          = @employee.middle_name
-        %p
-          %b Last name:
-          = @employee.last_name
+          %b Name:
+          = @employee.full_name
         %p
           %b Phone number:
           = link_to "tel:#{@employee.phone_number}", class: "button" do
@@ -38,8 +34,6 @@
     .card
       .card-header
         %b Employment
-        .float-right
-          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
       .card-body
         %p
           %b Balance:
@@ -68,6 +62,7 @@
             = skill.service_category
             = link_to "delete", employee_skill_path(@employee, skill), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
         /= @employee.skills.map{|p| p.service_category}.join(", ")
+    %p
     .card
       .card-header
         %b Account & access
