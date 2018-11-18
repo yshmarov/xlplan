@@ -16,7 +16,7 @@
   %thead
     %tr
       %th= sort_link @ransack_employees, :last_name, "Name"
-      %th Phone number
+      %th Phone
       %th Email
       %th Birthday
       %th= sort_link @ransack_employees, :status, "Status"
@@ -32,8 +32,11 @@
     - @employees.each do |employee|
       %tr
         %td= employee.full_name
-        %td= employee.phone_number
-        %td= employee.email
+        %td
+          = link_to "tel:#{employee.phone_number}", class: "button" do
+            #{employee.phone_number}
+        %td
+          %a{:href => "mailto:#{employee.email}"}= employee.email
         %td
           - if employee.date_of_birth.present?
             #{employee.date_of_birth.strftime('%d/%b/%Y')} (#{employee.age})

@@ -22,7 +22,7 @@
           /  Viber
         %p
           %b Email:
-          = @employee.email
+          %a{:href => "mailto:#{@employee.email}"}= @employee.email
         %p
           %b Date of birth:
           - if @employee.date_of_birth.present?
