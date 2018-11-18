@@ -1,12 +1,4 @@
-- model_class = Job
-%br
-.card.card-default
-.container
-  .card-heading
-    %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-      %b
-        =t '.title', :default => model_class.model_name.human.pluralize.titleize
-%table
+%table#table-overflow
   %thead
     %tr
       %th Client

@@ -77,17 +77,17 @@
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item
-        %a#home-tab.nav-link.active{"aria-controls" => "home", "aria-selected" => "true", "data-toggle" => "tab", :href => "#jobs", :role => "tab"} Jobs
+        %a#dropp1-tab.nav-link.active{"aria-controls" => "dropp1", "aria-selected" => "false", "data-toggle" => "tab", :href => "#drop1", :role => "tab"} Calendar
       %li.nav-item
-        %a#profile-tab.nav-link{"aria-controls" => "profile", "aria-selected" => "false", "data-toggle" => "tab", :href => "#categories", :role => "tab"} Categories
+        %a#dropp2-tab.nav-link{"aria-controls" => "dropp2", "aria-selected" => "true", "data-toggle" => "tab", :href => "#drop2", :role => "tab"} Jobs
       %li.nav-item
-        %a#contact-tab.nav-link{"aria-controls" => "contact", "aria-selected" => "false", "data-toggle" => "tab", :href => "#stats", :role => "tab"} Stats
+        %a#dropp3-tab.nav-link{"aria-controls" => "dropp3", "aria-selected" => "true", "data-toggle" => "tab", :href => "#drop3", :role => "tab"} Stats
     #myTabContent.tab-content
-      #jobs.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+      #drop1.tab-pane.fade.show.active{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
+        Calendar
+      #drop2.tab-pane.fade.show{"aria-labelledby" => "home-tab", :role => "tabpanel"}
         = render 'jobs/index'
-      #categories.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
-        /= render 'employee_service_categories/index'
-      #stats.tab-pane.fade{"aria-labelledby" => "contact-tab", :role => "tabpanel"}
+      #drop3.tab-pane.fade.show{"aria-labelledby" => "home-tab", :role => "tabpanel"}
         .card-header
           %i.fa.fa-calendar
           /= Job.where(employee_id: current_user.person.employee.id).count
@@ -99,6 +99,6 @@
           %b Hours worked
         .card-header
           %i.fa.fa-dollar-sign
-          = number_to_currency(@employee_total_earnings, :unit => "USD, ")
+          = @employee_total_earnings
           %b My earnings
 
