@@ -35,6 +35,7 @@ class Job < ApplicationRecord
   after_update :update_ends_at
   after_create :update_due_prices
   after_update :update_due_prices
+  after_save :update_due_prices
 
   def happened
     if status == 'confirmed_by_client' || status == 'confirmed'
