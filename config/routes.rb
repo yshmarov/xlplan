@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     resources :comments
     get :update_status, on: :collection
   end
-  get 'stats', to: 'static_pages#stats'
+
+  get 'job_stats', to: 'static_pages#job_stats'
+  get 'other_stats', to: 'static_pages#other_stats'
   get 'calendar', to: 'static_pages#calendar'
   root to: 'static_pages#landing_page'
 end

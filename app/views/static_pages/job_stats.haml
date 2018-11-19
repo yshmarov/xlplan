@@ -1,33 +1,5 @@
 %p
 %h3.text-center
-  .badge.badge-secondary.btn-block
-    Counters
-.row
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-calendar
-      = Job.count
-      %div 
-        %b Jobs
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-user
-      = Client.count
-      %div 
-        %b Clients
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-user
-      = Employee.count
-      %div 
-        %b Employees
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-hand-paper
-      = Service.count
-      %div 
-        %b Services
-%h3.text-center
   .badge.badge-primary.btn-block
     Planned
 .row
@@ -131,15 +103,3 @@
         %b Net income
 
 %br
-.row
-  .col-md-4
-    %h3.text-center
-      Upcoming birthdays
-    - @clients.each do |client|
-      = client.id
-      .card.text-center= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
-  .col-md-4
-    %h3.text-center
-      Job Status
-    - @job_statuses.each do |key, value|
-      .card.text-center= "#{key} - #{value}"

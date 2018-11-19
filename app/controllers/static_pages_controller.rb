@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def stats
+  def job_stats
     #company confirmed earning
     @confirmed_hours_worked = (Job.where(status: [:confirmed, :confirmed_by_client]).map(&:service_duration).sum)/60.to_d
     @confirmed_job_q = Job.where(status: [:confirmed, :confirmed_by_client]).count
@@ -27,9 +27,21 @@ class StaticPagesController < ApplicationController
     @total_lost_earnings = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).map(&:client_price_cents).sum
     @total_lost_expences = Job.where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]).map(&:employee_price_cents).sum
     @total_net_losses = @total_lost_earnings - @total_lost_expences
+  end
 
-    #Job statuses
-    @job_statuses = Job.unscoped.group("status").count
+  def other_stats
+    #pie charts
+    @job_status_pie = Job.unscoped.group("status").count
+    @job_service_pie = Job.unscoped.group("service_id").count
+    @client_sex_pie = Client.unscoped.group("sex").count
+    @client_status_pie = Client.unscoped.group("status").count
+
+    #average paycheck
+    @average_confirmed_earnings = Job.where(status: [:confirmed, :confirmed_by_client]).average(:client_due_price).to_i/100
+
+    #job Q per month (only confirmed)
+    @monthly_jobs = Job.where(status: [:confirmed, :confirmed_by_client]).map { |job| [Date::MONTHNAMES[job.starts_at.month], job.starts_at.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
+
     #next 5 bdays
     next_bdays = (Date.today + 0.day).yday
     @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
