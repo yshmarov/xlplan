@@ -4,7 +4,9 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.association :service_category, autofocus: true
+    = f.label :service_category
+    = f.select :service_category_id, ServiceCategory.all.map{|c| [c.name, c.id]}, {include_blank: ServiceCategory.all.length > 1}, class: 'selectize'
+    /= f.association :service_category, autofocus: true
     = f.input :name
     = f.input :description
     = f.input :duration

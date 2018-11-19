@@ -4,11 +4,14 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
+    = f.label :employee_id
+    %span.input-group-text= Employee.find(params[:employee_id])
     = f.input :employee_id, input_html: {value: @skill.employee_id || params[:employee_id]}, as: :hidden
+
 
     = f.label :service_category
     = f.select :service_category_id, ServiceCategory.all.map{|c| [c.name, c.id]}, {include_blank: true}, class: 'selectize'
     /= f.association :service_category
-
+  %p
   .form-actions
     = f.button :submit

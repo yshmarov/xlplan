@@ -16,6 +16,8 @@
   %thead
     %tr
       %th= sort_link @ransack_employees, :last_name, "Name"
+      %th
+      %th
       %th Phone
       %th Email
       %th Birthday
@@ -25,14 +27,13 @@
       %th Location
       %th Skills
       %th Status
-      %th
-      %th
-      %th
 
   %tbody
     - @employees.each do |employee|
       %tr
-        %td= employee.full_name
+        %td= link_to employee.full_name, employee_path(employee), class: 'btn btn-sm btn-primary'
+        %td= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-sm btn-warning'
+        %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
         %td
           = link_to "tel:#{employee.phone_number}", class: "button" do
             #{employee.phone_number}
@@ -83,9 +84,6 @@
                 = z.button :submit, 'Invite', class: "btn btn-success btn-xs"
             - else
               Add email to invite user
-        %td= link_to 'Show', employee, class: 'btn btn-sm btn-primary'
-        %td= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-sm btn-warning'
-        %td= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 .container
   = will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

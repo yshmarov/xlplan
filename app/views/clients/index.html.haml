@@ -8,6 +8,7 @@
           %b
             =t '.title', :default => model_class.model_name.human.pluralize.titleize
             = f.search_field :last_name_cont, autofocus: true, placeholder: "Surname"
+            /= f.search_field :last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
             = f.submit
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
@@ -16,6 +17,8 @@
   %thead
     %tr
       %th= sort_link @ransack_clients, :last_name, "Name"
+      %th
+      %th
       %th Phone
       %th Email
       %th Birthday
@@ -23,14 +26,13 @@
       %th= sort_link @ransack_clients, :balance, "Balance"
       %th= sort_link @ransack_clients, :jobs_count, "Jobs"
       %th= sort_link @ransack_clients, :employee_id, "Responsible"
-      %th
-      %th
-      %th
 
   %tbody
     - @clients.each do |client|
       %tr
-        %td= client.full_name
+        %td= link_to client.full_name, client_path(client), class: 'btn btn-sm btn-primary'
+        %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
+        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
         %td
           = link_to "tel:#{client.phone_number}", class: "button" do
             #{client.phone_number}
@@ -43,9 +45,6 @@
         %td= number_to_currency(client.balance_cents, :unit => "$")
         %td= client.jobs_count
         %td= client.employee
-        %td= link_to 'Show', client, class: 'btn btn-sm btn-primary'
-        %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
-        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

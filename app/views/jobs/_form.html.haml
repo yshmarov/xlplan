@@ -4,21 +4,20 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    /= f.association :client, autofocus: true
-    = f.label :client
-    = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: true}, class: 'selectize'
     = f.input :starts_at, :minute_step => 15, start_year: Date.today.year
-    /= f.input :ends_at
-    /= f.input :status, :as => :radio_buttons, :collection => Job.statuses.keys.to_a, label:false
-    /= f.association :service
+
+    = f.label :client
+    = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+
     = f.label :service
-    = f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'
-    /= f.association :employee
+    = f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+
     = f.label :employee
-    = f.select :employee_id, Employee.all.map{|c| [c.full_name, c.id]}, {include_blank: false}, class: 'selectize'
-    /= f.association :location
+    = f.select :employee_id, Employee.all.map{|c| [c.full_name, c.id]}, {include_blank: Employee.all.length > 1}, class: 'selectize'
+
     = f.label :location
-    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: false}, class: 'selectize'
+    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+
     /= f.input :service_name
     /= f.input :service_description
     /= f.input :service_duration
