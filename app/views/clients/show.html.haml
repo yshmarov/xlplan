@@ -46,7 +46,7 @@
     .card
       .card-header
         %b Comments:
-        = @comments.count
+        = @client.comments_count
       .card-body
         = render "comments/form"
         = render "comments/index"

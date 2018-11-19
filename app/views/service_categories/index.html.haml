@@ -4,6 +4,7 @@
   %thead
     %tr
       %th Name
+      %th Services
       %th
       %th
 
@@ -11,6 +12,7 @@
     - @service_categories.each do |service_category|
       %tr
         %td= service_category.name
+        %td= service_category.services_count
         %td= link_to 'Edit', edit_service_category_path(service_category)
         %td= link_to 'Destroy', service_category, method: :delete, data: { confirm: 'Are you sure?' }
 

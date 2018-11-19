@@ -1,5 +1,5 @@
 class Workplace < ApplicationRecord
-  belongs_to :location
+  belongs_to :location, counter_cache: true
 
   validates :name, uniqueness: true
   validates :name, :location_id, :status, presence: true

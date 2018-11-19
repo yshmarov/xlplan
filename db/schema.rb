@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_17_201411) do
+ActiveRecord::Schema.define(version: 2018_11_19_233702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_11_17_201411) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.index ["employee_id"], name: "index_clients_on_employee_id"
   end
 
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2018_11_17_201411) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
+    t.integer "workplaces_count", default: 0, null: false
     t.index ["name"], name: "index_locations_on_name", unique: true
   end
 
@@ -106,6 +108,7 @@ ActiveRecord::Schema.define(version: 2018_11_17_201411) do
     t.string "name", limit: 144, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "services_count", default: 0, null: false
   end
 
   create_table "services", force: :cascade do |t|

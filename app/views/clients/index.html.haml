@@ -26,7 +26,7 @@
       %th= sort_link @ransack_clients, :balance, "Balance"
       %th= sort_link @ransack_clients, :jobs_count, "Jobs"
       %th= sort_link @ransack_clients, :employee_id, "Responsible"
-
+      /%th Comments
   %tbody
     - @clients.each do |client|
       %tr
@@ -45,6 +45,7 @@
         %td= number_to_currency(client.balance_cents, :unit => "$")
         %td= client.jobs_count
         %td= client.employee
+        /%td= client.comments_count
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

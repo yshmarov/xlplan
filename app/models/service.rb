@@ -1,6 +1,6 @@
 class Service < ApplicationRecord
 
-  belongs_to :service_category
+  belongs_to :service_category, counter_cache: true
   has_many :jobs
 
   validates :name, uniqueness: true

@@ -15,6 +15,9 @@ class Job < ApplicationRecord
   #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }
   #Location.find_each { |location| Location.reset_counters(location.id, :jobs_count) }
   #Employee.find_each { |employee| Employee.reset_counters(employee.id, :jobs_count) }
+  #ServiceCategory.find_each { |service_category| ServiceCategory.reset_counters(service_category.id, :services_count) }
+  #Client.find_each { |client| Client.reset_counters(client.id, :comments_count) }
+  #Location.find_each { |location| Location.reset_counters(location.id, :workplaces_count) }
 
   validates :client_id, :starts_at, :status, :service_id, :location_id, :employee_id,
             :service_name, :service_duration, :client_price,

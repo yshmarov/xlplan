@@ -8,6 +8,7 @@
       %th Email
       %th Address
       %th Status
+      %th Workplaces
       %th Balance
       %th Jobs
       %th
@@ -22,6 +23,7 @@
         %td= location.email
         %td= location.address
         %td= status_label(location.status)
+        %td= location.workplaces_count
         %td= number_to_currency(location.balance_cents, :unit => "$")
         %td= location.jobs_count
         %td= link_to 'Show', location, class: 'btn btn-sm btn-primary'
