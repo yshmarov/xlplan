@@ -7,49 +7,47 @@
         .float-right
           = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
       .card-body
-        %p
-          %b Name:
-          = @employee.full_name
-        %p
-          %b Phone number:
-          = link_to "tel:#{@employee.phone_number}", class: "button" do
-            #{@employee.phone_number}
-          /%a{:href => "viber://chat?number=#{@employee.phone_number}"}
-          /  Viber
-        %p
-          %b Email:
-          %a{:href => "mailto:#{@employee.email}"}= @employee.email
-        %p
-          %b Date of birth:
-          - if @employee.date_of_birth.present?
-            = @employee.date_of_birth.strftime('%d/%b/%Y') 
-            (#{@employee.age})
-        %p
-          %b Sex:
-          = @employee.sex
-        %p
-          %b Address:
-          = @employee.address
+        %b Name:
+        = @employee.full_name
+        %br
+        %b Phone number:
+        = link_to "tel:#{@employee.phone_number}", class: "button" do
+          #{@employee.phone_number}
+        /%a{:href => "viber://chat?number=#{@employee.phone_number}"}
+        /  Viber
+        %br
+        %b Email:
+        %a{:href => "mailto:#{@employee.email}"}= @employee.email
+        %br
+        %b Date of birth:
+        - if @employee.date_of_birth.present?
+          = @employee.date_of_birth.strftime('%d/%b/%Y') 
+          (#{@employee.age})
+        %br
+        %b Sex:
+        = @employee.sex
+        %br
+        %b Address:
+        = @employee.address
     %p
     .card
       .card-header
         %b Employment
       .card-body
-        %p
-          %b Balance:
-          = number_to_currency(@employee.balance_cents, :unit => "$")
-        %p
-          %b Status:
-          = status_label(@employee.status)
-        %p
-          %b Location:
-          = link_to @employee.location, location_path(@employee.location)
-        %p
-          %b Employment date:
-          = @employee.employment_date.strftime('%d/%b/%Y') if @employee.employment_date.present?
-        %p
-          %b Termination date:
-          = @employee.termination_date.strftime('%d/%b/%Y') if @employee.termination_date.present?
+        %b Balance:
+        = number_to_currency(@employee.balance_cents, :unit => "$")
+        %br
+        %b Status:
+        = status_label(@employee.status)
+        %br
+        %b Location:
+        = link_to @employee.location, location_path(@employee.location)
+        %br
+        %b Employment date:
+        = @employee.employment_date.strftime('%d/%b/%Y') if @employee.employment_date.present?
+        %br
+        %b Termination date:
+        = @employee.termination_date.strftime('%d/%b/%Y') if @employee.termination_date.present?
     %p
     .card
       .card-header
@@ -58,17 +56,27 @@
           = link_to 'Add Skill', new_employee_skill_path(@employee, @skill), class: 'btn btn-sm btn-primary'
       .card-body
         - @employee.skills.each do |skill|
-          %p
-            = skill.service_category
-            = link_to "delete", employee_skill_path(@employee, skill), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+          = skill.service_category
+          = link_to "delete", employee_skill_path(@employee, skill), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+          \,
         /= @employee.skills.map{|p| p.service_category}.join(", ")
     %p
     .card
       .card-header
         %b Account & access
+        .float-right
+          = link_to 'Edit password', edit_user_registration_path(@employee.user), class: 'btn btn-sm btn-warning'
       .card-body
-        %p
-          %b ?
+        - if @employee.user.present?
+          %p
+            %b Created:
+            = @employee.user.created_at.strftime('%d/%b/%Y, %H:%M')
+            %br
+            %b Confirmed:
+            = @employee.user.confirmed_at.strftime('%d/%b/%Y, %H:%M')
+            %br
+            %b Invited by:
+            = @employee.user.invitor
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :invitable, :validate_on_invite => true
 
   belongs_to :employee
+  belongs_to :invitor, class_name: 'Employee', foreign_key: :invited_by_id, required: false
 
   validates :employee_id, presence: true
   validates :employee_id, uniqueness: true

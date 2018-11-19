@@ -23,7 +23,7 @@ class Client < ApplicationRecord
   protected
   
   def update_balance
-    update_column :balance, (jobs.map(&:client_due_price).sum)
+    update_column :balance, (jobs.map(&:client_due_price).sum*(-1))
   end
 
 end

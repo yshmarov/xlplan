@@ -7,52 +7,52 @@
         .float-right
           = link_to 'Edit', edit_client_path(@client), class: 'btn btn-sm btn-warning'
       .card-body
-        %p
-          %b Name:
-          = @client.full_name
-        %p
-          %b Phone number:
-          = link_to "tel:#{@client.phone_number}", class: "button" do
-            #{@client.phone_number}
-          /%a{:href => "viber://chat?number=#{@client.phone_number}"}
-          /  Viber
-        %p
-          %b Email:
-          %a{:href => "mailto:#{@client.email}"}= @client.email
-        %p
-          %b Date of birth:
-          - if @client.date_of_birth.present?
-            = @client.date_of_birth.strftime('%d/%b/%Y') 
-            (#{@client.age})
-        %p
-          %b Sex:
-          = @client.sex
-        %p
-          %b Address:
-          = @client.address
+        %b Name:
+        = @client.full_name
+        %br
+        %b Phone number:
+        = link_to "tel:#{@client.phone_number}", class: "button" do
+          #{@client.phone_number}
+        /%a{:href => "viber://chat?number=#{@client.phone_number}"}
+        /  Viber
+        %br
+        %b Email:
+        %a{:href => "mailto:#{@client.email}"}= @client.email
+        %br
+        %b Date of birth:
+        - if @client.date_of_birth.present?
+          = @client.date_of_birth.strftime('%d/%b/%Y') 
+          (#{@client.age})
+        %br
+        %b Sex:
+        = @client.sex
+        %br
+        %b Address:
+        = @client.address
     %p
     .card
       .card-header
         %b Client
       .card-body
-        %p
-          %b Balance:
-          = number_to_currency(@client.balance_cents, :unit => "$")
-        %p
-          %b Status:
-          = status_label(@client.status)
-        %p
-          %b Responsible:
-          = link_to @client.employee, employee_path(@client.employee)
+        %b Balance:
+        = number_to_currency(@client.balance_cents, :unit => "$")
+        %br
+        %b Status:
+        = status_label(@client.status)
+        %br
+        %b Responsible:
+        = link_to @client.employee, employee_path(@client.employee)
   .col-lg-8
     .card
       .card-header
-        %b Comments
+        %b Comments:
+        = @comments.count
       .card-body
         = render "comments/form"
         = render "comments/index"
     %p
     .card
       .card-header
-        %b Jobs
+        %b Jobs:
+        = @jobs.count
       = render 'jobs/index'
