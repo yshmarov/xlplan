@@ -10,20 +10,21 @@
       - if current_user
         %li.nav-item= link_to "+ New Job", new_job_path, class: "nav-link btn btn-light text-dark mr-sm-2"
         %li.nav-item= link_to "Update Status: #{Job.update_status.count}", update_status_jobs_path, class: "nav-link btn btn-light text-dark"
-        %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link"
+        %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link btn btn-light text-dark"
         %li.nav-item= link_to "All Jobs", jobs_path, class: "nav-link"
         %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
         %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
-        %li.nav-item= link_to "Job Stats", job_stats_path, class: "nav-link"
-        %li.nav-item= link_to "Other Stats", other_stats_path, class: "nav-link"
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Settings
+            Other
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
             = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
             = link_to "Services", services_path, class: "dropdown-item navdrop-link"
             = link_to "Locations", locations_path, class: "dropdown-item navdrop-link"
             = link_to "Workplaces", workplaces_path, class: "dropdown-item navdrop-link"
+            %hr
+            = link_to "Job Stats", job_stats_path, class: "dropdown-item navdrop-link"
+            = link_to "Other Stats", other_stats_path, class: "dropdown-item navdrop-link"
       - else
         %li.nav-item= link_to "Features", root_path, class: "nav-link"
         %li.nav-item= link_to "Industries", root_path, class: "nav-link"
