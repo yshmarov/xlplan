@@ -73,7 +73,7 @@
             = @employee.user.created_at.strftime('%d/%b/%Y, %H:%M')
             %br
             %b Confirmed:
-            = @employee.user.confirmed_at.strftime('%d/%b/%Y, %H:%M')
+            = @employee.user.confirmed_at.strftime('%d/%b/%Y, %H:%M') if @employee.user.confirmed_at.present?
             %br
             %b Invited by:
             = @employee.user.invitor
