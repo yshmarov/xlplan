@@ -4,7 +4,6 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    /= f.association :employee
     = f.input :last_name, autofocus: true
     = f.input :first_name
     = f.input :phone_number
@@ -32,6 +31,10 @@
       = f.input :middle_name
       = f.input :address
       = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
+      - unless f.object.new_record?
+        = f.label :employee
+        = f.select :employee_id, Employee.active.map{|c| [c.full_name, c.id]}, {include_blank: Employee.all.length > 1}, class: 'selectize'
+
     %p
   .form-actions
     = f.button :submit
