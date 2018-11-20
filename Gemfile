@@ -72,3 +72,4 @@ gem 'money-rails', '~>1.12'
 gem "selectize-rails"
 gem 'ransack'
 gem 'bootstrap-datepicker-rails'
+gem 'public_activity'

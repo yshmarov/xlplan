@@ -6,6 +6,10 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def activity
+    @activities = PublicActivity::Activity.all.reverse
+  end
+
   def job_stats
     #company confirmed earning
     @confirmed_hours_worked = (Job.is_confirmed.map(&:service_duration).sum)/60.to_d

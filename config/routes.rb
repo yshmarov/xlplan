@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   end
 
+  get 'activity', to: 'static_pages#activity'
   get 'job_stats', to: 'static_pages#job_stats'
   get 'other_stats', to: 'static_pages#other_stats'
   get 'calendar', to: 'static_pages#calendar'

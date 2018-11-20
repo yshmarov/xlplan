@@ -44,6 +44,9 @@ class Job < ApplicationRecord
   after_update :update_due_prices
   after_save :update_due_prices
 
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+
   def happened
     if status == 'confirmed_by_client' || status == 'confirmed'
       true
