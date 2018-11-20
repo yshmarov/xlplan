@@ -8,7 +8,11 @@ class Job < ApplicationRecord
   belongs_to :creator, class_name: 'Employee', foreign_key: :created_by, required: false
   #has_many :comments, as: :commentable
 
-  scope :update_status, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
+  scope :planned_in_past, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
+
+  scope :is_confirmed, -> { where(status: [:confirmed, :confirmed_by_client]) }
+  scope :is_cancelled, -> { where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]) }
+  scope :is_planned, -> { where(status: [:planned]) }
 
   #console commands to update counters, if needed
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }

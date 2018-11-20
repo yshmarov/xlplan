@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def update_status
-    @jobs = Job.update_status
+    @jobs = Job.planned_in_past
   end
 
   def index
