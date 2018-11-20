@@ -7,16 +7,16 @@
     = f.input :starts_at, :minute_step => 15, start_year: Date.today.year
 
     = f.label :client
-    = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+    = f.select :client_id, Client.active.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
 
     = f.label :service
-    = f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+    = f.select :service_id, Service.active.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
 
     = f.label :employee
-    = f.select :employee_id, Employee.all.map{|c| [c.full_name, c.id]}, {include_blank: Employee.all.length > 1}, class: 'selectize'
+    = f.select :employee_id, Employee.active.map{|c| [c.full_name, c.id]}, {include_blank: Employee.all.length > 1}, class: 'selectize'
 
     = f.label :location
-    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    = f.select :location_id, Location.active.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
 
     /= f.input :service_name
     /= f.input :service_description
