@@ -27,6 +27,12 @@ Rails.application.routes.draw do
   resources :jobs do
     resources :comments
     get :planned_in_past, on: :collection
+  	member do
+  		patch :mark_planned
+  		patch :mark_confirmed
+  		patch :mark_cancelled
+    end
+
   end
 
   get 'job_stats', to: 'static_pages#job_stats'

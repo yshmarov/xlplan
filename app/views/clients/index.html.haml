@@ -44,7 +44,7 @@
         %td= status_label(client.status)
         %td= number_to_currency(client.balance_cents, :unit => "$")
         %td= client.jobs_count
-        %td= client.employee
+        %td= link_to client.employee, employee_path(client.employee)
         /%td= client.comments_count
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

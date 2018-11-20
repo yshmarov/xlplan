@@ -1,9 +1,24 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_cancelled]
 
   def planned_in_past
     @jobs = Job.planned_in_past
   end
+
+	def mark_planned
+		@job.update_attribute(:status, 'planned')
+		redirect_to @job, notice: "Status updated to #{@job.status}"
+	end
+
+	def mark_confirmed
+		@job.update_attribute(:status, 'confirmed')
+		redirect_to @job, notice: "Status updated to #{@job.status}"
+	end
+
+	def mark_cancelled
+		@job.update_attribute(:status, 'cancelled_by_client')
+		redirect_to @job, notice: "Status updated to #{@job.status}"
+	end
 
   def index
     #@jobs = Job.paginate(:page => params[:page], :per_page => 10)

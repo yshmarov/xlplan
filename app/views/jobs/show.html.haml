@@ -12,63 +12,71 @@
           = link_to t('.destroy', :default => t("helpers.links.destroy")), @job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 
       .card-body
+        %b Client:
+        = link_to @job.client, client_path(@job.client)
+        %br
+        %b Starts at:
+        = @job.starts_at.strftime('%d/%m/%Y %H:%M')
+        %br
+        %b Ends at:
+        = @job.ends_at.strftime('%d/%m/%Y %H:%M')
+        %br
+        %b Status:
+        = status_label(@job.status)
         %p
-          %b Client:
-          = link_to @job.client, client_path(@job.client)
+        - unless @job.status == 'planned'
+          = button_to "planned", mark_planned_job_path(@job), method: :patch
+          /= button_to "planned", mark_planned_job_path(@job), method: :patch, class: 'btn btn-sm btn-primary'
         %p
-          %b Starts at:
-          = @job.starts_at.strftime('%d/%m/%Y %H:%M')
+        - unless @job.status == 'confirmed'
+          = button_to "confirmed", mark_confirmed_job_path(@job), method: :patch
+          /= button_to "confirmed", mark_confirmed_job_path(@job), method: :patch, class: 'btn btn-sm btn-success'
         %p
-          %b Ends at:
-          = @job.ends_at.strftime('%d/%m/%Y %H:%M')
-        %p
-          %b Status:
-          = status_label(@job.status)
-        %p
-          %b Location:
-          = link_to @job.location, location_path(@job.location)
-        %p
-          %b Employee:
-          = link_to @job.employee, employee_path(@job.location)
-        %p
-          %b Service:
-          = link_to @job.service, service_path(@job.service)
-        %p
-          %b Service description:
-          = @job.service_description
-        %p
-          %b Service duration:
-          = @job.service_duration
-        %p
-          %b Client planned price:
-          = @job.client_price_cents
-          /= number_to_currency(@job.client_price_cents, :unit => "$")
-        %p
-          %b Employee planned price:
-          = @job.employee_price_cents
-          /= number_to_currency(@job.employee_price_cents, :unit => "$")
-        %p
-          %b Client due price:
-          = @job.client_due_price_cents
-          /= number_to_currency(@job.client_due_price_cents, :unit => "$")
-        %p
-          %b Employee due price:
-          = @job.employee_due_price_cents
-          /= number_to_currency(@job.employee_due_price_cents, :unit => "$")
+        - unless @job.status == 'cancelled_by_client'
+          = button_to "cancelled_by_client", mark_cancelled_job_path(@job), method: :patch
+          /= button_to "cancelled_by_client", mark_cancelled_job_path(@job), method: :patch, class: 'btn btn-sm btn-danger'
+        %b Location:
+        = link_to @job.location, location_path(@job.location)
+        %br
+        %b Employee:
+        = link_to @job.employee, employee_path(@job.location)
+        %br
+        %b Service:
+        = link_to @job.service, service_path(@job.service)
+        %br
+        %b Service description:
+        = @job.service_description
+        %br
+        %b Service duration:
+        = @job.service_duration
+        %br
+        %b Client planned price:
+        = @job.client_price_cents
+        /= number_to_currency(@job.client_price_cents, :unit => "$")
+        %br
+        %b Employee planned price:
+        = @job.employee_price_cents
+        /= number_to_currency(@job.employee_price_cents, :unit => "$")
+        %br
+        %b Client due price:
+        = @job.client_due_price_cents
+        /= number_to_currency(@job.client_due_price_cents, :unit => "$")
+        %br
+        %b Employee due price:
+        = @job.employee_due_price_cents
+        /= number_to_currency(@job.employee_due_price_cents, :unit => "$")
         %hr
-        %p
-          %b Description:
-          = @job.description
+        %b Description:
+        = @job.description
         %hr
-        %p
-          %b Created by:
-          = @job.creator
-        %p
-          %b Created at:
-          = @job.created_at.strftime('%d/%b/%Y %H:%M')
-        %p
-          %b Updated at:
-          = @job.updated_at.strftime('%d/%b/%Y %H:%M')
+        %b Created by:
+        = @job.creator
+        %br
+        %b Created at:
+        = @job.created_at.strftime('%d/%b/%Y %H:%M')
+        %br
+        %b Updated at:
+        = @job.updated_at.strftime('%d/%b/%Y %H:%M')
 
   .col-4
 %br
