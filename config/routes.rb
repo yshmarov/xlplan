@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :jobs do
     resources :comments
-    get :update_status, on: :collection
+    get :planned_in_past, on: :collection
   end
 
   get 'job_stats', to: 'static_pages#job_stats'
