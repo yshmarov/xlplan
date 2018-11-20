@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_cancelled]
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_confirmed_by_client, :mark_not_attended, :mark_rejected_by_us, :mark_cancelled_by_client]
 
   def planned_in_past
     @jobs = Job.planned_in_past
@@ -15,8 +15,23 @@ class JobsController < ApplicationController
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 
-	def mark_cancelled
+	def mark_confirmed_by_client
+		@job.update_attribute(:status, 'confirmed_by_client')
+		redirect_to @job, notice: "Status updated to #{@job.status}"
+	end
+
+	def mark_not_attended
+		@job.update_attribute(:status, 'not_attended')
+		redirect_to @job, notice: "Status updated to #{@job.status}"
+	end
+
+	def mark_cancelled_by_client
 		@job.update_attribute(:status, 'cancelled_by_client')
+		redirect_to @job, notice: "Status updated to #{@job.status}"
+	end
+
+	def mark_rejected_by_us
+		@job.update_attribute(:status, 'rejected_by_us')
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 

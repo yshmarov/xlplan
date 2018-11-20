@@ -30,7 +30,10 @@ Rails.application.routes.draw do
   	member do
   		patch :mark_planned
   		patch :mark_confirmed
-  		patch :mark_cancelled
+  		patch :mark_confirmed_by_client
+  		patch :mark_not_attended
+  		patch :mark_rejected_by_us
+  		patch :mark_cancelled_by_client
     end
 
   end

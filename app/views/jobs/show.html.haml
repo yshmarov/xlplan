@@ -32,8 +32,17 @@
           = button_to "confirmed", mark_confirmed_job_path(@job), method: :patch
           /= button_to "confirmed", mark_confirmed_job_path(@job), method: :patch, class: 'btn btn-sm btn-success'
         %p
+        - unless @job.status == 'confirmed_by_client'
+          = button_to "confirmed_by_client", mark_confirmed_by_client_job_path(@job), method: :patch
+        %p
+        - unless @job.status == 'not_attended'
+          = button_to "not_attended", mark_not_attended_job_path(@job), method: :patch
+        %p
+        - unless @job.status == 'rejected_by_us'
+          = button_to "rejected_by_us", mark_rejected_by_us_job_path(@job), method: :patch
+        %p
         - unless @job.status == 'cancelled_by_client'
-          = button_to "cancelled_by_client", mark_cancelled_job_path(@job), method: :patch
+          = button_to "cancelled_by_client", mark_cancelled_by_client_job_path(@job), method: :patch
           /= button_to "cancelled_by_client", mark_cancelled_job_path(@job), method: :patch, class: 'btn btn-sm btn-danger'
         %b Location:
         = link_to @job.location, location_path(@job.location)
