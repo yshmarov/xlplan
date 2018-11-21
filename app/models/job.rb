@@ -8,8 +8,10 @@ class Job < ApplicationRecord
   belongs_to :creator, class_name: 'Employee', foreign_key: :created_by, required: false
   #has_many :comments, as: :commentable
 
-  scope :planned_in_past, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
+  enum status: { planned: 0, confirmed: 1, confirmed_by_client: 2,
+                  not_attended: 3, rejected_by_us:4, cancelled_by_client: 5}
 
+  scope :planned_in_past, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_confirmed, -> { where(status: [:confirmed, :confirmed_by_client]) }
   scope :is_cancelled, -> { where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]) }
   scope :is_planned, -> { where(status: [:planned]) }
@@ -27,8 +29,6 @@ class Job < ApplicationRecord
             :service_name, :service_duration, :client_price,
             :employee_price, presence: true
 
-  enum status: { planned: 0, confirmed: 1, confirmed_by_client: 2,
-                  not_attended: 3, rejected_by_us:4, cancelled_by_client: 5}
   #add_index :jobs, :status
 
   monetize :client_price, as: :client_price_cents
