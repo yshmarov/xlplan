@@ -1,5 +1,8 @@
 class Client < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
   include Personable
+
   has_many :jobs
   has_many :comments, as: :commentable
   belongs_to :employee
@@ -15,6 +18,9 @@ class Client < ApplicationRecord
   enum status: { inactive: 0, active: 1 }
 
   after_touch :update_balance
+
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   #def full_name
   #  last_name.capitalize + " " + first_name.capitalize

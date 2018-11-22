@@ -1,4 +1,7 @@
 class Job < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+
   #counter_cache for job_count
   #touch to calculate balance
   belongs_to :client, touch: true, counter_cache: true
@@ -43,9 +46,6 @@ class Job < ApplicationRecord
   after_create :update_due_prices
   after_update :update_due_prices
   after_save :update_due_prices
-
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   def happened
     if status == 'confirmed_by_client' || status == 'confirmed'

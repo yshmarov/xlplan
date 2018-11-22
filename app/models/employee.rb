@@ -1,5 +1,8 @@
 class Employee < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
   include Personable
+
   has_one :user
   belongs_to :location
   has_many :jobs

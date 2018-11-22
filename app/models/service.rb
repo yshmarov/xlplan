@@ -1,4 +1,6 @@
 class Service < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   belongs_to :service_category, counter_cache: true
   has_many :jobs

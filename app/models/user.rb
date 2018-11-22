@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :invitable, :validate_on_invite => true
 
+  #include PublicActivity::Model
+  #tracked only: :create, owner: :itself
+
   belongs_to :employee
   belongs_to :invitor, class_name: 'Employee', foreign_key: :invited_by_id, required: false
 

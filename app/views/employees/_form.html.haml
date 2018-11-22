@@ -8,6 +8,8 @@
     = f.input :first_name
     = f.input :phone_number
     = f.input :email
+    = f.label :location
+    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
     %p
     %button.btn.btn-primary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
       .fa.fa-cog
@@ -31,8 +33,6 @@
       = f.input :middle_name
       = f.input :address
       = f.input :status, :as => :radio_buttons, :collection => Employee.statuses.keys.to_a, label:false
-      = f.label :location
-      = f.select :location_id, Location.active.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
       = f.label :'Employment date'
       = f.date_field :employment_date, value: @employee.employment_date || (Time.now).strftime('%Y-%m-%d'), class: "form-control"
       = f.label :'Termination date'
