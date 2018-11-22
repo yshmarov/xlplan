@@ -46,7 +46,6 @@ class Job < ApplicationRecord
   after_create :update_due_prices
   after_update :update_due_prices
   after_save :update_due_prices
-
   after_create :touch_associations
 
   def happened
@@ -75,7 +74,7 @@ class Job < ApplicationRecord
 
   protected
 
-  def update_associated_balances
+  def touch_associations
     client.touch
     employee.touch
     location.touch
