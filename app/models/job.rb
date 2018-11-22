@@ -47,6 +47,8 @@ class Job < ApplicationRecord
   after_update :update_due_prices
   after_save :update_due_prices
 
+  after_create :touch_associations
+
   def happened
     if status == 'confirmed_by_client' || status == 'confirmed'
       true
@@ -72,6 +74,12 @@ class Job < ApplicationRecord
   end
 
   protected
+
+  def update_associated_balances
+    client.touch
+    employee.touch
+    location.touch
+  end
 
   def update_associated_columns
     update_column :service_name, (service.name)
