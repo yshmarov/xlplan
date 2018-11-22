@@ -24,3 +24,5 @@
 = link_to 'Back', locations_path
 %p Workplaces:
 = @workplaces.map{|p| p.name}.join(", ")
+
+= render 'static_pages/calendar'

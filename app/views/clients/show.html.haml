@@ -45,6 +45,11 @@
   .col-lg-8
     .card
       .card-header
+        %b Calendar
+      .card-body
+        = render 'static_pages/calendar'
+    .card
+      .card-header
         %b Comments:
         = @client.comments_count
       .card-body

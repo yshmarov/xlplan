@@ -1,18 +1,14 @@
 class WorkplacesController < ApplicationController
   before_action :set_workplace, only: [:show, :edit, :update, :destroy]
 
-  # GET /workplaces
-  # GET /workplaces.json
   def index
     @workplaces = Workplace.all
   end
 
-  # GET /workplaces/1
-  # GET /workplaces/1.json
   def show
+    @jobs = @workplace.location.jobs
   end
 
-  # GET /workplaces/new
   def new
     @workplace = Workplace.new
   end

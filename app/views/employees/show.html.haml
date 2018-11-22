@@ -78,6 +78,12 @@
             %b Invited by:
             = @employee.user.invitor
   .col-lg-8
+    .card
+      .card-header
+        %b Calendar
+      .card-body
+        = render 'static_pages/calendar'
+    %p
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item
         %a#dropp1-tab.nav-link.active{"aria-controls" => "dropp1", "aria-selected" => "false", "data-toggle" => "tab", :href => "#drop1", :role => "tab"} Jobs: #{@employee.jobs_count}

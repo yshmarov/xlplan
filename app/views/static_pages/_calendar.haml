@@ -1,0 +1,22 @@
+/- set_var 'jobs', @jobs.map{|e| {title: e.room.office.name  + " " + e.room.name + " " + e.user.email, start: e.starts_at, end: e.ends_at, url: edit_job_path(e)}}
+- set_var 'jobs', @jobs.map{|e| {title: e.service_name.to_s  + "/" + e.employee.full_name.to_s  + "/" + e.client.full_name.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
+
+/.text-center
+/  %h1 Calendar
+%br
+#calendar
+
+.badge.badge-success
+  Confirmed
+.badge.badge-success
+  Confirmed_by_client
+.badge.badge-danger
+  Not_attended
+.badge.badge-danger
+  Rejected_by_us
+.badge.badge-danger
+  Cancelled_by_client
+.badge.badge-primary
+  Planned
+.row
+%br
