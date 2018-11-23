@@ -1,7 +1,6 @@
 %p
 .row
-  .col-4
-  .col-4-auto
+  .container
     .card
       .card-header
         %b Job #
@@ -87,7 +86,6 @@
         %b Updated at:
         = @job.updated_at.strftime('%d/%b/%Y %H:%M')
 
-  .col-4
 %br
 
 /= render "comments/index"
