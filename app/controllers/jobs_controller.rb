@@ -6,32 +6,50 @@ class JobsController < ApplicationController
   end
 
 	def mark_planned
+    Job.public_activity_off
 		@job.update_attribute(:status, 'planned')
+    Job.public_activity_on
+    @job.create_activity :change_status, parameters: {status: @job.status}
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 
 	def mark_confirmed
+    Job.public_activity_off
 		@job.update_attribute(:status, 'confirmed')
+    Job.public_activity_on
+    @job.create_activity :change_status, parameters: {status: @job.status}
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 
 	def mark_confirmed_by_client
+    Job.public_activity_off
 		@job.update_attribute(:status, 'confirmed_by_client')
+    Job.public_activity_on
+    @job.create_activity :change_status, parameters: {status: @job.status}
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 
 	def mark_not_attended
+    Job.public_activity_off
 		@job.update_attribute(:status, 'not_attended')
+    Job.public_activity_on
+    @job.create_activity :change_status, parameters: {status: @job.status}
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 
 	def mark_cancelled_by_client
+    Job.public_activity_off
 		@job.update_attribute(:status, 'cancelled_by_client')
+    Job.public_activity_on
+    @job.create_activity :change_status, parameters: {status: @job.status}
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 
 	def mark_rejected_by_us
+    Job.public_activity_off
 		@job.update_attribute(:status, 'rejected_by_us')
+    Job.public_activity_on
+    @job.create_activity :change_status, parameters: {status: @job.status}
 		redirect_to @job, notice: "Status updated to #{@job.status}"
 	end
 

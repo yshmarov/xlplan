@@ -1,18 +1,25 @@
 %br
-%h4 Activity
-- @activities.each do |a|
-  %br
-  = distance_of_time_in_words Time.now, a.created_at
-  ago
-  = a.key
-  - if a.trackable
-    = link_to a.trackable, a.trackable
-  - else
-    which has since been removed
-  - if a.owner
-    by
-    = link_to a.owner.to_s, employee_path(a.owner.employee.id)
-  /= a.trackable_type
-  /= a.trackable_id
-/= render_activities(@activities, layout: :activity)
-/= render_activities(@activities)
+%h4
+  %b Activity
+%ul.list-group
+  - @activities.each do |a|
+    %li.list-group-item
+      = distance_of_time_in_words Time.now, a.created_at
+      ago
+      %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
+    
+      = a.key
+      - if a.trackable
+        = link_to a.trackable, a.trackable
+        = status_label(a.parameters[:status])
+      - else
+        which has since been removed
+      - if a.owner
+        by
+        = link_to a.owner.to_s, employee_path(a.owner.employee.id)
+      /= a.trackable_type
+      /= a.trackable_id
+    /= render_activities(@activities, layout: :activity)
+    /= render_activities(@activities)
+    
+    

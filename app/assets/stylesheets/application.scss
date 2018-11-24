@@ -32,3 +32,15 @@ table {
 	}
 }
 
+
+.fa-update {
+  @extend .fa-edit;
+}
+
+.fa-create {
+  @extend .fa-plus-square;
+}
+
+.fa-destroy {
+  @extend .fa-trash;
+}

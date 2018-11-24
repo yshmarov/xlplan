@@ -81,7 +81,7 @@
         /%td= job.service_duration
         %td= job.client_price_cents
         %td= job.employee_price_cents
-        %td= job.description
+        %td= truncate(job.description, length: 25)
         /%td= job.creator
         /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
         /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
