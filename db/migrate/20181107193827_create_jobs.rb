@@ -16,7 +16,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.integer :employee_price, default: 0, null: false
       t.integer :employee_due_price, default: 0, null: false
       t.integer :created_by, default: 0, null: false
-      t.text :description
+      t.text :description, :limit => 255
 
       t.timestamps
     end

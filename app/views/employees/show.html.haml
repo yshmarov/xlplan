@@ -4,8 +4,6 @@
     .card
       .card-header
         %b Personal
-        .float-right
-          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
       .card-body
         %b Name:
         = @employee.full_name
@@ -33,6 +31,8 @@
     .card
       .card-header
         %b Employment
+        .float-right
+          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
       .card-body
         %b Balance:
         = number_to_currency(@employee.balance_cents, :unit => "$")
