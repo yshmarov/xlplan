@@ -26,12 +26,12 @@
       = Service.count
       %div 
         %b Services
-  .col-md-2
+  .col-md-4
     .card-header.bg-default
       %i.fa.fa-dollar-sign
       = number_to_currency(@average_confirmed_earnings, :unit => "")
       %div 
-        %b Average check
+        %b Average confirmed check
 .row
   .col-md-4
     %h3.text-center

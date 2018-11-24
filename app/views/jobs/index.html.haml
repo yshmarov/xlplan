@@ -39,7 +39,7 @@
               = f.search_field :employee_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
             %th= f.submit
 
-%table#table-overflow
+%table#table-overflow#table1
   %thead
     %tr
       %th #
@@ -63,9 +63,15 @@
     - @jobs.each do |job|
       %tr
         %td= job.id
-        %td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
-        %td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
-        %td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+        %td= link_to '', job, class: "btn btn-success fa fa-eye btn-xs", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        /%td= link_to t('.show', :default => t("helpers.links.show")), job, class: 'btn btn-sm btn-primary'
+
+        %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-xs", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        /%td= link_to t('.edit', :default => t("helpers.links.edit")), edit_job_path(job), class: 'btn btn-sm btn-warning'
+
+        %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-xs", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        /%td= link_to t('.destroy', :default => t("helpers.links.destroy")), job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+
         %td= link_to job.client, client_path(job.client)
         %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
         %td= status_label(job.status)

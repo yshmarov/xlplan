@@ -1,8 +1,9 @@
 class StaticPagesController < ApplicationController
   skip_before_action :authenticate_user!, :only => [ :landing_page ]
+
   def landing_page
     if current_user
-      redirect_to calendar_path
+      redirect_to my_calendar_path
     end
   end
 
@@ -51,8 +52,8 @@ class StaticPagesController < ApplicationController
     @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
   end
 
-  def calendar
-    @jobs = Job.all
+  def my_calendar
+    @jobs = current_user.employee.jobs
   end
 
 end

@@ -8,12 +8,6 @@
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
       - if current_user
-        %li.nav-item= link_to "+ New Job", new_job_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "Update Status: #{Job.planned_in_past.count}", planned_in_past_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
-        %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
-        %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             + New
@@ -26,6 +20,12 @@
             = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
             = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
             /= link_to "+ New Workplace", new_workplace_path, class: "dropdown-item navdrop-link"
+        /%li.nav-item= link_to "+ New Job", new_job_path, class: "nav-link btn btn-light text-dark mr-sm-2"
+        %li.nav-item= link_to "Update Status: #{Job.planned_in_past.count}", planned_in_past_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"
+        %li.nav-item= link_to "My Calendar", my_calendar_path, class: "nav-link btn btn-light text-dark mr-sm-2"
+        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
+        %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
+        %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             Other

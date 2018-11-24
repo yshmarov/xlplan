@@ -52,6 +52,10 @@ function clearCalendar() {
 
 $(document).on('turbolinks:load', function(){
 
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+
   if ($('.selectize')){
       $('.selectize').selectize({
           sortField: 'text'
