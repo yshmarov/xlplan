@@ -1,15 +1,17 @@
 - model_class = Client
 = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
-  %br
+  %p
   .card.card-default
     .container-fluid
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-          %b
-            =t '.title', :default => model_class.model_name.human.pluralize.titleize
-            = f.search_field :last_name_cont, autofocus: true, placeholder: "Surname"
-            /= f.search_field :last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
-            = f.submit
+          .input-group
+            .mr-sm-2
+              %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+            = f.search_field :last_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Surname"
+            %span.input-group-append
+              %button.btn.btn-default{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
@@ -25,8 +27,9 @@
       %th= sort_link @ransack_clients, :status, "Status"
       %th= sort_link @ransack_clients, :balance, "Balance"
       %th= sort_link @ransack_clients, :jobs_count, "Jobs"
+      %th Comments
       %th= sort_link @ransack_clients, :employee_id, "Responsible"
-      /%th Comments
+
   %tbody
     - @clients.each do |client|
       %tr
@@ -44,8 +47,8 @@
         %td= status_label(client.status)
         %td= number_to_currency(client.balance_cents, :unit => "$")
         %td= client.jobs_count
+        %td= client.comments_count
         %td= link_to client.employee, employee_path(client.employee)
-        /%td= client.comments_count
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

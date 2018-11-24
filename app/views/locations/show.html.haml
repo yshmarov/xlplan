@@ -25,4 +25,5 @@
 %p Workplaces:
 = @workplaces.map{|p| p.name}.join(", ")
 
-= render 'static_pages/calendar'
+.container
+  = render 'static_pages/calendar'
