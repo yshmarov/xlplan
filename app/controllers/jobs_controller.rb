@@ -76,8 +76,15 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.created_by = current_user.employee.id
 
+
     respond_to do |format|
+      Job.public_activity_off
+
       if @job.save
+        Job.public_activity_on
+
+        @job.create_activity :create, parameters: {status: @job.status}
+
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
         format.json { render :show, status: :created, location: @job }
       else
