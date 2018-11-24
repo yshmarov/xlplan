@@ -14,11 +14,11 @@ module StatusHelper
 			when 'confirmed_by_client'
 				content_tag(:span, status.titleize, class: 'badge badge-success')
 			when 'not_attended'
-				content_tag(:span, status.titleize, class: 'badge badge-secondary')
+				content_tag(:span, status.titleize, class: 'badge badge-danger')
 			when 'rejected_by_us'
-				content_tag(:span, status.titleize, class: 'badge badge-danger')
+				content_tag(:span, status.titleize, class: 'badge badge-secondary')
 			when 'cancelled_by_client'
-				content_tag(:span, status.titleize, class: 'badge badge-danger')
+				content_tag(:span, status.titleize, class: 'badge badge-secondary')
 
 			#Other models
 			when 'active'
