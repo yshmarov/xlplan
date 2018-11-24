@@ -12,7 +12,7 @@
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', employees_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           = link_to 'New Employee', new_employee_path, class: 'btn btn-sm btn-primary'
-%table#table1
+%table#table-overflow
   %thead
     %tr
       %th= sort_link @ransack_employees, :last_name, "Name"

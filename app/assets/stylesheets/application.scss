@@ -20,7 +20,7 @@
   @import 'selectize.bootstrap3';
   @import 'bootstrap-datepicker';
 
-#table1 {
+table {
   @extend .table, .table-hover, .table-responsive-md, .table-bordered, .table-sm
 }
 /* thead { @extend .bg-primary } */  

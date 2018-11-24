@@ -25,7 +25,7 @@
             %th= f.submit
             %th= link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
-%table#table1
+%table
   %thead
     %tr
       %th= sort_link @q, :service_category_name, "Category"

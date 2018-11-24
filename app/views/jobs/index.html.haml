@@ -14,7 +14,7 @@
           = link_to '', jobs_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           = link_to t('.new', :default => t("helpers.links.new")), new_job_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
-      %table
+      %table#table-overflow
         %thead
           %tr
             %th 
@@ -39,7 +39,7 @@
               = f.search_field :employee_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
             %th= f.submit
 
-%table#table-overflow#table1
+%table#table-overflow
   %thead
     %tr
       %th #
