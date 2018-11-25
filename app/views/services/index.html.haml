@@ -57,8 +57,8 @@
         %td= status_label(service.status)
         %td= service.jobs_count
         /%td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
-        %td= link_to 'Edit', edit_service_path(service), class: 'btn btn-sm btn-warning'
-        %td= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+        %td= link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %td= link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 .container
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

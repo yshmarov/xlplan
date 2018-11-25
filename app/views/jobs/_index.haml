@@ -17,9 +17,9 @@
   %tbody
     - @jobs.each do |job|
       %tr
-        %td= link_to '', job, class: "btn btn-success fa fa-eye btn-xs", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-        %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-xs", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-        %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-xs", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %td= link_to '', job, class: "btn btn-success fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         %td= link_to job.client, client_path(job.client)
         %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
         %td= status_label(job.status)

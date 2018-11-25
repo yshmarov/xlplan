@@ -1,6 +1,8 @@
 - model_class = Client
 = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
   %p
+  .container
+    = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   .card.card-default
     .container-fluid
       .card-heading
@@ -23,7 +25,7 @@
       %th
       %th Phone
       %th Email
-      %th Birthday
+      %th= sort_link @ransack_clients, :date_of_birth, "Birthday"
       %th= sort_link @ransack_clients, :status, "Status"
       %th= sort_link @ransack_clients, :balance, "Balance"
       %th= sort_link @ransack_clients, :jobs_count, "Jobs"
@@ -33,9 +35,9 @@
   %tbody
     - @clients.each do |client|
       %tr
-        %td= link_to client.full_name, client_path(client), class: 'btn btn-sm btn-primary'
-        %td= link_to 'Edit', edit_client_path(client), class: 'btn btn-sm btn-warning'
-        %td= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+        %td= link_to client.full_name, client_path(client), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        %td= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         %td
           = link_to "tel:#{client.phone_number}", class: "button" do
             #{client.phone_number}
@@ -49,6 +51,4 @@
         %td= client.jobs_count
         %td= client.comments_count
         %td= link_to client.employee, employee_path(client.employee)
-.container
-  = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

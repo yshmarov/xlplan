@@ -32,7 +32,7 @@
       .card-header
         %b Employment
         .float-right
-          = link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-warning'
+          = link_to '', edit_employee_path(@employee), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
       .card-body
         %b Balance:
         = number_to_currency(@employee.balance_cents, :unit => "$")

@@ -15,6 +15,7 @@ class Job < ApplicationRecord
                   not_attended: 3, rejected_by_us:4, cancelled_by_client: 5}
 
   scope :planned_in_past, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
+  scope :upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_confirmed, -> { where(status: [:confirmed, :confirmed_by_client]) }
   scope :is_cancelled, -> { where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]) }
   scope :is_planned, -> { where(status: [:planned]) }

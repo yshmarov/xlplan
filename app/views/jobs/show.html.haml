@@ -6,9 +6,9 @@
         %b Job #
         = @job.id
         .float-right
-          = link_to 'Edit', edit_job_path(@job), class: 'btn btn-sm btn-warning'
+          = link_to '', edit_job_path(@job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           /= link_to 'Back', jobs_path, class: 'btn btn-sm btn-secondary'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), @job, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+          = link_to '', @job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
       .card-body
         %b Client:
@@ -84,7 +84,7 @@
         = @job.description
         %hr
         %b Created by:
-        = @job.creator
+        = link_to @job.creator, employee_path(@job.creator)
         %br
         %b Created at:
         = @job.created_at.strftime('%d/%b/%Y %H:%M')
