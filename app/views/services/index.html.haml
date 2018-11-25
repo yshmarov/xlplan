@@ -11,19 +11,20 @@
           %button.btn.btn-sm.btn-default{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
             Search
+          = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
-      %table
-        %thead
-          %tr
-            %th 
-              Category
-              = f.search_field :service_category_name_cont, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Category"
-            %th
+      .card-header
+        .row
+          .col-md-4
+            Category
+            /= f.collection_select :office_name_cont, Office.all, :name, :name, include_blank: true
+            = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
+            /= f.search_field :service_category_name_cont, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Category"
+            %br
               Name
               = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true
-            %th= f.submit
-            %th= link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            = f.submit
 
 %table
   %thead

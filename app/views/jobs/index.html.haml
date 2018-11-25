@@ -1,6 +1,8 @@
 - model_class = Job
 = search_form_for @q, url: jobs_path do |f|
   %p
+  .container
+    = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   .card.card-default
     .container-fluid
       .card-heading
@@ -14,30 +16,28 @@
           = link_to '', jobs_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           = link_to t('.new', :default => t("helpers.links.new")), new_job_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
-      %table#table-overflow
-        %thead
-          %tr
-            %th 
-              \#
-              = f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#"
-            %th 
+      .card-header
+        .row
+          .col-md-4
+            \#
+            = f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
+            %br 
               Client
               = f.search_field :client_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
-            %th
-              Starts after
-              .input-daterange
-                = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to"
-            %th
-              Starts before
-              .input-daterange
-                = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to"
-            %th 
-              Status
-              = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}
-            %th 
+            %br 
               Employee
               = f.search_field :employee_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
-            %th= f.submit
+          .col-md-4
+            Starts after
+            .input-daterange
+              = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
+            Starts before
+            .input-daterange
+              = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+            Status
+            = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+            %br
+            = f.submit
 
 %table#table-overflow
   %thead
@@ -85,6 +85,4 @@
         /%td= job.creator
         /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
         /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
-.container
-  = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
