@@ -11,7 +11,11 @@
       = a.key
       - if a.trackable
         = link_to a.trackable, a.trackable
-        = status_label(a.parameters[:status])
+        - if a.parameters.present?
+          /= a.parameters.empty?
+          - unless a.parameters == "{}"
+            = status_label(a.parameters[:status])
+
       - else
         which has since been removed
       - if a.owner
