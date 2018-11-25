@@ -46,6 +46,16 @@ class Employee < ApplicationRecord
       end
     end
   end
+
+  ransacker :full_name do |parent|
+    Arel::Nodes::InfixOperation.new('||',
+      Arel::Nodes::InfixOperation.new('||',
+        parent.table[:first_name], Arel::Nodes.build_quoted(' ')
+      ),
+      parent.table[:last_name]
+    )
+  end
+
   #################INVITABLE##############
   def update_balance
     update_column :balance, (jobs.map(&:employee_due_price).sum)

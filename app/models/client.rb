@@ -19,9 +19,14 @@ class Client < ApplicationRecord
 
   after_touch :update_balance
 
-  #def full_name
-  #  last_name.capitalize + " " + first_name.capitalize
-  #end
+  ransacker :full_name do |parent|
+    Arel::Nodes::InfixOperation.new('||',
+      Arel::Nodes::InfixOperation.new('||',
+        parent.table[:first_name], Arel::Nodes.build_quoted(' ')
+      ),
+      parent.table[:last_name]
+    )
+  end
 
   #protected
   
