@@ -19,7 +19,7 @@ class Location < ApplicationRecord
     name
   end
 
-  protected
+  #protected
 
   def update_balance
     update_column :balance, (jobs.map(&:client_due_price).sum)

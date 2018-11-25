@@ -23,7 +23,7 @@ class Client < ApplicationRecord
   #  last_name.capitalize + " " + first_name.capitalize
   #end
 
-  protected
+  #protected
   
   def update_balance
     update_column :balance, (jobs.map(&:client_due_price).sum*(-1))

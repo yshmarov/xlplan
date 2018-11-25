@@ -77,9 +77,9 @@ class Job < ApplicationRecord
   protected
 
   def touch_associations
-    client.touch
-    employee.touch
-    location.touch
+    client.update_balance
+    employee.update_balance
+    location.update_balance
   end
 
   def update_associated_columns

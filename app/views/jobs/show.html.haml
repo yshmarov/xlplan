@@ -22,7 +22,7 @@
         (#{@job.service_duration} min)
         %br
         %b Employee:
-        = link_to @job.employee, employee_path(@job.location)
+        = link_to @job.employee, employee_path(@job.employee)
         %br
         %b Service:
         = link_to @job.service.full_name_with_price, service_path(@job.service)

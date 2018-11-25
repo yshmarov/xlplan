@@ -47,6 +47,9 @@ class Employee < ApplicationRecord
     end
   end
   #################INVITABLE##############
+  def update_balance
+    update_column :balance, (jobs.map(&:employee_due_price).sum)
+  end
 
   protected
 
@@ -56,8 +59,5 @@ class Employee < ApplicationRecord
     end
   end
 
-  def update_balance
-    update_column :balance, (jobs.map(&:employee_due_price).sum)
-  end
 
 end
