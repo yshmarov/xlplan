@@ -12,8 +12,8 @@ class ServicesController < ApplicationController
   end
 
   def new
-    authorize @service
     @service = Service.new
+    authorize @service
   end
 
   def edit
@@ -21,8 +21,8 @@ class ServicesController < ApplicationController
   end
 
   def create
-    authorize @service
     @service = Service.new(service_params)
+    authorize @service
 
     respond_to do |format|
       if @service.save

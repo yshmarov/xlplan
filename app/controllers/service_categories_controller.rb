@@ -7,13 +7,16 @@ class ServiceCategoriesController < ApplicationController
 
   def new
     @service_category = ServiceCategory.new
+    authorize @service_category
   end
 
   def edit
+    authorize @service_category
   end
 
   def create
     @service_category = ServiceCategory.new(service_category_params)
+    authorize @service_category
 
     respond_to do |format|
       if @service_category.save
@@ -27,6 +30,7 @@ class ServiceCategoriesController < ApplicationController
   end
 
   def update
+    authorize @service_category
     respond_to do |format|
       if @service_category.update(service_category_params)
         format.html { redirect_to service_categories_url, notice: 'Service category was successfully updated.' }
@@ -39,6 +43,7 @@ class ServiceCategoriesController < ApplicationController
   end
 
   def destroy
+    authorize @service_category
     @service_category.destroy
     respond_to do |format|
       format.html { redirect_to service_categories_url, notice: 'Service category was successfully destroyed.' }
