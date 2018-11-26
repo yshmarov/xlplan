@@ -6,6 +6,7 @@ class JobsController < ApplicationController
   end
 
 	def mark_planned
+    authorize @job, :update?
     Job.public_activity_off
 		@job.update_attribute(:status, 'planned')
     Job.public_activity_on
@@ -14,6 +15,7 @@ class JobsController < ApplicationController
 	end
 
 	def mark_confirmed
+    authorize @job, :update?
     Job.public_activity_off
 		@job.update_attribute(:status, 'confirmed')
     Job.public_activity_on
@@ -22,6 +24,7 @@ class JobsController < ApplicationController
 	end
 
 	def mark_confirmed_by_client
+    authorize @job, :update?
     Job.public_activity_off
 		@job.update_attribute(:status, 'confirmed_by_client')
     Job.public_activity_on
@@ -30,6 +33,7 @@ class JobsController < ApplicationController
 	end
 
 	def mark_not_attended
+    authorize @job, :update?
     Job.public_activity_off
 		@job.update_attribute(:status, 'not_attended')
     Job.public_activity_on
@@ -38,6 +42,7 @@ class JobsController < ApplicationController
 	end
 
 	def mark_cancelled_by_client
+    authorize @job, :update?
     Job.public_activity_off
 		@job.update_attribute(:status, 'cancelled_by_client')
     Job.public_activity_on
@@ -46,6 +51,7 @@ class JobsController < ApplicationController
 	end
 
 	def mark_rejected_by_us
+    authorize @job, :update?
     Job.public_activity_off
 		@job.update_attribute(:status, 'rejected_by_us')
     Job.public_activity_on
@@ -70,6 +76,7 @@ class JobsController < ApplicationController
   end
 
   def edit
+    authorize @job
   end
 
   def create
@@ -95,6 +102,7 @@ class JobsController < ApplicationController
   end
 
   def update
+    authorize @job
     respond_to do |format|
       if @job.update(job_params)
         format.html { redirect_to @job, notice: 'Job was successfully updated.' }
@@ -107,6 +115,7 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    authorize @job
     @job.destroy
     respond_to do |format|
       format.html { redirect_to jobs_url, notice: 'Job was successfully destroyed.' }

@@ -73,3 +73,4 @@ gem "selectize-rails"
 gem 'ransack'
 gem 'bootstrap-datepicker-rails'
 gem 'public_activity'
+gem "pundit"
