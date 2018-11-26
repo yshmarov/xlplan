@@ -6,19 +6,23 @@ class LocationsController < ApplicationController
   end
 
   def show
+    authorize @location
     @workplaces = @location.workplaces
     @jobs = @location.jobs
   end
 
   def new
     @location = Location.new
+    authorize @location
   end
 
   def edit
+    authorize @location
   end
 
   def create
     @location = Location.new(location_params)
+    authorize @location
 
     respond_to do |format|
       if @location.save
@@ -32,6 +36,7 @@ class LocationsController < ApplicationController
   end
 
   def update
+    authorize @location
     respond_to do |format|
       if @location.update(location_params)
         format.html { redirect_to @location, notice: 'Location was successfully updated.' }
@@ -44,6 +49,7 @@ class LocationsController < ApplicationController
   end
 
   def destroy
+    authorize @location
     @location.destroy
     respond_to do |format|
       format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
