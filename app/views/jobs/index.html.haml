@@ -36,6 +36,9 @@
               = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
             Status
             = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+          .col-md-4
+            Service
+            = f.select :service_name_cont, options_from_collection_for_select(Service.all, :name, :name, @q.service_name_cont), { :include_blank => true }, :class => "form-control"
             %br
             = f.submit
 
