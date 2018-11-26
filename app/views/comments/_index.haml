@@ -4,6 +4,7 @@
     by
     = link_to comment.employee, employee_path(comment.employee)
     .float-right
-      = link_to "x", [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"
+      = link_to "", [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(comment).destroy?
+
   .bg-light
     %p= comment.content
