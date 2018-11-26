@@ -6,21 +6,25 @@ class WorkplacesController < ApplicationController
   end
 
   def show
+    authorize @workplace
     @jobs = @workplace.location.jobs
   end
 
   def new
     @workplace = Workplace.new
+    authorize @workplace
   end
 
   # GET /workplaces/1/edit
   def edit
+    authorize @workplace
   end
 
   # POST /workplaces
   # POST /workplaces.json
   def create
     @workplace = Workplace.new(workplace_params)
+    authorize @workplace
 
     respond_to do |format|
       if @workplace.save
@@ -36,6 +40,7 @@ class WorkplacesController < ApplicationController
   # PATCH/PUT /workplaces/1
   # PATCH/PUT /workplaces/1.json
   def update
+    authorize @workplace
     respond_to do |format|
       if @workplace.update(workplace_params)
         format.html { redirect_to @workplace, notice: 'Workplace was successfully updated.' }
@@ -50,6 +55,7 @@ class WorkplacesController < ApplicationController
   # DELETE /workplaces/1
   # DELETE /workplaces/1.json
   def destroy
+    authorize @workplace
     @workplace.destroy
     respond_to do |format|
       format.html { redirect_to workplaces_url, notice: 'Workplace was successfully destroyed.' }
