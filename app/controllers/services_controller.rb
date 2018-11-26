@@ -7,15 +7,21 @@ class ServicesController < ApplicationController
     @services = @q.result.includes(:service_category).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
   end
 
+  def show
+    authorize @service
+  end
 
   def new
+    authorize @service
     @service = Service.new
   end
 
   def edit
+    authorize @service
   end
 
   def create
+    authorize @service
     @service = Service.new(service_params)
 
     respond_to do |format|
@@ -30,6 +36,7 @@ class ServicesController < ApplicationController
   end
 
   def update
+    authorize @service
     respond_to do |format|
       if @service.update(service_params)
         format.html { redirect_to @service, notice: 'Service was successfully updated.' }
@@ -42,6 +49,7 @@ class ServicesController < ApplicationController
   end
 
   def destroy
+    authorize @service
     @service.destroy
     respond_to do |format|
       format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
