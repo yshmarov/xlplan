@@ -10,6 +10,7 @@ class ClientsController < ApplicationController
   end
 
   def show
+    authorize @client
     @jobs = @client.jobs
     @commentable = @client
     @comments = @commentable.comments
@@ -21,6 +22,7 @@ class ClientsController < ApplicationController
   end
 
   def edit
+    authorize @client
   end
 
   def create
@@ -39,6 +41,7 @@ class ClientsController < ApplicationController
   end
 
   def update
+    authorize @client
     respond_to do |format|
       if @client.update(client_params)
         format.html { redirect_to @client, notice: 'Client was successfully updated.' }
@@ -51,6 +54,7 @@ class ClientsController < ApplicationController
   end
 
   def destroy
+    authorize @client
     @client.destroy
     respond_to do |format|
       format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }

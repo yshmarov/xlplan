@@ -32,7 +32,7 @@
       .card-header
         %b Client
         .float-right
-          = link_to '', edit_client_path(@client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          = link_to '', edit_client_path(@client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@client).edit?
       .card-body
         %b Balance:
         = number_to_currency(@client.balance_cents, :unit => "$")
