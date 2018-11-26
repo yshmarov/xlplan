@@ -11,7 +11,8 @@
       = a.key
       - if a.trackable
         - if a.trackable_type == 'Comment'
-          = link_to a.trackable_type, a.trackable.commentable
+          \for
+          = link_to a.trackable.commentable, a.trackable.commentable
         - else
           = link_to a.trackable, a.trackable
         - if a.parameters.present?
