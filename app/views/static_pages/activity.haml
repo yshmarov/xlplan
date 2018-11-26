@@ -10,7 +10,10 @@
     
       = a.key
       - if a.trackable
-        = link_to a.trackable, a.trackable
+        - if a.trackable_type == 'Comment'
+          = link_to a.trackable_type, a.trackable.commentable
+        - else
+          = link_to a.trackable, a.trackable
         - if a.parameters.present?
           /= a.parameters.empty?
           - unless a.parameters == "{}"
