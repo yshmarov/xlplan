@@ -28,8 +28,7 @@ class JobPolicy < ApplicationPolicy
   end
 
   def admin_or_manager_or_owner
-    @user.employee.active?
-    #@user.has_role?(:admin) || @user.has_role?(:manager)
+    @user.has_role?(:admin) || @user.has_role?(:manager) || @record.employee_id == @user.employee.id
   end
 
 end

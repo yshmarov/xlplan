@@ -32,6 +32,7 @@
       %th Location
       %th Skills
       %th Status
+      %th Roles
 
   %tbody
     - @employees.each do |employee|
@@ -89,4 +90,8 @@
                 = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
             - else
               Add email to invite user
+        %td
+          - if employee.user.present?
+            = employee.user.roles.collect{|r| r.name}.to_sentence
+
 %br
