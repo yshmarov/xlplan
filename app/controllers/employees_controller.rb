@@ -14,6 +14,7 @@ class EmployeesController < ApplicationController
 	#end
 
   def show
+    authorize @employee
     @jobs = @employee.jobs
     @skills = @employee.skills
     @employee_total_earnings = @jobs.map(&:employee_due_price_cents).sum
@@ -24,6 +25,7 @@ class EmployeesController < ApplicationController
   end
 
   def edit
+    authorize @employee
   end
 
   def create
@@ -41,6 +43,7 @@ class EmployeesController < ApplicationController
   end
 
   def update
+    authorize @employee
     respond_to do |format|
       if @employee.update(employee_params)
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
@@ -53,6 +56,7 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
+    authorize @employee
     @employee.destroy
     respond_to do |format|
       format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
