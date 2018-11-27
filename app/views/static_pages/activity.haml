@@ -21,7 +21,8 @@
             - unless a.trackable_type == 'Comment'
               = status_label(a.parameters[:status])
             - else
-              = a.parameters[:content]
+              .card-header
+                .font-weight-light.font-italic= a.parameters[:content]
       - else
         which has since been removed
       - if a.owner
