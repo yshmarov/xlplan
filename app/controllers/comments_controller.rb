@@ -10,9 +10,12 @@ class CommentsController < ApplicationController
   end
   
   def create
+    Comment.public_activity_off
     @comment = @commentable.comments.new comment_params
     @comment.employee_id = current_user.employee.id
     if @comment.save
+      Comment.public_activity_on
+      @comment.create_activity :create, parameters: {content: @comment.content}
       redirect_to @commentable, notice: "Comment created."
     else
       render :new
