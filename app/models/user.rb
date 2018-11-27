@@ -11,8 +11,6 @@ class User < ApplicationRecord
   belongs_to :employee
   belongs_to :invitor, class_name: 'Employee', foreign_key: :invited_by_id, required: false
 
-  #enum role: [:admin, :manager, :specialist, :client ]
-
   validates :employee_id, presence: true
   validates :employee_id, uniqueness: true
 

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   #get 'comments/new'
   devise_for :users, controllers: { invitations: 'invitations'}
   #devise_for :users, controllers: { registrations: "registrations", invitations: 'invitations'}
+  resources :users, only: [:destroy, :edit, :update]
   #devise_for :users
 
   resources :employees do 
