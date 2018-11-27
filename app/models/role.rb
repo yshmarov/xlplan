@@ -10,6 +10,8 @@ class Role < ApplicationRecord
 
 
   validates :name, presence: true
+  #validates :name, presence: true, uniqueness: true, length: {:in => 2..30}
+  validates :name, inclusion: { in: ["admin", "manager", "specialist", "viewer"] }, uniqueness: true
 
   #enum role: [:admin, :manager, :specialist, :client ]
 

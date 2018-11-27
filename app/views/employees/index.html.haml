@@ -54,42 +54,30 @@
         %td= employee.location
         %td= employee.skills.collect{|r| r.service_category}.to_sentence
         %td
-          /- if employee.user.present?
-          /  - if employee.user.invitation_accepted_at?
-          /    /= link_to 'x account', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm"
-          /  - else
-          /    /= link_to 'x invitation', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-sm"
-          /    Invitation pending
-          /- else
-          /  - unless employee.termination_date.present?
-          /    - if employee.email.present?
-          /      = simple_form_for(User.new, url: user_invitation_path) do |z|
-          /        = z.input :email, input_html: {value: employee.personal_email}, as: :hidden
-          /        = z.input :employee_id, input_html: {value: employee.id}, as: :hidden
-          /        = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
-          /    - else
-          /      Add email
-          /  - else
-          /    Finished
+          - if employee.user.present?
+            - if employee.user.invitation_accepted_at?
+              = link_to 'x account', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(employee.user).destroy?
+              Active
+            - else 
+              = link_to 'x invitation', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-sm" if policy(employee.user).destroy?
+              Invitation pending
+          - else
+            - unless employee.termination_date.present?
+              - if employee.email.present?
+                - if policy(User).create?
+                  = simple_form_for(User.new, url: user_invitation_path) do |z|
+                    = z.input :email, input_html: {value: employee.email}, as: :hidden
+                    = z.input :employee_id, input_html: {value: employee.id}, as: :hidden
+                    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
+              - else
+                Add email to invite user
+            - else
+              Terminated
           /  - unless employee.associations?
           /    - if policy(employee).destroy?
           /      = link_to 'x totally', employee, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default btn-sm"
 
-          - if employee.user.present?
-            - if employee.user.invitation_accepted_at?
-              = link_to 'x account', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm"
-              Account Active. Can delete
-            - else 
-              = link_to 'x invitation', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-sm"
-              Invitation sent. Can delete
-          - else
-            - if employee.email.present?
-              = simple_form_for(User.new, url: user_invitation_path) do |z|
-                = z.input :email, input_html: {value: employee.email}, as: :hidden
-                = z.input :employee_id, input_html: {value: employee.id}, as: :hidden
-                = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
-            - else
-              Add email to invite user
+
         %td
           - if current_user.has_role?(:admin) && employee.user.present?
             = link_to 'Edit roles', edit_user_path(employee.user), class: 'btn btn-warning btn-sm'

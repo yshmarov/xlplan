@@ -9,6 +9,14 @@ class EmployeePolicy < ApplicationPolicy
     anybody
   end
 
+  def create?
+    admin
+  end
+
+  def new?
+    admin
+  end
+
   def edit?
     admin_or_manager_or_owner
   end
@@ -17,9 +25,12 @@ class EmployeePolicy < ApplicationPolicy
     admin_or_manager_or_owner
   end
 
-
   def destroy?
-    admin_or_manager_or_owner
+    admin
+  end
+
+  def admin
+    @user.has_role?(:admin)
   end
 
   def admin_or_manager_or_owner

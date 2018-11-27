@@ -22,6 +22,7 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
+    authorize @employee
   end
 
   def edit
@@ -30,6 +31,7 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
+    authorize @employee
 
     respond_to do |format|
       if @employee.save

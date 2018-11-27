@@ -15,6 +15,8 @@ class User < ApplicationRecord
   validates :employee_id, uniqueness: true
 
   after_create :assign_default_role
+  #after_initialize :assign_default_role, if: :new_record?
+
 
   def to_s
     email
