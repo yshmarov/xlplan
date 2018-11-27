@@ -42,5 +42,6 @@ Rails.application.routes.draw do
   get 'job_stats', to: 'static_pages#job_stats'
   get 'other_stats', to: 'static_pages#other_stats'
   get 'my_calendar', to: 'static_pages#my_calendar'
+  get 'role_description', to: 'static_pages#role_description'
   root to: 'static_pages#landing_page'
 end

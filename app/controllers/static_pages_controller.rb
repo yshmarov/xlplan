@@ -7,6 +7,9 @@ class StaticPagesController < ApplicationController
     end
   end
 
+  def role_description
+  end
+
   def activity
     @activities = PublicActivity::Activity.all.reverse
   end
