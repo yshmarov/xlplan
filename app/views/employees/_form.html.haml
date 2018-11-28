@@ -19,17 +19,17 @@
       = f.label :'Date of birth'
       = f.date_field :date_of_birth, value: @employee.date_of_birth || nil, class: "form-control"
       %p
-      = f.label :'sex'
+      = f.label :'gender'
       %br
-      /= f.input :sex
-      = f.radio_button :sex, 'undisclosed'
-      = f.label :sex_male, "Undisclosed"
-      = f.radio_button :sex, 'female'
-      = f.label :sex_female, "Female"
-      = f.radio_button :sex, 'male'
-      = f.label :sex_male, "Male"
-      = f.radio_button :sex, 'other'
-      = f.label :sex_male, "Other"
+      /= f.input :gender
+      = f.radio_button :gender, 'undisclosed'
+      = f.label :gender_male, "Undisclosed"
+      = f.radio_button :gender, 'female'
+      = f.label :gender_female, "Female"
+      = f.radio_button :gender, 'male'
+      = f.label :gender_male, "Male"
+      = f.radio_button :gender, 'other'
+      = f.label :gender_male, "Other"
       = f.input :middle_name
       = f.input :address
       = f.input :status, :as => :radio_buttons, :collection => Employee.statuses.keys.to_a, label:false
