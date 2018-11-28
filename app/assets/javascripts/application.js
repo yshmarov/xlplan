@@ -28,7 +28,7 @@
 function eventCalendar() {
   return $('#calendar').fullCalendar({ 
         lang: 'en',
-        defaultView: 'agendaDay',
+        defaultView: 'agendaWeek',
         firstDay: 1,
         nowIndicator: true,
         timeFormat: 'H(:mm)',
