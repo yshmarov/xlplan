@@ -17,7 +17,7 @@
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Client).create?
-          = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
+            = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
 %table#table-overflow
   %thead
     %tr
