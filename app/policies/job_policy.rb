@@ -5,12 +5,17 @@ class JobPolicy < ApplicationPolicy
     end
   end
 
-  #attr_reader :user, :post
+  def show?
+    any_employee
+  end
 
-  #def initialize(user, post)
-  #  @user = user
-  #  @post = post
-  #end
+  def new?
+    any_employee
+  end
+
+  def create?
+    any_employee
+  end
 
   def edit?
     admin_or_manager_or_owner
@@ -22,13 +27,16 @@ class JobPolicy < ApplicationPolicy
     #user.admin? or not post.published?
   end
 
-
   def destroy?
     admin_or_manager_or_owner
   end
 
   def admin_or_manager_or_owner
     @user.has_role?(:admin) || @user.has_role?(:manager) || @record.employee_id == @user.employee.id
+  end
+
+  def any_employee
+    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
 
 end

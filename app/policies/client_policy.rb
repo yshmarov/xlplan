@@ -6,15 +6,23 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def show?
-    anybody
+    any_employee
+  end
+
+  def new?
+    any_employee
+  end
+
+  def create?
+    any_employee
   end
 
   def edit?
-    anybody
+    any_employee
   end
 
   def update?
-    anybody
+    any_employee
   end
 
   def destroy?
@@ -25,8 +33,8 @@ class ClientPolicy < ApplicationPolicy
     @user.has_role?(:admin) || @user.has_role?(:manager)
   end
 
-  def anybody
-    @user
+  def any_employee
+    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
 
 end

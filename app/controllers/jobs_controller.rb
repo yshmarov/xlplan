@@ -66,6 +66,7 @@ class JobsController < ApplicationController
   end
 
   def show
+    authorize @job
     #@commentable = @job
     #@comments = @commentable.comments
     #@comment = Comment.new
@@ -73,6 +74,7 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    authorize @job
   end
 
   def edit
@@ -81,6 +83,7 @@ class JobsController < ApplicationController
 
   def create
     @job = Job.new(job_params)
+    authorize @job
     @job.created_by = current_user.employee.id
 
 

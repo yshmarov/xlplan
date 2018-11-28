@@ -14,6 +14,7 @@
             .fa.fa-search
             Search
           = link_to '', jobs_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          - if policy(Job).create?
           = link_to t('.new', :default => t("helpers.links.new")), new_job_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
       .card-header
