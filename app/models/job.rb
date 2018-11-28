@@ -30,8 +30,8 @@ class Job < ApplicationRecord
   #Location.find_each { |location| Location.reset_counters(location.id, :workplaces_count) }
 
   validates :client_id, :starts_at, :status, :service_id, :location_id, :employee_id,
-            :service_name, :service_duration, :client_price,
-            :employee_price, presence: true
+            :service_name, :service_duration, :service_employee_percent, :client_price,
+             :employee_price, presence: true
 
   #add_index :jobs, :status
 
@@ -90,6 +90,7 @@ class Job < ApplicationRecord
     update_column :client_price, (service.client_price)
     update_column :employee_price, (service.employee_price)
     update_column :ends_at, (starts_at + service_duration*60)
+    update_column :service_employee_percent, (service.employee_percent)
   end
 
   def update_ends_at
