@@ -5,7 +5,7 @@ class Client < ApplicationRecord
 
   has_many :jobs
   has_many :comments, as: :commentable
-  belongs_to :employee
+  belongs_to :employee, optional: true
 
   validates :first_name, :last_name, presence: true
   validates :status, presence: true

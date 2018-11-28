@@ -29,6 +29,7 @@
       %th= sort_link @ransack_employees, :status, "Status"
       %th= sort_link @ransack_employees, :balance, "Balance"
       %th= sort_link @ransack_employees, :jobs_count, "Jobs"
+      %th Comments
       %th Location
       %th Skills
       %th Status
@@ -51,6 +52,7 @@
         %td= status_label(employee.status)
         %td= number_to_currency(employee.balance_cents, :unit => "$")
         %td= employee.jobs_count
+        %td= employee.comments.count
         %td= employee.location
         %td= employee.skills.collect{|r| r.service_category}.to_sentence
         %td

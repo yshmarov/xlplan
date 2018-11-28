@@ -14,11 +14,16 @@ class JobPolicy < ApplicationPolicy
   end
 
   def create?
-    any_employee
+    any_employee 
   end
 
   def edit?
     admin_or_manager_or_owner
+    #unless self.is_planned && ends_at > Time.zone.now + 24.hours
+    #  admin_or_manager_or_owner
+    #else
+    #  admin
+    #end
   end
 
   def update?

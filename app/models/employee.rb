@@ -3,12 +3,14 @@ class Employee < ApplicationRecord
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   include Personable
 
-  has_one :user
+  #has_one :user
+  has_one :user, dependent: :destroy
   belongs_to :location
   has_many :jobs
   has_many :skills
+  has_many :comments
   has_many :service_categories, through: :skills
-  has_many :clients
+  has_many :clients, dependent: :nullify
 
   validates :first_name, :last_name, presence: true
   validates :location_id, :status, presence: true
