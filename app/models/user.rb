@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
 
   def to_s
-    email
+    employee.to_s
   end
 
   private
