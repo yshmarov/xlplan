@@ -1,5 +1,6 @@
-%h1 New employee
-
-= render 'form'
-
-= link_to 'Back', employees_path
+.container
+  %h1 New employee
+  = render 'form'
+  %p
+  = link_to 'Cancel', employees_path, class: "btn btn-secondary", title: 'Back to Job list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+  %p
