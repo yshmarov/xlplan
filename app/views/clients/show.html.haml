@@ -41,7 +41,7 @@
         = status_label(@client.status)
         %br
         %b Responsible:
-        = link_to @client.employee, employee_path(@client.employee)
+        = link_to @client.employee, employee_path(@client.employee) if @client.employee.present?
     %p
     .card
       .card-header
