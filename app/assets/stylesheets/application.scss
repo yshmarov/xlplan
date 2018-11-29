@@ -25,13 +25,6 @@ table {
 }
 /* thead { @extend .bg-primary } */  
 
-@media screen and (max-width: 10000px) {
-	#table-overflow {
-		overflow-x: auto;
-		display: block;
-	}
-}
-
 
 .fa-update {
   @extend .fa-edit;

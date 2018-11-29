@@ -18,7 +18,7 @@
           = link_to '', employees_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Employee).create?
             = link_to 'New Employee', new_employee_path, class: 'btn btn-sm btn-primary'
-%table#table-overflow
+%table
   %thead
     %tr
       %th= sort_link @ransack_employees, :last_name, "Name"
