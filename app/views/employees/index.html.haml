@@ -18,73 +18,74 @@
           = link_to '', employees_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Employee).create?
             = link_to 'New Employee', new_employee_path, class: 'btn btn-sm btn-primary'
-%table
-  %thead
-    %tr
-      %th= sort_link @ransack_employees, :last_name, "Name"
-      %th
-      %th
-      %th Phone
-      %th Email
-      %th= sort_link @ransack_employees, :date_of_birth, "Birthday"
-      %th= sort_link @ransack_employees, :status, "Status"
-      %th= sort_link @ransack_employees, :balance, "Balance"
-      %th= sort_link @ransack_employees, :jobs_count, "Jobs"
-      %th Comments
-      %th Location
-      %th Skills
-      %th Status
-      %th Roles
-
-  %tbody
-    - @employees.each do |employee|
+.table-responsive
+  %table
+    %thead
       %tr
-        %td= link_to employee.full_name, employee_path(employee), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).show?
-        %td= link_to '', edit_employee_path(employee), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).update?
-        %td= link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).destroy?
-        %td
-          = link_to "tel:#{employee.phone_number}", class: "button" do
-            #{employee.phone_number}
-        %td
-          %a{:href => "mailto:#{employee.email}"}= employee.email
-        %td
-          - if employee.date_of_birth.present?
-            #{employee.date_of_birth.strftime('%d/%b/%Y')} (#{employee.age})
-        %td= status_label(employee.status)
-        %td= number_to_currency(employee.balance_cents, :unit => "$")
-        %td= employee.jobs_count
-        %td= employee.comments.count
-        %td= employee.location
-        %td= employee.skills.collect{|r| r.service_category}.to_sentence
-        %td
-          - if employee.user.present?
-            - if employee.user.invitation_accepted_at?
-              = link_to 'x account', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(employee.user).destroy?
-              Active
-            - else 
-              = link_to 'x invitation', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-sm" if policy(employee.user).destroy?
-              Invitation pending
-          - else
-            /- if employee.termination_date.present?
-            - if employee.active?
-              - if employee.email.present?
-                - if policy(User).create?
-                  = simple_form_for(User.new, url: user_invitation_path) do |z|
-                    = z.input :email, input_html: {value: employee.email}, as: :hidden
-                    = z.input :employee_id, input_html: {value: employee.id}, as: :hidden
-                    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
-              - else
-                Add email to invite user
+        %th= sort_link @ransack_employees, :last_name, "Name"
+        %th
+        %th
+        %th Phone
+        %th Email
+        %th= sort_link @ransack_employees, :date_of_birth, "Birthday"
+        %th= sort_link @ransack_employees, :status, "Status"
+        %th= sort_link @ransack_employees, :balance, "Balance"
+        %th= sort_link @ransack_employees, :jobs_count, "Jobs"
+        %th Comments
+        %th Location
+        %th Skills
+        %th Status
+        %th Roles
+  
+    %tbody
+      - @employees.each do |employee|
+        %tr
+          %td= link_to employee.full_name, employee_path(employee), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).show?
+          %td= link_to '', edit_employee_path(employee), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).update?
+          %td= link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).destroy?
+          %td
+            = link_to "tel:#{employee.phone_number}", class: "button" do
+              #{employee.phone_number}
+          %td
+            %a{:href => "mailto:#{employee.email}"}= employee.email
+          %td
+            - if employee.date_of_birth.present?
+              #{employee.date_of_birth.strftime('%d/%b/%Y')} (#{employee.age})
+          %td= status_label(employee.status)
+          %td= number_to_currency(employee.balance_cents, :unit => "$")
+          %td= employee.jobs_count
+          %td= employee.comments.count
+          %td= employee.location
+          %td= employee.skills.collect{|r| r.service_category}.to_sentence
+          %td
+            - if employee.user.present?
+              - if employee.user.invitation_accepted_at?
+                = link_to 'x account', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(employee.user).destroy?
+                Active
+              - else 
+                = link_to 'x invitation', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-sm" if policy(employee.user).destroy?
+                Invitation pending
             - else
-              Terminated
-          /  - unless employee.associations?
-          /    - if policy(employee).destroy?
-          /      = link_to 'x totally', employee, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default btn-sm"
-
-
-        %td
-          - if current_user.has_role?(:admin) && employee.user.present?
-            = link_to 'Edit roles', edit_user_path(employee.user), class: 'btn btn-warning btn-sm'
-          - if employee.user.present?
-            = employee.user.roles.collect{|r| r.name}.to_sentence
+              /- if employee.termination_date.present?
+              - if employee.active?
+                - if employee.email.present?
+                  - if policy(User).create?
+                    = simple_form_for(User.new, url: user_invitation_path) do |z|
+                      = z.input :email, input_html: {value: employee.email}, as: :hidden
+                      = z.input :employee_id, input_html: {value: employee.id}, as: :hidden
+                      = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
+                - else
+                  Add email to invite user
+              - else
+                Terminated
+            /  - unless employee.associations?
+            /    - if policy(employee).destroy?
+            /      = link_to 'x totally', employee, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default btn-sm"
+  
+  
+          %td
+            - if current_user.has_role?(:admin) && employee.user.present?
+              = link_to 'Edit roles', edit_user_path(employee.user), class: 'btn btn-warning btn-sm'
+            - if employee.user.present?
+              = employee.user.roles.collect{|r| r.name}.to_sentence
 %br
