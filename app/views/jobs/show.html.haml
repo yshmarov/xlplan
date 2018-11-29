@@ -62,6 +62,9 @@
               = button_to "cancelled_by_client", mark_cancelled_by_client_job_path(@job), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
 
 
+        /%br
+        /%b service_employee_percent:
+        /= @job.service_employee_percent
 
         %hr
         %b Client planned price:

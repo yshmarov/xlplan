@@ -19,6 +19,28 @@ class Job < ApplicationRecord
   scope :is_confirmed, -> { where(status: [:confirmed, :confirmed_by_client]) }
   scope :is_cancelled, -> { where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]) }
   scope :is_planned, -> { where(status: [:planned]) }
+  def happened
+    if status == 'confirmed_by_client' || status == 'confirmed'
+      true
+    elsif status == 'not_attended' || status == 'rejected_by_us' || status == 'cancelled_by_client' || status == 'planned'
+      false
+    end
+  end
+
+
+  def color
+    if status == 'confirmed_by_client' || status == 'confirmed'
+      'green'
+    elsif status == 'not_attended'
+      'red'
+    elsif status == 'rejected_by_us' || status == 'cancelled_by_client'
+      'grey'
+    elsif status == 'planned'
+      'blue'
+    else
+      'black'
+    end
+  end
 
   #console commands to update counters, if needed
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
@@ -49,30 +71,8 @@ class Job < ApplicationRecord
   after_save :update_due_prices
   after_create :touch_associations
 
-  def happened
-    if status == 'confirmed_by_client' || status == 'confirmed'
-      true
-    elsif status == 'not_attended' || status == 'rejected_by_us' || status == 'cancelled_by_client' || status == 'planned'
-      false
-    end
-  end
-
   def to_s
     id
-  end
-
-  def color
-    if status == 'confirmed_by_client' || status == 'confirmed'
-      'green'
-    elsif status == 'not_attended'
-      'red'
-    elsif status == 'rejected_by_us' || status == 'cancelled_by_client'
-      'grey'
-    elsif status == 'planned'
-      'blue'
-    else
-      'black'
-    end
   end
 
   protected
