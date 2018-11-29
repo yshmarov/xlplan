@@ -65,7 +65,8 @@
               = link_to 'x invitation', employee.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-sm" if policy(employee.user).destroy?
               Invitation pending
           - else
-            - unless employee.termination_date.present?
+            /- if employee.termination_date.present?
+            - if employee.active?
               - if employee.email.present?
                 - if policy(User).create?
                   = simple_form_for(User.new, url: user_invitation_path) do |z|

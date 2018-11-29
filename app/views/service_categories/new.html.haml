@@ -1,5 +1,7 @@
-%h1 New service_category
-
-= render 'form'
-
-= link_to 'Back', service_categories_path
+.container
+  %h1 New service_category
+  
+  = render 'form'
+  %p
+  = link_to 'Cancel', service_categories_path, class: "btn btn-secondary", title: 'Back to Service Categories list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+  %p

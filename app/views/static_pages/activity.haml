@@ -4,6 +4,7 @@
 %ul.list-group
   - @activities.each do |a|
     %li.list-group-item
+      = link_to a.owner.to_s, employee_path(a.owner.employee.id) if a.owner
       = distance_of_time_in_words Time.now, a.created_at
       ago
       %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
@@ -25,12 +26,5 @@
                 .font-weight-light.font-italic= a.parameters[:content]
       - else
         which has since been removed
-      - if a.owner
-        by
-        = link_to a.owner.to_s, employee_path(a.owner.employee.id)
       /= a.trackable_type
       /= a.trackable_id
-    /= render_activities(@activities, layout: :activity)
-    /= render_activities(@activities)
-    
-    

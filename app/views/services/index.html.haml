@@ -12,7 +12,8 @@
             .fa.fa-search
             Search
           = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
+          - if policy(Service).create?
+            = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
       .card-header
         .row

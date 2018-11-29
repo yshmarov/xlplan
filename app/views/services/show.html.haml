@@ -30,6 +30,7 @@
   %b Status:
   = status_label(@service.status)
 
-= link_to 'Edit', edit_service_path(@service)
+= link_to 'Edit', edit_service_path(@service), class: "btn btn-warning"
 \|
-= link_to 'Back', services_path
+= link_to 'Back to all services', services_path, class: "btn btn-secondary"
+
