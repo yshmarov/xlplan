@@ -29,4 +29,4 @@
     = f.input :status, :as => :radio_buttons, :collection => Job.statuses.keys.to_a
     %p
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

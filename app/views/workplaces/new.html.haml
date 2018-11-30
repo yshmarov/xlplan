@@ -1,5 +1,7 @@
-%h1 New workplace
-
-= render 'form'
-
-= link_to 'Back', workplaces_path
+.container
+    %h1 New workplace
+    
+    = render 'form'
+    %p
+    = link_to 'Cancel', workplaces_path, class: "btn btn-danger", title: 'Back to Workplaces list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+    %p
