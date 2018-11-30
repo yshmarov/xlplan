@@ -39,7 +39,7 @@ function eventCalendar() {
         slotMinutes: 30,
         events: app.vars.jobs,
         header: {
-            center: 'month,agendaWeek,agendaDay'
+            center: 'month,basicWeek,basicDay,agendaWeek,agendaDay'
         }
 
 

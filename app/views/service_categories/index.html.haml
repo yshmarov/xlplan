@@ -1,21 +1,22 @@
 %h1 Listing service_categories
-
+“
 = link_to 'New Service category', new_service_category_path
 %p
-%table#table1
-  %thead
-    %tr
-      %th Name
-      %th Services
-      %th
-      %th
-
-  %tbody
-    - @service_categories.each do |service_category|
+.table-responsive
+  %table#table1
+    %thead
       %tr
-        %td= service_category.name
-        %td= service_category.services_count
-        %td= link_to 'Edit', edit_service_category_path(service_category) if policy(service_category).update?
-        %td= link_to 'Destroy', service_category, method: :delete, data: { confirm: 'Are you sure?' } if policy(service_category).destroy?
+        %th Name
+        %th Services
+        %th
+        %th
+  
+    %tbody
+      - @service_categories.each do |service_category|
+        %tr
+          %td= service_category.name
+          %td= service_category.services_count
+          %td= link_to 'Edit', edit_service_category_path(service_category) if policy(service_category).update?
+          %td= link_to 'Destroy', service_category, method: :delete, data: { confirm: 'Are you sure?' } if policy(service_category).destroy?
 
 %br

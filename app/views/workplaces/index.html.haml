@@ -1,23 +1,24 @@
 %h1 Listing workplaces
 
-%table
-  %thead
-    %tr
-      %th Location
-      %th Workplace
-      %th Status
-      /%th
-      /%th
-      /%th
-
-  %tbody
-    - @workplaces.each do |workplace|
+.table-responsive
+  %table#table1
+    %thead
       %tr
-        %td= workplace.location
-        %td= link_to workplace.name, workplace
-        %td= workplace.status
-        /%td= link_to 'Show', workplace
-        /%td= link_to 'Edit', edit_workplace_path(workplace)
-        /%td= link_to 'Destroy', workplace, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Location
+        %th Workplace
+        %th Status
+        /%th
+        /%th
+        /%th
+  
+    %tbody
+      - @workplaces.each do |workplace|
+        %tr
+          %td= workplace.location
+          %td= link_to workplace.name, workplace
+          %td= workplace.status
+          /%td= link_to 'Show', workplace
+          /%td= link_to 'Edit', edit_workplace_path(workplace)
+          /%td= link_to 'Destroy', workplace, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

@@ -12,44 +12,45 @@
               %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Name"
             %span.input-group-append
-              %button.btn.btn-default{:type => "submit"}
+              %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Client).create?
             = link_to 'New Client', new_client_path, class: 'btn btn-sm btn-primary'
-%table#table-overflow
-  %thead
-    %tr
-      %th= sort_link @ransack_clients, :last_name, "Name"
-      %th
-      %th
-      %th Phone
-      %th Email
-      %th= sort_link @ransack_clients, :date_of_birth, "Birthday"
-      %th= sort_link @ransack_clients, :status, "Status"
-      %th= sort_link @ransack_clients, :balance, "Balance"
-      %th= sort_link @ransack_clients, :jobs_count, "Jobs"
-      %th Comments
-      %th= sort_link @ransack_clients, :employee_id, "Responsible"
-
-  %tbody
-    - @clients.each do |client|
+.table-responsive
+  %table#table1
+    %thead
       %tr
-        %td= link_to client.full_name, client_path(client), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).show?
-        %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).update?
-        %td= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).destroy?
-        %td
-          = link_to "tel:#{client.phone_number}", class: "button" do
-            #{client.phone_number}
-        %td
-          %a{:href => "mailto:#{client.email}"}= client.email
-        %td
-          - if client.date_of_birth.present?
-            #{client.date_of_birth.strftime('%d/%b/%Y')} (#{client.age})
-        %td= status_label(client.status)
-        %td= number_to_currency(client.balance_cents, :unit => "$")
-        %td= client.jobs_count
-        %td= client.comments_count
-        %td= link_to client.employee, employee_path(client.employee) if client.employee.present?
+        %th= sort_link @ransack_clients, :last_name, "Name"
+        %th
+        %th
+        %th Phone
+        %th Email
+        %th= sort_link @ransack_clients, :date_of_birth, "Birthday"
+        %th= sort_link @ransack_clients, :status, "Status"
+        %th= sort_link @ransack_clients, :balance, "Balance"
+        %th= sort_link @ransack_clients, :jobs_count, "Jobs"
+        %th Comments
+        %th= sort_link @ransack_clients, :employee_id, "Responsible"
+  
+    %tbody
+      - @clients.each do |client|
+        %tr
+          %td= link_to client.full_name, client_path(client), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).show?
+          %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).update?
+          %td= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).destroy?
+          %td
+            = link_to "tel:#{client.phone_number}", class: "button" do
+              #{client.phone_number}
+          %td
+            %a{:href => "mailto:#{client.email}"}= client.email
+          %td
+            - if client.date_of_birth.present?
+              #{client.date_of_birth.strftime('%d/%b/%Y')} (#{client.age})
+          %td= status_label(client.status)
+          %td= number_to_currency(client.balance_cents, :unit => "$")
+          %td= client.jobs_count
+          %td= client.comments_count
+          %td= link_to client.employee, employee_path(client.employee) if client.employee.present?
 %br
