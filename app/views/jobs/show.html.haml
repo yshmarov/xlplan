@@ -72,7 +72,7 @@
         /= number_to_currency(@job.client_price_cents, :unit => "$")
         %br
         %b Employee planned price:
-        = @job.employee_price_cents
+        = @job.employee_price_cents if policy(@job).update?
         /= number_to_currency(@job.employee_price_cents, :unit => "$")
         %br
         %b Client due price:
@@ -80,7 +80,7 @@
         /= number_to_currency(@job.client_due_price_cents, :unit => "$")
         %br
         %b Employee due price:
-        = @job.employee_due_price_cents
+        = @job.employee_due_price_cents if policy(@job).update?
         /= number_to_currency(@job.employee_due_price_cents, :unit => "$")
         %hr
         %b Description:

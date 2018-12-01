@@ -39,7 +39,9 @@
             = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
           .col-md-4
             Service
-            = f.select :service_name_cont, options_from_collection_for_select(Service.all, :name, :name, @q.service_name_cont), { :include_blank => true }, :class => "form-control"
+            /= f.select :service_name_cont, options_from_collection_for_select(Service.all, :name, :name, @q.service_name_cont), { :include_blank => true }, :class => "form-control"
+            /= f.label :service
+            = f.select :service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
             %br
             = f.submit
 
