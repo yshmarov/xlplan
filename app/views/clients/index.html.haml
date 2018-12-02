@@ -1,8 +1,6 @@
 - model_class = Client
 = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
   %p
-  .container
-    = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   .card.card-default
     .container-fluid
       .card-heading
@@ -53,4 +51,6 @@
           %td= client.jobs_count
           %td= client.comments_count
           %td= link_to client.employee, employee_path(client.employee) if client.employee.present?
+.container
+  = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

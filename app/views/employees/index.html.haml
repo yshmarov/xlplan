@@ -1,8 +1,6 @@
 - model_class = Employee
 = search_form_for @ransack_employees, as: :employees_search, url: employees_path do |f|
   %p
-  .container
-    = will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   .card.card-default
     .container-fluid
       .card-heading
@@ -88,4 +86,6 @@
               = link_to 'Edit roles', edit_user_path(employee.user), class: 'btn btn-warning btn-sm'
             - if employee.user.present?
               = employee.user.roles.collect{|r| r.name}.to_sentence
+.container
+  = will_paginate @employees, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

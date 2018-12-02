@@ -1,8 +1,6 @@
 - model_class = Job
 = search_form_for @q, url: jobs_path do |f|
   %p
-  .container
-    = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   .card.card-default
     .container-fluid
       .card-heading
@@ -86,4 +84,6 @@
           /%td= job.creator
           /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
           /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
+.container
+  = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
