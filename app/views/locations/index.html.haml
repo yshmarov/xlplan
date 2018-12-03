@@ -4,10 +4,9 @@
   %table#table1
     %thead
       %tr
-        %th
-        %th
-        %th
         %th Name
+        %th
+        %th
         %th Tel
         %th Email
         %th Address
@@ -19,10 +18,9 @@
     %tbody
       - @locations.each do |location|
         %tr
-          %td= link_to 'Show', location, class: 'btn btn-sm btn-primary' if policy(location).show?
+          %td= link_to location.name, location, class: 'btn btn-sm btn-primary' if policy(location).show?
           %td= link_to 'Edit', edit_location_path(location), class: 'btn btn-sm btn-warning' if policy(location).update?
           %td= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' if policy(location).destroy?
-          %td= location.name
           %td= location.tel
           %td= location.email
           %td= location.address

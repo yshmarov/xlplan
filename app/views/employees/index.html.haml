@@ -23,8 +23,9 @@
         %th= sort_link @ransack_employees, :last_name, "Name"
         %th
         %th
-        %th Phone
-        %th Email
+        %th
+          Contacts
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
         %th= sort_link @ransack_employees, :date_of_birth, "Birthday"
         %th= sort_link @ransack_employees, :status, "Status"
         %th= sort_link @ransack_employees, :balance, "Balance"
@@ -38,13 +39,17 @@
     %tbody
       - @employees.each do |employee|
         %tr
-          %td= link_to employee.full_name, employee_path(employee), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).show?
+          %td
+            - if employee.id == current_user.id
+              .fa.fa-user
+            = link_to employee.full_name, employee_path(employee), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).show?
           %td= link_to '', edit_employee_path(employee), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).update?
           %td= link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).destroy?
           %td
             = link_to "tel:#{employee.phone_number}", class: "button" do
               #{employee.phone_number}
-          %td
+            - if employee.email.present? && employee.phone_number.present?
+              \/
             %a{:href => "mailto:#{employee.email}"}= employee.email
           %td
             - if employee.date_of_birth.present?

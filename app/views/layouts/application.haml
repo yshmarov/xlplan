@@ -14,8 +14,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.bg-light
     /= render 'layouts/header'
-    = render 'layouts/messages'
     #wrapper
+      = render 'layouts/messages'
       = render 'layouts/sidebar'
       .container-fluid
         = yield

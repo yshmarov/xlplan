@@ -7,21 +7,21 @@
   #navbarText.collapse.navbar-collapse
     %ul.navbar-nav.side-nav
       - if current_user
-        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
         %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
         %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
+        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
         %li.nav-item= link_to "Services", services_path, class: "nav-link"
+        %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
+        %li.nav-item= link_to "Workplaces", workplaces_path, class: "nav-link"
+        %li.nav-item= link_to "Service Categories", service_categories_path, class: "nav-link"
+        %li.nav-item= link_to "Activity", activity_path, class: "nav-link btn"
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Other
+            Stats
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
-            = link_to "Locations", locations_path, class: "dropdown-item navdrop-link"
-            = link_to "Workplaces", workplaces_path, class: "dropdown-item navdrop-link"
+            = link_to "Job Stats", job_stats_path, class: "dropdown-item navdrop-link"
             %hr
-            = link_to "Activity", activity_path, class: "dropdown-item navdrop-link"
-            = link_to "Stats - Job", job_stats_path, class: "dropdown-item navdrop-link"
-            = link_to "Stats - Other", other_stats_path, class: "dropdown-item navdrop-link"
+            = link_to "Other Stats", other_stats_path, class: "dropdown-item navdrop-link"
       - else
         %li.nav-item= link_to "Features", root_path, class: "nav-link"
         %li.nav-item= link_to "Industries", root_path, class: "nav-link"
