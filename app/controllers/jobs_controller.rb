@@ -62,7 +62,7 @@ class JobsController < ApplicationController
   def index
     #@jobs = Job.paginate(:page => params[:page], :per_page => 10)
     @q = Job.ransack(params[:q])
-    @jobs = @q.result.includes(:location, :client, :employee, :service).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
+    @jobs = @q.result.includes(:location, :client, :employee, :service).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
 
   def show

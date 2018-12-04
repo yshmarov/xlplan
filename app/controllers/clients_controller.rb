@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
     #@clients = @ransack_clients.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
 
     @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:employee).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
+    @clients = @ransack_clients.result.includes(:employee).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
 
   def show

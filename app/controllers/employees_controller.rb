@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
     #@employees = Employee.paginate(:page => params[:page], :per_page => 10)
 
     @ransack_employees = Employee.search(params[:employees_search], search_key: :employees_search)
-    @employees = @ransack_employees.result.includes(:location).paginate(:page => params[:page], :per_page => 10)
+    @employees = @ransack_employees.result.includes(:location).paginate(:page => params[:page], :per_page => 15)
   end
 
 	#def invite_user
