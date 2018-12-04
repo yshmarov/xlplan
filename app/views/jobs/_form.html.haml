@@ -26,7 +26,8 @@
     /= f.input :employee_price
     /= f.input :status
     = f.input :description
-    = f.input :status, :as => :radio_buttons, :collection => Job.statuses.keys.to_a
+    - unless f.object.new_record?
+      = f.input :status, :as => :radio_buttons, :collection => Job.statuses.keys.to_a
     %p
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

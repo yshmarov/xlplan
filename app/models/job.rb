@@ -1,4 +1,14 @@
 class Job < ApplicationRecord
+  #after_save :update_associated_columns
+  #after_update :update_associated_columns
+  after_create :update_associated_columns
+  after_update :update_ends_at
+  after_create :update_due_prices
+  after_update :update_due_prices
+  after_save :update_due_prices
+  after_save :touch_associations
+  after_create :touch_associations
+
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
@@ -61,15 +71,6 @@ class Job < ApplicationRecord
   monetize :employee_price, as: :employee_price_cents
   monetize :client_due_price, as: :client_due_price_cents
   monetize :employee_due_price, as: :employee_due_price_cents
-
-  #after_save :update_associated_columns
-  #after_update :update_associated_columns
-  after_create :update_associated_columns
-  after_update :update_ends_at
-  after_create :update_due_prices
-  after_update :update_due_prices
-  after_save :update_due_prices
-  after_create :touch_associations
 
   def to_s
     id

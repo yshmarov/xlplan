@@ -1,9 +1,12 @@
 class Client < ApplicationRecord
+
+  after_touch :update_balance
+
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   include Personable
 
-  has_many :jobs
+  has_many :jobs, dependent: :restrict_with_error
   has_many :comments, as: :commentable
   belongs_to :employee, optional: true
 
@@ -17,8 +20,6 @@ class Client < ApplicationRecord
 
   enum status: { inactive: 0, active: 1 }
 
-  after_touch :update_balance
-
   ransacker :full_name do |parent|
     Arel::Nodes::InfixOperation.new('||',
       Arel::Nodes::InfixOperation.new('||',
@@ -28,8 +29,13 @@ class Client < ApplicationRecord
     )
   end
 
+  def associations?
+    jobs.any?
+  end
+
+  #private
   #protected
-  
+
   def update_balance
     update_column :balance, (jobs.map(&:client_due_price).sum*(-1))
   end

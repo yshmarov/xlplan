@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
     #@clients = @ransack_clients.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
 
     @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:employee).paginate(:page => params[:page], :per_page => 10)
+    @clients = @ransack_clients.result.includes(:employee).paginate(:page => params[:page], :per_page => 10).order("created_at DESC")
   end
 
   def show
@@ -58,9 +58,10 @@ class ClientsController < ApplicationController
   def destroy
     authorize @client
     @client.destroy
-    respond_to do |format|
-      format.html { redirect_to clients_url, notice: 'Client was successfully destroyed.' }
-      format.json { head :no_content }
+    if @client.errors.present?
+      redirect_to clients_url, alert: 'Client has associated records. Can not delete.'
+    else
+      redirect_to clients_url, notice: 'Client was successfully destroyed.'
     end
   end
 
