@@ -1,0 +1,16 @@
+.row
+  .col-md-4
+    %h3.text-center
+      Client Status Pie
+    - @client_status_pie.each do |key, value|
+      .card.text-center= "#{key}: #{value}"
+  .col-md-4
+    %h3.text-center
+      Client Gender Pie
+    - @client_gender_pie.each do |key, value|
+      .card.text-center= "#{key}: #{value}"
+  .col-md-4
+    %h3.text-center
+      Upcoming birthdays
+    - @clients.each do |client|
+      .card.text-center= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)

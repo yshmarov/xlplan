@@ -1,3 +1,37 @@
+%h3.text-center
+  .badge.badge-secondary.btn-block
+    Counters
+.row
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-calendar
+      = Job.count
+      %div 
+        %b Jobs
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-user
+      = Client.count
+      %div 
+        %b Clients
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-user
+      = Employee.count
+      %div 
+        %b Employees
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-hand-paper
+      = Service.count
+      %div 
+        %b Services
+  .col-md-4
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@average_confirmed_earnings, :unit => "")
+      %div 
+        %b Average confirmed check
 %p
 %h3.text-center
   .badge.badge-primary.btn-block

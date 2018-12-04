@@ -19,9 +19,18 @@
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             Stats
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "Job Stats", job_stats_path, class: "dropdown-item navdrop-link"
+            = link_to "General", stats_general_path, class: "dropdown-item navdrop-link"
             %hr
-            = link_to "Other Stats", other_stats_path, class: "dropdown-item navdrop-link"
+            = link_to "Clients", stats_clients_path, class: "dropdown-item navdrop-link"
+            = link_to "Employees", stats_employees_path, class: "dropdown-item navdrop-link"
+            = link_to "Jobs", stats_jobs_path, class: "dropdown-item navdrop-link"
+            = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
+            = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Settings
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            = link_to "Role Descriptions", role_description_path, class: "dropdown-item navdrop-link"
       - else
         %li.nav-item= link_to "Features", root_path, class: "nav-link"
         %li.nav-item= link_to "Industries", root_path, class: "nav-link"

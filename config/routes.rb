@@ -39,9 +39,14 @@ Rails.application.routes.draw do
 
   end
 
+  get 'stats/general'
+  get 'stats/clients'
+  get 'stats/employees'
+  get 'stats/jobs'
+  get 'stats/services'
+  get 'stats/locations'
+
   get 'activity', to: 'static_pages#activity'
-  get 'job_stats', to: 'static_pages#job_stats'
-  get 'other_stats', to: 'static_pages#other_stats'
   get 'my_calendar', to: 'static_pages#my_calendar'
   get 'role_description', to: 'static_pages#role_description'
   root to: 'static_pages#landing_page'
