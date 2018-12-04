@@ -49,7 +49,11 @@
         %tr
           /%td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
           %td= link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(service).edit?
-          %td= link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(service).destroy?
+          %td
+            - unless service.jobs.any?
+              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(service).destroy?
+            - else
+              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(service).destroy?
           %td= service.service_category
           %td= service.name
           %td= service.description

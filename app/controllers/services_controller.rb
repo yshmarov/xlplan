@@ -51,9 +51,10 @@ class ServicesController < ApplicationController
   def destroy
     authorize @service
     @service.destroy
-    respond_to do |format|
-      format.html { redirect_to services_url, notice: 'Service was successfully destroyed.' }
-      format.json { head :no_content }
+    if @service.errors.present?
+      redirect_to services_url, alert: 'Service has associated jobs. Can not delete.'
+    else
+      redirect_to services_url, notice: 'Service was successfully destroyed.'
     end
   end
 

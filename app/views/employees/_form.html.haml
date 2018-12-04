@@ -9,8 +9,8 @@
     = f.input :phone_number
     = f.input :email
     = f.label :location
-    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
     = f.error :location, class: 'text-danger'
+    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
     %p
     %button.btn.btn-primary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
       .fa.fa-cog
