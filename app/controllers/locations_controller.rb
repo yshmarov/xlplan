@@ -51,9 +51,10 @@ class LocationsController < ApplicationController
   def destroy
     authorize @location
     @location.destroy
-    respond_to do |format|
-      format.html { redirect_to locations_url, notice: 'Location was successfully destroyed.' }
-      format.json { head :no_content }
+    if @location.errors.present?
+      redirect_to locations_url, alert: 'Location has associated records. Can not delete.'
+    else
+      redirect_to locations_url, notice: 'Location was successfully destroyed.'
     end
   end
 

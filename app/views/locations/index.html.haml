@@ -1,5 +1,15 @@
-%h1 Listing locations
-
+- model_class = Location
+%p
+.card.card-default
+  .container-fluid
+    .card-heading
+      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+        .input-group
+          .mr-sm-2
+            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+      %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+        - if policy(Location).create?
+          = link_to 'New Location', new_location_path, class: 'btn btn-sm btn-primary'
 .table-responsive
   %table#table1
     %thead
@@ -19,8 +29,12 @@
       - @locations.each do |location|
         %tr
           %td= link_to location.name, location, class: 'btn btn-sm btn-primary' if policy(location).show?
-          %td= link_to 'Edit', edit_location_path(location), class: 'btn btn-sm btn-warning' if policy(location).update?
-          %td= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' if policy(location).destroy?
+          %td= link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(location).update?
+          %td
+            - unless location.associations?
+              = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(location).destroy?
+            - else
+              = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(location).destroy?
           %td= location.tel
           %td= location.email
           %td= location.address
@@ -28,7 +42,12 @@
           %td= location.workplaces_count
           %td= number_to_currency(location.balance_cents, :unit => "$")
           %td= location.jobs_count
+          %tbody
+            - location.workplaces.each do |workplace|
+              %tr
+                %td
+                  = link_to workplace.name, workplace
+                  = status_label(workplace.status)
+
 
 %br
-
-= link_to 'New Location', new_location_path
