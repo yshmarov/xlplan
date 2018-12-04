@@ -4,10 +4,10 @@ class Employee < ApplicationRecord
   include Personable
 
   #has_one :user
-  has_one :user, dependent: :destroy
   belongs_to :location
-  has_many :jobs
-  has_many :skills
+  has_one :user, dependent: :destroy
+  has_many :jobs, dependent: :restrict_with_error
+  has_many :skills, dependent: :destroy
   has_many :comments
   has_many :service_categories, through: :skills
   has_many :clients, dependent: :nullify
@@ -63,6 +63,10 @@ class Employee < ApplicationRecord
     update_column :balance, (jobs.map(&:employee_due_price).sum)
   end
 
+  def associations?
+    jobs.any?
+  end
+
   protected
 
   def termination_date_cannot_be_before_employment_date
@@ -70,6 +74,5 @@ class Employee < ApplicationRecord
       errors.add(:termination_date, "can't be before employment date")
     end
   end
-
 
 end

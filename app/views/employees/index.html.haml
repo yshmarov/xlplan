@@ -44,7 +44,11 @@
               .fa.fa-user
             = link_to employee.full_name, employee_path(employee), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).show?
           %td= link_to '', edit_employee_path(employee), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).update?
-          %td= link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).destroy?
+          %td
+            - unless employee.associations?
+              = link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).destroy?
+            - else
+              = link_to '', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).destroy?
           %td
             = link_to "tel:#{employee.phone_number}", class: "button" do
               #{employee.phone_number}

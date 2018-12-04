@@ -60,9 +60,10 @@ class EmployeesController < ApplicationController
   def destroy
     authorize @employee
     @employee.destroy
-    respond_to do |format|
-      format.html { redirect_to employees_url, notice: 'Employee was successfully destroyed.' }
-      format.json { head :no_content }
+    if @employee.errors.present?
+      redirect_to employees_url, alert: 'Employee has associated jobs. Can not delete.'
+    else
+      redirect_to employees_url, notice: 'Employee was successfully destroyed.'
     end
   end
 
