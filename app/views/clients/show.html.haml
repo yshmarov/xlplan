@@ -1,4 +1,3 @@
-%p
 .row
   .col-lg-4
     .card
@@ -40,8 +39,9 @@
         %b Status:
         = status_label(@client.status)
         %br
-        %b Responsible:
+        %b Created:
         = link_to @client.employee, employee_path(@client.employee) if @client.employee.present?
+        = @client.created_at.strftime('%d/%b/%Y, %H:%M')
     %p
     .card
       .card-header
@@ -50,6 +50,7 @@
       .card-body
         = render "comments/form"
         = render "comments/index"
+    %p
   .col-lg-8
     .card
       .card-header

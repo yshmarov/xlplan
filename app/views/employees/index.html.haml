@@ -27,11 +27,9 @@
         %th
           Contacts
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
-        %th= sort_link @ransack_employees, :date_of_birth, "Birthday"
         %th= sort_link @ransack_employees, :status, "Status"
         %th= sort_link @ransack_employees, :balance, "Balance"
         %th= sort_link @ransack_employees, :jobs_count, "Jobs"
-        %th Comments
         %th Location
         %th Skills
         %th Status
@@ -58,13 +56,9 @@
             - if employee.email.present? && employee.phone_number.present?
               \/
             %a{:href => "mailto:#{employee.email}"}= employee.email
-          %td
-            - if employee.date_of_birth.present?
-              #{employee.date_of_birth.strftime('%d/%b/%Y')} (#{employee.age})
           %td= status_label(employee.status)
           %td= number_to_currency(employee.balance_cents, :unit => "$")
           %td= employee.jobs_count
-          %td= employee.comments.count
           %td= link_to employee.location, location_path(employee.location) 
           %td= employee.skills.collect{|r| r.service_category}.to_sentence
           %td

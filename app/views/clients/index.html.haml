@@ -27,13 +27,10 @@
         %th 
           Contacts
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
-        %th= sort_link @ransack_clients, :date_of_birth, "Birthday"
         %th= sort_link @ransack_clients, :status, "Status"
         %th= sort_link @ransack_clients, :balance, "Balance"
         %th= sort_link @ransack_clients, :jobs_count, "Jobs"
-        %th Comments
-        %th= sort_link @ransack_clients, :employee_id, "Responsible"
-  
+        %th Created
     %tbody
       - @clients.each do |client|
         %tr
@@ -50,14 +47,12 @@
             - if client.email.present? && client.phone_number.present?
               \/
             %a{:href => "mailto:#{client.email}"}= client.email
-          %td
-            - if client.date_of_birth.present?
-              #{client.date_of_birth.strftime('%d/%b/%Y')} (#{client.age})
           %td= status_label(client.status)
           %td= number_to_currency(client.balance_cents, :unit => "$")
           %td= client.jobs_count
-          %td= client.comments_count
-          %td= link_to client.employee, employee_path(client.employee) if client.employee.present?
+          %td
+            = link_to client.employee, employee_path(client.employee) if client.employee.present?
+            = client.created_at.strftime('%d/%b/%Y, %H:%M')
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
