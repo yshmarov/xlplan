@@ -43,7 +43,7 @@
           %td
             - if employee.user_online.present?
               %i.fa.fa-fire{:style => "color:red;"}
-            - if employee.id == current_user.id
+            - if employee.id == current_user.employee.id
               .fa.fa-user
             = link_to employee.full_name, employee_path(employee), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).show?
           %td= link_to '', edit_employee_path(employee), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(employee).update?

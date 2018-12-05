@@ -10,8 +10,6 @@
   %b Status:
   = @workplace.status
 
-/= link_to 'Edit', edit_workplace_path(@workplace)
-\|
-= link_to 'Back', workplaces_path
+= link_to 'Back to Location', location_path(@workplace.location), class: 'btn btn-sm btn-secondary'
 
 = render 'static_pages/calendar'

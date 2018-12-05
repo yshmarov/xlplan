@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   resources :locations do
     resources :workplaces
   end
-  resources :workplaces, only: [:index, :show]
+  resources :workplaces, only: [:show]
 
   resources :jobs do
     resources :comments
