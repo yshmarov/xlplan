@@ -1,0 +1,79 @@
+%h4
+  .fa.fa-tachometer-alt
+  Dashboard
+%p
+.card
+  .card-header
+    .fa.fa-rocket
+    Getting started
+  .card-body
+    - if Service.any?
+      %h5
+        %span.badge.badge-pill.badge-success 1
+        = link_to 'Add a service', new_service_path
+      %hr
+    - if Employee.any?
+      %h5
+        %span.badge.badge-pill.badge-success 2
+        = link_to 'Invite an employee', new_employee_path
+      %hr
+    - if Client.any?
+      %h5
+        %span.badge.badge-pill.badge-success 3
+        = link_to 'Add a client', new_client_path
+      %hr
+    - if Job.any?
+      %h5
+        %span.badge.badge-pill.badge-success 4
+        = link_to 'Add an appointment', new_job_path
+%p
+.row
+  .col-xl-4
+    .card
+      .card-header
+        .fa.fa-chart-line
+        New Jobs in the last 30 days
+      .card-body
+        = Job.where('created_at >= ?', 1.month.ago).count
+    %p
+  .col-xl-4
+    .card
+      .card-header
+        .fa.fa-chart-line
+        New Clients in the last 30 days
+      .card-body
+        = Client.where('created_at >= ?', 1.month.ago).count
+    %p
+  .col-xl-4
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Turnover in the last 30 days
+      .card-body
+        = @total_confirmed_earnings = Job.is_confirmed.where('created_at >= ?', 1.month.ago).map(&:client_due_price_cents).sum
+%p
+.row
+  .col-xl-4
+    .card-header
+      .fa.fa-globe
+      Activity
+      .float-right
+        = link_to 'more', activity_path, class: 'btn btn-sm btn-primary'
+    .card
+      =  render 'static_pages/activity'
+    %p
+  .col-xl-4
+    .card
+      .card-header
+        .fa.fa-calendar
+        Upcoming appointments
+      .card-body
+    %p
+  .col-xl-4
+    .card-header
+      .fa.fa-calendar-check
+      Mark attendance
+      .float-right
+        = link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: 'btn btn-sm btn-primary'
+    .card
+      = render 'jobs/index'

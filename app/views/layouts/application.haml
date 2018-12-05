@@ -13,10 +13,16 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.bg-light
-    /= render 'layouts/header'
-    #wrapper
+    - if current_user
+      #wrapper
+        = render 'layouts/sidebar'
+        = render 'layouts/messages'
+        .container-fluid
+          = yield
+          = rjv_tags
+    - else
+      = render 'layouts/header'
       = render 'layouts/messages'
-      = render 'layouts/sidebar'
       .container-fluid
         = yield
         = rjv_tags

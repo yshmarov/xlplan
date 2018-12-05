@@ -1,0 +1,27 @@
+%ul.list-group.list-group-flush
+  - @activities.each do |a|
+    %li.list-group-item
+      = link_to a.owner.to_s, employee_path(a.owner.employee.id) if a.owner
+      = distance_of_time_in_words Time.now, a.created_at
+      ago
+      %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
+    
+      = a.key
+      - if a.trackable
+        - unless a.trackable_type == 'Comment'
+          = link_to a.trackable, a.trackable
+        - else
+          \for
+          = link_to a.trackable.commentable, a.trackable.commentable
+        - if a.parameters.present?
+          /= a.parameters.empty?
+          - unless a.parameters == "{}"
+            - unless a.trackable_type == 'Comment'
+              = status_label(a.parameters[:status])
+            - else
+              .card-header
+                .font-weight-light.font-italic= a.parameters[:content]
+      - else
+        which has since been removed
+      /= a.trackable_type
+      /= a.trackable_id

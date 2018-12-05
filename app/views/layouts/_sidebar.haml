@@ -6,70 +6,48 @@
     %span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
     %ul.navbar-nav.side-nav
-      - if current_user
-        %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
-        %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
-        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
-        %li.nav-item= link_to "Services", services_path, class: "nav-link"
-        %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
-        %li.nav-item= link_to "Activity", activity_path, class: "nav-link btn"
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Stats
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "General", stats_general_path, class: "dropdown-item navdrop-link"
-            %hr
-            = link_to "Clients", stats_clients_path, class: "dropdown-item navdrop-link"
-            = link_to "Employees", stats_employees_path, class: "dropdown-item navdrop-link"
-            = link_to "Jobs", stats_jobs_path, class: "dropdown-item navdrop-link"
-            = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
-            = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Settings
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            /= link_to "Workplaces", workplaces_path, class: "dropdown-item navdrop-link"
-            = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
-            = link_to "Role Descriptions", role_description_path, class: "dropdown-item navdrop-link"
-      - else
-        %li.nav-item= link_to "Features", root_path, class: "nav-link"
-        %li.nav-item= link_to "Industries", root_path, class: "nav-link"
-        %li.nav-item= link_to "Pricing", root_path, class: "nav-link"
-        %li.nav-item= link_to "Why JobDone?", root_path, class: "nav-link"
+      %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link"
+      %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
+      %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
+      %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
+      %li.nav-item= link_to "Services", services_path, class: "nav-link"
+      %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
+      %li.nav-item= link_to "Activity", activity_path, class: "nav-link btn"
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          Stats
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          = link_to "General", stats_general_path, class: "dropdown-item navdrop-link"
+          %hr
+          = link_to "Clients", stats_clients_path, class: "dropdown-item navdrop-link"
+          = link_to "Employees", stats_employees_path, class: "dropdown-item navdrop-link"
+          = link_to "Jobs", stats_jobs_path, class: "dropdown-item navdrop-link"
+          = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
+          = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          Settings
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
+          = link_to "User Roles", user_roles_path, class: "dropdown-item navdrop-link"
     %ul.navbar-nav.justify-content-end
-      - if current_user
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            + New
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "+ New Job", new_job_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
-            %hr
-            = link_to "+ New Employee", new_employee_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New ServiceCategory", new_service_category_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
-            /= link_to "+ New Workplace", new_workplace_path, class: "dropdown-item navdrop-link"
-        /%li.nav-item= link_to "+ New Job", new_job_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "Update Status: #{Job.planned_in_past.count}", planned_in_past_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "My Calendar", my_calendar_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-      - else
-        %li.nav-item= link_to "Features", root_path, class: "nav-link"
-        %li.nav-item= link_to "Industries", root_path, class: "nav-link"
-        %li.nav-item= link_to "Pricing", root_path, class: "nav-link"
-        %li.nav-item= link_to "Why JobDone?", root_path, class: "nav-link"
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          + New
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          = link_to "+ New Job", new_job_path, class: "dropdown-item navdrop-link"
+          = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
+          %hr
+          = link_to "+ New Employee", new_employee_path, class: "dropdown-item navdrop-link"
+          = link_to "+ New ServiceCategory", new_service_category_path, class: "dropdown-item navdrop-link"
+          = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
+          = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
+      %li.nav-item= link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"
     %ul.navbar-nav.ml-md-auto.d-md-flex
-      - if current_user
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            = current_user.employee.full_name
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to 'My page', employee_path(current_user.employee), class: "dropdown-item navdrop-link"
-            = link_to 'Account Settings', edit_user_registration_path, class: "dropdown-item navdrop-link"
-            = link_to "Logout", destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"
-      - else
-        /%li= link_to 'Login', new_user_session_path, class: "nav-link"
-        .form-inline
-          = link_to 'Log In', new_user_session_path, class: 'btn btn-light mr-sm-2'
-          = link_to 'Free trial', new_user_registration_path, class: 'btn btn-light'
-
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          = current_user.employee.full_name
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          = link_to 'My page', employee_path(current_user.employee), class: "dropdown-item navdrop-link"
+          = link_to 'Account Settings', edit_user_registration_path, class: "dropdown-item navdrop-link"
+          = link_to "Logout", destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"

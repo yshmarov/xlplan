@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :jobs do
     resources :comments
-    get :planned_in_past, on: :collection
+    get :mark_attendance, on: :collection
   	member do
   		patch :mark_planned
   		patch :mark_confirmed
@@ -47,7 +47,8 @@ Rails.application.routes.draw do
   get 'stats/locations'
 
   get 'activity', to: 'static_pages#activity'
-  get 'my_calendar', to: 'static_pages#my_calendar'
-  get 'role_description', to: 'static_pages#role_description'
+  get 'dashboard', to: 'static_pages#dashboard'
+  get 'calendar', to: 'static_pages#calendar'
+  get 'user_roles', to: 'static_pages#user_roles'
   root to: 'static_pages#landing_page'
 end

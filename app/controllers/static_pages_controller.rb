@@ -3,18 +3,23 @@ class StaticPagesController < ApplicationController
 
   def landing_page
     if current_user
-      redirect_to my_calendar_path
+      redirect_to dashboard_path
     end
   end
 
-  def role_description
+  def user_roles
   end
 
   def activity
     @activities = PublicActivity::Activity.all.reverse
   end
 
-  def my_calendar
+  def dashboard
+    @activities = PublicActivity::Activity.limit(5).reverse
+    @jobs = Job.mark_attendance
+  end
+
+  def calendar
     @jobs = current_user.employee.jobs
   end
 
