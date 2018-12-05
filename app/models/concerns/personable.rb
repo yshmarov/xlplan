@@ -12,6 +12,12 @@ module Personable
     self.email.split(/@/).first
   end
 
+  def user_online
+    if user.present? && user.online?
+      1
+    end
+  end
+
   def age
     if date_of_birth.present?
       now = Time.now.utc.to_date

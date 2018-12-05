@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   #include PublicActivity::Model
   #tracked only: :create, owner: :itself
+  scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
 
   belongs_to :employee
   belongs_to :invitor, class_name: 'Employee', foreign_key: :invited_by_id, required: false
@@ -17,6 +18,9 @@ class User < ApplicationRecord
   after_create :assign_default_role
   #after_initialize :assign_default_role, if: :new_record?
 
+  def online?
+    updated_at > 10.minutes.ago
+  end
 
   def to_s
     employee.to_s

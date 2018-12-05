@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   before_action :authenticate_user!
+  after_action :user_activity
 
   include PublicActivity::StoreController 
 
@@ -10,6 +11,10 @@ class ApplicationController < ActionController::Base
     def user_not_authorized
       flash[:alert] = "You are not authorized to access this page."
       redirect_to(request.referrer || root_path)
+    end
+
+    def user_activity
+      current_user.try :touch
     end
 
   #def current_user
