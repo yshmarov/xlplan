@@ -12,8 +12,6 @@
         %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
         %li.nav-item= link_to "Services", services_path, class: "nav-link"
         %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
-        %li.nav-item= link_to "Workplaces", workplaces_path, class: "nav-link"
-        %li.nav-item= link_to "Service Categories", service_categories_path, class: "nav-link"
         %li.nav-item= link_to "Activity", activity_path, class: "nav-link btn"
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -30,6 +28,8 @@
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             Settings
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            = link_to "Workplaces", workplaces_path, class: "dropdown-item navdrop-link"
+            = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
             = link_to "Role Descriptions", role_description_path, class: "dropdown-item navdrop-link"
       - else
         %li.nav-item= link_to "Features", root_path, class: "nav-link"
