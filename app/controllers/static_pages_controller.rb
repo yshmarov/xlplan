@@ -16,7 +16,8 @@ class StaticPagesController < ApplicationController
 
   def dashboard
     @activities = PublicActivity::Activity.limit(5).reverse
-    @jobs = Job.mark_attendance
+    @jobs = Job.mark_attendance.where(employee_id: current_user.employee.id)
+    @total_confirmed_earnings = Job.is_confirmed.where('created_at >= ?', 1.month.ago).map(&:client_due_price_cents).sum
   end
 
   def calendar

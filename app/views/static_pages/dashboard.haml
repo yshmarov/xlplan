@@ -2,30 +2,31 @@
   .fa.fa-tachometer-alt
   Dashboard
 %p
-.card
-  .card-header
-    .fa.fa-rocket
-    Getting started
-  .card-body
-    - if Service.any?
-      %h5
-        %span.badge.badge-pill.badge-success 1
-        = link_to 'Add a service', new_service_path
-      %hr
-    - if Employee.any?
-      %h5
-        %span.badge.badge-pill.badge-success 2
-        = link_to 'Invite an employee', new_employee_path
-      %hr
-    - if Client.any?
-      %h5
-        %span.badge.badge-pill.badge-success 3
-        = link_to 'Add a client', new_client_path
-      %hr
-    - if Job.any?
-      %h5
-        %span.badge.badge-pill.badge-success 4
-        = link_to 'Add an appointment', new_job_path
+- unless Job.any?
+  .card
+    .card-header
+      .fa.fa-rocket
+      Getting started
+    .card-body
+      - unless Service.any?
+        %h5
+          %span.badge.badge-pill.badge-success 1
+          = link_to 'Add a service', new_service_path
+        %hr
+      - unless Employee.any?
+        %h5
+          %span.badge.badge-pill.badge-success 2
+          = link_to 'Invite an employee', new_employee_path
+        %hr
+      - unless Client.any?
+        %h5
+          %span.badge.badge-pill.badge-success 3
+          = link_to 'Add a client', new_client_path
+        %hr
+      - unless Job.any?
+        %h5
+          %span.badge.badge-pill.badge-success 4
+          = link_to 'Add an appointment', new_job_path
 %p
 .row
   .col-xl-4
@@ -50,7 +51,7 @@
         .fa.fa-chart-line
         Turnover in the last 30 days
       .card-body
-        = @total_confirmed_earnings = Job.is_confirmed.where('created_at >= ?', 1.month.ago).map(&:client_due_price_cents).sum
+        = number_to_currency(@total_confirmed_earnings, :unit => "$")
 %p
 .row
   .col-xl-4
@@ -74,6 +75,6 @@
       .fa.fa-calendar-check
       Mark attendance
       .float-right
-        = link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: 'btn btn-sm btn-primary'
+        = link_to "#{Job.mark_attendance.count} Tasks", mark_attendance_jobs_path, class: 'btn btn-sm btn-primary'
     .card
       = render 'jobs/index'
