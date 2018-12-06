@@ -7,7 +7,7 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.string :phone_number
       t.string :email
       t.date :date_of_birth
-      t.string :sex, default: "undisclosed"
+      t.string :gender, default: "undisclosed"
       t.string :address
       t.integer :status, default: 1, null: false
       t.integer :balance, default: 0, null: false

@@ -11,6 +11,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.string :service_name, default: 0, null: false
       t.string :service_description, default: 0, null: false
       t.integer :service_duration, default: 0, null: false
+      t.integer :service_employee_percent, default: 0, null: false
       t.integer :client_price, default: 0, null: false
       t.integer :client_due_price, default: 0, null: false
       t.integer :employee_price, default: 0, null: false
