@@ -1,4 +1,7 @@
 class Skill < ApplicationRecord
+
+  acts_as_tenant
+
   belongs_to :employee
   belongs_to :service_category
   validates :employee_id, :service_category_id, presence: true

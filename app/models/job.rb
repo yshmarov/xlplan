@@ -1,4 +1,7 @@
 class Job < ApplicationRecord
+
+  acts_as_tenant
+
   #after_save :update_associated_columns
   #after_update :update_associated_columns
   after_create :update_associated_columns

@@ -1,6 +1,7 @@
 class CreateServices < ActiveRecord::Migration[5.2]
   def change
     create_table :services do |t|
+      t.references :tenant, foreign_key: true
       t.string :name, :limit => 144, null: false
       t.string :description, :limit => 255
       t.integer :duration, default: 30, null: false

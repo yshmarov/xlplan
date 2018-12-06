@@ -1,6 +1,7 @@
 class CreateEmployees < ActiveRecord::Migration[5.2]
   def change
     create_table :employees do |t|
+      t.references :tenant, foreign_key: true
       t.string :first_name, :limit => 144, null: false
       t.string :middle_name, :limit => 144
       t.string :last_name, :limit => 144, null: false

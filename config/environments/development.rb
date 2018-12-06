@@ -1,6 +1,4 @@
 Rails.application.configure do
-  #config.action_mailer.delivery_method = :test 
-  #config.action_mailer.default_url_options = { :host => 'https://myevent-yashm.c9users.io:3000'}
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.delivery_method = :smtp
@@ -9,7 +7,7 @@ Rails.application.configure do
     :address => "smtp.gmail.com",
     :port => "587",
     :authentication => :plain,
-    :user_name => "yshmarov@gmail.com",
+    :user_name => "support@jobdone.com",
     :password => ENV["SMTP_ENTRY"],
     :enable_starttls_auto => true
   }  

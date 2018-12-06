@@ -1,6 +1,7 @@
 class CreateJobs < ActiveRecord::Migration[5.2]
   def change
     create_table :jobs do |t|
+      t.references :tenant, foreign_key: true
       t.belongs_to :client, foreign_key: true
       t.belongs_to :service, foreign_key: true
       t.belongs_to :location, foreign_key: true
