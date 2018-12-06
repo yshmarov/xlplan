@@ -3,6 +3,8 @@ class Member < ApplicationRecord
   belongs_to :user
   acts_as_tenant
 
+  include Personable
+
   DEFAULT_ADMIN = {
     first_name: "Admin",
     last_name:  "Please edit me"

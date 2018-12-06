@@ -13,6 +13,32 @@
     .col
       .embed-responsive.embed-responsive-16by9
         %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/-Yjx9eAiI2E?rel=0", :width => "560"}
+
+  %hr
+  %br
+  .row
+    .col-lg-6
+      .card
+        .card-body
+          %h2 Free Plan
+          Price: Free
+          .text-left
+            %ul
+              %li 1-3 Employees
+              %li 1 Location
+          %p
+            = link_to 'Sign Up', new_user_registration_path(plan: 'free'), class: 'btn btn-lg btn-primary'
+    .col-lg-6
+      .card
+        .card-body
+          %h2 Premium Plan
+          Price: $10
+          .text-left
+            %ul
+              %li Unlimited Employees
+              %li Unlimited Locations
+          %p
+            = link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-lg btn-primary'
   %hr
   %br
   .display-4

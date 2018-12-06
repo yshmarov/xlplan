@@ -1,6 +1,7 @@
 class Tenant < ApplicationRecord
 
-   acts_as_universal_and_determines_tenant
+  acts_as_universal_and_determines_tenant
+
   has_many :members, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :employees, dependent: :destroy
@@ -13,9 +14,13 @@ class Tenant < ApplicationRecord
   has_many :comments, dependent: :destroy
   #has_many :activities, dependent: :destroy
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
     def self.create_new_tenant(tenant_params, user_params, coupon_params)
 
-      tenant = Tenant.new(:name => tenant_params[:name])
+      #tenant = Tenant.new(:name => tenant_params[:name])
+      tenant = Tenant.new(tenant_params)
 
       if new_signups_not_permitted?(coupon_params)
 
