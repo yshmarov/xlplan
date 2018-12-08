@@ -61,4 +61,8 @@ Rails.application.routes.draw do
   get 'user_roles', to: 'home#user_roles'
   root to: 'home#landing_page'
 
+  #edit tenant plans
+  match '/plan/edit' => 'tenants#edit', via: :get, as: :edit_plan
+  match '/plan/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
+
 end

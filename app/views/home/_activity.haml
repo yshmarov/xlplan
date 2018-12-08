@@ -1,7 +1,7 @@
 %ul.list-group.list-group-flush
   - @activities.each do |a|
     %li.list-group-item
-      = link_to a.owner.to_s, employee_path(a.owner.employee.id) if a.owner
+      /= link_to a.owner.to_s, employee_path(a.owner.employee.id) if a.owner
       = distance_of_time_in_words Time.now, a.created_at
       ago
       %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}

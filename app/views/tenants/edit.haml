@@ -1,0 +1,15 @@
+%script{:language => "JavaScript"}
+  :cdata
+    Stripe.setPublishableKey("#{ENV['STRIPE_TEST_PUBLISHABLE_KEY']}");
+= form_for @tenant, url: update_plan_path do |f|
+  .form-group.col-md-12.no-side-padding
+    = f.label :name, 'Organization'
+    %span.description (Unique name for your group or organization for the new account)
+    = f.text_field :name, required: true, class: "form-control"
+  .form-group.col-md-12.no-side-padding
+    = f.label :plan
+    = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, |
+      required: true, class: "form-control"                                |
+  %br/
+  .row.col-md-12
+    = f.submit 'Update Plan', class: "btn btn-primary", id: 'update_plan'
