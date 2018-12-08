@@ -42,12 +42,6 @@
           %td= location.workplaces_count
           %td= number_to_currency(location.balance_cents, :unit => "$")
           %td= location.jobs_count
-          %tbody
-            - location.workplaces.each do |workplace|
-              %tr
-                %td
-                  = link_to workplace.name, workplace
-                  = status_label(workplace.status)
 
 
 %br

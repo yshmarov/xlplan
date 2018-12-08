@@ -3,7 +3,7 @@ class CreateActivities < (ActiveRecord.version.release() < Gem::Version.new('5.2
   # Create table
   def self.up
     create_table :activities do |t|
-      t.references :tenant, foreign_key: true
+      t.belongs_to :tenant, index: true, foreign_key: true
       t.belongs_to :trackable, :polymorphic => true
       t.belongs_to :owner, :polymorphic => true
       t.string  :key

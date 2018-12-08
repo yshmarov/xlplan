@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, :controllers => { 
-    :registrations => "registrations",
+    :registrations => "milia/registrations",
     :confirmations => "confirmations",
     :sessions => "milia/sessions", 
     :passwords => "milia/passwords", 
@@ -31,8 +31,7 @@ Rails.application.routes.draw do
   resources :service_categories, except: [:show]
 
   resources :locations do
-    resources :workplaces
-  end
+    end
   resources :workplaces, only: [:show]
 
   resources :jobs do

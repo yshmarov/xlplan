@@ -270,17 +270,6 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
-  create_table "workplaces", force: :cascade do |t|
-    t.bigint "tenant_id"
-    t.string "name", limit: 144, null: false
-    t.bigint "location_id"
-    t.integer "status", default: 1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_workplaces_on_location_id"
-    t.index ["tenant_id"], name: "index_workplaces_on_tenant_id"
-  end
-
   add_foreign_key "activities", "tenants"
   add_foreign_key "clients", "employees"
   add_foreign_key "clients", "tenants"
@@ -305,6 +294,4 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
   add_foreign_key "skills", "tenants"
   add_foreign_key "tenants", "tenants"
   add_foreign_key "users", "employees"
-  add_foreign_key "workplaces", "locations"
-  add_foreign_key "workplaces", "tenants"
 end

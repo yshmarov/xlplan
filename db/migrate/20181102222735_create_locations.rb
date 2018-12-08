@@ -1,7 +1,7 @@
 class CreateLocations < ActiveRecord::Migration[5.2]
   def change
     create_table :locations do |t|
-      t.references :tenant, foreign_key: true
+      t.belongs_to :tenant, index: true, foreign_key: true
       t.string :name, :limit => 144, null: false
       t.string :tel, :limit => 144
       t.string :email, :limit => 144

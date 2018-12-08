@@ -5,7 +5,6 @@ class Location < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
-  has_many :workplaces, dependent: :restrict_with_error
   has_many :employees, dependent: :restrict_with_error
   has_many :jobs, dependent: :restrict_with_error
 
@@ -23,7 +22,7 @@ class Location < ApplicationRecord
   end
 
   def associations?
-    jobs.any? || employees.any? || workplaces.any?
+    jobs.any? || employees.any?
   end
 
   #protected

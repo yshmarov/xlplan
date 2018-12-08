@@ -19,11 +19,9 @@
   %b Status:
   = status_label(@location.status)
 
-= link_to 'Edit Location and Workplaces', edit_location_path(@location), class: 'btn btn-sm btn-warning'
+= link_to 'Edit Location', edit_location_path(@location), class: 'btn btn-sm btn-warning'
 \|
 = link_to 'Back', locations_path, class: 'btn btn-sm btn-secondary'
-%p Workplaces:
-= @workplaces.map{|p| p.name}.join(", ")
 
 .container
   = render 'static_pages/calendar'

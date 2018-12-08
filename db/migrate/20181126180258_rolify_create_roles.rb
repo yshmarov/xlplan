@@ -1,7 +1,7 @@
 class RolifyCreateRoles < ActiveRecord::Migration[5.2]
   def change
     create_table(:roles) do |t|
-      t.references :tenant, foreign_key: true
+      t.belongs_to :tenant, index: true, foreign_key: true
       t.string :name
       t.references :resource, :polymorphic => true
 
