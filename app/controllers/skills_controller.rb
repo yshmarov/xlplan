@@ -4,6 +4,8 @@ class SkillsController < ApplicationController
   def new
     @employee = Employee.find(params[:employee_id])
     @skill = Skill.new
+    #@skill.employee_id = params[:employee_id]
+
     #@skill = Skill.new(:post=>@post)
     #@skill = @employee.skills.build
 

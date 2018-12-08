@@ -53,6 +53,7 @@
         %b Skills
         .float-right
           = link_to 'Add Skill', new_employee_skill_path(@employee, @skill), class: 'btn btn-sm btn-primary'
+          /= link_to 'Add Skill', new_artifact_path(project_id: @project.id), :class => 'btn btn-primary'
       .card-body
         - @employee.skills.each do |skill|
           = skill.service_category
