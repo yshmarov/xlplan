@@ -17,6 +17,10 @@ class Tenant < ApplicationRecord
   validates_presence_of :name
   validates_uniqueness_of :name
 
+  def can_create_service_categories?
+    (plan == 'free' && service_categories.count < 1) || (plan == 'premium')
+  end
+
     def self.create_new_tenant(tenant_params, user_params, coupon_params)
 
       #tenant = Tenant.new(:name => tenant_params[:name])

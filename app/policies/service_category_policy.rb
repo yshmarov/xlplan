@@ -34,6 +34,7 @@ class ServiceCategoryPolicy < ApplicationPolicy
   end
 
   def admin_or_manager
+    #@user.has_any_role? :admin, :manager
     @user.has_role?(:admin) || @user.has_role?(:manager)
   end
 
