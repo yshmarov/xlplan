@@ -250,10 +250,8 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
-    t.bigint "employee_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["employee_id"], name: "index_users_on_employee_id"
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
@@ -293,5 +291,4 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
   add_foreign_key "skills", "service_categories"
   add_foreign_key "skills", "tenants"
   add_foreign_key "tenants", "tenants"
-  add_foreign_key "users", "employees"
 end

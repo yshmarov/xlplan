@@ -8,7 +8,7 @@ class Employee < ApplicationRecord
 
   #has_one :user
   belongs_to :location
-  has_one :user, dependent: :destroy
+  #has_one :user, dependent: :destroy
   has_many :jobs, dependent: :restrict_with_error
   has_many :skills, dependent: :destroy
   has_many :comments
