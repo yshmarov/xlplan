@@ -3,13 +3,16 @@ Rails.application.routes.draw do
   get 'home/landing_page'
   root :to => "home#landing_page"
 
+  as :user do   
+    match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
+  end
+
   devise_for :users, :controllers => { 
-    :registrations => "milia/registrations",
-    :confirmations => "milia/confirmations",
+    :registrations => "registrations",
+    :confirmations => "confirmations",
     :sessions => "milia/sessions", 
     :passwords => "milia/passwords", 
   }
-
 
   resources :users, only: [:destroy, :edit, :update]
 

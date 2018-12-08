@@ -4,6 +4,8 @@
 = form_for @user do |f|
   - Role.all.each do |role|
     = check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id)
+    /= w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control"
+
     = role.name
   = f.submit
 %br

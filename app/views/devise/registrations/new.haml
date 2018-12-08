@@ -16,13 +16,13 @@
         = f.label :password_confirmation
         = f.password_field :password_confirmation, class: "form-control"
       = fields_for( :tenant ) do |w|
-        .form-group.col-md-6.no-left-padding
-          = w.label :name, 'Organization'
-          %span.description (Unique name for your group or organization for the new account)
-          = w.text_field :name, required: true, class: "form-control"
-        .form-group.col-md-6.no-right-padding
-          = w.label :plan
-          = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, |
-            class: "form-control"                                                                |
+        .row
+          .form-group.col-md-6
+            = w.label :name, 'Organization'
+            %span.description (Unique name for your group or organization for the new account)
+            = w.text_field :name, required: true, class: "form-control"
+          .form-group.col-md-6
+            = w.label :plan
+            = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control"
       = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
 = render "devise/shared/links"
