@@ -12,6 +12,13 @@ class ServiceCategory < ApplicationRecord
   validates :name, uniqueness: true
   validates :name, presence: true
 
+  #validate :free_plan_can_only_have_one
+  #def free_plan_can_only_have_one
+  #  if self.new_record? && (tenant.service_categories.count > 0) && (tenant.plan == 'free')
+  #    errors.add(:base, "Free plans cannot have more than one service_category")
+  #  end
+  #end
+
   def to_s
     name
   end
