@@ -1,6 +1,12 @@
 %h4
   .fa.fa-tachometer-alt
   Dashboard
+
+- Member.all.each do |x|
+  = x.user.email
+  = x.user.roles.collect{|r| r.name}.to_sentence
+  = link_to 'Edit roles', edit_user_path(x.user), class: 'btn btn-warning btn-sm'
+
 %p
 - unless Job.any?
   .card

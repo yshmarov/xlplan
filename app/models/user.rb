@@ -7,7 +7,6 @@ class User < ApplicationRecord
   acts_as_universal_and_determines_account
   has_one :member, :dependent => :destroy
 
-
   rolify
 
   #include PublicActivity::Model
@@ -21,7 +20,7 @@ class User < ApplicationRecord
   #validates :employee_id, uniqueness: true
 
   after_create :assign_default_role
-  #after_initialize :assign_default_role, if: :new_record?
+  #after_initialize :assign_default_role
 
   def online?
     updated_at > 10.minutes.ago

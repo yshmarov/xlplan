@@ -9,6 +9,7 @@ class RolifyCreateRoles < ActiveRecord::Migration[5.2]
     end
 
     create_table(:users_roles, :id => false) do |t|
+      t.belongs_to :tenant, index: true, foreign_key: true
       t.references :user
       t.references :role
     end

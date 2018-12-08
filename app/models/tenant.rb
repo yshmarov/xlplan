@@ -58,6 +58,7 @@ class Tenant < ApplicationRecord
       #  StartupJob.queue_startup( tenant, user, other )
       # any special seeding required for a new organizational tenant
       #
+
       Member.create_org_admin(user)
       #
     end

@@ -261,9 +261,11 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "tenant_id"
     t.bigint "user_id"
     t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["tenant_id"], name: "index_users_roles_on_tenant_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
@@ -291,4 +293,5 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
   add_foreign_key "skills", "service_categories"
   add_foreign_key "skills", "tenants"
   add_foreign_key "tenants", "tenants"
+  add_foreign_key "users_roles", "tenants"
 end
