@@ -77,3 +77,4 @@ gem "pundit"
 gem "rolify"
 gem "milia", :git => 'https://github.com/jekuno/milia.git'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem "cocoon"

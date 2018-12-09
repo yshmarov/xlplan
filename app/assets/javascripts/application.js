@@ -16,6 +16,7 @@
 //= require jquery3
 //= require rails-ujs
 //= require selectize
+//= require cocoon
 //= require bootstrap-datepicker
 //= require activestorage
 //= require turbolinks
@@ -51,6 +52,29 @@ function clearCalendar() {
 };
 
 $(document).on('turbolinks:load', function(){
+
+    $('form').on('cocoon:after-insert', function(e, addedItem) {
+      $(addedItem).find('.selectize').selectize({
+        sortField: 'text'
+      })
+    });
+
+    $("#service_category a.add_fields").
+      data("association-insertion-position", 'before').
+      data("association-insertion-node", 'this');
+
+     $('#service_category').bind('cocoon:after-insert',
+         function() {
+           $("#service_category_from_list").hide();
+           $("#service_category a.add_fields").hide();
+         });
+    $('#service_category').bind("cocoon:after-remove",
+         function() {
+           $("#service_category_from_list").show();
+           $("#service_category a.add_fields").show();
+         });
+     //$('body').tabs();
+
 
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
