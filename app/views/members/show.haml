@@ -1,0 +1,14 @@
+.page-header
+  %h1 Member
+%p
+  %b First name
+  = @member.first_name
+%p
+  %b Last name
+  = @member.last_name
+%p
+  %b Email
+  = @member.user.email
+= link_to 'Back', members_path, :class => 'btn btn-secondary'
+= link_to 'Edit', edit_member_path(@member), :class => 'btn btn-secondary'
+= link_to 'Destroy', member_path(@member), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger'
