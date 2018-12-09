@@ -4,17 +4,12 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    /= f.label :service_category
-    /= f.error :service_category, class: 'text-danger'
-    /= f.select :service_category_id, ServiceCategory.all.map{|c| [c.name, c.id]}, {include_blank: ServiceCategory.all.length > 1}, class: 'selectize'
-
     #service_category
       #service_category_from_list
         = f.label :service_category
+        = f.error :service_category, class: 'text-danger'
         = f.select :service_category_id, ServiceCategory.all.map{|c| [c.name, c.id]}, {include_blank: ServiceCategory.all.length > 1},class: 'selectize'
       = link_to_add_association 'or add a new service category', f, :service_category, class: 'btn btn-secondary'
-
-
 
     = f.input :name
     = f.input :description

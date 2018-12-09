@@ -5,12 +5,11 @@ class Service < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
-  belongs_to :service_category, counter_cache: true, optional: true
+  belongs_to :service_category, counter_cache: true
   has_many :jobs, dependent: :restrict_with_error
 
   validates :name, uniqueness: true
-  #validates :name, :duration, :client_price, :employee_percent, :employee_price, :quantity, :status, :service_category_id, presence: true
-  validates :name, :duration, :client_price, :employee_percent, :employee_price, :quantity, :status, presence: true
+  validates :name, :duration, :client_price, :employee_percent, :employee_price, :quantity, :status, :service_category, presence: true
 
   accepts_nested_attributes_for :service_category, :reject_if => :all_blank
 
