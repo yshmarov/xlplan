@@ -9,6 +9,8 @@ class Service < ApplicationRecord
   has_many :jobs, dependent: :restrict_with_error
 
   validates :name, uniqueness: true
+  validates :name, length: { in: 1..144 }
+  validates :description, length: { maximum: 255 }
   validates :name, :duration, :client_price, :employee_percent, :employee_price, :quantity, :status, :service_category, presence: true
 
   accepts_nested_attributes_for :service_category, :reject_if => :all_blank

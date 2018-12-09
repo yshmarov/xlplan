@@ -1,6 +1,10 @@
 class Location < ApplicationRecord
 
   acts_as_tenant
+  validates :name, length: { maximum: 50 }
+  validates :tel, length: { maximum: 144 }
+  validates :email, length: { maximum: 144 }
+  validates :address, length: { maximum: 255 }
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -25,6 +29,13 @@ class Location < ApplicationRecord
 
   def associations?
     jobs.any? || employees.any?
+  end
+
+  validate :free_plan_can_only_have_one_location
+  def free_plan_can_only_have_one_location
+    if self.new_record? && (tenant.locations.count > 0) && (tenant.plan == 'free')
+      errors.add(:base, "Free plans cannot have more than one location")
+    end
   end
 
   #protected

@@ -1,11 +1,11 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
   %a.navbar-brand{:href => "/"}
-    .fa.fa-calendar
+    .fa.fa-calendar-check
     JobDone
     \|
     = Tenant.current_tenant.name
+    \|
     = Tenant.current_tenant.plan
-    = current_user.roles.collect{|r| r.name}.to_sentence
 
   %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
@@ -46,7 +46,6 @@
           = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
           %hr
           = link_to "+ New Employee", new_employee_path, class: "dropdown-item navdrop-link"
-          = link_to "+ New ServiceCategory", new_service_category_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
       %li.nav-item= link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"

@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   resources :services
-  resources :service_categories, except: [:show]
+  resources :service_categories, except: [:show, :new, :create]
 
   resources :locations do
     end

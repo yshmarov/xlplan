@@ -5,16 +5,12 @@ class ServiceCategoryPolicy < ApplicationPolicy
     end
   end
 
-  def show?
-    admin
-  end
-
   def create?
-    admin
+    admin_or_manager
   end
 
   def new?
-    admin
+    admin_or_manager
   end
 
   def edit?

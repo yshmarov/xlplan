@@ -2,6 +2,8 @@ class Member < ApplicationRecord
    
   belongs_to :user
   acts_as_tenant
+  validates :first_name, length: { maximum: 144 }
+  validates :last_name, length: { maximum: 144 }
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

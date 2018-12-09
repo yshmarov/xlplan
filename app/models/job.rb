@@ -64,9 +64,10 @@ class Job < ApplicationRecord
   #Client.find_each { |client| Client.reset_counters(client.id, :comments_count) }
   #Location.find_each { |location| Location.reset_counters(location.id, :workplaces_count) }
 
-  validates :client_id, :starts_at, :status, :service_id, :location_id, :employee_id,
+  validates :client, :starts_at, :status, :service, :location, :employee,
             :service_name, :service_duration, :service_employee_percent, :client_price,
              :employee_price, presence: true
+  validates :description, length: { maximum: 500 }
 
   #add_index :jobs, :status
 

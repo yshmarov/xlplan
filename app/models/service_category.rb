@@ -11,6 +11,7 @@ class ServiceCategory < ApplicationRecord
 
   validates :name, uniqueness: true
   validates :name, presence: true
+  validates :name, length: { maximum: 144 }
 
   #validate :free_plan_can_only_have_one
   #def free_plan_can_only_have_one

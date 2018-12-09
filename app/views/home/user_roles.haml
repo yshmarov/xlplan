@@ -6,7 +6,7 @@ Client
 Viewer
 Owner
 
-%table
+%table.table.table-bordered
   %thead
     %tr
       %th 
@@ -42,35 +42,27 @@ Owner
   %tbody
     %tr
       %th{:scope => "row"} Services
-      %td
-      %td
-      %td
-      %td
-      %td
+      %td #{'anybody'.humanize}
+      %td #{'admin_or_manager'.humanize}
+      %td #{'admin_or_manager'.humanize}
+      %td #{'admin_or_manager'.humanize}
+      %td #{'admin_or_manager'.humanize}
   %tbody
     %tr
       %th{:scope => "row"} Locations
-      %td
-      %td
-      %td
-      %td
-      %td
-  %tbody
-    %tr
-      %th{:scope => "row"} Workplaces
-      %td
-      %td
-      %td
-      %td
-      %td
+      %td #{'anybody'.humanize}
+      %td #{'admin'.humanize}
+      %td #{'admin'.humanize}
+      %td #{'admin'.humanize}
+      %td #{'admin'.humanize}
   %tbody
     %tr
       %th{:scope => "row"} Service_categories
-      %td
-      %td
-      %td
-      %td
-      %td
+      %td #{'anybody'.humanize}
+      %td N/A
+      %td #{'admin_or_manager'.humanize}
+      %td #{'admin'.humanize}
+      %td #{'admin'.humanize}
   %tbody
     %tr
       %th{:scope => "row"} User_roles

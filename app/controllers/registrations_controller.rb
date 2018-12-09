@@ -35,7 +35,7 @@ class RegistrationsController < Milia::RegistrationsController
           devise_create( user_params )   # devise resource(user) creation; sets resource
           @user.add_role(:admin)
 
-          Location.create!(name: 'Location-1', balance: 0, status: 1)
+          #Location.create!(name: 'Location-1', balance: 0, status: 1)
 
   
           if resource.errors.empty?   #  SUCCESS!

@@ -84,7 +84,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     authorize @job
-    @job.created_by = current_user.employee.id
+    #@job.created_by = current_user.employee.id
 
 
     respond_to do |format|
