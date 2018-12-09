@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
 
   create_table "locations", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.string "name", limit: 144, null: false
+    t.string "name", limit: 50, null: false
     t.string "tel", limit: 144
     t.string "email", limit: 144
     t.string "address", limit: 255
@@ -131,16 +131,14 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
-    t.integer "workplaces_count", default: 0, null: false
-    t.index ["name"], name: "index_locations_on_name", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
   end
 
   create_table "members", force: :cascade do |t|
     t.bigint "tenant_id"
     t.bigint "user_id"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "first_name", limit: 144
+    t.string "last_name", limit: 144
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
@@ -209,8 +207,8 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
 
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.string "name"
-    t.string "plan"
+    t.string "name", limit: 50, null: false
+    t.string "plan", limit: 50, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tenants_on_name"

@@ -29,7 +29,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     authorize @client
-    @client.employee_id = current_user.employee.id
+    #@client.employee_id = current_user.employee.id
 
     respond_to do |format|
       if @client.save

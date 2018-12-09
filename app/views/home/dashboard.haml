@@ -3,9 +3,6 @@
   Dashboard
 
 
-- User.all.each do |x|
-  = x.email
-
 - Member.all.each do |x|
   = x.user.email
   = x.user.roles.collect{|r| r.name}.to_sentence

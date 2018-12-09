@@ -8,7 +8,9 @@ class Location < ApplicationRecord
   has_many :employees, dependent: :restrict_with_error
   has_many :jobs, dependent: :restrict_with_error
 
-  validates :name, uniqueness: true
+  #validates :name, uniqueness: true
+  validates_uniqueness_of :name, :scope => :tenant_id
+
   validates :name, :balance, :status, presence: true
 
   enum status: { inactive: 0, active: 1 }
