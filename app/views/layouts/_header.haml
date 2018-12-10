@@ -1,57 +1,20 @@
 %nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
   %a.navbar-brand{:href => "/"}
     /= image_tag "jobdone.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "avatar"
-    .fa.fa-calendar
+    .fa.fa-calendar-check
     JobDone
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
-      - if current_user
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            + New
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "+ New Job", new_job_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
-            %hr
-            = link_to "+ New Employee", new_employee_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New ServiceCategory", new_service_category_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
-            = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
-        /%li.nav-item= link_to "+ New Job", new_job_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "Update Status: #{Job.planned_in_past.count}", planned_in_past_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "My Calendar", my_calendar_path, class: "nav-link btn btn-light text-dark mr-sm-2"
-        %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
-        %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
-        %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Other
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
-            = link_to "Services", services_path, class: "dropdown-item navdrop-link"
-            = link_to "Locations", locations_path, class: "dropdown-item navdrop-link"
-            %hr
-            = link_to "Activity", activity_path, class: "dropdown-item navdrop-link"
-            = link_to "Stats - Job", job_stats_path, class: "dropdown-item navdrop-link"
-            = link_to "Stats - Other", other_stats_path, class: "dropdown-item navdrop-link"
-      - else
-        %li.nav-item= link_to "Features", root_path, class: "nav-link"
-        %li.nav-item= link_to "Industries", root_path, class: "nav-link"
-        %li.nav-item= link_to "Pricing", root_path, class: "nav-link"
-        %li.nav-item= link_to "Why JobDone?", root_path, class: "nav-link"
+      %li.nav-item= link_to "Features", root_path, class: "nav-link"
+      %li.nav-item= link_to "Industries", root_path, class: "nav-link"
+      %li.nav-item= link_to "Pricing", root_path, class: "nav-link"
+      %li.nav-item= link_to "Why JobDone?", root_path, class: "nav-link"
     %ul.nav.navbar-nav.navbar-right
-      - if current_user
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            = current_user.employee.full_name
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to 'My page', employee_path(current_user.employee), class: "dropdown-item navdrop-link"
-            = link_to 'Account Settings', edit_user_registration_path, class: "dropdown-item navdrop-link"
-            = link_to "Logout", destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"
-      - else
-        /%li= link_to 'Login', new_user_session_path, class: "nav-link"
-        .form-inline
-          = link_to 'Log In', new_user_session_path, class: 'btn btn-light mr-sm-2'
-          = link_to 'Free trial', new_user_registration_path(plan: 'free'), class: 'btn btn-light'
+      %a.btn.btn-primary.mr-sm-2{:href => "tel:+48-537-628-023"}
+        = succeed "+48-537-628-023" do
+          %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
+      .form-inline
+        = link_to 'Log In', new_user_session_path, class: 'btn btn-light mr-sm-2'
+        = link_to 'Free trial', new_user_registration_path(plan: 'free'), class: 'btn btn-light'

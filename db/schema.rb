@@ -207,8 +207,8 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
 
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.string "name", limit: 50, null: false
-    t.string "plan", limit: 50, null: false
+    t.string "name", limit: 20, null: false
+    t.string "plan", limit: 20, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tenants_on_name"

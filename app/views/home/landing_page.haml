@@ -5,7 +5,12 @@
     .col-lg
       .text-left
         .display-4
-          Software that helps service businesses schedule, invoice, and get paid — faster.
+          /Software that helps service businesses schedule, invoice, and get paid — faster.
+          Cloud-based software for service business management
+          /%h3 Event sales & management system
+          /%h3 Event scheduling & sales system
+          /%h3 Event scheduling & sales. Organised.
+          /%h3 Attendance sales & management system
       .text-center
         %br
         = link_to 'Try It Free', new_user_registration_path, class: 'btn btn-lg btn-primary'
@@ -14,31 +19,66 @@
       .embed-responsive.embed-responsive-16by9
         %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/-Yjx9eAiI2E?rel=0", :width => "560"}
 
+  %br
   %hr
   %br
-  .row
-    .col-lg-6
-      .card
-        .card-body
-          %h2 Free Plan
-          Price: Free
-          .text-left
-            %ul
-              %li 1-3 Employees
-              %li 1 Location
-          %p
-            = link_to 'Sign Up', new_user_registration_path(plan: 'free'), class: 'btn btn-lg btn-primary'
-    .col-lg-6
-      .card
-        .card-body
-          %h2 Premium Plan
-          Price: $10
-          .text-left
-            %ul
-              %li Unlimited Employees
-              %li Unlimited Locations
-          %p
-            = link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-lg btn-primary'
+  .display-4
+    Pricing and editions
+  The first step to success starts with a great sales solution. Find the right fit for you.
+  .container.mb-5.mt-5
+    .pricing.card-deck.flex-column.flex-md-row.mb-3
+      .card.card-pricing.text-center.px-3.mb-4
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Starter
+        .bg-transparent.card-header.pt-4.border-0
+          %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "15"}
+            %span.price FREE
+        .card-body.pt-0
+          = link_to 'Sign Up', new_user_registration_path(plan: 'free'), class: 'btn btn-lg btn-primary'
+          %ul.list-unstyled.mb-4
+            %li 1 Employee
+            %li 1 Business Address
+      .card.card-pricing.popular.shadow.text-center.px-3.mb-4
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Professional
+        .bg-transparent.card-header.pt-4.border-0
+          %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "30"}
+            $
+            %span.price 10
+            %span.h6.text-muted.ml-2 / month
+        .card-body.pt-0
+          = link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-lg btn-primary'
+
+          %ul.list-unstyled.mb-4
+            %li 6 Employees
+            %li 1 Business Address
+            %li Setup support
+            %li Free cancelation
+      .card.card-pricing.text-center.px-3.mb-4
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Business
+        .bg-transparent.card-header.pt-4.border-0
+          %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "45"}
+            $
+            %span.price 36
+            %span.h6.text-muted.ml-2 / month
+        .card-body.pt-0
+          %button.btn.btn-outline-secondary.mb-3{:type => "button"} Order now
+          %ul.list-unstyled.mb-4
+            %li 12 Employees
+            %li 2 Business Address
+            %li Monthly updates
+            %li Free cancelation
+      .card.card-pricing.text-center.px-3.mb-4
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Enterprise
+        .bg-transparent.card-header.pt-4.border-0
+          %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "60"}
+            $
+            %span.price 99
+            %span.h6.text-muted.ml-2 / month
+        .card-body.pt-0
+          %button.btn.btn-outline-secondary.mb-3{:type => "button"} Order now
+          %ul.list-unstyled.mb-4
+            %li 1-100 Employees
+            %li 2+ Business Address
+            %li Free cancelation
   %hr
   %br
   .display-4
@@ -56,7 +96,7 @@
           Let your clients book you online. And don't miss an appointment again. 
     .card
       .my-3.py-3
-        %i.fa.fa-users{:style => "font-size:200px;color:orange;"}
+        %i.fa.fa-headset{:style => "font-size:200px;color:orange;"}
         %h1
           %span.badge.badge-warning 2
         %h2.display-5
@@ -199,29 +239,152 @@
   /  .col-8
   /    .row.text-center
   /      /.col
-  /      /  = image_tag "pg-askdemos-partner.png", style: 'height:auto;width:75%;', :alt => "pg-askdemos-partner"
+  /      /  = image_tag "pg-jobdone-partner.png", style: 'height:auto;width:75%;', :alt => "pg-jobdone-partner"
   /      .col
-  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-askdemos-partner"
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-jobdone-partner"
   /      .col
-  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "visuality-askdemos-partner"
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "visuality-jobdone-partner"
   /    %br
   /    .row.text-center
   /      .col
-  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "ewl-askdemos-partner"
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "ewl-jobdone-partner"
   /      .col
-  /        = image_tag "jobdone.png", style: 'height:auto;width:35%;', :alt => "vistula-askdemos-partner"
+  /        = image_tag "jobdone.png", style: 'height:auto;width:35%;', :alt => "vistula-jobdone-partner"
   /      .col
-  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-askdemos-partner"
-  %hr
-  %br
-  %footer.mastfoot.mt-auto
-    .inner
-      %p
-        JobDone,
-        = Time.now.year
-        Powered by
-        = succeed "," do
-          %a{:href => "https://doesmystartupideasuck.herokuapp.com"} DMSIS
-        = succeed "." do
-          %a{:href => "https://twitter.com/yaro_the_slav"} @yaro_the_slav
-  %br
+  /        = image_tag "jobdone.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-jobdone-partner"
+
+
+/.row
+/.text-center.container
+/  %h1 Features
+/.row
+/  .col-md-3
+/    %table.table.table-bordered
+/      %tr
+/        %td
+/          .h4
+/            .glyphicon.glyphicon-user
+/            Manage clients
+/          %p CRM
+/          %p Sales
+/          %p Analytics
+/      %tr
+/        %td sd
+/  .col-md-3
+/    %table.table.table-bordered
+/      %tr
+/        %td
+/          .h4
+/            .glyphicon.glyphicon-calendar
+/            Schedule jobs
+/          %p Office & room schedule
+/          %p Staff schedule
+/          %p Client schedule
+/      %tr
+/        %td sd
+/  .col-md-3
+/    %table.table.table-bordered
+/      %tr
+/        %td
+/          .h4
+/            .glyphicon.glyphicon-credit-card
+/            Sales & invoicing
+/          %p (recurring) jobs sales
+/          %p Product sales
+/          %p Group event sales
+/      %tr
+/        %td sd
+/  .col-md-3
+/    %table.table.table-bordered
+/      %tr
+/        %td
+/          .h4
+/            .glyphicon.glyphicon-stats
+/            Management & Reports
+/          %p Staff & salary
+/          %p Balance sheet
+/          %p Custom reports
+/      %tr
+/        %td sd
+
+%footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4
+.bg-dark.text-white
+  %hr.bg-light
+  / Call to action
+  %ul.list-unstyled.list-inline.text-center.py-2
+    %li.list-inline-item
+      %h5.mb-1 Ready to get started?
+    = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
+
+  / Call to action
+  %hr/
+  / Footer Links
+  .container.text-center.text-md-left
+    / Grid row
+    .row
+      / Grid column
+      .col-md-4.mx-auto
+        / Content
+        %h5.font-weight-bold.text-uppercase.mt-3.mb-4
+          /Footer Content
+        %p
+          %small
+            %br
+            © #{Time.now.year} Copyright - JobDone Ltd. 
+            %br
+            All rights reserved -
+            %a{:href => "http://www.jobdone.herokuapp.com/"} jobdone.herokuapp.com
+            %br
+            13 Konstruktorska str. 02-651, Warsaw, Poland
+            %br
+            = mail_to 'hello@jobdone.herokuapp.com'
+            %hr.bg-light
+            / Social buttons
+            %li.list-inline-item
+              = link_to "https://www.instagram.com/jobdone/", target: :_blank do
+                %i.fa.fa-instagram{:style => "font-size:25px;color:white"}
+            %li.list-inline-item
+              = link_to "https://www.youtube.com/channel/UCrksy4sc0LqLP3aHSbcbLeQ/featured", target: :_blank do
+                %i.fa.fa-youtube{:style => "font-size:25px;color:white"}
+            %li.list-inline-item
+              = link_to "https://twitter.com/jobdone/", target: :_blank do
+                %i.fa.fa-twitter{:style => "font-size:25px;color:white"}
+            %li.list-inline-item
+              = link_to "https://www.linkedin.com/company/jobdone/", target: :_blank do
+                %i.fa.fa-linkedin{:style => "font-size:25px;color:white"}
+      / Grid column
+      %hr.clearfix.w-100.d-md-none/
+      / Grid column
+      .col-md-2.mx-auto
+        / Links
+        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Product
+        %ul.list-unstyled
+          = link_to 'Features', root_path
+          %br
+          = link_to 'How?', root_path
+          %br
+          = link_to 'Pricing', root_path
+      / Grid column
+      %hr.clearfix.w-100.d-md-none/
+      / Grid column
+      .col-md-2.mx-auto
+        / Links
+        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Legal
+        %ul.list-unstyled
+          = link_to 'Pricing policy', root_path
+          = link_to 'Customer agreement', root_path
+          = link_to 'Terms of service', root_path
+          = link_to 'Security', root_path
+      / Grid column
+      %hr.clearfix.w-100.d-md-none/
+      / Grid column
+      .col-md-2.mx-auto
+        / Links
+        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 About us
+        %ul.list-unstyled
+          = link_to 'Contact us', root_path
+          %br
+          = link_to 'Jobs', root_path
+      / Grid column
+    / Grid row
+  / Footer Links
