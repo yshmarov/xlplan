@@ -26,4 +26,5 @@ module StatusHelper
 					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 			end
 		end
+
 end
