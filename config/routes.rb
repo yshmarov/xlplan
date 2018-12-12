@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :members
   get 'home/landing_page'
-  root :to => "home#landing_page"
+  root to: 'home#landing_page'
 
   as :user do   
     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
@@ -15,8 +14,13 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:destroy, :edit, :update]
+  resources :members
 
-  resources :employees do 
+  #edit tenant info
+  match '/organization/edit' => 'tenants#edit', via: :get, as: :edit_plan
+  match '/organization/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
+
+  resources :employees do
     resources :skills, only: [:new, :create, :destroy]
   	member do
   		patch :invite_user
@@ -28,11 +32,11 @@ Rails.application.routes.draw do
   end
 
   resources :services
+
+  #to edit names and delete empty ones
   resources :service_categories, except: [:show, :new, :create]
 
-  resources :locations do
-    end
-  resources :workplaces, only: [:show]
+  resources :locations
 
   resources :jobs do
     resources :comments
@@ -48,21 +52,16 @@ Rails.application.routes.draw do
 
   end
 
-  get 'stats/general'
+  get 'calendar', to: 'home#calendar'
+  get 'activity', to: 'home#activity'
+  get 'dashboard', to: 'home#dashboard'
+  get 'user_roles', to: 'home#user_roles'
+
+  get 'stats/finances'
   get 'stats/clients'
   get 'stats/employees'
   get 'stats/jobs'
   get 'stats/services'
   get 'stats/locations'
-
-  get 'activity', to: 'home#activity'
-  get 'dashboard', to: 'home#dashboard'
-  get 'calendar', to: 'home#calendar'
-  get 'user_roles', to: 'home#user_roles'
-  root to: 'home#landing_page'
-
-  #edit tenant plans
-  match '/plan/edit' => 'tenants#edit', via: :get, as: :edit_plan
-  match '/plan/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
 
 end

@@ -23,7 +23,7 @@
         %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           Stats
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to "General", stats_general_path, class: "dropdown-item navdrop-link"
+          = link_to "Finances", stats_finances_path, class: "dropdown-item navdrop-link"
           %hr
           = link_to "Clients", stats_clients_path, class: "dropdown-item navdrop-link"
           = link_to "Employees", stats_employees_path, class: "dropdown-item navdrop-link"
@@ -54,6 +54,7 @@
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           = current_user.member.full_name
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to 'My page', employee_path(current_user.member), class: "dropdown-item navdrop-link"
+          = link_to 'My page', member_path(current_user.member), class: "dropdown-item navdrop-link"
+          = link_to 'Profile Settings', edit_member_path(current_user.member), class: "dropdown-item navdrop-link"
           = link_to 'Account Settings', edit_user_registration_path, class: "dropdown-item navdrop-link"
           = link_to "Logout", destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"

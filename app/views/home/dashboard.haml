@@ -9,6 +9,15 @@
       Getting started
     .card-body
       %h5
+        - if Tenant.current_tenant.plan != 'free'
+          - unless Member.count >= 2
+            %span.badge.badge-pill.badge-danger 0
+            = link_to "Invite Employees to your organization", new_member_path
+          - else
+            %span.badge.badge-pill.badge-success 0
+            %del
+              Invite Employees to your organization
+          %hr
         - unless Location.any?
           %span.badge.badge-pill.badge-danger 1
           = link_to 'Add a Location', new_location_path
@@ -40,15 +49,6 @@
           %span.badge.badge-pill.badge-success 4
           %del
             Add a Job
-        - if Tenant.current_tenant.plan != 'free'
-          %hr
-          - unless Member.any?
-            %span.badge.badge-pill.badge-danger 5
-            = link_to 'Add a Member', new_member_path
-          - else
-            %span.badge.badge-pill.badge-success 5
-            %del
-              Add a Member
 %p
 .row
   .col-xl-4

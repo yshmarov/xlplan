@@ -33,52 +33,52 @@
           %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "15"}
             %span.price FREE
         .card-body.pt-0
-          = link_to 'Sign Up', new_user_registration_path(plan: 'free'), class: 'btn btn-lg btn-primary'
+          = link_to 'Try for free', new_user_registration_path(plan: 'free'), class: 'btn btn-lg btn-primary'
           %ul.list-unstyled.mb-4
             %li 1 Employee
-            %li 1 Business Address
+            %li 1 Location
       .card.card-pricing.popular.shadow.text-center.px-3.mb-4
         %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Professional
         .bg-transparent.card-header.pt-4.border-0
           %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "30"}
             $
-            %span.price 10
+            %span.price 25
             %span.h6.text-muted.ml-2 / month
         .card-body.pt-0
-          = link_to 'Sign Up', new_user_registration_path(plan: 'premium'), class: 'btn btn-lg btn-primary'
-
+          = link_to 'Try for free', new_user_registration_path(plan: 'premium'), class: 'btn btn-lg btn-primary'
           %ul.list-unstyled.mb-4
-            %li 6 Employees
-            %li 1 Business Address
-            %li Setup support
-            %li Free cancelation
+            %li 2-6 Employees
+            %li 1 Location
       .card.card-pricing.text-center.px-3.mb-4
         %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Business
         .bg-transparent.card-header.pt-4.border-0
           %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "45"}
             $
-            %span.price 36
+            %span.price 65
             %span.h6.text-muted.ml-2 / month
         .card-body.pt-0
-          %button.btn.btn-outline-secondary.mb-3{:type => "button"} Order now
+          = link_to 'Try for free', new_user_registration_path(plan: 'premium'), class: 'btn btn-lg btn-primary'
           %ul.list-unstyled.mb-4
-            %li 12 Employees
-            %li 2 Business Address
-            %li Monthly updates
-            %li Free cancelation
+            %li 7-12 Employees
+            %li 1 Locations
+            %li Online booking
       .card.card-pricing.text-center.px-3.mb-4
         %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Enterprise
         .bg-transparent.card-header.pt-4.border-0
           %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "60"}
             $
-            %span.price 99
+            %span.price 95
             %span.h6.text-muted.ml-2 / month
         .card-body.pt-0
-          %button.btn.btn-outline-secondary.mb-3{:type => "button"} Order now
+          = link_to 'Try for free', new_user_registration_path(plan: 'premium'), class: 'btn btn-lg btn-primary'
           %ul.list-unstyled.mb-4
-            %li 1-100 Employees
-            %li 2+ Business Address
-            %li Free cancelation
+            %li Unlimited Employees
+            %li Unlimited Locations
+            %li Online booking
+  %li Free implementation
+  %li Free support
+  %li Free cancelation
+  *business Location - physical location, where your services are conducted. Does not apply, if employees render services in the field.
   %hr
   %br
   .display-4

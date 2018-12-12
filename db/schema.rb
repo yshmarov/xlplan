@@ -72,14 +72,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
 
   create_table "employees", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.string "first_name", limit: 144, null: false
-    t.string "middle_name", limit: 144
-    t.string "last_name", limit: 144, null: false
-    t.string "phone_number"
-    t.string "email"
-    t.date "date_of_birth"
-    t.string "gender", default: "undisclosed"
-    t.string "address"
+    t.bigint "member_id"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
     t.bigint "location_id"
@@ -89,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.index ["location_id"], name: "index_employees_on_location_id"
+    t.index ["member_id"], name: "index_employees_on_member_id"
     t.index ["tenant_id"], name: "index_employees_on_tenant_id"
   end
 
@@ -207,8 +201,9 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
 
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.string "name", limit: 20, null: false
+    t.string "name", limit: 40, null: false
     t.string "plan", limit: 20, null: false
+    t.string "industry", limit: 40, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tenants_on_name"
@@ -274,6 +269,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
   add_foreign_key "comments", "employees"
   add_foreign_key "comments", "tenants"
   add_foreign_key "employees", "locations"
+  add_foreign_key "employees", "members"
   add_foreign_key "employees", "tenants"
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "employees"

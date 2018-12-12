@@ -2,14 +2,9 @@ class CreateEmployees < ActiveRecord::Migration[5.2]
   def change
     create_table :employees do |t|
       t.belongs_to :tenant, index: true, foreign_key: true
-      t.string :first_name, :limit => 144, null: false
-      t.string :middle_name, :limit => 144
-      t.string :last_name, :limit => 144, null: false
-      t.string :phone_number
-      t.string :email
-      t.date :date_of_birth
-      t.string :gender, default: "undisclosed"
-      t.string :address
+
+      t.belongs_to :member, index: true, foreign_key: true
+
       t.integer :status, default: 1, null: false
       t.integer :balance, default: 0, null: false
 

@@ -1,5 +1,4 @@
 class Tenant < ApplicationRecord
-
   acts_as_universal_and_determines_tenant
 
   has_many :members, dependent: :destroy
@@ -9,34 +8,37 @@ class Tenant < ApplicationRecord
   has_many :service_categories, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :locations, dependent: :destroy
-  has_many :workplaces, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :comments, dependent: :destroy
-  #has_many :activities, dependent: :destroy
+  has_many :activities, dependent: :destroy
 
-  validates_presence_of :name
+  validates_presence_of :name, :plan
   validates_uniqueness_of :name
-  validates :name, length: { maximum: 20 }
+  validates :name, length: { maximum: 40 }
   validates :plan, length: { maximum: 20 }
 
   def can_create_locations?
     (plan == 'free' && locations.count < 1) || (plan == 'premium')
   end
 
-    def self.create_new_tenant(tenant_params, user_params, coupon_params)
+  def can_create_members?
+    (plan == 'free' && members.count < 1) || (plan == 'premium')
+  end
 
-      #tenant = Tenant.new(:name => tenant_params[:name])
-      tenant = Tenant.new(tenant_params)
+  def self.create_new_tenant(tenant_params, user_params, coupon_params)
 
-      if new_signups_not_permitted?(coupon_params)
+    #tenant = Tenant.new(:name => tenant_params[:name])
+    tenant = Tenant.new(tenant_params)
 
-        raise ::Milia::Control::MaxTenantExceeded, "Sorry, new accounts not permitted at this time" 
+    if new_signups_not_permitted?(coupon_params)
 
-      else 
-        tenant.save    # create the tenant
-      end
-      return tenant
+      raise ::Milia::Control::MaxTenantExceeded, "Sorry, new accounts not permitted at this time" 
+
+    else 
+      tenant.save    # create the tenant
     end
+    return tenant
+  end
 
   # ------------------------------------------------------------------------
   # new_signups_not_permitted? -- returns true if no further signups allowed

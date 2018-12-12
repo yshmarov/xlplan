@@ -1,5 +1,5 @@
 class StatsController < ApplicationController
-  def general
+  def finances
     #company confirmed earning
     @confirmed_hours_worked = (Job.is_confirmed.map(&:service_duration).sum)/60.to_d
     @confirmed_job_q = Job.is_confirmed.count
