@@ -1,27 +1,32 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @location.name
-%p
-  %b Tel:
-  = @location.tel
-%p
-  %b Email:
-  = @location.email
-%p
-  %b Address:
-  = @location.address
-%p
-  %b Balance:
-  = @location.balance_cents
-%p
-  %b Status:
-  = status_label(@location.status)
-
-= link_to 'Edit Location', edit_location_path(@location), class: 'btn btn-sm btn-warning'
-\|
-= link_to 'Back', locations_path, class: 'btn btn-sm btn-secondary'
-
-.container
-  = render 'home/calendar'
+.row
+  .col-lg-4
+    .card
+      .card-header
+        %b Details
+        .float-right
+          = link_to '', edit_location_path(@location), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@location).update?
+      .card-body
+        %b Name:
+        = @location.name
+        %br
+        %b Tel:
+        = @location.tel
+        %br
+        %b Email:
+        = @location.email
+        %br
+        %b Address:
+        = @location.address
+        %br
+        %b Balance:
+        = @location.balance_cents
+        %br
+        %b Status:
+        = status_label(@location.status)
+    %p
+  .col-lg-8
+    .card
+      .card-header
+        %b Calendar
+      .card-body
+        = render 'home/calendar'
