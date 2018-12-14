@@ -50,7 +50,7 @@
           %td= number_to_currency(client.balance_cents, :unit => "$")
           %td= client.jobs_count
           %td
-            = link_to client.employee, employee_path(client.employee) if client.employee.present?
+            = link_to client.member, member_path(client.member) if client.member.present?
             = client.created_at.strftime('%d/%b/%Y, %H:%M')
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

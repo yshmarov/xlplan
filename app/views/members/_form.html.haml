@@ -1,5 +1,5 @@
 -# frozen_string_literal: true
-= simple_form_for(@employee) do |f|
+= simple_form_for(@member) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
@@ -18,7 +18,7 @@
     #accordion.collapse
       %p
       = f.label :'Date of birth'
-      = f.date_field :date_of_birth, value: @employee.date_of_birth || nil, class: "form-control"
+      = f.date_field :date_of_birth, value: @member.date_of_birth || nil, class: "form-control"
       %p
       = f.label :'gender'
       %br
@@ -31,13 +31,8 @@
       = f.label :gender_male, "Male"
       = f.radio_button :gender, 'other'
       = f.label :gender_other, "Other"
-      = f.input :middle_name
       = f.input :address
-      = f.input :status, :as => :radio_buttons, :collection => Employee.statuses.keys.to_a, label:false
-      = f.label :'Employment date'
-      = f.date_field :employment_date, value: @employee.employment_date || (Time.now).strftime('%Y-%m-%d'), class: "form-control"
-      = f.label :'Termination date'
-      = f.date_field :termination_date, value: @employee.termination_date || nil, class: "form-control"
+      = f.input :status, :as => :radio_buttons, :collection => Member.statuses.keys.to_a, label:false
     %p
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

@@ -2,41 +2,41 @@ class SkillsController < ApplicationController
   before_action :set_skill, only: [:destroy]
 
   def new
-    @employee = Employee.find(params[:employee_id])
+    @member = Member.find(params[:member_id])
     @skill = Skill.new
-    #@skill.employee_id = params[:employee_id]
+    #@skill.member_id = params[:member_id]
 
     #@skill = Skill.new(:post=>@post)
-    #@skill = @employee.skills.build
+    #@skill = @member.skills.build
 
   end
 
   def create
-    @employee = Employee.find(params[:employee_id])
-    #@skill = @employee.skills.create(params[:skill])
+    @member = Member.find(params[:member_id])
+    #@skill = @member.skills.create(params[:skill])
     @skill = Skill.new(skill_params)
 
     respond_to do |format|
       if @skill.save
-        format.html { redirect_to employee_path(@skill.employee), notice: 'Skill was successfully created.' }
-        #format.html { redirect_to [@skill.employee, @skill], notice: 'Skill was successfully created.' }
+        format.html { redirect_to member_path(@skill.member), notice: 'Skill was successfully created.' }
+        #format.html { redirect_to [@skill.member, @skill], notice: 'Skill was successfully created.' }
 
         format.json { render :show, status: :created, location: @skill }
       else
         format.html { render :new }
         format.json { render json: @skill.errors, status: :unprocessable_entity }
-        #format.json { render json: new_employee_skill_path[@employee, skill].errors, status: :unprocessable_entity }
+        #format.json { render json: new_member_skill_path[@member, skill].errors, status: :unprocessable_entity }
 
       end
     end
   end
 
   def destroy
-    @employee = Employee.find(params[:employee_id])
-    #@skill = @employee.skills.find(params[:id])
+    @member = Member.find(params[:member_id])
+    #@skill = @member.skills.find(params[:id])
     @skill.destroy
     respond_to do |format|
-      format.html { redirect_to employee_path(@skill.employee), notice: 'Skill was successfully destroyed.' }
+      format.html { redirect_to member_path(@skill.member), notice: 'Skill was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -47,6 +47,6 @@ class SkillsController < ApplicationController
     end
 
     def skill_params
-      params.require(:skill).permit(:employee_id, :service_category_id)
+      params.require(:skill).permit(:member_id, :service_category_id)
     end
 end

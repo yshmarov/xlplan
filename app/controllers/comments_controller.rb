@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
   def create
     Comment.public_activity_off
     @comment = @commentable.comments.new comment_params
-    @comment.employee_id = current_user.employee.id
+    @comment.user_id = current_user.id
     if @comment.save
       Comment.public_activity_on
       @comment.create_activity :create, parameters: {content: @comment.content}
@@ -23,9 +23,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    authorize @comment
     @comment = Comment.find(params[:id])
-    @comment.destroy
+    authorize @comment
+    #@comment.destroy
 
     if @comment.destroy
       redirect_to @commentable, notice: "Comment deleted."
@@ -40,7 +40,8 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :person_id)
+    params.require(:comment).permit(:content, :user_id)
+    #params.require(:comment).permit(:content)
   end
 
 end

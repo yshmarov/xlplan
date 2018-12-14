@@ -14,18 +14,16 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:destroy, :edit, :update]
-  resources :members
-
-  #edit tenant info
-  match '/organization/edit' => 'tenants#edit', via: :get, as: :edit_plan
-  match '/organization/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
-
-  resources :employees do
+  resources :members do
     resources :skills, only: [:new, :create, :destroy]
   	member do
   		patch :invite_user
     end
   end
+
+  #edit tenant info
+  match '/organization/edit' => 'tenants#edit', via: :get, as: :edit_plan
+  match '/organization/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
 
   resources :clients do
     resources :comments
@@ -59,7 +57,7 @@ Rails.application.routes.draw do
 
   get 'stats/finances'
   get 'stats/clients'
-  get 'stats/employees'
+  get 'stats/members'
   get 'stats/jobs'
   get 'stats/services'
   get 'stats/locations'

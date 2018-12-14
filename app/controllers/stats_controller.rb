@@ -4,21 +4,21 @@ class StatsController < ApplicationController
     @confirmed_hours_worked = (Job.is_confirmed.map(&:service_duration).sum)/60.to_d
     @confirmed_job_q = Job.is_confirmed.count
     @total_confirmed_earnings = Job.is_confirmed.map(&:client_due_price_cents).sum
-    @total_confirmed_expences = Job.is_confirmed.map(&:employee_due_price_cents).sum
+    @total_confirmed_expences = Job.is_confirmed.map(&:member_due_price_cents).sum
     @total_confirmed_net_income = @total_confirmed_earnings - @total_confirmed_expences
 
     #company planned earnings
     @planned_hours_worked = (Job.is_planned.map(&:service_duration).sum)/60.to_d
     @planned_job_q = Job.is_planned.count
     @total_planned_earnings = Job.is_planned.map(&:client_price_cents).sum
-    @total_planned_expences = Job.is_planned.map(&:employee_price_cents).sum
+    @total_planned_expences = Job.is_planned.map(&:member_price_cents).sum
     @total_planned_net_income = @total_planned_earnings - @total_planned_expences
 
     #company loss stats
     @lost_hours_worked = (Job.is_cancelled.map(&:service_duration).sum)/60.to_d
     @lost_job_q = Job.is_cancelled.count
     @total_lost_earnings = Job.is_cancelled.map(&:client_price_cents).sum
-    @total_lost_expences = Job.is_cancelled.map(&:employee_price_cents).sum
+    @total_lost_expences = Job.is_cancelled.map(&:member_price_cents).sum
     @total_net_losses = @total_lost_earnings - @total_lost_expences
 
     #average paycheck
@@ -34,9 +34,9 @@ class StatsController < ApplicationController
     @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
   end
 
-  def employees
+  def members
     #performance vs others
-    @employee = Employee.all
+    @member = Member.all
   end
 
   def jobs
@@ -54,7 +54,6 @@ class StatsController < ApplicationController
 
   def locations
     @locations = Location.all
-    @workplaces = Workplace.all
   end
 
 end

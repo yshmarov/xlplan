@@ -2,7 +2,7 @@
   %h2= comment.comment
   %p.text-muted
     Added by
-    %strong= comment.person
+    %strong= comment.user
     on
     \#{l(comment.created_at, format: '%B, %d %Y %H:%M:%S')}
   %blockquote

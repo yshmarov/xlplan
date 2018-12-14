@@ -38,6 +38,7 @@
           %td= location.tel
           %td= location.email
           %td= location.address
+          /%td= location.status
           %td= status_label(location.status)
           %td= number_to_currency(location.balance_cents, :unit => "$")
           %td= location.jobs_count

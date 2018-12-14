@@ -6,15 +6,15 @@ class JobPolicy < ApplicationPolicy
   end
 
   def show?
-    any_employee
+    any_member
   end
 
   def new?
-    any_employee
+    any_member
   end
 
   def create?
-    any_employee 
+    any_member 
   end
 
   def edit?
@@ -37,10 +37,10 @@ class JobPolicy < ApplicationPolicy
   end
 
   def admin_or_manager_or_owner
-    @user.has_role?(:admin) || @user.has_role?(:manager) || @record.employee_id == @user.employee.id
+    @user.has_role?(:admin) || @user.has_role?(:manager) || @record.member_id == @user.member.id
   end
 
-  def any_employee
+  def any_member
     @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
 

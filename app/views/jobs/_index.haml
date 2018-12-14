@@ -25,11 +25,11 @@
           %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
           %td= status_label(job.status)
           %td= link_to job.location, location_path(job.location)
-          %td= link_to job.employee, employee_path(job.employee)
+          %td= link_to job.member, member_path(job.member)
           %td= link_to job.service.full_name, service_path(job.service)
           /%td= job.service_duration
           %td= job.client_price_cents
-          %td= job.employee_price_cents
+          %td= job.member_price_cents
           %td= truncate(job.description, length: 25)
   
           /%td= job.creator

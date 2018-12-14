@@ -62,7 +62,7 @@ class JobsController < ApplicationController
   def index
     #@jobs = Job.paginate(:page => params[:page], :per_page => 10)
     @q = Job.ransack(params[:q])
-    @jobs = @q.result.includes(:location, :client, :employee, :service).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @jobs = @q.result.includes(:location, :client, :member, :service).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
 
   def show
@@ -84,7 +84,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     authorize @job
-    #@job.created_by = current_user.employee.id
+    @job.created_by = current_user.member.id
 
 
     respond_to do |format|
@@ -132,7 +132,7 @@ class JobsController < ApplicationController
     end
 
     def job_params
-      params.require(:job).permit(:client_id, :starts_at, :ends_at, :status, :service_id, :location_id, :employee_id, :service_name,
-      :service_description, :service_duration, :service_employee_percent, :client_price, :employee_price, :employee_due_price, :client_due_price, :description)
+      params.require(:job).permit(:client_id, :starts_at, :ends_at, :status, :service_id, :location_id, :member_id, :service_name,
+      :service_description, :service_duration, :service_member_percent, :client_price, :member_price, :member_due_price, :client_due_price, :description)
     end
 end

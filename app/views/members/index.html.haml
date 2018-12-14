@@ -1,0 +1,96 @@
+- model_class = Member
+= search_form_for @ransack_members, as: :members_search, url: members_path do |f|
+  .card.card-default
+    .container-fluid
+      .card-heading
+        %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+          .input-group
+            .mr-sm-2
+              %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+            = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Name"
+            %span.input-group-append
+              %button.btn.btn-secondary{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
+        %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+          = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          - if policy(Member).create?
+            = link_to 'New Member', new_member_path, class: 'btn btn-sm btn-primary'
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th= sort_link @ransack_members, :last_name, "Name"
+        %th
+        %th
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
+        %th
+          Contacts
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
+        %th= sort_link @ransack_members, :status, "Status"
+        %th= sort_link @ransack_members, :balance, "Balance"
+        %th= sort_link @ransack_members, :jobs_count, "Jobs"
+        %th Location
+        %th Skills
+        %th Status
+        %th Roles
+  
+    %tbody
+      - @members.each do |member|
+        %tr
+          %td
+            - if member.user_online.present?
+              %i.fa.fa-fire{:style => "color:red;"}
+            - if member.id == current_user.member.id
+              .fa.fa-user
+            = link_to member.full_name, member_path(member), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).show?
+          %td= link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).update?
+          %td
+            - unless member.associations?
+              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).destroy?
+            - else
+              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).destroy?
+          %td
+            = link_to "tel:#{member.phone_number}", class: "button" do
+              #{member.phone_number}
+            - if member.user.email.present? && member.phone_number.present?
+              \/
+            %a{:href => "mailto:#{member.user.email}"}= member.user.email
+          %td= status_label(member.status)
+          %td= number_to_currency(member.balance_cents, :unit => "$")
+          %td= member.jobs_count
+          %td= link_to member.location, location_path(member.location) if member.location.present?
+          %td= member.skills.collect{|r| r.service_category}.to_sentence
+          %td
+            - if member.user.present?
+              - if member.user.invitation_accepted_at?
+                = link_to 'x account', member.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(member.user).destroy?
+                Active
+              - else 
+                = link_to 'x invitation', member.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-info btn-sm" if policy(member.user).destroy?
+                Invitation pending
+            - else
+              /- if member.termination_date.present?
+              - if member.active?
+                - if member.email.present?
+                  - if policy(User).create?
+                    = simple_form_for(User.new, url: user_invitation_path) do |z|
+                      = z.input :email, input_html: {value: member.email}, as: :hidden
+                      = z.input :member_id, input_html: {value: member.id}, as: :hidden
+                      = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
+                - else
+                  Add email to invite user
+              - else
+                Terminated
+            /  - unless member.associations?
+            /    - if policy(member).destroy?
+            /      = link_to 'x totally', member, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default btn-sm"
+  
+  
+          %td
+            - if current_user.has_role?(:admin) && member.user.present?
+              = link_to 'Edit roles', edit_user_path(member.user), class: 'btn btn-warning btn-sm'
+            - if member.user.present?
+              = member.user.roles.collect{|r| r.name}.to_sentence
+.container
+  = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%br

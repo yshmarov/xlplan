@@ -10,18 +10,27 @@ class MembersController < ApplicationController
   end
 
   def show
+    authorize @member
+    @jobs = @member.jobs
+    @skills = @member.skills
+    @member_total_earnings = @jobs.map(&:member_due_price_cents).sum
   end
   
   def edit
+    authorize @member
   end
 
   def new()
     @member = Member.new()
     @user   = User.new()
+    authorize @member
+    authorize @user
   end
 
   def create()
     @user   = User.new( user_params )
+    #authorize @member
+    authorize @user
 
     # ok to create user, member
     if @user.save_and_invite_member() && @user.create_member( member_params )
@@ -36,6 +45,8 @@ class MembersController < ApplicationController
   end
 
   def update
+    authorize @member
+    #authorize @user
     if @member.update(member_params)
       redirect_to @member, notice: 'Member was successfully updated.'
     else
@@ -44,22 +55,29 @@ class MembersController < ApplicationController
   end
 
   def destroy
+    authorize @member
+    #authorize @user
     @member.destroy
-    redirect_to members_url, notice: 'Member was successfully destroyed.'
+    if @member.errors.present?
+      redirect_to members_url, alert: 'Member has associated jobs. Can not delete.'
+    else
+      redirect_to members_url, notice: 'Member was successfully destroyed.'
+    end
   end
 
   private
 
-  def set_member
-    @member = Member.find(params[:id])
-  end
-
-  def member_params()
-    params.require(:member).permit(:first_name, :last_name)
-  end
-
-  def user_params()
-    params.require(:user).permit(:email, :password, :password_confirmation)
-  end
+    def set_member
+      @member = Member.find(params[:id])
+    end
+  
+    def member_params()
+      params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address,
+      :description, :status, :balance, :location_id)
+    end
+  
+    def user_params()
+      params.require(:user).permit(:email, :password, :password_confirmation)
+    end
 
 end

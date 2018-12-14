@@ -11,12 +11,12 @@
         = f.select :service_category_id, ServiceCategory.all.map{|c| [c.name, c.id]}, {include_blank: ServiceCategory.all.length > 1},class: 'selectize'
       = link_to_add_association 'or add a new service category', f, :service_category, class: 'btn btn-secondary'
 
-    = f.input :name
+    = f.input :name, autofocus: true
     = f.input :description
     = f.input :duration
-    = f.input :client_price_cents
-    = f.input :employee_percent
-    /= f.input :employee_price
+    = f.input :client_price_cents, label: "Client price"
+    = f.input :member_percent
+    /= f.input :member_price
     /= f.input :quantity
     /= f.input :status
     - unless f.object.new_record?

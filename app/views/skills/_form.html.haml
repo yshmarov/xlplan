@@ -1,12 +1,12 @@
 -# frozen_string_literal: true
-= simple_form_for [@employee, @skill] do |f|
+= simple_form_for [@member, @skill] do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.label :employee_id
-    %span.input-group-text= Employee.find(params[:employee_id])
-    = f.input :employee_id, input_html: {value: @skill.employee_id || params[:employee_id]}, as: :hidden
+    = f.label :member_id
+    %span.input-group-text= Member.find(params[:member_id])
+    = f.input :member_id, input_html: {value: @skill.member_id || params[:member_id]}, as: :hidden
 
 
     = f.label :service_category

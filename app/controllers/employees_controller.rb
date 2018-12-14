@@ -76,6 +76,5 @@ class EmployeesController < ApplicationController
       params.require(:employee).permit(:first_name, :middle_name, :last_name, :date_of_birth,
       :gender, :email, :phone_number, :address, :description, :status, :balance,
       :location_id, :employment_date, :termination_date, :balance, :status)
-
     end
 end

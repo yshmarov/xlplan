@@ -90,7 +90,13 @@
       .card-header
         .fa.fa-calendar
         Upcoming appointments
-      .card-body
+      -  Job.all.where(member: current_user.member).where("starts_at > ?", Time.zone.now-15.minutes).limit(5).each do |job|
+
+        %li.list-group-item
+          = link_to '', job, class: "btn btn-success fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          #{job.starts_at.strftime('%d/%b/%Y %H:%M')}
+          = job.client
+          = job.service
     %p
   .col-xl-4
     .card-header

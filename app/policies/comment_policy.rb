@@ -10,7 +10,7 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def admin_or_owner
-    @record.employee_id == @user.employee.id || @user.has_role?(:admin)
+    @record.user_id == @user.id || @user.has_role?(:admin)
   end
 
 end

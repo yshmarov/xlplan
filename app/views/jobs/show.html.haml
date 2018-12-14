@@ -22,7 +22,7 @@
         (#{@job.service_duration} min)
         %br
         %b Employee:
-        = link_to @job.employee, employee_path(@job.employee)
+        = link_to @job.member, member_path(@job.member)
         %br
         %b Service:
         = link_to @job.service.full_name_with_price, service_path(@job.service)
@@ -63,8 +63,8 @@
 
 
         /%br
-        /%b service_employee_percent:
-        /= @job.service_employee_percent
+        /%b service_member_percent:
+        /= @job.service_member_percent
 
         %hr
         %b Client planned price:
@@ -72,22 +72,22 @@
         /= number_to_currency(@job.client_price_cents, :unit => "$")
         %br
         %b Employee planned price:
-        = @job.employee_price_cents if policy(@job).update?
-        /= number_to_currency(@job.employee_price_cents, :unit => "$")
+        = @job.member_price_cents if policy(@job).update?
+        /= number_to_currency(@job.member_price_cents, :unit => "$")
         %br
         %b Client due price:
         = @job.client_due_price_cents
         /= number_to_currency(@job.client_due_price_cents, :unit => "$")
         %br
         %b Employee due price:
-        = @job.employee_due_price_cents if policy(@job).update?
-        /= number_to_currency(@job.employee_due_price_cents, :unit => "$")
+        = @job.member_due_price_cents if policy(@job).update?
+        /= number_to_currency(@job.member_due_price_cents, :unit => "$")
         %hr
         %b Description:
         = @job.description
         %hr
         %b Created by:
-        = link_to @job.creator, employee_path(@job.creator)
+        = link_to @job.creator, member_path(@job.creator)
         %br
         %b Created at:
         = @job.created_at.strftime('%d/%b/%Y %H:%M')

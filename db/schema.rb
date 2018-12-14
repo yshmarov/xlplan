@@ -48,42 +48,26 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.string "address"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
-    t.bigint "employee_id"
+    t.bigint "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
-    t.index ["employee_id"], name: "index_clients_on_employee_id"
+    t.index ["member_id"], name: "index_clients_on_member_id"
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.bigint "employee_id"
+    t.bigint "user_id"
     t.text "content"
     t.integer "commentable_id"
     t.string "commentable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-    t.index ["employee_id"], name: "index_comments_on_employee_id"
     t.index ["tenant_id"], name: "index_comments_on_tenant_id"
-  end
-
-  create_table "employees", force: :cascade do |t|
-    t.bigint "tenant_id"
-    t.bigint "member_id"
-    t.integer "status", default: 1, null: false
-    t.integer "balance", default: 0, null: false
-    t.bigint "location_id"
-    t.date "employment_date"
-    t.date "termination_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "jobs_count", default: 0, null: false
-    t.index ["location_id"], name: "index_employees_on_location_id"
-    t.index ["member_id"], name: "index_employees_on_member_id"
-    t.index ["tenant_id"], name: "index_employees_on_tenant_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -91,25 +75,25 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.bigint "client_id"
     t.bigint "service_id"
     t.bigint "location_id"
-    t.bigint "employee_id"
+    t.bigint "member_id"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.integer "status", default: 0, null: false
     t.string "service_name", default: "0", null: false
     t.string "service_description", default: "0", null: false
     t.integer "service_duration", default: 0, null: false
-    t.integer "service_employee_percent", default: 0, null: false
+    t.integer "service_member_percent", default: 0, null: false
     t.integer "client_price", default: 0, null: false
     t.integer "client_due_price", default: 0, null: false
-    t.integer "employee_price", default: 0, null: false
-    t.integer "employee_due_price", default: 0, null: false
+    t.integer "member_price", default: 0, null: false
+    t.integer "member_due_price", default: 0, null: false
     t.integer "created_by", default: 0, null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_jobs_on_client_id"
-    t.index ["employee_id"], name: "index_jobs_on_employee_id"
     t.index ["location_id"], name: "index_jobs_on_location_id"
+    t.index ["member_id"], name: "index_jobs_on_member_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
   end
@@ -133,8 +117,18 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.bigint "user_id"
     t.string "first_name", limit: 144
     t.string "last_name", limit: 144
+    t.string "phone_number"
+    t.string "email"
+    t.date "date_of_birth"
+    t.string "gender", default: "undisclosed"
+    t.string "address"
+    t.integer "status", default: 1, null: false
+    t.integer "balance", default: 0, null: false
+    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "jobs_count", default: 0, null: false
+    t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
@@ -165,11 +159,11 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.string "name", limit: 144, null: false
     t.string "description", limit: 255
     t.integer "duration", default: 30, null: false
-    t.integer "employee_percent", default: 50, null: false
+    t.integer "member_percent", default: 50, null: false
     t.integer "quantity", default: 1, null: false
     t.integer "status", default: 1, null: false
     t.integer "client_price", default: 0, null: false
-    t.integer "employee_price", default: 0, null: false
+    t.integer "member_price", default: 0, null: false
     t.bigint "service_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -190,11 +184,11 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
 
   create_table "skills", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.bigint "employee_id"
+    t.bigint "member_id"
     t.bigint "service_category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_skills_on_employee_id"
+    t.index ["member_id"], name: "index_skills_on_member_id"
     t.index ["service_category_id"], name: "index_skills_on_service_category_id"
     t.index ["tenant_id"], name: "index_skills_on_tenant_id"
   end
@@ -203,7 +197,6 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
     t.string "plan", limit: 20, null: false
-    t.string "industry", limit: 40, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tenants_on_name"
@@ -264,26 +257,24 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
   end
 
   add_foreign_key "activities", "tenants"
-  add_foreign_key "clients", "employees"
+  add_foreign_key "clients", "members"
   add_foreign_key "clients", "tenants"
-  add_foreign_key "comments", "employees"
   add_foreign_key "comments", "tenants"
-  add_foreign_key "employees", "locations"
-  add_foreign_key "employees", "members"
-  add_foreign_key "employees", "tenants"
+  add_foreign_key "comments", "users"
   add_foreign_key "jobs", "clients"
-  add_foreign_key "jobs", "employees"
   add_foreign_key "jobs", "locations"
+  add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "tenants"
   add_foreign_key "locations", "tenants"
+  add_foreign_key "members", "locations"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
   add_foreign_key "roles", "tenants"
   add_foreign_key "service_categories", "tenants"
   add_foreign_key "services", "service_categories"
   add_foreign_key "services", "tenants"
-  add_foreign_key "skills", "employees"
+  add_foreign_key "skills", "members"
   add_foreign_key "skills", "service_categories"
   add_foreign_key "skills", "tenants"
   add_foreign_key "tenants", "tenants"

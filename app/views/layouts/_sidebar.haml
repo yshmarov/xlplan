@@ -3,9 +3,10 @@
     .fa.fa-calendar-check
     JobDone
     \|
-    = Tenant.current_tenant.name
+    .badge.badge-default
+      = Tenant.current_tenant.name
     \|
-    = Tenant.current_tenant.plan
+    = plan_label(Tenant.current_tenant.plan)
 
   %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
@@ -14,7 +15,6 @@
       %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link"
       %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
       %li.nav-item= link_to "Members", members_path, class: "nav-link"
-      %li.nav-item= link_to "Employees", employees_path, class: "nav-link"
       %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
       %li.nav-item= link_to "Services", services_path, class: "nav-link"
       %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
@@ -26,7 +26,7 @@
           = link_to "Finances", stats_finances_path, class: "dropdown-item navdrop-link"
           %hr
           = link_to "Clients", stats_clients_path, class: "dropdown-item navdrop-link"
-          = link_to "Employees", stats_employees_path, class: "dropdown-item navdrop-link"
+          = link_to "Members", stats_members_path, class: "dropdown-item navdrop-link"
           = link_to "Jobs", stats_jobs_path, class: "dropdown-item navdrop-link"
           = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
           = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
@@ -45,7 +45,7 @@
           = link_to "+ New Job", new_job_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
           %hr
-          = link_to "+ New Employee", new_employee_path, class: "dropdown-item navdrop-link"
+          = link_to "+ New Member", new_member_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
       %li.nav-item= link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"

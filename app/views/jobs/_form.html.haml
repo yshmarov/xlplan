@@ -16,9 +16,9 @@
     = f.error :service, class: 'text-danger'
     = f.select :service_id, Service.active.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
 
-    = f.label :employee
-    = f.error :employee, class: 'text-danger'
-    = f.select :employee_id, Employee.active.map{|c| [c.full_name, c.id]}, {include_blank: Employee.all.length > 1}, class: 'selectize'
+    = f.label :member
+    = f.error :member, class: 'text-danger'
+    = f.select :member_id, Member.active.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
 
     = f.label :location
     = f.error :location, class: 'text-danger'
@@ -27,9 +27,9 @@
     /= f.input :service_name
     /= f.input :service_description
     /= f.input :service_duration
-    /= f.input :service_employee_percent
+    /= f.input :service_member_percent
     /= f.input :client_price
-    /= f.input :employee_price
+    /= f.input :member_price
     /= f.input :status
     = f.input :description
     - unless f.object.new_record?

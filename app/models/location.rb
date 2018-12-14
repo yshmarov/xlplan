@@ -9,7 +9,7 @@ class Location < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
-  has_many :employees, dependent: :restrict_with_error
+  has_many :members, dependent: :restrict_with_error
   has_many :jobs, dependent: :restrict_with_error
 
   #validates :name, uniqueness: true
@@ -28,7 +28,7 @@ class Location < ApplicationRecord
   end
 
   def associations?
-    jobs.any? || employees.any?
+    jobs.any? || members.any?
   end
 
   validate :free_plan_can_only_have_one_location
