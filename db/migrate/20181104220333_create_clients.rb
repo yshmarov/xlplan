@@ -12,8 +12,7 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.string :address
       t.integer :status, default: 1, null: false
       t.integer :balance, default: 0, null: false
-
-      t.belongs_to :member, foreign_key: true
+      t.integer :created_by, default: 0, null: false
 
       t.timestamps
     end

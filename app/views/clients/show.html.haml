@@ -40,7 +40,7 @@
         = status_label(@client.status)
         %br
         %b Created:
-        = link_to @client.member, member_path(@client.member) if @client.member.present?
+        = link_to @client.created_by, member_path(@client.created_by)
         = @client.created_at.strftime('%d/%b/%Y, %H:%M')
     %p
     .card

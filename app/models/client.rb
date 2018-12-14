@@ -10,7 +10,7 @@ class Client < ApplicationRecord
 
   has_many :jobs, dependent: :restrict_with_error
   has_many :comments, as: :commentable
-  belongs_to :member, optional: true
+  belongs_to :creator, class_name: 'Member', foreign_key: :created_by, required: false
 
   validates :first_name, :last_name, presence: true
   validates :status, presence: true

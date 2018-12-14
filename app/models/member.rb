@@ -7,7 +7,6 @@ class Member < ApplicationRecord
   has_many :skills, dependent: :destroy
   has_many :comments
   has_many :service_categories, through: :skills
-  has_many :clients, dependent: :nullify
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

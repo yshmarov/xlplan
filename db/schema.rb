@@ -48,12 +48,11 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.string "address"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
-    t.bigint "member_id"
+    t.integer "created_by", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
-    t.index ["member_id"], name: "index_clients_on_member_id"
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end
 
@@ -257,7 +256,6 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
   end
 
   add_foreign_key "activities", "tenants"
-  add_foreign_key "clients", "members"
   add_foreign_key "clients", "tenants"
   add_foreign_key "comments", "tenants"
   add_foreign_key "comments", "users"
