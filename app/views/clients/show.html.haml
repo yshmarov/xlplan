@@ -2,7 +2,9 @@
   .col-lg-4
     .card
       .card-header
-        %b Personal
+        %b Client
+        .float-right
+          = link_to '', edit_client_path(@client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@client).edit?
       .card-body
         %b Name:
         = @client.full_name
@@ -26,21 +28,17 @@
         %br
         %b Address:
         = @client.address
-    %p
-    .card
-      .card-header
-        %b Client
-        .float-right
-          = link_to '', edit_client_path(@client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@client).edit?
-      .card-body
+        %hr
         %b Balance:
         = number_to_currency(@client.balance_cents, :unit => "$")
         %br
         %b Status:
         = status_label(@client.status)
+        %hr
+        %b Created by:
+        = link_to @client.creator, member_path(@client.created_by)
         %br
-        %b Created:
-        = link_to @client.created_by, member_path(@client.created_by)
+        %b Created at:
         = @client.created_at.strftime('%d/%b/%Y, %H:%M')
     %p
     .card
