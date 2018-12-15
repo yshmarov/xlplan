@@ -26,5 +26,14 @@
     = f.label :gender_other, "Other"
     = f.input :address
     = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
+
+
+  %h3 Skills
+  #skills
+    = f.simple_fields_for :skills do |skill|
+      = render 'skill_fields', f: skill
+    .links
+      = link_to_add_association 'add skill', f, :skills
+  %br
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

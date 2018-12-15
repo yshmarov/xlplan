@@ -4,13 +4,15 @@ class Member < ApplicationRecord
   belongs_to :user
   belongs_to :location, optional: true
   has_many :jobs, dependent: :restrict_with_error
-  has_many :skills, dependent: :destroy
+  has_many :skills, dependent: :destroy, inverse_of: :member
   has_many :comments
   has_many :service_categories, through: :skills
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   include Personable
+
+  accepts_nested_attributes_for :skills, reject_if: :all_blank, allow_destroy: true
 
   validates :user_id, presence: true
   validates :user_id, uniqueness: true

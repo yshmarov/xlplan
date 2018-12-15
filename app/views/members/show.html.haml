@@ -2,8 +2,12 @@
   .col-lg-4
     .card
       .card-header
-        %b Personal
+        %b Member
+        .float-right
+          = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@member).update?
       .card-body
+        .text-center
+          .fa.fa-user-tie.fa-4x
         %b Name:
         = @member.full_name
         %br
@@ -26,13 +30,7 @@
         %br
         %b Address:
         = @member.address
-    %p
-    .card
-      .card-header
-        %b Employment
-        .float-right
-          = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@member).update?
-      .card-body
+        %hr
         %b Balance:
         = number_to_currency(@member.balance_cents, :unit => "$")
         %br
@@ -41,6 +39,9 @@
         %br
         %b Location:
         = link_to @member.location, location_path(@member.location) if @member.location.present?
+        %hr
+        %b Created at:
+        = @member.created_at.strftime('%d/%b/%Y, %H:%M')
     %p
     .card
       .card-header
