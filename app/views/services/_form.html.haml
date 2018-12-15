@@ -13,9 +13,9 @@
 
     = f.input :name, autofocus: true
     = f.input :description
-    = f.input :duration
-    = f.input :client_price_cents, label: "Client price"
-    = f.input :member_percent
+    = f.input :duration, placeholder: '30'
+    = f.input :client_price_cents, label: "Client price", placeholder: '59.99', as: :integer, input_html: { autocomplete: 'off' }
+    = f.input :member_percent, placeholder: '50'
     /= f.input :member_price
     /= f.input :quantity
     /= f.input :status

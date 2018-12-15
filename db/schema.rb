@@ -157,11 +157,11 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.bigint "tenant_id"
     t.string "name", limit: 144, null: false
     t.string "description", limit: 255
-    t.integer "duration", default: 30, null: false
-    t.integer "member_percent", default: 50, null: false
+    t.integer "duration", null: false
+    t.integer "member_percent", null: false
     t.integer "quantity", default: 1, null: false
     t.integer "status", default: 1, null: false
-    t.integer "client_price", default: 0, null: false
+    t.integer "client_price", null: false
     t.integer "member_price", default: 0, null: false
     t.bigint "service_category_id"
     t.datetime "created_at", null: false
