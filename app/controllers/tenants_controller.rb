@@ -1,9 +1,11 @@
 class TenantsController < ApplicationController
   before_action :set_tenant
   def edit
+    authorize @tenant
   end
   
   def update
+    authorize @tenant
     if @tenant.update(tenant_params)
       redirect_to root_path, notice: 'Plan was successfully updated.'
     else

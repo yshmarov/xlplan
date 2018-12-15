@@ -52,6 +52,7 @@
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          .fa.fa-user
           = current_user.member.full_name
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
           = link_to 'My page', member_path(current_user.member), class: "dropdown-item navdrop-link"
