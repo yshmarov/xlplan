@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   rolify
 
+  validates :email, presence: true
   #include PublicActivity::Model
   #tracked only: :create, owner: :itself
 

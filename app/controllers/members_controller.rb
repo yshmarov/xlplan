@@ -37,7 +37,7 @@ class MembersController < ApplicationController
       flash[:notice] = "New member added and invitation email sent to #{@user.email}."
       redirect_to members_path
     else
-      flash[:error] = "errors occurred!"
+      #flash[:error] = "errors occurred!"
       @member = Member.new( member_params ) # only used if need to revisit form
       render :new
     end

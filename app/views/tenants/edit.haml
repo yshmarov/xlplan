@@ -15,4 +15,7 @@
   /  = f.text_field :industry
   %br/
   .row.col-md-12
-    = f.submit 'Update Plan', class: "btn btn-primary", id: 'update_plan'
+    = f.submit 'Update Plan', class: "btn btn-success", id: 'update_plan'
+  %p
+  = link_to 'Cancel', root_path, class: "btn btn-danger"
+  %p
