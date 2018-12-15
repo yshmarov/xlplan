@@ -8,30 +8,21 @@
     = f.input :first_name
     = f.input :phone_number
     = f.input :email
+    = f.label :'Date of birth'
+    = f.date_field :date_of_birth, value: @client.date_of_birth || nil, class: "form-control"
     %p
-    %button.btn.btn-primary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-      .fa.fa-cog
-      More options
-    #accordion.collapse
-      %p
-      = f.label :'Date of birth'
-      = f.date_field :date_of_birth, value: @client.date_of_birth || nil, class: "form-control"
-      %p
-      = f.label :'gender'
-      %br
-      /= f.input :gender
-      = f.radio_button :gender, 'undisclosed'
-      = f.label :gender_undisclosed, "Undisclosed"
-      = f.radio_button :gender, 'female'
-      = f.label :gender_female, "Female"
-      = f.radio_button :gender, 'male'
-      = f.label :gender_male, "Male"
-      = f.radio_button :gender, 'other'
-      = f.label :gender_other, "Other"
-      = f.input :middle_name
-      = f.input :address
-      = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
-    %p
+    = f.label :'gender'
+    %br
+    = f.radio_button :gender, 'undisclosed'
+    = f.label :gender_undisclosed, "Undisclosed"
+    = f.radio_button :gender, 'female'
+    = f.label :gender_female, "Female"
+    = f.radio_button :gender, 'male'
+    = f.label :gender_male, "Male"
+    = f.radio_button :gender, 'other'
+    = f.label :gender_other, "Other"
+    = f.input :address
+    = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
