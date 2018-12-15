@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
     #@clients = @ransack_clients.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
 
     @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:member).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @clients = @ransack_clients.result.includes(:creator).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
 
   def show
@@ -71,7 +71,7 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:first_name, :middle_name, :last_name, :date_of_birth, :gender, :email, :phone_number, :address, :description, :status, :balance, :member_id)
+      params.require(:client).permit(:first_name, :last_name, :date_of_birth, :gender, :email, :phone_number, :address, :description, :status, :balance, :member_id)
 
     end
 end

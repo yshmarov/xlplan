@@ -12,6 +12,8 @@ class Service < ApplicationRecord
   validates :name, length: { in: 1..144 }
   validates :description, length: { maximum: 255 }
   validates :name, :duration, :client_price, :member_percent, :member_price, :quantity, :status, :service_category, presence: true
+  #class_attribute :client_price, default: {}
+
 
   accepts_nested_attributes_for :service_category, :reject_if => :all_blank
 
