@@ -1,5 +1,6 @@
 /*global $*/
 /*global app*/
+/*global moment*/
 
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
@@ -26,32 +27,48 @@
 //= require moment 
 //= require fullcalendar
 
-function eventCalendar() {
-  return $('#calendar').fullCalendar({ 
-        lang: 'en',
-        defaultView: 'agendaWeek',
-        firstDay: 1,
-        nowIndicator: true,
-        timeFormat: 'H(:mm)',
-        scrollTime: '08:00:00',
-        minTime: "06:00:00",
-        maxTime: "22:00:00",
-        allDaySlot: false,
-        slotMinutes: 30,
-        events: app.vars.jobs,
-        header: {
-            center: 'month,basicWeek,basicDay,agendaWeek,agendaDay'
-        }
+
+var TimeNow  = moment().format("HH") + ":00:00";
 
 
-  });
-};
+
 function clearCalendar() {
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
 };
 
 $(document).on('turbolinks:load', function(){
+
+
+    $('#calendar').fullCalendar({ 
+        lang: 'en',
+        defaultView: 'agendaWeek',
+        firstDay: 1,
+        nowIndicator: true,
+        timeFormat: 'H(:mm)',
+        scrollTime: TimeNow,
+        allDaySlot: false,
+        slotMinutes: 30,
+        events: app.vars.jobs,
+        header: {
+            center: 'month,agendaWeek,agendaDay'
+        }
+    });
+    
+    $('#dailycalendar').fullCalendar({ 
+        lang: 'en',
+        defaultView: 'agendaDay',
+        firstDay: 1,
+        nowIndicator: true,
+        timeFormat: 'H(:mm)',
+        scrollTime: TimeNow,
+        allDaySlot: false,
+        slotMinutes: 30,
+        events: app.vars.jobs,
+    });
+
+
+
 
     $('form').on('cocoon:after-insert', function(e, addedItem) {
       $(addedItem).find('.selectize').selectize({

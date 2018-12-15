@@ -1,3 +1,4 @@
+- set_var 'jobs', Job.where(member_id: current_user.member.id).map{|e| {title: e.service_name.to_s  + "/" + e.member.full_name.to_s  + "/" + e.client.full_name.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
 %h4
   .fa.fa-tachometer-alt
   Dashboard
@@ -77,19 +78,11 @@
 %p
 .row
   .col-xl-4
-    .card-header
-      .fa.fa-bell
-      Activity
-      .float-right
-        = link_to 'more', activity_path, class: 'btn btn-sm btn-primary'
-    .card
-      =  render 'home/activity'
-    %p
-  .col-xl-4
     .card
       .card-header
         .fa.fa-calendar
-        Upcoming appointments
+        My Upcoming Appointments
+      #dailycalendar
       -  Job.all.where(member: current_user.member).where("starts_at > ?", Time.zone.now-15.minutes).limit(5).each do |job|
 
         %li.list-group-item
@@ -101,8 +94,17 @@
   .col-xl-4
     .card-header
       .fa.fa-calendar-check
-      Mark attendance
+      Mark My Clent's Attendance
       .float-right
         = link_to "#{Job.mark_attendance.count} Tasks", mark_attendance_jobs_path, class: 'btn btn-sm btn-primary'
     .card
       = render 'jobs/index'
+    %p
+  .col-xl-4
+    .card-header
+      .fa.fa-bell
+      Activity
+      .float-right
+        = link_to 'more', activity_path, class: 'btn btn-sm btn-primary'
+    .card
+      =  render 'home/activity'

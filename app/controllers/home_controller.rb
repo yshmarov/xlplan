@@ -16,7 +16,7 @@ class HomeController < ApplicationController
 
   def dashboard
     @activities = PublicActivity::Activity.limit(5).order("created_at DESC")
-    @jobs = Job.mark_attendance
+    @jobs = Job.where(member: current_user.member).mark_attendance
     @total_confirmed_earnings = Job.is_confirmed.where('created_at >= ?', 1.month.ago).map(&:client_due_price_cents).sum
   end
 
