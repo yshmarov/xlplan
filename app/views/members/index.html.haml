@@ -42,13 +42,13 @@
               %i.fa.fa-fire{:style => "color:red;"}
             - if member.id == current_user.member.id
               .fa.fa-user
-            = link_to member.full_name, member_path(member), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).show?
-          %td= link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).update?
+            = link_to member.full_name, member_path(member), class: "btn btn-primary btn-sm" if policy(member).show?
+          %td= link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
           %td
             - unless member.associations?
-              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).destroy?
+              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
             - else
-              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(member).destroy?
+              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(member).destroy?
           %td
             = link_to "tel:#{member.phone_number}", class: "button" do
               #{member.phone_number}

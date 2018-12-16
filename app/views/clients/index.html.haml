@@ -33,13 +33,13 @@
     %tbody
       - @clients.each do |client|
         %tr
-          %td= link_to client.full_name, client_path(client), class: "btn btn-primary btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).show?
-          %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).update?
+          %td= link_to client.full_name, client_path(client), class: "btn btn-primary btn-sm" if policy(client).show?
+          %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
           %td
             - unless client.associations?
-              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).destroy?
+              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
             - else
-              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(client).destroy?
+              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(client).destroy?
           %td
             = link_to "tel:#{client.phone_number}", class: "button" do
               #{client.phone_number}

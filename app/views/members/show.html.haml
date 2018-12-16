@@ -65,6 +65,17 @@
             /%br
             /%b Invited by:
             /= @member.user.invitor
+    %p
+    .card
+      .card-header
+        %b Roles
+        .float-right
+          - if current_user.has_role?(:admin) && @member.user.present?
+            = link_to 'Edit roles', edit_user_path(@member.user), class: 'btn btn-warning btn-sm'
+      .card-body
+        - if @member.user.present?
+          = @member.user.roles.collect{|r| r.name}.to_sentence
+
   .col-lg-8
     .card
       .card-header

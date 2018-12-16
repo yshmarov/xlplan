@@ -32,6 +32,7 @@ class Job < ApplicationRecord
   scope :is_confirmed, -> { where(status: [:confirmed, :confirmed_by_client]) }
   scope :is_cancelled, -> { where(status: [:not_attended, :rejected_by_us, :cancelled_by_client]) }
   scope :is_planned, -> { where(status: [:planned]) }
+
   def happened
     if status == 'confirmed_by_client' || status == 'confirmed'
       true

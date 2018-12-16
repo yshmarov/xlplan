@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def update
     authorize @user
     if @user.update(user_params)
-      redirect_to root_path, notice: 'User was successfully updated.'
+      redirect_to member_path(@user.member), notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def destroy
     authorize @user
     @user.destroy
-    redirect_to root_path, notice: 'User was successfully destroyed.'
+    redirect_to members_path, notice: 'User was successfully destroyed.'
   end
 
   private
