@@ -12,10 +12,11 @@ class Tenant < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy
 
-  validates_presence_of :name, :plan
+  validates_presence_of :name, :plan, :industry
   validates_uniqueness_of :name
   validates :name, length: { maximum: 40 }
   validates :plan, length: { maximum: 20 }
+  validates :industry, length: { maximum: 20 }
 
   def can_create_locations?
     (plan == 'free' && locations.count < 1) || (plan == 'premium')

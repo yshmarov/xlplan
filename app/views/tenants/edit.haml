@@ -10,11 +10,12 @@
     = f.text_field :name, required: true, class: "form-control"
   .form-group.col-md-12.no-side-padding
     = f.label :plan
-    = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, |
-      required: true, class: "form-control"                                |
-  /.form-group.col-md-12.no-side-padding
-  /  = f.label :industry
-  /  = f.text_field :industry
+    = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, required: true, class: "form-control"
+  .form-group.col-md-12.no-side-padding
+    = f.label :industry
+    = f.select :industry, options_for_select(TenantIndustry.options, @tenant.industry ), {}, required: true, class: "form-control"
+    /= f.select :industry, options_for_select(TenantIndustry.options, params[:tenant_industry]), {}, required: true, class: 'selectize'
+
   %br/
   .row.col-md-12
     = f.submit 'Update Plan', class: "btn btn-success", id: 'update_plan'

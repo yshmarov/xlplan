@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
   create_table "clients", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "first_name", limit: 144, null: false
-    t.string "middle_name", limit: 144
     t.string "last_name", limit: 144, null: false
     t.string "phone_number"
     t.string "email"
@@ -218,6 +217,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
     t.string "plan", limit: 20, null: false
+    t.string "industry", limit: 60, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tenants_on_name"

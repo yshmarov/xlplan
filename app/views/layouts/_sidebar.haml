@@ -6,6 +6,8 @@
     .badge.badge-default
       = Tenant.current_tenant.name
     \|
+    = Tenant.current_tenant.industry
+    \|
     = plan_label(Tenant.current_tenant.plan)
 
   %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
