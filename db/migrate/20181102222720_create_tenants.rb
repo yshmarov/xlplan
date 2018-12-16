@@ -8,11 +8,10 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       #t.string :default_language, :limit => 40, null: false
       #t.string :default_currency, null: false
       #t.string :default_time_zone, null: false
-      #t.string :category, :limit => 40, null: false
       #t.string :country, null: false
       #t.string :city, null: false
       #t.string :logo
-      #= f.select :industry, options_for_select(TenantIndustry.options, params[:tenant_industry]), {}, required: true, class: 'selectize'
+      #t.string :default_working_hours
 
       t.timestamps
     end

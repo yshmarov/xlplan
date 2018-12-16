@@ -21,6 +21,9 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.text :description
 
       t.timestamps
+
+      #add_index :jobs, :status
+
     end
   end
 end

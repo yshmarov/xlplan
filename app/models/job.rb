@@ -43,7 +43,6 @@ class Job < ApplicationRecord
     end
   end
 
-
   def color
     if status == 'confirmed_by_client' || status == 'confirmed'
       'green'
@@ -72,7 +71,13 @@ class Job < ApplicationRecord
              :member_price, presence: true
   validates :description, length: { maximum: 500 }
 
-  #add_index :jobs, :status
+  #validates_time :starts_at, :between => ['9:00am', '5:00pm'] # On or after 9:00AM and on or before 5:00PM
+  validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
+
+  #validates_date :starts_at, :on_or_after => lambda { Date.current }
+  #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
+
+
 
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents
