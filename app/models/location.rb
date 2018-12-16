@@ -8,6 +8,8 @@ class Location < ApplicationRecord
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   has_many :members, dependent: :restrict_with_error
   has_many :jobs, dependent: :restrict_with_error

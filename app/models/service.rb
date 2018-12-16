@@ -4,6 +4,8 @@ class Service < ApplicationRecord
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
 
   belongs_to :service_category, counter_cache: true
   has_many :jobs, dependent: :restrict_with_error

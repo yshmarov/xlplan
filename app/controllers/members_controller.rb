@@ -35,7 +35,7 @@ class MembersController < ApplicationController
     # ok to create user, member
     if @user.save_and_invite_member() && @user.create_member( member_params )
       flash[:notice] = "New member added and invitation email sent to #{@user.email}."
-      redirect_to members_path
+      redirect_to @user.member
     else
       #flash[:error] = "errors occurred!"
       @member = Member.new( member_params ) # only used if need to revisit form
@@ -68,7 +68,7 @@ class MembersController < ApplicationController
   private
 
     def set_member
-      @member = Member.find(params[:id])
+      @member = Member.friendly.find(params[:id])
     end
   
     def member_params()

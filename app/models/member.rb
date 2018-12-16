@@ -11,6 +11,8 @@ class Member < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   include Personable
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
 
   accepts_nested_attributes_for :skills, reject_if: :all_blank, allow_destroy: true
 

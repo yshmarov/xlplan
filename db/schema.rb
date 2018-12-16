@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_26_180258) do
+ActiveRecord::Schema.define(version: 2018_12_16_011931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end
 
@@ -67,6 +69,18 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["tenant_id"], name: "index_comments_on_tenant_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -90,10 +104,12 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["client_id"], name: "index_jobs_on_client_id"
     t.index ["location_id"], name: "index_jobs_on_location_id"
     t.index ["member_id"], name: "index_jobs_on_member_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
+    t.index ["slug"], name: "index_jobs_on_slug", unique: true
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
   end
 
@@ -108,6 +124,8 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
   end
 
@@ -127,7 +145,9 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
+    t.string "slug"
     t.index ["location_id"], name: "index_members_on_location_id"
+    t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
     t.index ["user_id"], name: "index_members_on_user_id"
   end
@@ -167,8 +187,10 @@ ActiveRecord::Schema.define(version: 2018_11_26_180258) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
+    t.string "slug"
     t.index ["name"], name: "index_services_on_name", unique: true
     t.index ["service_category_id"], name: "index_services_on_service_category_id"
+    t.index ["slug"], name: "index_services_on_slug", unique: true
     t.index ["tenant_id"], name: "index_services_on_tenant_id"
   end
 
