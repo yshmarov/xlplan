@@ -1,7 +1,7 @@
 - set_var 'jobs', Job.where(member_id: current_user.member.id).map{|e| {title: e.service_name.to_s  + "/" + e.member.full_name.to_s  + "/" + e.client.full_name.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
 %h4
   .fa.fa-tachometer-alt
-  Dashboard
+  My Dashboard
 %p
 - unless Job.any?
   .card
@@ -10,6 +10,10 @@
       Getting started
     .card-body
       %h5
+        = link_to 'update your company settings', edit_plan_path
+        %hr
+        = link_to 'update your personal info', edit_member_path(current_user.member)
+        %hr
         - if Tenant.current_tenant.plan != 'free'
           - unless Member.count >= 2
             %span.badge.badge-pill.badge-danger 0
@@ -44,10 +48,11 @@
             Add a Client
         %hr
         - unless Job.any?
-          %span.badge.badge-pill.badge-danger 4
+          .fa.fa-times-circle{:style => "color:red"}
+
           = link_to 'Add a Job', new_job_path
         - else
-          %span.badge.badge-pill.badge-success 4
+          .fa.fa-check-circle{:style => "color:green"}
           %del
             Add a Job
 /%p
@@ -81,7 +86,10 @@
     .card
       .card-header
         .fa.fa-calendar
-        My Upcoming Appointments
+        Calendar
+        .float-right
+          = link_to "more", calendar_path, class: 'btn btn-sm btn-primary'
+
       #dailycalendar
       -  Job.all.where(member: current_user.member).where("starts_at > ?", Time.zone.now-15.minutes).limit(5).each do |job|
 
@@ -94,7 +102,7 @@
   .col-xl-4
     .card-header
       .fa.fa-calendar-check
-      Mark My Clent's Attendance
+      Mark Status
       .float-right
         = link_to "#{Job.mark_attendance.count} Tasks", mark_attendance_jobs_path, class: 'btn btn-sm btn-primary'
     .card

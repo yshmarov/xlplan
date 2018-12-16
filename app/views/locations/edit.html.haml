@@ -1,7 +1,7 @@
-%h1 Editing location
-
-= render 'form'
-
-= link_to 'Show', @location
-\|
-= link_to 'Back', locations_path
+.container
+  %h1 Editing location
+  
+  = render 'form'
+  %p
+  = link_to 'Cancel', @location, class: "btn btn-danger", title: 'Back to Location', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+  %p

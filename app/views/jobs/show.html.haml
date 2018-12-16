@@ -3,8 +3,8 @@
   .container
     .card
       .card-header
-        %b Job #
-        = @job.id
+        %b Job
+        /= @job.id
         .float-right
           = link_to '', edit_job_path(@job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@job).update?
           /= link_to 'Back', jobs_path, class: 'btn btn-sm btn-secondary'

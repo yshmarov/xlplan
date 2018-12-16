@@ -17,11 +17,11 @@
       .card-header
         .row
           .col-md-4
-            \#
-            = f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
-            %br 
-              Client
-              = f.search_field :client_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
+            /\#
+            /= f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
+            /%br 
+            Client
+            = f.search_field :client_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
             %br 
               Employee
               = f.search_field :member_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
@@ -49,7 +49,7 @@
   %table#table1
     %thead
       %tr
-        %th #
+        /%th #
         %th
         %th
         %th
@@ -69,7 +69,7 @@
     %tbody
       - @jobs.each do |job|
         %tr
-          %td= job.id
+          /%td= job.id
           %td= link_to '', job, class: "btn btn-primary fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).update?
           %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).destroy?
