@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:destroy, :edit, :update]
   resources :members do
-    resources :skills, only: [:new, :create, :destroy]
   	member do
   		patch :invite_user
     end
