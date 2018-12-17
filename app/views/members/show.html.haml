@@ -31,8 +31,8 @@
         %b Address:
         = @member.address
         %hr
-        %b Balance:
-        = number_to_currency(@member.balance_cents, :unit => "$")
+        %b Balance, #{Tenant.current_tenant.default_currency.upcase}:
+        = @member.balance_cents
         %br
         %b Status:
         = status_label(@member.status)

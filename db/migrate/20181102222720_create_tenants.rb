@@ -16,5 +16,7 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_index :tenants, :name
+    add_index :tenants, :plan
+    add_index :tenants, :default_currency
   end
 end

@@ -2,10 +2,12 @@
   .col-lg-4
     .card
       .card-header
-        %b Details
+        %b Location
         .float-right
           = link_to '', edit_location_path(@location), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@location).update?
       .card-body
+        .text-center
+          .fa.fa-industry.fa-4x
         %b Name:
         = @location.name
         %br
@@ -17,8 +19,8 @@
         %br
         %b Address:
         = @location.address
-        %br
-        %b Balance:
+        %hr
+        %b Balance, #{Tenant.current_tenant.default_currency.upcase}:
         = @location.balance_cents
         %br
         %b Status:

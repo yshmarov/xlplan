@@ -9,13 +9,13 @@
     %span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
     %ul.navbar-nav.side-nav
-      %li.nav-item= link_to "Calendar", calendar_path, class: "nav-link"
-      %li.nav-item= link_to "Clients", clients_path, class: "nav-link"
-      %li.nav-item= link_to "Members", members_path, class: "nav-link"
-      %li.nav-item= link_to "Jobs", jobs_path, class: "nav-link"
-      %li.nav-item= link_to "Services", services_path, class: "nav-link"
-      %li.nav-item= link_to "Locations", locations_path, class: "nav-link"
-      %li.nav-item= link_to "Activity", activity_path, class: "nav-link btn"
+      %li.nav-item= link_to "<i class='fa fa-calendar'></i> Calendar".html_safe, calendar_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-user'></i> Clients".html_safe, clients_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-user-tie'></i> Members".html_safe, members_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Jobs".html_safe, jobs_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-tag'></i> Services".html_safe, services_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-industry'></i> Locations".html_safe, locations_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-bell'></i> Activity".html_safe, activity_path, class: "nav-link"
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           Stats

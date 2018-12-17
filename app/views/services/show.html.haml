@@ -14,14 +14,14 @@
   = @service.duration
 %p
   %b Client price:
-  = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase}")
+  = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
 %p
   %b Employee percent:
   /= @service.member_percent
   = number_to_percentage(@service.member_percent, precision: 0)
 %p
   %b Employee price:
-  = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase}")
+  = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
 
 %p
   %b Quantity:

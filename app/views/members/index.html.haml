@@ -27,7 +27,7 @@
           Contacts
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
         %th= sort_link @ransack_members, :status, "Status"
-        %th= sort_link @ransack_members, :balance, "Balance"
+        %th= sort_link @ransack_members, :balance, "Balance, #{Tenant.current_tenant.default_currency.upcase}"
         %th= sort_link @ransack_members, :jobs_count, "Jobs"
         %th Location
         %th Skills
@@ -56,7 +56,7 @@
               \/
             %a{:href => "mailto:#{member.user.email}"}= member.user.email
           %td= status_label(member.status)
-          %td= number_to_currency(member.balance_cents, :unit => "$")
+          %td= member.balance_cents
           %td= member.jobs_count
           %td= link_to member.location, location_path(member.location) if member.location.present?
           %td= member.skills.collect{|r| r.service_category}.to_sentence

@@ -60,8 +60,8 @@
         %th= sort_link @q, :member_last_name, "Employee"
         %th= sort_link @q, :service_name, "Service"
         /%th= sort_link @q, :service_duration, "Duration"
-        %th= sort_link @q, :client_price, "Client,$"
-        %th= sort_link @q, :member_price, "Employee,$"
+        %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
+        %th= sort_link @q, :member_price, "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
         %th Description
         /%th Created by
         /%th Created at
