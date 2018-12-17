@@ -1,4 +1,5 @@
 -# frozen_string_literal: true
+/= @job.overlapped_records.count if @job.overlapped_records.any?
 = simple_form_for(@job) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
@@ -7,7 +8,6 @@
 
     = f.input :starts_at, :minute_step => 15, start_year: Date.today.year
     /= f.datetime_field :starts_at, :minute_step => 15, start_year: Date.today.year, class: "form-control"
-
     = f.label :client
     = f.error :client, class: 'text-danger'
     = f.select :client_id, Client.active.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'

@@ -80,4 +80,4 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem "cocoon"
 gem 'friendly_id', '~> 5.2.4'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
-
+gem 'validates_overlap'
