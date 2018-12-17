@@ -3,18 +3,28 @@
 %script{:language => "JavaScript"}
   :cdata
     Stripe.setPublishableKey("#{ENV['STRIPE_TEST_PUBLISHABLE_KEY']}");
-= form_for @tenant, url: update_plan_path do |f|
+= simple_form_for @tenant, url: update_plan_path do |f|
+
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
   .form-group.col-md-12.no-side-padding
     = f.label :name, 'Organization'
-    %span.description (Unique name for your group or organization for the new account)
+    = f.error :name, class: 'text-danger'
+    %span.description (Unique name for your business or organization)
     = f.text_field :name, required: true, class: "form-control"
   .form-group.col-md-12.no-side-padding
     = f.label :plan
+    = f.error :plan, class: 'text-danger'
     = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, required: true, class: "form-control"
   .form-group.col-md-12.no-side-padding
     = f.label :industry
+    = f.error :industry, class: 'text-danger'
     = f.select :industry, options_for_select(TenantIndustry.options, @tenant.industry ), {}, required: true, class: "form-control"
-    /= f.select :industry, options_for_select(TenantIndustry.options, params[:tenant_industry]), {}, required: true, class: 'selectize'
+    %br
+    = f.label :default_currency
+    = f.error :default_currency, class: 'text-danger'
+    = f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
 
   %br/
   .row.col-md-12

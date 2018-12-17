@@ -216,8 +216,9 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
-    t.string "plan", limit: 20, null: false
+    t.string "plan", limit: 40, null: false
     t.string "industry", limit: 60, null: false
+    t.string "default_currency", limit: 40, default: "usd", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tenants_on_name"

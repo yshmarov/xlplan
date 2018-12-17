@@ -9,7 +9,7 @@ class TenantsController < ApplicationController
     if @tenant.update(tenant_params)
       redirect_to root_path, notice: 'Plan was successfully updated.'
     else
-      render :new
+      render :edit
     end
   end
 
@@ -27,6 +27,6 @@ class TenantsController < ApplicationController
   end
   
   def tenant_params
-    params.require(:tenant).permit(:name, :plan, :industry)
+    params.require(:tenant).permit(:name, :plan, :industry, :default_currency)
   end
 end

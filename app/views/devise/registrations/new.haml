@@ -26,6 +26,9 @@
             = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control"
             = w.label :industry
             = w.select :industry, options_for_select(TenantIndustry.options, params[:tenant_industry]), {}, required: true, class: 'selectize'
+            = w.label :default_currency
+            = w.error :default_currency, class: 'text-danger'
+            = w.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
 
 
         - if ::Milia.use_coupon

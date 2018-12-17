@@ -1,7 +1,20 @@
-- set_var 'jobs', Job.where(member_id: current_user.member.id).map{|e| {title: e.service_name.to_s  + "/" + e.member.full_name.to_s  + "/" + e.client.full_name.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
+- set_var 'jobs', Job.where(member_id: current_user.member.id).map{|e| {title: e.location.to_s  + "/" + e.service_name.to_s  + "/" + e.client.full_name.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
 %h4
   .fa.fa-tachometer-alt
   My Dashboard
+.card-header
+  Company info:
+  .badge.badge-default
+    = Tenant.current_tenant.name
+  \|
+  = Tenant.current_tenant.industry
+  \|
+  = plan_label(Tenant.current_tenant.plan)
+  \|
+  = Tenant.current_tenant.default_currency.upcase
+  = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
+
+
 %p
 - unless Job.any?
   .card
@@ -93,11 +106,11 @@
       #dailycalendar
       -  Job.all.where(member: current_user.member).where("starts_at > ?", Time.zone.now-15.minutes).limit(5).each do |job|
 
-        %li.list-group-item
-          = link_to '', job, class: "btn btn-success fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          #{job.starts_at.strftime('%d/%b/%Y %H:%M')}
-          = job.client
-          = job.service
+        /%li.list-group-item
+        /  = link_to '', job, class: "btn btn-success fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        /  #{job.starts_at.strftime('%d/%b/%Y %H:%M')}
+        /  = job.client
+        /  = job.service
     %p
   .col-xl-4
     .card-header
