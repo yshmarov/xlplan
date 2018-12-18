@@ -1,13 +1,15 @@
-%br
 %h4
   Editing roles for: #{@user.email}
-= form_for @user do |f|
-  - Role.all.each do |role|
-    = check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id)
-    = role.name
-  = f.submit
+.card-header
+  = form_for @user do |f|
+    - Role.all.each do |role|
+      = check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id)
+      = role.name
+    /= f.submit
+    = f.button :submit, class: "btn btn-success", title: 'Update Roles', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+
+  %br
+  = link_to "Back to Member", member_path(@user.member), class: 'btn btn-danger'
+
 %br
-= link_to "Back to Root", root_path, class: 'btn btn-secondary'
-
-
 = render 'users/role_description'

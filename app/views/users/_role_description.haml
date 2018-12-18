@@ -1,4 +1,4 @@
-%h2 Role description
+%h4 Role description
 
 User types:
 Admin
@@ -8,93 +8,86 @@ Client
 Viewer
 Owner
 
-%table.table.table-bordered
-  %thead
-    %tr
-      %th 
-      %th List all
-      %th Show
-      %th Create
-      %th Edit
-      %th Delete
-  %tbody
-    %tr
-      %th{:scope => "row"} Jobs
-      %td
-      %td
-      %td
-      %td
-      %td
-  %tbody
-    %tr
-      %th{:scope => "row"} Clients
-      %td
-      %td
-      %td
-      %td
-      %td
-  %tbody
-    %tr
-      %th{:scope => "row"} Employees
-      %td
-      %td
-      %td
-      %td
-      %td
-  %tbody
-    %tr
-      %th{:scope => "row"} Services
-      %td #{'anybody'.humanize}
-      %td #{'admin_or_manager'.humanize}
-      %td #{'admin_or_manager'.humanize}
-      %td #{'admin_or_manager'.humanize}
-      %td #{'admin_or_manager'.humanize}
-  %tbody
-    %tr
-      %th{:scope => "row"} Locations
-      %td #{'anybody'.humanize}
-      %td #{'admin'.humanize}
-      %td #{'admin'.humanize}
-      %td #{'admin'.humanize}
-      %td #{'admin'.humanize}
-  %tbody
-    %tr
-      %th{:scope => "row"} Service_categories
-      %td #{'anybody'.humanize}
-      %td N/A
-      %td #{'admin_or_manager'.humanize}
-      %td #{'admin'.humanize}
-      %td #{'admin'.humanize}
-  %tbody
-    %tr
-      %th{:scope => "row"} User_roles
-      %td
-      %td
-      %td
-      %td
-      %td
-  %tbody
-    %tr
-      %th{:scope => "row"} Activity
-      %td
-      %td
-      %td
-      %td
-      %td
-  %tbody
-    %tr
-      %th{:scope => "row"} Stats
-      %td
-      %td
-      %td
-      %td
-      %td
-  %tbody
-    %tr
-      %th{:scope => "row"} Role_description
-      %td
-      %td
-      %td
-      %td
-      %td
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th 
+        %th List all
+        %th Show
+        %th Create
+        %th Edit
+        %th Delete
+    %tbody
+      %tr
+        %th{:scope => "row"} Jobs
+        %td #{'anybody'.humanize}
+        %td #{'admin_or_manager_or_owner'.humanize}
+        %td #{'anybody'.humanize}
+        %td #{'admin_or_manager_or_owner'.humanize}
+        %td #{'admin_or_manager_or_owner'.humanize}
+    %tbody
+      %tr
+        %th{:scope => "row"} Clients
+        %td #{'anybody'.humanize}
+        %td #{'anybody'.humanize}
+        %td #{'anybody'.humanize}
+        %td #{'anybody'.humanize}
+        %td #{'admin_or_manager'.humanize}
+    %tbody
+      %tr
+        %th{:scope => "row"} Members
+        %td #{'anybody'.humanize}
+        %td #{'admin_or_manager_or_owner'.humanize}
+        %td #{'admin'.humanize}
+        %td #{'admin_or_owner'.humanize}
+        %td #{'admin'.humanize}
+    %tbody
+      %tr
+        %th{:scope => "row"} Services
+        %td #{'anybody'.humanize}
+        %td #{'admin_or_manager'.humanize}
+        %td #{'admin_or_manager'.humanize}
+        %td #{'admin_or_manager'.humanize}
+        %td #{'admin_or_manager'.humanize}
+    %tbody
+      %tr
+        %th{:scope => "row"} Locations
+        %td #{'anybody'.humanize}
+        %td #{'anybody'.humanize}
+        %td #{'admin'.humanize}
+        %td #{'admin'.humanize}
+        %td #{'admin'.humanize}
+    %tbody
+      %tr
+        %th{:scope => "row"} Service_categories
+        %td #{'admin_or_manager'.humanize}
+        %td #{'admin_or_manager'.humanize}
+        %td #{'admin_or_manager'.humanize}
+        %td #{'admin_or_manager'.humanize}
+        %td #{'admin_or_manager'.humanize}
+    %tbody
+      %tr
+        %th{:scope => "row"} User_roles
+        %td N/A
+        %td N/A
+        %td N/A
+        %td #{'admin'.humanize}
+        %td N/A
+    %tbody
+      %tr
+        %th{:scope => "row"} Activity
+        %td #{'anybody'.humanize}
+        %td N/A
+        %td N/A
+        %td N/A
+        %td N/A
+    %tbody
+      %tr
+        %th{:scope => "row"} Stats
+        %td #{'admin'.humanize}
+        %td #{'admin'.humanize}
+        %td N/A
+        %td N/A
+        %td N/A
 %br
