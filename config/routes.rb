@@ -52,7 +52,6 @@ Rails.application.routes.draw do
   get 'calendar', to: 'home#calendar'
   get 'activity', to: 'home#activity'
   get 'dashboard', to: 'home#dashboard'
-  get 'user_roles', to: 'home#user_roles'
 
   get 'stats/finances'
   get 'stats/clients'
