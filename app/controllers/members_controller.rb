@@ -73,7 +73,7 @@ class MembersController < ApplicationController
   
     def member_params()
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address,
-      :description, :status, :balance, :location_id, skills_attributes: [:id, :service_category_id, :_destroy])
+      :description, :status, :balance, :location_id, service_category_ids: [])
     end
   
     def user_params()

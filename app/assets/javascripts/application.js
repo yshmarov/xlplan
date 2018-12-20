@@ -122,7 +122,6 @@ $(document).on('turbolinks:load', function(){
      format: 'yyyy-mm-dd'
     });
 
-  eventCalendar();  
 });
 $(document).on('turbolinks:before-cache', clearCalendar);
 
