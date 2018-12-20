@@ -20,7 +20,7 @@ class ServiceCategoriesController < ApplicationController
 
     respond_to do |format|
       if @service_category.save
-        format.html { redirect_to service_categories_url, notice: 'Service category was successfully created.' }
+        format.html { redirect_to services_path, notice: 'Service category was successfully created.' }
         format.json { render :show, status: :created, location: @service_category }
       else
         format.html { render :new }
@@ -33,7 +33,7 @@ class ServiceCategoriesController < ApplicationController
     authorize @service_category
     respond_to do |format|
       if @service_category.update(service_category_params)
-        format.html { redirect_to service_categories_url, notice: 'Service category was successfully updated.' }
+        format.html { redirect_to services_path, notice: 'Service category was successfully updated.' }
         format.json { render :show, status: :ok, location: @service_category }
       else
         format.html { render :edit }
@@ -46,7 +46,7 @@ class ServiceCategoriesController < ApplicationController
     authorize @service_category
     @service_category.destroy
     respond_to do |format|
-      format.html { redirect_to service_categories_url, notice: 'Service category was successfully destroyed.' }
+      format.html { redirect_to services_path, notice: 'Service category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

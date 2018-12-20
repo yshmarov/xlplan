@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   resources :services
 
   #to edit names and delete empty ones
-  resources :service_categories, except: [:show, :new, :create]
+  resources :service_categories, except: [:show, :new, :create, :index]
 
   resources :locations
 

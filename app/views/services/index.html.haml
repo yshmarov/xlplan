@@ -1,6 +1,5 @@
 - model_class = Service
 = search_form_for @q, url: services_path do |f|
-  %p
   .card.card-default
     .container-fluid
       .card-heading
@@ -41,8 +40,6 @@
         %th= sort_link @q, :member_percent, "Employee %"
         %th= sort_link @q, :member_price, "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
         %th= sort_link @q, :status, "Status"
-        %th= sort_link @q, :jobs_count, "Jobs"
-  
     %tbody
       - @services.each do |service|
         %tr
@@ -53,7 +50,7 @@
               = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
             - else
               = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(service).destroy?
-          %td= service.service_category
+          %td= link_to service.service_category, edit_service_category_path(service.service_category)
           %td= service.name
           %td= service.description
           %td= service.duration
@@ -61,7 +58,6 @@
           %td= service.member_percent
           %td= service.member_price_cents
           %td= status_label(service.status)
-          %td= service.jobs_count
 .container
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
