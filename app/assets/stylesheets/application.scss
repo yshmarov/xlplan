@@ -47,6 +47,10 @@
   @extend .fa-trash;
 }
 
+.fa-change_status {
+  @extend .fa-calendar-check;
+}
+
 	#calendar {
 /* 		float: right; */
         margin: 0 auto;
