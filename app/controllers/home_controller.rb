@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def landing_page
     if current_user
-      redirect_to dashboard_path
+      redirect_to calendar_path
     end
   end
 

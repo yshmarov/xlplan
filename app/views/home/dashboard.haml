@@ -96,13 +96,12 @@
 %p
 .row
   .col-xl-4
+    .card-header
+      .fa.fa-calendar
+      Calendar
+      .float-right
+        = link_to "more", calendar_path, class: 'btn btn-sm btn-primary'
     .card
-      .card-header
-        .fa.fa-calendar
-        Calendar
-        .float-right
-          = link_to "more", calendar_path, class: 'btn btn-sm btn-primary'
-
       #dailycalendar
       -  Job.all.where(member: current_user.member).where("starts_at > ?", Time.zone.now-15.minutes).limit(5).each do |job|
 

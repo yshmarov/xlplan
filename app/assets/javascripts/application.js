@@ -30,8 +30,6 @@
 
 var TimeNow  = moment().format("HH") + ":00:00";
 
-
-
 function clearCalendar() {
   $('#calendar').fullCalendar('delete'); 
   $('#calendar').html('');
@@ -39,8 +37,13 @@ function clearCalendar() {
 
 $(document).on('turbolinks:load', function(){
 
-
     $('#calendar').fullCalendar({ 
+    	header: {
+    		left: 'title',
+    		center: 'agendaDay,agendaWeek,month',
+    		right: 'prev,next today'
+    	},
+
         lang: 'en',
         defaultView: 'agendaWeek',
         firstDay: 1,
@@ -52,7 +55,13 @@ $(document).on('turbolinks:load', function(){
         events: app.vars.jobs,
         header: {
             center: 'month,agendaWeek,agendaDay'
-        }
+        },
+
+    	editable: true,
+    	selectable: true,
+    	axisFormat: 'h:mm',
+    	selectHelper: true,
+    	droppable: true, // this allows things to be dropped onto the calendar !!!
     });
     
     $('#dailycalendar').fullCalendar({ 
