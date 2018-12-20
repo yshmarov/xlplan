@@ -11,14 +11,13 @@
         %th Location
         %th Employee
         %th Service
-        %th Client,$
-        %th Employee,$
+        %th "From Client, #{Tenant.current_tenant.default_currency.upcase}"
+        %th "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
         %th Description
-  
     %tbody
       - @jobs.each do |job|
         %tr
-          %td= link_to '', job, class: "btn btn-success fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          %td= link_to '', job, class: "btn btn-primary fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).update?
           %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).destroy?
           %td= link_to job.client, client_path(job.client)
@@ -27,12 +26,6 @@
           %td= link_to job.location, location_path(job.location)
           %td= link_to job.member, member_path(job.member)
           %td= link_to job.service.full_name, service_path(job.service)
-          /%td= job.service_duration
           %td= job.client_price_cents
           %td= job.member_price_cents
           %td= truncate(job.description, length: 25)
-  
-          /%td= job.creator
-          /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
-          /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
-/%br

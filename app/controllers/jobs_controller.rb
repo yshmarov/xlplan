@@ -2,7 +2,9 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_confirmed_by_client, :mark_not_attended, :mark_rejected_by_us, :mark_cancelled_by_client]
 
   def mark_attendance
-    @jobs = Job.mark_attendance
+    @q = Job.mark_attendance.ransack(params[:q])
+    @jobs = @q.result.includes(:location, :client, :member, :service).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    render 'index'
   end
 
 	def mark_planned

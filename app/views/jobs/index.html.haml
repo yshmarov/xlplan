@@ -1,23 +1,23 @@
-- model_class = Job
 = search_form_for @q, url: jobs_path do |f|
   .card.card-default
     .container-fluid
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
           %b
-            =t '.title', :default => model_class.model_name.human.pluralize.titleize
+            -
+            = controller.action_name.humanize.titleize
+            
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           %button.btn.btn-sm.btn-default{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
             Search
-          = link_to '', jobs_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          = link_to "", "", class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Job).create?
             = link_to t('.new', :default => t("helpers.links.new")), new_job_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
       .card-header
         .row
           .col-md-4
-            /\#
             /= f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
             /%br 
             Client
@@ -49,7 +49,6 @@
   %table#table1
     %thead
       %tr
-        /%th #
         %th
         %th
         %th
@@ -59,17 +58,12 @@
         %th= sort_link @q, :location_id, "Location"
         %th= sort_link @q, :member_last_name, "Employee"
         %th= sort_link @q, :service_name, "Service"
-        /%th= sort_link @q, :service_duration, "Duration"
         %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
         %th= sort_link @q, :member_price, "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
         %th Description
-        /%th Created by
-        /%th Created at
-        /%th Updated at
     %tbody
       - @jobs.each do |job|
         %tr
-          /%td= job.id
           %td= link_to '', job, class: "btn btn-primary fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).update?
           %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).destroy?
@@ -79,13 +73,9 @@
           %td= link_to job.location, location_path(job.location)
           %td= link_to job.member, member_path(job.member)
           %td= link_to job.service.full_name, service_path(job.service)
-          /%td= job.service_duration
           %td= job.client_price_cents
           %td= job.member_price_cents
           %td= truncate(job.description, length: 25)
-          /%td= job.creator
-          /%td= job.created_at.strftime('%d/%b/%Y %H:%M')
-          /%td= job.updated_at.strftime('%d/%b/%Y %H:%M')
 .container
   = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
