@@ -1,7 +1,7 @@
 .container
   %h1 New service
   
-  = render 'form'
+  = render 'form', service: @service
   %p
   = link_to 'Cancel', services_path, class: "btn btn-danger", title: 'Back to Service list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
   %p  

@@ -79,29 +79,6 @@ $(document).on('turbolinks:load', function(){
 
 
 
-    $('form').on('cocoon:after-insert', function(e, addedItem) {
-      $(addedItem).find('.selectize').selectize({
-        sortField: 'text'
-      })
-    });
-
-    $("#service_category a.add_fields").
-      data("association-insertion-position", 'before').
-      data("association-insertion-node", 'this');
-
-     $('#service_category').bind('cocoon:after-insert',
-         function() {
-           $("#service_category_from_list").hide();
-           $("#service_category a.add_fields").hide();
-         });
-    $('#service_category').bind("cocoon:after-remove",
-         function() {
-           $("#service_category_from_list").show();
-           $("#service_category a.add_fields").show();
-         });
-     //$('body').tabs();
-
-
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()
     })
@@ -112,7 +89,6 @@ $(document).on('turbolinks:load', function(){
       });
   }
 
-
 	$('.datepicker').datepicker({
      orientation: 'auto bottom',
      format: 'yyyy-mm-dd'
@@ -121,6 +97,18 @@ $(document).on('turbolinks:load', function(){
      orientation: 'auto bottom',
      format: 'yyyy-mm-dd'
     });
+
+
+      $(".selectize-category").selectize({
+        create: function(input, callback) {
+          $.post('/service_categories.json', { service_category: { name: input } })
+            .done(function(response){
+              console.log(response)
+              callback({value: response.id, text: response.name });
+            })
+        }
+        });
+
 
 });
 $(document).on('turbolinks:before-cache', clearCalendar);

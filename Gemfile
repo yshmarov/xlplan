@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 
 ruby '2.5.1'
 
@@ -55,7 +55,7 @@ group :test do
 end
 
 gem 'haml'
-gem "haml-rails", "~> 1.0"
+gem 'haml-rails', '~> 1.0'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'simple_form'
@@ -69,15 +69,15 @@ gem 'rjv'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap4'
 gem 'money-rails', '~>1.12'
-gem "selectize-rails"
+gem 'selectize-rails'
 gem 'ransack'
 gem 'bootstrap-datepicker-rails'
 gem 'public_activity'
-gem "pundit"
-gem "rolify"
-gem "milia", :git => 'https://github.com/jekuno/milia.git'
+gem 'pundit'
+gem 'rolify'
+gem 'milia', :git => 'https://github.com/jekuno/milia.git'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-gem "cocoon"
+gem 'cocoon'
 gem 'friendly_id', '~> 5.2.4'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
 gem 'validates_overlap'

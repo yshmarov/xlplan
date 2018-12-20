@@ -1,15 +1,12 @@
 -# frozen_string_literal: true
-= simple_form_for(@service) do |f|
+= simple_form_for(@service, local: true) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    #service_category
-      #service_category_from_list
-        = f.label :service_category
-        = f.error :service_category, class: 'text-danger'
-        = f.select :service_category_id, ServiceCategory.all.map{|c| [c.name, c.id]}, {include_blank: ServiceCategory.all.length > 1},class: 'selectize'
-      = link_to_add_association 'or add a new service category', f, :service_category, class: 'btn btn-secondary'
+    = f.label :service_category
+    = f.error :service_category, class: 'text-danger'
+    = f.collection_select :service_category_id, ServiceCategory.order(:name), :id, :name, {prompt: 'Select an category'}, {class: 'selectize-category'}
 
     = f.input :name, autofocus: true
     = f.input :description
@@ -17,7 +14,6 @@
     /= f.input :duration, collection: ['15', '30', '45', '60', '75', '90', '120']
     = f.input :client_price_cents, label: "Client price, #{Tenant.current_tenant.default_currency.upcase}", placeholder: '59.99', as: :integer, input_html: { autocomplete: 'off' }
     = f.input :member_percent, placeholder: '50'
-    /= f.input :member_price
     /= f.input :quantity
     /= f.input :status
     - unless f.object.new_record?
@@ -25,3 +21,4 @@
 
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+

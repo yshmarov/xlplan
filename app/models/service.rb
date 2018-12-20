@@ -17,7 +17,7 @@ class Service < ApplicationRecord
   #class_attribute :client_price, default: {}
 
 
-  accepts_nested_attributes_for :service_category, :reject_if => :all_blank
+  #accepts_nested_attributes_for :service_category, :reject_if => :all_blank
 
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents

@@ -1,7 +1,7 @@
 .container
   %h1 Editing service
   
-  = render 'form'
+  = render 'form', service: @service
   %p
   = link_to 'Cancel', @service, class: "btn btn-secondary", title: 'Back to Service', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
   %p
