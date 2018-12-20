@@ -38,13 +38,16 @@ function clearCalendar() {
 $(document).on('turbolinks:load', function(){
 
     $('#calendar').fullCalendar({ 
-    	header: {
-    		left: 'title',
-    		center: 'agendaDay,agendaWeek,month',
-    		right: 'prev,next today'
-    	},
+      themeSystem: 'bootstrap4',
+      header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'agendaDay,agendaWeek,month,listWeek'
+      },
+      navLinks: true,
 
         lang: 'en',
+        weekNumbers: true,
         defaultView: 'agendaWeek',
         firstDay: 1,
         nowIndicator: true,
@@ -53,9 +56,6 @@ $(document).on('turbolinks:load', function(){
         allDaySlot: false,
         slotMinutes: 30,
         events: app.vars.jobs,
-        header: {
-            center: 'month,agendaWeek,agendaDay'
-        },
 
     	editable: true,
     	selectable: true,
