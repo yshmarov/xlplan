@@ -77,18 +77,17 @@ class Job < ApplicationRecord
 
   ############GEM VALIDATES_TIMELINESS############
   #validates_time :starts_at, :between => ['9:00am', '5:00pm'] # On or after 9:00AM and on or before 5:00PM
-  validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
+  #validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
   #validates_date :starts_at, :on_or_after => lambda { Date.current }
   #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
   ############GEM VALIDATES_OVERLAP############
   #cancelled Jobs should not be taken in account
   #validates :starts_at, :ends_at, :overlap => {:query_options => {:is_cancelled => nil}}
+  #validates :starts_at, :ends_at, overlap: {:scope => "member_id", :exclude_edges => ["starts_at", "ends_at"], :load_overlapped => true}
 
-  validates :starts_at, :ends_at, overlap: {:scope => "member_id", :exclude_edges => ["starts_at", "ends_at"], :load_overlapped => true}
-
-  def overlapped_records
-    @overlapped_records || []
-  end
+  #def overlapped_records
+  #  @overlapped_records || []
+  #end
   ############GEM MONEY############
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents

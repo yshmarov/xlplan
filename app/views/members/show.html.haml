@@ -2,7 +2,8 @@
   .col-lg-4
     .card
       .card-header
-        %b Member
+        %b Member:
+        = @member.full_name
         .float-right
           = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@member).update?
       .card-body
@@ -75,6 +76,7 @@
       .card-body
         - if @member.user.present?
           = @member.user.roles.collect{|r| r.name}.to_sentence
+    %p
 
   .col-lg-8
     .card
@@ -87,14 +89,10 @@
       %li.nav-item
         %a#dropp1-tab.nav-link.active{"aria-controls" => "dropp1", "aria-selected" => "false", "data-toggle" => "tab", :href => "#drop1", :role => "tab"} Jobs: #{@member.jobs_count}
       %li.nav-item
-        %a#dropp2-tab.nav-link{"aria-controls" => "dropp2", "aria-selected" => "true", "data-toggle" => "tab", :href => "#drop2", :role => "tab"} Calendar
-      %li.nav-item
         %a#dropp3-tab.nav-link{"aria-controls" => "dropp3", "aria-selected" => "true", "data-toggle" => "tab", :href => "#drop3", :role => "tab"} Stats
     #myTabContent.tab-content
       #drop1.tab-pane.fade.show.active{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
         = render 'jobs/index'
-      #drop2.tab-pane.fade.show{"aria-labelledby" => "home-tab", :role => "tabpanel"}
-        Calendar
       #drop3.tab-pane.fade.show{"aria-labelledby" => "home-tab", :role => "tabpanel"}
         .card-header
           %i.fa.fa-calendar

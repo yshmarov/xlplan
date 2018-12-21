@@ -9,7 +9,7 @@
     = f.button :submit, class: "btn btn-success", title: 'Update Roles', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
 
   %br
-  = link_to "Back to Member", member_path(@user.member), class: 'btn btn-danger'
+  = link_to "Cancel", member_path(@user.member), class: 'btn btn-danger'
 
 %br
 = render 'users/role_description'
