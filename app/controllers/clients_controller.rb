@@ -1,6 +1,11 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
+  def search
+    index
+    render :index
+  end
+
   def index
     #@ransack_clients = Client.ransack(params[:q])
     #@clients = @ransack_clients.result(distinct: true).paginate(:page => params[:page], :per_page => 10)

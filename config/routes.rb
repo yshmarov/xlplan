@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   match '/organization/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
 
   resources :clients do
+    collection do
+      match 'search' => 'clients#search', via: [:get, :post], as: :search
+    end
     resources :comments
   end
 

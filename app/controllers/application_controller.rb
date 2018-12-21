@@ -9,6 +9,13 @@ class ApplicationController < ActionController::Base
 
   include PublicActivity::StoreController 
 
+  before_action :set_global_search_variable
+
+  def set_global_search_variable
+    @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
+  end
+
+
   private
     def user_not_authorized
       flash[:alert] = "You are not authorized to access this page."

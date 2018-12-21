@@ -9,6 +9,9 @@
     %span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
     %ul.navbar-nav.side-nav
+      /%li.nav-item= link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: "nav-link btn btn-light btn-sm text-dark mr-sm-2"
+      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Mark attendance: #{Job.mark_attendance.count}".html_safe, mark_attendance_jobs_path, class: "nav-link"
+
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> Calendar".html_safe, calendar_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-tachometer-alt'></i> Dashboard".html_safe, dashboard_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> Clients".html_safe, clients_path, class: "nav-link"
@@ -46,7 +49,15 @@
           = link_to "+ New Member", new_member_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
-      %li.nav-item= link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: "nav-link btn btn-light text-dark mr-sm-2"
+      /%li.nav-item= link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: "nav-link btn btn-light btn-sm text-dark mr-sm-2"
+
+      .input-group
+        = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
+          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client"
+          .input-group-append
+            %button.btn.btn-outline-secondary{:type => "submit"}
+              %span.fa.fa-search{"aria-hidden" => "true"}
+
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
