@@ -1,73 +1,56 @@
 - set_var 'jobs', Job.where(member_id: current_user.member.id).map{|e| {title: e.location.to_s  + "/" + e.service_name.to_s  + "/" + e.client.full_name.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
-%h4
-  .fa.fa-tachometer-alt
-  My Dashboard
-.card-header
-  Company info:
-  .badge.badge-default
-    = Tenant.current_tenant.name
-  \|
-  = Tenant.current_tenant.industry
-  \|
-  = plan_label(Tenant.current_tenant.plan)
-  \|
-  = Tenant.current_tenant.default_currency.upcase
-  = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
 
+.card
+  .card-header
+    .fa.fa-rocket
+    Getting started
+  .card-body
+    %h5
+      = link_to 'update your company settings', edit_plan_path
+      %hr
+      = link_to 'update your personal info', edit_member_path(current_user.member)
+      %hr
+      - if Tenant.current_tenant.plan != 'free'
+        - unless Member.count >= 2
+          %span.badge.badge-pill.badge-danger 0
+          = link_to "Invite Employees to your organization", new_member_path
+        - else
+          %span.badge.badge-pill.badge-success 0
+          %del
+            Invite Employees to your organization
+        %hr
+      - unless Location.any?
+        %span.badge.badge-pill.badge-danger 1
+        = link_to 'Add a Location', new_location_path
+      - else
+        %span.badge.badge-pill.badge-success 1
+        %del
+          Add a Location
+      %hr
+      - unless Service.any?
+        %span.badge.badge-pill.badge-danger 2
+        = link_to 'Add a Service', new_service_path
+      - else
+        %span.badge.badge-pill.badge-success 2
+        %del
+          Add a Service
+      %hr
+      - unless Client.any?
+        %span.badge.badge-pill.badge-danger 3
+        = link_to 'Add a Client', new_client_path
+      - else
+        %span.badge.badge-pill.badge-success 3
+        %del
+          Add a Client
+      %hr
+      - unless Job.any?
+        .fa.fa-times-circle{:style => "color:red"}
 
-%p
-- unless Job.any?
-  .card
-    .card-header
-      .fa.fa-rocket
-      Getting started
-    .card-body
-      %h5
-        = link_to 'update your company settings', edit_plan_path
-        %hr
-        = link_to 'update your personal info', edit_member_path(current_user.member)
-        %hr
-        - if Tenant.current_tenant.plan != 'free'
-          - unless Member.count >= 2
-            %span.badge.badge-pill.badge-danger 0
-            = link_to "Invite Employees to your organization", new_member_path
-          - else
-            %span.badge.badge-pill.badge-success 0
-            %del
-              Invite Employees to your organization
-          %hr
-        - unless Location.any?
-          %span.badge.badge-pill.badge-danger 1
-          = link_to 'Add a Location', new_location_path
-        - else
-          %span.badge.badge-pill.badge-success 1
-          %del
-            Add a Location
-        %hr
-        - unless Service.any?
-          %span.badge.badge-pill.badge-danger 2
-          = link_to 'Add a Service', new_service_path
-        - else
-          %span.badge.badge-pill.badge-success 2
-          %del
-            Add a Service
-        %hr
-        - unless Client.any?
-          %span.badge.badge-pill.badge-danger 3
-          = link_to 'Add a Client', new_client_path
-        - else
-          %span.badge.badge-pill.badge-success 3
-          %del
-            Add a Client
-        %hr
-        - unless Job.any?
-          .fa.fa-times-circle{:style => "color:red"}
-
-          = link_to 'Add a Job', new_job_path
-        - else
-          .fa.fa-check-circle{:style => "color:green"}
-          %del
-            Add a Job
+        = link_to 'Add a Job', new_job_path
+      - else
+        .fa.fa-check-circle{:style => "color:green"}
+        %del
+          Add a Job
 /%p
 /.row
 /  .col-xl-4

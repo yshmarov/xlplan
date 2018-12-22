@@ -3,6 +3,10 @@ class TenantsController < ApplicationController
   def edit
     authorize @tenant
   end
+
+  def show
+    #@tenant = Tenant.current_tenant
+  end
   
   def update
     authorize @tenant

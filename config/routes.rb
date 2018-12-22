@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   #edit tenant info
+  match '/organization/show' => 'tenants#show', via: :get
   match '/organization/edit' => 'tenants#edit', via: :get, as: :edit_plan
   match '/organization/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
 

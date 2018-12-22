@@ -1,0 +1,46 @@
+.row
+  .col-6
+    .card
+      .card-header
+        = @tenant.name
+      .card-body
+        Business industry:
+        = @tenant.industry
+        %p
+        Plan:
+        = plan_label(@tenant.plan)
+        %p
+        Business currency:
+        = @tenant.default_currency.upcase
+        %p
+        = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
+  .col-6
+    %h3.text-center
+      .badge.badge-secondary.btn-block
+        Counters
+    .row
+      .col
+        .card-header.bg-default
+          %i.fa.fa-calendar
+          = Job.count
+          %div 
+            %b Jobs
+      .col
+        .card-header.bg-default
+          %i.fa.fa-user
+          = Client.count
+          %div 
+            %b Clients
+      .col
+        .card-header.bg-default
+          %i.fa.fa-user
+          = Member.count
+          %div 
+            %b Members
+      .col
+        .card-header.bg-default
+          %i.fa.fa-hand-paper
+          = Service.count
+          %div 
+            %b Services
+%p
