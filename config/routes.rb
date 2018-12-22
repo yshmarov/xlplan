@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   end
 
   resources :services
-  resources :service_categories
+  resources :service_categories, except: :show
 
   resources :locations
 

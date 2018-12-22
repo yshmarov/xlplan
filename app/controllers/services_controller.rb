@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
   def index
     #@services = Service.all
     @q = Service.ransack(params[:q])
-    @services = @q.result.includes(:service_category).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @services = @q.result.includes(:service_category).paginate(:page => params[:page], :per_page => 15).order("updated_at DESC")
   end
 
   def show

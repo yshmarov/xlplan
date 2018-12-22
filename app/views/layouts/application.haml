@@ -19,9 +19,9 @@
         = render 'layouts/sidebar'
         = render 'layouts/messages'
         /= render 'layouts/myclass_sidebar'
-        .container-fluid
-          = yield
-          = rjv_tags
+        /.container-fluid
+        = yield
+        = rjv_tags
     - else
       = render 'layouts/header'
       = render 'layouts/messages'

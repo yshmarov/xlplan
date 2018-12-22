@@ -32,8 +32,8 @@
         /%th
         %th
         %th
-        %th= sort_link @q, :service_category_name, "Category"
         %th= sort_link @q, :name, "Name"
+        %th= sort_link @q, :service_category_name, "Category"
         %th Description
         %th= sort_link @q, :duration, "Duration"
         %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
@@ -50,8 +50,8 @@
               = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
             - else
               = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(service).destroy?
-          %td= link_to service.service_category, edit_service_category_path(service.service_category)
           %td= service.name
+          %td= service.service_category
           %td= service.description
           %td= service.duration
           %td= service.client_price_cents

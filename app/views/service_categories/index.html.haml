@@ -1,13 +1,10 @@
-%h1 Listing service_categories
-
+%h1 Listing Service Categories
 - if @service_categories.size > 0
-  %p
   .table-responsive
     %table#table1
       %thead
         %tr
           %th Name
-          %th Services
           %th
           %th
     
@@ -15,11 +12,9 @@
         - @service_categories.each do |service_category|
           %tr
             %td= service_category.name
-            %td= service_category.services_count
-            %td= link_to 'Edit', edit_service_category_path(service_category) if policy(service_category).update?
+            %td= link_to 'Rename', edit_service_category_path(service_category) if policy(service_category).update?
             %td= link_to 'Destroy', service_category, method: :delete, data: { confirm: 'Are you sure?' } if policy(service_category).destroy?
 
 - else
-  %p You don't have any yet
-
-%br
+  %p You don't have any yet. Start by creating a Service
+  = link_to 'Create Service', new_service_path

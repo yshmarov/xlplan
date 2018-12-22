@@ -1,36 +1,37 @@
 %p#notice= notice
 
+.card
+  .card-header
+    %b Service Name:
+    = @service.name
+  .card-body
+    %b Category:
+    = @service.service_category
+    %br
+    %b Description:
+    = @service.description
+    %br
+    %b Duration:
+    = @service.duration
+    %br
+    %b Client price:
+    = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+    %br
+    %b Employee percent:
+    /= @service.member_percent
+    = number_to_percentage(@service.member_percent, precision: 0)
+    %br
+    %b Employee price:
+    = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+    
+    /%br
+    /  %b Quantity:
+    /  = @service.quantity
+    %br
+    %b Status:
+    = status_label(@service.status)
+    %p    
+    = link_to 'Edit', edit_service_path(@service), class: "btn btn-warning"
 %p
-  %b Category:
-  = @service.service_category
-%p
-  %b Name:
-  = @service.name
-%p
-  %b Description:
-  = @service.description
-%p
-  %b Duration:
-  = @service.duration
-%p
-  %b Client price:
-  = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
-%p
-  %b Employee percent:
-  /= @service.member_percent
-  = number_to_percentage(@service.member_percent, precision: 0)
-%p
-  %b Employee price:
-  = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
-
-%p
-  %b Quantity:
-  = @service.quantity
-%p
-  %b Status:
-  = status_label(@service.status)
-
-= link_to 'Edit', edit_service_path(@service), class: "btn btn-warning"
-\|
 = link_to 'Back to all services', services_path, class: "btn btn-secondary"
 
