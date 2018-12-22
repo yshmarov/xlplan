@@ -17,13 +17,14 @@
       .card-header
         .row
           .col-md-4
+            Name
+            = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true, :autocomplete => :off
+            %p
             Category
             /= f.collection_select :office_name_cont, Office.all, :name, :name, include_blank: true
             = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
             /= f.search_field :service_category_name_cont, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Category"
-            %br
-              Name
-              = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true
+            %p
             = f.submit
 .table-responsive
   %table#table1

@@ -54,7 +54,7 @@
 
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
-          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client"
+          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client", :autocomplete => :off
           .input-group-append
             %button.btn.btn-outline-secondary{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}

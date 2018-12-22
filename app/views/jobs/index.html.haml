@@ -21,10 +21,10 @@
             /= f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
             /%br 
             Client
-            = f.search_field :client_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
+            = f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
             %br 
               Employee
-              = f.search_field :member_last_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Surname"
+              = f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Employee name", :autocomplete => :off
           .col-md-4
             Starts after
             .input-daterange

@@ -4,12 +4,10 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name, autofocus: true
+    = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
     = f.input :tel
     = f.input :email
     = f.input :address
-    /= f.input :balance
-    /= f.input :status
     = f.input :status, :as => :radio_buttons, :collection => Location.statuses.keys.to_a, label:false
 
   .form-actions

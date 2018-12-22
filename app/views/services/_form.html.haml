@@ -4,13 +4,13 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name, autofocus: true
+    = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
 
     = f.label :service_category, label: "Category"
     = f.collection_select :service_category_id, ServiceCategory.order(:name), :id, :name, {prompt: 'Select an category'}, {class: 'selectize-category'}
     = f.error :service_category, class: 'text-danger'
 
-    = f.input :description
+    = f.input :description, input_html: { autocomplete: 'off' }
     /= f.input :duration, placeholder: '30'
     /= f.input :duration, collection: ['15', '30', '45', '60', '75', '90', '120']
     /= f.input :duration, collection: [['0', 'female'], ['1', 'male']]
@@ -24,8 +24,7 @@
     = f.input :member_percent, placeholder: '50'
     /= f.input :quantity
     /= f.input :status
-    - unless f.object.new_record?
-      = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
+    = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
 
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
