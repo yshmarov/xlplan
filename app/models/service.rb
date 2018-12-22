@@ -14,6 +14,7 @@ class Service < ApplicationRecord
   validates :name, length: { in: 1..144 }
   validates :description, length: { maximum: 255 }
   validates :name, :duration, :client_price, :member_percent, :member_price, :quantity, :status, :service_category, presence: true
+  validates :member_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100,  only_integer: true }
   #class_attribute :client_price, default: {}
 
 
