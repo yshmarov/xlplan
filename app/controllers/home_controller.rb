@@ -7,21 +7,17 @@ class HomeController < ApplicationController
     end
   end
 
-  def user_roles
-  end
-
   def activity
     @activities = PublicActivity::Activity.all.reverse
   end
 
-  def dashboard
-    @activities = PublicActivity::Activity.limit(5).order("created_at DESC")
-    @jobs = Job.where(member: current_user.member).mark_attendance
-    @total_confirmed_earnings = Job.is_confirmed.where('created_at >= ?', 1.month.ago).map(&:client_due_price_cents).sum
+  def start
   end
 
   def calendar
-    @jobs = current_user.member.jobs
+    @q = Job.ransack(params[:q])
+    @jobs = @q.result.includes(:location, :client, :member, :service).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    #@jobs = current_user.member.jobs
   end
 
 end

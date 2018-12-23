@@ -53,7 +53,7 @@ Rails.application.routes.draw do
 
   get 'calendar', to: 'home#calendar'
   get 'activity', to: 'home#activity'
-  get 'dashboard', to: 'home#dashboard'
+  get 'start', to: 'home#start'
 
   get 'stats/finances'
   get 'stats/clients'

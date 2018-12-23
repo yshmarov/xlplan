@@ -9,9 +9,6 @@
       .card-body
         .text-center
           .fa.fa-user.fa-4x
-        %b Name:
-        = @client.full_name
-        %br
         %b Phone number:
         = link_to "tel:#{@client.phone_number}", class: "button" do
           #{@client.phone_number}
