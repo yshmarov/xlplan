@@ -1,6 +1,8 @@
 - set_var 'jobs', @jobs.map{|e| {title: e.service_name.to_s  + "/" + e.member.full_name.to_s  + "/" + e.client.full_name.to_s, start: e.starts_at, end: e.ends_at, url: job_path(e), color: e.color}}
 
-#calendar
+#event_calendar
+
+/#calendar
 
 .badge.badge-success
   Confirmed

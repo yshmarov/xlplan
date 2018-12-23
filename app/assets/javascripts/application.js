@@ -21,67 +21,18 @@
 //= require bootstrap-datepicker
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require popper
 //= require bootstrap-sprockets
 //= require moment 
 //= require fullcalendar
 
-
-var TimeNow  = moment().format("HH") + ":00:00";
-
-function clearCalendar() {
-  $('#calendar').fullCalendar('delete'); 
-  $('#calendar').html('');
-};
+//= require fullcalendar_settings
 
 $(document).on('turbolinks:load', function(){
 
-    $('#calendar').fullCalendar({ 
-      themeSystem: 'bootstrap4',
-      header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'agendaDay,agendaWeek,month,listWeek'
-      },
-      navLinks: true,
-
-        lang: 'en',
-        weekNumbers: true,
-        defaultView: 'agendaWeek',
-        firstDay: 1,
-        nowIndicator: true,
-        timeFormat: 'H(:mm)',
-        scrollTime: TimeNow,
-        allDaySlot: false,
-        slotMinutes: 30,
-        events: app.vars.jobs,
-
-    	editable: true,
-    	selectable: true,
-    	axisFormat: 'h:mm',
-    	selectHelper: true,
-    	droppable: true, // this allows things to be dropped onto the calendar !!!
-    });
-    
-    $('#dailycalendar').fullCalendar({ 
-        lang: 'en',
-        defaultView: 'agendaDay',
-        firstDay: 1,
-        nowIndicator: true,
-        timeFormat: 'H(:mm)',
-        scrollTime: TimeNow,
-        allDaySlot: false,
-        slotMinutes: 30,
-        events: app.vars.jobs,
-    });
-
-
-
-
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
 
   if ($('.selectize')){
       $('.selectize').selectize({
@@ -93,23 +44,21 @@ $(document).on('turbolinks:load', function(){
      orientation: 'auto bottom',
      format: 'yyyy-mm-dd'
 	});
+ 	
  	$('.input-daterange').datepicker({
      orientation: 'auto bottom',
      format: 'yyyy-mm-dd'
     });
 
-
-      $(".selectize-category").selectize({
-        create: function(input, callback) {
-          $.post('/service_categories.json', { service_category: { name: input } })
-            .done(function(response){
-              console.log(response)
-              callback({value: response.id, text: response.name });
-            })
-        }
-        });
+  $(".selectize-category").selectize({
+    create: function(input, callback) {
+      $.post('/service_categories.json', { service_category: { name: input } })
+        .done(function(response){
+          console.log(response)
+          callback({value: response.id, text: response.name });
+        })
+    }
+    });
 
 
 });
-$(document).on('turbolinks:before-cache', clearCalendar);
-
