@@ -7,26 +7,34 @@ var TimeNow  = moment().format("HH") + ":00:00";
 
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
+    events: app.vars.jobs,
+
     themeSystem: 'bootstrap4',
     header: {
-        left: 'prev,next today',
+        left: 'prev,next, today',
         center: 'title',
         right: 'agendaDay,agendaWeek,month,listWeek'
     },
-    navLinks: true,
-    lang: 'en',
     weekNumbers: true,
     defaultView: 'agendaWeek',
-    firstDay: 1,
     nowIndicator: true,
-    timeFormat: 'H(:mm)',
     scrollTime: TimeNow,
     allDaySlot: false,
     slotMinutes: 30,
-    events: app.vars.jobs,
+    // Clickable week number
+    navLinks: true,
+    // Does not work
+    lang: 'en',
+    // The day that each week begins
+    firstDay: 1,
+
+    timeFormat: 'H(:mm)',
+    // this one gives 24hour format
+    slotLabelFormat: ['H:mm'],
+  	axisFormat: 'h:mm',
+
   	editable: true,
   	selectable: true,
-  	axisFormat: 'h:mm',
   	selectHelper: true,
   	droppable: true, // this allows things to be dropped onto the calendar !!!
     });

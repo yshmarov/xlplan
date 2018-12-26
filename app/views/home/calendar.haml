@@ -2,7 +2,7 @@
   .col-lg
     = render 'home/calendar'
   .col-lg-3
-    .card.card-header
+    .card.card-header.bg-default
       = search_form_for @q, url: calendar_path do |f|
         /= f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
         /%br 
@@ -36,4 +36,4 @@
         /= f.submit
         = f.submit :'Filter', class: "btn btn-success btn-block", title: 'Search', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         %p
-        = link_to "Unfilter", jobs_path, class: "btn btn-secondary", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        = link_to "Unfilter", calendar_path, class: "btn btn-secondary btn-block", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

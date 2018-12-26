@@ -11,6 +11,12 @@
         - if policy(Location).create?
           - if (Tenant.current_tenant.can_create_locations?)
             = link_to 'New Location', new_location_path, class: 'btn btn-sm btn-primary'
+          - else
+            %span.d-inline-block{"data-toggle" => "tooltip", :tabindex => "0", :title => "Unlock Premium Feature"}
+              %button.btn.btn-primary{:disabled => "disabled", :style => "pointer-events: none;", :type => "button"}
+                New Location
+                .fa.fa-lock
+                /.fa.fa-lock-open
 .table-responsive
   %table#table1
     %thead
