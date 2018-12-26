@@ -28,6 +28,22 @@ function eventCalendar() {
     // The day that each week begins
     firstDay: 1,
 
+    minTime: "06:00:00",
+    maxTime: "22:00:00",
+
+    businessHours: [ // specify an array instead
+      {
+        dow: [ 1, 2, 3 ], // Monday, Tuesday, Wednesday
+        start: '08:00', // 8am
+        end: '20:00' // 6pm
+      },
+      {
+        dow: [ 4, 5 ], // Thursday, Friday
+        start: '08:00', // 10am
+        end: '20:00' // 4pm
+      }
+    ],
+
     timeFormat: 'H(:mm)',
     // this one gives 24hour format
     slotLabelFormat: ['H:mm'],
