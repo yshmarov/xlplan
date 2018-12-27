@@ -81,3 +81,4 @@ gem "cocoon"
 gem 'friendly_id', '~> 5.2.4'
 gem 'validates_timeliness', '~> 5.0.0.alpha3'
 gem 'validates_overlap'
+gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x

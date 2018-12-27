@@ -11,7 +11,7 @@ class TenantsController < ApplicationController
   def update
     authorize @tenant
     if @tenant.update(tenant_params)
-      redirect_to root_path, notice: 'Plan was successfully updated.'
+      redirect_to organization_show_path(Tenant.current_tenant), notice: 'Plan was successfully updated.'
     else
       render :edit
     end
@@ -31,6 +31,6 @@ class TenantsController < ApplicationController
   end
   
   def tenant_params
-    params.require(:tenant).permit(:name, :plan, :industry, :default_currency)
+    params.require(:tenant).permit(:name, :plan, :industry, :default_currency, :locale)
   end
 end

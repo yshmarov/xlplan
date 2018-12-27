@@ -2,16 +2,20 @@
   .col-6
     .card
       .card-header
-        = @tenant.name
+        Organization:
+        %b= @tenant.name
       .card-body
         Business industry:
-        = @tenant.industry
+        %b= @tenant.industry.capitalize
         %p
         Plan:
         = plan_label(@tenant.plan)
         %p
         Business currency:
-        = @tenant.default_currency.upcase
+        %b= @tenant.default_currency.upcase
+        %p
+        Language:
+        %b= @tenant.locale.upcase
         %p
         = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
   .col-6

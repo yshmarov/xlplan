@@ -12,7 +12,7 @@ class Tenant < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy
 
-  validates_presence_of :name, :plan, :industry, :default_currency
+  validates_presence_of :name, :plan, :industry, :default_currency, :locale
   validates_uniqueness_of :name
   validates :name, length: { maximum: 40 }
   validates :plan, length: { maximum: 40 }
