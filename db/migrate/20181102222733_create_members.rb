@@ -5,15 +5,14 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.string :first_name, :limit => 144
       t.string :last_name, :limit => 144
-      #t.string :first_name, :limit => 144, null: false
-      #t.string :last_name, :limit => 144, null: false
-      t.string :phone_number
-      t.string :email
+      t.string :phone_number, :limit => 255
+      t.string :email, :limit => 255
       t.date :date_of_birth
       t.string :gender, default: "undisclosed"
-      t.string :address
+      t.string :address, :limit => 255
       t.integer :status, default: 1, null: false
       t.integer :balance, default: 0, null: false
+      t.integer :service_percent, default: 0, null: false
       t.belongs_to :location, foreign_key: true
 
       t.timestamps

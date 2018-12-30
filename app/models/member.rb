@@ -18,9 +18,10 @@ class Member < ApplicationRecord
 
   validates :user_id, presence: true
   validates :user_id, uniqueness: true
-  validates :first_name, length: { maximum: 144 }
-  validates :last_name, length: { maximum: 144 }
+  validates :first_name, :last_name, length: { maximum: 144 }
+  validates :email, :phone_number, :address, length: { maximum: 255 }
   validates :first_name, :last_name, :status, presence: true
+  validates :service_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100,  only_integer: true }
   #validates :email, uniqueness: { case_sensitive: false }
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   #validates :email, format: { with: VALID_EMAIL_REGEX }
@@ -28,6 +29,13 @@ class Member < ApplicationRecord
   monetize :balance, as: :balance_cents
   after_touch :update_balance
   enum status: { inactive: 0, active: 1 }
+
+  validate :free_plan_can_only_have_one_member
+  def free_plan_can_only_have_one_member
+    if self.new_record? && (tenant.members.count > 0) && (tenant.plan == 'free')
+      errors.add(:base, "Free plans cannot have more than one member")
+    end
+  end
 
   DEFAULT_ADMIN = {
     first_name: "Admin",

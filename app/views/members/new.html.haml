@@ -3,7 +3,7 @@
 
   = simple_form_for @member do |f|
     = simple_fields_for @user do |w|
-      = w.input :email
+      = w.input :email, autofocus: true
       /= w.error :email, class: 'text-danger'
     = f.input :first_name
     = f.error :first_name, class: 'text-danger'

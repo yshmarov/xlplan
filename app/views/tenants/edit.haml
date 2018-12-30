@@ -8,21 +8,21 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-  = f.label :name, 'Name'
-  = f.error :name, class: 'text-danger'
-  %span.description (Unique name for your business or organization)
-  = f.text_field :name, required: true, class: "form-control"
+  = f.input :name, required: true, class: "form-control"
+
   = f.label :plan
   = f.error :plan, class: 'text-danger'
   = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, required: true, class: "form-control"
+
   = f.label :industry
   = f.error :industry, class: 'text-danger'
   = f.select :industry, options_for_select(TenantIndustry.options, @tenant.industry ), {}, required: true, class: "form-control"
+
   = f.label :default_currency
   = f.error :default_currency, class: 'text-danger'
   = f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
 
-  = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru']], include_blank: false
+  = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru']], include_blank: false, label: 'Language'
 
   = f.submit 'Update Plan', class: "btn btn-success", id: 'update_plan'
   = link_to 'Cancel', root_path, class: "btn btn-danger"

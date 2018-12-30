@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_174858) do
+ActiveRecord::Schema.define(version: 2018_12_16_011931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,13 +133,14 @@ ActiveRecord::Schema.define(version: 2018_12_27_174858) do
     t.bigint "user_id"
     t.string "first_name", limit: 144
     t.string "last_name", limit: 144
-    t.string "phone_number"
-    t.string "email"
+    t.string "phone_number", limit: 255
+    t.string "email", limit: 255
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
-    t.string "address"
+    t.string "address", limit: 255
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
+    t.integer "service_percent", default: 0, null: false
     t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -219,10 +220,13 @@ ActiveRecord::Schema.define(version: 2018_12_27_174858) do
     t.string "plan", limit: 40, null: false
     t.string "industry", limit: 60, null: false
     t.string "default_currency", limit: 40, default: "usd", null: false
+    t.string "locale", limit: 2, default: "en", null: false
+    t.string "string", limit: 2, default: "en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "locale", default: "en", null: false
+    t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["name"], name: "index_tenants_on_name"
+    t.index ["plan"], name: "index_tenants_on_plan"
     t.index ["tenant_id"], name: "index_tenants_on_tenant_id"
   end
 
