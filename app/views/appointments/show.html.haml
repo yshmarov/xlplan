@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Tenant:
+  = @appointment.tenant
+%p
+  %b Client:
+  = @appointment.client
+%p
+  %b Member:
+  = @appointment.member
+%p
+  %b Location:
+  = @appointment.location
+%p
+  %b Starts at:
+  = @appointment.starts_at
+%p
+  %b Ends at:
+  = @appointment.ends_at
+%p
+  %b Status:
+  = @appointment.status
+%p
+  %b Description:
+  = @appointment.description
+%p
+  %b Status color:
+  = @appointment.status_color
+
+= link_to 'Edit', edit_appointment_path(@appointment)
+\|
+= link_to 'Back', appointments_path

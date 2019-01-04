@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointments
   get 'home/landing_page'
   root to: 'home#landing_page'
 

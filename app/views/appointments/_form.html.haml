@@ -1,0 +1,18 @@
+-# frozen_string_literal: true
+= simple_form_for(@appointment) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.association :tenant
+    = f.association :client
+    = f.association :member
+    = f.association :location
+    = f.input :starts_at
+    = f.input :ends_at
+    = f.input :status
+    = f.input :description
+    = f.input :status_color
+
+  .form-actions
+    = f.button :submit

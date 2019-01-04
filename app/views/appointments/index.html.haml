@@ -1,0 +1,37 @@
+%h1 Listing appointments
+
+%table
+  %thead
+    %tr
+      %th Tenant
+      %th Client
+      %th Member
+      %th Location
+      %th Starts at
+      %th Ends at
+      %th Status
+      %th Description
+      %th Status color
+      %th
+      %th
+      %th
+
+  %tbody
+    - @appointments.each do |appointment|
+      %tr
+        %td= appointment.tenant
+        %td= appointment.client
+        %td= appointment.member
+        %td= appointment.location
+        %td= appointment.starts_at
+        %td= appointment.ends_at
+        %td= appointment.status
+        %td= appointment.description
+        %td= appointment.status_color
+        %td= link_to 'Show', appointment
+        %td= link_to 'Edit', edit_appointment_path(appointment)
+        %td= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Appointment', new_appointment_path
