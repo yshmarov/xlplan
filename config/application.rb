@@ -31,6 +31,7 @@ module Jobdone
      
     # Set default locale to something other than :en
     I18n.default_locale = :en
+    #I18n.default_locale = Tenant.current_tenant.locale
 
   end
 end

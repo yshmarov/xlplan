@@ -1,6 +1,7 @@
 .row
   .col-lg
     = render 'home/calendar'
+    %p
   .col-lg-3
     .card.card-header.bg-default
       = search_form_for @q, url: calendar_path do |f|

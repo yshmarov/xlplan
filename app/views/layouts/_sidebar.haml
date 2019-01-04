@@ -16,8 +16,8 @@
   #navbarText.collapse.navbar-collapse
     %ul.navbar-nav.side-nav
       %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Mark attendance: #{Job.mark_attendance.count}".html_safe, mark_attendance_jobs_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> Calendar".html_safe, calendar_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Mark attendance: #{Job.mark_attendance.count}".html_safe, mark_attendance_jobs_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> Jobs".html_safe, jobs_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> Clients".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-tie'></i> Members".html_safe, members_path, class: "nav-link"
@@ -41,7 +41,7 @@
           .fa.fa-cog
           Settings
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to "Show Company", organization_show_path, class: "dropdown-item navdrop-link"
+          = link_to "My Company", organization_show_path, class: "dropdown-item navdrop-link" if current_user.has_role?(:admin)
           = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
     %ul.navbar-nav.justify-content-end
       %li.nav-item.dropdown
@@ -54,8 +54,6 @@
           = link_to "+ New Member", new_member_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
-      /%li.nav-item= link_to "Mark attendance: #{Job.mark_attendance.count}", mark_attendance_jobs_path, class: "nav-link btn btn-light btn-sm text-dark mr-sm-2"
-
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
           = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client", :autocomplete => :off

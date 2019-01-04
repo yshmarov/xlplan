@@ -118,6 +118,7 @@ class Job < ApplicationRecord
     update_column :member_price, (service.member_price)
     update_column :ends_at, (starts_at + service_duration*60)
     update_column :service_member_percent, (service.member_percent)
+    #update_column :service_member_percent, (member.service_percent)
   end
 
   def update_ends_at

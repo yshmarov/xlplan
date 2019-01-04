@@ -25,6 +25,7 @@
 //= require bootstrap-sprockets
 //= require moment 
 //= require fullcalendar
+//= require fullcalendar/locale-all
 
 //= require fullcalendar_settings
 
@@ -42,12 +43,14 @@ $(document).on('turbolinks:load', function(){
 
 	$('.datepicker').datepicker({
      orientation: 'auto bottom',
-     format: 'yyyy-mm-dd'
+     format: 'yyyy-mm-dd',
 	});
  	
  	$('.input-daterange').datepicker({
-     orientation: 'auto bottom',
-     format: 'yyyy-mm-dd'
+    orientation: 'auto bottom',
+    format: 'yyyy-mm-dd',
+    autoclose: true,
+    todayHighlight:'TRUE',
     });
 
   $(".selectize-category").selectize({

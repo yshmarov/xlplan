@@ -13,8 +13,10 @@ function eventCalendar() {
     header: {
         left: 'prev,next, today',
         center: 'title',
-        right: 'agendaDay,agendaWeek,month,listWeek'
+        right: 'agendaDay,agendaWeek,listWeek'
     },
+    titleFormat: 'D/MMM/YY',
+
     weekNumbers: true,
     defaultView: 'agendaWeek',
     nowIndicator: true,
@@ -24,7 +26,7 @@ function eventCalendar() {
     // Clickable week number
     navLinks: true,
     // Does not work
-    lang: 'en',
+    locale: 'I18n.locale',
     // The day that each week begins
     firstDay: 1,
 

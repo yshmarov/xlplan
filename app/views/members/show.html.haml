@@ -38,6 +38,9 @@
         %b Location:
         = link_to @member.location, location_path(@member.location) if @member.location.present?
         %hr
+        %b Service Percent:
+        = number_to_percentage(@member.service_percent, precision: 0) 
+        %br
         %b Skills:
         /- @member.skills.each do |skill|
         /  = skill.service_category
