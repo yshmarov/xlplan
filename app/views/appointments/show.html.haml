@@ -1,33 +1,59 @@
-%p#notice= notice
+.row
+  .container
+    .card
+      .card-header
+        %b Appointment
+        /= @appointment.id
+        .float-right
+          = link_to '', edit_appointment_path(@appointment), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@appointment).update?
+          /= link_to 'Back', jobs_path, class: 'btn btn-sm btn-secondary'
+          = link_to '', @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@appointment).destroy?
 
-%p
-  %b Tenant:
-  = @appointment.tenant
-%p
-  %b Client:
-  = @appointment.client
-%p
-  %b Member:
-  = @appointment.member
-%p
-  %b Location:
-  = @appointment.location
-%p
-  %b Starts at:
-  = @appointment.starts_at
-%p
-  %b Ends at:
-  = @appointment.ends_at
-%p
-  %b Status:
-  = @appointment.status
-%p
-  %b Description:
-  = @appointment.description
-%p
-  %b Status color:
-  = @appointment.status_color
-
-= link_to 'Edit', edit_appointment_path(@appointment)
-\|
-= link_to 'Back', appointments_path
+      .card-body
+        %b Client:
+        = link_to @appointment.client, client_path(@appointment.client)
+        %br
+        %b Member:
+        = link_to @appointment.member, member_path(@appointment.member)
+        %br
+        %b Location:
+        = @appointment.location
+        = link_to @appointment.location, location_path(@appointment.location)
+        %br
+        %b Starts at:
+        = @appointment.starts_at.strftime('%d/%m/%Y %H:%M')
+        %br
+        %b Ends at:
+        = @appointment.ends_at.strftime('%d/%m/%Y %H:%M')
+        (#{distance_of_time_in_words @appointment.starts_at, @appointment.ends_at})
+        %br
+        %b Status:
+        = status_label(@appointment.status)
+        %br
+        %b Status color:
+        = @appointment.status_color
+        %hr
+        %b Description:
+        = @appointment.description
+        %hr
+        - if policy(@appointment).update?
+          .form-inline
+            - unless @appointment.status == 'planned'
+              = button_to "planned", mark_planned_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
+            - unless @appointment.status == 'member_confirmed'
+              = button_to "member_confirmed", mark_member_confirmed_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+            - unless @appointment.status == 'client_confirmed'
+              = button_to "client_confirmed", mark_client_confirmed_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+            - unless @appointment.status == 'not_attended'
+              = button_to "not_attended", mark_not_attended_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+            - unless @appointment.status == 'member_cancelled'
+              = button_to "member_cancelled", mark_member_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+            - unless @appointment.status == 'client_cancelled'
+              = button_to "client_cancelled", mark_client_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+%br
+.card.card-default
+  .container-fluid
+    .card-heading
+      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+        %b Activity
+  =  render 'home/activity'

@@ -1,7 +1,5 @@
 %h1 Editing appointment
 
 = render 'form'
-
-= link_to 'Show', @appointment
-\|
-= link_to 'Back', appointments_path
+%p
+= link_to 'Cancel', @appointment, class: "btn btn-danger"

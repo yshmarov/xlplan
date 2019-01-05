@@ -6,8 +6,8 @@ class AddSlugToModels < ActiveRecord::Migration[5.2]
     add_column :members, :slug, :string
     add_index :members, :slug, unique: true
 
-    add_column :jobs, :slug, :string
-    add_index :jobs, :slug, unique: true
+    add_column :appointments, :slug, :string
+    add_index :appointments, :slug, unique: true
 
     add_column :services, :slug, :string
     add_index :services, :slug, unique: true

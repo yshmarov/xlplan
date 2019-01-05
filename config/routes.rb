@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :appointments
   get 'home/landing_page'
   root to: 'home#landing_page'
 
@@ -38,19 +37,19 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resources :jobs do
-    resources :comments
+  resources :appointments do
     get :mark_attendance, on: :collection
   	member do
   		patch :mark_planned
-  		patch :mark_confirmed
-  		patch :mark_confirmed_by_client
+  		patch :mark_member_confirmed
+  		patch :mark_client_confirmed
   		patch :mark_not_attended
-  		patch :mark_rejected_by_us
-  		patch :mark_cancelled_by_client
+  		patch :mark_member_cancelled
+  		patch :mark_client_cancelled
     end
-
   end
+
+  resources :jobs
 
   get 'calendar', to: 'home#calendar'
   get 'activity', to: 'home#activity'

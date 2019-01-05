@@ -28,18 +28,18 @@ module ApplicationHelper
 					content_tag(:span, status.titleize, class: 'badge badge-success')
 				when 'inactive'
 					content_tag(:span, status.titleize, class: 'badge badge-secondary')
-				#Job
+				#Appointment
 				when 'planned' 
 					content_tag(:span, status.titleize, class: 'badge badge-primary')
-				when 'confirmed'
+				when 'member_confirmed'
 					content_tag(:span, status.titleize, class: 'badge badge-success')
-				when 'confirmed_by_client'
+				when 'client_confirmed'
 					content_tag(:span, status.titleize, class: 'badge badge-success')
 				when 'not_attended'
 					content_tag(:span, status.titleize, class: 'badge badge-danger')
-				when 'rejected_by_us'
+				when 'member_cancelled'
 					content_tag(:span, status.titleize, class: 'badge badge-secondary')
-				when 'cancelled_by_client'
+				when 'client_cancelled'
 					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 			end
 		end

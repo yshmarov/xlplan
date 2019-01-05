@@ -5,8 +5,10 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
       t.references :client, foreign_key: true
       t.references :member, foreign_key: true
       t.references :location, foreign_key: true
+
       t.datetime :starts_at
       t.datetime :ends_at
+
       t.integer :status, default: 0, null: false
       t.text :description
       t.string :status_color, default: 'blue'

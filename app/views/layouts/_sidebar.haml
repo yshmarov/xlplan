@@ -17,7 +17,7 @@
     %ul.navbar-nav.side-nav
       %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> Calendar".html_safe, calendar_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Mark attendance: #{Job.mark_attendance.count}".html_safe, mark_attendance_jobs_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Mark attendance: #{Appointment.mark_attendance.count}".html_safe, mark_attendance_appointments_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> Jobs".html_safe, jobs_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> Clients".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-tie'></i> Members".html_safe, members_path, class: "nav-link"
@@ -48,6 +48,7 @@
         %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           + New
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          = link_to "+ New Appointment", new_appointment_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Job", new_job_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
           %hr

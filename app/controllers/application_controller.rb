@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   #navbar search
   before_action :set_global_search_variable
   def set_global_search_variable
-    @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
+    @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
   end
 
 
