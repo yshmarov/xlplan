@@ -12,6 +12,7 @@ class Location < ApplicationRecord
   friendly_id :name, use: :slugged
 
   has_many :members, dependent: :restrict_with_error
+  has_many :appointments, dependent: :restrict_with_error
   has_many :jobs, dependent: :restrict_with_error
 
   #validates :name, uniqueness: true

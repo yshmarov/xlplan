@@ -8,6 +8,7 @@ class LocationsController < ApplicationController
 
   def show
     authorize @location
+    @appointments = @location.appointments
     @jobs = @location.jobs
   end
 
