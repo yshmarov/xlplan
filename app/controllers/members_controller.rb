@@ -12,6 +12,7 @@ class MembersController < ApplicationController
   def show
     authorize @member
     @jobs = @member.jobs
+    @appointments = @member.appointments
     @skills = @member.skills
     @member_total_earnings = @jobs.map(&:member_due_price_cents).sum
   end

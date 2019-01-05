@@ -1,35 +1,63 @@
-%h1 Listing appointments
+= search_form_for @q, url: appointments_path do |f|
+  .card.card-default
+    .container-fluid
+      .card-heading
+        %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+          %b= controller.action_name.humanize.titleize
+        %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+          %button.btn.btn-sm.btn-default{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+            .fa.fa-search
+            Search
+          = link_to "", appointments_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          - if policy(Appointment).create?
+            = link_to t('.new', :default => t("helpers.links.new")), new_appointment_path, class: 'btn btn-sm btn-primary'
+    #accordion.collapse
+      .card-header
+        .row
+          .col-md-4
+            Client
+            = f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
+            %br 
+              Employee
+              = f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Employee name", :autocomplete => :off
+          .col-md-4
+            Starts after
+            .input-daterange
+              = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
+            Starts before
+            .input-daterange
+              = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+          .col-md-4
+            Status
+            = f.select :status_eq, Appointment.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+            %br
+            = f.submit
 
-%table
-  %thead
-    %tr
-      %th Client
-      %th Member
-      %th Location
-      %th Starts at
-      %th Ends at
-      %th Status
-      %th Description
-      %th Status color
-      %th
-      %th
-      %th
-
-  %tbody
-    - @appointments.each do |appointment|
+.table-responsive
+  %table#table1
+    %thead
       %tr
-        %td= appointment.client
-        %td= appointment.member
-        %td= appointment.location
-        %td= appointment.starts_at
-        %td= appointment.ends_at
-        %td= appointment.status
-        %td= appointment.description
-        %td= appointment.status_color
-        %td= link_to 'Show', appointment
-        %td= link_to 'Edit', edit_appointment_path(appointment)
-        %td= link_to 'Destroy', appointment, method: :delete, data: { confirm: 'Are you sure?' }
-
+        %th
+        %th
+        %th
+        %th= sort_link @q, :client_last_name, "Client"
+        %th= sort_link @q, :member_last_name, "Member"
+        %th= sort_link @q, :location_id, "Location"
+        %th= sort_link @q, :starts_at, "Time"
+        %th= sort_link @q, :status, "Status"
+        %th Description
+    %tbody
+      - @appointments.each do |appointment|
+        %tr
+          %td= link_to '', appointment, class: "btn btn-primary fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          %td= link_to '', edit_appointment_path(appointment), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(appointment).update?
+          %td= link_to '', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(appointment).destroy?
+          %td= link_to appointment.client, client_path(appointment.client)
+          %td= link_to appointment.member, member_path(appointment.member)
+          %td= link_to appointment.location, location_path(appointment.location)
+          %td #{appointment.starts_at.strftime('%d/%b/%Y %H:%M')} - #{appointment.ends_at.strftime('%H:%M')}
+          %td= status_label(appointment.status)
+          %td= truncate(appointment.description, length: 25)
+.container
+  = will_paginate @appointments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
-
-= link_to 'New Appointment', new_appointment_path

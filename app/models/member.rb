@@ -4,6 +4,7 @@ class Member < ApplicationRecord
   belongs_to :user
   belongs_to :location, optional: true
   has_many :jobs, dependent: :restrict_with_error
+  has_many :appointments, dependent: :restrict_with_error
   has_many :skills, dependent: :destroy, inverse_of: :member
   has_many :comments
   has_many :service_categories, through: :skills

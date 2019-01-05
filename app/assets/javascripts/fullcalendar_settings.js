@@ -7,7 +7,7 @@ var TimeNow  = moment().format("HH") + ":00:00";
 
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
-    events: app.vars.jobs,
+    events: app.vars.appointments,
 
     themeSystem: 'bootstrap4',
     header: {

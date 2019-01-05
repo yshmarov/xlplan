@@ -11,6 +11,7 @@ class Client < ApplicationRecord
   friendly_id :full_name, use: :slugged
 
   has_many :jobs, dependent: :restrict_with_error
+  has_many :appointments, dependent: :restrict_with_error
   has_many :comments, as: :commentable
   belongs_to :creator, class_name: 'Member', foreign_key: :created_by, required: false
 

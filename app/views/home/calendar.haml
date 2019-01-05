@@ -5,15 +5,11 @@
   .col-lg-3
     .card.card-header.bg-default
       = search_form_for @q, url: calendar_path do |f|
-        /= f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
-        /%br 
         Client
         = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-        /= f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
         .row
         Employee
         = f.select :member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-        /= f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Employee name", :autocomplete => :off
         .row
         Start date after
         .input-daterange
@@ -23,18 +19,19 @@
           = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
         Status
         = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
-        /= f.collection_radio_buttons :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, :first, :first, :class => "form-control"
-        /= f.collection_radio_buttons :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, :first, :last
-        /= f.collection_radio_buttons :status_eq, Job.statuses, :first, :first
-        Service
-        /= f.select :service_name_cont, options_from_collection_for_select(Service.all, :name, :name, @q.service_name_cont), { :include_blank => true }, :class => "form-control"
-        /= f.label :service
-        = f.select :service_name_cont, Service.all.map{|c| [c.full_name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
         Location
-        /= f.select :service_name_cont, options_from_collection_for_select(Service.all, :name, :name, @q.service_name_cont), { :include_blank => true }, :class => "form-control"
-        /= f.label :service
         = f.select :location_name_cont, Location.all.map{|c| [c.name, c.name]}, {include_blank: Location.all.length > 1}, class: 'selectize'
         /= f.submit
-        = f.submit :'Filter', class: "btn btn-success btn-block", title: 'Search', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-        %p
-        = link_to "Unfilter", calendar_path, class: "btn btn-secondary btn-block", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        = f.submit :'Search', class: "btn btn-success btn-block"
+        = link_to "Clear Search", calendar_path, class: "btn btn-secondary btn-block", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+    
+    %p
+    .badge.badge-success
+      confirmed
+    .badge.badge-danger
+      not_attended
+    .badge.badge-secondary
+      cancelled
+    .badge.badge-primary
+      planned
+    .row

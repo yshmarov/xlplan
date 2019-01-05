@@ -17,6 +17,7 @@ class ClientsController < ApplicationController
   def show
     authorize @client
     @jobs = @client.jobs
+    @appointments = @client.appointments
     @commentable = @client
     @comments = @commentable.comments
     @comment = Comment.new

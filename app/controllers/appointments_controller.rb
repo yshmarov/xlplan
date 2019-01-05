@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
 
   def mark_attendance
     @q = Appointment.mark_attendance.ransack(params[:q])
-    @appointments = @q.result.includes(:location, :client, :member, :service).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @appointments = @q.result.includes(:location, :client, :member).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
     render 'index'
   end
 
