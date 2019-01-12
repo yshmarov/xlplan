@@ -50,12 +50,7 @@
           + New
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
           = link_to "+ New Appointment", new_appointment_path, class: "dropdown-item navdrop-link"
-          = link_to "+ New Job", new_job_path, class: "dropdown-item navdrop-link"
           = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
-          %hr
-          = link_to "+ New Member", new_member_path, class: "dropdown-item navdrop-link"
-          = link_to "+ New Service", new_service_path, class: "dropdown-item navdrop-link"
-          = link_to "+ New Location", new_location_path, class: "dropdown-item navdrop-link"
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
           = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client", :autocomplete => :off

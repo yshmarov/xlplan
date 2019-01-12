@@ -2,15 +2,13 @@
   .col-lg-4
     .card
       .card-header
-        %b Location
+        %b Location:
+        = @location.name
         .float-right
           = link_to '', edit_location_path(@location), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@location).update?
       .card-body
         .text-center
           .fa.fa-industry.fa-4x
-        %b Name:
-        = @location.name
-        %br
         %b Tel:
         = @location.tel
         %br

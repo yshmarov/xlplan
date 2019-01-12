@@ -36,9 +36,9 @@
         %th= sort_link @q, :service_category_name, "Category"
         %th Description
         %th= sort_link @q, :duration, "Duration"
-        %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
-        %th= sort_link @q, :member_percent, "Employee %"
-        %th= sort_link @q, :member_price, "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
+        %th= sort_link @q, :client_price, "Client Price"
+        %th= sort_link @q, :member_percent, "Member %"
+        %th= sort_link @q, :member_price, "Member Price"
         %th= sort_link @q, :status, "Status"
     %tbody
       - @services.each do |service|
@@ -54,9 +54,9 @@
           %td= service.service_category
           %td= service.description
           %td= service.duration
-          %td= service.client_price_cents
+          %td= number_to_currency(service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
           %td= number_to_percentage(service.member_percent, precision: 0)
-          %td= service.member_price_cents
+          %td= number_to_currency(service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
           %td= status_label(service.status)
 .container
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.string "address"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
-    t.integer "created_by", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
@@ -194,8 +193,8 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.string "name", limit: 144, null: false
     t.string "description", limit: 255
     t.integer "duration", null: false
-    t.integer "client_price", null: false
-    t.integer "member_percent", null: false
+    t.integer "client_price", default: 0, null: false
+    t.integer "member_percent", default: 0, null: false
     t.integer "member_price", default: 0, null: false
     t.integer "repeat_reminder", default: 0, null: false
     t.integer "status", default: 1, null: false

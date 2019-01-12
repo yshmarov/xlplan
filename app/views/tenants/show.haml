@@ -26,6 +26,12 @@
       .col
         .card-header.bg-default
           %i.fa.fa-calendar
+          = Appointment.count
+          %div 
+            %b Appointments
+      .col
+        .card-header.bg-default
+          %i.fa.fa-calendar
           = Job.count
           %div 
             %b Jobs
@@ -41,6 +47,8 @@
           = Member.count
           %div 
             %b Members
+    %p
+    .row
       .col
         .card-header.bg-default
           %i.fa.fa-hand-paper

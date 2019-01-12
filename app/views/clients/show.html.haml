@@ -34,12 +34,6 @@
         /%br
         /%b Status:
         /= status_label(@client.status)
-        %hr
-        %b Created by:
-        = link_to @client.creator, member_path(@client.created_by)
-        %br
-        %b Created at:
-        = @client.created_at.strftime('%d/%b/%Y, %H:%M')
     %p
     .card
       .card-header

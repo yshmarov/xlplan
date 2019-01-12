@@ -7,8 +7,8 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.string :description, :limit => 255
       t.integer :duration, null: false
 
-      t.integer :client_price, null: false
-      t.integer :member_percent, null: false
+      t.integer :client_price, default: 0, null: false
+      t.integer :member_percent, default: 0, null: false
       t.integer :member_price, default: 0, null: false
 
       t.integer :repeat_reminder, default: 0, null: false

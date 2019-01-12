@@ -13,13 +13,14 @@ class Client < ApplicationRecord
   has_many :appointments, dependent: :restrict_with_error
   has_many :jobs, through: :appointments
   has_many :comments, as: :commentable
-  belongs_to :creator, class_name: 'Member', foreign_key: :created_by, required: false
 
   validates :first_name, :last_name, presence: true
   validates :status, presence: true
+
+  #email has to be present with below validation
   #validates :email, uniqueness: { case_sensitive: false }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX }
+  #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  #validates :email, format: { with: VALID_EMAIL_REGEX }
 
   monetize :balance, as: :balance_cents
 
