@@ -2,18 +2,20 @@
   %table#table1
     %thead
       %tr
+        %th #
         %th
         %th
         %th
         %th Employee
         %th Service
-        %th From Client, #{Tenant.current_tenant.default_currency.upcase}
-        %th To Employee, #{Tenant.current_tenant.default_currency.upcase}
+        %th Client Price, #{Tenant.current_tenant.default_currency.upcase}
+        %th Member Price, #{Tenant.current_tenant.default_currency.upcase}
         %th C due
         %th M due
     %tbody
-      - @jobs.each do |job|
+      - @jobs.each_with_index do |job, index|
         %tr
+          %td= index +1
           %td= link_to '', job, class: "btn btn-primary fa fa-eye btn-sm" if policy(job).show?
           %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm" if policy(job).update?
           %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(job).destroy?

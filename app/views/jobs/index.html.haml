@@ -23,8 +23,8 @@
             Client
             = f.search_field :appointment_client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
             %br 
-              Employee
-              = f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Employee name", :autocomplete => :off
+              Member
+              = f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Member name", :autocomplete => :off
           .col-md-4
             Service
             /= f.select :service_name_cont, options_from_collection_for_select(Service.all, :name, :name, @q.service_name_cont), { :include_blank => true }, :class => "form-control"
@@ -40,10 +40,10 @@
         %th
         %th
         %th
-        %th= sort_link @q, :member_last_name, "Employee"
+        %th= sort_link @q, :member_last_name, "Member"
         %th= sort_link @q, :service_name, "Service"
         %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
-        %th= sort_link @q, :member_price, "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
+        %th= sort_link @q, :member_price, "To Member, #{Tenant.current_tenant.default_currency.upcase}"
         %th C due
         %th M due
     %tbody

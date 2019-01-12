@@ -3,13 +3,28 @@
     .card
       .card-header
         %b Appointment
-        /= @appointment.id
         .float-right
           = link_to '', edit_appointment_path(@appointment), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@appointment).update?
-          /= link_to 'Back', jobs_path, class: 'btn btn-sm btn-secondary'
           = link_to '', @appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@appointment).destroy?
-
       .card-body
+        %b Status:
+        = status_label(@appointment.status)
+        %p
+        - if policy(@appointment).update?
+          .form-inline
+            - unless @appointment.status == 'planned'
+              = button_to "planned", mark_planned_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
+            - unless @appointment.status == 'member_confirmed'
+              = button_to "member_confirmed", mark_member_confirmed_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+            - unless @appointment.status == 'client_confirmed'
+              = button_to "client_confirmed", mark_client_confirmed_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+            - unless @appointment.status == 'not_attended'
+              = button_to "not_attended", mark_not_attended_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+            - unless @appointment.status == 'member_cancelled'
+              = button_to "member_cancelled", mark_member_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+            - unless @appointment.status == 'client_cancelled'
+              = button_to "client_cancelled", mark_client_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+        %hr
         %b Client:
         = link_to @appointment.client, client_path(@appointment.client)
         %br
@@ -28,26 +43,8 @@
         (#{@appointment.duration} min)
         /(#{distance_of_time_in_words @appointment.starts_at, @appointment.ends_at})
         %br
-        %b Status:
-        = status_label(@appointment.status)
-        %hr
         %b Description:
         = @appointment.description
-        %hr
-        - if policy(@appointment).update?
-          .form-inline
-            - unless @appointment.status == 'planned'
-              = button_to "planned", mark_planned_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
-            - unless @appointment.status == 'member_confirmed'
-              = button_to "member_confirmed", mark_member_confirmed_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
-            - unless @appointment.status == 'client_confirmed'
-              = button_to "client_confirmed", mark_client_confirmed_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
-            - unless @appointment.status == 'not_attended'
-              = button_to "not_attended", mark_not_attended_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-            - unless @appointment.status == 'member_cancelled'
-              = button_to "member_cancelled", mark_member_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
-            - unless @appointment.status == 'client_cancelled'
-              = button_to "client_cancelled", mark_client_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
         %hr
         %b Jobs:
         = @appointment.jobs_count
@@ -55,8 +52,6 @@
         = render 'jobs/index'
         %b Total client price:
         = @appointment.client_price_cents
-
-
 %br
 .card.card-default
   .container-fluid
