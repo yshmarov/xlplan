@@ -17,7 +17,6 @@
         = link_to @appointment.member, member_path(@appointment.member)
         %br
         %b Location:
-        = @appointment.location
         = link_to @appointment.location, location_path(@appointment.location)
         %br
         %b Starts at:
@@ -29,9 +28,6 @@
         %br
         %b Status:
         = status_label(@appointment.status)
-        %br
-        %b Status color:
-        = @appointment.status_color
         %hr
         %b Description:
         = @appointment.description

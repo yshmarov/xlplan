@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_04_233837) do
+ActiveRecord::Schema.define(version: 2018_12_16_011931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,15 +42,20 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
     t.bigint "member_id"
     t.bigint "location_id"
     t.datetime "starts_at"
+    t.integer "duration", default: 0, null: false
     t.datetime "ends_at"
+    t.integer "client_price", default: 0, null: false
     t.integer "status", default: 0, null: false
-    t.text "description"
     t.string "status_color", default: "blue"
+    t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "jobs_count", default: 0, null: false
+    t.string "slug"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["location_id"], name: "index_appointments_on_location_id"
     t.index ["member_id"], name: "index_appointments_on_member_id"
+    t.index ["slug"], name: "index_appointments_on_slug", unique: true
     t.index ["tenant_id"], name: "index_appointments_on_tenant_id"
   end
 
@@ -70,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
+    t.integer "appointments_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
@@ -102,15 +108,9 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
 
   create_table "jobs", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.bigint "client_id"
+    t.bigint "appointment_id"
     t.bigint "service_id"
-    t.bigint "location_id"
     t.bigint "member_id"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.integer "status", default: 0, null: false
-    t.string "service_name", default: "0", null: false
-    t.string "service_description", default: "0", null: false
     t.integer "service_duration", default: 0, null: false
     t.integer "service_member_percent", default: 0, null: false
     t.integer "client_price", default: 0, null: false
@@ -118,17 +118,11 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
     t.integer "member_price", default: 0, null: false
     t.integer "member_due_price", default: 0, null: false
     t.integer "created_by", default: 0, null: false
-    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
-    t.bigint "appointment_id"
     t.index ["appointment_id"], name: "index_jobs_on_appointment_id"
-    t.index ["client_id"], name: "index_jobs_on_client_id"
-    t.index ["location_id"], name: "index_jobs_on_location_id"
     t.index ["member_id"], name: "index_jobs_on_member_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
-    t.index ["slug"], name: "index_jobs_on_slug", unique: true
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
   end
 
@@ -143,6 +137,7 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
+    t.integer "appointments_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
@@ -160,11 +155,11 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
     t.string "address", limit: 255
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
-    t.integer "service_percent", default: 0, null: false
     t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
+    t.integer "appointments_count", default: 0, null: false
     t.string "slug"
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
@@ -195,15 +190,15 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
 
   create_table "services", force: :cascade do |t|
     t.bigint "tenant_id"
+    t.bigint "service_category_id"
     t.string "name", limit: 144, null: false
     t.string "description", limit: 255
     t.integer "duration", null: false
-    t.integer "member_percent", null: false
-    t.integer "quantity", default: 1, null: false
-    t.integer "status", default: 1, null: false
     t.integer "client_price", null: false
+    t.integer "member_percent", null: false
     t.integer "member_price", default: 0, null: false
-    t.bigint "service_category_id"
+    t.integer "repeat_reminder", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
@@ -238,13 +233,14 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
     t.string "plan", limit: 40, null: false
-    t.string "industry", limit: 60, null: false
     t.string "default_currency", limit: 40, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
     t.string "string", limit: 2, default: "en", null: false
+    t.string "industry", limit: 60, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
+    t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
     t.index ["plan"], name: "index_tenants_on_plan"
     t.index ["tenant_id"], name: "index_tenants_on_tenant_id"
@@ -312,8 +308,6 @@ ActiveRecord::Schema.define(version: 2019_01_04_233837) do
   add_foreign_key "comments", "tenants"
   add_foreign_key "comments", "users"
   add_foreign_key "jobs", "appointments"
-  add_foreign_key "jobs", "clients"
-  add_foreign_key "jobs", "locations"
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "tenants"

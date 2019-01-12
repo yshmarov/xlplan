@@ -21,22 +21,10 @@
             /= f.search_field :id_eq, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "#", :autocomplete => :off
             /%br 
             Client
-            = f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
+            = f.search_field :appointment_client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
             %br 
               Employee
               = f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Employee name", :autocomplete => :off
-          .col-md-4
-            Starts after
-            .input-daterange
-              = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-            Starts before
-            .input-daterange
-              = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
-            Status
-            = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
-            /= f.collection_radio_buttons :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, :first, :first, :class => "form-control"
-            /= f.collection_radio_buttons :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, :first, :last
-            /= f.collection_radio_buttons :status_eq, Job.statuses, :first, :first
           .col-md-4
             Service
             /= f.select :service_name_cont, options_from_collection_for_select(Service.all, :name, :name, @q.service_name_cont), { :include_blank => true }, :class => "form-control"
@@ -54,13 +42,11 @@
         %th
         %th= sort_link @q, :client_last_name, "Client"
         %th= sort_link @q, :starts_at, "Time"
-        %th= sort_link @q, :status, "Status"
         %th= sort_link @q, :location_id, "Location"
         %th= sort_link @q, :member_last_name, "Employee"
         %th= sort_link @q, :service_name, "Service"
         %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
         %th= sort_link @q, :member_price, "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
-        %th Description
     %tbody
       - @jobs.each do |job|
         %tr
@@ -69,13 +55,11 @@
           %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).destroy?
           %td= link_to job.client, client_path(job.client)
           %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
-          %td= status_label(job.status)
           %td= link_to job.location, location_path(job.location)
           %td= link_to job.member, member_path(job.member)
           %td= link_to job.service.full_name, service_path(job.service)
           %td= job.client_price_cents
           %td= job.member_price_cents
-          %td= truncate(job.description, length: 25)
 .container
   = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

@@ -41,6 +41,15 @@
         %del
           Add a Client
       %hr
+      - unless Appointment.any?
+        .fa.fa-times-circle{:style => "color:red"}
+
+        = link_to 'Add an Appointment', new_appointment_path
+      - else
+        .fa.fa-check-circle{:style => "color:green"}
+        %del
+          Add a Job
+      %hr
       - unless Job.any?
         .fa.fa-times-circle{:style => "color:red"}
 

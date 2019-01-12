@@ -19,9 +19,6 @@
         %br
         %b Address:
         = @location.address
-        %hr
-        %b Balance, #{Tenant.current_tenant.default_currency.upcase}:
-        = @location.balance_cents
         %br
         %b Status:
         = status_label(@location.status)

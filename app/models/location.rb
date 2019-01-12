@@ -9,15 +9,13 @@ class Location < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :to_s, use: :slugged
 
   has_many :members, dependent: :restrict_with_error
   has_many :appointments, dependent: :restrict_with_error
-  has_many :jobs, dependent: :restrict_with_error
+  has_many :jobs, through: :appointments
 
-  #validates :name, uniqueness: true
   validates_uniqueness_of :name, :scope => :tenant_id
-
   validates :name, :balance, :status, presence: true
 
   enum status: { inactive: 0, active: 1 }

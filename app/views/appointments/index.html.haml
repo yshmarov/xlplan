@@ -21,11 +21,10 @@
               Employee
               = f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Employee name", :autocomplete => :off
           .col-md-4
-            Starts after
             .input-daterange
+              Starts after
               = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-            Starts before
-            .input-daterange
+              Starts before
               = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
           .col-md-4
             Status
@@ -45,18 +44,22 @@
         %th= sort_link @q, :location_id, "Location"
         %th= sort_link @q, :starts_at, "Time"
         %th= sort_link @q, :status, "Status"
+        %th Jobs
+        %th Price
         %th Description
     %tbody
       - @appointments.each do |appointment|
         %tr
-          %td= link_to '', appointment, class: "btn btn-primary fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          %td= link_to '', edit_appointment_path(appointment), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(appointment).update?
-          %td= link_to '', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(appointment).destroy?
+          %td= link_to '', appointment, class: "btn btn-primary fa fa-eye btn-sm" if policy(appointment).show?
+          %td= link_to '', edit_appointment_path(appointment), class: "btn btn-warning fa fa-edit btn-sm" if policy(appointment).update?
+          %td= link_to '', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(appointment).destroy?
           %td= link_to appointment.client, client_path(appointment.client)
           %td= link_to appointment.member, member_path(appointment.member)
           %td= link_to appointment.location, location_path(appointment.location)
           %td #{appointment.starts_at.strftime('%d/%b/%Y %H:%M')} - #{appointment.ends_at.strftime('%H:%M')}
           %td= status_label(appointment.status)
+          %td= appointment.jobs_count
+          %td= appointment.client_price_cents
           %td= truncate(appointment.description, length: 25)
 .container
   = will_paginate @appointments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

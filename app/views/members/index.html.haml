@@ -29,7 +29,6 @@
         %th= sort_link @ransack_members, :status, "Status"
         %th= sort_link @ransack_members, :balance, "Balance, #{Tenant.current_tenant.default_currency.upcase}"
         %th Location
-        %th Service %
         %th Skills
         %th Status
         %th Roles
@@ -58,7 +57,6 @@
           %td= status_label(member.status)
           %td= member.balance_cents
           %td= link_to member.location, location_path(member.location) if member.location.present?
-          %td= number_to_percentage(member.service_percent, precision: 0)
           %td= member.skills.collect{|r| r.service_category}.to_sentence
           %td
             - if member.user.present?

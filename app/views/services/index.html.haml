@@ -23,7 +23,6 @@
             Category
             /= f.collection_select :office_name_cont, Office.all, :name, :name, include_blank: true
             = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
-            /= f.search_field :service_category_name_cont, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Category"
             %p
             = f.submit
 .table-responsive
@@ -56,7 +55,7 @@
           %td= service.description
           %td= service.duration
           %td= service.client_price_cents
-          %td= service.member_percent
+          %td= number_to_percentage(service.member_percent, precision: 0)
           %td= service.member_price_cents
           %td= status_label(service.status)
 .container

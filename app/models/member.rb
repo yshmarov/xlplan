@@ -3,8 +3,8 @@ class Member < ApplicationRecord
    
   belongs_to :user
   belongs_to :location, optional: true
-  has_many :jobs, dependent: :restrict_with_error
   has_many :appointments, dependent: :restrict_with_error
+  has_many :jobs, through: :appointments
   has_many :skills, dependent: :destroy, inverse_of: :member
   has_many :comments
   has_many :service_categories, through: :skills
@@ -22,7 +22,6 @@ class Member < ApplicationRecord
   validates :first_name, :last_name, length: { maximum: 144 }
   validates :email, :phone_number, :address, length: { maximum: 255 }
   validates :first_name, :last_name, :status, presence: true
-  validates :service_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100,  only_integer: true }
   #validates :email, uniqueness: { case_sensitive: false }
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   #validates :email, format: { with: VALID_EMAIL_REGEX }
@@ -39,8 +38,8 @@ class Member < ApplicationRecord
   end
 
   DEFAULT_ADMIN = {
-    first_name: "Admin",
-    last_name:  "Please edit me"
+    last_name:  "Organization",
+    first_name: "Admin"
   }
 
   def self.create_new_member(user, params)

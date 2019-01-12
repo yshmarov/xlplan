@@ -6,12 +6,6 @@
 
   .form-inputs
 
-    = f.input :starts_at, :minute_step => 15, start_year: Date.today.year
-    /= f.datetime_field :starts_at, :minute_step => 15, start_year: Date.today.year, class: "form-control"
-    = f.label :client
-    = f.error :client, class: 'text-danger'
-    = f.select :client_id, Client.active.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-
     = f.label :service
     = f.error :service, class: 'text-danger'
     = f.select :service_id, Service.active.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
@@ -20,20 +14,10 @@
     = f.error :member, class: 'text-danger'
     = f.select :member_id, Member.active.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
 
-    = f.label :location
-    = f.error :location, class: 'text-danger'
-    = f.select :location_id, Location.active.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
-
-    /= f.input :service_name
-    /= f.input :service_description
     /= f.input :service_duration
     /= f.input :service_member_percent
     /= f.input :client_price
     /= f.input :member_price
-    /= f.input :status
-    = f.input :description
-    - unless f.object.new_record?
-      = f.input :status, :as => :radio_buttons, :collection => Job.statuses.keys.to_a
     %p
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

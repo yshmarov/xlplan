@@ -2,7 +2,6 @@ class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
 
   def index
-    #@services = Service.all
     @q = Service.ransack(params[:q])
     @services = @q.result.includes(:service_category).paginate(:page => params[:page], :per_page => 15).order("updated_at DESC")
   end
@@ -64,6 +63,8 @@ class ServicesController < ApplicationController
     end
 
     def service_params
-      params.require(:service).permit(:name, :description, :duration, :client_price_cents, :member_percent, :member_price_cents, :quantity, :status, :service_category_id, :client_price, :member_price)
+      params.require(:service).permit(:service_category_id, :name, :description, :duration, :repeat_reminder, 
+          :client_price, :member_price, :client_price_cents, :member_price_cents, :member_percent, 
+          :status)
     end
 end

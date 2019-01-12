@@ -27,8 +27,6 @@
     = f.input :address
     = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
 
-    = f.input :service_percent
-
     = f.label :skills
     = f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
 

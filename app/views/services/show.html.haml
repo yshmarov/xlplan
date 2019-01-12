@@ -1,35 +1,36 @@
-.card
-  .card-header
-    %b Service Name:
-    = @service.name
-  .card-body
-    %b Category:
-    = @service.service_category
-    %br
-    %b Description:
-    = @service.description
-    %br
-    %b Duration:
-    = @service.duration
-    %br
-    %b Client price:
-    = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
-    %br
-    %b Employee percent:
-    /= @service.member_percent
-    = number_to_percentage(@service.member_percent, precision: 0)
-    %br
-    %b Employee price:
-    = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
-    
-    /%br
-    /  %b Quantity:
-    /  = @service.quantity
-    %br
-    %b Status:
-    = status_label(@service.status)
-    %p    
-    = link_to 'Edit', edit_service_path(@service), class: "btn btn-warning"
+.row
+  .container
+    .card
+      .card-header
+        %b Service Name:
+        = @service.name
+        .float-right
+          = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@service).edit?
+      .card-body
+        %b Category:
+        = @service.service_category
+        %br
+        %b Description:
+        = @service.description
+        %br
+        %b Duration, minutes:
+        /= @service.duration.to_d/60
+        /hours
+        = @service.duration
+        /= distance_of_time_in_words(@service.duration*60)
+        %br
+        %b Client price:
+        = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+        %br
+        %b Member percent:
+        = number_to_percentage(@service.member_percent, precision: 0)
+        %br
+        %b Member price:
+        = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+        
+        %br
+        %b Status:
+        = status_label(@service.status)
 %p
 = link_to 'Back to all services', services_path, class: "btn btn-secondary"
 

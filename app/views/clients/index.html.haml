@@ -26,7 +26,7 @@
         %th 
           Contacts
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
-        %th= sort_link @ransack_clients, :status, "Status"
+        /%th= sort_link @ransack_clients, :status, "Status"
         %th= sort_link @ransack_clients, :balance, "Balance, #{Tenant.current_tenant.default_currency.upcase}"
         %th= sort_link @ransack_clients, :jobs_count, "Jobs"
         %th Created
@@ -46,7 +46,7 @@
             - if client.email.present? && client.phone_number.present?
               \/
             %a{:href => "mailto:#{client.email}"}= client.email
-          %td= status_label(client.status)
+          /%td= status_label(client.status)
           %td= client.balance_cents
           %td= client.jobs_count
           %td

@@ -3,11 +3,11 @@ class Tenant < ApplicationRecord
 
   has_many :members, dependent: :destroy
   has_many :clients, dependent: :destroy
-  has_many :employees, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :service_categories, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :locations, dependent: :destroy
+  has_many :appointments, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy
@@ -16,8 +16,9 @@ class Tenant < ApplicationRecord
   validates_uniqueness_of :name
   validates :name, length: { maximum: 40 }
   validates :plan, length: { maximum: 40 }
-  validates :industry, length: { maximum: 60 }
   validates :default_currency, length: { maximum: 40 }
+  validates :locale, length: { maximum: 2 }
+  validates :industry, length: { maximum: 60 }
 
   def can_create_locations?
     (plan == 'free' && locations.count < 1) || (plan == 'premium')

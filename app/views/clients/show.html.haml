@@ -31,9 +31,9 @@
         %hr
         %b Balance, #{Tenant.current_tenant.default_currency.upcase}:
         = @client.balance_cents
-        %br
-        %b Status:
-        = status_label(@client.status)
+        /%br
+        /%b Status:
+        /= status_label(@client.status)
         %hr
         %b Created by:
         = link_to @client.creator, member_path(@client.created_by)

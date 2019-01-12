@@ -13,19 +13,18 @@ class Service < ApplicationRecord
   validates :name, uniqueness: true
   validates :name, length: { in: 1..144 }
   validates :description, length: { maximum: 255 }
-  validates :name, :duration, :client_price, :member_percent, :member_price, :quantity, :status, :service_category, presence: true
+  #repeat_reminder
+  validates :name, :service_category, :duration, :client_price, :member_percent, :member_price, :status, presence: true
   validates :member_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100,  only_integer: true }
   #class_attribute :client_price, default: {}
-
-
-  #accepts_nested_attributes_for :service_category, :reject_if => :all_blank
 
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents
 
   enum status: { inactive: 0, active: 1 }
 
-  #after_update :update_member_price
+  after_create :update_member_price
+  after_update :update_member_price
   after_save :update_member_price
   
   def to_s
@@ -33,11 +32,11 @@ class Service < ApplicationRecord
   end
 
   def full_name
-    name.to_s+'('+description.to_s+'/'+service_category.to_s+')'+','+duration.to_s+'min'
+    service_category.to_s+'/'+name.to_s+'('+description.to_s+')'+member_price_cents.to_i.to_s+')'+','+duration.to_s+'min'
   end
 
   def full_name_with_price
-    name.to_s+'('+description.to_s+'/'+service_category.to_s+')('+client_price_cents.to_i.to_s+'/'+member_price_cents.to_i.to_s+')'+','+duration.to_s+'min'
+    service_category.to_s+'/'+name.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+'/'+member_price_cents.to_i.to_s+')'+','+duration.to_s+'min'
   end
 
   private

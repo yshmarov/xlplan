@@ -13,7 +13,6 @@
         %th Service
         %th "From Client, #{Tenant.current_tenant.default_currency.upcase}"
         %th "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
-        %th Description
     %tbody
       - @jobs.each do |job|
         %tr
@@ -28,4 +27,3 @@
           %td= link_to job.service.full_name, service_path(job.service)
           %td= job.client_price_cents
           %td= job.member_price_cents
-          %td= truncate(job.description, length: 25)

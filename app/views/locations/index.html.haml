@@ -28,9 +28,7 @@
         %th Email
         %th Address
         %th Status
-        %th Balance, #{Tenant.current_tenant.default_currency.upcase}
-        %th Jobs
-  
+
     %tbody
       - @locations.each do |location|
         %tr
@@ -44,10 +42,6 @@
           %td= location.tel
           %td= location.email
           %td= location.address
-          /%td= location.status
           %td= status_label(location.status)
-          %td= location.balance_cents
-          %td= location.jobs_count
-
 
 %br

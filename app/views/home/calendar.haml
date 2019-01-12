@@ -18,7 +18,7 @@
         .input-daterange
           = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
         Status
-        = f.select :status_eq, Job.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+        = f.select :status_eq, Appointment.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
         Location
         = f.select :location_name_cont, Location.all.map{|c| [c.name, c.name]}, {include_blank: Location.all.length > 1}, class: 'selectize'
         /= f.submit

@@ -7,7 +7,7 @@
     = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
 
     = f.label :service_category, label: "Category"
-    = f.collection_select :service_category_id, ServiceCategory.order(:name), :id, :name, {prompt: 'Select an category'}, {class: 'selectize-category'}
+    = f.collection_select :service_category_id, ServiceCategory.order(:name), :id, :name, {prompt: 'Select or create a category'}, {class: 'selectize-category'}
     = f.error :service_category, class: 'text-danger'
 
     = f.input :description, input_html: { autocomplete: 'off' }
@@ -22,8 +22,8 @@
 
     = f.input :client_price_cents, label: "Client price, #{Tenant.current_tenant.default_currency.upcase}", placeholder: '59.99', as: :integer, input_html: { autocomplete: 'off' }
     = f.input :member_percent, placeholder: '50'
-    /= f.input :quantity
-    /= f.input :status
+  
+    = f.input :repeat_reminder
     = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
 
   .form-actions

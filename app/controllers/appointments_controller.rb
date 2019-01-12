@@ -122,10 +122,13 @@ class AppointmentsController < ApplicationController
 
   private
     def set_appointment
-      @appointment = Appointment.find(params[:id])
+      @appointment = Appointment.friendly.find(params[:id])
     end
 
     def appointment_params
-      params.require(:appointment).permit(:tenant_id, :client_id, :member_id, :location_id, :starts_at, :ends_at, :status, :description, :status_color)
+      params.require(:appointment).permit(:tenant_id, :client_id, :member_id, :location_id,
+          :starts_at, :duration, :ends_at,
+          :client_price, :client_price_cents, 
+          :status, :status_color, :description)
     end
 end
