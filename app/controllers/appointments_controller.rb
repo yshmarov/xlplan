@@ -68,6 +68,7 @@ class AppointmentsController < ApplicationController
 
   def show
     authorize @appointment
+    @jobs = @appointment.jobs
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Appointment", trackable_id: @appointment).all
   end
 
@@ -129,6 +130,7 @@ class AppointmentsController < ApplicationController
       params.require(:appointment).permit(:tenant_id, :client_id, :member_id, :location_id,
           :starts_at, :duration, :ends_at,
           :client_price, :client_price_cents, 
-          :status, :status_color, :description)
+          :status, :status_color, :description,
+          jobs_attributes: [:id, :service_id, :member_id, :_destroy])
     end
 end

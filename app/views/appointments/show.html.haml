@@ -24,7 +24,8 @@
         %br
         %b Ends at:
         = @appointment.ends_at.strftime('%d/%m/%Y %H:%M')
-        (#{distance_of_time_in_words @appointment.starts_at, @appointment.ends_at})
+        (#{@appointment.duration} min)
+        /(#{distance_of_time_in_words @appointment.starts_at, @appointment.ends_at})
         %br
         %b Status:
         = status_label(@appointment.status)
@@ -46,6 +47,15 @@
               = button_to "member_cancelled", mark_member_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
             - unless @appointment.status == 'client_cancelled'
               = button_to "client_cancelled", mark_client_cancelled_appointment_path(@appointment), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+        %hr
+        %b Jobs:
+        = @appointment.jobs_count
+        %p
+        = render 'jobs/index'
+        %b Total client price:
+        = @appointment.client_price_cents
+
+
 %br
 .card.card-default
   .container-fluid

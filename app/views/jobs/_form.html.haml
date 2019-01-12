@@ -14,10 +14,6 @@
     = f.error :member, class: 'text-danger'
     = f.select :member_id, Member.active.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
 
-    /= f.input :service_duration
-    /= f.input :service_member_percent
-    /= f.input :client_price
-    /= f.input :member_price
     %p
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

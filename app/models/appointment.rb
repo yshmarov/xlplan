@@ -5,7 +5,8 @@ class Appointment < ApplicationRecord
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :member, touch: true, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
-  has_many :jobs
+  has_many :jobs, inverse_of: :appointment
+  accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
 
   enum status: { planned: 0, member_confirmed: 1, client_confirmed: 2, not_attended: 3, member_cancelled:4, client_cancelled: 5}
 
@@ -87,8 +88,9 @@ class Appointment < ApplicationRecord
     if jobs.any?
       update_column :duration, (jobs.map(&:service_duration).sum)
       update_column :ends_at, (starts_at + duration*60)
-      update_column :client_price, (jobs.map(&:client_price).sum)
-      jobs.update_due_prices
+      update_column :client_price, (jobs.map(&:client_due_price).sum)
+      ######if I try as <unless new record>
+      jobs.each do |job| job.update_due_prices end
       #job.update_due_prices
       #job.all.update_due_prices
     else

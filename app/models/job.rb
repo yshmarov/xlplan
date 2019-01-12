@@ -8,8 +8,8 @@ class Job < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
-  extend FriendlyId
-  friendly_id :full_name, use: :slugged
+  #extend FriendlyId
+  #friendly_id :full_name, use: :slugged
 
   #counter_cache for job_count
   #touch to calculate balance
@@ -47,23 +47,25 @@ class Job < ApplicationRecord
     "#{service} for #{client} at #{starts_at} by #{member}"
   end
 
-  protected
 
+  def update_due_prices
+    if id?
+      if appointment.status == 'client_confirmed' || appointment.status == 'member_confirmed'
+        update_column :client_due_price, (client_price)
+        update_column :member_due_price, (member_price)
+      else
+        update_column :client_due_price, (0)
+        update_column :member_due_price, (0)
+      end
+    end
+  end
+
+  protected
   def update_service_details
     update_column :service_duration, (service.duration)
     update_column :client_price, (service.client_price)
     update_column :service_member_percent, (service.member_percent)
     update_column :member_price, (service.member_price)
-  end
-
-  def update_due_prices
-    if appointment.status == 'client_confirmed' || appointment.status == 'member_confirmed'
-      update_column :client_due_price, (client_price)
-      update_column :member_due_price, (member_price)
-    else
-      update_column :client_due_price, (0)
-      update_column :member_due_price, (0)
-    end
   end
 
 end

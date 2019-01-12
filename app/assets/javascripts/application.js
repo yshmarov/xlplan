@@ -41,6 +41,12 @@ $(document).on('turbolinks:load', function(){
       });
   }
 
+  $('form').on('cocoon:after-insert', function(e, addedItem) {
+    $(addedItem).find('.selectize').selectize({
+      sortField: 'text'
+    })
+  });
+
 	$('.datepicker').datepicker({
      orientation: 'auto bottom',
      format: 'yyyy-mm-dd',

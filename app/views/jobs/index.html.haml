@@ -40,26 +40,24 @@
         %th
         %th
         %th
-        %th= sort_link @q, :client_last_name, "Client"
-        %th= sort_link @q, :starts_at, "Time"
-        %th= sort_link @q, :location_id, "Location"
         %th= sort_link @q, :member_last_name, "Employee"
         %th= sort_link @q, :service_name, "Service"
         %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
         %th= sort_link @q, :member_price, "To Employee, #{Tenant.current_tenant.default_currency.upcase}"
+        %th C due
+        %th M due
     %tbody
       - @jobs.each do |job|
         %tr
-          %td= link_to '', job, class: "btn btn-primary fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).update?
-          %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(job).destroy?
-          %td= link_to job.client, client_path(job.client)
-          %td #{job.starts_at.strftime('%d/%b/%Y %H:%M')} - #{job.ends_at.strftime('%H:%M')}
-          %td= link_to job.location, location_path(job.location)
+          %td= link_to '', job, class: "btn btn-primary fa fa-eye btn-sm" if policy(job).show?
+          %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm" if policy(job).update?
+          %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(job).destroy?
           %td= link_to job.member, member_path(job.member)
           %td= link_to job.service.full_name, service_path(job.service)
           %td= job.client_price_cents
           %td= job.member_price_cents
+          %td= job.client_due_price_cents
+          %td= job.member_due_price_cents
 .container
   = will_paginate @jobs, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
