@@ -17,7 +17,7 @@
     %ul.navbar-nav.side-nav
       %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> Calendar".html_safe, calendar_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Mark attendance: #{Appointment.mark_attendance.count}".html_safe, mark_attendance_appointments_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Checkout appts: #{Appointment.checkout.count}".html_safe, checkout_appointments_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> Appointments".html_safe, appointments_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> XX Jobs".html_safe, jobs_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> Clients".html_safe, clients_path, class: "nav-link"

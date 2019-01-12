@@ -3,7 +3,9 @@
     .container-fluid
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-          %b= controller.action_name.humanize.titleize
+          %b
+            = controller.action_name.humanize.titleize
+            appointments
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           %button.btn.btn-sm.btn-default{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search

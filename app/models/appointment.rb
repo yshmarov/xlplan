@@ -22,7 +22,7 @@ class Appointment < ApplicationRecord
     client.full_name.to_s + "/" + member.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
   end
 
-  scope :mark_attendance, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
+  scope :checkout, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_confirmed, -> { where(status: [:member_confirmed, :client_confirmed]) }
   scope :is_cancelled, -> { where(status: [:member_cancelled, :client_cancelled]) }

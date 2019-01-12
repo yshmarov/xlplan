@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   resources :locations
 
   resources :appointments do
-    get :mark_attendance, on: :collection
+    get :checkout, on: :collection
   	member do
   		patch :mark_planned
   		patch :mark_member_confirmed

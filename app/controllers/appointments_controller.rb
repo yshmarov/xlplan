@@ -1,8 +1,8 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_member_confirmed, :mark_client_confirmed, :mark_not_attended, :mark_member_cancelled, :mark_client_cancelled]
 
-  def mark_attendance
-    @q = Appointment.mark_attendance.ransack(params[:q])
+  def checkout
+    @q = Appointment.checkout.ransack(params[:q])
     @appointments = @q.result.includes(:location, :client, :member).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
     render 'index'
   end
