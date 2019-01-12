@@ -1,1 +1,28 @@
-Member skills?
+.row
+  .col-md-4
+    %h3.text-center
+      Member Jobs
+    - @members.each do |member|
+      .card.text-center= "#{member.full_name}: #{member.jobs.count} jobs"
+%br
+
+%h3 Member Stats
+
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th Name
+        %th Appointments, Q
+        %th Jobs, Q
+        %th Hours worked, #
+        %th Earnings, $
+        %th Future bookings, $
+        %th Cost per hour
+        %th % of total revenue
+    %tbody
+      - @members.each do |member|
+        %tr
+          %td= member.full_name
+          %td= member.appointments_count
+          %td= member.jobs_count

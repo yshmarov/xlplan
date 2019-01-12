@@ -1,1 +1,6 @@
-Locations
+.row
+  .col-md-4
+    %h3.text-center
+      Location Pie
+    - @locations.each do |location|
+      .card.text-center= "#{location.name}: #{location.jobs.count} jobs"

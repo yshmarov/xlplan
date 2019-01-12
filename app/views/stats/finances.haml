@@ -5,6 +5,12 @@
   .col-md-2
     .card-header.bg-default
       %i.fa.fa-calendar
+      = Appointments.count
+      %div 
+        %b Appointments
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-calendar
       = Job.count
       %div 
         %b Jobs

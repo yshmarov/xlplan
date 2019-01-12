@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   get 'stats/finances'
   get 'stats/clients'
   get 'stats/members'
-  get 'stats/jobs'
+  get 'stats/appointments'
   get 'stats/services'
   get 'stats/locations'
 

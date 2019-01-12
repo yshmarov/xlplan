@@ -1,5 +1,6 @@
 class StatsController < ApplicationController
   def finances
+
     #company confirmed earning
     @confirmed_hours_worked = (Job.is_confirmed.map(&:service_duration).sum)/60.to_d
     @confirmed_job_q = Job.is_confirmed.count
@@ -36,14 +37,14 @@ class StatsController < ApplicationController
 
   def members
     #performance vs others
-    @member = Member.all
+    @members = Member.all
   end
 
-  def jobs
+  def appointments
     #pie charts
-    @job_status_pie = Job.unscoped.group("status").count
-    #job Q per month (only confirmed)
-    @monthly_jobs = Job.is_confirmed.map { |job| [Date::MONTHNAMES[job.starts_at.month], job.starts_at.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
+    @appointment_status_pie = Appointment.unscoped.group("status").count
+    #appointment Q per month (only confirmed)
+    @monthly_appointments = Appointment.is_confirmed.map { |appointment| [Date::MONTHNAMES[appointment.starts_at.month], appointment.starts_at.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
   end
 
   def services

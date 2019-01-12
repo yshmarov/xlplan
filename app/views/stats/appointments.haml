@@ -1,0 +1,11 @@
+.row
+  .col-md-4
+    %h3.text-center
+      Appointment Status Pie
+    - @appointment_status_pie.each do |key, value|
+      .card.text-center= "#{key}: #{value}"
+  .col-md-4
+    %h3.text-center
+      Appointments per month
+    - @monthly_appointments.each do |key, value|
+      .card.text-center= "#{key}: #{value}"
