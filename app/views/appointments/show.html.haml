@@ -13,17 +13,18 @@
         %b Client:
         = link_to @appointment.client, client_path(@appointment.client)
         %br
-        %b Member:
+        %b Employee:
         = link_to @appointment.member, member_path(@appointment.member)
         %br
         %b Location:
         = link_to @appointment.location, location_path(@appointment.location)
         %br
         %b Starts at:
-        = @appointment.starts_at.strftime('%d/%m/%Y %H:%M')
+        = @appointment.starts_at.strftime("%A")
+        = @appointment.starts_at.strftime('%d/%b/%Y %H:%M')
         %br
         %b Ends at:
-        = @appointment.ends_at.strftime('%d/%m/%Y %H:%M')
+        = @appointment.ends_at.strftime('%d/%b/%Y %H:%M')
         (#{@appointment.duration} min)
         /(#{distance_of_time_in_words @appointment.starts_at, @appointment.ends_at})
         %br

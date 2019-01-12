@@ -1,9 +1,9 @@
 %ul.list-group.list-group-flush
   - @activities.each do |a|
     %li.list-group-item
+      = a.created_at.strftime('%d/%b/%Y %H:%M')
+      (#{time_ago_in_words a.created_at} ago)
       = link_to a.owner.to_s, member_path(a.owner.member.id) if a.owner.member
-      = distance_of_time_in_words Time.now, a.created_at
-      ago
       %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
     
       = a.key

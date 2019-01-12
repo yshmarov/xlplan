@@ -23,8 +23,6 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     authorize @job
-    @job.created_by = current_user.member.id
-
 
     respond_to do |format|
       if @job.save

@@ -5,7 +5,7 @@ class Appointment < ApplicationRecord
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :member, touch: true, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
-  has_many :jobs, inverse_of: :appointment
+  has_many :jobs, inverse_of: :appointment, dependent: :destroy
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
 
   enum status: { planned: 0, member_confirmed: 1, client_confirmed: 2, not_attended: 3, member_cancelled:4, client_cancelled: 5}

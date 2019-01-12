@@ -18,8 +18,6 @@ class Job < ApplicationRecord
   #touch to calculate duration and total_client_price
   belongs_to :appointment, touch: true, counter_cache: true
 
-  belongs_to :creator, class_name: 'Member', foreign_key: :created_by, required: false
-
   #console commands to update counters, if needed
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
   #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }

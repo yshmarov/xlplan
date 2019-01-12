@@ -14,10 +14,7 @@ class CreateJobs < ActiveRecord::Migration[5.2]
       t.integer :member_price, default: 0, null: false
       t.integer :member_due_price, default: 0, null: false
 
-      t.integer :created_by, default: 0, null: false
-
       t.timestamps
-
     end
   end
 end

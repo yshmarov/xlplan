@@ -3,15 +3,15 @@
     .card
       .card-header
         %b Job
-        /= @job.id
         .float-right
           = link_to '', edit_job_path(@job), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@job).update?
           /= link_to 'Back', jobs_path, class: 'btn btn-sm btn-secondary'
           = link_to '', @job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@job).destroy?
 
       .card-body
-        Appointment:
-
+        %b Appointment:
+        = link_to @job.appointment, appointment_path(@job.appointment)
+        %br
         %b Client:
         = link_to @job.appointment.client, client_path(@job.appointment.client)
         %br
@@ -20,28 +20,19 @@
         %br
         %b Ends at:
         = @job.appointment.ends_at.strftime('%d/%m/%Y %H:%M')
-        (#{@job.appointment.service_duration} min)
+        (#{@job.service_duration} min)
         %br
         %b Location:
         = link_to @job.appointment.location, location_path(@job.appointment.location)
         %br
         %b Status:
         = status_label(@job.appointment.status)
-
-        Job:
+        %hr
+        %b Service:
+        = link_to @job.service.full_name_with_price, service_path(@job.service)
         %br
         %b Employee:
         = link_to @job.member, member_path(@job.member)
-        %br
-        %b Service:
-        = link_to @job.service.full_name_with_price, service_path(@job.service)
-        /%b Service duration:
-        /= @job.appointment.service_duration
-
-        /%br
-        /%b service_member_percent:
-        /= @job.service_member_percent
-
         %hr
         %b Client planned price:
         /= @job.client_price_cents
@@ -59,9 +50,6 @@
         /= @job.member_due_price_cents if policy(@job).update?
         = number_to_currency(@job.member_due_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")  if policy(@job).update?
         %hr
-        %b Created by:
-        = link_to @job.creator, member_path(@job.creator)
-        %br
         %b Created at:
         = @job.created_at.strftime('%d/%b/%Y %H:%M')
         %br
