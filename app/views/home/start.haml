@@ -48,16 +48,18 @@
       - else
         .fa.fa-check-circle{:style => "color:green"}
         %del
-          Add a Job
+          Add an Appointment
       %hr
       - unless Job.any?
         .fa.fa-times-circle{:style => "color:red"}
 
-        = link_to 'Add a Job', new_job_path
+        = link_to 'Add jobs to your first appointment', edit_appointment_path(Appointment.first)
       - else
         .fa.fa-check-circle{:style => "color:green"}
         %del
-          Add a Job
+          Add jobs to your first appointment
+      %hr
+        Great! Now you can checkout the appointment
 /%p
 /.row
 /  .col-xl-4

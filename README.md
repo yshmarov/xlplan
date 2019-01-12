@@ -3,7 +3,7 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-
+rails g scaffold payment tenant:belongs_to appointment:belongs_to client:belongs_to created_by:integer  amount:integer payment_method:string 
 
 
 

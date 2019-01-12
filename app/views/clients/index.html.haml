@@ -49,7 +49,7 @@
           /%td= status_label(client.status)
           %td= client.balance_cents
           %td= client.appointments_count
-          %td= client.jobs_count
+          %td= client.jobs.count
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

@@ -58,9 +58,14 @@
           %td= link_to appointment.client, client_path(appointment.client)
           %td= link_to appointment.member, member_path(appointment.member)
           %td= link_to appointment.location, location_path(appointment.location)
-          %td #{appointment.starts_at.strftime('%d/%b/%Y %H:%M')} - #{appointment.ends_at.strftime('%H:%M')}
+          %td #{appointment.starts_at.strftime("%A")} #{appointment.starts_at.strftime('%d/%b/%Y %H:%M')} - #{appointment.ends_at.strftime('%H:%M')} (#{appointment.duration} min)
           %td= status_label(appointment.status)
-          %td= appointment.jobs_count
+          %td
+            - appointment.jobs.each do |job|
+              .badge.badge-secondary
+                = job.service.full_name_with_price
+                \/
+                = job.member
           %td= appointment.client_price_cents
           %td= truncate(appointment.description, length: 25)
 .container

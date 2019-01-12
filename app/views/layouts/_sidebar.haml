@@ -19,7 +19,6 @@
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> Calendar".html_safe, calendar_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Checkout appts: #{Appointment.checkout.count}".html_safe, checkout_appointments_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> Appointments".html_safe, appointments_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-calendar'></i> XX Jobs".html_safe, jobs_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> Clients".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-tie'></i> Members".html_safe, members_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-tag'></i> Services".html_safe, services_path, class: "nav-link"
@@ -42,8 +41,9 @@
           .fa.fa-cog
           Settings
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to "My Company", organization_show_path, class: "dropdown-item navdrop-link" if current_user.has_role?(:admin)
-          = link_to "Service Categories", service_categories_path, class: "dropdown-item navdrop-link"
+          = link_to "<i class='fa fa-university'></i> My Company".html_safe, organization_show_path, class: "dropdown-item navdrop-link" if current_user.has_role?(:admin)
+          = link_to "<i class='fa fa-list'></i> Service Categories".html_safe, service_categories_path, class: "dropdown-item navdrop-link"
+          = link_to "<i class='fa fa-calendar-check'></i> Jobs".html_safe, jobs_path, class: "dropdown-item navdrop-link"
     %ul.navbar-nav.justify-content-end
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
