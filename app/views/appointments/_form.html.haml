@@ -20,14 +20,14 @@
 
     /= f.input :status, :as => :radio_buttons, :collection => Appointment.statuses.keys.to_a
 
-    = f.input :description
+    = f.input :notes
 
     %h3 Jobs
     #jobs
       = f.simple_fields_for :jobs do |job|
         = render 'job_fields', f: job
       .links
-        = link_to_add_association 'add job', f, :jobs
+        = link_to_add_association '+ Add Job', f, :jobs, class: 'btn btn-secondary'
     %p
     %hr
 

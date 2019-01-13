@@ -43,8 +43,8 @@
         (#{@appointment.duration} min)
         /(#{distance_of_time_in_words @appointment.starts_at, @appointment.ends_at})
         %br
-        %b Description:
-        = @appointment.description
+        %b Notes:
+        = @appointment.notes
         %hr
         %b Jobs:
         = @appointment.jobs_count

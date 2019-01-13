@@ -48,7 +48,7 @@
         %th= sort_link @q, :status, "Status"
         %th Jobs
         %th Price
-        %th Description
+        %th Notes
     %tbody
       - @appointments.each do |appointment|
         %tr
@@ -67,7 +67,7 @@
                 \/
                 = job.member
           %td= appointment.client_price_cents
-          %td= truncate(appointment.description, length: 25)
+          %td= truncate(appointment.notes, length: 25)
 .container
   = will_paginate @appointments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

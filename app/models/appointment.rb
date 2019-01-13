@@ -11,7 +11,7 @@ class Appointment < ApplicationRecord
   enum status: { planned: 0, member_confirmed: 1, client_confirmed: 2, not_attended: 3, member_cancelled:4, client_cancelled: 5}
 
   validates :client, :member, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
-  validates :description, length: { maximum: 500 }
+  validates :notes, length: { maximum: 500 }
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
