@@ -19,9 +19,6 @@
           .col-md-4
             Client
             = f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
-            %br 
-              Employee
-              = f.search_field :member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Employee name", :autocomplete => :off
           .col-md-4
             .input-daterange
               Starts after
@@ -42,7 +39,6 @@
         %th
         %th
         %th= sort_link @q, :client_last_name, "Client"
-        %th= sort_link @q, :member_last_name, "Member"
         %th= sort_link @q, :location_id, "Location"
         %th= sort_link @q, :starts_at, "Time"
         %th= sort_link @q, :status, "Status"
@@ -56,7 +52,6 @@
           %td= link_to '', edit_appointment_path(appointment), class: "btn btn-warning fa fa-edit btn-sm" if policy(appointment).update?
           %td= link_to '', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(appointment).destroy?
           %td= link_to appointment.client, client_path(appointment.client)
-          %td= link_to appointment.member, member_path(appointment.member)
           %td= link_to appointment.location, location_path(appointment.location)
           %td #{appointment.starts_at.strftime("%A")} #{appointment.starts_at.strftime('%d/%b/%Y %H:%M')} - #{appointment.ends_at.strftime('%H:%M')} (#{appointment.duration} min)
           %td= status_label(appointment.status)

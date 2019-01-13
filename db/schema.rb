@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
   create_table "appointments", force: :cascade do |t|
     t.bigint "tenant_id"
     t.bigint "client_id"
-    t.bigint "member_id"
     t.bigint "location_id"
     t.datetime "starts_at"
     t.integer "duration", default: 0, null: false
@@ -47,14 +46,13 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.integer "client_price", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.string "status_color", default: "blue"
-    t.text "description", null: false
+    t.text "notes", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.string "slug"
     t.index ["client_id"], name: "index_appointments_on_client_id"
     t.index ["location_id"], name: "index_appointments_on_location_id"
-    t.index ["member_id"], name: "index_appointments_on_member_id"
     t.index ["slug"], name: "index_appointments_on_slug", unique: true
     t.index ["tenant_id"], name: "index_appointments_on_tenant_id"
   end
@@ -116,7 +114,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.integer "client_due_price", default: 0, null: false
     t.integer "member_price", default: 0, null: false
     t.integer "member_due_price", default: 0, null: false
-    t.integer "created_by", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["appointment_id"], name: "index_jobs_on_appointment_id"
@@ -301,7 +298,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
   add_foreign_key "activities", "tenants"
   add_foreign_key "appointments", "clients"
   add_foreign_key "appointments", "locations"
-  add_foreign_key "appointments", "members"
   add_foreign_key "appointments", "tenants"
   add_foreign_key "clients", "tenants"
   add_foreign_key "comments", "tenants"

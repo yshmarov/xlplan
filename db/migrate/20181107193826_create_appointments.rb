@@ -3,7 +3,6 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
     create_table :appointments do |t|
       t.belongs_to :tenant, index: true, foreign_key: true
       t.references :client, foreign_key: true
-      t.references :member, foreign_key: true
       t.references :location, foreign_key: true
 
       t.datetime :starts_at

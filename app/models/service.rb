@@ -9,6 +9,7 @@ class Service < ApplicationRecord
 
   belongs_to :service_category, counter_cache: true
   has_many :jobs, dependent: :restrict_with_error
+  has_many :appointments, through: :jobs
 
   validates :name, uniqueness: true
   validates :name, length: { in: 1..144 }

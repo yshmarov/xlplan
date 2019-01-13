@@ -40,8 +40,8 @@
         %th
         %th
         %th
-        %th= sort_link @q, :member_last_name, "Member"
         %th= sort_link @q, :service_name, "Service"
+        %th= sort_link @q, :member_last_name, "Member"
         %th= sort_link @q, :client_price, "From Client, #{Tenant.current_tenant.default_currency.upcase}"
         %th= sort_link @q, :member_price, "To Member, #{Tenant.current_tenant.default_currency.upcase}"
         %th C due
@@ -52,8 +52,8 @@
           %td= link_to '', job, class: "btn btn-primary fa fa-eye btn-sm" if policy(job).show?
           %td= link_to '', edit_job_path(job), class: "btn btn-warning fa fa-edit btn-sm" if policy(job).update?
           %td= link_to '', job, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(job).destroy?
-          %td= link_to job.member, member_path(job.member)
           %td= link_to job.service.full_name, service_path(job.service)
+          %td= link_to job.member, member_path(job.member)
           %td= job.client_price_cents
           %td= job.member_price_cents
           %td= job.client_due_price_cents

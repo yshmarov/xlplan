@@ -3,8 +3,8 @@ class Member < ApplicationRecord
    
   belongs_to :user
   belongs_to :location, optional: true
-  has_many :appointments, dependent: :restrict_with_error
-  has_many :jobs, through: :appointments
+  has_many :jobs
+  has_many :appointments, through: :jobs
   has_many :skills, dependent: :destroy, inverse_of: :member
   has_many :comments
   has_many :service_categories, through: :skills

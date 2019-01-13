@@ -13,7 +13,7 @@ class Job < ApplicationRecord
 
   #counter_cache for job_count
   #touch to calculate balance
-  belongs_to :member, counter_cache: true
+  belongs_to :member, touch: true, counter_cache: true
   belongs_to :service, counter_cache: true
   #touch to calculate duration and total_client_price
   belongs_to :appointment, touch: true, counter_cache: true

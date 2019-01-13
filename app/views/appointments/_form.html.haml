@@ -10,17 +10,11 @@
     = f.error :client, class: 'text-danger'
     = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
 
-    = f.label :member
-    = f.error :member, class: 'text-danger'
-    = f.select :member_id, Member.active.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-
     = f.label :location
     = f.error :location, class: 'text-danger'
     = f.select :location_id, Location.active.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
 
     /= f.input :status, :as => :radio_buttons, :collection => Appointment.statuses.keys.to_a
-
-    = f.input :notes
 
     %h3 Jobs
     #jobs
@@ -29,6 +23,9 @@
       .links
         = link_to_add_association '+ Add Job', f, :jobs, class: 'btn btn-secondary'
     %p
+
+    = f.input :notes
+
     %hr
 
   .form-actions

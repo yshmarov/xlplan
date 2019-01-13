@@ -3,14 +3,16 @@ class Appointment < ApplicationRecord
 
   belongs_to :tenant
   belongs_to :client, touch: true, counter_cache: true
-  belongs_to :member, touch: true, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
   has_many :jobs, inverse_of: :appointment, dependent: :destroy
+  has_many :members, through: :jobs
+  has_many :services, through: :jobs
+
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
 
   enum status: { planned: 0, member_confirmed: 1, client_confirmed: 2, not_attended: 3, member_cancelled:4, client_cancelled: 5}
 
-  validates :client, :member, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
+  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
   validates :notes, length: { maximum: 500 }
 
   include PublicActivity::Model
@@ -18,8 +20,8 @@ class Appointment < ApplicationRecord
   extend FriendlyId
   friendly_id :to_s, use: :slugged
   def to_s
-    #"#{service} for #{client} at #{starts_at} by #{member}"
-    client.full_name.to_s + "/" + member.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
+    #"#{service} for #{client} at #{starts_at}"
+    client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
   end
 
   scope :checkout, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
@@ -56,7 +58,7 @@ class Appointment < ApplicationRecord
   ############GEM VALIDATES_OVERLAP############
   #cancelled Jobs should not be taken in account
   #validates :starts_at, :ends_at, :overlap => {:query_options => {:is_cancelled => nil}}
-  #validates :starts_at, :ends_at, overlap: {:scope => "member_id", :exclude_edges => ["starts_at", "ends_at"], :load_overlapped => true}
+  #validates :starts_at, :ends_at, overlap: {:scope => "client_id", :exclude_edges => ["starts_at", "ends_at"], :load_overlapped => true}
 
   #def overlapped_records
   #  @overlapped_records || []
@@ -80,8 +82,8 @@ class Appointment < ApplicationRecord
 
   def touch_associations
     client.update_balance
-    member.update_balance
     location.update_balance
+    members.each do |member| member.update_balance end
   end
 
   def update_ends_at_and_client_price_and_due_prices

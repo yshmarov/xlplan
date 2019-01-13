@@ -8,9 +8,6 @@
         Client
         = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
         .row
-        Employee
-        = f.select :member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-        .row
         Start date after
         .input-daterange
           = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off

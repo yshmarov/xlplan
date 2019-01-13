@@ -1,2 +1,2 @@
-- set_var 'appointments', @appointments.map{|e| {title: e.client.full_name.to_s + "/" + e.member.full_name.to_s + "/" + e.location.to_s, start: e.starts_at, end: e.ends_at, url: appointment_path(e), color: e.status_color}}
+- set_var 'appointments', @appointments.map{|e| {title: e.client.full_name.to_s + "/" + e.location.to_s, start: e.starts_at, end: e.ends_at, url: appointment_path(e), color: e.status_color}}
 #event_calendar

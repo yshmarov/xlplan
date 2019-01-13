@@ -53,7 +53,7 @@
       - unless Job.any?
         .fa.fa-times-circle{:style => "color:red"}
 
-        = link_to 'Add jobs to your first appointment', edit_appointment_path(Appointment.first)
+        = link_to 'Add jobs to your first appointment', edit_appointment_path(Appointment.first) if Appointment.any?
       - else
         .fa.fa-check-circle{:style => "color:green"}
         %del
