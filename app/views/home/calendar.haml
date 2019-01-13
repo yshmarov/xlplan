@@ -8,14 +8,21 @@
         Client
         = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
         .row
-        Start date after
+        Member
+        /= f.search_field :jobs_member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Member name", :autocomplete => :off
+        = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+        .row
         .input-daterange
+          Start date after
           = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-        Starts date before
-        .input-daterange
+          Starts date before
           = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
         Status
         = f.select :status_eq, Appointment.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+        Service
+        /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
+        = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+        .row
         Location
         = f.select :location_name_cont, Location.all.map{|c| [c.name, c.name]}, {include_blank: Location.all.length > 1}, class: 'selectize'
         /= f.submit

@@ -43,8 +43,8 @@
         %b Notes:
         = @appointment.notes
         %hr
-        %b Jobs:
-        = @appointment.jobs_count
+        %b Jobs
+        /= @appointment.jobs_count
         %p
         = render 'jobs/index'
         %b Total client price:

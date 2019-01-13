@@ -52,6 +52,6 @@
     %p
     .card
       .card-header
-        %b Jobs:
-        = @client.jobs.count
-      = render 'jobs/index'
+        %b Appointments:
+        = @client.appointments_count
+      = render 'appointments/index'

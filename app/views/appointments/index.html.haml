@@ -19,6 +19,9 @@
           .col-md-4
             Client
             = f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
+            %br
+            Member
+            = f.search_field :jobs_member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Member name", :autocomplete => :off
           .col-md-4
             .input-daterange
               Starts after
@@ -28,7 +31,12 @@
           .col-md-4
             Status
             = f.select :status_eq, Appointment.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+            Service
+            = f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
+            .row
+            %p
             %br
+            %p
             = f.submit
 
 .table-responsive
@@ -42,7 +50,7 @@
         %th= sort_link @q, :location_id, "Location"
         %th= sort_link @q, :starts_at, "Time"
         %th= sort_link @q, :status, "Status"
-        %th Jobs
+        %th Services
         %th Price
         %th Notes
     %tbody
@@ -57,10 +65,10 @@
           %td= status_label(appointment.status)
           %td
             - appointment.jobs.each do |job|
-              .badge.badge-secondary
-                = job.service.full_name_with_price
+              .badge.badge-light
+                = link_to job.service.full_name_with_price, service_path(job.service)
                 \/
-                = job.member
+                = link_to job.member, member_path(job.member)
           %td= appointment.client_price_cents
           %td= truncate(appointment.notes, length: 25)
 .container

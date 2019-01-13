@@ -1,0 +1,29 @@
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th
+        %th Client
+        %th Location
+        %th Time
+        %th Status
+        %th Services
+        %th Price
+        %th Notes
+    %tbody
+      - @appointments.each do |appointment|
+        %tr
+          %td= link_to '', appointment, class: "btn btn-primary fa fa-eye btn-sm" if policy(appointment).show?
+          %td= link_to appointment.client, client_path(appointment.client)
+          %td= link_to appointment.location, location_path(appointment.location)
+          %td #{appointment.starts_at.strftime("%A")} #{appointment.starts_at.strftime('%d/%b/%Y %H:%M')} - #{appointment.ends_at.strftime('%H:%M')} (#{appointment.duration} min)
+          %td= status_label(appointment.status)
+          %td
+            - appointment.jobs.each do |job|
+              .badge.badge-light
+                = link_to job.service.full_name_with_price, service_path(job.service)
+                \/
+                = link_to job.member, member_path(job.member)
+          %td= appointment.client_price_cents
+          %td= truncate(appointment.notes, length: 25)
+%br

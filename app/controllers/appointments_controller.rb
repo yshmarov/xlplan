@@ -3,7 +3,7 @@ class AppointmentsController < ApplicationController
 
   def checkout
     @q = Appointment.checkout.ransack(params[:q])
-    @appointments = @q.result.includes(:location, :client).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @appointments = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
     render 'index'
   end
 
@@ -63,7 +63,7 @@ class AppointmentsController < ApplicationController
 
   def index
     @q = Appointment.ransack(params[:q])
-    @appointments = @q.result.includes(:location, :client).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @appointments = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
 
   def show
