@@ -64,7 +64,11 @@ class Appointment < ApplicationRecord
   #  @overlapped_records || []
   #end
 
-  private
+  def update_client_price
+    update_column :client_price, (jobs.map(&:client_due_price).sum)
+  end
+
+  protected
 
   def update_status_color
     if status == 'client_confirmed' || status == 'member_confirmed'

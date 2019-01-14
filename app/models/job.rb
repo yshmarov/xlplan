@@ -7,6 +7,10 @@ class Job < ApplicationRecord
   after_save :update_service_details
   after_update :update_service_details
 
+  after_create :update_service_details do appointment.update_client_price end
+  after_save :update_service_details do appointment.update_client_price end
+  after_update :update_service_details do appointment.update_client_price end
+
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
