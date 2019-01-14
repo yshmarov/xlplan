@@ -35,6 +35,6 @@
           %td.bg-danger= member.cancelled_work_hours
           %td.bg-danger= member.cancelled_job_price/100.to_d
           %td= number_to_percentage(member.share_of_revenue, precision: 1)
-          %td= member.cost_per_hour
+          %td= member.cost_per_hour.round(2)
           %td= member.average_service_price
 

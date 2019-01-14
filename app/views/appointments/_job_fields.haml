@@ -6,4 +6,4 @@
     = f.error :member, class: 'text-danger'
     = f.select :member_id, Member.active.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
   %td
-    = link_to_remove_association "remove job", f, class: 'btn btn-xs btn-secondary'
+    = link_to_remove_association "remove service", f, class: 'btn btn-xs btn-secondary'

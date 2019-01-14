@@ -7,31 +7,21 @@
           %b
             =t '.title', :default => model_class.model_name.human.pluralize.titleize
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-          %button.btn.btn-sm.btn-default{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-            .fa.fa-search
-            Search
           = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Service).create?
             = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
-    #accordion.collapse
-      .card-header
-        .row
-          .col-md-4
-            Name
-            = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true, :autocomplete => :off
-            %p
-            Category
-            /= f.collection_select :office_name_cont, Office.all, :name, :name, include_blank: true
-            = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
-            %p
-            = f.submit
+    .card-header
+      .row
+        .col-md-4
+          = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true, :autocomplete => :off
+        .col-md-4
+          = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
+        .col-md-4
+          = f.submit
 .table-responsive
   %table#table1
     %thead
       %tr
-        /%th
-        %th
-        %th
         %th= sort_link @q, :name, "Name"
         %th= sort_link @q, :service_category_name, "Category"
         %th Description
@@ -40,17 +30,13 @@
         %th= sort_link @q, :member_percent, "Member %"
         %th= sort_link @q, :member_price, "Member Price"
         %th= sort_link @q, :status, "Status"
+        /%th
+        %th
+        %th
     %tbody
       - @services.each do |service|
         %tr
-          /%td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
-          %td= link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
-          %td
-            - unless service.jobs.any?
-              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
-            - else
-              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(service).destroy?
-          %td= service.name
+          %td= link_to service.name, service_path(service)
           %td= service.service_category
           %td= service.description
           %td= service.duration
@@ -58,6 +44,13 @@
           %td= number_to_percentage(service.member_percent, precision: 0)
           %td= number_to_currency(service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
           %td= status_label(service.status)
+          /%td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
+          %td= link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
+          %td
+            - unless service.jobs.any?
+              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
+            - else
+              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(service).destroy?
 .container
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

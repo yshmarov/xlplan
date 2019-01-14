@@ -13,7 +13,7 @@ function eventCalendar() {
     header: {
         left: 'prev,next, today',
         center: 'title',
-        right: 'agendaDay,agendaWeek,listWeek'
+        right: 'agendaDay,agendaWeek,month,listWeek'
     },
     titleFormat: 'D/MMM/YY',
 

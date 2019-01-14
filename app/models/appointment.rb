@@ -31,6 +31,7 @@ class Appointment < ApplicationRecord
   scope :did_not_happen, -> { where(status: [:not_attended, :member_cancelled, :client_cancelled]) }
   scope :is_planned, -> { where(status: [:planned]) }
   scope :is_confirmed_or_planned, -> { where(status: [:member_confirmed, :client_confirmed, :planned]) }
+  #rename not_attended to client_not_arrived?
 
   after_create :update_status_color
   after_update :update_status_color
