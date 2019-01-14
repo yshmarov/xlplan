@@ -4,6 +4,8 @@ class Job < ApplicationRecord
 
   after_touch :update_due_prices
   after_create :update_service_details
+  after_save :update_service_details
+  after_update :update_service_details
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

@@ -16,13 +16,25 @@
 
     /= f.input :status, :as => :radio_buttons, :collection => Appointment.statuses.keys.to_a
 
-    %h3 Jobs
-    #jobs
-      = f.simple_fields_for :jobs do |job|
-        = render 'job_fields', f: job
-      .links
-        = link_to_add_association '+ Add Job', f, :jobs, class: 'btn btn-secondary'
-    %p
+    %h3 Services
+    /#jobs
+    /  = f.simple_fields_for :jobs do |job|
+    /    = render 'job_fields', f: job
+    /  .links
+    /    = link_to_add_association '+ Add Job', f, :jobs, class: 'btn btn-secondary'
+    /%p
+
+    %table.table
+      %thead
+        %tr
+          %th Service
+          %th Member
+          %th
+      %tbody.jobs
+        = f.simple_fields_for :jobs do |f|
+          = render 'job_fields', f: f
+    .links
+      = link_to_add_association "+ Add Job", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-secondary'
 
     = f.input :notes
 
