@@ -6,6 +6,18 @@ application up and running.
 rails g scaffold payment tenant:belongs_to appointment:belongs_to client:belongs_to created_by:integer  amount:integer payment_method:string 
 
 
+add_column :members, :planned_work_hours, :integer, default: 0, null: false
+add_column :members, :confirmed_work_hours, :integer, default: 0, null: false
+add_column :members, :cancelled_work_hours, :integer, default: 0, null: false
+add_column :members, :planned_job_price, :integer, default: 0, null: false
+add_column :members, :confirmed_job_price, :integer, default: 0, null: false
+add_column :members, :cancelled_job_price, :integer, default: 0, null: false
+add_column :members, :planned_jobs_count, :integer, default: 0, null: false
+add_column :members, :confirmed_jobs_count, :integer, default: 0, null: false
+add_column :members, :cancelled_jobs_count, :integer, default: 0, null: false
+add_column :members, :share_of_revenue, :integer, default: 0, null: false
+
+
 
 
 , class: "btn btn-primary fa fa-eye btn-sm", title: 'Show', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

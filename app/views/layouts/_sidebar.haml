@@ -1,7 +1,7 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
   %a.navbar-brand{:href => "/"}
     .fa.fa-calendar-check
-    JobDone
+    Workday
     \|
     .badge.badge-default
       = Tenant.current_tenant.name
@@ -15,7 +15,7 @@
     %span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
     %ul.navbar-nav.side-nav
-      %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> Calendar".html_safe, calendar_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Checkout appts: #{Appointment.checkout.count}".html_safe, checkout_appointments_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> Appointments".html_safe, appointments_path, class: "nav-link"
@@ -24,6 +24,8 @@
       %li.nav-item= link_to "<i class='fa fa-tag'></i> Services".html_safe, services_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-industry'></i> Locations".html_safe, locations_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-bell'></i> Activity".html_safe, activity_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-university'></i> My Company".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
+      %li.nav-item= link_to "<i class='fa fa-list'></i> Service Categories".html_safe, service_categories_path, class: "nav-link" if current_user.has_role?(:admin)
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa.fa-chart-line
@@ -36,13 +38,6 @@
           = link_to "Members", stats_members_path, class: "dropdown-item navdrop-link"
           = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
           = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          .fa.fa-cog
-          Settings
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to "<i class='fa fa-university'></i> My Company".html_safe, organization_show_path, class: "dropdown-item navdrop-link" if current_user.has_role?(:admin)
-          = link_to "<i class='fa fa-list'></i> Service Categories".html_safe, service_categories_path, class: "dropdown-item navdrop-link"
     %ul.navbar-nav.justify-content-end
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
