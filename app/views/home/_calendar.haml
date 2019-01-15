@@ -1,4 +1,4 @@
-- set_var 'appointments', @appointments.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.to_sentence+")", start: e.starts_at, end: e.ends_at, url: appointment_path(e), color: e.status_color}}
+- set_var 'appointments', @appointments.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: appointment_path(e), color: e.status_color}}
 
 
 
