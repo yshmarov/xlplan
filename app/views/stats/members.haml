@@ -16,9 +16,9 @@
         %th.bg-danger Cancelled jobs
         %th.bg-danger Cancelled work hours
         %th.bg-danger Cancelled work $
-        %th % of total revenue
-        %th Cost per hour
-        %th Average service price
+        %th.bg-success % of total confirmed revenue
+        /%th Cost per hour
+        /%th Average service price
     %tbody
       - @members.each do |member|
         %tr
@@ -34,7 +34,7 @@
           %td.bg-danger= member.cancelled_jobs_count
           %td.bg-danger= member.cancelled_work_hours
           %td.bg-danger= member.cancelled_job_price/100.to_d
-          %td= number_to_percentage(member.share_of_revenue, precision: 1)
-          %td= member.cost_per_hour.round(2)
-          %td= member.average_service_price
+          %td.bg-success= number_to_percentage(member.share_of_revenue, precision: 1)
+          /%td= member.cost_per_hour.round(2)
+          /%td= member.average_service_price
 
