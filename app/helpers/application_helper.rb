@@ -33,11 +33,11 @@ module ApplicationHelper
 					content_tag(:span, status.titleize, class: 'badge badge-primary')
 				when 'confirmed'
 					content_tag(:span, status.titleize, class: 'badge badge-success')
-				when 'not_attended'
-					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 				when 'member_cancelled'
 					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 				when 'client_cancelled'
+					content_tag(:span, status.titleize, class: 'badge badge-secondary')
+				when 'client_not_attended'
 					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 			end
 		end

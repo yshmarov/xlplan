@@ -10,7 +10,7 @@ class Appointment < ApplicationRecord
 
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
 
-  enum status: { planned: 0, confirmed: 1, not_attended: 2, member_cancelled: 3, client_cancelled: 4}
+  enum status: { planned: 0, confirmed: 1, member_cancelled: 2, client_cancelled: 3, client_not_attended: 4}
 
   validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
   validates :notes, length: { maximum: 500 }
@@ -28,9 +28,9 @@ class Appointment < ApplicationRecord
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_planned, -> { where(status: [:planned]) }
   scope :is_confirmed, -> { where(status: [:confirmed]) }
-  scope :is_cancelled, -> { where(status: [:not_attended, :member_cancelled, :client_cancelled]) }
+  scope :is_cancelled, -> { where(status: [:client_not_attended, :member_cancelled, :client_cancelled]) }
   scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned]) }
-  #rename not_attended to client_not_arrived?
+  #rename client_not_attended to client_not_arrived?
 
   after_create :update_status_color
   after_update :update_status_color
@@ -73,7 +73,7 @@ class Appointment < ApplicationRecord
   def update_status_color
     if status == 'confirmed'
       update_column :status_color, ('green')
-    elsif status == 'member_cancelled' || status == 'client_cancelled' || status == 'not_attended'
+    elsif status == 'member_cancelled' || status == 'client_cancelled' || status == 'client_not_attended'
       update_column :status_color, ('grey')
     elsif status == 'planned'
       update_column :status_color, ('blue')

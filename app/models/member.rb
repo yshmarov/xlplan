@@ -38,7 +38,7 @@ class Member < ApplicationRecord
     jobs.joins(:appointment).where(appointments: {status: ['confirmed']}).map(&:service_duration).sum/60.to_d
   end
   def cancelled_work_hours
-    jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'not_attended']}).map(&:service_duration).sum/60.to_d
+    jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:service_duration).sum/60.to_d
   end
   def planned_job_price
     jobs.joins(:appointment).where(appointments: {status: 'planned'}).map(&:member_price).sum
@@ -47,7 +47,7 @@ class Member < ApplicationRecord
     jobs.joins(:appointment).where(appointments: {status: ['confirmed']}).map(&:member_price).sum
   end
   def cancelled_job_price
-    jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'not_attended']}).map(&:member_price).sum
+    jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:member_price).sum
   end
   def planned_jobs_count
     jobs.joins(:appointment).where(appointments: {status: 'planned'}).count
@@ -56,7 +56,7 @@ class Member < ApplicationRecord
     jobs.joins(:appointment).where(appointments: {status: ['confirmed']}).count
   end
   def cancelled_jobs_count
-    jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'not_attended']}).count
+    jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).count
   end
   def share_of_revenue
     def total_jobs

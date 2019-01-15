@@ -20,7 +20,7 @@
                                       ['3 H', '180'], ['3 H 15 minutes', '195'], ['3 H 30 minutes', '210'], ['3 H 45 minutes', '225'],
                                       ['4 H', '240']]
 
-    = f.input :client_price_cents, label: "Client price, #{Tenant.current_tenant.default_currency.upcase}", as: :integer, input_html: { autocomplete: 'off' }
+    = f.input :client_price_cents, label: "Client price, #{Tenant.current_tenant.default_currency.upcase}", input_html: { autocomplete: 'off' }
     = f.input :member_percent
   
     /Notification about repeat visit
