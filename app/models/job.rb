@@ -54,7 +54,7 @@ class Job < ApplicationRecord
 
   def update_due_prices
     if id?
-      if appointment.status == 'client_confirmed' || appointment.status == 'member_confirmed'
+      if appointment.status == 'confirmed'
         update_column :client_due_price, (client_price)
         update_column :member_due_price, (member_price)
       else

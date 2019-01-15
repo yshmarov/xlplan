@@ -31,12 +31,10 @@ module ApplicationHelper
 				#Appointment
 				when 'planned' 
 					content_tag(:span, status.titleize, class: 'badge badge-primary')
-				when 'member_confirmed'
-					content_tag(:span, status.titleize, class: 'badge badge-success')
-				when 'client_confirmed'
+				when 'confirmed'
 					content_tag(:span, status.titleize, class: 'badge badge-success')
 				when 'not_attended'
-					content_tag(:span, status.titleize, class: 'badge badge-danger')
+					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 				when 'member_cancelled'
 					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 				when 'client_cancelled'

@@ -41,8 +41,7 @@ Rails.application.routes.draw do
     get :checkout, on: :collection
   	member do
   		patch :mark_planned
-  		patch :mark_member_confirmed
-  		patch :mark_client_confirmed
+  		patch :mark_confirmed
   		patch :mark_not_attended
   		patch :mark_member_cancelled
   		patch :mark_client_cancelled

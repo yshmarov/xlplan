@@ -10,7 +10,7 @@ class Appointment < ApplicationRecord
 
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
 
-  enum status: { planned: 0, member_confirmed: 1, client_confirmed: 2, not_attended: 3, member_cancelled:4, client_cancelled: 5}
+  enum status: { planned: 0, confirmed: 1, not_attended: 2, member_cancelled: 3, client_cancelled: 4}
 
   validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
   validates :notes, length: { maximum: 500 }
@@ -26,11 +26,10 @@ class Appointment < ApplicationRecord
 
   scope :checkout, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
-  scope :is_confirmed, -> { where(status: [:member_confirmed, :client_confirmed]) }
-  scope :is_cancelled, -> { where(status: [:member_cancelled, :client_cancelled]) }
-  scope :did_not_happen, -> { where(status: [:not_attended, :member_cancelled, :client_cancelled]) }
   scope :is_planned, -> { where(status: [:planned]) }
-  scope :is_confirmed_or_planned, -> { where(status: [:member_confirmed, :client_confirmed, :planned]) }
+  scope :is_confirmed, -> { where(status: [:confirmed]) }
+  scope :is_cancelled, -> { where(status: [:not_attended, :member_cancelled, :client_cancelled]) }
+  scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned]) }
   #rename not_attended to client_not_arrived?
 
   after_create :update_status_color
@@ -72,11 +71,9 @@ class Appointment < ApplicationRecord
   protected
 
   def update_status_color
-    if status == 'client_confirmed' || status == 'member_confirmed'
+    if status == 'confirmed'
       update_column :status_color, ('green')
-    elsif status == 'not_attended'
-      update_column :status_color, ('red')
-    elsif status == 'member_cancelled' || status == 'client_cancelled'
+    elsif status == 'member_cancelled' || status == 'client_cancelled' || status == 'not_attended'
       update_column :status_color, ('grey')
     elsif status == 'planned'
       update_column :status_color, ('blue')

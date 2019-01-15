@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_member_confirmed, :mark_client_confirmed, :mark_not_attended, :mark_member_cancelled, :mark_client_cancelled]
+  before_action :set_appointment, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_not_attended, :mark_member_cancelled, :mark_client_cancelled]
 
   def checkout
     @q = Appointment.checkout.ransack(params[:q])
@@ -16,19 +16,10 @@ class AppointmentsController < ApplicationController
 		redirect_to @appointment, notice: "Status updated to #{@appointment.status}"
 	end
 
-	def mark_member_confirmed
+	def mark_confirmed
     authorize @appointment, :update?
     Appointment.public_activity_off
-		@appointment.update_attribute(:status, 'member_confirmed')
-    Appointment.public_activity_on
-    @appointment.create_activity :change_status, parameters: {status: @appointment.status}
-		redirect_to @appointment, notice: "Status updated to #{@appointment.status}"
-	end
-
-	def mark_client_confirmed
-    authorize @appointment, :update?
-    Appointment.public_activity_off
-		@appointment.update_attribute(:status, 'client_confirmed')
+		@appointment.update_attribute(:status, 'confirmed')
     Appointment.public_activity_on
     @appointment.create_activity :change_status, parameters: {status: @appointment.status}
 		redirect_to @appointment, notice: "Status updated to #{@appointment.status}"
