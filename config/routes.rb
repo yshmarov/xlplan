@@ -48,8 +48,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :jobs
-
   get 'calendar', to: 'home#calendar'
   get 'activity', to: 'home#activity'
   get 'start', to: 'home#start'
