@@ -16,6 +16,14 @@
     %span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
     %ul.navbar-nav.side-nav
+      .input-group
+        = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
+          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client", :autocomplete => :off
+          .input-group-append
+            %button.btn.btn-success{:type => "submit"}
+              %span.fa.fa-search{"aria-hidden" => "true"}
+      %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> Appointment".html_safe, new_appointment_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-user-plus'></i> Client".html_safe, new_client_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> Calendar".html_safe, calendar_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Checkout appts: #{Appointment.checkout.count}".html_safe, checkout_appointments_path, class: "nav-link"
@@ -40,19 +48,6 @@
             = link_to "Members", stats_members_path, class: "dropdown-item navdrop-link"
             = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
             = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
-    %ul.navbar-nav.justify-content-end
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          + New
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to "+ New Appointment", new_appointment_path, class: "dropdown-item navdrop-link"
-          = link_to "+ New Client", new_client_path, class: "dropdown-item navdrop-link"
-      .input-group
-        = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
-          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client", :autocomplete => :off
-          .input-group-append
-            %button.btn.btn-outline-secondary{:type => "submit"}
-              %span.fa.fa-search{"aria-hidden" => "true"}
 
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
