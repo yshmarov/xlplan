@@ -18,22 +18,18 @@ class AppointmentPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin_or_manager_or_owner
+    @record.planned? && admin_or_manager_or_owner
     #unless self.is_planned && ends_at > Time.zone.now + 24.hours
-    #  admin_or_manager_or_owner
-    #else
-    #  admin
-    #end
   end
 
   def update?
-    admin_or_manager_or_owner
-    #user.admin? or not record.published?
+    @record.planned? && admin_or_manager_or_owner
     #user.admin? or not post.published?
   end
 
   def destroy?
-    admin_or_manager_or_owner
+    @record.planned? && admin_or_manager_or_owner
+    #admin_or_manager_or_owner
   end
 
   def admin_or_manager_or_owner
