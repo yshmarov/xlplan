@@ -44,14 +44,4 @@
         = render "comments/index"
     %p
   .col-lg-8
-    .card
-      .card-header
-        %b Calendar
-      .card-body
-        = render 'home/calendar'
-    %p
-    .card
-      .card-header
-        %b Appointments:
-        = @client.appointments_count
-      = render 'appointments/index'
+    = render 'home/calendar'

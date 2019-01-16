@@ -28,23 +28,20 @@
         %br
         %b Address:
         = @member.address
+        %br
+        %b Skills:
+        /- @member.skills.each do |skill|
+        /  = skill.service_category
+        = @member.skills.map{|p| p.service_category}.join(", ")
+        %br
+        %b Location:
+        = link_to @member.location, location_path(@member.location) if @member.location.present?
         %hr
         %b Balance, #{Tenant.current_tenant.default_currency.upcase}:
         = @member.balance_cents
         %br
         %b Status:
         = status_label(@member.status)
-        %br
-        %b Location:
-        = link_to @member.location, location_path(@member.location) if @member.location.present?
-        %hr
-        %b Skills:
-        /- @member.skills.each do |skill|
-        /  = skill.service_category
-        = @member.skills.map{|p| p.service_category}.join(", ")
-        %hr
-        %b Created at:
-        = @member.created_at.strftime('%d/%b/%Y, %H:%M')
     %p
     .card
       .card-header
@@ -76,10 +73,10 @@
     %p
 
   .col-lg-8
-    .card
-      .card-header
-        %b Calendar
-      .card-body
-        = render 'home/calendar'
-    %p
-    = render 'appointments/index'
+    = render 'home/calendar'
+  /  .card
+  /    .card-header
+  /      %b Calendar
+  /    .card-body
+  /  %p
+  /  = render 'appointments/index'

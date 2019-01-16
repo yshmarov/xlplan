@@ -20,6 +20,7 @@
           %td= status_label(appointment.status)
           %td
             - appointment.jobs.each do |job|
+              .row
               .badge.badge-light
                 = link_to job.service.full_name_with_price, service_path(job.service)
                 \/
