@@ -15,13 +15,14 @@
   %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
-    %ul.navbar-nav.side-nav
+    %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
-          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Search Client", :autocomplete => :off
+          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 100%; ', placeholder: "Client", :autocomplete => :off
           .input-group-append
             %button.btn.btn-success{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
+    %ul.navbar-nav.side-nav
       %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> Appointment".html_safe, new_appointment_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-plus'></i> Client".html_safe, new_client_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
