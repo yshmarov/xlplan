@@ -47,6 +47,8 @@ Rails.application.routes.draw do
   		patch :mark_client_not_attended
     end
   end
+  #for public_activity
+  resources :jobs, only: :show
 
   get 'calendar', to: 'home#calendar'
   get 'activity', to: 'home#activity'

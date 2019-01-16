@@ -2,4 +2,7 @@
   .container-fluid
     %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
       %b Activity
+  .container
+    = will_paginate @activities, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+
   =  render 'home/activity'

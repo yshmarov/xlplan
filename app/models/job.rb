@@ -14,8 +14,11 @@ class Job < ApplicationRecord
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
-  #extend FriendlyId
-  #friendly_id :full_name, use: :slugged
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
+  def full_name
+    "#{service} for #{appointment.client} at #{appointment.starts_at} by #{member}"
+  end
 
   #counter_cache for job_count
   #touch to calculate balance
@@ -46,11 +49,6 @@ class Job < ApplicationRecord
   def to_s
     id
   end
-
-  def full_name
-    "#{service} for #{client} at #{starts_at} by #{member}"
-  end
-
 
   def update_due_prices
     if id?
