@@ -66,6 +66,7 @@ class AppointmentsController < ApplicationController
   def new
     @appointment = Appointment.new
     authorize @appointment
+    @appointment.jobs.build
   end
 
   def edit
