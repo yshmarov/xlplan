@@ -23,9 +23,9 @@
             %button.btn.btn-success{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
-      %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> Appointment".html_safe, new_appointment_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-user-plus'></i> Client".html_safe, new_client_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
+      %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> New Appointment".html_safe, new_appointment_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-user-plus'></i> New Client".html_safe, new_client_path, class: "nav-link"
+      /%li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> Calendar".html_safe, calendar_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> Checkout appts: #{Appointment.checkout.count}".html_safe, checkout_appointments_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> Appointments".html_safe, appointments_path, class: "nav-link"

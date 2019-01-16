@@ -5,6 +5,7 @@ class TenantsController < ApplicationController
   end
 
   def show
+    authorize @tenant
     #@tenant = Tenant.current_tenant
   end
   

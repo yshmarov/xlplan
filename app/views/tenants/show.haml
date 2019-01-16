@@ -19,6 +19,57 @@
         %p
         = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
   .col-6
+    .card
+      .card-header
+        .fa.fa-rocket
+        Getting started
+      .card-body
+        %h5
+          - if Tenant.current_tenant.plan != 'free'
+            - unless Member.count >= 2
+              %span.badge.badge-pill.badge-danger 0
+              = link_to "Invite Employees to your organization", new_member_path
+            - else
+              %span.badge.badge-pill.badge-success 0
+              %del
+                Invite Employees to your organization
+            %hr
+          - unless Location.any?
+            %span.badge.badge-pill.badge-danger 1
+            = link_to 'Add a Location', new_location_path
+          - else
+            %span.badge.badge-pill.badge-success 1
+            %del
+              Add a Location
+          %hr
+          - unless Service.any?
+            %span.badge.badge-pill.badge-danger 2
+            = link_to 'Add a Service', new_service_path
+          - else
+            %span.badge.badge-pill.badge-success 2
+            %del
+              Add a Service
+          %hr
+          - unless Client.any?
+            %span.badge.badge-pill.badge-danger 3
+            = link_to 'Add a Client', new_client_path
+          - else
+            %span.badge.badge-pill.badge-success 3
+            %del
+              Add a Client
+          %hr
+          - unless Appointment.any?
+            %span.badge.badge-pill.badge-danger 4
+            = link_to 'Add an Appointment', new_appointment_path
+          - else
+            %span.badge.badge-pill.badge-success 4
+            %del
+              Add an Appointment
+            %hr
+              Great! Now you can checkout the appointment
+
+
+    %br
     %h3.text-center
       .badge.badge-secondary.btn-block
         Counters

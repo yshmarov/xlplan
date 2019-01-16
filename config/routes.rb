@@ -52,7 +52,7 @@ Rails.application.routes.draw do
 
   get 'calendar', to: 'home#calendar'
   get 'activity', to: 'home#activity'
-  get 'start', to: 'home#start'
+  #get 'start', to: 'home#start'
 
   get 'stats/finances'
   get 'stats/clients'
