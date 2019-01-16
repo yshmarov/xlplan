@@ -116,9 +116,11 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.integer "member_due_price", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["appointment_id"], name: "index_jobs_on_appointment_id"
     t.index ["member_id"], name: "index_jobs_on_member_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
+    t.index ["slug"], name: "index_jobs_on_slug", unique: true
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
   end
 

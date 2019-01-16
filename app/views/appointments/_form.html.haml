@@ -34,8 +34,8 @@
         = f.simple_fields_for :jobs do |f|
           = render 'job_fields', f: f
     .links
-      = link_to_add_association "+ Add Service", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-secondary'
-
+      = link_to_add_association "+ Add Service", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
+    %p
     = f.input :notes
 
     %hr

@@ -15,10 +15,15 @@ class Job < ApplicationRecord
   tracked owner: Proc.new{ |controller, model| controller.current_user }
 
   extend FriendlyId
-  friendly_id :full_name, use: :slugged
-  def full_name
-    "#{service} for #{appointment.client} at #{appointment.starts_at} by #{member}"
+  friendly_id :generated_slug, use: :slugged
+  def generated_slug
+    require 'securerandom' 
+    @random_slug ||= persisted? ? friendly_id : SecureRandom.hex(15) 
   end
+  #friendly_id :full_name, use: :slugged
+  #def full_name
+  #  "#{created_at} #{service} for #{appointment.client} at #{appointment.starts_at} by #{member}"
+  #end
 
   #counter_cache for job_count
   #touch to calculate balance
@@ -47,7 +52,7 @@ class Job < ApplicationRecord
   monetize :member_due_price, as: :member_due_price_cents
 
   def to_s
-    id
+    if slug.present?; slug; else id; end
   end
 
   def update_due_prices

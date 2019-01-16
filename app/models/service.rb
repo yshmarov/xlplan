@@ -13,7 +13,7 @@ class Service < ApplicationRecord
 
   validates :name, uniqueness: true
   validates :name, length: { in: 1..144 }
-  validates :description, length: { maximum: 255 }
+  validates :description, length: { in: 1..144 }
   #repeat_reminder
   validates :name, :service_category, :duration, :client_price, :member_percent, :member_price, :status, presence: true
   validates :member_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100,  only_integer: true }
