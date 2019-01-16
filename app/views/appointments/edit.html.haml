@@ -1,4 +1,7 @@
 %h1 Editing appointment
+/%b Status:
+/= status_label(@appointment.status)
+
 
 = render 'form'
 %p

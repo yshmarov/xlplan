@@ -1,7 +1,8 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
   %a.navbar-brand{:href => "/"}
     .fa.fa-calendar-check
-    Workday
+    JobDone
+    /Workday
     \|
     .badge.badge-default
       = Tenant.current_tenant.name
@@ -26,18 +27,19 @@
       %li.nav-item= link_to "<i class='fa fa-bell'></i> Activity".html_safe, activity_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-university'></i> My Company".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
       %li.nav-item= link_to "<i class='fa fa-list'></i> Service Categories".html_safe, service_categories_path, class: "nav-link" if current_user.has_role?(:admin)
-      %li.nav-item.dropdown
-        %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          .fa.fa-chart-line
-          Stats
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to "Finances", stats_finances_path, class: "dropdown-item navdrop-link"
-          %hr
-          = link_to "Clients", stats_clients_path, class: "dropdown-item navdrop-link"
-          = link_to "Appointments", stats_appointments_path, class: "dropdown-item navdrop-link"
-          = link_to "Members", stats_members_path, class: "dropdown-item navdrop-link"
-          = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
-          = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
+      - if current_user.has_role?(:admin)
+        %li.nav-item.dropdown
+          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            .fa.fa-chart-line
+            Stats
+          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+            = link_to "Finances", stats_finances_path, class: "dropdown-item navdrop-link"
+            %hr
+            = link_to "Clients", stats_clients_path, class: "dropdown-item navdrop-link"
+            = link_to "Appointments", stats_appointments_path, class: "dropdown-item navdrop-link"
+            = link_to "Members", stats_members_path, class: "dropdown-item navdrop-link"
+            = link_to "Services", stats_services_path, class: "dropdown-item navdrop-link"
+            = link_to "Locations", stats_locations_path, class: "dropdown-item navdrop-link"
     %ul.navbar-nav.justify-content-end
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
