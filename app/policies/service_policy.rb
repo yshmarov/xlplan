@@ -10,11 +10,11 @@ class ServicePolicy < ApplicationPolicy
   end
 
   def create?
-    admin_or_manager
+    any_member
   end
 
   def new?
-    admin_or_manager
+    any_member
   end
 
   def edit?
@@ -31,6 +31,10 @@ class ServicePolicy < ApplicationPolicy
 
   def admin_or_manager
     @user.has_role?(:admin) || @user.has_role?(:manager)
+  end
+
+  def any_member
+    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
 
   def anybody
