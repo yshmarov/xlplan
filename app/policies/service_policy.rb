@@ -6,7 +6,7 @@ class ServicePolicy < ApplicationPolicy
   end
 
   def show?
-    admin_or_manager
+    any_member
   end
 
   def create?
@@ -26,7 +26,11 @@ class ServicePolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin_or_manager
+    admin
+  end
+
+  def admin
+    @user.has_role?(:admin)
   end
 
   def admin_or_manager
@@ -35,10 +39,6 @@ class ServicePolicy < ApplicationPolicy
 
   def any_member
     @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
-  end
-
-  def anybody
-    @user
   end
 
 end

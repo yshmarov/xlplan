@@ -6,19 +6,19 @@ class ServiceCategoryPolicy < ApplicationPolicy
   end
 
   def create?
-    admin_or_manager
+    any_member
   end
 
   def new?
-    admin_or_manager
+    any_member
   end
 
   def edit?
-    admin
+    admin_or_manager
   end
 
   def update?
-    admin
+    admin_or_manager
   end
 
   def destroy?
@@ -34,8 +34,8 @@ class ServiceCategoryPolicy < ApplicationPolicy
     @user.has_role?(:admin) || @user.has_role?(:manager)
   end
 
-  def anybody
-    @user
+  def any_member
+    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
 
 end
