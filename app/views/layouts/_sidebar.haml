@@ -35,7 +35,7 @@
       %li.nav-item= link_to "<i class='fa fa-industry'></i> Locations".html_safe, locations_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-bell'></i> Activity".html_safe, activity_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-university'></i> My Company".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
-      %li.nav-item= link_to "<i class='fa fa-list'></i> Service Categories".html_safe, service_categories_path, class: "nav-link" if current_user.has_role?(:admin)
+      /%li.nav-item= link_to "<i class='fa fa-list'></i> Service Categories".html_safe, service_categories_path, class: "nav-link" if current_user.has_role?(:admin)
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}

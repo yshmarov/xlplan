@@ -21,7 +21,7 @@ class ServiceCategoriesController < ApplicationController
   def update
     authorize @service_category
     if @service_category.update(service_category_params)
-      redirect_to service_categories_url, notice: 'Service category was successfully updated.'
+      redirect_to services_url, notice: 'Service category was successfully updated.'
     else
       render :edit
     end
@@ -30,7 +30,7 @@ class ServiceCategoriesController < ApplicationController
   def destroy
     authorize @service_category
     @service_category.destroy
-    redirect_to service_categories_url, notice: 'Service category was successfully destroyed.'
+    redirect_to services_url, notice: 'Service category was successfully destroyed.'
   end
 
   private
