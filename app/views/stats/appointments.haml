@@ -1,11 +1,16 @@
 .row
-  .col-md-4
-    %h3.text-center
-      Appointment Status Pie
-    - @appointment_status_pie.each do |key, value|
-      .card.text-center= "#{key}: #{value}"
-  .col-md-4
-    %h3.text-center
-      Appointments per month
-    - @monthly_appointments.each do |key, value|
-      .card.text-center= "#{key}: #{value}"
+  .col-12
+    .card
+      .card-header
+        Appointments per month
+      .card-body
+        = line_chart Appointment.group_by_month(:starts_at).count, download: true
+%p
+.row
+  .col-6
+    .card
+      .card-header
+        Appointment Status
+      .card-body
+        = pie_chart Appointment.group(:status).count, download: true
+

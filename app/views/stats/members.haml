@@ -1,40 +1,61 @@
-%h3 Member Stats
-
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th Name
-        /%th Appointments, Q
-        /%th Total jobs
-        %th.bg-info Planned jobs
-        %th.bg-info Planned work hours
-        %th.bg-info Planned work $
-        %th.bg-success Confirmed jobs
-        %th.bg-success Confirmed work hours
-        %th.bg-success Confirmed work $
-        %th.bg-danger Cancelled jobs
-        %th.bg-danger Cancelled work hours
-        %th.bg-danger Cancelled work $
-        %th.bg-success % of total confirmed revenue
-        /%th Cost per hour
-        /%th Average service price
-    %tbody
-      - @members.each do |member|
-        %tr
-          %td= link_to member.full_name, member_path(member)
-          /%td= member.appointments_count
-          /%td= member.jobs_count
-          %td.bg-info= member.planned_jobs_count
-          %td.bg-info= member.planned_work_hours
-          %td.bg-info= member.planned_job_price/100.to_d
-          %td.bg-success= member.confirmed_jobs_count
-          %td.bg-success= member.confirmed_work_hours
-          %td.bg-success= member.confirmed_job_price/100.to_d
-          %td.bg-danger= member.cancelled_jobs_count
-          %td.bg-danger= member.cancelled_work_hours
-          %td.bg-danger= member.cancelled_job_price/100.to_d
-          %td.bg-success= number_to_percentage(member.share_of_revenue, precision: 1)
-          /%td= member.cost_per_hour.round(2)
-          /%td= member.average_service_price
-
+/.row
+/  .col-12
+/    .card
+/      .card-header
+/        Jobs per member per month (Created_at)
+/      .card-body
+/        /= column_chart Member.joins(:jobs).group(:brand).average(:average_rating)
+/        /= bar_chart Member.group(:jobs_count).count
+/        /= column_chart @members.map { |member| {name: member.full_name, data: member.jobs.group_by_month(:created_at).count} }
+/        /= line_chart @members.map { |member| {name: member.full_name, data: member.jobs.group_by_month(:created_at).count} }
+/        = area_chart @members.map { |member| {name: member.full_name, data: member.jobs.group(:client_due_price).count} }
+/%p
+.row
+  .col-12
+    .card
+      .card-header
+        Member Stats
+      .table-responsive
+        %table#table1
+          %thead
+            %tr
+              %th Name
+              /%th Appointments, Q
+              /%th Total jobs
+              %th.bg-info Planned jobs
+              %th.bg-info Planned work hours
+              %th.bg-info Planned earnings $
+              %th.bg-info Planned payments $
+              %th.bg-success Confirmed jobs
+              %th.bg-success Confirmed work hours
+              %th.bg-success Confirmed earnings $
+              %th.bg-success Confirmed payments $
+              %th.bg-danger Cancelled jobs
+              %th.bg-danger Cancelled work hours
+              %th.bg-danger Cancelled earnings $
+              %th.bg-danger Cancelled payments $
+              %th.bg-success % of total confirmed revenue
+              /%th Cost per hour
+              /%th Average service price
+          %tbody
+            - @members.each do |member|
+              %tr
+                %td= link_to member.full_name, member_path(member)
+                /%td= member.appointments_count
+                /%td= member.jobs_count
+                %td.bg-info= member.planned_jobs_count
+                %td.bg-info= member.planned_work_hours
+                %td.bg-info= member.planned_earnings/100.to_d
+                %td.bg-info= member.planned_payments/100.to_d
+                %td.bg-success= member.confirmed_jobs_count
+                %td.bg-success= member.confirmed_work_hours
+                %td.bg-success= member.confirmed_earnings/100.to_d
+                %td.bg-success= member.confirmed_payments/100.to_d
+                %td.bg-danger= member.cancelled_jobs_count
+                %td.bg-danger= member.cancelled_work_hours
+                %td.bg-danger= member.cancelled_earnings/100.to_d
+                %td.bg-danger= member.cancelled_payments/100.to_d
+                %td.bg-success= number_to_percentage(member.share_of_revenue, precision: 1)
+                /%td= member.cost_per_hour.round(2)
+                /%td= member.average_service_price
+%br

@@ -1,16 +1,30 @@
 .row
-  .col-md-4
-    %h3.text-center
-      Client Status Pie
-    - @client_status_pie.each do |key, value|
-      .card.text-center= "#{key}: #{value}"
-  .col-md-4
-    %h3.text-center
-      Client Gender Pie
-    - @client_gender_pie.each do |key, value|
-      .card.text-center= "#{key}: #{value}"
-  .col-md-4
-    %h3.text-center
-      Upcoming birthdays
-    - @clients.each do |client|
-      .card.text-center= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
+  .col-12
+    .card
+      .card-header
+        Clients registered per month
+      .card-body
+        = line_chart Client.group_by_month(:created_at).count, download: true
+%p
+.row
+  .col-6
+    .card
+      .card-header
+        Client Status
+      .card-body
+        = pie_chart Client.group(:status).count, download: true
+  .col-6
+    .card
+      .card-header
+        Client Gender
+      .card-body
+        = pie_chart Client.group(:gender).count, download: true
+%p
+.row
+  .col-6
+    .card
+      .card-header
+        Upcoming birthdays
+      .card-body
+        - @clients.each do |client|
+          .card.text-center= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)

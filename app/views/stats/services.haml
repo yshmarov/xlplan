@@ -1,6 +1,9 @@
 .row
-  .col-md-4
-    %h3.text-center
-      Service Pie
-    - @services.each do |service|
-      .card.text-center= "#{service.name}: #{service.jobs_count} jobs"
+  .col-6
+    .card
+      .card-header
+        Jobs per Service
+      .card-body
+        = pie_chart Service.group(:jobs_count).count, download: true
+
+

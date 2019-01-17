@@ -40,15 +40,27 @@ class Member < ApplicationRecord
   def cancelled_work_hours
     jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:service_duration).sum/60.to_d
   end
-  def planned_job_price
+
+  def planned_payments
+    jobs.joins(:appointment).where(appointments: {status: 'planned'}).map(&:client_price).sum
+  end
+  def confirmed_payments
+    jobs.joins(:appointment).where(appointments: {status: ['confirmed']}).map(&:client_due_price).sum
+  end
+  def cancelled_payments
+    jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:client_price).sum
+  end
+
+  def planned_earnings
     jobs.joins(:appointment).where(appointments: {status: 'planned'}).map(&:member_price).sum
   end
-  def confirmed_job_price
-    jobs.joins(:appointment).where(appointments: {status: ['confirmed']}).map(&:member_price).sum
+  def confirmed_earnings
+    jobs.joins(:appointment).where(appointments: {status: ['confirmed']}).map(&:member_due_price).sum
   end
-  def cancelled_job_price
+  def cancelled_earnings
     jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:member_price).sum
   end
+
   def planned_jobs_count
     jobs.joins(:appointment).where(appointments: {status: 'planned'}).count
   end
@@ -58,17 +70,19 @@ class Member < ApplicationRecord
   def cancelled_jobs_count
     jobs.joins(:appointment).where(appointments: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).count
   end
+
   def share_of_revenue
-    def total_jobs
-      Job.joins(:appointment).where(appointments: {status: ['confirmed']}).map(&:member_due_price).sum.to_d
+    def total_revenue
+      Job.joins(:appointment).where(appointments: {status: ['confirmed']}).map(&:client_due_price).sum.to_d
     end
-    (confirmed_job_price.to_d / total_jobs)*100
+    (confirmed_payments.to_d / total_revenue)*100
   end
+
   def average_service_price
-    confirmed_job_price/confirmed_jobs_count/100.to_d
+    confirmed_earnings/confirmed_jobs_count/100.to_d
   end
   def cost_per_hour
-    confirmed_job_price/confirmed_work_hours/100.to_d
+    confirmed_earnings/confirmed_work_hours/100.to_d
   end
 
   ################

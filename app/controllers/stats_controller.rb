@@ -31,9 +31,6 @@ class StatsController < ApplicationController
 
   def clients
     if current_user.has_role?(:admin)
-      #pie charts
-      @client_gender_pie = Client.unscoped.group("gender").count
-      @client_status_pie = Client.unscoped.group("status").count
       #next 5 bdays
       next_bdays = (Date.today + 0.day).yday
       @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
@@ -53,10 +50,6 @@ class StatsController < ApplicationController
 
   def appointments
     if current_user.has_role?(:admin)
-      #pie charts
-      @appointment_status_pie = Appointment.unscoped.group("status").count
-      #appointment Q per month (only confirmed)
-      @monthly_appointments = Appointment.joins(:appointment).where(appointments: {status: ['confirmed']}).map { |appointment| [Date::MONTHNAMES[appointment.starts_at.month], appointment.starts_at.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end
