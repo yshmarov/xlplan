@@ -1,3 +1,11 @@
+.row
+  .col-12
+    .card
+      .card-header
+        Client due price per month
+      .card-body
+        = column_chart Appointment.group_by_month(:created_at, format: "%b %Y").sum(:client_price), download: true
+
 %h3.text-center
   .badge.badge-secondary.btn-block
     Counters
