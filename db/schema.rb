@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.bigint "tenant_id"
     t.bigint "service_category_id"
     t.string "name", limit: 144, null: false
-    t.string "description", limit: 255
+    t.string "description", limit: 144
     t.integer "duration", null: false
     t.integer "client_price", default: 0, null: false
     t.integer "member_percent", default: 0, null: false

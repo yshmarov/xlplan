@@ -21,6 +21,10 @@
   @import 'bootstrap-datepicker';
   @import 'navigation';
 
+.fc-view-container{
+    background-color:white;
+}
+
 #table1 {
   @extend .table, .table-hover, .table-responsive-xl, .table-bordered, .table-sm
 }

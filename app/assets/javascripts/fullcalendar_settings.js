@@ -5,17 +5,20 @@
 //to show current time in calendar
 var TimeNow  = moment().format("HH") + ":00:00";
 
+
+
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
     events: app.vars.appointments,
 
     themeSystem: 'bootstrap4',
     header: {
-        left: 'prev,next, today',
-        center: 'title',
-        right: 'agendaDay,agendaWeek,month,listWeek'
+        right: 'prev,next, today',
+        left: 'title',
+        center: 'agendaDay,agendaWeek,month,listWeek'
     },
     titleFormat: 'D/MMM/YY',
+    eventBackgroundColor: 'purple',
 
     weekNumbers: true,
     defaultView: 'agendaWeek',
