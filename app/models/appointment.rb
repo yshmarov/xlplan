@@ -21,7 +21,11 @@ class Appointment < ApplicationRecord
   friendly_id :to_s, use: :slugged
   def to_s
     #"#{service} for #{client} at #{starts_at}"
-    client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
+    if client.present? && location.present?
+      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
+    else
+      id
+    end
   end
 
   scope :checkout, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }

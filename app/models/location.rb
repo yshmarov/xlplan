@@ -25,7 +25,11 @@ class Location < ApplicationRecord
   after_touch :update_balance
 
   def to_s
-    name
+    if name.present?
+      name
+    else
+      id
+    end
   end
 
   def associations?

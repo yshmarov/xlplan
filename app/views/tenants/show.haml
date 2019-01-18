@@ -18,6 +18,27 @@
         %b= @tenant.locale.upcase
         %p
         = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
+
+
+    %p
+    .row
+      .col-xl
+        .card
+          .card-header
+            .fa.fa-chart-line
+            New Jobs in the last 30 days
+          .card-body
+            = Job.where('created_at >= ?', 1.month.ago).count
+        %p
+      .col-xl
+        .card
+          .card-header
+            .fa.fa-chart-line
+            New Clients in the last 30 days
+          .card-body
+            = Client.where('created_at >= ?', 1.month.ago).count
+
+
   .col-6
     .card
       .card-header
