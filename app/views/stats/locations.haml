@@ -4,7 +4,7 @@
       .card-header
         Appointments per Location
       .card-body
-        = pie_chart Location.group(:appointments_count).count, download: true
+        = pie_chart Location.group('appointments_count').count, download: true
   .col-6
     .card
       .card-header

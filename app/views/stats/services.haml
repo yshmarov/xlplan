@@ -4,6 +4,6 @@
       .card-header
         Jobs per Service
       .card-body
-        = pie_chart Service.group(:jobs_count).count, download: true
+        = pie_chart Service.group('name').count, download: true
 
 
