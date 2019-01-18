@@ -1,7 +1,7 @@
-.container
+.card
+  .card-body
     %h1 New location
     
     = render 'form'
     %p
     = link_to 'Cancel', locations_path, class: "btn btn-danger", title: 'Back to Workplaces list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-    %p

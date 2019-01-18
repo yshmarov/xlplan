@@ -2,7 +2,7 @@
   .col-12
     .card
       .card-header
-        Client due price per month
+        (Confirmed) Client due price per month
       .card-body
         = column_chart Appointment.group_by_month(:starts_at, format: "%b %Y").sum("client_price/100"), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
 

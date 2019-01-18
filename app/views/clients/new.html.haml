@@ -1,7 +1,7 @@
-.container
-  %h1 New client
-  
-  = render 'form'
-  %p
-  = link_to 'Cancel', clients_path, class: "btn btn-danger", title: 'Back to Client list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-  %p
+.card
+  .card-body
+    %h1 New client
+    
+    = render 'form'
+    %p
+    = link_to 'Cancel', clients_path, class: "btn btn-danger"
