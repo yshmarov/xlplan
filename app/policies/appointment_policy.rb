@@ -28,8 +28,14 @@ class AppointmentPolicy < ApplicationPolicy
   end
 
   def destroy?
+    #admin
+    #@record.planned? && admin
     @record.planned? && admin_or_manager_or_owner
     #admin_or_manager_or_owner
+  end
+
+  def admin
+    @user.has_role?(:admin)
   end
 
   def admin_or_manager_or_owner
