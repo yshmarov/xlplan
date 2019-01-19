@@ -52,7 +52,7 @@
           .fa.fa-user
           = current_user.member.full_name
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-          = link_to 'My page', member_path(current_user.member), class: "dropdown-item navdrop-link"
-          = link_to 'Profile Settings', edit_member_path(current_user.member), class: "dropdown-item navdrop-link"
-          = link_to 'Account Settings', edit_user_registration_path, class: "dropdown-item navdrop-link"
-          = link_to "Logout", destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"
+          = link_to t('sidebar.my_page'), member_path(current_user.member), class: "dropdown-item navdrop-link"
+          = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item navdrop-link"
+          = link_to t('sidebar.account_settings'), edit_user_registration_path, class: "dropdown-item navdrop-link"
+          = link_to t('sidebar.logout'), destroy_user_session_path, :method => :delete, class: "dropdown-item navdrop-link"

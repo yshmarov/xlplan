@@ -1,7 +1,7 @@
 .card
   .card-body
-    %h1 New appointment
+    %h1= t('appointments.new')
     
     = render 'form'
     %p
-    = link_to 'Cancel', appointments_path, class: "btn btn-danger"
+    = link_to t('cancel'), appointments_path, class: "btn btn-danger"

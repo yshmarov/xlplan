@@ -296,6 +296,11 @@ ru:
   menu:
     members:    'Колектив'
 
+
+
+
+  cancel: 'Отменить'
+
   sidebar:
     jobdone: 'ДжобДан'
     search_client: 'Имя Клиента'
@@ -312,6 +317,11 @@ ru:
     my_company: 'Моя Компания'
     stats: 'Статистика'
     finances: 'Финансы'
-
+    my_page: 'Моя Страница'
+    profile_settings: 'Настройки Профиля'
+    account_settings: 'Пароль и Доступ'
+    logout: 'Выход'
+  appointments:
+    new: 'Новая Встреча'
 
 
