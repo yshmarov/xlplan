@@ -27,7 +27,13 @@
         = @client.gender
         %br
         %b Address:
-        = @client.address
+        - if @client.address?
+          /= @client.address
+          /#{@client.address[:street_address]}, #{@client.address[:city]}, #{@client.address[:state]}, #{@client.address[:zip]}
+          = @client.address[:street_address]
+          = @client.address[:city]
+          = @client.address[:state]
+          = @client.address[:zip]
         %hr
         %b Balance, #{Tenant.current_tenant.default_currency.upcase}:
         = @client.balance_cents

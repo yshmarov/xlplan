@@ -9,7 +9,7 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.string :email, :limit => 255
       t.date :date_of_birth
       t.string :gender, default: "undisclosed"
-      t.string :address, :limit => 255
+      t.text :address
 
       t.integer :status, default: 1, null: false
       t.integer :balance, default: 0, null: false

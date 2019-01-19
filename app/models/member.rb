@@ -20,11 +20,13 @@ class Member < ApplicationRecord
   validates :user_id, presence: true
   validates :user_id, uniqueness: true
   validates :first_name, :last_name, length: { maximum: 144 }
-  validates :email, :phone_number, :address, length: { maximum: 255 }
+  validates :email, :phone_number, length: { maximum: 255 }
   validates :first_name, :last_name, :status, presence: true
   #validates :email, uniqueness: { case_sensitive: false }
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   #validates :email, format: { with: VALID_EMAIL_REGEX }
+
+  serialize :address
 
   monetize :balance, as: :balance_cents
   after_touch :update_balance

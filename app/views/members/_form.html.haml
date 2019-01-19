@@ -24,7 +24,22 @@
     = f.label :gender_male, "Male"
     = f.radio_button :gender, 'other'
     = f.label :gender_other, "Other"
-    = f.input :address
+    /= f.input :address
+
+    / #### ADDRESS FIELD STARTS HERE ####
+    .fields
+      = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|
+        Street address
+        = a.text_field :street_address, id: :street_address
+        %label City
+        = a.text_field :city, id: :city
+        %label State
+        = a .text_field :state, id: :state
+        %label Zip
+        = a.text_field :zip, id: :zip
+    / #### ADDRESS FIELD ENDS HERE ####
+
+
     = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
 
     = f.label :skills

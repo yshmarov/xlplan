@@ -27,8 +27,14 @@
         = @member.gender
         %br
         %b Address:
-        = @member.address
-        %br
+        - if @member.address?
+          /= @member.address
+          /#{@member.address[:street_address]}, #{@member.address[:city]}, #{@member.address[:state]}, #{@member.address[:zip]}
+          = @member.address[:street_address]
+          = @member.address[:city]
+          = @member.address[:state]
+          = @member.address[:zip]
+      %br
         %b Skills:
         /- @member.skills.each do |skill|
         /  = skill.service_category

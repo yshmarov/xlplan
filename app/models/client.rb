@@ -22,6 +22,10 @@ class Client < ApplicationRecord
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   #validates :email, format: { with: VALID_EMAIL_REGEX }
 
+  #serialize :address, Hash
+  serialize :address
+  #store :address, accessors: [:street_address, :city, :state, :zip], coder: JSON
+
   monetize :balance, as: :balance_cents
 
   enum status: { inactive: 0, active: 1 }

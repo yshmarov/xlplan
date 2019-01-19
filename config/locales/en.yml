@@ -32,6 +32,28 @@
 en:
   hello: "Hello world"
 
+  cancel: 'Cancel'
 
   sidebar:
     jobdone: 'JobDone'
+    search_client: 'Search Client'
+    new_appointment: 'New Appointment'
+    new_client: 'New Client'
+    calendar: 'Calendar'
+    checkout_appointments: 'Checkout appointments'
+    appointments: 'Appointments'
+    clients: 'Clients'
+    members: 'Members'
+    services: 'Services'
+    locations: 'Locations'
+    activity: 'Activity'
+    my_company: 'My Company'
+    stats: 'Stats'
+    finances: 'Finances'
+    my_page: 'My Page'
+    profile_settings: 'Profile Settings'
+    account_settings: 'Account Settings'
+    logout: 'Logout'
+  appointments:
+    new: 'New Appointment'
+

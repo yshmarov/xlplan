@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.string "email"
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
-    t.string "address"
+    t.text "address"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
     t.datetime "created_at", null: false
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.string "email", limit: 255
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
-    t.string "address", limit: 255
+    t.text "address"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
     t.bigint "location_id"
