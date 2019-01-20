@@ -4,7 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title 
-      = content_for?(:title) ? yield(:title) : "JobDone - business calendar"
+      = content_for?(:title) ? yield(:title) : "#{@org_name}"
     /.fa.fa-calendar
     /= favicon_link_tag 'jobdone.svg'
     /= favicon_link_tag '', class: 'fa fa-calendar'
