@@ -19,11 +19,16 @@
 //= require selectize
 //= require cocoon
 //= require bootstrap-datepicker
+//= require moment
+// If you require timezone data (see moment-timezone-rails for additional file options)
+//= require moment-timezone-with-data
+//= require tempusdominus-bootstrap-4
+
 //= require activestorage
 //= require turbolinks
 //= require popper
 //= require bootstrap-sprockets
-//= require moment 
+
 //= require fullcalendar
 //= require fullcalendar/locale-all
 //= require Chart.bundle
@@ -32,6 +37,7 @@
 //= require fullcalendar_settings
 
 $(document).on('turbolinks:load', function(){
+
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
@@ -71,5 +77,13 @@ $(document).on('turbolinks:load', function(){
     }
     });
 
+    $(function () {
+      $('#datetimepicker').datetimepicker({
+        inline: true,
+        sideBySide: true,
+        stepping: 15,
+        format : 'DD/MM/YYYY HH:mm'
+        });
+    });
 
 });

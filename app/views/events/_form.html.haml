@@ -4,7 +4,8 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :starts_at, :minute_step => 15, start_year: Date.today.year
+    /= f.input :starts_at, :minute_step => 15, start_year: Date.today.year
+    = f.text_field :starts_at, :id => "datetimepicker", :value => Date.today
 
     = f.label :client
     = f.error :client, class: 'text-danger'
@@ -16,7 +17,7 @@
 
     /= f.input :status, :as => :radio_buttons, :collection => Appointment.statuses.keys.to_a
 
-    %h3 Services
+    %h3 #{t('services')}
     /#jobs
     /  = f.simple_fields_for :jobs do |job|
     /    = render 'job_fields', f: job

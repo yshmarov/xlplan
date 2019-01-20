@@ -71,7 +71,6 @@ gem 'will_paginate-bootstrap4'
 gem 'money-rails', '~>1.12'
 gem "selectize-rails"
 gem 'ransack'
-gem 'bootstrap-datepicker-rails'
 gem 'public_activity'
 gem "pundit"
 gem "rolify"
@@ -84,4 +83,5 @@ gem 'validates_overlap'
 gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 gem "chartkick"
 gem 'groupdate'
-
+gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails', :git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
+gem 'bootstrap4-datetime-picker-rails'
