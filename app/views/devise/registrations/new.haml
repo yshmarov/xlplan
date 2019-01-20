@@ -16,21 +16,18 @@
         = f.label :password_confirmation
         = f.password_field :password_confirmation, class: "form-control"
       = fields_for( :tenant ) do |w|
-        .row
-          .form-group.col-md-6
-            = w.label :name, 'Organization'
-            %span.description (Unique name for your group or organization for the new account)
-            = w.text_field :name, required: true, class: "form-control"
-            = w.label :industry
-            = w.select :industry, options_for_select(TenantIndustry.options, params[:tenant_industry]), {}, required: true, class: 'selectize'
-          .form-group.col-md-6
-            = w.label :plan
-            = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control"
-            = w.label :default_currency
-            /= w.error :default_currency, class: 'text-danger'
-            = w.select :default_currency, Money::Currency.table, {}, required: true, class: 'selectize'
-            /= w.select :locale, collection: [['English', 'en'], ['Русский', 'ru']], include_blank: false
-
+        .form-group
+          = w.label :name, 'Organization'
+          %span.description (Unique name for your group or organization for the new account)
+          = w.text_field :name, required: true, class: "form-control"
+          = w.label :industry
+          = w.select :industry, options_for_select(TenantIndustry.options, params[:tenant_industry]), {}, required: true, class: 'selectize'
+          = w.label :plan
+          = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control"
+          = w.label :default_currency
+          /= w.error :default_currency, class: 'text-danger'
+          = w.select :default_currency, Money::Currency.table, {}, required: true, class: 'selectize'
+          /= w.select :locale, collection: [['English', 'en'], ['Русский', 'ru']], include_blank: false
 
         - if ::Milia.use_coupon
           - @coupon ||= {}
@@ -41,7 +38,6 @@
 
         /- if ::Milia.use_recaptcha
         /  = recaptcha_tags( :display => { :theme => 'clean', :tabindex => 0 } )
-
 
       = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
 = render "devise/shared/links"

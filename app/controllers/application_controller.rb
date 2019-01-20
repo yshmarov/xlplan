@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
 
   def callback_authenticate_tenant
     @org_name = ( Tenant.current_tenant.nil?  ?
-      "JobDone"   :
+      "MrJobber"   :
       Tenant.current_tenant.name 
     )
   end
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   #   org_name will be passed to layout & view
   #   this sets the default name for all situations
   def prep_org_name()
-    @org_name ||= "JobDone"
+    @org_name ||= "MrJobber"
   end
 
     #i18n

@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.integer "balance", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "jobs_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
     t.integer "events_count", default: 0, null: false
     t.string "slug"
@@ -134,7 +133,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "jobs_count", default: 0, null: false
     t.integer "events_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
@@ -157,7 +155,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
-    t.integer "events_count", default: 0, null: false
     t.string "slug"
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true

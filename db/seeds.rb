@@ -29,7 +29,7 @@ ServiceCategory.create!(name: 'For Children')
 
 3.times do
   Service.create!([{
-    name: Faker::GameOfThrones.city,
+    name: Faker::Job.field,
     service_category_id: Faker::Number.between(1, 3),
     description: Faker::Job.field,
     duration: Faker::Number.between(15, 120),

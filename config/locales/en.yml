@@ -35,7 +35,6 @@ en:
   cancel: 'Cancel'
 
   sidebar:
-    company_name: 'JobDone'
     search_client: 'Search Client'
     new_event: 'New Event'
     new_client: 'New Client'

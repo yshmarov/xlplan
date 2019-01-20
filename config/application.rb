@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Jobdone
+module MrJobber
   class Application < Rails::Application
      
     # uncomment to ensure a common layout for devise forms

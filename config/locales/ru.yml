@@ -302,7 +302,6 @@ ru:
   cancel: 'Отменить'
 
   sidebar:
-    company_name: 'ДжобДан'
     search_client: 'Имя Клиента'
     new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
