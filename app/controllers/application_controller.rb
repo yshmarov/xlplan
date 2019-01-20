@@ -22,7 +22,6 @@ class ApplicationController < ActionController::Base
     @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
   end
 
-
   private
     #i18n
     def set_locale

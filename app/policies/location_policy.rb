@@ -6,7 +6,7 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def show?
-    admin_or_manager_or_specialist
+    any_member
   end
 
   def create?
@@ -33,7 +33,7 @@ class LocationPolicy < ApplicationPolicy
     @user.has_role?(:admin)
   end
 
-  def admin_or_manager_or_specialist
+  def any_member
     @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
 end

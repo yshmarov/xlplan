@@ -24,18 +24,18 @@
     /  .links
     /    = link_to_add_association '+ Add Job', f, :jobs, class: 'btn btn-secondary'
     /%p
-
-    %table.table
-      %thead
-        %tr
-          %th Service
-          %th Member
-          %th
-      %tbody.jobs
-        = f.simple_fields_for :jobs do |f|
-          = render 'job_fields', f: f
-    .links
-      = link_to_add_association "+ Add Service", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
+    .table-responsive
+      %table.table.table-responsive-xl.table-sm
+        %thead
+          %tr
+            %th Service
+            %th Member
+            %th
+        %tbody.jobs
+          = f.simple_fields_for :jobs do |f|
+            = render 'job_fields', f: f
+      .links
+        = link_to_add_association "+ Add Service", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
     %p
     = f.input :notes
 

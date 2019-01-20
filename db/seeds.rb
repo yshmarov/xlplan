@@ -14,18 +14,6 @@ Tenant.set_current_tenant(1)
   }])
 end
 
-5.times do
-  Member.create!([{
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    phone_number: Faker::PhoneNumber.cell_phone,
-    #address: Faker::Address.full_address,
-    email: Faker::Internet.email,
-    gender: Faker::Gender.binary_type,
-    date_of_birth: Faker::Date.birthday(18, 65),
-  }])
-end
-
 3.times do
   Location.create!([{
     name: Faker::GameOfThrones.city,
@@ -42,7 +30,7 @@ ServiceCategory.create!(name: 'For Children')
 3.times do
   Service.create!([{
     name: Faker::GameOfThrones.city,
-    service_category: Faker::Number.between(1, 3),
+    service_category_id: Faker::Number.between(1, 3),
     description: Faker::Job.field,
     duration: Faker::Number.between(15, 120),
     client_price: Faker::Number.between(1000, 90000),

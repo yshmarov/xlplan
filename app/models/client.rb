@@ -40,7 +40,7 @@ class Client < ApplicationRecord
   end
 
   def associations?
-    jobs.any?
+    events.any?
   end
 
   #private

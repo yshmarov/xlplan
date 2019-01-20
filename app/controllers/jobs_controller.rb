@@ -2,7 +2,6 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_confirmed_by_client, :mark_not_attended, :mark_rejected_by_us, :mark_cancelled_by_client]
 
   def index
-    #@jobs = Job.paginate(:page => params[:page], :per_page => 10)
     @q = Job.ransack(params[:q])
     @jobs = @q.result.includes(:service).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
@@ -59,7 +58,6 @@ class JobsController < ApplicationController
 
   private
     def set_job
-      #@job = Job.find(params[:id])
       @job = Job.friendly.find(params[:id])
     end
 

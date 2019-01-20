@@ -1,8 +1,6 @@
 class MembersController < ApplicationController
 
   before_action :set_member, only: [:show, :edit, :update, :destroy]
-  # uncomment to ensure common layout for forms
-  # layout  "sign", :only => [:new, :edit, :create]
 
   def index
     @ransack_members = Member.search(params[:members_search], search_key: :members_search)
