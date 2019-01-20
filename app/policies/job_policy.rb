@@ -18,7 +18,7 @@ class JobPolicy < ApplicationPolicy
   end
 
   def edit?
-    @record.appointment.planned? && admin_or_manager_or_owner
+    @record.event.planned? && admin_or_manager_or_owner
     #admin_or_manager_or_owner
     #unless self.is_planned && ends_at > Time.zone.now + 24.hours
     #  admin_or_manager_or_owner
@@ -28,14 +28,14 @@ class JobPolicy < ApplicationPolicy
   end
 
   def update?
-    @record.appointment.planned? && admin_or_manager_or_owner
+    @record.event.planned? && admin_or_manager_or_owner
     #admin_or_manager_or_owner
     #user.admin? or not record.published?
     #user.admin? or not post.published?
   end
 
   def destroy?
-    @record.appointment.planned? && admin_or_manager_or_owner
+    @record.event.planned? && admin_or_manager_or_owner
     #admin_or_manager_or_owner
   end
 
