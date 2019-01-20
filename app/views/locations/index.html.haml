@@ -38,7 +38,7 @@
               = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
             - else
               = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(location).destroy?
-          %td= location.tel
+          %td= location.phone_number
           %td= location.email
           %td= location.address
           %td= status_label(location.status)

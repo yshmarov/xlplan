@@ -127,7 +127,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
   create_table "locations", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 50, null: false
-    t.string "tel", limit: 144
+    t.string "phone_number", limit: 144
     t.string "email", limit: 144
     t.string "address", limit: 255
     t.integer "balance", default: 0, null: false

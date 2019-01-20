@@ -2,7 +2,7 @@ class Location < ApplicationRecord
 
   acts_as_tenant
   validates :name, length: { maximum: 50 }
-  validates :tel, length: { maximum: 144 }
+  validates :phone_number, length: { maximum: 144 }
   validates :email, length: { maximum: 144 }
   validates :address, length: { maximum: 255 }
 

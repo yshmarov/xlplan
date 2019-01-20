@@ -1,24 +1,54 @@
 PublicActivity.enabled = false
-Location.create!(name: 'Location-1', tel: 675760, balance: 0, status: 1)
-Employee.create!(first_name: 'Yaro', last_name: 'Shm', email: 'yshmarov@gmail.com', location_id: 1)
-User.create!(employee_id: 1, email:'yshmarov@gmail.com', password: 'yshmarov@gmail.com', confirmed_at: DateTime.now)
 
-#current_user = User.first
+Tenant.set_current_tenant(1)
 
-Workplace.create!(name: 'Workplace-1', location_id: 1)
-Client.create!(first_name: 'Yuliia', last_name: 'Zapetaya', email: 'zapetaya.y@gmail.com', employee_id: 1)
-Client.create!(first_name: 'Iryna', last_name: 'Sharovarova', email: 'irina@gmail.com', employee_id: 1)
-Client.create!(first_name: 'Oleksiy', last_name: 'Seleznev', email: 'alex@gmail.com', employee_id: 1)
-Client.create!(first_name: 'Elena', last_name: 'Fedorova', email: 'elena@gmail.com', employee_id: 1)
-ServiceCategory.create!(name: 'Category-1')
-ServiceCategory.create!(name: 'Category-2')
-Service.create!(name: 'Haircut', description: 'Male bold', duration: 60, client_price_cents: 250, employee_percent: 50, employee_price: 17, quantity: 1, status: 0, service_category_id: 1)
-Service.create!(name: 'Nail polishing 1', description: 'laminate', duration: 60, client_price_cents: 400, employee_percent: 50, employee_price: 17, quantity: 1, status: 1, service_category_id: 2)
-Service.create!(name: 'Nail polishing 2', description: 'classic', duration: 30, client_price_cents: 200, employee_percent: 50, employee_price: 17, quantity: 1, status: 0, service_category_id: 2)
-Skill.create!(employee_id:1, service_category_id:1)
-Skill.create!(employee_id:1, service_category_id:2)
-Job.create!(client_id: 1, employee_id: 1, location_id: 1, service_id: 1, created_by: 1, status: 1, starts_at: Time.now-1.hour)
-Job.create!(client_id: 1, employee_id: 1, location_id: 1, service_id: 2, created_by: 1, status: 1, starts_at: Time.now+1.hour)
-Job.create!(client_id: 2, employee_id: 1, location_id: 1, service_id: 3, created_by: 1, starts_at: Time.now+2.hours)
-Job.create!(client_id: 3, employee_id: 1, location_id: 1, service_id: 2, created_by: 1, starts_at: Time.now+2.hours)
+30.times do
+  Client.create!([{
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    #address: Faker::Address.full_address,
+    email: Faker::Internet.email,
+    gender: Faker::Gender.binary_type,
+    date_of_birth: Faker::Date.birthday(18, 65),
+  }])
+end
+
+5.times do
+  Member.create!([{
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    #address: Faker::Address.full_address,
+    email: Faker::Internet.email,
+    gender: Faker::Gender.binary_type,
+    date_of_birth: Faker::Date.birthday(18, 65),
+  }])
+end
+
+3.times do
+  Location.create!([{
+    name: Faker::GameOfThrones.city,
+    address: Faker::Address.full_address,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    email: Faker::Internet.email
+  }])
+end
+
+ServiceCategory.create!(name: 'For Men')
+ServiceCategory.create!(name: 'For Women')
+ServiceCategory.create!(name: 'For Children')
+
+3.times do
+  Service.create!([{
+    name: Faker::GameOfThrones.city,
+    service_category: Faker::Number.between(1, 3),
+    description: Faker::Job.field,
+    duration: Faker::Number.between(15, 120),
+    client_price: Faker::Number.between(1000, 90000),
+    member_percent: Faker::Number.between(0, 90),
+    repeat_reminder: Faker::Number.between(0, 90)
+  }])
+end
+
 PublicActivity.enabled = true
