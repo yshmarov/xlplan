@@ -32,7 +32,6 @@ class ApplicationController < ActionController::Base
       Tenant.current_tenant.name 
     )
   end
-
   #   org_name will be passed to layout & view
   #   this sets the default name for all situations
   def prep_org_name()

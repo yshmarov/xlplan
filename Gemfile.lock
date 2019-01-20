@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/Nerian/bootstrap-datepicker-rails.git
-  revision: 0dcee7ddb65b2702cd8933c05ca5f238ee43e14e
-  specs:
-    bootstrap-datepicker-rails (1.8.0.1)
-      railties (>= 3.0)
-
-GIT
   remote: https://github.com/jekuno/milia.git
   revision: 4c36b46f3f422b22fa48a98abd646e562667ed83
   specs:
@@ -83,6 +76,8 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
+    bootstrap-datepicker-rails (1.8.0.1)
+      railties (>= 3.0)
     bootstrap4-datetime-picker-rails (0.3.1)
       jquery-rails (~> 4.2, >= 4.2.0)
       moment-timezone-rails (~> 1.0)
@@ -330,7 +325,7 @@ DEPENDENCIES
   activerecord-session_store!
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.1.3)
-  bootstrap-datepicker-rails!
+  bootstrap-datepicker-rails
   bootstrap4-datetime-picker-rails
   byebug
   capybara (>= 2.15)

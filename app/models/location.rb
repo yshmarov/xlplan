@@ -33,7 +33,7 @@ class Location < ApplicationRecord
   end
 
   def associations?
-    jobs.any? || members.any?
+    events.any? || members.any?
   end
 
   validate :free_plan_can_only_have_one_location
