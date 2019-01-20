@@ -5,7 +5,7 @@
 
   .form-inputs
     /= f.input :starts_at, :minute_step => 15, start_year: Date.today.year
-    = f.text_field :starts_at, :id => "datetimepicker", :value => Date.today
+    = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M'))
 
     = f.label :client
     = f.error :client, class: 'text-danger'
