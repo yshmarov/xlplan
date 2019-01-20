@@ -13,7 +13,7 @@
 
     = f.label :location
     = f.error :location, class: 'text-danger'
-    = f.select :location_id, Location.active.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
 
     /= f.input :status, :as => :radio_buttons, :collection => Appointment.statuses.keys.to_a
 

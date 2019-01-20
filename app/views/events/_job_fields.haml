@@ -1,9 +1,9 @@
 %tr.nested-fields
   %td
     = f.error :service, class: 'text-danger'
-    = f.select :service_id, Service.active.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+    = f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
   %td
     = f.error :member, class: 'text-danger'
-    = f.select :member_id, Member.active.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+    = f.select :member_id, Member.all.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
   %td
     = link_to_remove_association "remove service", f, class: 'btn btn-xs btn-secondary'
