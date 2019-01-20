@@ -12,8 +12,8 @@ class Location < ApplicationRecord
   friendly_id :to_s, use: :slugged
 
   has_many :members, dependent: :restrict_with_error
-  has_many :appointments, dependent: :restrict_with_error
-  has_many :jobs, through: :appointments
+  has_many :events, dependent: :restrict_with_error
+  has_many :jobs, through: :events
 
   validates_uniqueness_of :name, :scope => :tenant_id
   validates :name, :balance, :status, presence: true

@@ -20,12 +20,12 @@
             %button.btn.btn-success{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
-      %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> #{t('sidebar.new_appointment')}".html_safe, new_appointment_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-plus'></i> #{t('sidebar.new_client')}".html_safe, new_client_path, class: "nav-link"
       /%li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> #{t('sidebar.checkout_appointments')}: #{Appointment.checkout.count}".html_safe, checkout_appointments_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-calendar'></i> #{t('sidebar.appointments')}".html_safe, appointments_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> #{t('sidebar.checkout_events')}: #{Event.checkout.count}".html_safe, checkout_events_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, members_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-tag'></i> #{t('sidebar.services')}".html_safe, services_path, class: "nav-link"
@@ -41,7 +41,7 @@
           .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
             = link_to "#{t('sidebar.finances')}", stats_finances_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.clients')}", stats_clients_path, class: "dropdown-item navdrop-link"
-            = link_to "#{t('sidebar.appointments')}", stats_appointments_path, class: "dropdown-item navdrop-link"
+            = link_to "#{t('sidebar.events')}", stats_events_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.members')}", stats_members_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.services')}", stats_services_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.locations')}", stats_locations_path, class: "dropdown-item navdrop-link"

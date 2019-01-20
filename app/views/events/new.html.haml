@@ -1,0 +1,7 @@
+.card
+  .card-body
+    %h1= t('events.new')
+    
+    = render 'form'
+    %p
+    = link_to t('cancel'), events_path, class: "btn btn-danger"

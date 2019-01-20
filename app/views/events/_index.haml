@@ -1,0 +1,30 @@
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th
+        %th Client
+        %th Location
+        %th Time
+        %th Status
+        %th Services
+        %th Price
+        %th Notes
+    %tbody
+      - @events.each do |event|
+        %tr
+          %td= link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
+          %td= link_to event.client, client_path(event.client)
+          %td= link_to event.location, location_path(event.location)
+          %td #{event.starts_at.strftime("%A")} #{event.starts_at.strftime('%d/%b/%Y %H:%M')} - #{event.ends_at.strftime('%H:%M')} (#{event.duration} min)
+          %td= status_label(event.status)
+          %td
+            - event.jobs.each do |job|
+              .row
+              .badge.badge-light
+                = link_to job.service.full_name_with_price, service_path(job.service)
+                \/
+                = link_to job.member, member_path(job.member)
+          %td= event.client_price_cents
+          %td= truncate(event.notes, length: 25)
+%br

@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   resources :locations
 
-  resources :appointments do
+  resources :events do
     get :checkout, on: :collection
   	member do
   		patch :mark_planned
@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   get 'stats/finances'
   get 'stats/clients'
   get 'stats/members'
-  get 'stats/appointments'
+  get 'stats/events'
   get 'stats/services'
   get 'stats/locations'
 

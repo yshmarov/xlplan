@@ -1,9 +1,0 @@
-.card
-  .card-body
-    %h1 Editing appointment
-    /%b Status:
-    /= status_label(@appointment.status)
-
-    = render 'form'
-    %p
-    = link_to 'Cancel', @appointment, class: "btn btn-danger"

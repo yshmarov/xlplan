@@ -7,9 +7,9 @@ class Job < ApplicationRecord
   after_save :update_service_details
   after_update :update_service_details
 
-  after_create :update_service_details do appointment.update_client_price end
-  after_save :update_service_details do appointment.update_client_price end
-  after_update :update_service_details do appointment.update_client_price end
+  after_create :update_service_details do event.update_client_price end
+  after_save :update_service_details do event.update_client_price end
+  after_update :update_service_details do event.update_client_price end
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -22,7 +22,7 @@ class Job < ApplicationRecord
   end
   #friendly_id :full_name, use: :slugged
   #def full_name
-  #  "#{created_at} #{service} for #{appointment.client} at #{appointment.starts_at} by #{member}"
+  #  "#{created_at} #{service} for #{event.client} at #{event.starts_at} by #{member}"
   #end
 
   #counter_cache for job_count
@@ -30,7 +30,7 @@ class Job < ApplicationRecord
   belongs_to :member, touch: true, counter_cache: true
   belongs_to :service, counter_cache: true
   #touch to calculate duration and total_client_price
-  belongs_to :appointment, touch: true, counter_cache: true
+  belongs_to :event, touch: true, counter_cache: true
 
   #console commands to update counters, if needed
   #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
@@ -41,7 +41,7 @@ class Job < ApplicationRecord
   #Client.find_each { |client| Client.reset_counters(client.id, :comments_count) }
   #Location.find_each { |location| Location.reset_counters(location.id, :workplaces_count) }
 
-  validates :appointment, :service, :member,
+  validates :event, :service, :member,
             :service_duration, :service_member_percent, 
             :client_price, :member_price, presence: true
 
@@ -57,7 +57,7 @@ class Job < ApplicationRecord
 
   def update_due_prices
     if id?
-      if appointment.status == 'confirmed'
+      if event.status == 'confirmed'
         update_column :client_due_price, (client_price)
         update_column :member_due_price, (member_price)
       else

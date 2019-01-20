@@ -1,0 +1,29 @@
+.text-center
+  %h3 Event stats
+.row
+  .col-12
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Events per month, quantity
+      .card-body
+        = line_chart Event.group_by_month(:starts_at).count, download: true
+%p
+.row
+  .col-12
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Unique clients that visited events per month, quantity
+      .card-body
+        = column_chart Event.group_by_month(:starts_at, format: "%b %Y").distinct.count('client_id'), download: true
+%p
+.row
+  .col-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Event Status, share
+      .card-body
+        = pie_chart Event.group(:status).count, download: true
+

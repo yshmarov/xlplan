@@ -15,8 +15,8 @@ class HomeController < ApplicationController
   end
 
   def calendar
-    @q = Appointment.ransack(params[:q])
-    @appointments = @q.result.includes(:location, :client, :jobs)
+    @q = Event.ransack(params[:q])
+    @events = @q.result.includes(:location, :client, :jobs)
   end
 
 end

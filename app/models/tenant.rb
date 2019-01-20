@@ -7,7 +7,7 @@ class Tenant < ApplicationRecord
   has_many :service_categories, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :locations, dependent: :destroy
-  has_many :appointments, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy

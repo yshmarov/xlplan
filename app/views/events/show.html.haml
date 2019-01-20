@@ -1,0 +1,56 @@
+.row
+  .container
+    .card
+      .card-header
+        %b Event
+        .float-right
+          = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@event).update?
+          = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@event).destroy?
+      .card-body
+        %b Status:
+        = status_label(@event.status)
+        %p
+        - if policy(@event).update?
+          .form-inline
+            - unless @event.status == 'planned'
+              = button_to "planned", mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
+            - unless @event.status == 'confirmed'
+              = button_to "confirmed", mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+            - unless @event.status == 'client_not_attended'
+              = button_to "client_not_attended", mark_client_not_attended_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+            - unless @event.status == 'member_cancelled'
+              = button_to "member_cancelled", mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+            - unless @event.status == 'client_cancelled'
+              = button_to "client_cancelled", mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+        %hr
+        %b Client:
+        = link_to @event.client, client_path(@event.client)
+        %br
+        %b Location:
+        = link_to @event.location, location_path(@event.location)
+        %br
+        %b Starts at:
+        = @event.starts_at.strftime("%A")
+        = @event.starts_at.strftime('%d/%b/%Y %H:%M')
+        %br
+        %b Ends at:
+        = @event.ends_at.strftime('%d/%b/%Y %H:%M')
+        (#{@event.duration} min)
+        /(#{distance_of_time_in_words @event.starts_at, @event.ends_at})
+        %br
+        %b Notes:
+        = @event.notes
+        %hr
+        %b Services
+        /= @event.jobs_count
+        %p
+        = render 'jobs/index'
+        %b Total client price:
+        = @event.client_price_cents
+%br
+.card.card-default
+  .container-fluid
+    .card-heading
+      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+        %b Activity
+  =  render 'home/activity'

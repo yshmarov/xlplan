@@ -1,15 +1,15 @@
-= search_form_for @q, url: appointments_path do |f|
+= search_form_for @q, url: events_path do |f|
   .card.card-default
     .container-fluid
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
           %b
             = controller.action_name.humanize.titleize
-            appointments
+            events
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-          = link_to "", appointments_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          - if policy(Appointment).create?
-            = link_to t('.new', :default => t("helpers.links.new")), new_appointment_path, class: 'btn btn-sm btn-primary'
+          = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          - if policy(Event).create?
+            = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
     .card-header
       .row
         .col-md-4
@@ -27,7 +27,7 @@
             = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
         .col-md-4
           Status
-          = f.select :status_eq, Appointment.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+          = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
           Service
           /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
           = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
@@ -49,24 +49,24 @@
         %th Price
         %th Notes
     %tbody
-      - @appointments.each do |appointment|
+      - @events.each do |event|
         %tr
-          %td= link_to '', appointment, class: "btn btn-primary fa fa-eye btn-sm" if policy(appointment).show?
-          %td= link_to '', edit_appointment_path(appointment), class: "btn btn-warning fa fa-edit btn-sm" if policy(appointment).update?
-          %td= link_to '', appointment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(appointment).destroy?
-          %td= link_to appointment.client, client_path(appointment.client)
-          %td= link_to appointment.location, location_path(appointment.location)
-          %td #{appointment.starts_at.strftime("%A")} #{appointment.starts_at.strftime('%d/%b/%Y %H:%M')} - #{appointment.ends_at.strftime('%H:%M')} (#{appointment.duration} min)
-          %td= status_label(appointment.status)
+          %td= link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
+          %td= link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
+          %td= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
+          %td= link_to event.client, client_path(event.client)
+          %td= link_to event.location, location_path(event.location)
+          %td #{event.starts_at.strftime("%A")} #{event.starts_at.strftime('%d/%b/%Y %H:%M')} - #{event.ends_at.strftime('%H:%M')} (#{event.duration} min)
+          %td= status_label(event.status)
           %td
-            - appointment.jobs.each do |job|
+            - event.jobs.each do |job|
               .row
               .badge.badge-secondary
                 = link_to job.service.full_name_with_price, service_path(job.service), class: 'text-white'
                 \/
                 = link_to job.member, member_path(job.member), class: 'text-white'
-          %td= appointment.client_price_cents
-          %td= truncate(appointment.notes, length: 25)
+          %td= event.client_price_cents
+          %td= truncate(event.notes, length: 25)
 .container
-  = will_paginate @appointments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  = will_paginate @events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

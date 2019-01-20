@@ -64,7 +64,7 @@ class JobsController < ApplicationController
     end
 
     def job_params
-      params.require(:job).permit(:service_id, :member_id, :appointment_id,
+      params.require(:job).permit(:service_id, :member_id, :event_id,
         :service_duration, :service_member_percent, 
         :client_price, :member_price, :member_due_price, :client_due_price)
     end

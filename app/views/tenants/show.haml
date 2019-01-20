@@ -79,15 +79,15 @@
             %del
               Add a Client
           %hr
-          - unless Appointment.any?
+          - unless Event.any?
             %span.badge.badge-pill.badge-danger 4
-            = link_to 'Add an Appointment', new_appointment_path
+            = link_to 'Add an Event', new_event_path
           - else
             %span.badge.badge-pill.badge-success 4
             %del
-              Add an Appointment
+              Add an Event
             %hr
-              Great! Now you can checkout the appointment
+              Great! Now you can checkout the event
 
 
     %br
@@ -98,9 +98,9 @@
       .col
         .card-header.bg-default
           %i.fa.fa-calendar
-          = Appointment.count
+          = Event.count
           %div 
-            %b Appointments
+            %b Events
       .col
         .card-header.bg-default
           %i.fa.fa-calendar

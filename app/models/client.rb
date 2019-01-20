@@ -10,8 +10,8 @@ class Client < ApplicationRecord
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
-  has_many :appointments, dependent: :restrict_with_error
-  has_many :jobs, through: :appointments
+  has_many :events, dependent: :restrict_with_error
+  has_many :jobs, through: :events
   has_many :comments, as: :commentable
 
   validates :first_name, :last_name, presence: true

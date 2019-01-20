@@ -1,6 +1,6 @@
-class CreateAppointments < ActiveRecord::Migration[5.2]
+class CreateEvents < ActiveRecord::Migration[5.2]
   def change
-    create_table :appointments do |t|
+    create_table :events do |t|
       t.belongs_to :tenant, index: true, foreign_key: true
       t.references :client, foreign_key: true
       t.references :location, foreign_key: true
@@ -18,7 +18,7 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
 
       t.timestamps
 
-      #add_index :appointments, :status
+      #add_index :events, :status
 
     end
   end

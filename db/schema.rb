@@ -36,27 +36,6 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
   end
 
-  create_table "appointments", force: :cascade do |t|
-    t.bigint "tenant_id"
-    t.bigint "client_id"
-    t.bigint "location_id"
-    t.datetime "starts_at"
-    t.integer "duration", default: 0, null: false
-    t.datetime "ends_at"
-    t.integer "client_price", default: 0, null: false
-    t.integer "status", default: 0, null: false
-    t.string "status_color", default: "blue"
-    t.text "notes", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "jobs_count", default: 0, null: false
-    t.string "slug"
-    t.index ["client_id"], name: "index_appointments_on_client_id"
-    t.index ["location_id"], name: "index_appointments_on_location_id"
-    t.index ["slug"], name: "index_appointments_on_slug", unique: true
-    t.index ["tenant_id"], name: "index_appointments_on_tenant_id"
-  end
-
   create_table "clients", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "first_name", limit: 144, null: false
@@ -72,7 +51,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
-    t.integer "appointments_count", default: 0, null: false
+    t.integer "events_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
@@ -91,6 +70,27 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "client_id"
+    t.bigint "location_id"
+    t.datetime "starts_at"
+    t.integer "duration", default: 0, null: false
+    t.datetime "ends_at"
+    t.integer "client_price", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.string "status_color", default: "blue"
+    t.text "notes", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "jobs_count", default: 0, null: false
+    t.string "slug"
+    t.index ["client_id"], name: "index_events_on_client_id"
+    t.index ["location_id"], name: "index_events_on_location_id"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
+    t.index ["tenant_id"], name: "index_events_on_tenant_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
 
   create_table "jobs", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.bigint "appointment_id"
+    t.bigint "event_id"
     t.bigint "service_id"
     t.bigint "member_id"
     t.integer "service_duration", default: 0, null: false
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.index ["appointment_id"], name: "index_jobs_on_appointment_id"
+    t.index ["event_id"], name: "index_jobs_on_event_id"
     t.index ["member_id"], name: "index_jobs_on_member_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
     t.index ["slug"], name: "index_jobs_on_slug", unique: true
@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
-    t.integer "appointments_count", default: 0, null: false
+    t.integer "events_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
-    t.integer "appointments_count", default: 0, null: false
+    t.integer "events_count", default: 0, null: false
     t.string "slug"
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
@@ -298,13 +298,13 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
   end
 
   add_foreign_key "activities", "tenants"
-  add_foreign_key "appointments", "clients"
-  add_foreign_key "appointments", "locations"
-  add_foreign_key "appointments", "tenants"
   add_foreign_key "clients", "tenants"
   add_foreign_key "comments", "tenants"
   add_foreign_key "comments", "users"
-  add_foreign_key "jobs", "appointments"
+  add_foreign_key "events", "clients"
+  add_foreign_key "events", "locations"
+  add_foreign_key "events", "tenants"
+  add_foreign_key "jobs", "events"
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "tenants"

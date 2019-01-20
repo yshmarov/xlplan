@@ -1,0 +1,9 @@
+.card
+  .card-body
+    %h1 Editing event
+    /%b Status:
+    /= status_label(@event.status)
+
+    = render 'form'
+    %p
+    = link_to 'Cancel', @event, class: "btn btn-danger"

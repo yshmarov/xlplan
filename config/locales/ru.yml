@@ -304,11 +304,11 @@ ru:
   sidebar:
     jobdone: 'ДжобДан'
     search_client: 'Имя Клиента'
-    new_appointment: 'Новая Встреча'
+    new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
     calendar: 'Календарь'
-    checkout_appointments: 'Отметить Встречи'
-    appointments: 'Встречи'
+    checkout_events: 'Отметить Встречи'
+    events: 'Встречи'
     clients: 'Клиенты'
     members: 'Работники'
     services: 'Услуги'
@@ -321,7 +321,7 @@ ru:
     profile_settings: 'Настройки Профиля'
     account_settings: 'Пароль и Доступ'
     logout: 'Выход'
-  appointments:
+  events:
     new: 'Новая Встреча'
 
 

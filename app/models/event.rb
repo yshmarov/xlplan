@@ -1,10 +1,10 @@
-class Appointment < ApplicationRecord
+class Event < ApplicationRecord
   acts_as_tenant
 
   belongs_to :tenant
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
-  has_many :jobs, inverse_of: :appointment, dependent: :destroy
+  has_many :jobs, inverse_of: :event, dependent: :destroy
   has_many :members, through: :jobs
   has_many :services, through: :jobs
 

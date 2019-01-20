@@ -37,11 +37,11 @@ en:
   sidebar:
     jobdone: 'JobDone'
     search_client: 'Search Client'
-    new_appointment: 'New Appointment'
+    new_event: 'New Event'
     new_client: 'New Client'
     calendar: 'Calendar'
-    checkout_appointments: 'Checkout appointments'
-    appointments: 'Appointments'
+    checkout_events: 'Checkout events'
+    events: 'Events'
     clients: 'Clients'
     members: 'Members'
     services: 'Services'
@@ -54,6 +54,6 @@ en:
     profile_settings: 'Profile Settings'
     account_settings: 'Account Settings'
     logout: 'Logout'
-  appointments:
-    new: 'New Appointment'
+  events:
+    new: 'New Event'
 

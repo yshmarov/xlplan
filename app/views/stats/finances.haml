@@ -4,7 +4,7 @@
       .card-header
         (Confirmed) Client due price per month
       .card-body
-        = column_chart Appointment.group_by_month(:starts_at, format: "%b %Y").sum("client_price/100"), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+        = column_chart Event.group_by_month(:starts_at, format: "%b %Y").sum("client_price/100"), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
 
 %h3.text-center
   .badge.badge-secondary.btn-block
@@ -13,9 +13,9 @@
   .col-md-2
     .card-header.bg-default
       %i.fa.fa-calendar
-      = Appointment.count
+      = Event.count
       %div 
-        %b Appointments
+        %b Events
   .col-md-2
     .card-header.bg-default
       %i.fa.fa-calendar

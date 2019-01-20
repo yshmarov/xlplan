@@ -34,7 +34,7 @@
           = @member.address[:city]
           = @member.address[:state]
           = @member.address[:zip]
-      %br
+        %br
         %b Skills:
         /- @member.skills.each do |skill|
         /  = skill.service_category
@@ -85,4 +85,4 @@
   /      %b Calendar
   /    .card-body
   /  %p
-  /  = render 'appointments/index'
+  /  = render 'events/index'
