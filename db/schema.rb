@@ -241,10 +241,9 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
     t.string "plan", limit: 40, null: false
-    t.string "default_currency", limit: 40, default: "usd", null: false
+    t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
     t.string "string", limit: 2, default: "en", null: false
-    t.string "industry", limit: 60, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
@@ -279,20 +278,8 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
-    t.integer "invitation_limit"
-    t.string "invited_by_type"
-    t.bigint "invited_by_id"
-    t.integer "invitations_count", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invitations_count"], name: "index_users_on_invitations_count"
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["tenant_id"], name: "index_users_on_tenant_id"
   end

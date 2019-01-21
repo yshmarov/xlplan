@@ -4,9 +4,9 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.references :tenant, foreign_key: true
       t.string :name, :limit => 40, null: false
       t.string :plan, :limit => 40, null: false
-      t.string :default_currency, :limit => 40, null: false, default: "usd"
+      t.string :default_currency, :limit => 3, null: false, default: "usd"
       t.string :locale, :string, default: 'en', null: false, :limit => 2
-      t.string :industry, :limit => 60, null: false
+      #t.string :industry, :limit => 60, null: false
       #t.string :default_time_zone, null: false
       #t.string :logo
       #t.string :default_working_hours

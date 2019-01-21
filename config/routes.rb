@@ -2,23 +2,20 @@ Rails.application.routes.draw do
   get 'home/landing_page'
   root to: 'home#landing_page'
 
+  # *MUST* come *BEFORE* devise's definitions (below)
   as :user do   
     match '/user/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
 
   devise_for :users, :controllers => { 
-    :registrations => "registrations",
-    :confirmations => "confirmations",
+    :registrations => "milia/registrations",
+    :confirmations => "milia/confirmations",
     :sessions => "milia/sessions", 
     :passwords => "milia/passwords", 
   }
 
   resources :users, only: [:destroy, :edit, :update]
-  resources :members do
-  	member do
-  		patch :invite_user
-    end
-  end
+  resources :members
 
   #edit tenant info
   match '/organization/show' => 'tenants#show', via: :get
