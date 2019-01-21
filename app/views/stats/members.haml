@@ -54,7 +54,7 @@
       .card-header
         Confirmed Jobs per member per month, quantity
       .card-body
-        = line_chart @members.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').count} }, download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+        = line_chart @members.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').count} }, download: true
     %p
   .col-12
     .card

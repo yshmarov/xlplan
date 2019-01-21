@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.5.3'
 
-gem 'rails', '~> 5.2.1'
+gem 'rails', '~> 5.2.2'
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -55,34 +55,41 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+#basic6
 gem 'haml'
 gem "haml-rails", "~> 1.0"
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.2.1'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'font-awesome-sass', '~> 5.5.0'
-gem 'exception_notification'
-gem 'devise'
-gem 'devise_invitable', '~> 1.7.0'
+#calendar3
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'rjv'
-gem 'will_paginate', '~> 3.1.0'
-gem 'will_paginate-bootstrap4'
-gem 'money-rails', '~>1.12'
-gem "selectize-rails"
-gem 'ransack'
-gem 'public_activity'
+#access6
+gem 'exception_notification'
+gem 'devise'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git'
 gem "pundit"
 gem "rolify"
-gem "milia", :git => 'https://github.com/jekuno/milia.git'
-gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-gem "cocoon"
-gem 'friendly_id', '~> 5.2.4'
-gem 'validates_timeliness', '~> 5.0.0.alpha3'
-gem 'validates_overlap'
-gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
+#charts2
 gem "chartkick"
 gem 'groupdate'
+#design
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap4'
+gem 'ransack'
+
+#gem 'validates_timeliness', '~> 5.0.0.alpha3'
+#gem 'validates_overlap'
+
+gem 'money-rails', '~>1.12'
+gem "selectize-rails"
+gem "cocoon"
+gem 'public_activity'
+gem 'friendly_id', '~> 5.2.4'
+gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
+
