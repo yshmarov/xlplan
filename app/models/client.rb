@@ -13,6 +13,7 @@ class Client < ApplicationRecord
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
   has_many :comments, as: :commentable
+  has_many :inbound_payments, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
   validates :status, presence: true

@@ -11,6 +11,7 @@ class Tenant < ApplicationRecord
   has_many :jobs, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy
+  has_many :inbound_payments, dependent: :destroy
 
   validates_presence_of :name, :plan, :industry, :default_currency, :locale
   validates_uniqueness_of :name

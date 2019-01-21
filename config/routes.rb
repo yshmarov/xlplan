@@ -32,8 +32,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :services
   resources :service_categories, only: [:edit, :update, :create]
+  resources :services
 
   resources :locations
 
@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   end
   #for public_activity
   resources :jobs, only: :show
+  resources :inbound_payments
 
   get 'calendar', to: 'home#calendar'
   get 'activity', to: 'home#activity'

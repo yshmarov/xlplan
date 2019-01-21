@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Tenant:
+  = @inbound_payment.tenant
+%p
+  %b Event:
+  = @inbound_payment.event
+%p
+  %b Client:
+  = @inbound_payment.client
+%p
+  %b Amount:
+  = @inbound_payment.amount
+%p
+  %b Payment method:
+  = @inbound_payment.payment_method
+
+= link_to 'Edit', edit_inbound_payment_path(@inbound_payment)
+\|
+= link_to 'Back', inbound_payments_path

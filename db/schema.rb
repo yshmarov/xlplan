@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_16_011931) do
+ActiveRecord::Schema.define(version: 2019_01_20_234830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,19 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "inbound_payments", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "event_id"
+    t.bigint "client_id"
+    t.integer "amount", default: 0, null: false
+    t.string "payment_method", default: "cash", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_inbound_payments_on_client_id"
+    t.index ["event_id"], name: "index_inbound_payments_on_event_id"
+    t.index ["tenant_id"], name: "index_inbound_payments_on_tenant_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -301,6 +314,9 @@ ActiveRecord::Schema.define(version: 2018_12_16_011931) do
   add_foreign_key "events", "clients"
   add_foreign_key "events", "locations"
   add_foreign_key "events", "tenants"
+  add_foreign_key "inbound_payments", "clients"
+  add_foreign_key "inbound_payments", "events"
+  add_foreign_key "inbound_payments", "tenants"
   add_foreign_key "jobs", "events"
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"

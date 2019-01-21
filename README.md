@@ -3,7 +3,7 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-rails g scaffold payment tenant:belongs_to appointment:belongs_to client:belongs_to created_by:integer  amount:integer payment_method:string 
+rails g scaffold inbound_payment tenant:references event:references client:references amount:integer payment_method:string
 
 add_column :members, :planned_work_hours, :integer, default: 0, null: false
 add_column :members, :confirmed_work_hours, :integer, default: 0, null: false
