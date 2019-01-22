@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, :controllers => { 
-    :registrations => "milia/registrations",
-    :confirmations => "milia/confirmations",
+    :registrations => "registrations",
+    :confirmations => "confirmations",
     :sessions => "milia/sessions", 
     :passwords => "milia/passwords", 
   }

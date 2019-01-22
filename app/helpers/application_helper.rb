@@ -7,10 +7,12 @@ module ApplicationHelper
 		def plan_span_generator(plan)
 			case plan
 				#Other models
-				when 'free'
+				when 'basic'
 					content_tag(:span, plan.titleize, class: 'badge badge-secondary')
-				when 'premium'
+				when 'professional'
 					content_tag(:span, plan.titleize, class: 'badge badge-success')
+				when 'enterprise'
+					content_tag(:span, plan.titleize, class: 'badge badge-warning')
 			end
 		end
 

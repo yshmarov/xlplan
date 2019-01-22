@@ -5,39 +5,59 @@
         Organization:
         %b= @tenant.name
       .card-body
-        Business industry:
-        %b= @tenant.industry.capitalize
-        %p
         Plan:
         = plan_label(@tenant.plan)
-        %p
-        Business currency:
-        %b= @tenant.default_currency.upcase
         %p
         Language:
         %b= @tenant.locale.upcase
         %p
+        Default Currency:
+        %b= @tenant.default_currency.upcase
+        %p
         = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
-
-
+    %p
+    %h3.text-center
+      .badge.badge-secondary.btn-block
+        Counters
+    .row
+      .col
+        .card-header.bg-default
+          %i.fa.fa-calendar
+          = Event.count
+          %div 
+            %b Events
+      .col
+        .card-header.bg-default
+          %i.fa.fa-calendar
+          = Job.count
+          %div 
+            %b Jobs
+      .col
+        .card-header.bg-default
+          %i.fa.fa-user
+          = Client.count
+          %div 
+            %b Clients
+      .col
+        .card-header.bg-default
+          %i.fa.fa-user
+          = Member.count
+          %div 
+            %b Members
     %p
     .row
-      .col-xl
-        .card
-          .card-header
-            .fa.fa-chart-line
-            New Jobs in the last 30 days
-          .card-body
-            = Job.where('created_at >= ?', 1.month.ago).count
-        %p
-      .col-xl
-        .card
-          .card-header
-            .fa.fa-chart-line
-            New Clients in the last 30 days
-          .card-body
-            = Client.where('created_at >= ?', 1.month.ago).count
-
+      .col
+        .card-header.bg-default
+          %i.fa.fa-hand-paper
+          = Service.count
+          %div 
+            %b Services
+      .col
+        .card-header.bg-default
+          %i.fa.fa-hand-paper
+          = Location.count
+          %div 
+            %b Locations
 
   .col-6
     .card
@@ -88,49 +108,4 @@
               Add an Event
             %hr
               Great! Now you can checkout the event
-
-
-    %br
-    %h3.text-center
-      .badge.badge-secondary.btn-block
-        Counters
-    .row
-      .col
-        .card-header.bg-default
-          %i.fa.fa-calendar
-          = Event.count
-          %div 
-            %b Events
-      .col
-        .card-header.bg-default
-          %i.fa.fa-calendar
-          = Job.count
-          %div 
-            %b Jobs
-      .col
-        .card-header.bg-default
-          %i.fa.fa-user
-          = Client.count
-          %div 
-            %b Clients
-      .col
-        .card-header.bg-default
-          %i.fa.fa-user
-          = Member.count
-          %div 
-            %b Members
-    %p
-    .row
-      .col
-        .card-header.bg-default
-          %i.fa.fa-hand-paper
-          = Service.count
-          %div 
-            %b Services
-      .col
-        .card-header.bg-default
-          %i.fa.fa-hand-paper
-          = Location.count
-          %div 
-            %b Locations
 %p
