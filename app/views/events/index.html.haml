@@ -65,7 +65,7 @@
                 = link_to job.service.full_name_with_price, service_path(job.service), class: 'text-white'
                 \/
                 = link_to job.member, member_path(job.member), class: 'text-white'
-          %td= event.client_price_cents
+          %td= number_to_currency(event.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
           %td= truncate(event.notes, length: 25)
 .container
   = will_paginate @events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

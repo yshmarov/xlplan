@@ -16,7 +16,7 @@ end
 
 3.times do
   Location.create!([{
-    name: Faker::GameOfThrones.city,
+    name: Faker::Address.city,
     address: Faker::Address.full_address,
     phone_number: Faker::PhoneNumber.cell_phone,
     email: Faker::Internet.email

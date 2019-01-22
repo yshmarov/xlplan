@@ -23,12 +23,6 @@
             - unless @event.status == 'client_cancelled'
               = button_to "client_cancelled", mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
         %hr
-        %b Client:
-        = link_to @event.client, client_path(@event.client)
-        %br
-        %b Location:
-        = link_to @event.location, location_path(@event.location)
-        %br
         %b Starts at:
         = @event.starts_at.strftime("%A")
         = @event.starts_at.strftime('%d/%b/%Y %H:%M')
@@ -37,9 +31,12 @@
         = @event.ends_at.strftime('%d/%b/%Y %H:%M')
         (#{@event.duration} min)
         /(#{distance_of_time_in_words @event.starts_at, @event.ends_at})
+        %hr
+        %b Client:
+        = link_to @event.client, client_path(@event.client)
         %br
-        %b Notes:
-        = @event.notes
+        %b Location:
+        = link_to @event.location, location_path(@event.location)
         %hr
         %b Services
         /= @event.jobs_count
@@ -47,6 +44,10 @@
         = render 'jobs/index'
         %b Total client price:
         = @event.client_price_cents
+        %hr
+        %b Notes:
+        = @event.notes
+
 %br
 .card.card-default
   .container-fluid

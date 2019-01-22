@@ -302,14 +302,14 @@ ru:
   cancel: 'Отменить'
 
   sidebar:
-    search_client: 'Имя Клиента'
+    search_client: 'Поиск Клиента'
     new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
     calendar: 'Календарь'
     checkout_events: 'Отметить Встречи'
     events: 'Встречи'
     clients: 'Клиенты'
-    members: 'Работники'
+    members: 'Сотрудники'
     services: 'Услуги'
     locations: 'Локации'
     activity: 'Активность'
