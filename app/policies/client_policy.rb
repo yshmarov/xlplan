@@ -26,7 +26,7 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin_or_manager
+    @record.events.none? && admin_or_manager
   end
 
   def admin_or_manager

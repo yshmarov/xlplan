@@ -26,8 +26,8 @@ class MemberPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin
-    @record.jobs.none? && @record.members.none? && admin
+    #admin
+    @record.jobs.none? && admin
   end
 
   def admin

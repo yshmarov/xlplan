@@ -40,10 +40,6 @@ class Client < ApplicationRecord
     )
   end
 
-  def associations?
-    events.any?
-  end
-
   #private
   #protected
 

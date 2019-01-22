@@ -30,7 +30,7 @@
         %th= sort_link @q, :member_percent, "Member %"
         %th= sort_link @q, :member_price, "Member Price"
         %th= sort_link @q, :status, "Status"
-        /%th
+        %th Jobs
         %th
         %th
     %tbody
@@ -47,13 +47,9 @@
           %td= number_to_percentage(service.member_percent, precision: 0)
           %td= number_to_currency(service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
           %td= status_label(service.status)
-          /%td= link_to 'Show', service, class: 'btn btn-sm btn-primary'
+          %td= service.jobs_count
           %td= link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
-          %td
-            - unless service.jobs.any?
-              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
-            - else
-              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(service).destroy?
+          %td= link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
 .container
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

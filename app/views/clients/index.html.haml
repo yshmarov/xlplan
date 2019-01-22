@@ -43,11 +43,7 @@
           %td= number_to_currency(client.balance_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
           %td= client.events_count
           %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
-          %td
-            - unless client.associations?
-              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
-            - else
-              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(client).destroy?
+          %td= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
