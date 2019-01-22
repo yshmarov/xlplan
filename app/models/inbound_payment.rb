@@ -5,6 +5,6 @@ class InboundPayment < ApplicationRecord
   belongs_to :event
   belongs_to :client
 
-  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
+  validates :client, :event, :starts_at, :amount, :payment_method, presence: true
 
 end

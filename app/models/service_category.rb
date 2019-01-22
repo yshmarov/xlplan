@@ -8,6 +8,7 @@ class ServiceCategory < ApplicationRecord
   has_many :services
   has_many :skills
   has_many :members, through: :skills
+  has_many :jobs, through: :services
 
   validates :name, uniqueness: true
   validates :name, presence: true

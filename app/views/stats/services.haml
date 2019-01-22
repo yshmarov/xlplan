@@ -1,7 +1,0 @@
-.row
-  .col-6
-    .card
-      .card-header
-        Jobs per Service, quantity
-      .card-body
-        = pie_chart Job.joins(:service).group(:service_id).count, download: true

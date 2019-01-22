@@ -19,11 +19,22 @@
         = column_chart Event.group_by_month(:starts_at, format: "%b %Y").distinct.count('client_id'), download: true
 %p
 .row
-  .col-6
+  .col-3
     .card
       .card-header
         .fa.fa-chart-line
-        Event Status, share
+        Event Status
       .card-body
         = pie_chart Event.group(:status).count, download: true
-
+  .col-3
+    .card
+      .card-header
+        Location popularity
+      .card-body
+        = pie_chart Event.joins(:location).group(:'locations.name').count, download: true
+  .col-3
+    .card
+      .card-header
+        Service popularity
+      .card-body
+        = pie_chart Job.joins(:service).group(:'services.name').count, download: true
