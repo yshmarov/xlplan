@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "events_count", default: 0, null: false
+    t.integer "members_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
