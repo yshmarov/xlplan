@@ -20,7 +20,7 @@
       %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-plus'></i> #{t('sidebar.new_client')}".html_safe, new_client_path, class: "nav-link"
       /%li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
-      %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path(q: {jobs_member_id_eq: current_user.member.id}), class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> #{t('sidebar.checkout_events')}: #{Event.checkout.count}".html_safe, checkout_events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "nav-link"
