@@ -10,5 +10,7 @@ class AddCounters < ActiveRecord::Migration[5.2]
     add_column :locations, :events_count, :integer, default: 0, null: false
 
     add_column :service_categories, :services_count, :integer, default: 0, null: false
+
+    add_column :locations, :members_count, :integer, default: 0, null: false
   end
 end

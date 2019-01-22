@@ -26,7 +26,8 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin
+    #admin
+    @record.events.none? && @record.members.none? && admin
   end
 
   def admin

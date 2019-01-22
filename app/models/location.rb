@@ -32,10 +32,6 @@ class Location < ApplicationRecord
     end
   end
 
-  def associations?
-    events.any? || members.any?
-  end
-
   validate :free_plan_can_only_have_one_location
   def free_plan_can_only_have_one_location
     if self.new_record? && (tenant.locations.count > 0) && (tenant.plan == 'free')
