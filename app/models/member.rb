@@ -3,7 +3,7 @@ class Member < ApplicationRecord
    
   belongs_to :user
   belongs_to :location, optional: true
-  has_many :jobs
+  has_many :jobs, dependent: :restrict_with_error
   has_many :events, through: :jobs
   has_many :skills, dependent: :destroy, inverse_of: :member
   has_many :comments
@@ -91,7 +91,7 @@ class Member < ApplicationRecord
 
   validate :free_plan_can_only_have_one_member
   def free_plan_can_only_have_one_member
-    if self.new_record? && (tenant.members.count > 0) && (tenant.plan == 'free')
+    if self.new_record? && (tenant.members.count > 0) && (tenant.plan == 'basic')
       errors.add(:base, "Free plans cannot have more than one member")
     end
   end
@@ -129,10 +129,6 @@ class Member < ApplicationRecord
 
   def update_balance
     update_column :balance, (jobs.map(&:member_due_price).sum)
-  end
-
-  def associations?
-    jobs.any?
   end
 
 end

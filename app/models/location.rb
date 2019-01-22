@@ -34,7 +34,7 @@ class Location < ApplicationRecord
 
   validate :free_plan_can_only_have_one_location
   def free_plan_can_only_have_one_location
-    if self.new_record? && (tenant.locations.count > 0) && (tenant.plan == 'free')
+    if self.new_record? && (tenant.locations.count > 0) && (tenant.plan == 'basic')
       errors.add(:base, "Free plans cannot have more than one location")
     end
   end
