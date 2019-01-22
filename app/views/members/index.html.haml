@@ -21,17 +21,18 @@
       %tr
         %th= sort_link @ransack_members, :last_name, "Name"
         %th
-        %th
-          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
-        %th
           Contacts
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
-        %th= sort_link @ransack_members, :status, "Status"
         %th= sort_link @ransack_members, :balance, "Balance"
+        %th= sort_link @ransack_members, :status, "Status"
+        %th= sort_link @ransack_members, :jobs_count, "Jobs"
         %th Location
         %th Skills
         %th Status
         %th Roles
+        %th
+        %th
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
   
     %tbody
       - @members.each do |member|
@@ -42,20 +43,15 @@
             - if member.id == current_user.member.id
               .fa.fa-user
             = link_to member.full_name, member_path(member) if policy(member).show?
-          %td= link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
-          %td
-            - unless member.associations?
-              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
-            - else
-              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(member).destroy?
           %td
             = link_to "tel:#{member.phone_number}", class: "button" do
               #{member.phone_number}
             - if member.user.email.present? && member.phone_number.present?
               \/
             %a{:href => "mailto:#{member.user.email}"}= member.user.email
-          %td= status_label(member.status)
           %td= number_to_currency(member.balance_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+          %td= status_label(member.status)
+          %td= member.jobs_count
           %td= link_to member.location, location_path(member.location) if member.location.present?
           %td= member.skills.collect{|r| r.service_category}.to_sentence
           %td
@@ -84,10 +80,17 @@
   
   
           %td
-            - if current_user.has_role?(:admin) && member.user.present?
-              = link_to 'Edit roles', edit_user_path(member.user), class: 'btn btn-warning btn-sm'
             - if member.user.present?
               = member.user.roles.collect{|r| r.name}.to_sentence
+            - if current_user.has_role?(:admin) && member.user.present?
+              = link_to 'Edit roles', edit_user_path(member.user), class: 'btn btn-warning btn-sm'
+          %td= link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
+          %td
+            - unless member.associations?
+              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
+            - else
+              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(member).destroy?
+
 .container
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

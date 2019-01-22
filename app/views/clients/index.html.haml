@@ -20,25 +20,19 @@
     %thead
       %tr
         %th= sort_link @ransack_clients, :last_name, "Name"
-        %th
-        %th
-          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
         %th 
           Contacts
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}
         /%th= sort_link @ransack_clients, :status, "Status"
         %th= sort_link @ransack_clients, :balance, "Balance"
         %th= sort_link @ransack_clients, :events_count, "Events"
+        %th
+        %th
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @clients.each do |client|
         %tr
           %td= link_to client.full_name, client_path(client) if policy(client).show?
-          %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
-          %td
-            - unless client.associations?
-              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
-            - else
-              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(client).destroy?
           %td
             = link_to "tel:#{client.phone_number}", class: "button" do
               #{client.phone_number}
@@ -47,8 +41,13 @@
             %a{:href => "mailto:#{client.email}"}= client.email
           /%td= status_label(client.status)
           %td= number_to_currency(client.balance_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
-
           %td= client.events_count
+          %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
+          %td
+            - unless client.associations?
+              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
+            - else
+              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm disabled" if policy(client).destroy?
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
