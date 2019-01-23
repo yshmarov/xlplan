@@ -9,10 +9,11 @@ class InboundPayment < ApplicationRecord
   validates :amount, :numericality => {:greater_than => -100000000, :less_than => 100000000}
 
   monetize :amount, as: :amount_cents
-  
+
+  PAYMENT_METHODS = [:cash, :credit_card, :bank_transfer, :subscription_card, :certificate, :barter, :gift, :free, :group_buying, :other] 
+
   def to_s
     id
   end
   
-
 end

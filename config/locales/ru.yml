@@ -313,7 +313,7 @@ ru:
     services: 'Услуги'
     locations: 'Локации'
     activity: 'Активность'
-    my_company: 'Моя Компания'
+    organization: 'Моя Компания'
     stats: 'Статистика'
     finances: 'Финансы'
     my_page: 'Моя Страница'

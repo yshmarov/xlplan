@@ -29,8 +29,7 @@
       %li.nav-item= link_to "<i class='fa fa-tag'></i> #{t('sidebar.services')}".html_safe, services_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-industry'></i> #{t('sidebar.locations')}".html_safe, locations_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-cog'></i> #{t('sidebar.my_company')}".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
-      /%li.nav-item= link_to "<i class='fa fa-list'></i> Service Categories".html_safe, service_categories_path, class: "nav-link" if current_user.has_role?(:admin)
+      %li.nav-item= link_to "<i class='fa fa-cog'></i> #{t('sidebar.organization')}".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown
           %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -43,7 +42,9 @@
             = link_to "#{t('sidebar.members')}", stats_members_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.services')}", stats_services_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.locations')}", stats_locations_path, class: "dropdown-item navdrop-link"
-
+    /- unless Event.any?
+    /  %ul.navbar-nav.ml-md-auto.d-md-flex
+    /    %li.nav-item= link_to "<i class='fa fa-rocket'></i>".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
