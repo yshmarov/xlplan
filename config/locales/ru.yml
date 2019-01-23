@@ -289,15 +289,11 @@ ru:
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
     pm: вечера
-  hello:        "Hello world"
-  show:         'дивись'
-  edit:         'змінити'
-  destroy:      'знищити'
-  menu:
-    members:    'Колектив'
 
 
 
+  hello: "Привет Мир"
+  hero: "Здравствуй!"
 
   cancel: 'Отменить'
 

@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :authenticate_tenant!
-
-  include Pundit
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
   ##    milia defines a default max_tenants, invalid_tenant exception handling
   ##    but you can override these if you wish to handle directly
   rescue_from ::Milia::Control::MaxTenantExceeded, :with => :max_tenants
   rescue_from ::Milia::Control::InvalidTenantAccess, :with => :invalid_tenant
+
+  include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   before_action  :prep_org_name
 
   #online?
