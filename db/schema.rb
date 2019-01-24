@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
     t.integer "client_price", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.string "status_color", default: "blue"
-    t.text "notes", null: false
+    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false

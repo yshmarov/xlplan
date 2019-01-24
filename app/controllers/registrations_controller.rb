@@ -33,7 +33,7 @@ def create
 
         devise_create( user_params )   # devise resource(user) creation; sets resource
 
-          @user.add_role(:admin)
+        @user.add_role(:admin)
 
         if resource.errors.empty?   #  SUCCESS!
 
@@ -165,4 +165,4 @@ end   # def create
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 
-  end   # class Registrations
+end   # class Registrations

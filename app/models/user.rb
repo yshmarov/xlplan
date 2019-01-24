@@ -11,14 +11,14 @@ class User < ApplicationRecord
 
   rolify
   #validates :roles, presence: true
-  validate :must_have_a_role
+  validate :must_have_a_role, on: :update
 
   validates :email, presence: true
   #include PublicActivity::Model
   #tracked only: :create, owner: :itself
 
-  after_create :assign_default_role
   #after_initialize :assign_default_role
+  after_create :assign_default_role
 
   scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
 
@@ -36,7 +36,9 @@ class User < ApplicationRecord
   end
 
   def assign_default_role
-    self.add_role(:specialist) if self.roles.blank?
+    if self.roles.blank?
+      self.add_role(:specialist)
+    end
   end
 
 end

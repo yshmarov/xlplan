@@ -71,6 +71,7 @@ gem 'exception_notification'
 gem 'devise'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git'
+#gem 'milia', github: 'jekuno/milia', branch: 'issue#76'
 gem "pundit"
 gem "rolify"
 #charts2

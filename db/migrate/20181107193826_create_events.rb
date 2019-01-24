@@ -14,7 +14,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :status, default: 0, null: false
       t.string :status_color, default: 'blue'
 
-      t.text :notes, :limit => 500, null: false
+      t.text :notes, :limit => 500
 
       t.timestamps
 

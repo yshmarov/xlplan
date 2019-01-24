@@ -61,15 +61,15 @@
             /%br
             /%b Invited by:
             /= @member.user.invitor
-            %br
             -  if @member.id == current_user.id
+              %br
               = link_to 'Edit password', edit_user_registration_path(@member.user), class: 'btn btn-sm btn-warning'
-            %br
-            %b Roles:
             - if @member.user.present?
+              %br
+              %b Roles:
               = @member.user.roles.collect{|r| r.name}.to_sentence
-            %br
             - if current_user.has_role?(:admin) && @member.user.present?
+              %br
               = link_to 'Edit roles', edit_user_path(@member.user), class: 'btn btn-warning btn-sm'
   .col-lg-8
     = render 'home/calendar'

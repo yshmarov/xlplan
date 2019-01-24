@@ -1,6 +1,6 @@
 PublicActivity.enabled = false
 
-Tenant.set_current_tenant(1)
+Tenant.set_current_tenant(2)
 
 30.times do
   Client.create!([{
@@ -36,6 +36,15 @@ ServiceCategory.create!(name: 'For Children')
     client_price: Faker::Number.between(1000, 90000),
     member_percent: Faker::Number.between(0, 90),
     repeat_reminder: Faker::Number.between(0, 90)
+  }])
+end
+
+60.times do
+  Event.create!([{
+    starts_at: Faker::Time.between(50.days.ago, Date.today, :day),
+    client_id: Faker::Number.between(1, 30),
+    location_id: Faker::Number.between(1, 3),
+    status: Faker::Number.between(0, 4)
   }])
 end
 
