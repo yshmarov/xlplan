@@ -2,13 +2,14 @@
   .col-lg-4
     .card
       .card-header
-        %b Client:
-        = @client.full_name
+        .fa.fa-user
+        Client
         .float-right
           = link_to '', edit_client_path(@client), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@client).edit?
       .card-body
-        .text-center
-          .fa.fa-user.fa-4x
+        %b Name:
+        = @client.full_name
+        %br
         %b Phone number:
         = link_to "tel:#{@client.phone_number}", class: "button" do
           #{@client.phone_number}

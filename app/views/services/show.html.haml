@@ -2,13 +2,15 @@
   .container
     .card
       .card-header
-        %b Service Name:
-        = @service.name
+        .fa.fa-tag
+        Service
         .float-right
           = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@service).edit?
       .card-body
-        .fa.fa-tag.fa-4x
         .row
+        %b Name:
+        = @service.name
+        %br
         %b Category:
         = @service.service_category
         %br

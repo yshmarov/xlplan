@@ -10,7 +10,8 @@ class User < ApplicationRecord
   #belongs_to :invitor, class_name: 'Employee', foreign_key: :invited_by_id, required: false
 
   rolify
-  validates :roles, presence: true
+  #validates :roles, presence: true
+  validate :must_have_a_role
 
   validates :email, presence: true
   #include PublicActivity::Model
@@ -30,6 +31,9 @@ class User < ApplicationRecord
   end
 
   private
+  def must_have_a_role
+    errors.add(:roles, "must have at least one role") unless roles.any?
+  end
 
   def assign_default_role
     self.add_role(:specialist) if self.roles.blank?

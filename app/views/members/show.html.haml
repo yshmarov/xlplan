@@ -2,13 +2,14 @@
   .col-lg-4
     .card
       .card-header
-        %b Member:
-        = @member.full_name
+        .fa.fa-user-tie
+        Member
         .float-right
           = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@member).update?
       .card-body
-        .text-center
-          .fa.fa-user-tie.fa-4x
+        %b Name:
+        = @member.full_name
+        %br
         %b Phone number:
         = link_to "tel:#{@member.phone_number}", class: "button" do
           #{@member.phone_number}
@@ -48,14 +49,8 @@
         %br
         %b Status:
         = status_label(@member.status)
-    %p
-    .card
-      .card-header
-        %b Account & access
-        .float-right
-          -  if @member.id == current_user.id
-            = link_to 'Edit password', edit_user_registration_path(@member.user), class: 'btn btn-sm btn-warning'
-      .card-body
+        %hr
+        %b User account
         - if @member.user.present?
           %p
             %b Created:
@@ -66,18 +61,16 @@
             /%br
             /%b Invited by:
             /= @member.user.invitor
-    %p
-    .card
-      .card-header
-        %b Roles
-        .float-right
-          - if current_user.has_role?(:admin) && @member.user.present?
-            = link_to 'Edit roles', edit_user_path(@member.user), class: 'btn btn-warning btn-sm'
-      .card-body
-        - if @member.user.present?
-          = @member.user.roles.collect{|r| r.name}.to_sentence
-    %p
-
+            %br
+            -  if @member.id == current_user.id
+              = link_to 'Edit password', edit_user_registration_path(@member.user), class: 'btn btn-sm btn-warning'
+            %br
+            %b Roles:
+            - if @member.user.present?
+              = @member.user.roles.collect{|r| r.name}.to_sentence
+            %br
+            - if current_user.has_role?(:admin) && @member.user.present?
+              = link_to 'Edit roles', edit_user_path(@member.user), class: 'btn btn-warning btn-sm'
   .col-lg-8
     = render 'home/calendar'
   /  .card

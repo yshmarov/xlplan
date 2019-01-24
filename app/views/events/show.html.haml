@@ -2,6 +2,7 @@
   .container
     .card
       .card-header
+        .fa.fa-calendar
         %b Event
         .float-right
           = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@event).update?
