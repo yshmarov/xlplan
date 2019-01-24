@@ -32,23 +32,27 @@ class ApplicationController < ActionController::Base
       Tenant.current_tenant.name 
     )
   end
-  #   org_name will be passed to layout & view
-  #   this sets the default name for all situations
   def prep_org_name()
     @org_name ||= "MrJobber"
   end
 
-    #i18n
-    def set_locale
-      if current_user
-        #I18n.locale = current_user.try(:locale) || I18n.default_locale
-        I18n.locale = Tenant.current_tenant.try(:locale)  || I18n.default_locale
-        #I18n.locale = Tenant.current_tenant.locale
-        #I18n.locale = Tenant.current_tenant.locale.to_sym
-        #I18n.locale = current_user.member.tenant.locale.to_sym
-        #I18n.locale = current_user.member.tenant.locale.to_sym || I18n.default_locale
-      end
+  #i18n
+  def set_locale
+    if current_user
+      #I18n.locale = current_user.try(:locale) || I18n.default_locale
+      I18n.locale = Tenant.current_tenant.try(:locale)  || I18n.default_locale
+      #I18n.locale = Tenant.current_tenant.locale
+      #I18n.locale = Tenant.current_tenant.locale.to_sym
+      #I18n.locale = current_user.member.tenant.locale.to_sym
+      #I18n.locale = current_user.member.tenant.locale.to_sym || I18n.default_locale
+    else
+      #I18n.locale = params[:locale] || I18n.default_locale
+      locale = params[:locale].to_s.strip.to_sym
+      I18n.locale = I18n.available_locales.include?(locale) ?
+          locale :
+          I18n.default_locale
     end
+  end
 
     def user_not_authorized
       flash[:alert] = "You are not authorized to access this page."

@@ -19,6 +19,7 @@ class Role < ApplicationRecord
             :inclusion => { :in => Rolify.resource_types },
             :allow_nil => true
 
+  validates :name, inclusion: { in: ["admin", "manager", "specialist", "viewer"] }, uniqueness: true
 
   validates :name, presence: true
   #validates :name, presence: true, uniqueness: true, length: {:in => 2..30}

@@ -316,8 +316,11 @@ ru:
     profile_settings: 'Настройки Профиля'
     account_settings: 'Пароль и Доступ'
     logout: 'Выход'
-  events:
-    new: 'Новая Встреча'
 
   services: 'Услуги'
   service: 'Услуга'
+
+  events:
+    new: 'Новая Встреча'
+    index:
+      new_event: 'Новая Встреча'

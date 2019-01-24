@@ -11,6 +11,10 @@
       %li.nav-item= link_to "Industries", root_path, class: "nav-link"
       %li.nav-item= link_to "Pricing", root_path, class: "nav-link"
       %li.nav-item= link_to "Why MrJobber?", root_path, class: "nav-link"
+      - if I18n.locale == :en
+        %li.nav-item= link_to 'RU', root_path(locale: 'ru'), class: "nav-link"
+      - else
+        %li.nav-item= link_to 'EN', root_path(locale: 'en'), class: "nav-link"
     %ul.nav.navbar-nav.navbar-right
       %a.btn.btn-primary.mr-sm-2{:href => "tel:+48-537-628-023"}
         = succeed "+48-537-628-023" do

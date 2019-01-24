@@ -54,6 +54,8 @@ en:
     profile_settings: 'Profile Settings'
     account_settings: 'Account Settings'
     logout: 'Logout'
+
   events:
     new: 'New Event'
-
+    index:
+      new_event: 'New Event'

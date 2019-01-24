@@ -10,6 +10,7 @@ class User < ApplicationRecord
   #belongs_to :invitor, class_name: 'Employee', foreign_key: :invited_by_id, required: false
 
   rolify
+  validates :roles, presence: true
 
   validates :email, presence: true
   #include PublicActivity::Model
