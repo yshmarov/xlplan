@@ -15,8 +15,6 @@ class Member < ApplicationRecord
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
-  #accepts_nested_attributes_for :skills, reject_if: :all_blank, allow_destroy: true
-
   validates :user_id, presence: true
   validates :user_id, uniqueness: true
   validates :first_name, :last_name, length: { maximum: 144 }
