@@ -30,8 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  hero: "Welcome!"
+  home:
+    landing_page:
+      hero: "Software for managing employees working calendars, keeping track of clients and billing"
+      try_for_free: ">> Create your first calendar"
 
   cancel: 'Cancel'
 
@@ -59,3 +61,24 @@ en:
     new: 'New Event'
     index:
       new_event: 'New Event'
+
+  tenants:
+    show:
+      my_organization: "My Organization"
+      name: "Name"
+      getting_started: "Getting started"
+      counters: "Counters"
+      events: "Events"
+      jobs: "Jobs"
+      clients: "Clients"
+      members: "Members"
+      services: "Services"
+      locations: "Locations"
+      edit: "Edit"
+      new_member: "Invite members (employees)"
+      new_location: "Add your Business Locations"
+      new_service: "Add your Services Price list"
+      new_client: "Add a client"
+      new_event: "Add an event"
+    edit:
+      organization_settings: "Organization settings"

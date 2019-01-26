@@ -292,8 +292,10 @@ ru:
 
 
 
-  hello: "Привет Мир"
-  hero: "Здравствуй!"
+  home:
+    landing_page:
+      hero: "Программа для управления календарями работ сотрудников, учёта клиентов и оплат"
+      try_for_free: "Поробуй сейчас!"
 
   cancel: 'Отменить'
 
@@ -324,3 +326,24 @@ ru:
     new: 'Новая Встреча'
     index:
       new_event: 'Новая Встреча'
+
+  tenants:
+    show:
+      my_organization: "Моя Компания"
+      name: "Название"
+      getting_started: "С чего начать:"
+      counters: "Счётчики"
+      events: "Встречи"
+      jobs: "Работы"
+      clients: "Клиенты"
+      members: "Сотрудники"
+      services: "Услуги"
+      locations: "Локации"
+      edit: "Редактировать"
+      new_member: "Добавьте дополнительных сотрудников (не обязательно)"
+      new_location: "Добавьте Локацию"
+      new_service: "Добавьте ваш список услуг"
+      new_client: "Добавьте клиента (без доступа к программе)"
+      new_event: "Создайте встречу"
+    edit:
+      organization_settings: "Настройки Компании"

@@ -2,9 +2,11 @@
   .col-6
     .card
       .card-header
-        Organization:
-        %b= @tenant.name
+        = t('.my_organization')
       .card-body
+        Name:
+        %b= @tenant.name
+        %p
         Plan:
         = plan_label(@tenant.plan)
         %p
@@ -14,98 +16,98 @@
         Default Currency:
         %b= @tenant.default_currency.upcase
         %p
-        = link_to "Edit Company", edit_plan_path, class: "btn btn-warning btn-sm"
+        = link_to t(".edit"), edit_plan_path, class: "btn btn-warning btn-sm"
     %p
     %h3.text-center
       .badge.badge-secondary.btn-block
-        Counters
+        = t('.counters')
     .row
-      .col
+      .col-4
         .card-header.bg-default
           %i.fa.fa-calendar
           = Event.count
           %div 
-            %b Events
-      .col
+            %b= t('.events')
+      .col-4
         .card-header.bg-default
           %i.fa.fa-calendar
           = Job.count
           %div 
-            %b Jobs
-      .col
+            %b= t('.jobs')
+      .col-4
         .card-header.bg-default
           %i.fa.fa-user
           = Client.count
           %div 
-            %b Clients
-      .col
+            %b= t('.clients')
+    %p
+    .row
+      .col-4
         .card-header.bg-default
           %i.fa.fa-user
           = Member.count
           %div 
-            %b Members
-    %p
-    .row
-      .col
+            %b= t('.members')
+      .col-4
         .card-header.bg-default
           %i.fa.fa-hand-paper
           = Service.count
           %div 
-            %b Services
-      .col
+            %b= t('.services')
+      .col-4
         .card-header.bg-default
           %i.fa.fa-hand-paper
           = Location.count
           %div 
-            %b Locations
+            %b= t('.locations')
 
   .col-6
     .card
       .card-header
         .fa.fa-rocket
-        Getting started
+        = t('.getting_started')
       .card-body
         %h5
           - if Tenant.current_tenant.plan != 'basic'
             - unless Member.count >= 2
               %span.badge.badge-pill.badge-danger 0
-              = link_to "Invite Employees to your organization", new_member_path
+              = link_to t('.new_member'), new_member_path
             - else
               %span.badge.badge-pill.badge-success 0
               %del
-                Invite Employees to your organization
+                = t('.new_member')
             %hr
           - unless Location.any?
             %span.badge.badge-pill.badge-danger 1
-            = link_to 'Add a Location', new_location_path
+            = link_to t('.new_location'), new_location_path
           - else
             %span.badge.badge-pill.badge-success 1
             %del
-              Add a Location
+              = t('.new_location')
           %hr
           - unless Service.any?
             %span.badge.badge-pill.badge-danger 2
-            = link_to 'Add a Service', new_service_path
+            = link_to t('.new_service'), new_service_path
           - else
             %span.badge.badge-pill.badge-success 2
             %del
-              Add a Service
+              = t('.new_service')
           %hr
           - unless Client.any?
             %span.badge.badge-pill.badge-danger 3
-            = link_to 'Add a Client', new_client_path
+            = link_to t('.new_client'), new_client_path
           - else
             %span.badge.badge-pill.badge-success 3
             %del
-              Add a Client
+              = t('.new_client')
           %hr
           - unless Event.any?
             %span.badge.badge-pill.badge-danger 4
-            = link_to 'Add an Event', new_event_path
+            = link_to t('.new_event'), new_event_path
           - else
             %span.badge.badge-pill.badge-success 4
             %del
-              Add an Event
+              = t('.new_event')
             %hr
               Great! Now you can checkout the event
 %p
