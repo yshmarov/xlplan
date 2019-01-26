@@ -1,6 +1,6 @@
 PublicActivity.enabled = false
 
-Tenant.set_current_tenant(2)
+Tenant.set_current_tenant(1)
 
 30.times do
   Client.create!([{
@@ -16,7 +16,7 @@ end
 
 3.times do
   Location.create!([{
-    name: Faker::Address.city,
+    name: Faker::Address.unique.city,
     address: Faker::Address.full_address,
     phone_number: Faker::PhoneNumber.cell_phone,
     email: Faker::Internet.email
@@ -29,7 +29,7 @@ ServiceCategory.create!(name: 'For Children')
 
 3.times do
   Service.create!([{
-    name: Faker::Job.field,
+    name: Faker::Job.unique.field,
     service_category_id: Faker::Number.between(1, 3),
     description: Faker::Job.field,
     duration: Faker::Number.between(15, 120),

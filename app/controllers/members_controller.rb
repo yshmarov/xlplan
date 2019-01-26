@@ -11,7 +11,7 @@ class MembersController < ApplicationController
     authorize @member
     @jobs = @member.jobs
     @events = @member.events
-    @skills = @member.skills
+    #@skills = @member.skills
   end
   
   def edit
