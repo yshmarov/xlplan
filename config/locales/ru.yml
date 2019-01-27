@@ -345,3 +345,18 @@ ru:
       new_event: "Создайте встречу"
     edit:
       organization_settings: "Настройки Компании"
+
+  helpers:
+    actions: "Действия"
+    links:
+      back: "Назад"
+      cancel: "Отменить"
+      confirm: "Вы уверены?"
+      destroy: "Удалить"
+      new: "Создать"
+      edit: "Изменить"
+    titles:
+      edit: "Изменить %{model}"
+      save: "Сохранить %{model}"
+      new: "Создать %{model}"
+      delete: "Удалить %{model}"
