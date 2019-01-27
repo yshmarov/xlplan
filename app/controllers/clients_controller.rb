@@ -14,7 +14,7 @@ class ClientsController < ApplicationController
   def show
     authorize @client
     @jobs = @client.jobs
-    @events = @client.events
+    @events = @client.events.order("starts_at DESC")
     @commentable = @client
     @comments = @commentable.comments
     @comment = Comment.new

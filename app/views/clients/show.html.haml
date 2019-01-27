@@ -41,19 +41,23 @@
         /%br
         /%b Status:
         /= status_label(@client.status)
-    %p
-    .card
-      .card-header
+        %hr
         %b Comments:
         = @client.comments_count
-      .card-body
         = render "comments/form"
         = render "comments/index"
     %p
+    .card
+      .card-header
+        Activity
+      .card-body
+        /= line_chart Event.where(client_id: @client.id).group_by_day(:starts_at).count
+        = line_chart @client.events.group_by_month(:starts_at).count
+  /.col-lg-8
+  /  = render 'home/calendar'
+  /  %br
   .col-lg-8
-    = render 'home/calendar'
-    %br
-  .col-lg-12
     .card-header
       Events
+      .fa.fa-caret-down
     = render 'events/index'

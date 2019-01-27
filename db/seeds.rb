@@ -39,9 +39,9 @@ ServiceCategory.create!(name: 'For Children')
   }])
 end
 
-60.times do
+6000.times do
   Event.create!([{
-    starts_at: Faker::Time.between(50.days.ago, Date.today, :day),
+    starts_at: Faker::Time.between(500.days.ago, Date.today, :day),
     client_id: Faker::Number.between(1, 30),
     location_id: Faker::Number.between(1, 3),
     status: Faker::Number.between(0, 4)
