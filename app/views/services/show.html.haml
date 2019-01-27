@@ -1,40 +1,40 @@
+- model_class = Service
 .row
   .container
     .card
       .card-header
         .fa.fa-tag
-        Service
+        =t '.title', :default => model_class.model_name.human.titleize
         .float-right
-          = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@service).edit?
+          = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm" if policy(@service).edit?
       .card-body
         .row
-        %b Name:
+        %b= model_class.human_attribute_name(:name) + ':'
         = @service.name
         %br
-        %b Category:
+        %b= model_class.human_attribute_name(:category_id) + ':'
         = @service.service_category
         %br
-        %b Description:
+        %b= model_class.human_attribute_name(:description) + ':'
         = @service.description
         %br
-        %b Duration, minutes:
+        %b= model_class.human_attribute_name(:duration) + ':'
         /= @service.duration.to_d/60
         /hours
         = @service.duration
         /= distance_of_time_in_words(@service.duration*60)
         %br
-        %b Client price:
+        %b= model_class.human_attribute_name(:client_price) + ':'
         = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
         %br
-        %b Member percent:
+        %b= model_class.human_attribute_name(:member_percent) + ':'
         = number_to_percentage(@service.member_percent, precision: 0)
         %br
-        %b Member price:
+        %b= model_class.human_attribute_name(:member_price) + ':'
         = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
-        
         %br
-        %b Status:
+        %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@service.status)
 %p
-= link_to 'Back to all services', services_path, class: "btn btn-secondary"
+= link_to t('.back', :default => t("helpers.links.back")), services_path, :class => 'btn btn-secondary'
 

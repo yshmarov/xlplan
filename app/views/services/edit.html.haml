@@ -1,7 +1,9 @@
+- model_class = Service
+.page-header
 .card
   .card-body
-    %h1 Editing service
-    
+    %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+
     = render 'form', service: @service
     %p
-    = link_to 'Cancel', @service, class: "btn btn-secondary"
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @service, :class => 'btn btn-secondary'

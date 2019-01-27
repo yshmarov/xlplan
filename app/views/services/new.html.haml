@@ -3,5 +3,5 @@
   
   = render 'form', service: @service
   %p
-  = link_to 'Cancel', services_path, class: "btn btn-danger", title: 'Back to Service list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), services_path, :class => 'btn btn-secondary'
   %p  

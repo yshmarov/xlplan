@@ -360,3 +360,31 @@ ru:
       save: "Сохранить %{model}"
       new: "Создать %{model}"
       delete: "Удалить %{model}"
+
+  activerecord:
+    models:
+      event: "Встреча"
+      service: "Услуга"
+    attributes:
+      event:
+        starts_at: "Начало"
+      service:
+        name_cont: "Название"
+        name: "Название"
+        category_id: "Категория"
+        description: "Описание"
+        duration: "Длительность"
+        client_price: "Цена Клиента"
+        client_price_cents: "Цена Клиента"
+        member_price: "Цена Сотрудника"
+        member_price_cents: "Цена Сотрудника"
+        member_percent: "Процентная Ставка Сотрудника"
+        repeat_reminder: "Напоминание о повторном визите через .. дней после визита"
+        status: "Статус"
+        jobs_count: "Кол. Работ"
+      service_category:
+        name: "Категория"
+
+
+
+

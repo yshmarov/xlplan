@@ -5,8 +5,6 @@
 //to show current time in calendar
 var TimeNow  = moment().format("HH") + ":00:00";
 
-
-
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
     events: app.vars.events,

@@ -22,16 +22,16 @@
   %table#table1
     %thead
       %tr
-        %th= sort_link @q, :name, "Name"
-        %th= sort_link @q, :service_category_name, "Category"
-        %th Description
-        %th= sort_link @q, :duration, "Duration"
-        %th= sort_link @q, :client_price, "Client Price"
-        %th= sort_link @q, :member_percent, "Member %"
-        %th= sort_link @q, :member_price, "Member Price"
-        %th= sort_link @q, :status, "Status"
-        %th Repeat reminder
-        %th Jobs
+        %th= sort_link @q, :name, :name
+        %th= sort_link @q, :service_category_name, :service_category_name
+        %th= model_class.human_attribute_name(:description)
+        %th= sort_link @q, :duration, :duration
+        %th= sort_link @q, :client_price, :client_price
+        %th= sort_link @q, :member_percent, :member_percent
+        %th= sort_link @q, :member_price, :member_price
+        %th= sort_link @q, :status, :status
+        %th= model_class.human_attribute_name(:repeat_reminder)
+        %th= model_class.human_attribute_name(:jobs_count)
         %th
         %th
     %tbody

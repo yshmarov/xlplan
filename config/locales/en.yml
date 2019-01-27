@@ -95,3 +95,27 @@ en:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+
+  activerecord:
+    models:
+      event: "Event"
+      service: "Service"
+    attributes:
+      event:
+        starts_at: "Starts at"
+      service:
+        name_cont: "Name"
+        name: "Name"
+        category_id: "Category"
+        description: "Description"
+        duration: "Duration"
+        client_price: "Client price"
+        client_price_cents: "Client price"
+        member_price: "Member price"
+        member_price_cents: "Member price"
+        member_percent: "Member percent"
+        repeat_reminder: "Remind about repeat visit in .. days"
+        status: "Status"
+        jobs_count: "Jobs"
+      service_category:
+        name: "Category"

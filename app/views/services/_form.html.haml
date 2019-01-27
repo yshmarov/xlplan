@@ -20,13 +20,12 @@
                                       ['3 H', '180'], ['3 H 15 minutes', '195'], ['3 H 30 minutes', '210'], ['3 H 45 minutes', '225'],
                                       ['4 H', '240']]
 
-    = f.input :client_price_cents, label: "Client price, #{Tenant.current_tenant.default_currency.upcase}", input_html: { autocomplete: 'off' }
+    = f.input :client_price_cents, input_html: { autocomplete: 'off' }
     = f.input :member_percent
   
     /Notification about repeat visit
-    = f.input :repeat_reminder
+    = f.input :repeat_reminder, collection: 0..90
     = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
 
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-
