@@ -10,7 +10,7 @@ class MembersController < ApplicationController
   def show
     authorize @member
     @jobs = @member.jobs
-    @events = @member.events
+    #@events = @member.events
   end
   
   def edit
