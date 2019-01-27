@@ -54,23 +54,4 @@ class StatsController < ApplicationController
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end
   end
-
-  def services
-    if current_user.has_role?(:admin)
-      #highest Q
-      #highest earnings
-      @services = Service.all
-    else
-      redirect_to root_path, alert: 'You are not authorized to view the page.'
-    end
-  end
-
-  def locations
-    if current_user.has_role?(:admin)
-      @locations = Location.all
-    else
-      redirect_to root_path, alert: 'You are not authorized to view the page.'
-    end
-  end
-
 end

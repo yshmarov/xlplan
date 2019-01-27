@@ -7,10 +7,10 @@
       = search_form_for @q, url: calendar_path do |f|
         Member
         /= f.search_field :jobs_member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Member name", :autocomplete => :off
-        = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+        = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: true}, class: 'selectize'
         .row
         Client
-        = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+        = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: true}, class: 'selectize'
         /.row
         /.input-daterange
         /  Start date after
@@ -18,13 +18,13 @@
         /  Starts date before
         /  = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
         Status
-        = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+        = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {include_blank: true}, :class => "form-control"
         Service
         /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
-        = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+        = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: true}, class: 'selectize'
         .row
         Location
-        = f.select :location_name_cont, Location.all.map{|c| [c.name, c.name]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+        = f.select :location_name_cont, Location.all.map{|c| [c.name, c.name]}, {include_blank: true}, class: 'selectize'
         = f.submit
         /= f.submit :'Search', class: "btn btn-success btn-block"
         = link_to "", calendar_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

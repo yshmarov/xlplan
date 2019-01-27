@@ -40,8 +40,6 @@
             = link_to "#{t('sidebar.clients')}", stats_clients_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.events')}", stats_events_path, class: "dropdown-item navdrop-link"
             = link_to "#{t('sidebar.members')}", stats_members_path, class: "dropdown-item navdrop-link"
-            = link_to "#{t('sidebar.services')}", stats_services_path, class: "dropdown-item navdrop-link"
-            = link_to "#{t('sidebar.locations')}", stats_locations_path, class: "dropdown-item navdrop-link"
     /- unless Event.any?
     /  %ul.navbar-nav.ml-md-auto.d-md-flex
     /    %li.nav-item= link_to "<i class='fa fa-rocket'></i>".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)

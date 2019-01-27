@@ -49,10 +49,11 @@
     %p
     .card
       .card-header
-        Activity
+        Stats
       .card-body
-        /= line_chart Event.where(client_id: @client.id).group_by_day(:starts_at).count
-        = line_chart @client.events.group_by_month(:starts_at).count
+        = line_chart @client.events.group_by_month(:starts_at).count, points: false
+        %hr
+        = pie_chart @client.events.group(:status).count
   /.col-lg-8
   /  = render 'home/calendar'
   /  %br

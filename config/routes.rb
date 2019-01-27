@@ -56,7 +56,5 @@ Rails.application.routes.draw do
   get 'stats/clients'
   get 'stats/members'
   get 'stats/events'
-  get 'stats/services'
-  get 'stats/locations'
 
 end

@@ -46,8 +46,6 @@ en:
     events: 'Events'
     clients: 'Clients'
     members: 'Members'
-    services: 'Services'
-    locations: 'Locations'
     activity: 'Activity'
     organization: 'My Company'
     stats: 'Stats'
