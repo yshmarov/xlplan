@@ -57,4 +57,8 @@ Rails.application.routes.draw do
   get 'stats/members'
   get 'stats/events'
 
+  #get 'charts/monthly_events'
+  namespace :charts do
+    get "monthly_events"
+  end
 end

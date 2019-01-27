@@ -7,7 +7,7 @@
         .fa.fa-chart-line
         Events per month, quantity
       .card-body
-        = line_chart Event.group_by_month(:starts_at).count, download: true
+        = line_chart charts_monthly_events_path, download: true
 %p
 .row
   .col-12

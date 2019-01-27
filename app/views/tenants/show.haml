@@ -2,7 +2,8 @@
   .col-6
     .card
       .card-header
-        = t('.my_organization')
+        %h4
+          %b= t('.my_organization')
       .card-body
         Name:
         %b= @tenant.name
