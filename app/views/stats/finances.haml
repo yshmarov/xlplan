@@ -10,36 +10,6 @@
   .badge.badge-secondary.btn-block
     Counters
 .row
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-calendar
-      = Event.count
-      %div 
-        %b Events
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-calendar
-      = Job.count
-      %div 
-        %b Jobs
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-user
-      = Client.count
-      %div 
-        %b Clients
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-user
-      = Member.count
-      %div 
-        %b Members
-  .col-md-2
-    .card-header.bg-default
-      %i.fa.fa-hand-paper
-      = Service.count
-      %div 
-        %b Services
   .col-md-4
     .card-header.bg-default
       %i.fa.fa-dollar-sign
@@ -60,7 +30,7 @@
   .col-md-2
     .card-header.bg-default
       %i.fa.fa-clock
-      = @planned_hours_worked
+      = @planned_hours_worked.round(0)
       %div 
         %b Hours worked
   .col-md-2
@@ -94,7 +64,7 @@
   .col-md-2
     .card-header.bg-default
       %i.fa.fa-clock
-      = @confirmed_hours_worked
+      = @confirmed_hours_worked.round(0)
       %div 
         %b Hours worked
   .col-md-2
@@ -128,7 +98,7 @@
   .col-md-2
     .card-header.bg-default
       %i.fa.fa-clock
-      = @lost_hours_worked
+      = @lost_hours_worked.round(0)
       %div 
         %b Hours worked
   .col-md-2
