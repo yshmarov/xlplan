@@ -389,6 +389,8 @@ ru:
         service: "Услуга"
         services: "Услуги"
         add_service: "+ Добавить Услугу"
+        member: "Сотрудник"
+        time: "Время"
       job:
         event_id: "Встреча"
         service_id: "Услуга"

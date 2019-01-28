@@ -50,7 +50,7 @@
     %p
     .card
       .card-header
-        Stats
+        = t("sidebar.stats") + ':'
       .card-body
         = line_chart @client.events.group_by_month(:starts_at).count, points: false
         %hr
@@ -61,6 +61,6 @@
   .col-lg-8
     .card-header
       .fa.fa-caret-down
-      Events:
+      = t("sidebar.events") + ':'
       = @client.events_count
     = render 'events/index'
