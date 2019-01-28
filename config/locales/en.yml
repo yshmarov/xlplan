@@ -29,58 +29,6 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  home:
-    landing_page:
-      hero: "Software for managing employees working calendars, keeping track of clients and billing"
-      try_for_free: ">> Create your first calendar"
-
-  cancel: 'Cancel'
-
-  sidebar:
-    search_client: 'Search Client'
-    new_event: 'New Event'
-    new_client: 'New Client'
-    calendar: 'Calendar'
-    checkout_events: 'Checkout events'
-    events: 'Events'
-    clients: 'Clients'
-    members: 'Members'
-    activity: 'Activity'
-    organization: 'My Company'
-    stats: 'Stats'
-    finances: 'Finances'
-    my_page: 'My Page'
-    profile_settings: 'Profile Settings'
-    account_settings: 'Account Settings'
-    logout: 'Logout'
-
-  events:
-    new: 'New Event'
-    index:
-      new_event: 'New Event'
-
-  tenants:
-    show:
-      my_organization: "My Organization"
-      name: "Name"
-      getting_started: "Getting started"
-      counters: "Counters"
-      events: "Events"
-      jobs: "Jobs"
-      clients: "Clients"
-      members: "Members"
-      services: "Services"
-      locations: "Locations"
-      edit: "Edit"
-      new_member: "Invite members (employees)"
-      new_location: "Add your Business Locations"
-      new_service: "Add your Services Price list"
-      new_client: "Add a client"
-      new_event: "Add an event"
-    edit:
-      organization_settings: "Organization settings"
-
   helpers:
     actions: "Actions"
     links:
@@ -96,26 +44,153 @@ en:
       new: "New %{model}"
       delete: "Delete %{model}"
 
+  home:
+    landing_page:
+      hero: "Software for managing employees working calendars, keeping track of clients and billing"
+      try_for_free: ">> Create your first calendar"
+    activity:
+      ago: 'ago'
+
+  cancel: 'Cancel'
+
+  sidebar:
+    search_client: 'Search Client'
+    new_event: 'New Event'
+    new_client: 'New Client'
+    calendar: 'Calendar'
+    checkout_events: 'Checkout events'
+    events: 'Events'
+    clients: 'Clients'
+    members: 'Members'
+    services: 'Services'
+    locations: 'Locations'
+    activity: 'Activity'
+    organization: 'My Company'
+    stats: 'Stats'
+    finances: 'Finances'
+    my_page: 'My Page'
+    profile_settings: 'Profile Settings'
+    account_settings: 'Account Settings'
+    logout: 'Logout'
+
+  services: 'Services'
+  service: 'Service'
+  member: 'Member'
+
+  tenants:
+    show:
+      my_organization: "My Organization"
+      name: "Name"
+      getting_started: "Getting started"
+      counters: "Counters"
+      events: "Events"
+      jobs: "Jobs"
+      clients: "Clients"
+      members: "Members"
+      services: "Services"
+      locations: "Locations"
+      edit: "Edit"
+      new_member: "Invite members (employees) (not required)"
+      new_location: "Add your Business Locations"
+      new_service: "Add your Services Price list"
+      new_client: "Add a client (Without access to the app)"
+      new_event: "Add an event"
+    edit:
+      organization_settings: "Organization settings"
+
   activerecord:
     models:
       event: "Event"
+      job: "Job"
       service: "Service"
+      service_category: "Category"
+      location: "Location"
+      member: "Member"
+      client: "Client"
+      comment: "Comment"
     attributes:
       event:
-        starts_at: "Starts at"
+        client_id: "Client"
+        location_id: "Location"
+        starts_at: "Start"
+        duration: "Duration"
+        ends_at: "End"
+        client_price: "Client Price"
+        client_price_cents: "Client Price"
+        status: "Status"
+        status_color: "Color"
+        notes: "Notes"
+        jobs_count: "Jobs count"
+        after: "Starts after.."
+        before: "Starts before.."
+        service: "Service"
+        services: "Services"
+        add_service: "+ Add Service"
+      job:
+        event_id: "Event"
+        service_id: "Service"
+        member_id: "Member"
+        service_duration: "Duration"
+        service_member_percent: "Member Percent"
+        client_price: "Client Price"
+        client_due_price: "Client Due Price"
+        member_price: "Member Price"
+        member_due_price: "Member Due Price"
       service:
-        name_cont: "Name"
         name: "Name"
-        category_id: "Category"
+        service_category_id: "Category"
         description: "Description"
         duration: "Duration"
-        client_price: "Client price"
-        client_price_cents: "Client price"
-        member_price: "Member price"
-        member_price_cents: "Member price"
-        member_percent: "Member percent"
-        repeat_reminder: "Remind about repeat visit in .. days"
+        client_price: "Client Price"
+        client_price_cents: "Client Price"
+        member_price: "Member Price"
+        member_price_cents: "Member Price"
+        member_percent: "Member Percent"
+        repeat_reminder: "Repeat visit reminder in .. days after visit"
         status: "Status"
-        jobs_count: "Jobs"
+        jobs_count: "Jobs count"
       service_category:
         name: "Category"
+      location:
+        name: "Name"
+        phone_number: "Phone"
+        email: "email"
+        address: "Address"
+        balance: "Balance"
+        status: "Status"
+        events_count: "Event count"
+        members_count: "Members count"
+      member:
+        first_name: "Name"
+        last_name: "Surname"
+        full_name: "Name"
+        phone_number: "Phone"
+        email: "email"
+        date_of_birth: "Date of birth"
+        gender: "Gender"
+        address: "Address"
+        status: "Status"
+        balance: "Balance"
+        location_id: "Location"
+        jobs_count: "Jobs count"
+        skills: "Available service categories"
+        location_id: "Location"
+        contacts: "Contacts"
+        roles: "Access rights"
+      client:
+        first_name: "Name"
+        last_name: "Surname"
+        full_name: "Name"
+        name: "Name"
+        phone_number: "Phone"
+        email: "email"
+        date_of_birth: "Date of birth"
+        gender: "Gender"
+        address: "Address"
+        status: "Status"
+        balance: "Balance"
+        location_id: "Location"
+        events_count: "Events count"
+        comments_count: "Comments count"
+        comments: "Comments"
+        contacts: "Contacts"

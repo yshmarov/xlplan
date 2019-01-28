@@ -17,7 +17,6 @@ function eventCalendar() {
     },
     titleFormat: 'D/MMM/YY',
     eventBackgroundColor: 'purple',
-
     weekNumbers: true,
     defaultView: 'agendaWeek',
     nowIndicator: true,
@@ -52,10 +51,6 @@ function eventCalendar() {
     slotLabelFormat: ['H:mm'],
   	axisFormat: 'h:mm',
 
-  	editable: true,
-  	selectable: true,
-  	selectHelper: true,
-  	droppable: true, // this allows things to be dropped onto the calendar !!!
     });
 };
 
