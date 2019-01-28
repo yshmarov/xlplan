@@ -1,25 +1,26 @@
+- model_class = Location
 .row
   .col-lg-4
     .card
       .card-header
         .fa.fa-industry
-        Location
+        =t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', edit_location_path(@location), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@location).update?
       .card-body
-        %b Location:
+        %b= model_class.human_attribute_name(:name) + ':'
         = @location.name
         %br
-        %b Tel:
+        %b= model_class.human_attribute_name(:phone_number) + ':'
         = @location.phone_number
         %br
-        %b Email:
+        %b= model_class.human_attribute_name(:email) + ':'
         = @location.email
         %br
-        %b Address:
+        %b= model_class.human_attribute_name(:address) + ':'
         = @location.address
         %br
-        %b Status:
+        %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@location.status)
     %p
   .col-lg-8

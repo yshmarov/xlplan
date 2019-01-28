@@ -9,7 +9,7 @@
       %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
         - if policy(Location).create?
           - if (Tenant.current_tenant.can_create_locations?)
-            = link_to 'New Location', new_location_path, class: 'btn btn-sm btn-primary'
+            = link_to t('.new', :default => t("helpers.links.new")), new_location_path, class: 'btn btn-sm btn-primary'
           - else
             %span.d-inline-block{"data-toggle" => "tooltip", :tabindex => "0", :title => "Unlock Premium Feature"}
               %button.btn.btn-primary{:disabled => "disabled", :style => "pointer-events: none;", :type => "button"}
@@ -21,26 +21,25 @@
     %thead
       %tr
         %th Name
+        %th= model_class.human_attribute_name(:phone_number)
+        %th= model_class.human_attribute_name(:email)
+        %th= model_class.human_attribute_name(:address)
+        %th= model_class.human_attribute_name(:status)
+        %th= model_class.human_attribute_name(:members_count)
+        %th= model_class.human_attribute_name(:events_count)
         %th
         %th
-        %th Tel
-        %th Email
-        %th Address
-        %th Status
-        %th Members
-        %th Events
-
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @locations.each do |location|
         %tr
           %td= link_to location.name, location_path(location) if policy(location).show?
-          %td= link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
-          %td= link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
           %td= location.phone_number
           %td= location.email
           %td= location.address
           %td= status_label(location.status)
           %td= location.members_count
           %td= location.events_count
-
+          %td= link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
+          %td= link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
 %br

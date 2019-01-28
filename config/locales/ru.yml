@@ -296,6 +296,8 @@ ru:
     landing_page:
       hero: "Программа для управления календарями сотрудников, учёта клиентов и оплат"
       try_for_free: "Поробуй сейчас!"
+    activity:
+      ago: 'назад'
 
   cancel: 'Отменить'
 
@@ -368,6 +370,7 @@ ru:
       location: "Локация"
       member: "Сотрудник"
       client: "Клиент"
+      comment: "Комментарий"
     attributes:
       event:
         client_id: "Клиент"
@@ -412,7 +415,7 @@ ru:
       service_category:
         name: "Категория"
       location:
-        name: "Категория"
+        name: "Название"
         phone_number: "Тел."
         email: "email"
         address: "Адрес"
