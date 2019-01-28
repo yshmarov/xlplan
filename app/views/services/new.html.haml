@@ -1,7 +1,8 @@
-.container
-  %h1 New service
-  
-  = render 'form', service: @service
-  %p
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), services_path, :class => 'btn btn-secondary'
-  %p  
+- model_class = Service
+.card
+  .card-body
+    %h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+    = render 'form', service: @service
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), services_path, :class => 'btn btn-danger'
+    %p  

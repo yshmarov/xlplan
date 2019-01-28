@@ -8,7 +8,7 @@
     = f.input :first_name
     = f.input :phone_number
     = f.input :email
-    = f.label :'Date of birth'
+    = f.label :date_of_birth
     = f.date_field :date_of_birth, value: @client.date_of_birth || nil, class: "form-control"
     %p
     = f.label :'gender'
@@ -36,8 +36,5 @@
         = a.text_field :zip, id: :zip
     / #### ADDRESS FIELD ENDS HERE ####
 
-
-
   .form-actions
-    = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-
+    = f.button :submit, class: "btn btn-success"

@@ -6,12 +6,11 @@
   .form-inputs
     = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
 
-    = f.label :service_category, label: "Category"
+    = f.label :service_category_id
     = f.collection_select :service_category_id, ServiceCategory.order(:name), :id, :name, {prompt: 'Select or create a category'}, {class: 'selectize-category'}
     = f.error :service_category, class: 'text-danger'
 
     = f.input :description, input_html: { autocomplete: 'off' }
-    /= f.input :duration, placeholder: '30'
     /= f.input :duration, collection: ['15', '30', '45', '60', '75', '90', '120']
     /= f.input :duration, collection: [['0', 'female'], ['1', 'male']]
     = f.input :duration, collection: [['15 minutes', '15'], ['30  minutes', '30'], ['45 minutes', '45'], ['1 H', '60'], 
@@ -28,4 +27,4 @@
     = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
 
   .form-actions
-    = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+    = f.button :submit, class: "btn btn-success"

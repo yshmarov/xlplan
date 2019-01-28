@@ -1,7 +1,8 @@
+- model_class = Client
 .card
   .card-body
-    %h1 New client
-    
+    %h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
     = render 'form'
     %p
-    = link_to 'Cancel', clients_path, class: "btn btn-danger"
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn btn-danger'
+    %p
