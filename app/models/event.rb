@@ -103,7 +103,7 @@ class Event < ApplicationRecord
       #job.update_due_prices
       #job.all.update_due_prices
     else
-      update_column :ends_at, (starts_at + 30*60)
+      update_column :ends_at, (starts_at + 0)
     end
   end
 
