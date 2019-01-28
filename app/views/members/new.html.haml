@@ -1,5 +1,7 @@
+- model_class = Member
 .card
   .card-body
+    /%h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
     %h2 Invite a new member
   
     = simple_form_for @member do |f|
@@ -11,5 +13,5 @@
       = f.input :last_name
       = f.error :last_name, class: 'text-danger'
       = f.button :submit, 'Create user and send invitation', class: 'btn btn-success'
-      %p
-      = link_to 'Cancel', members_path, class: "btn btn-danger"
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), members_path, :class => 'btn btn-danger'

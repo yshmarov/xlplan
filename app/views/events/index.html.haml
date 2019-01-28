@@ -1,34 +1,34 @@
+- model_class = Event
 = search_form_for @q, url: events_path do |f|
   .card.card-default
     .container-fluid
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-          %b
-            = controller.action_name.humanize.titleize
-            events
+          %b= controller.action_name.humanize.titleize
+          %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Event).create?
-            = link_to t('.new_event'), new_event_path, class: 'btn btn-sm btn-primary'
+            = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
     .card-header
       .row
         .col-md-4
           Member
           /= f.search_field :jobs_member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Member name", :autocomplete => :off
           = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-          Client
+          = model_class.human_attribute_name(:client_id)
           /= f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
           = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
         .col-md-4
           .input-daterange
-            Starts after
+            = model_class.human_attribute_name(:after)
             = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-            Starts before
+            = model_class.human_attribute_name(:before)
             = f.text_field :starts_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
         .col-md-4
-          Status
+          = model_class.human_attribute_name(:status)
           = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
-          Service
+          = model_class.human_attribute_name(:service)
           /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
           = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
           .row
@@ -39,13 +39,13 @@
     %thead
       %tr
         %th{:colspan => "3"}
-        %th= sort_link @q, :client_last_name, "Client"
-        %th= sort_link @q, :location_id, "Location"
-        %th= sort_link @q, :starts_at, "Time"
-        %th= sort_link @q, :status, "Status"
-        %th Services
-        %th Price
-        %th Notes
+        %th= sort_link @q, :client_last_name, model_class.human_attribute_name(:client_id)
+        %th= sort_link @q, :location_id, :location_id
+        %th= sort_link @q, :starts_at, :starts_at
+        %th= sort_link @q, :status, :status
+        %th= model_class.human_attribute_name(:services)
+        %th= model_class.human_attribute_name(:client_price)
+        %th= model_class.human_attribute_name(:notes)
     %tbody
       - @events.each do |event|
         %tr

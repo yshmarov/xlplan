@@ -1,7 +1,8 @@
+- model_class = Member
 .card
   .card-body
-    %h1 Editing member
+    %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
     
     = render 'form'
     %p
-    = link_to 'Cancel', @member, class: "btn btn-danger"
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @member, :class => 'btn btn-danger'

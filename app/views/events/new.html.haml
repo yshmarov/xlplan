@@ -1,7 +1,7 @@
+- model_class = Event
 .card
   .card-body
-    %h1= t('events.new')
-    
+    %h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
     = render 'form'
     %p
-    = link_to t('cancel'), events_path, class: "btn btn-danger"
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-danger'

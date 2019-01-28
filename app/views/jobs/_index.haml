@@ -1,18 +1,17 @@
+- model_class = Job
 .table-responsive
   %table#table1
     %thead
       %tr
         %th #
-        /%th
-        %th Service
-        %th Member
-        %th Client Price
-        %th Member Price
+        %th= model_class.human_attribute_name(:service_id)
+        %th= model_class.human_attribute_name(:member_id)
+        %th= model_class.human_attribute_name(:client_price)
+        %th= model_class.human_attribute_name(:member_price)
     %tbody
       - @jobs.each_with_index do |job, index|
         %tr
           %td= index +1
-          /%td= link_to '', appointment_path(job.appointment), class: "btn btn-primary fa fa-eye btn-sm" if policy(job).show?
           %td= link_to job.service.full_name, service_path(job.service)
           %td= link_to job.member, member_path(job.member)
           %td

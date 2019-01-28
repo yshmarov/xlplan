@@ -308,6 +308,8 @@ ru:
     events: 'Встречи'
     clients: 'Клиенты'
     members: 'Сотрудники'
+    services: 'Услуги'
+    locations: 'Локации'
     activity: 'Активность'
     organization: 'Моя Компания'
     stats: 'Статистика'
@@ -320,11 +322,6 @@ ru:
   services: 'Услуги'
   service: 'Услуга'
   member: 'Сотрудник'
-
-  events:
-    new: 'Новая Встреча'
-    index:
-      new_event: 'Новая Встреча'
 
   tenants:
     show:
@@ -379,10 +376,16 @@ ru:
         duration: "Длительность"
         ends_at: "Конец"
         client_price: "Цена Клиента"
+        client_price_cents: "Цена Клиента"
         status: "Статус"
         status_color: "Цвет"
         notes: "Заметки"
         jobs_count: "Кол. Работ"
+        after: "Начало после.."
+        before: "Начало до.."
+        service: "Услуга"
+        services: "Услуги"
+        add_service: "+ Добавить Услугу"
       job:
         event_id: "Встреча"
         service_id: "Услуга"
@@ -430,6 +433,10 @@ ru:
         balance: "Баланс"
         location_id: "Локация"
         jobs_count: "Кол. Работ"
+        skills: "Доступные Категориии Услуг"
+        location_id: "Локация"
+        contacts: "Контакты"
+        roles: "Права Доступа"
       client:
         first_name: "Имя"
         last_name: "Фамилия"

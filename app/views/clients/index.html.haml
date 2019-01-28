@@ -19,7 +19,7 @@
   %table#table1
     %thead
       %tr
-        %th= sort_link @ransack_clients, :last_name, :full_name
+        %th= sort_link @ransack_clients, :last_name, model_class.human_attribute_name(:full_name)
         %th 
           = model_class.human_attribute_name(:contacts)
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Phone/Email"}

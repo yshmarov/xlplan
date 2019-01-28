@@ -1,33 +1,34 @@
+- model_class = Member
 .row
   .col-lg-4
     .card
       .card-header
         .fa.fa-user-tie
-        Member
+        =t '.title', :default => model_class.model_name.human.titleize
         .float-right
-          = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@member).update?
+          = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm" if policy(@member).update?
       .card-body
-        %b Name:
+        %b= model_class.human_attribute_name(:full_name) + ':'
         = @member.full_name
         %br
-        %b Phone number:
+        %b= model_class.human_attribute_name(:phone_number) + ':'
         = link_to "tel:#{@member.phone_number}", class: "button" do
           #{@member.phone_number}
         /%a{:href => "viber://chat?number=#{@member.phone_number}"}
         /  Viber
         %br
-        %b Email:
+        %b= model_class.human_attribute_name(:email) + ':'
         %a{:href => "mailto:#{@member.email}"}= @member.email
         %br
-        %b Date of birth:
+        %b= model_class.human_attribute_name(:date_of_birth) + ':'
         - if @member.date_of_birth.present?
           = @member.date_of_birth.strftime('%d/%b/%Y') 
           (#{@member.age})
         %br
-        %b Gender:
+        %b= model_class.human_attribute_name(:gender) + ':'
         = @member.gender
         %br
-        %b Address:
+        %b= model_class.human_attribute_name(:address) + ':'
         - if @member.address?
           /= @member.address
           /#{@member.address[:street_address]}, #{@member.address[:city]}, #{@member.address[:state]}, #{@member.address[:zip]}
@@ -36,18 +37,18 @@
           = @member.address[:state]
           = @member.address[:zip]
         %br
-        %b Skills:
+        %b= model_class.human_attribute_name(:skills) + ':'
         /- @member.skills.each do |skill|
         /  = skill.service_category
         = @member.skills.map{|p| p.service_category}.join(", ")
         %br
-        %b Location:
+        %b= model_class.human_attribute_name(:location_id) + ':'
         = link_to @member.location, location_path(@member.location) if @member.location.present?
         %hr
-        %b Balance:
+        %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@member.balance_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
         %br
-        %b Status:
+        %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@member.status)
         %hr
         %b User account
@@ -66,7 +67,7 @@
               = link_to 'Edit password', edit_user_registration_path(@member.user), class: 'btn btn-sm btn-warning'
             - if @member.user.present?
               %br
-              %b Roles:
+              %b= model_class.human_attribute_name(:roles) + ':'
               = @member.user.roles.collect{|r| r.name}.to_sentence
             - if current_user.has_role?(:admin) && @member.user.present?
               %br

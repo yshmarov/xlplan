@@ -1,9 +1,8 @@
+- model_class = Event
 .card
   .card-body
-    %h1 Editing event
-    /%b Status:
-    /= status_label(@event.status)
-
+    %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+    
     = render 'form'
     %p
-    = link_to 'Cancel', @event, class: "btn btn-danger"
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @event, :class => 'btn btn-danger'

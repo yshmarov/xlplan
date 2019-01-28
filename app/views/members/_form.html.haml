@@ -8,10 +8,10 @@
     = f.input :first_name
     = f.input :phone_number
     = f.input :email
-    = f.label :'Date of birth'
+    = f.label :date_of_birth
     = f.date_field :date_of_birth, value: @member.date_of_birth || nil, class: "form-control"
     %p
-    = f.label :'gender'
+    = f.label :gender
     %br
     = f.radio_button :gender, 'Undisclosed'
     = f.label :gender_undisclosed, "Undisclosed"
@@ -21,7 +21,6 @@
     = f.label :gender_male, "Male"
     = f.radio_button :gender, 'Other'
     = f.label :gender_other, "Other"
-    /= f.input :address
 
     / #### ADDRESS FIELD STARTS HERE ####
     .fields
@@ -41,10 +40,8 @@
     = f.label :skills
     = f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
 
-    = f.label :location
+    = f.label :location_id
     = f.error :location, class: 'text-danger'
     = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
-
-  %br
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

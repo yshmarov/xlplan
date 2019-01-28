@@ -1,14 +1,15 @@
+- model_class = Event
 .row
   .container
     .card
       .card-header
         .fa.fa-calendar
-        %b Event
+        =t '.title', :default => model_class.model_name.human.titleize
         .float-right
-          = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@event).update?
-          = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@event).destroy?
+          = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).update?
+          = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
       .card-body
-        %b Status:
+        %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@event.status)
         %p
         - if policy(@event).update?
@@ -24,29 +25,29 @@
             - unless @event.status == 'client_cancelled'
               = button_to "client_cancelled", mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
         %hr
-        %b Starts at:
+        %b= model_class.human_attribute_name(:starts_at) + ':'
         = @event.starts_at.strftime("%A")
         = @event.starts_at.strftime('%d/%b/%Y %H:%M')
         %br
-        %b Ends at:
+        %b= model_class.human_attribute_name(:ends_at) + ':'
         = @event.ends_at.strftime('%d/%b/%Y %H:%M')
         (#{@event.duration} min)
         /(#{distance_of_time_in_words @event.starts_at, @event.ends_at})
         %hr
-        %b Client:
+        %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @event.client, client_path(@event.client)
         %br
-        %b Location:
+        %b= model_class.human_attribute_name(:location_id) + ':'
         = link_to @event.location, location_path(@event.location)
         %hr
-        %b Services
+        %b= model_class.human_attribute_name(:services) + ':'
         /= @event.jobs_count
         %p
         = render 'jobs/index'
-        %b Total client price:
+        %b= model_class.human_attribute_name(:client_price_cents) + ':'
         = @event.client_price_cents
         %hr
-        %b Notes:
+        %b= model_class.human_attribute_name(:notes) + ':'
         = @event.notes
 
 %br
