@@ -319,6 +319,7 @@ ru:
 
   services: 'Услуги'
   service: 'Услуга'
+  member: 'Сотрудник'
 
   events:
     new: 'Новая Встреча'
@@ -364,12 +365,35 @@ ru:
   activerecord:
     models:
       event: "Встреча"
+      job: "Работа"
       service: "Услуга"
+      service_category: "Категория"
+      location: "Локация"
+      member: "Сотрудник"
+      client: "Клиент"
     attributes:
       event:
+        client_id: "Клиент"
+        location_id: "Локация"
         starts_at: "Начало"
+        duration: "Длительность"
+        ends_at: "Конец"
+        client_price: "Цена Клиента"
+        status: "Статус"
+        status_color: "Цвет"
+        notes: "Заметки"
+        jobs_count: "Кол. Работ"
+      job:
+        event_id: "Встреча"
+        service_id: "Услуга"
+        member_id: "Сотрудник"
+        service_duration: "Длительность"
+        service_member_percent: "Процентная Ставка Сотрудника"
+        client_price: "Цена Клиента"
+        client_due_price: "Конечная Цена Клиента"
+        member_price: "Цена Сотрудника"
+        member_due_price: "Конечная Цена Сотрудника"
       service:
-        name_cont: "Название"
         name: "Название"
         category_id: "Категория"
         description: "Описание"
@@ -384,6 +408,42 @@ ru:
         jobs_count: "Кол. Работ"
       service_category:
         name: "Категория"
+      location:
+        name: "Категория"
+        phone_number: "Тел."
+        email: "email"
+        address: "Адрес"
+        balance: "Баланс"
+        status: "Статус"
+        events_count: "Кол. Встреч"
+        members_count: "Кол. Сотрудников"
+      member:
+        first_name: "Имя"
+        last_name: "Фамилия"
+        full_name: "Имя"
+        phone_number: "Тел."
+        email: "email"
+        date_of_birth: "Дата Рождения"
+        gender: "Пол"
+        address: "Адрес"
+        status: "Статус"
+        balance: "Баланс"
+        location_id: "Локация"
+        jobs_count: "Кол. Работ"
+      client:
+        first_name: "Имя"
+        last_name: "Фамилия"
+        full_name: "Имя"
+        phone_number: "Тел."
+        email: "email"
+        date_of_birth: "Дата Рождения"
+        gender: "Пол"
+        address: "Адрес"
+        status: "Статус"
+        balance: "Баланс"
+        location_id: "Локация"
+        events_count: "Кол. Встреч"
+        comments_count: "Кол. Комментариев"
 
 
 
