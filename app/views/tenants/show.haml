@@ -1,23 +1,24 @@
+- model_class = Tenant
 .row
   .col-6
     .card
       .card-header
-        %h4
-          %b= t('.my_organization')
+        .fa.fa-cog
+        =t '.title', :default => model_class.model_name.human.titleize
+        .float-right
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path, :class => 'btn btn-warning btn-sm'
       .card-body
-        Name:
+        %b= model_class.human_attribute_name(:name) + ':'
         %b= @tenant.name
         %p
-        Plan:
+        %b= model_class.human_attribute_name(:plan) + ':'
         = plan_label(@tenant.plan)
         %p
-        Language:
+        %b= model_class.human_attribute_name(:locale) + ':'
         %b= @tenant.locale.upcase
         %p
-        Default Currency:
+        %b= model_class.human_attribute_name(:default_currency) + ':'
         %b= @tenant.default_currency.upcase
-        %p
-        = link_to t(".edit"), edit_plan_path, class: "btn btn-warning btn-sm"
     %p
     %h3.text-center
       .badge.badge-secondary.btn-block

@@ -363,6 +363,7 @@ ru:
 
   activerecord:
     models:
+      tenant: "Компания"
       event: "Встреча"
       job: "Работа"
       service: "Услуга"
@@ -372,6 +373,12 @@ ru:
       client: "Клиент"
       comment: "Комментарий"
     attributes:
+      tenant:
+        name: "Название"
+        plan: "Тариф"
+        language: "Язык"
+        locale: "Язык"
+        default_currency: "Основная Валюта"
       event:
         client_id: "Клиент"
         location_id: "Локация"

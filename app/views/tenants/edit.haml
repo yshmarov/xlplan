@@ -1,21 +1,25 @@
-%h2 Organization settings
+- model_class = Tenant
+.card
+  .card-body
+    %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
 
-= simple_form_for @tenant, url: update_plan_path do |f|
-
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-  = f.input :name, required: true, class: "form-control"
-
-  = f.label :plan
-  = f.error :plan, class: 'text-danger'
-  = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, required: true, class: "form-control"
-
-  = f.label :default_currency
-  = f.error :default_currency, class: 'text-danger'
-  = f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
-
-  = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru']], include_blank: false, label: 'Language'
-
-  = f.submit 'Update Plan', class: "btn btn-success"
-  = link_to 'Cancel', root_path, class: "btn btn-danger"
+    = simple_form_for @tenant, url: update_plan_path do |f|
+    
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    
+      = f.input :name, required: true, class: "form-control"
+    
+      = f.label :plan
+      = f.error :plan, class: 'text-danger'
+      = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {}, required: true, class: "form-control"
+    
+      = f.label :default_currency
+      = f.error :default_currency, class: 'text-danger'
+      = f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
+    
+      = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru']], include_blank: false
+    
+      = f.button :submit, class: "btn btn-success"
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), organization_show_path, :class => 'btn btn-danger'

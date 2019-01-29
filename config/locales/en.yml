@@ -100,6 +100,7 @@ en:
 
   activerecord:
     models:
+      tenant: "My Company"
       event: "Event"
       job: "Job"
       service: "Service"
@@ -109,6 +110,12 @@ en:
       client: "Client"
       comment: "Comment"
     attributes:
+      tenant:
+        name: "Name"
+        plan: "Plan"
+        language: "Language"
+        locale: "Language"
+        default_currency: "Default Currency"
       event:
         client_id: "Client"
         location_id: "Location"
