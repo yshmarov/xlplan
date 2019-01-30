@@ -378,6 +378,7 @@ ru:
         add_service: "+ Добавить Услугу"
         member: "Сотрудник"
         time: "Время"
+        created_at: "Дата Создания"
       job:
         event_id: "Встреча"
         service_id: "Услуга"

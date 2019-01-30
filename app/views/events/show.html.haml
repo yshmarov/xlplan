@@ -27,13 +27,8 @@
             - unless @event.status == 'client_cancelled'
               = button_to "client_cancelled", mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
         %hr
-        %b= model_class.human_attribute_name(:starts_at) + ':'
-        = @event.starts_at.strftime("%A")
-        = @event.starts_at.strftime('%d/%b/%Y %H:%M')
-        %br
-        %b= model_class.human_attribute_name(:ends_at) + ':'
-        = @event.ends_at.strftime('%d/%b/%Y %H:%M')
-        (#{@event.duration} min)
+        %b= model_class.human_attribute_name(:time) + ':'
+        #{l(@event.starts_at, format: "%A")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
         /(#{distance_of_time_in_words @event.starts_at, @event.ends_at})
         %hr
         %b= model_class.human_attribute_name(:client_id) + ':'

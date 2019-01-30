@@ -147,6 +147,7 @@ en:
         add_service: "+ Add Service"
         member: "Member"
         time: "Time"
+        created_at: "Created"
       job:
         event_id: "Event"
         service_id: "Service"
