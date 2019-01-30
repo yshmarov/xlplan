@@ -308,7 +308,49 @@ ru:
   service: 'Услуга'
   member: 'Сотрудник'
 
+  locations:
+    index:
+      title: "Локации"
+    new:
+      title: "Создать Локацию"
+    edit:
+      title: "Изменить Локацию"
+    create:
+      success: 'Локация успешно создана.'
+  services:
+    index:
+      title: "Услуги"
+    new:
+      title: "Создать Услугу"
+    edit:
+      title: "Изменить Услугу"
+    create:
+      success: 'Услуга успешно создана.'
+  members:
+    index:
+      title: "Сотрудники"
+    new:
+      title: "Создать Сотрудника"
+    edit:
+      title: "Изменить Сотрудника"
+    create:
+      success: 'Сотрудник успешно создан.'
+  clients:
+    index:
+      title: "Клиенты"
+    new:
+      title: "Создать Клиента"
+    edit:
+      title: "Изменить Клиента"
+    create:
+      success: 'Клиент успешно создан.'
   events:
+    index:
+      title: "Встречи"
+    new:
+      title: "Создать Встречу"
+    edit:
+      title: "Изменить Встречу"
     create:
       success: 'Встреча успешно создана.'
     update:

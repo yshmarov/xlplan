@@ -56,4 +56,12 @@ end
   }])
 end
 
+#1200.times do
+#  InboundPayment.create!([{
+#    event_id: Faker::Number.between(1, 600),
+#    service_id: Faker::Number.between(1, 3),
+#    member_id: Faker::Number.between(1, 1),
+#  }])
+#end
+
 PublicActivity.enabled = true

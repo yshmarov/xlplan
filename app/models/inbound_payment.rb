@@ -5,7 +5,8 @@ class InboundPayment < ApplicationRecord
   belongs_to :event
   belongs_to :client
 
-  validates :client, :event, :starts_at, :amount, :payment_method, presence: true
+  #validates :client, :event
+  validates :amount, :payment_method, presence: true
   validates :amount, :numericality => {:greater_than => -100000000, :less_than => 100000000}
 
   monetize :amount, as: :amount_cents
