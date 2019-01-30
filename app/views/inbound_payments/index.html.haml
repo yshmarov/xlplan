@@ -1,28 +1,42 @@
-%h1 Listing inbound_payments
-
-%table
-  %thead
-    %tr
-      %th Tenant
-      %th Event
-      %th Client
-      %th Amount
-      %th Payment method
-      %th
-      %th
-      %th
-
-  %tbody
-    - @inbound_payments.each do |inbound_payment|
+- model_class = InboundPayment
+.card.card-default
+  .container-fluid
+    .card-heading
+      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+        .input-group
+          .mr-sm-2
+            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+      %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+        - if policy(InboundPayment).create?
+          = link_to t('.new', :default => t("helpers.links.new")), new_location_path, class: 'btn btn-sm btn-primary'
+.table-responsive
+  %table#table1
+    %thead
       %tr
-        %td= inbound_payment.tenant
-        %td= inbound_payment.event
-        %td= inbound_payment.client
-        %td= inbound_payment.amount
-        %td= inbound_payment.payment_method
-        %td= link_to 'Show', inbound_payment
-        %td= link_to 'Edit', edit_inbound_payment_path(inbound_payment)
-        %td= link_to 'Destroy', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }
+        %th #
+        %th Event
+        %th Client
+        %th Amount
+        %th Payment method
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @inbound_payments.each do |inbound_payment|
+        %tr
+          %td= link_to inbound_payment.id, inbound_payment_path(inbound_payment)
+          %td
+            - if inbound_payment.event.present?
+              = link_to inbound_payment.event, event_path(inbound_payment.event)
+          %td
+            - if inbound_payment.client.present?
+              = link_to inbound_payment.client, event_path(inbound_payment.client)
+          %td= inbound_payment.amount
+          %td= inbound_payment.payment_method
+          %td= link_to 'Show', inbound_payment
+          %td= link_to 'Edit', edit_inbound_payment_path(inbound_payment)
+          %td= link_to 'Destroy', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

@@ -2,6 +2,8 @@ PublicActivity.enabled = false
 
 Tenant.set_current_tenant(1)
 
+#Member.create!(first_name: "Yuliia", last_name: "Zahoruiko")
+
 30.times do
   Client.create!([{
     first_name: Faker::Name.first_name,
@@ -52,16 +54,17 @@ end
   Job.create!([{
     event_id: Faker::Number.between(1, 600),
     service_id: Faker::Number.between(1, 3),
-    member_id: Faker::Number.between(1, 1),
+    member_id: Faker::Number.between(1, 2),
   }])
 end
 
-#1200.times do
-#  InboundPayment.create!([{
-#    event_id: Faker::Number.between(1, 600),
-#    service_id: Faker::Number.between(1, 3),
-#    member_id: Faker::Number.between(1, 1),
-#  }])
-#end
+1200.times do
+  InboundPayment.create!([{
+    event_id: Faker::Number.between(1, 600),
+    client_id: Faker::Number.between(1, 30),
+    amount: Faker::Number.between(500, 3000),
+    payment_method: "cash",
+  }])
+end
 
 PublicActivity.enabled = true
