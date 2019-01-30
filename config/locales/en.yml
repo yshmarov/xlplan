@@ -77,10 +77,23 @@ en:
   service: 'Service'
   member: 'Member'
 
+  events:
+    create:
+      success: 'Event was successfully created.'
+    update:
+      success: 'Event was successfully updated.'
+    mark_planned:
+      success: "Marked Planned"
+    mark_confirmed:
+      success: "Marked Confirmed"
+    mark_client_not_attended:
+      success: "Marked Client Not Attended"
+    mark_client_cancelled:
+      success: "Marked Client Cancelled"
+    mark_member_cancelled:
+      success: "Marked Member Cancelled"
   tenants:
     show:
-      my_organization: "My Organization"
-      name: "Name"
       getting_started: "Getting started"
       counters: "Counters"
       events: "Events"
@@ -89,7 +102,6 @@ en:
       members: "Members"
       services: "Services"
       locations: "Locations"
-      edit: "Edit"
       new_member: "Invite members (employees) (not required)"
       new_location: "Add your Business Locations"
       new_service: "Add your Services Price list"
@@ -115,7 +127,7 @@ en:
         plan: "Plan"
         language: "Language"
         locale: "Language"
-        default_currency: "Default Currency"
+        default_currency: "Currency"
       event:
         client_id: "Client"
         location_id: "Location"

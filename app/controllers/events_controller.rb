@@ -82,7 +82,7 @@ class EventsController < ApplicationController
       if @event.save
         Event.public_activity_on
         @event.create_activity :create, parameters: {status: @event.status}
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: t('.success') }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -95,7 +95,7 @@ class EventsController < ApplicationController
     authorize @event
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, notice: t('.success') }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit }

@@ -5,7 +5,6 @@
         (Confirmed) Client due price per month
       .card-body
         = column_chart Event.group_by_month(:starts_at, format: "%b %Y").sum("client_price/100"), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
-
 %h3.text-center
   .badge.badge-secondary.btn-block
     Counters

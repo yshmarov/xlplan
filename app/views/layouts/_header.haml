@@ -6,15 +6,20 @@
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
+    .btn-group
+      %a.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+        = I18n.locale.upcase
+        %span.caret
+      %ul.dropdown-menu
+        - if I18n.locale == :en
+          %li.nav-item= link_to 'Русский', root_path(locale: 'ru'), class: "nav-link"
+        - else
+          %li.nav-item= link_to 'English', root_path(locale: 'en'), class: "nav-link"
     %ul.navbar-nav.mr-auto
       %li.nav-item= link_to "Features", root_path, class: "nav-link"
       %li.nav-item= link_to "Industries", root_path, class: "nav-link"
       %li.nav-item= link_to "Pricing", root_path, class: "nav-link"
       %li.nav-item= link_to "Why MrJobber?", root_path, class: "nav-link"
-      - if I18n.locale == :en
-        %li.nav-item= link_to 'RU', root_path(locale: 'ru'), class: "nav-link"
-      - else
-        %li.nav-item= link_to 'EN', root_path(locale: 'en'), class: "nav-link"
     %ul.nav.navbar-nav.navbar-right
       %a.btn.btn-primary.mr-sm-2{:href => "tel:+48-537-628-023"}
         = succeed "+48-537-628-023" do
