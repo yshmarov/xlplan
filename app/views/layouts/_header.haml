@@ -11,10 +11,12 @@
         = I18n.locale.upcase
         %span.caret
       %ul.dropdown-menu
-        - if I18n.locale == :en
-          %li.nav-item= link_to 'Русский', root_path(locale: 'ru'), class: "nav-link"
-        - else
+        - if I18n.locale != :en
           %li.nav-item= link_to 'English', root_path(locale: 'en'), class: "nav-link"
+        - if I18n.locale != :ru
+          %li.nav-item= link_to 'Русский', root_path(locale: 'ru'), class: "nav-link"
+        /- if I18n.locale != :pl
+        /  %li.nav-item= link_to 'Polski', root_path(locale: 'pl'), class: "nav-link"
     %ul.navbar-nav.mr-auto
       %li.nav-item= link_to "Features", root_path, class: "nav-link"
       %li.nav-item= link_to "Industries", root_path, class: "nav-link"

@@ -43,7 +43,7 @@ end
 
 600.times do
   Event.create!([{
-    starts_at: Faker::Time.between(50.days.ago, Date.today, :day),
+    starts_at: Faker::Time.between(125.days.ago, Date.today, :day),
     client_id: Faker::Number.between(1, 30),
     location_id: Faker::Number.between(1, 3),
     status: Faker::Number.between(0, 4)
@@ -58,13 +58,13 @@ end
   }])
 end
 
-1200.times do
-  InboundPayment.create!([{
-    event_id: Faker::Number.between(1, 600),
-    client_id: Faker::Number.between(1, 30),
-    amount: Faker::Number.between(500, 3000),
-    payment_method: "cash",
-  }])
-end
+#1200.times do
+#  InboundPayment.create!([{
+#    event_id: Faker::Number.between(1, 600),
+#    client_id: Faker::Number.between(1, 30),
+#    amount: Faker::Number.between(500, 3000),
+#    payment_method: "cash",
+#  }])
+#end
 
 PublicActivity.enabled = true

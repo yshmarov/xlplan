@@ -80,7 +80,7 @@
             %li
               %a{:href => "/jobs/mark_attendance"}
                 Mark Attendance:
-                = Job.mark_attendance.count
+                = Job.count
         %li
           %a{:href => "/members"}
             %i.fa.fa-user
@@ -95,4 +95,4 @@
             Other
             %b.caret
           %ul.dropdown-menu
-            = link_to "Jobs", jobs_path
+            = link_to "Jobs", root_path
