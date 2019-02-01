@@ -295,6 +295,7 @@ ru:
     members: 'Сотрудники'
     services: 'Услуги'
     locations: 'Локации'
+    inbound_payments: 'Оплаты'
     activity: 'Активность'
     organization: 'Моя Компания'
     stats: 'Статистика'
@@ -308,6 +309,15 @@ ru:
   service: 'Услуга'
   member: 'Сотрудник'
 
+  inbound_payments:
+    index:
+      title: "Оплаты"
+    new:
+      title: "Создать Оплату"
+    edit:
+      title: "Изменить Оплату"
+    create:
+      success: 'Оплата успешно создана.'
   locations:
     index:
       title: "Локации"
@@ -394,6 +404,7 @@ ru:
       member: "Сотрудник"
       client: "Клиент"
       comment: "Комментарий"
+      inbound_payment: "Оплата"
     attributes:
       tenant:
         name: "Название"
@@ -407,8 +418,8 @@ ru:
         starts_at: "Начало"
         duration: "Длительность"
         ends_at: "Конец"
-        client_price: "Цена Клиента"
-        client_price_cents: "Цена Клиента"
+        client_price: "Итоговая Цена Клиента"
+        client_price_cents: "Итоговая Цена Клиента"
         status: "Статус"
         status_color: "Цвет"
         notes: "Заметки"
@@ -489,3 +500,8 @@ ru:
         comments_count: "Кол. Комментариев"
         comments: "Комментарии"
         contacts: "Контакты"
+      inbound_payments:
+        client: "Клиент"
+        amount: "Сумма"
+        payment_method: "Способ Оплаты"
+        

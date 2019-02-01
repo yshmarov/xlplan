@@ -64,6 +64,7 @@ en:
     members: 'Members'
     services: 'Services'
     locations: 'Locations'
+    inbound_payments: 'Payments'
     activity: 'Activity'
     organization: 'My Company'
     stats: 'Stats'
@@ -121,6 +122,7 @@ en:
       member: "Member"
       client: "Client"
       comment: "Comment"
+      inbound_payment: "Payment"
     attributes:
       tenant:
         name: "Name"
@@ -134,8 +136,8 @@ en:
         starts_at: "Start"
         duration: "Duration"
         ends_at: "End"
-        client_price: "Client Price"
-        client_price_cents: "Client Price"
+        client_price: "Total Client Price"
+        client_price_cents: "Total Client Price"
         status: "Status"
         status_color: "Color"
         notes: "Notes"
@@ -216,3 +218,7 @@ en:
         comments_count: "Comments count"
         comments: "Comments"
         contacts: "Contacts"
+      inbound_payments:
+        client : "Client"
+        amount: "Amount"
+        payment_method: "Payment Method"

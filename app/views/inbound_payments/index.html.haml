@@ -8,7 +8,7 @@
             %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
       %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
         - if policy(InboundPayment).create?
-          = link_to t('.new', :default => t("helpers.links.new")), new_location_path, class: 'btn btn-sm btn-primary'
+          = link_to t('.new', :default => t("helpers.links.new")), new_inbound_payment_path, class: 'btn btn-sm btn-primary'
 .table-responsive
   %table#table1
     %thead
@@ -37,7 +37,4 @@
           %td= link_to 'Show', inbound_payment
           %td= link_to 'Edit', edit_inbound_payment_path(inbound_payment)
           %td= link_to 'Destroy', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }
-
 %br
-
-= link_to 'New Inbound payment', new_inbound_payment_path

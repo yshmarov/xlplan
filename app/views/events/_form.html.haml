@@ -15,18 +15,9 @@
     = f.error :location, class: 'text-danger'
     = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
 
-    /= f.input :status, :as => :radio_buttons, :collection => Appointment.statuses.keys.to_a
-
-    %h3 #{t('services')}
-    /#jobs
-    /  = f.simple_fields_for :jobs do |job|
-    /    = render 'job_fields', f: job
-    /  .links
-    /    = link_to_add_association '+ Add Job', f, :jobs, class: 'btn btn-secondary'
-    /%p
     .table-responsive
       %table.table.table-responsive-xl.table-sm
-        %thead
+        %thead.bg-light
           %tr
             %th= t('service')
             %th= t('member')

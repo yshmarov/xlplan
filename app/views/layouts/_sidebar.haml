@@ -2,15 +2,16 @@
   %a.navbar-brand{:href => "/"}
     .fa.fa-calendar-check
     MrJobber
-    \|
-    .badge.badge-default
-      = @org_name
-    \|
-    .badge.badge-default
-      = Tenant.current_tenant.plan
   %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarText.collapse.navbar-collapse
+    %ul.navbar-nav.ml-md-auto.d-md-flex
+      .text-light
+        .badge.badge-default
+          = @org_name
+        \|
+        .badge.badge-default
+          = Tenant.current_tenant.plan
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
@@ -22,14 +23,15 @@
       %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-plus'></i> #{t('sidebar.new_client')}".html_safe, new_client_path, class: "nav-link"
       /%li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
-      %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
       /%li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path(q: {jobs_member_id_eq: current_user.member.id}), class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> #{t('sidebar.checkout_events')}: #{Event.checkout.count}".html_safe, checkout_events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, members_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-tag'></i> #{t('sidebar.services')}".html_safe, services_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-hand-paper'></i> #{t('sidebar.services')}".html_safe, services_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-industry'></i> #{t('sidebar.locations')}".html_safe, locations_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa fa-dollar-sign'></i> #{t('sidebar.inbound_payments')}".html_safe, inbound_payments_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-cog'></i> #{t('sidebar.organization')}".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
       - if current_user.has_role?(:admin)
