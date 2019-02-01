@@ -56,6 +56,25 @@
   @extend .fa-calendar-check;
 }
 
-.fa-color{
-    color: #dbc90a;
+.fa-color-1{
+    color: white;
+}
+
+.navbar .navbar-nav > li > a:hover, .navbar-dark .navbar-nav > li > a:focus {
+    background-color: #6f42c1;
+    color: green;
+}
+
+
+.label-purple {
+  background-color: #6f42c1;
+}
+.label-purple[href]:hover,
+.label-purple[href]:focus {
+  background-color: #6f42c1;
+}
+
+.btn-purple {
+    background-color:#6f42c1;
+    color:white;
 }
