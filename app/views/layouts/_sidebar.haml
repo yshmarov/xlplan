@@ -29,7 +29,7 @@
 /          %i.fa.fa-heart-o.fa-fw
 /          %span Link
 
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-fixed-top
   %a.navbar-brand{:href => "/"}
     %i.fa.fa-calendar-check
     MrJobber
@@ -75,10 +75,10 @@
           .fa-color-1.fa.fa-chart-line
           #{t('sidebar.stats')}
         %ul#service.sub-menu.collapse
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-chart-line'></i> #{t('sidebar.finances')}".html_safe, stats_finances_path, class: "nav-link"
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-chart-line'></i> #{t('sidebar.members')}".html_safe, stats_members_path, class: "nav-link"
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-chart-line'></i> #{t('sidebar.events')}".html_safe, stats_events_path, class: "nav-link"
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-chart-line'></i> #{t('sidebar.clients')}".html_safe, stats_clients_path, class: "nav-link"
+          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-dollar-sign'></i> #{t('sidebar.finances')}".html_safe, stats_finances_path, class: "nav-link"
+          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, stats_members_path, class: "nav-link"
+          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, stats_events_path, class: "nav-link"
+          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, stats_clients_path, class: "nav-link"
     /- unless Event.any?
     /  %ul.navbar-nav.ml-md-auto.d-md-flex
     /    %li.nav-item= link_to "<i class='fa fa-rocket'></i>".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
