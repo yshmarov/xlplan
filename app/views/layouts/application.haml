@@ -12,8 +12,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.bg-light
     - if current_user
+      = render 'layouts/sidebar'
       #wrapper
-        = render 'layouts/sidebar'
         = render 'layouts/messages'
         /= render 'layouts/myclass_sidebar'
         = yield

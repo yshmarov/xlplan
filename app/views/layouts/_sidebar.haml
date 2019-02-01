@@ -1,11 +1,42 @@
-%nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
+/%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+/  %button.navbar-toggler{"aria-controls" => "navbarTogglerDemo03", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarTogglerDemo03", "data-toggle" => "collapse", :type => "button"}
+/    %span.navbar-toggler-icon
+/  %a.navbar-brand{:href => "#"} Navbar
+/  #navbarTogglerDemo03.collapse.navbar-collapse
+/    %ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+/      %li.nav-item.active
+/        %a.nav-link{:href => "#"}
+/          Home
+/          %span.sr-only (current)
+/      %li.nav-item
+/        %a.nav-link{:href => "#"} Link
+/      %li.nav-item
+/        %a.nav-link.disabled{:href => "#"} Disabled
+/    %form.form-inline.my-2.my-lg-0
+/      %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+/      %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+
+/%nav.navbar.navbar-expand-sm.navbar-dark.bg-dark.align-items-start.flex-sm-column.flex-row
+/  %a.navbar-brand{:href => "#"}
+/    %i.fa.fa-bullseye.fa-fw
+/    Brand
+/  %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
+/    %span.navbar-toggler-icon
+/  .collapse.navbar-collapse.sidebar
+/    %ul.flex-column.navbar-nav.w-100.justify-content-between
+/      %li.nav-item
+/        %a.nav-link.pl-0{:href => "#"}
+/          %i.fa.fa-heart-o.fa-fw
+/          %span Link
+
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   %a.navbar-brand{:href => "/"}
-    .fa.fa-calendar-check
+    %i.fa.fa-calendar-check
     MrJobber
-  %button.navbar-toggler{"aria-controls" => "navbarText", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarText", "data-toggle" => "collapse", :type => "button"}
+  %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
-  #navbarText.collapse.navbar-collapse
-    %ul.navbar-nav.ml-md-auto.d-md-flex
+  .collapse.navbar-collapse.sidebar
+    %ul.navbar-nav
       .text-light
         .badge.badge-default
           = @org_name
@@ -22,10 +53,14 @@
     %ul.navbar-nav.side-nav
       %li.nav-item= link_to "<i class='fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-plus'></i> #{t('sidebar.new_client')}".html_safe, new_client_path, class: "nav-link"
+      /start
       /%li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
+      /link to ransack search query
       /%li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path(q: {jobs_member_id_eq: current_user.member.id}), class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa fa-calendar-check'></i> #{t('sidebar.checkout_events')}: #{Event.checkout.count}".html_safe, checkout_events_path, class: "nav-link"
+      = link_to checkout_events_path, class: "nav-link" do
+        .fa-color.fa.fa-calendar-check
+        #{t('sidebar.checkout_events')} #{content_tag :span, Event.checkout.count, class: 'badge badge-danger'}
       %li.nav-item= link_to "<i class='fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, members_path, class: "nav-link"
@@ -35,15 +70,14 @@
       %li.nav-item= link_to "<i class='fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa fa-cog'></i> #{t('sidebar.organization')}".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
       - if current_user.has_role?(:admin)
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.btn.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            .fa.fa-chart-line
-            #{t('sidebar.stats')}
-          .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            = link_to "#{t('sidebar.finances')}", stats_finances_path, class: "dropdown-item navdrop-link"
-            = link_to "#{t('sidebar.members')}", stats_members_path, class: "dropdown-item navdrop-link"
-            = link_to "#{t('sidebar.events')}", stats_events_path, class: "dropdown-item navdrop-link"
-            = link_to "#{t('sidebar.clients')}", stats_clients_path, class: "dropdown-item navdrop-link"
+        %a.nav-link.btn.dropdown-toggle{"data-target" => "#service", "data-toggle" => "collapse"}
+          .fa.fa-chart-line
+          #{t('sidebar.stats')}
+        %ul#service.sub-menu.collapse
+          %li.nav-item= link_to "<i class='fa fa-chart-line'></i> #{t('sidebar.finances')}".html_safe, stats_finances_path, class: "nav-link"
+          %li.nav-item= link_to "<i class='fa fa-chart-line'></i> #{t('sidebar.members')}".html_safe, stats_members_path, class: "nav-link"
+          %li.nav-item= link_to "<i class='fa fa-chart-line'></i> #{t('sidebar.events')}".html_safe, stats_events_path, class: "nav-link"
+          %li.nav-item= link_to "<i class='fa fa-chart-line'></i> #{t('sidebar.clients')}".html_safe, stats_clients_path, class: "nav-link"
     /- unless Event.any?
     /  %ul.navbar-nav.ml-md-auto.d-md-flex
     /    %li.nav-item= link_to "<i class='fa fa-rocket'></i>".html_safe, organization_show_path, class: "nav-link" if current_user.has_role?(:admin)
