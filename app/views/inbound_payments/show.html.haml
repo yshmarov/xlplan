@@ -1,17 +1,12 @@
-%br#notice= notice
-
 %br
 %b #:
 = @inbound_payment.id
 %br
-%b Event:
-= @inbound_payment.event
-%br
 %b Client:
-= @inbound_payment.client
+= link_to @inbound_payment.client, client_path(@inbound_payment.client)
 %br
 %b Amount:
-= @inbound_payment.amount
+= @inbound_payment.amount_cents
 %br
 %b Payment method:
 = @inbound_payment.payment_method

@@ -18,11 +18,11 @@ class InboundPaymentPolicy < ApplicationPolicy
   end
 
   def edit?
-    any_member
+    superadmin
   end
 
   def update?
-    any_member
+    superadmin
   end
 
   def destroy?
@@ -36,4 +36,9 @@ class InboundPaymentPolicy < ApplicationPolicy
   def any_member
     @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
+
+  def superadmin
+    @user.has_role?(:superadmin)
+  end
+
 end

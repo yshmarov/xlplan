@@ -18,6 +18,7 @@ class ClientsController < ApplicationController
     @commentable = @client
     @comments = @commentable.comments
     @comment = Comment.new
+    @inbound_payments = @client.inbound_payments.order("created_at DESC")
   end
 
   def new

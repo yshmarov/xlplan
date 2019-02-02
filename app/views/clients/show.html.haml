@@ -64,3 +64,8 @@
       = t("sidebar.events") + ':'
       = @client.events_count
     = render 'events/index'
+    .card-header
+      .fa.fa-caret-down
+      = t("sidebar.payments") + ':'
+      = @client.inbound_payments.count
+    = render 'inbound_payments/index'

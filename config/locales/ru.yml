@@ -288,6 +288,7 @@ ru:
     search_client: 'Поиск Клиента'
     new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
+    new_payment: 'Новая Оплата'
     calendar: 'Календарь'
     checkout_events: 'Отметить Встречи'
     events: 'Все Встречи'

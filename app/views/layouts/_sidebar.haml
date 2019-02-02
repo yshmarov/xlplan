@@ -29,7 +29,7 @@
 /          %i.fa.fa-heart-o.fa-fw
 /          %span Link
 
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.navbar-fixed-top
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.sticky-top
   %a.navbar-brand{:href => "/"}
     %i.fa.fa-calendar-check
     MrJobber
@@ -51,8 +51,9 @@
             %button.btn.btn-success{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa-color-1  fa-fw fa fa-user-plus'></i> #{t('sidebar.new_client')}".html_safe, new_client_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa-color-green fa-fw fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa-color-green  fa-fw fa fa-user-plus'></i> #{t('sidebar.new_client')}".html_safe, new_client_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa-color-green  fa-fw fa fa-hand-holding-usd'></i> #{t('sidebar.new_payment')}".html_safe, new_inbound_payment_path, class: "nav-link"
       /start
       /%li.nav-item= link_to "<i class='fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link" if current_user.has_role?(:admin)
       /link to ransack search query

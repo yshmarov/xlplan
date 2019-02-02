@@ -41,10 +41,6 @@
         = render 'jobs/index'
         %b= model_class.human_attribute_name(:client_price_cents) + ':'
         = @event.client_price_cents
-
-        %h3 Payments
-
-
         %hr
         %b= model_class.human_attribute_name(:notes) + ':'
         = @event.notes

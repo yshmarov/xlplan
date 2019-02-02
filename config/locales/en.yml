@@ -57,6 +57,7 @@ en:
     search_client: 'Search Client'
     new_event: 'New Event'
     new_client: 'New Client'
+    new_payment: 'New Payment'
     calendar: 'Calendar'
     checkout_events: 'Checkout Events'
     events: 'Events'

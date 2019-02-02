@@ -5,6 +5,7 @@ class AddCounters < ActiveRecord::Migration[5.2]
     add_column :services, :jobs_count, :integer, default: 0, null: false
 
     add_column :clients, :comments_count, :integer, default: 0, null: false
+    add_column :clients, :inbound_payments_count, :integer, default: 0, null: false
 
     add_column :clients, :events_count, :integer, default: 0, null: false
     add_column :locations, :events_count, :integer, default: 0, null: false

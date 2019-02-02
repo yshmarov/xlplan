@@ -2,8 +2,7 @@ class InboundPayment < ApplicationRecord
   acts_as_tenant
 
   belongs_to :tenant
-  belongs_to :event
-  belongs_to :client
+  belongs_to :client, touch: true, counter_cache: true
 
   #validates :client, :event
   validates :amount, :payment_method, presence: true

@@ -1,5 +1,7 @@
-%h1 New inbound_payment
-
-= render 'form'
-
-= link_to 'Back', inbound_payments_path
+- model_class = InboundPayment
+.card
+  .card-body
+    %h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+    = render 'form'
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), inbound_payments_path, :class => 'btn btn-danger'

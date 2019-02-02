@@ -1,7 +1,8 @@
-%h1 Editing inbound_payment
-
-= render 'form'
-
-= link_to 'Show', @inbound_payment
-\|
-= link_to 'Back', inbound_payments_path
+- model_class = InboundPayment
+.card
+  .card-body
+    %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+    
+    = render 'form'
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @inbound_payment, :class => 'btn btn-danger'

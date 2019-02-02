@@ -13,7 +13,7 @@ class Client < ApplicationRecord
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
   has_many :comments, as: :commentable
-  has_many :inbound_payments, dependent: :destroy
+  has_many :inbound_payments, dependent: :restrict_with_error
 
   validates :first_name, :last_name, presence: true
   validates :status, presence: true
@@ -44,7 +44,7 @@ class Client < ApplicationRecord
   #protected
 
   def update_balance
-    update_column :balance, (jobs.map(&:client_due_price).sum*(-1))
+    update_column :balance, (inbound_payments.map(&:amount).sum-jobs.map(&:client_due_price).sum)
   end
 
 end
