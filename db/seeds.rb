@@ -1,8 +1,7 @@
 PublicActivity.enabled = false
-
 Tenant.set_current_tenant(1)
-
-#Member.create!(first_name: "Yuliia", last_name: "Zahoruiko")
+User.create!(email: 'admin@example.com', password: 'foobar', password_confirmation: 'foobar')
+Member.create!(first_name: "Yuliia", last_name: "Zahoruiko", user_id: 2)
 
 30.times do
   Client.create!([{
@@ -41,15 +40,32 @@ ServiceCategory.create!(name: 'For Children')
   }])
 end
 
-600.times do
+###EVENTS WITH DIFFERENT STATUSES###
+50.times do
   Event.create!([{
-    starts_at: Faker::Time.between(125.days.ago, Date.today, :day),
+    starts_at: Faker::Time.between(400.days.ago, Date.today, :day),
     client_id: Faker::Number.between(1, 30),
     location_id: Faker::Number.between(1, 3),
-    status: Faker::Number.between(0, 4)
+    status: Faker::Number.between(0, 0)
   }])
 end
-
+500.times do
+  Event.create!([{
+    starts_at: Faker::Time.between(400.days.ago, Date.today, :day),
+    client_id: Faker::Number.between(1, 30),
+    location_id: Faker::Number.between(1, 3),
+    status: Faker::Number.between(1, 1)
+  }])
+end
+50.times do
+  Event.create!([{
+    starts_at: Faker::Time.between(400.days.ago, Date.today, :day),
+    client_id: Faker::Number.between(1, 30),
+    location_id: Faker::Number.between(1, 3),
+    status: Faker::Number.between(2, 4)
+  }])
+end
+###END EVENTS###
 1200.times do
   Job.create!([{
     event_id: Faker::Number.between(1, 600),
@@ -58,13 +74,12 @@ end
   }])
 end
 
-#1200.times do
-#  InboundPayment.create!([{
-#    event_id: Faker::Number.between(1, 600),
-#    client_id: Faker::Number.between(1, 30),
-#    amount: Faker::Number.between(500, 3000),
-#    payment_method: "cash",
-#  }])
-#end
+600.times do
+  InboundPayment.create!([{
+    client_id: Faker::Number.between(1, 30),
+    amount: Faker::Number.between(1000, 90000),
+    payment_method: "cash",
+  }])
+end
 
 PublicActivity.enabled = true

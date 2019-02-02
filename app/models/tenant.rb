@@ -21,11 +21,11 @@ class Tenant < ApplicationRecord
   validates :locale, length: { maximum: 2 }
 
   def can_create_locations?
-    (plan == 'free' && locations.count < 1) || (plan == 'professional') || (plan == 'enterprise')
+    (plan == 'basic' && locations.count < 1) || (plan == 'professional') || (plan == 'enterprise')
   end
 
   def can_create_members?
-    (plan == 'free' && members.count < 1) || (plan == 'professional') || (plan == 'enterprise')
+    (plan == 'basic' && members.count < 1) || (plan == 'professional') || (plan == 'enterprise')
   end
 
   def self.create_new_tenant(tenant_params, user_params, coupon_params)

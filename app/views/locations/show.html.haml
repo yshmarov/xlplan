@@ -7,6 +7,7 @@
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', edit_location_path(@location), class: "btn btn-warning fa fa-edit btn-sm", title: 'Edit', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(@location).update?
+          = link_to '', @location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@location).destroy?
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
         = @location.name

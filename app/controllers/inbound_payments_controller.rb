@@ -2,11 +2,12 @@ class InboundPaymentsController < ApplicationController
   before_action :set_inbound_payment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @inbound_payments = InboundPayment.all.order('created_at DESC')
+    @inbound_payments = InboundPayment.all.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
 
   def show
     authorize @inbound_payment
+    @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "InboundPayment", trackable_id: @inbound_payment).all
   end
 
   def new

@@ -1,14 +1,4 @@
 - model_class = InboundPayment
-.card.card-default
-  .container-fluid
-    .card-heading
-      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-        .input-group
-          .mr-sm-2
-            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-      %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-        - if policy(InboundPayment).create?
-          = link_to t('.new', :default => t("helpers.links.new")), new_inbound_payment_path, class: 'btn btn-sm btn-primary'
 .table-responsive
   %table#table1
     %thead
@@ -17,6 +7,7 @@
         %th Client
         %th Amount
         %th Payment method
+        %th Created at
         %th
         %th
   
@@ -29,7 +20,8 @@
               = link_to inbound_payment.client, client_path(inbound_payment.client)
           %td= number_to_currency(inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= inbound_payment.payment_method
+          %td
+            #{l(inbound_payment.created_at, format: "%A")} #{l(inbound_payment.created_at, format: "%d/%b/%Y %H:%M")}
           %td= link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
           %td= link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
-
 %br

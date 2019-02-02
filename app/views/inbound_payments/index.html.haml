@@ -31,5 +31,6 @@
           %td= inbound_payment.payment_method
           %td= link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
           %td= link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
-
+.container
+  = will_paginate @inbound_payments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "comments_count", default: 0, null: false
+    t.integer "inbound_payments_count", default: 0, null: false
     t.integer "events_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_clients_on_slug", unique: true
@@ -104,14 +105,12 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
 
   create_table "inbound_payments", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.bigint "event_id"
     t.bigint "client_id"
     t.integer "amount", default: 0, null: false
     t.string "payment_method", default: "cash", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_inbound_payments_on_client_id"
-    t.index ["event_id"], name: "index_inbound_payments_on_event_id"
     t.index ["tenant_id"], name: "index_inbound_payments_on_tenant_id"
   end
 
@@ -303,7 +302,6 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
   add_foreign_key "events", "locations"
   add_foreign_key "events", "tenants"
   add_foreign_key "inbound_payments", "clients"
-  add_foreign_key "inbound_payments", "events"
   add_foreign_key "inbound_payments", "tenants"
   add_foreign_key "jobs", "events"
   add_foreign_key "jobs", "members"

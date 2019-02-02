@@ -14,7 +14,13 @@
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Member).create?
-            = link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
+            - if (Tenant.current_tenant.can_create_members?)
+              = link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
+            - else
+              %span.d-inline-block{"data-toggle" => "tooltip", :tabindex => "0", :title => "Unlock Premium Feature"}
+                %button.btn.btn-primary{:disabled => "disabled", :style => "pointer-events: none;", :type => "button"}
+                  New Member
+                  .fa.fa-lock
 .table-responsive
   %table#table1
     %thead

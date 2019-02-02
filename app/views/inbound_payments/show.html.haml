@@ -14,3 +14,10 @@
 = link_to 'Edit', edit_inbound_payment_path(@inbound_payment)
 \|
 = link_to 'Back', inbound_payments_path
+%br
+.card.card-default
+  .container-fluid
+    .card-heading
+      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+        %b Activity
+  =  render 'home/activity'

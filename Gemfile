@@ -44,7 +44,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'faker'
 end
 
 group :test do
@@ -93,4 +92,4 @@ gem 'friendly_id', '~> 5.2.4'
 gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
-
+gem 'faker'
