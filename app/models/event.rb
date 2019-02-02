@@ -69,7 +69,7 @@ class Event < ApplicationRecord
   #end
 
   def update_client_price
-    update_column :client_price, (jobs.map(&:client_due_price).sum)
+    update_column :client_price, (jobs.map(&:client_price).sum)
   end
 
   protected
