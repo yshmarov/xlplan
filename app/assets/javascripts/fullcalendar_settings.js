@@ -7,8 +7,15 @@ var TimeNow  = moment().format("HH") + ":00:00";
 
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
-    events: app.vars.events,
-
+  events: [
+    // events go here
+  ],
+  resources: [
+    { id: 'a', title: 'Room A' },
+    { id: 'b', title: 'Room B' },
+    { id: 'c', title: 'Room C' },
+    { id: 'd', title: 'Room D' }
+  ],
     themeSystem: 'bootstrap4',
     header: {
         right: 'prev,next, today',
@@ -18,7 +25,7 @@ function eventCalendar() {
     titleFormat: 'D/MMM/YY',
     eventBackgroundColor: 'purple',
     weekNumbers: true,
-    defaultView: 'agendaWeek',
+    defaultView: 'agendaDay',
     nowIndicator: true,
     scrollTime: TimeNow,
     allDaySlot: false,
