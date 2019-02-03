@@ -44,9 +44,9 @@
               = link_to '', edit_service_category_path(service.service_category), class: "btn btn-warning fa fa-edit btn-sm"
           %td= service.description
           %td= service.duration
-          %td= number_to_currency(service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+          %td= number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_percentage(service.member_percent, precision: 0)
-          %td= number_to_currency(service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+          %td= number_to_currency(service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= status_label(service.status)
           %td= service.repeat_reminder
           %td= service.jobs_count

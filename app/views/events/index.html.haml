@@ -58,7 +58,7 @@
           %td
             = status_label(event.status)
             .row
-            = number_to_currency(event.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+            = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td
             - event.jobs.each do |job|
               .row

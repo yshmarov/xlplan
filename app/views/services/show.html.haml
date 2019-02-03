@@ -25,13 +25,13 @@
         /= distance_of_time_in_words(@service.duration*60)
         %br
         %b= model_class.human_attribute_name(:client_price) + ':'
-        = number_to_currency(@service.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+        = number_to_currency(@service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         %b= model_class.human_attribute_name(:member_percent) + ':'
         = number_to_percentage(@service.member_percent, precision: 0)
         %br
         %b= model_class.human_attribute_name(:member_price) + ':'
-        = number_to_currency(@service.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+        = number_to_currency(@service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@service.status)

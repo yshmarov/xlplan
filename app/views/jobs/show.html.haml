@@ -31,19 +31,19 @@
         %hr
         %b Client planned price:
         /= @job.client_price_cents
-        = number_to_currency(@job.client_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+        = number_to_currency(@job.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         %b Employee planned price:
         /= @job.member_price_cents if policy(@job).update?
-        = number_to_currency(@job.member_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ") if policy(@job).update?
+        = number_to_currency(@job.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u") if policy(@job).update?
         %br
         %b Client due price:
         /= @job.client_due_price_cents
-        = number_to_currency(@job.client_due_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+        = number_to_currency(@job.client_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         %b Employee due price:
         /= @job.member_due_price_cents if policy(@job).update?
-        = number_to_currency(@job.member_due_price_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")  if policy(@job).update?
+        = number_to_currency(@job.member_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")  if policy(@job).update?
         %hr
         %b Created at:
         = @job.created_at.strftime('%d/%b/%Y %H:%M')

@@ -41,7 +41,7 @@
               \/
             %a{:href => "mailto:#{client.email}"}= client.email
           /%td= status_label(client.status)
-          %td= number_to_currency(client.balance_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+          %td= number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= client.events_count
           %td= client.inbound_payments_count
           %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?

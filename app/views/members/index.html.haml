@@ -55,7 +55,7 @@
             - if member.user.email.present? && member.phone_number.present?
               \/
             %a{:href => "mailto:#{member.user.email}"}= member.user.email
-          %td= number_to_currency(member.balance_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+          %td= number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= status_label(member.status)
           %td= member.jobs_count
           %td= link_to member.location, location_path(member.location) if member.location.present?

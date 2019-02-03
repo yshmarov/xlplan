@@ -46,7 +46,7 @@
         = link_to @member.location, location_path(@member.location) if @member.location.present?
         %hr
         %b= model_class.human_attribute_name(:balance) + ':'
-        = number_to_currency(@member.balance_cents, :unit => "#{Tenant.current_tenant.default_currency.upcase} ")
+        = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@member.status)

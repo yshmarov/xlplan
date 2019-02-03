@@ -6,7 +6,10 @@
 = link_to @inbound_payment.client, client_path(@inbound_payment.client)
 %br
 %b Amount:
-= @inbound_payment.amount_cents
+= number_to_currency(@inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+
+
+
 %br
 %b Payment method:
 = @inbound_payment.payment_method
