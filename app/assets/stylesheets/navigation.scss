@@ -1,7 +1,6 @@
 #wrapper{padding:10px 10px;}
 .navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
 @media(min-width:992px) {
-
-#wrapper{margin-left: 200px;padding: 70x 15px 15px;}
+#wrapper{margin-left: 200px;padding: 70px 15px 15px;}
 .navbar-nav.side-nav{background: #585f66;position:fixed;top:56px;flex-direction: column;left:0;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
 }
