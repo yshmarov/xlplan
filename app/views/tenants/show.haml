@@ -62,6 +62,14 @@
           = Location.count
           %div 
             %b= t('.locations')
+    %p
+    .row
+      .col-4
+        .card-header.bg-default
+          %i.fa.fa-user-tie
+          = InboundPayment.count
+          %div 
+            %b= t('.inbound_payments')
 
   .col-6
     .card

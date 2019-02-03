@@ -386,6 +386,7 @@ ru:
       members: "Сотрудники"
       services: "Услуги"
       locations: "Локации"
+      inbound_payments: "Оплаты"
       new_member: "Добавьте дополнительных сотрудников (не обязательно)"
       new_location: "Добавьте Локацию"
       new_service: "Добавьте ваш список услуг"
@@ -501,8 +502,10 @@ ru:
         comments_count: "Кол. Комментариев"
         comments: "Комментарии"
         contacts: "Контакты"
-      inbound_payments:
+      inbound_payment:
         client: "Клиент"
+        client_id: "Клиент"
         amount: "Сумма"
+        amount_cents: "Сумма"
         payment_method: "Способ Оплаты"
         

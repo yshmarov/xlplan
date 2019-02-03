@@ -219,7 +219,9 @@ en:
         comments_count: "Comments count"
         comments: "Comments"
         contacts: "Contacts"
-      inbound_payments:
-        client : "Client"
+      inbound_payment:
+        client: "Client"
+        client_id: "Client"
         amount: "Amount"
+        amount_cents: "Amount"
         payment_method: "Payment Method"
