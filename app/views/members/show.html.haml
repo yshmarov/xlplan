@@ -72,6 +72,12 @@
             - if current_user.has_role?(:admin) && @member.user.present?
               %br
               = link_to 'Edit roles', edit_user_path(@member.user), class: 'btn btn-warning btn-sm'
+    %p
+    .card
+      .card-header
+        Earnings/month
+      .card-body
+        = bar_chart Job.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true
   .col-lg-8
     = render 'home/job_calendar'
   /  .card
