@@ -48,24 +48,30 @@
         = render "comments/form"
         = render "comments/index"
     %p
-    .card
-      .card-header
-        = t("sidebar.stats") + ':'
-      .card-body
-        = line_chart @client.events.group_by_month(:starts_at).count, points: false
-        %hr
-        = pie_chart @client.events.group(:status).count
-  /.col-lg-8
-  /  = render 'home/calendar'
-  /  %br
   .col-lg-8
-    .card-header
-      .fa.fa-caret-down
-      = t("sidebar.events") + ':'
-      = @client.events_count
-    = render 'events/index'
-    .card-header
-      .fa.fa-caret-down
-      = t("sidebar.payments") + ':'
-      = @client.inbound_payments.count
-    = render 'inbound_payments/index'
+    %ul#myTab.nav.nav-tabs{:role => "tablist"}
+      %li.nav-item
+        %a#home-tab.nav-link.active{"aria-controls" => "home", "aria-selected" => "true", "data-toggle" => "tab", :href => "#home", :role => "tab"}
+          .fa.fa-caret-down
+          = t("sidebar.events") + ':'
+          = @client.events_count
+      %li.nav-item
+        %a#profile-tab.nav-link{"aria-controls" => "profile", "aria-selected" => "false", "data-toggle" => "tab", :href => "#profile", :role => "tab"}
+          .fa.fa-caret-down
+          = t("sidebar.inbound_payments") + ':'
+          = @client.inbound_payments.count
+      %li.nav-item
+        %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
+          .fa.fa-chart-line
+          = t("sidebar.stats")
+    #myTabContent.tab-content
+      #home.tab-pane.fade.show.active{"aria-labelledby" => "home-tab", :role => "tabpanel"}
+        = render 'events/index'
+      #profile.tab-pane.fade{"aria-labelledby" => "profile-tab", :role => "tabpanel"}
+        = render 'inbound_payments/index'
+      #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
+        .card
+          Activity
+          = column_chart @client.events.group_by_month(:starts_at).count
+          %hr
+          = pie_chart @client.events.group(:status).count

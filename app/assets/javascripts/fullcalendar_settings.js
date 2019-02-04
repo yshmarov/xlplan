@@ -7,13 +7,14 @@ var TimeNow  = moment().format("HH") + ":00:00";
 
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
+    schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
     resources: app.vars.resources,
     events: app.vars.events,
     themeSystem: 'bootstrap4',
     header: {
         right: 'prev,next, today',
         left: 'title',
-        center: 'agendaDay,agendaWeek,month,listWeek,timelineDay'
+        center: 'agendaDay,agendaWeek,month,timelineDay'
     },
     titleFormat: 'D/MMM/YY',
     eventBackgroundColor: 'purple',

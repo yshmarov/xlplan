@@ -1,6 +1,6 @@
 - model_class = Tenant
 .row
-  .col-6
+  .col-lg-6
     .card
       .card-header
         .fa.fa-cog
@@ -24,19 +24,19 @@
       .badge.badge-secondary.btn-block
         = t('.counters')
     .row
-      .col-4
+      .col-lg-4
         .card-header.bg-default
           %i.fa.fa-calendar
           = Event.count
           %div 
             %b= t('.events')
-      .col-4
+      .col-lg-4
         .card-header.bg-default
           %i.fa.fa-calendar
           = Job.count
           %div 
             %b= t('.jobs')
-      .col-4
+      .col-lg-4
         .card-header.bg-default
           %i.fa.fa-user
           = Client.count
@@ -44,19 +44,19 @@
             %b= t('.clients')
     %p
     .row
-      .col-4
+      .col-lg-4
         .card-header.bg-default
           %i.fa.fa-user-tie
           = Member.count
           %div 
             %b= t('.members')
-      .col-4
+      .col-lg-4
         .card-header.bg-default
           %i.fa.fa-hand-paper
           = Service.count
           %div 
             %b= t('.services')
-      .col-4
+      .col-lg-4
         .card-header.bg-default
           %i.fa.fa-industry
           = Location.count
@@ -64,14 +64,14 @@
             %b= t('.locations')
     %p
     .row
-      .col-4
+      .col-lg-4
         .card-header.bg-default
           %i.fa.fa-user-tie
           = InboundPayment.count
           %div 
             %b= t('.inbound_payments')
-
-  .col-6
+    %p
+  .col-lg-6
     .card
       .card-header
         .fa.fa-rocket

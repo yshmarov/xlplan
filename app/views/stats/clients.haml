@@ -7,6 +7,14 @@
         = line_chart Client.group_by_month(:created_at).count, download: true
 %p
 .row
+  .col-12
+    .card
+      .card-header
+        Clients birthdays
+      .card-body
+        = line_chart Client.group_by_month(:date_of_birth).count, download: true
+%p
+.row
   .col-6
     .card
       .card-header
