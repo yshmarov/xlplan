@@ -62,5 +62,9 @@ Rails.application.routes.draw do
   #get 'charts/monthly_events'
   namespace :charts do
     get "monthly_events"
+    get "finances_client_due_price_per_month"
+    get "members_jobs_per_member_per_month_quantity"
+    get "members_confirmed_client_price_per_month"
+    get "members_confirmed_earnings_per_month"
   end
 end

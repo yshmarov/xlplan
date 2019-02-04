@@ -54,19 +54,19 @@
       .card-header
         Confirmed Jobs per member per month, quantity
       .card-body
-        = line_chart @members.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').count} }, download: true
+        = line_chart charts_members_jobs_per_member_per_month_quantity_path
     %p
   .col-12
     .card
       .card-header
-        Confirmed Payments per month
+        Confirmed Client price per month
       .card-body
-        = line_chart @members.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('client_due_price / 100')}}, download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+        = line_chart charts_members_confirmed_client_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
     %p
   .col-12
     .card
       .card-header
-        Confirmed Earnings per month
+        Confirmed Member Earnings per month
       .card-body
-        = line_chart @members.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price / 100')}}, download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+        = line_chart charts_members_confirmed_earnings_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
 %p
