@@ -24,6 +24,10 @@ class MemberPolicy < ApplicationPolicy
   def update?
     admin_or_manager_or_owner
   end
+  
+  def show_money?
+    admin_or_owner
+  end
 
   def destroy?
     #admin
@@ -36,6 +40,10 @@ class MemberPolicy < ApplicationPolicy
 
   def admin_or_manager_or_owner
     @user.has_role?(:admin) || @user.has_role?(:manager) || @record.id == @user.member.id
+  end
+
+  def admin_or_owner
+    @user.has_role?(:admin) || @record.id == @user.member.id
   end
 
   def anybody

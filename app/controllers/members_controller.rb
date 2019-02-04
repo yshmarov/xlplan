@@ -9,8 +9,8 @@ class MembersController < ApplicationController
 
   def show
     authorize @member
-    @jobs = @member.jobs
-    #@events = @member.events
+    #@jobs = @member.jobs
+    @events = @member.events.planned.order("starts_at DESC")
   end
   
   def edit

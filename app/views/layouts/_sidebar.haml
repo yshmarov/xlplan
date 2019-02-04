@@ -87,7 +87,7 @@
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa-color-1.fa-fw.fa.fa-user
-          = current_user.member.full_name
+          = current_user.member.short_name
         .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
           = link_to t('sidebar.my_page'), member_path(current_user.member), class: "dropdown-item navdrop-link"
           = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item navdrop-link"

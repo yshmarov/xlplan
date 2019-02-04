@@ -8,6 +8,10 @@ module Personable
     last_name.capitalize + " " + first_name.capitalize
   end
 
+  def short_name
+    last_name.capitalize + "." + first_name[0]
+  end
+
   def username
     self.email.split(/@/).first
   end

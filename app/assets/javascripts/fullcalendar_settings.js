@@ -9,6 +9,7 @@ function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
     resources: app.vars.resources,
+    height: "auto",
     events: app.vars.events,
     themeSystem: 'bootstrap4',
     header: {
