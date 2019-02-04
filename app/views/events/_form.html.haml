@@ -15,18 +15,18 @@
     = f.error :location, class: 'text-danger'
     = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
 
-    .table-responsive
-      %table.table.table-responsive-xl.table-sm
-        %thead.bg-light
-          %tr
-            %th= t('service')
-            %th= t('member')
-            %th
-        %tbody.jobs
-          = f.simple_fields_for :jobs do |f|
-            = render 'job_fields', f: f
-      .links
-        = link_to_add_association "+ Add Service", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
+    /.table-responsive
+    %table.table.table-responsive-xl.table-sm
+      %thead.bg-light
+        %tr
+          %th= t('service')
+          %th= t('member')
+          %th
+      %tbody.jobs
+        = f.simple_fields_for :jobs do |f|
+          = render 'job_fields', f: f
+    .links
+      = link_to_add_association "+ Add Service", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
     %p
     = f.input :notes
 
