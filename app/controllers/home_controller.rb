@@ -15,7 +15,7 @@ class HomeController < ApplicationController
   end
 
   def calendar
-    @jobs = Job.includes(:event).includes(:service)
+    @jobs = Job.includes(:event, :service, :event => :client)
     @members = Member.all
     #@events = Event.all
   end

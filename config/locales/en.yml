@@ -216,6 +216,7 @@ en:
         balance: "Balance"
         location_id: "Location"
         events_count: "Events count"
+        inbound_payments_count: "Payments count"
         comments_count: "Comments count"
         comments: "Comments"
         contacts: "Contacts"

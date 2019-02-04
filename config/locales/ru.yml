@@ -499,6 +499,7 @@ ru:
         balance: "Баланс"
         location_id: "Локация"
         events_count: "Кол. Встреч"
+        inbound_payments_count: "Кол. Оплат"
         comments_count: "Кол. Комментариев"
         comments: "Комментарии"
         contacts: "Контакты"

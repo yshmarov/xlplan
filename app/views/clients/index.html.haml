@@ -26,7 +26,7 @@
         /%th= sort_link @ransack_clients, :status, "Status"
         %th= sort_link @ransack_clients, :balance, :balance
         %th= sort_link @ransack_clients, :events_count, :events_count
-        %th Payment count
+        %th= sort_link @ransack_clients, :inbound_payments_count, :inbound_payments_count
         %th
         %th
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
