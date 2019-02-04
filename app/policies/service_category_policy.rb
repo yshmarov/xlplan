@@ -5,10 +5,6 @@ class ServiceCategoryPolicy < ApplicationPolicy
     end
   end
 
-
-
-
-
   def create?
     any_member
   end

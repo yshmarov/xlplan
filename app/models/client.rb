@@ -12,6 +12,7 @@ class Client < ApplicationRecord
 
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
+  has_many :services, through: :jobs
   has_many :comments, as: :commentable
   has_many :inbound_payments, dependent: :restrict_with_error
 
