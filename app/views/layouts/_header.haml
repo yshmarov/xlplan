@@ -1,5 +1,5 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
-  %a.navbar-brand{:href => "/"}
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-warning
+  %a.text-dark.navbar-brand{:href => "/"}
     /= image_tag "MrJobber.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "avatar"
     .fa.fa-calendar-check
     MrJobber
@@ -7,7 +7,7 @@
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
     .btn-group
-      %a.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      %a.btn.btn-warning.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
         = I18n.locale.upcase
         %span.caret
       %ul.dropdown-menu
@@ -18,12 +18,12 @@
         /- if I18n.locale != :pl
         /  %li.nav-item= link_to 'Polski', root_path(locale: 'pl'), class: "nav-link"
     %ul.navbar-nav.mr-auto
-      %li.nav-item= link_to "Features", root_path, class: "nav-link"
-      %li.nav-item= link_to "Industries", root_path, class: "nav-link"
-      %li.nav-item= link_to "Pricing", root_path, class: "nav-link"
-      %li.nav-item= link_to "Why MrJobber?", root_path, class: "nav-link"
+      %li.nav-item= link_to "Features", root_path, class: "nav-link text-dark"
+      %li.nav-item= link_to "Industries", root_path, class: "nav-link text-dark"
+      %li.nav-item= link_to "Pricing", root_path, class: "nav-link text-dark"
+      %li.nav-item= link_to "Why MrJobber?", root_path, class: "nav-link text-dark"
     %ul.nav.navbar-nav.navbar-right
-      %a.btn.btn-primary.mr-sm-2{:href => "tel:+48-537-628-023"}
+      %a.btn.btn-warning.mr-sm-2{:href => "tel:+48-537-628-023"}
         = succeed "+48-537-628-023" do
           %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
       .form-inline

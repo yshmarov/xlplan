@@ -43,7 +43,7 @@
           /%h3 Attendance sales & management system
       .text-center
         %p
-        = link_to t('.try_for_free'), new_user_registration_path(plan: 'basic'), class: 'btn btn-lg btn-primary'
+        = link_to t('.try_for_free'), new_user_registration_path(plan: 'basic'), class: 'btn btn-lg btn-warning'
         %p
     .col
       .embed-responsive.embed-responsive-16by9
@@ -51,7 +51,8 @@
   %p
   %hr
   %p
-  = image_tag ("https://media.giphy.com/media/yMEow45RqC8HrOmmsD/giphy.gif")
+  /= image_tag "https://media.giphy.com/media/yMEow45RqC8HrOmmsD/giphy.gif", style: 'height:600px;width:100%;'
+  = image_tag "https://media.giphy.com/media/yMEow45RqC8HrOmmsD/giphy.gif", style: 'height:auto;width:100%;'
   %p
   %hr
   %p
@@ -61,39 +62,39 @@
   .container.mb-5.mt-5
     .pricing.card-deck.flex-column.flex-md-row.mb-3
       .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Basic
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm Basic
         .bg-transparent.card-header.pt-4.border-0
-          %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "25"}
+          %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "25"}
             $
             %span.price 25
             %span.h6.text-muted.ml-2 / month
         .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'basic'), class: 'btn btn-lg btn-primary'
+          = link_to 'Try for free', new_user_registration_path(plan: 'basic'), class: 'btn btn-lg btn-warning'
           %ul.list-unstyled.mb-4
             %li 1-4 Employees
             %li 1 Business Location
       .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Professional
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm Professional
         .bg-transparent.card-header.pt-4.border-0
-          %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "65"}
+          %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "65"}
             $
             %span.price 45
             %span.h6.text-muted.ml-2 / month
         .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'professional'), class: 'btn btn-lg btn-primary'
+          = link_to 'Try for free', new_user_registration_path(plan: 'professional'), class: 'btn btn-lg btn-warning'
           %ul.list-unstyled.mb-4
             %li Unlimited Employees
             %li Unlimited Business Locations
             %li Online booking
       .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-primary.text-white.shadow-sm Unlimited
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm Unlimited
         .bg-transparent.card-header.pt-4.border-0
-          %h1.h1.font-weight-normal.text-primary.text-center.mb-0{"data-pricing-value" => "500"}
+          %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "500"}
             $
             %span.price 699
             %span.h6.text-muted.ml-2 / forever
         .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'enterprise'), class: 'btn btn-lg btn-primary'
+          = link_to 'Try for free', new_user_registration_path(plan: 'enterprise'), class: 'btn btn-lg btn-warning'
           %ul.list-unstyled.mb-4
             %li Unlimited Employees
             %li Unlimited Business Locations
@@ -352,6 +353,10 @@
             13 Konstruktorska str. 02-651, Warsaw, Poland
             %p
             = mail_to 'hello@mrjobber.herokuapp.com'
+            %p
+            %a{:href => "tel:+48-537-628-023"}
+              = succeed "+48-537-628-023" do
+                %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
             %hr.bg-light
             / Social buttons
             %li.list-inline-item
