@@ -1,7 +1,9 @@
 PublicActivity.enabled = false
 Tenant.set_current_tenant(1)
 User.create!(email: 'admin@example.com', password: 'foobar', password_confirmation: 'foobar')
-Member.create!(first_name: "Yuliia", last_name: "Zahoruiko", user_id: 2)
+Member.create!(first_name: "Albert", last_name: "Einstein", user_id: 2)
+User.create!(email: 'admin2@example.com', password: 'foobar', password_confirmation: 'foobar')
+Member.create!(first_name: "Nicola", last_name: "Tesla", user_id: 3)
 
 30.times do
   Client.create!([{

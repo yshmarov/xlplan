@@ -8,9 +8,12 @@ var TimeNow  = moment().format("HH") + ":00:00";
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
     schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-    resources: app.vars.resources,
+    // 100% height
     height: "auto",
+    // render data
+    resources: app.vars.resources,
     events: app.vars.events,
+    // design
     themeSystem: 'bootstrap4',
     header: {
         right: 'prev,next, today',

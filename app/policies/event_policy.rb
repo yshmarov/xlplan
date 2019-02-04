@@ -30,8 +30,12 @@ class EventPolicy < ApplicationPolicy
   def destroy?
     #admin
     #@record.planned? && admin
-    @record.planned? && admin_or_manager_or_owner
+    @record.planned? && admin_or_manager
     #admin_or_manager_or_owner
+  end
+
+  def admin_or_manager
+    @user.has_role?(:admin) || @user.has_role?(:manager)
   end
 
   def admin
@@ -39,7 +43,8 @@ class EventPolicy < ApplicationPolicy
   end
 
   def admin_or_manager_or_owner
-    @user.has_role?(:admin) || @user.has_role?(:manager) || @record.member_id == @user.member.id
+    #@user.has_role?(:admin) || @user.has_role?(:manager) || @record.includes(:jobs).where(jobs: {member_id: @user.member.id})
+    #@user.has_role?(:admin) || @user.has_role?(:manager) || @record.member_id == @user.member.id
   end
 
   def any_member
