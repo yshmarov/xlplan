@@ -16,9 +16,9 @@ function eventCalendar() {
     // design
     themeSystem: 'bootstrap4',
     header: {
-        right: 'prev,next, today',
-        left: 'title',
-        center: 'agendaDay,agendaWeek,month,timelineDay'
+        left: 'prev,next, today',
+        center: 'title',
+        right: 'agendaDay,agendaWeek,month,timelineDay'
     },
     titleFormat: 'D/MMM/YY',
     eventBackgroundColor: 'purple',
