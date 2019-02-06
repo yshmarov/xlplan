@@ -33,7 +33,7 @@
         %th= model_class.human_attribute_name(:repeat_reminder)
         %th= model_class.human_attribute_name(:jobs_count)
         %th
-        %th
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @services.each do |service|
         %tr
@@ -50,8 +50,9 @@
           %td= status_label(service.status)
           %td= service.repeat_reminder
           %td= service.jobs_count
-          %td= link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
-          %td= link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
+          %td
+            = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
+            = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
 .container
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

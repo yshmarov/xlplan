@@ -9,8 +9,7 @@
         %th Payment method
         %th Created at
         %th
-        %th
-  
+          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @inbound_payments.each do |inbound_payment|
         %tr
@@ -22,6 +21,7 @@
           %td= inbound_payment.payment_method
           %td
             #{l(inbound_payment.created_at, format: "%A")} #{l(inbound_payment.created_at, format: "%d/%b/%Y %H:%M")}
-          %td= link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
-          %td= link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
+          %td
+            = link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
+            = link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
 %br

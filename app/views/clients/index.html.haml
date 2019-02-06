@@ -28,7 +28,6 @@
         %th= sort_link @ransack_clients, :events_count, :events_count
         %th= sort_link @ransack_clients, :inbound_payments_count, :inbound_payments_count
         %th
-        %th
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @clients.each do |client|
@@ -44,8 +43,12 @@
           %td= number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= client.events_count
           %td= client.inbound_payments_count
-          %td= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
-          %td= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
+          %td.text-center
+            %a= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
+            %a= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
+
+
+
 .container
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

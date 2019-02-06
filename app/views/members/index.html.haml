@@ -37,7 +37,6 @@
         %th= model_class.human_attribute_name(:status)
         %th= model_class.human_attribute_name(:roles)
         %th
-        %th
           .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
   
     %tbody
@@ -89,8 +88,9 @@
               = member.user.roles.collect{|r| r.name}.to_sentence
             - if current_user.has_role?(:admin) && member.user.present?
               = link_to 'Edit roles', edit_user_path(member.user), class: 'btn btn-warning btn-sm'
-          %td= link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
-          %td= link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
+          %td
+            = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
+            = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
 
 .container
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

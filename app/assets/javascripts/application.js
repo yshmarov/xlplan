@@ -71,7 +71,7 @@ $(document).on('turbolinks:load', function(){
           callback({value: response.id, text: response.name });
         })
     }
-    });
+  });
 
     $(function () {
       $('#datetimepicker').datetimepicker({
