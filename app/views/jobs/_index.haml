@@ -16,7 +16,7 @@
           %td= link_to job.member, member_path(job.member)
           %td
             = number_to_currency(job.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            (#{number_to_currency(job.client_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")})
+            /(#{number_to_currency(job.client_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")})
           %td
             = number_to_currency(job.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            (#{number_to_currency(job.member_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")})
+            /(#{number_to_currency(job.member_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")})

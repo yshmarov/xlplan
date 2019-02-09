@@ -422,6 +422,7 @@ ru:
         ends_at: "Конец"
         client_price: "Итоговая Цена Клиента"
         client_price_cents: "Итоговая Цена Клиента"
+        client_price_to_pay: "Итого к оплате"
         status: "Статус"
         status_color: "Цвет"
         notes: "Заметки"

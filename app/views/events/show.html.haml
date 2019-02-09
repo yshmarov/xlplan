@@ -35,12 +35,17 @@
         %br
         %b= model_class.human_attribute_name(:location_id) + ':'
         = link_to @event.location, location_path(@event.location)
-        %hr
-        %b= model_class.human_attribute_name(:services) + ':'
+        /%br
         %p
+        /%hr
+        /%b= model_class.human_attribute_name(:services) + ':'
+        /%p
         = render 'jobs/index'
         %b= model_class.human_attribute_name(:client_price_cents) + ':'
         = @event.client_price_cents
+        %br
+        %b= model_class.human_attribute_name(:client_price_to_pay) + ':'
+        = @event.client_price_to_pay_cents
         %hr
         %b= model_class.human_attribute_name(:notes) + ':'
         = @event.notes

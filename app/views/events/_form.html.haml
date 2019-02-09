@@ -7,11 +7,11 @@
     /= f.input :starts_at, :minute_step => 15, start_year: Date.today.year
     = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M'))
 
-    = f.label :client_id
+    = f.label :client
     = f.error :client, class: 'text-danger'
     = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
 
-    = f.label :location_id
+    = f.label :location
     = f.error :location, class: 'text-danger'
     = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
 

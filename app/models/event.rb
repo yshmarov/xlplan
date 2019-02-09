@@ -53,20 +53,19 @@ class Event < ApplicationRecord
   after_save :touch_associations
 
   monetize :client_price, as: :client_price_cents
-
+  monetize :client_price_to_pay, as: :client_price_to_pay_cents
   ############GEM VALIDATES_TIMELINESS############
-  #validates_time :starts_at, :between => ['9:00am', '5:00pm'] # On or after 9:00AM and on or before 5:00PM
   #validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
   #validates_date :starts_at, :on_or_after => lambda { Date.current }
   #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
-  ############GEM VALIDATES_OVERLAP############
-  #cancelled Jobs should not be taken in account
-  #validates :starts_at, :ends_at, :overlap => {:query_options => {:is_cancelled => nil}}
-  #validates :starts_at, :ends_at, overlap: {:scope => "client_id", :exclude_edges => ["starts_at", "ends_at"], :load_overlapped => true}
 
-  #def overlapped_records
-  #  @overlapped_records || []
-  #end
+  def client_price_to_pay
+    if confirmed?
+      client_price
+    else
+      0
+    end
+  end
 
   def update_client_price
     update_column :client_price, (jobs.map(&:client_price).sum)
@@ -96,7 +95,7 @@ class Event < ApplicationRecord
     if jobs.any?
       update_column :duration, (jobs.map(&:service_duration).sum)
       update_column :ends_at, (starts_at + duration*60)
-      update_column :client_price, (jobs.map(&:client_due_price).sum)
+      update_column :client_price, (jobs.map(&:client_price).sum)
       ######if I try as <unless new record>
       jobs.each do |job| job.update_due_prices end
       #job.update_due_prices
