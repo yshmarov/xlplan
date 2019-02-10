@@ -24,9 +24,4 @@ class UserPolicy < ApplicationPolicy
   def destroy?
     admin
   end
-
-  def admin
-    @user.has_role?(:admin)
-  end
-
 end

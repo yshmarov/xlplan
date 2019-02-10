@@ -24,17 +24,4 @@ class ServiceCategoryPolicy < ApplicationPolicy
   def destroy?
     admin
   end
-
-  def admin
-    @user.has_role?(:admin)
-  end
-
-  def admin_or_manager
-    @user.has_role?(:admin) || @user.has_role?(:manager)
-  end
-
-  def any_member
-    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
-  end
-
 end

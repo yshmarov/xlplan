@@ -14,6 +14,23 @@ class ApplicationPolicy
       @scope = scope
     end
   end
+
+  def admin_or_manager
+    @user.has_role?(:admin) || @user.has_role?(:manager)
+  end
+
+  def admin
+    @user.has_role?(:admin)
+  end
+
+  def any_member
+    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
+  end
+
+  def superadmin
+    @user.has_role?(:superadmin)
+  end
+
  #  attr_reader :user, :record
  #
  #  def initialize(user, record)

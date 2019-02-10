@@ -36,8 +36,4 @@ class JobPolicy < ApplicationPolicy
   def admin_or_manager_or_owner
     @user.has_role?(:admin) || @user.has_role?(:manager) || @record.member_id == @user.member.id
   end
-
-  def any_member
-    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
-  end
 end

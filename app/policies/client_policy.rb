@@ -6,35 +6,26 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def show?
-    any_employee
+    any_member
   end
 
   def new?
-    any_employee
+    any_member
   end
 
   def create?
-    any_employee
+    any_member
   end
 
   def edit?
-    any_employee
+    any_member
   end
 
   def update?
-    any_employee
+    any_member
   end
 
   def destroy?
     @record.events.none? && admin_or_manager
   end
-
-  def admin_or_manager
-    @user.has_role?(:admin) || @user.has_role?(:manager)
-  end
-
-  def any_employee
-    @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
-  end
-
 end

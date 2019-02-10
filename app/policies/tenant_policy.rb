@@ -10,9 +10,4 @@ class TenantPolicy < ApplicationPolicy
   def update?
     admin
   end
-
-  def admin
-    @user.has_role?(:admin)
-  end
-
 end

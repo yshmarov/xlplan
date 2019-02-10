@@ -6,7 +6,7 @@ class MemberPolicy < ApplicationPolicy
   end
 
   def show?
-    anybody
+    any_member
   end
 
   def create?
@@ -30,12 +30,7 @@ class MemberPolicy < ApplicationPolicy
   end
 
   def destroy?
-    #admin
     @record.jobs.none? && admin
-  end
-
-  def admin
-    @user.has_role?(:admin)
   end
 
   def admin_or_manager_or_owner
@@ -45,9 +40,4 @@ class MemberPolicy < ApplicationPolicy
   def admin_or_owner
     @user.has_role?(:admin) || @record.id == @user.member.id
   end
-
-  def anybody
-    @user
-  end
-
 end
