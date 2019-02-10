@@ -3,7 +3,7 @@
   %table#table1
     %thead
       %tr
-        %th
+        %th{:colspan => "3"}
         %th= model_class.human_attribute_name(:client_id)
         %th= model_class.human_attribute_name(:location_id)
         %th= model_class.human_attribute_name(:time)
@@ -13,6 +13,8 @@
       - @events.each do |event|
         %tr
           %td= link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
+          %td= link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
+          %td= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
           %td= link_to event.client, client_path(event.client)
           %td= link_to event.location, location_path(event.location)
           %td

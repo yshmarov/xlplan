@@ -18,12 +18,12 @@ class EventPolicy < ApplicationPolicy
   end
 
   def edit?
-    @record.planned? && admin_or_manager_or_owner
+    @record.planned? && admin_or_manager
     #unless self.is_planned && ends_at > Time.zone.now + 24.hours
   end
 
   def update?
-    @record.planned? && admin_or_manager_or_owner
+    @record.planned? && admin_or_manager
     #user.admin? or not post.published?
   end
 

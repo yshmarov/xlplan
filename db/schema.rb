@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
     t.string "phone_number"
     t.string "email"
     t.date "date_of_birth"
-    t.string "gender", default: "undisclosed"
+    t.string "gender", default: "Undisclosed"
     t.text "address"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false

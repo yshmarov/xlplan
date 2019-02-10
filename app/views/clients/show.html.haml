@@ -71,7 +71,12 @@
         = render 'inbound_payments/index'
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
         .card
-          Activity
-          = column_chart @client.events.group_by_month(:starts_at).count
-          %hr
-          = pie_chart @client.events.group(:status).count
+          .card-body
+            .text-center Events
+            = column_chart @client.events.group_by_month(:starts_at).count
+            %hr
+            .text-center Payments
+            = column_chart @client.inbound_payments.group_by_month(:created_at).sum('amount/100'), prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+            %hr
+            .text-center Status
+            = pie_chart @client.events.group(:status).count
