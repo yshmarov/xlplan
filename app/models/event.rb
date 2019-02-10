@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   acts_as_tenant
+  resourcify
 
   belongs_to :tenant
   belongs_to :client, touch: true, counter_cache: true

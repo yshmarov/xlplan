@@ -18,20 +18,15 @@ class EventPolicy < ApplicationPolicy
   end
 
   def edit?
-    @record.planned? && admin_or_manager
-    #unless self.is_planned && ends_at > Time.zone.now + 24.hours
+    @record.planned? && admin_or_manager || @record.planned? && @user.has_role?(:owner, @record)
   end
 
   def update?
-    @record.planned? && admin_or_manager
-    #user.admin? or not post.published?
+    @record.planned? && admin_or_manager || @record.planned? && @user.has_role?(:owner, @record)
   end
 
   def destroy?
-    #admin
-    #@record.planned? && admin
-    @record.planned? && admin_or_manager
-    #admin_or_manager_or_owner
+    @record.planned? && admin_or_manager || @record.planned? && @user.has_role?(:owner, @record)
   end
 
   def admin_or_manager
@@ -40,12 +35,6 @@ class EventPolicy < ApplicationPolicy
 
   def admin
     @user.has_role?(:admin)
-  end
-
-  def admin_or_manager_or_owner
-    #@user.has_role?(:admin) || @user.has_role?(:manager) || @record.includes(:jobs).where(jobs: {member_id: @user.member.id})
-    #@user.has_role?(:admin) || @user.has_role?(:manager) || @record.member_id == @user.member.id
-    @user.has_role?(:admin) || @user.has_role?(:manager)
   end
 
   def any_member
