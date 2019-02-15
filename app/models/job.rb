@@ -12,7 +12,9 @@ class Job < ApplicationRecord
   after_update :update_service_details do event.update_client_price end
 
   after_create :add_user_ownership
+  after_update :add_user_ownership
   #after_destroy :destroy_user_ownership
+  #remove_role 
   def add_user_ownership
     if self.member.user.present?
       user = member.user
@@ -20,6 +22,7 @@ class Job < ApplicationRecord
       user.add_role(:owner, self.event) unless user.has_role?(:owner, self.event)
     end
   end
+
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

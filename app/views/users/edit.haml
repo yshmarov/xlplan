@@ -2,7 +2,7 @@
   Editing roles for: #{@user.email}
 .card-header
   = simple_form_for @user do |f|
-    = f.collection_check_boxes :role_ids, Role.all, :id, :name
+    = f.collection_check_boxes :role_ids, Role.where("name = 'admin' OR name = 'specialist'").all, :id, :name
     = f.error :roles, class: 'text-danger'
     /- Role.all.each do |role|
     /  = check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id)

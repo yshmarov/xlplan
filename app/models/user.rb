@@ -36,9 +36,11 @@ class User < ApplicationRecord
   end
 
   def assign_default_role
-    if self.roles.blank?
+    unless self.has_role?(:specialist)
       self.add_role(:specialist)
     end
+    #if self.roles.blank?
+    #  self.add_role(:specialist)
+    #end
   end
-
 end

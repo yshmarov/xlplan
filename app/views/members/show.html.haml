@@ -68,7 +68,12 @@
             - if @member.user.present?
               %br
               %b= model_class.human_attribute_name(:roles) + ':'
-              = @member.user.roles.collect{|r| r.name}.to_sentence
+              = @member.user.roles.where("name = 'admin' OR name = 'specialist'").collect{|r| r.name}.to_sentence
+              /- if @member.user.present?
+              /  - if @member.user.has_role?(:admin)
+              /    admin
+              /  - if @member.user.has_role?(:specialist)
+              /    specialist
             - if current_user.has_role?(:admin) && @member.user.present?
               %br
               = link_to 'Edit roles', edit_user_path(@member.user), class: 'btn btn-warning btn-sm'

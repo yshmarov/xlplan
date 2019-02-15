@@ -10,7 +10,7 @@ module Personable
   end
 
   def short_name
-    last_name.capitalize + "." + first_name[0]
+    last_name.capitalize + "." + first_name[0].capitalize
   end
 
   def username
