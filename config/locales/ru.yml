@@ -505,9 +505,11 @@ ru:
         comments: "Комментарии"
         contacts: "Контакты"
       inbound_payment:
+        id: "Код"
         client: "Клиент"
         client_id: "Клиент"
         amount: "Сумма"
         amount_cents: "Сумма"
         payment_method: "Способ Оплаты"
+        created_at: "Дата Создания"
         

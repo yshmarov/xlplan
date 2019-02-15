@@ -222,8 +222,10 @@ en:
         comments: "Comments"
         contacts: "Contacts"
       inbound_payment:
+        id: "ID"
         client: "Client"
         client_id: "Client"
         amount: "Amount"
         amount_cents: "Amount"
         payment_method: "Payment Method"
+        created_at: "Created"

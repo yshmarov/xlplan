@@ -2,7 +2,9 @@ class InboundPaymentsController < ApplicationController
   before_action :set_inbound_payment, only: [:show, :edit, :update, :destroy]
 
   def index
-    @inbound_payments = InboundPayment.all.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    #@inbound_payments = InboundPayment.all.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @q = InboundPayment.ransack(params[:q])
+    @inbound_payments = @q.result.includes(:client).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
   end
 
   def show

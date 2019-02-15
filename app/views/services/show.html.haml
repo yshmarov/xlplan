@@ -35,6 +35,6 @@
         %br
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@service.status)
-%p
-= link_to t('.back', :default => t("helpers.links.back")), services_path, :class => 'btn btn-secondary'
+    %p
+    = link_to t('.back', :default => t("helpers.links.back")), services_path, :class => 'btn btn-secondary'
 
