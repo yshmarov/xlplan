@@ -284,6 +284,9 @@ ru:
 
   cancel: 'Отменить'
 
+  events_index: "Все Встречи"
+  events_close: "Закрыть Встречи"
+
   sidebar:
     search_client: 'Поиск Клиента'
     new_event: 'Новая Встреча'

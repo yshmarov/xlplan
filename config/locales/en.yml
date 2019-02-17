@@ -53,6 +53,9 @@ en:
 
   cancel: 'Cancel'
 
+  events_index: "All Events"
+  events_close: "Close Events"
+
   sidebar:
     search_client: 'Search Client'
     new_event: 'New Event'
