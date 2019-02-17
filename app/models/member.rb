@@ -89,7 +89,7 @@ class Member < ApplicationRecord
 
   validate :free_plan_can_only_have_one_member
   def free_plan_can_only_have_one_member
-    if self.new_record? && (tenant.members.count > 0) && (tenant.plan == 'basic')
+    if self.new_record? && (tenant.members.count > 0) && (tenant.plan == 'bronze')
       errors.add(:base, "Free plans cannot have more than one member")
     end
   end

@@ -1,5 +1,5 @@
 class Plan
-  PLANS = [:basic, :professional, :enterprise]
+  PLANS = [:bronze, :silver, :gold]
   
   def self.options
     PLANS.map { |plan| [plan.capitalize, plan] }

@@ -43,7 +43,7 @@
           /%h3 Attendance sales & management system
       .text-center
         %p
-        = link_to t('.try_for_free'), new_user_registration_path(plan: 'basic'), class: 'btn btn-lg btn-warning'
+        = link_to t('.try_for_free'), new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
         %p
     .col
       .embed-responsive.embed-responsive-16by9
@@ -62,39 +62,39 @@
   .container.mb-5.mt-5
     .pricing.card-deck.flex-column.flex-md-row.mb-3
       .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm Basic
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm bronze
         .bg-transparent.card-header.pt-4.border-0
           %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "25"}
             $
             %span.price 25
             %span.h6.text-muted.ml-2 / month
         .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'basic'), class: 'btn btn-lg btn-warning'
+          = link_to 'Try for free', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
           %ul.list-unstyled.mb-4
             %li 1-4 Employees
             %li 1 Business Location
       .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm Professional
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm silver
         .bg-transparent.card-header.pt-4.border-0
           %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "65"}
             $
             %span.price 45
             %span.h6.text-muted.ml-2 / month
         .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'professional'), class: 'btn btn-lg btn-warning'
+          = link_to 'Try for free', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
           %ul.list-unstyled.mb-4
             %li Unlimited Employees
             %li Unlimited Business Locations
             %li Online booking
       .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm Unlimited
+        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm gold
         .bg-transparent.card-header.pt-4.border-0
           %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "500"}
             $
             %span.price 699
             %span.h6.text-muted.ml-2 / forever
         .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'enterprise'), class: 'btn btn-lg btn-warning'
+          = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
           %ul.list-unstyled.mb-4
             %li Unlimited Employees
             %li Unlimited Business Locations
@@ -123,7 +123,7 @@
         %h2.display-5
           Follow up
         %p.lead
-          Look professional: Book client's calendar, and send them reminders. 
+          Look silver: Book client's calendar, and send them reminders. 
         %p
         %small.text-muted.container
           How many times did Anna visit? Now you know! See your relationships history.
@@ -204,7 +204,7 @@
     .card
       .card-body
         %i.fa.fa-user-tie{:style => "font-size:40px;color:orange"}
-        %h5.card-title Professional services
+        %h5.card-title silver services
         %p.card-text Consulting, Tutors, sports trainers... All your appointments and fees in one place.
   /%p
   /%hr

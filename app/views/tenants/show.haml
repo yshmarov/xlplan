@@ -78,7 +78,7 @@
         = t('.getting_started')
       .card-body
         %h5
-          - if Tenant.current_tenant.plan != 'basic'
+          - if Tenant.current_tenant.plan != 'bronze'
             - unless Member.count >= 2
               %span.badge.badge-pill.badge-danger 0
               = link_to t('.new_member'), new_member_path

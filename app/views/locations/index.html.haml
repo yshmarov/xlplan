@@ -11,6 +11,7 @@
           - if (Tenant.current_tenant.can_create_locations?)
             = link_to t('.new', :default => t("helpers.links.new")), new_location_path, class: 'btn btn-sm btn-primary'
           - else
+            /= link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
             %span.d-inline-block{"data-toggle" => "tooltip", :tabindex => "0", :title => "Unlock Premium Feature"}
               %button.btn.btn-primary{:disabled => "disabled", :style => "pointer-events: none;", :type => "button"}
                 New Location
