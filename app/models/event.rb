@@ -29,7 +29,7 @@ class Event < ApplicationRecord
     end
   end
 
-  scope :checkout, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
+  scope :close, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_planned, -> { where(status: [:planned]) }
   scope :is_confirmed, -> { where(status: [:confirmed]) }

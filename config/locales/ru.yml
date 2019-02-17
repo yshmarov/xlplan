@@ -290,7 +290,7 @@ ru:
     new_client: 'Новый Клиент'
     new_payment: 'Новая Оплата'
     calendar: 'Календарь'
-    checkout_events: 'Отметить Встречи'
+    close_events: 'Закрыть Встречи'
     events: 'Все Встречи'
     clients: 'Клиенты'
     members: 'Сотрудники'

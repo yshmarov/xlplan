@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   resources :locations
 
   resources :events do
-    get :checkout, on: :collection
+    get :close, on: :collection
   	member do
   		patch :mark_planned
   		patch :mark_confirmed

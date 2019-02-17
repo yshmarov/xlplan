@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_client_not_attended, :mark_member_cancelled, :mark_client_cancelled]
 
-  def checkout
-    @q = Event.checkout.ransack(params[:q])
+  def close
+    @q = Event.close.ransack(params[:q])
     @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
     render 'index'
   end

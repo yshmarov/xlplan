@@ -59,7 +59,7 @@ en:
     new_client: 'New Client'
     new_payment: 'New Payment'
     calendar: 'Calendar'
-    checkout_events: 'Checkout Events'
+    close_events: 'Close Events'
     events: 'Events'
     clients: 'Clients'
     members: 'Members'
