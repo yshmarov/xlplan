@@ -3,11 +3,11 @@ Rails.application.configure do
     :email => {
       #:deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
       :email_prefix => "[PREFIX] ",
-      :sender_address => %{"mrjobber error" <yshmarov@gmail.com>},
+      :sender_address => %{"xlplan error" <yshmarov@gmail.com>},
       :exception_recipients => %w{yshmarov@gmail.com}
     }
 
-  config.action_mailer.default_url_options = { :host => 'mrjobber.herokuapp.com', :protocol => 'https' }
+  config.action_mailer.default_url_options = { :host => 'xlplan.herokuapp.com', :protocol => 'https' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 

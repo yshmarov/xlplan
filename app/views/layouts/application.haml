@@ -4,8 +4,8 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title 
-      = content_for?(:title) ? yield(:title) : "MrJobber #{@org_name}"
-    /= favicon_link_tag 'MrJobber.svg'
+      = content_for?(:title) ? yield(:title) : "xlplan #{@org_name}"
+    /= favicon_link_tag 'xlplan.svg'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'

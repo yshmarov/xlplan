@@ -5,7 +5,7 @@ class EventMailer < ApplicationMailer
     @greeting = "Hi"
     @user = user
     #@user = params[:user]
-    @url  = 'http://mrjobber.com/login'
+    @url  = 'http://xlplan.com/login'
     mail(to: @client.email, subject: 'Welcome to My Awesome Site')
   end
 
