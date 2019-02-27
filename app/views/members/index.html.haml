@@ -63,7 +63,7 @@
             - if member.user.present?
               - if member.user.present?
                 Active
-                = link_to 'x account', member.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(member.user).destroy?
+                = link_to 'delete account', member.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(member.user).destroy?
               - else
                 Invite user
             - else

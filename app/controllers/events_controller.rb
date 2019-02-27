@@ -86,6 +86,10 @@ class EventsController < ApplicationController
         @event.create_activity :create, parameters: {status: @event.status}
         format.html { redirect_to @event, notice: t('.success') }
         format.json { render :show, status: :created, location: @event }
+
+        EventMailer.event_created.deliver_now
+        #EventMailer.with(user: @user).welcome_email.deliver_later
+
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }

@@ -40,9 +40,8 @@
       .text-light
         .badge.badge-default
           = @org_name
-        \|
         .badge.badge-default
-          = Tenant.current_tenant.plan
+          = plan_label(Tenant.current_tenant.plan)
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
