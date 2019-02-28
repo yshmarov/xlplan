@@ -1,8 +1,8 @@
 PublicActivity.enabled = false
 
 t = Tenant.first_or_create({
- name: 'Demo Jobber App',
- plan: 'professional',
+ name: 'Demo App',
+ plan: 'gold',
  default_currency: 'uah',
  locale: 'ru'
 })

@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     )
   end
   def prep_org_name()
-    @org_name ||= "MrJobber - CRM for service business"
+    @org_name ||= "xlplan - CRM for service business"
   end
   #i18n
   def set_locale
