@@ -1,5 +1,5 @@
 class EventMailer < ApplicationMailer
-  default from: 'mrjobber@event_mailer.com'
+  default from: 'support@xlplan.com'
  
   def welcome_email(user)
     @greeting = "Hi"
