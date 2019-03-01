@@ -19,4 +19,8 @@ class HomeController < ApplicationController
     @members = Member.active
     #@events = Event.includes(:client, :jobs, :jobs => [:service, :member])
   end
+
+  def my_calendar
+    @jobs = Job.where(member_id: current_user.member.id).includes(:event, :service, :member, :event => :client)
+  end
 end

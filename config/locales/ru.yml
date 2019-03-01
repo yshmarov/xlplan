@@ -292,6 +292,7 @@ ru:
     new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
     new_payment: 'Новая Оплата'
+    my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
     close_events: 'Закрыть Встречи'
     events: 'Все Встречи'

@@ -61,6 +61,7 @@ en:
     new_event: 'New Event'
     new_client: 'New Client'
     new_payment: 'New Payment'
+    my_calendar: 'My Calendar'
     calendar: 'Calendar'
     close_events: 'Close Events'
     events: 'Events'
