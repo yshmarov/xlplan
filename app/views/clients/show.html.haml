@@ -36,6 +36,8 @@
           = @client.address[:city]
           = @client.address[:state]
           = @client.address[:zip]
+        
+        /= link_to @client.address, "https://www.google.com/maps/search/?api=1&query=760+West+Genesee+Street+Syracuse+NY+13204", :target => '_blank'
         %hr
         %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
@@ -72,11 +74,15 @@
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
         .card
           .card-body
-            .text-center Events
+            .text-center Event quantity per month
             = column_chart @client.events.group_by_month(:starts_at).count
             %hr
-            .text-center Payments
+            .text-center Payment sum per month
             = column_chart @client.inbound_payments.group_by_month(:created_at).sum('amount/100'), prefix: "#{Tenant.current_tenant.default_currency.upcase} "
             %hr
-            .text-center Status
+            .text-center Event Statuses
             = pie_chart @client.events.group(:status).count
+            %hr
+            .text-center Favorite Services
+            = pie_chart @client.services.group('name').count
+            /= pie_chart @client.joins(:jobs, :services).group('service.name').count

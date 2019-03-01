@@ -26,6 +26,6 @@ class InboundPaymentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    superadmin
+    admin
   end
 end
