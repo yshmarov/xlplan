@@ -30,9 +30,5 @@
 %p
 .row
   .col-6
-    .card
-      .card-header
-        Upcoming birthdays
-      .card-body
-        - @clients.each do |client|
-          .card.text-center= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
+    - @clients.each do |client|
+      .card= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)

@@ -4,7 +4,7 @@
       .card-header
         (Confirmed) Client due price per month
       .card-body
-        = column_chart charts_finances_client_due_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+        = column_chart charts_finances_client_due_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
 %h3.text-center
   .badge.badge-secondary.btn-block
     Counters

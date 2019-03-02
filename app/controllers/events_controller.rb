@@ -88,6 +88,7 @@ class EventsController < ApplicationController
         format.json { render :show, status: :created, location: @event }
 
         EventMailer.event_created.deliver_now
+        #EventMailer.with(event: @event, member: @user.member).welcome_email.deliver_later
         #EventMailer.with(user: @user).welcome_email.deliver_later
 
       else

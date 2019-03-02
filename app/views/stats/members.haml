@@ -54,19 +54,19 @@
       .card-header
         Confirmed Jobs per member per month, quantity
       .card-body
-        = line_chart charts_members_jobs_per_member_per_month_quantity_path
+        = line_chart charts_members_jobs_per_member_per_month_quantity_path, download: true
     %p
   .col-12
     .card
       .card-header
         Confirmed Client price per month
       .card-body
-        = line_chart charts_members_confirmed_client_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+        = line_chart charts_members_confirmed_client_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
     %p
   .col-12
     .card
       .card-header
         Confirmed Member Earnings per month
       .card-body
-        = line_chart charts_members_confirmed_earnings_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+        = line_chart charts_members_confirmed_earnings_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
 %p
