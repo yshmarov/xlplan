@@ -12,6 +12,7 @@ function eventCalendar() {
     height: "auto",
     // render data
     events: app.vars.events,
+    locale: app.vars.locale,
     // design
     themeSystem: 'bootstrap4',
     header: {
@@ -29,8 +30,6 @@ function eventCalendar() {
     slotMinutes: 30,
     // Clickable week number
     navLinks: true,
-    // Does not work
-    locale: 'I18n.locale',
     // The day that each week begins
     firstDay: 1,
 

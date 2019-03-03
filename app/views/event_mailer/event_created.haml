@@ -6,3 +6,5 @@
     %h1 An event has been created.
     %p Find it at http://xlplan.herokuapp.com/events
     %p Have a great day!
+    %p= link_to 'events path', events_url
+    %p= url_for(host: 'xlplan.herokuapp.com', controller: 'events', action: 'index')

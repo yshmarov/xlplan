@@ -55,32 +55,32 @@ ServiceCategory.create!(name: 'For Children')
 end
 
 ###EVENTS WITH DIFFERENT STATUSES###
-50.times do
+25.times do
   Event.create!([{
-    starts_at: Faker::Time.between(400.days.ago, Date.today, :day),
+    starts_at: Faker::Time.between(150.days.ago, Date.today, :day),
     client_id: Faker::Number.between(1, 30),
     location_id: Faker::Number.between(1, 3),
     status: Faker::Number.between(0, 0)
   }])
 end
-500.times do
+250.times do
   Event.create!([{
-    starts_at: Faker::Time.between(400.days.ago, Date.today, :day),
+    starts_at: Faker::Time.between(150.days.ago, Date.today, :day),
     client_id: Faker::Number.between(1, 30),
     location_id: Faker::Number.between(1, 3),
     status: Faker::Number.between(1, 1)
   }])
 end
-50.times do
+25.times do
   Event.create!([{
-    starts_at: Faker::Time.between(400.days.ago, Date.today, :day),
+    starts_at: Faker::Time.between(150.days.ago, Date.today, :day),
     client_id: Faker::Number.between(1, 30),
     location_id: Faker::Number.between(1, 3),
     status: Faker::Number.between(2, 4)
   }])
 end
 ###END EVENTS###
-1200.times do
+600.times do
   Job.create!([{
     event_id: Faker::Number.between(1, 600),
     service_id: Faker::Number.between(1, 3),
@@ -88,7 +88,7 @@ end
   }])
 end
 
-600.times do
+300.times do
   InboundPayment.create!([{
     client_id: Faker::Number.between(1, 30),
     amount: Faker::Number.between(1000, 90000),
