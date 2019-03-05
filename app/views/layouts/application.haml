@@ -4,7 +4,10 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title 
-      = content_for?(:title) ? yield(:title) : "xlplan #{@org_name}"
+      - if current_user
+        = content_for?(:title) ? yield(:title) : "xlplan | #{Tenant.current_tenant.name}"
+      - else
+        = content_for?(:title) ? yield(:title) : "xlplan | CRM for service business management"
     /= favicon_link_tag 'xlplan.svg'
     = csrf_meta_tags
     = csp_meta_tag

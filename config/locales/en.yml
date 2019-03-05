@@ -46,7 +46,7 @@ en:
 
   home:
     landing_page:
-      hero: "Software for managing employees working calendars, keeping track of clients and billing"
+      hero: "Software for managing employees working calendars, keeping client and payment history"
       try_for_free: ">> Create your first calendar"
     activity:
       ago: 'ago'

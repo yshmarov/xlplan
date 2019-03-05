@@ -9,26 +9,12 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   include PublicActivity::StoreController 
 
-  before_action  :prep_org_name
-  after_action :user_activity
-  before_action :set_global_search_variable
   before_action :set_locale
+  before_action :set_global_search_variable
+  after_action :user_activity
 
   private
-  #navbar search
-  def set_global_search_variable
-    @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
-  end
-  #milia
-  def callback_authenticate_tenant
-    @org_name = ( Tenant.current_tenant.nil?  ?
-      "MrJobber"   :
-      Tenant.current_tenant.name 
-    )
-  end
-  def prep_org_name()
-    @org_name ||= "xlplan - CRM for service business"
-  end
+
   #i18n
   def set_locale
     if current_user
@@ -44,6 +30,10 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = "You are not authorized to access this page."
     redirect_to(request.referrer || root_path)
+  end
+  #navbar search
+  def set_global_search_variable
+    @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
   end
   #online?
   def user_activity

@@ -15,7 +15,7 @@ class Location < ApplicationRecord
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
 
-  validates_uniqueness_of :name, :scope => :tenant_id
+  validates_uniqueness_of :name, scope: :tenant_id
   validates :name, :balance, :status, presence: true
 
   enum status: { inactive: 0, active: 1 }

@@ -11,7 +11,8 @@ class Service < ApplicationRecord
   has_many :jobs, dependent: :restrict_with_error
   has_many :events, through: :jobs
 
-  validates :name, uniqueness: true
+  #validates :name, uniqueness: true 
+  validates_uniqueness_of :name, scope: :tenant_id
   validates :name, length: { in: 1..144 }
   validates :description, length: { in: 0..144 }
   #repeat_reminder

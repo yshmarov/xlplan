@@ -33,6 +33,7 @@
   %a.navbar-brand{:href => "/"}
     %i.fa.fa-calendar-check
     xlplan
+    /XLPLAN
     /zubCRM
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
@@ -40,7 +41,8 @@
     %ul.navbar-nav
       .text-light
         .badge.badge-default
-          = @org_name
+          /= @org_name
+          = Tenant.current_tenant.name 
         .badge.badge-default
           = plan_label(Tenant.current_tenant.plan)
     %ul.navbar-nav.ml-md-auto.d-md-flex
