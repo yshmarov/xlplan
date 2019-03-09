@@ -82,7 +82,7 @@ end
 ###END EVENTS###
 600.times do
   Job.create!([{
-    event_id: Faker::Number.between(1, 600),
+    event_id: Faker::Number.between(1, 300),
     service_id: Faker::Number.between(1, 3),
     member_id: Faker::Number.between(1, 2),
   }])

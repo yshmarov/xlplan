@@ -7,13 +7,13 @@
       - if current_user
         = content_for?(:title) ? yield(:title) : "xlplan | #{Tenant.current_tenant.name}"
       - else
-        = content_for?(:title) ? yield(:title) : "xlplan | CRM for service business management"
+        = content_for?(:title) ? yield(:title) : "xlplan | CRM for service business"
     /= favicon_link_tag 'xlplan.svg'
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  %body.bg-light
+  %body
     - if current_user
       #wrapper
         = render 'layouts/sidebar'

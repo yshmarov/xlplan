@@ -51,7 +51,6 @@ Rails.application.routes.draw do
   resources :inbound_payments
 
   get 'calendar', to: 'home#calendar'
-  get 'my_calendar', to: 'home#my_calendar'
   get 'activity', to: 'home#activity'
   #get 'start', to: 'home#start'
 

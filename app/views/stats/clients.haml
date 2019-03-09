@@ -30,5 +30,9 @@
 %p
 .row
   .col-6
-    - @clients.each do |client|
-      .card= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
+    .card
+      .card-header
+        Next 5 client birthdays
+      .card-body
+        - @clients.each do |client|
+          %p= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)

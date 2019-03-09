@@ -59,8 +59,8 @@ function eventCalendar() {
 };
 
 function clearCalendar() {
-  $('#calendar').fullCalendar('delete'); 
-  $('#calendar').html('');
+  $('#event_calendar').fullCalendar('delete'); 
+  $('#event_calendar').html('');
 };
 
 $(document).on('turbolinks:load', eventCalendar);

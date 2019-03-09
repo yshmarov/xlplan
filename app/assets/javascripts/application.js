@@ -35,7 +35,6 @@
 //= require chartkick
 
 //= require fullcalendar_settings
-//= require myfullcalendar_settings
 //= require scheduler
 
 $(document).on('turbolinks:load', function(){
