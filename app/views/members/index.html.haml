@@ -99,3 +99,9 @@
 .container
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
+
+
+
+/= Tenant.current_tenant.users.count
+/- Tenant.current_tenant.users.each do |user| 
+/  %p= user.email

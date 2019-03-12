@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  get 'home/landing_page'
-  root to: 'home#landing_page'
+  get 'static_pages/landing_page'
+  root to: 'static_pages#landing_page'
+  get 'features', to: 'static_pages#features'
+  get 'pricing', to: 'static_pages#pricing'
 
   # *MUST* come *BEFORE* devise's definitions (below)
   as :user do   
@@ -50,9 +52,9 @@ Rails.application.routes.draw do
 
   resources :inbound_payments
 
-  get 'calendar', to: 'home#calendar'
-  get 'activity', to: 'home#activity'
-  #get 'start', to: 'home#start'
+  get 'calendar', to: 'dashboard#calendar'
+  get 'activity', to: 'dashboard#activity'
+  #get 'start', to: 'dashboard#start'
 
   get 'stats/finances'
   get 'stats/clients'

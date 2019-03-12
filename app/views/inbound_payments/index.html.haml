@@ -49,7 +49,7 @@
           %td= number_to_currency(inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= inbound_payment.payment_method
           %td
-            #{l(inbound_payment.created_at, format: "%A")} #{l(inbound_payment.created_at, format: "%d/%b/%Y %H:%M")}
+            #{l(inbound_payment.created_at, format: "%a")} #{l(inbound_payment.created_at, format: "%d/%b/%Y %H:%M")}
           %td
             = link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
             = link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?

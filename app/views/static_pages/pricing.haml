@@ -1,0 +1,61 @@
+/%head
+/  %meta{:content => "xlplan pricing", :name => "description"}/
+.text-center
+  .display-4
+    Pricing and editions
+  The first step to success starts with a great sales solution. Find the right fit for you.
+  Find out what xlplan can do for you
+  Free 14-day trial, no credit card required. Try our software and see for yourself!
+.container.mb-5.mt-5
+  .pricing.card-deck.flex-column.flex-md-row.mb-3
+    .card.card-pricing.text-center.px-3.mb-4
+      %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm bronze
+      .bg-transparent.card-header.pt-4.border-0
+        %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "25"}
+          $
+          %span.price 9
+          %span.h6.text-muted.ml-2 / month
+      .card-body.pt-0
+        = link_to 'Try for free', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
+        %ul.list-unstyled.mb-4
+          %li 1 Employee
+          %li Free implementation
+          %li Free support
+    .card.card-pricing.text-center.px-3.mb-4
+      %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm silver
+      .bg-transparent.card-header.pt-4.border-0
+        %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "65"}
+          $
+          %span.price 19
+          %span.h6.text-muted.ml-2 / month
+      .card-body.pt-0
+        = link_to 'Try for free', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
+        %ul.list-unstyled.mb-4
+          %li 2-6 Employees
+          %li Free implementation
+          %li Free support
+    .card.card-pricing.text-center.px-3.mb-4
+      %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm gold
+      .bg-transparent.card-header.pt-4.border-0
+        %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "65"}
+          $
+          %span.price 49
+          %span.h6.text-muted.ml-2 / month
+      .card-body.pt-0
+        = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
+        %ul.list-unstyled.mb-4
+          %li 7-15 Employees
+          %li Free implementation
+          %li Free support
+    /.card.card-pricing.text-center.px-3.mb-4
+    /  %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm gold
+    /  .bg-transparent.card-header.pt-4.border-0
+    /    %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "500"}
+    /      $
+    /      %span.price 699
+    /      %span.h6.text-muted.ml-2 / forever
+    /  .card-body.pt-0
+    /    = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
+    /    %ul.list-unstyled.mb-4
+    /      %li Unlimited Employees
+    /      %li Online booking

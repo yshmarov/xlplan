@@ -18,7 +18,6 @@
       #wrapper
         = render 'layouts/sidebar'
         = render 'layouts/messages'
-        /= render 'layouts/myclass_sidebar'
         = yield
         = rjv_tags
     - else
@@ -26,3 +25,4 @@
       = render 'layouts/messages'
       .container-fluid
         = yield
+      = render 'layouts/footer'

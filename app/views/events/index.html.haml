@@ -52,8 +52,8 @@
           %td= link_to event.client, client_path(event.client)
           %td= link_to event.location, location_path(event.location)
           %td
-            #{l(event.starts_at, format: "%A")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
-            /#{event.starts_at.strftime("%A")} #{event.starts_at.strftime('%d/%b/%Y %H:%M')} - #{event.ends_at.strftime('%H:%M')} (#{event.duration} min)
+            #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
+            /#{event.starts_at.strftime("%a")} #{event.starts_at.strftime('%d/%b/%Y %H:%M')} - #{event.ends_at.strftime('%H:%M')} (#{event.duration} min)
           %td
             = status_label(event.status)
             .row

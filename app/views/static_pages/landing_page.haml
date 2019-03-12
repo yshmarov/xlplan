@@ -1,3 +1,7 @@
+/Развиваем салоны
+/We develop salons
+/software for managing hair & beauty salons
+
 /HIGHLIGHT A SHIFT IN THE WORLD, NOT A PROBLEM?
 
 /there are more effective ways/tools of running the business
@@ -26,12 +30,11 @@
 /With xlplan you can create personal offers based on customers’ personal profiles.
 /With xlplan you can create any report in just few clicks based on 50+ custom criteria; it will provide you with the information required for making strategic business decisions.
 /xlplan has been helping business for 8 years now. With our help, business employees and managers save their time for providing better service to their customers and making better decisions based on valuable business data.
-                                
-</div>
-.container.text-center
+
+.text-center
   %p
   .row
-    .col-lg
+    .col-lg-6
       .text-left
         .display-4
           = t('.hero')
@@ -45,71 +48,15 @@
         %p
         = link_to t('.try_for_free'), new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
         %p
-    .col
+    .col-lg-6
       .embed-responsive.embed-responsive-16by9
         /mrjobber
         /%iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/-Yjx9eAiI2E?rel=0", :width => "560"}
         /xlplan
         %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY?rel=0", :width => "560"}
 
-  %p
-  %hr
-  %p
-  .display-4
-    How it looks
-  /= image_tag "https://media.giphy.com/media/yMEow45RqC8HrOmmsD/giphy.gif", style: 'height:600px;width:100%;'
-  /= image_tag "https://media.giphy.com/media/yMEow45RqC8HrOmmsD/giphy.gif", style: 'height:auto;width:100%;'
-  = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
 
-  %p
   %hr
-  %p
-  .display-4
-    Pricing and editions
-  The first step to success starts with a great sales solution. Find the right fit for you.
-  .container.mb-5.mt-5
-    .pricing.card-deck.flex-column.flex-md-row.mb-3
-      .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm bronze
-        .bg-transparent.card-header.pt-4.border-0
-          %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "25"}
-            $
-            %span.price 25
-            %span.h6.text-muted.ml-2 / month
-        .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
-          %ul.list-unstyled.mb-4
-            %li 1-4 Employees
-            %li 1 Business Location
-      .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm silver
-        .bg-transparent.card-header.pt-4.border-0
-          %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "65"}
-            $
-            %span.price 45
-            %span.h6.text-muted.ml-2 / month
-        .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
-          %ul.list-unstyled.mb-4
-            %li Unlimited Employees
-            %li Unlimited Business Locations
-            %li Online booking
-      .card.card-pricing.text-center.px-3.mb-4
-        %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm gold
-        .bg-transparent.card-header.pt-4.border-0
-          %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "500"}
-            $
-            %span.price 699
-            %span.h6.text-muted.ml-2 / forever
-        .card-body.pt-0
-          = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
-          %ul.list-unstyled.mb-4
-            %li Unlimited Employees
-            %li Unlimited Business Locations
-            %li Online booking
-  %p
-  %hr
-  %p
   .display-4
     Say goodbye to paper and excel accounting!
   %p
@@ -193,9 +140,7 @@
   /        .text-left
   /          %h4 Follow-up
   /          Get contact details of interested audience members. Answer unanswered questions later on. 
-  %p
   %hr
-  %p
   .display-4 A solution for your business
   %p
   .card-group
@@ -329,95 +274,3 @@
 /          %p Custom reports
 /      %tr
 /        %td sd
-
-%footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4
-.bg-dark.text-white
-  %hr.bg-light
-  / Call to action
-  %ul.list-unstyled.list-inline.text-center.py-2
-    %li.list-inline-item
-      %h5.mb-1 Ready to get started?
-    = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
-
-  / Call to action
-  %hr/
-  / Footer Links
-  .container.text-center.text-md-left
-    / Grid row
-    .row
-      / Grid column
-      .col-md-4.mx-auto
-        / Content
-        %h5.font-weight-bold.text-uppercase.mt-3.mb-4
-          /Footer Content
-        %p
-          %small
-            %p
-            © #{Time.now.year} Copyright - xlplan Ltd. 
-            %p
-            All rights reserved -
-            %a{:href => "http://xlplan.herokuapp.com/"} xlplan.herokuapp.com
-            %p
-            13 Konstruktorska str. 02-651, Warsaw, Poland
-            %p
-            = mail_to 'hello@xlplan.herokuapp.com'
-            %p
-            %a{:href => "tel:+48-537-628-023"}
-              = succeed "+48-537-628-023" do
-                %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
-            %hr.bg-light
-            / Social buttons
-            %li.list-inline-item
-              = link_to "https://www.instagram.com/xlplan/", target: :_blank do
-                %i.fa.fa-instagram{:style => "font-size:25px;color:white"}
-            %li.list-inline-item
-              = link_to "https://www.youtube.com/channel/UCrksy4sc0LqLP3aHSbcbLeQ/featured", target: :_blank do
-                %i.fa.fa-youtube{:style => "font-size:25px;color:white"}
-            %li.list-inline-item
-              = link_to "https://twitter.com/xlplan/", target: :_blank do
-                %i.fa.fa-twitter{:style => "font-size:25px;color:white"}
-            %li.list-inline-item
-              = link_to "https://www.linkedin.com/company/xlplan/", target: :_blank do
-                %i.fa.fa-linkedin{:style => "font-size:25px;color:white"}
-            #footer
-              .block
-                %p
-                  Copyright © #{Time.now.year}
-                  xlplan
-                  .row
-                  Companies registered:
-                  = Tenant.count
-      / Grid column
-      %hr.clearfix.w-100.d-md-none/
-      / Grid column
-      .col-md-2.mx-auto
-        / Links
-        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Product
-        %ul.list-unstyled
-          = link_to 'Features', root_path
-          %p
-          = link_to 'How?', root_path
-          %p
-          = link_to 'Pricing', root_path
-      / Grid column
-      %hr.clearfix.w-100.d-md-none/
-      / Grid column
-      .col-md-2.mx-auto
-        / Links
-        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Legal
-        %ul.list-unstyled
-          = link_to 'Pricing policy', root_path
-          = link_to 'Customer agreement', root_path
-          = link_to 'Terms of service', root_path
-          = link_to 'Security', root_path
-      / Grid column
-      %hr.clearfix.w-100.d-md-none/
-      / Grid column
-      .col-md-2.mx-auto
-        / Links
-        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 About us
-        %ul.list-unstyled
-          = link_to 'Contact us', root_path
-      / Grid column
-    / Grid row
-  / Footer Links

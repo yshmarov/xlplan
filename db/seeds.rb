@@ -10,11 +10,10 @@ t.save!
 Tenant.set_current_tenant(t)
 
 first_user = User.create!(email: 'yshmarov@gmail.com', password: 'yshmarov@gmail.com', password_confirmation: 'yshmarov@gmail.com')
-User.create!(email: 'admin@example.com', password: 'foobar', password_confirmation: 'foobar')
 Member.create!(first_name: "Albert", last_name: "Einstein", user_id: first_user.id)
 first_user.add_role(:admin)
 
-second_user = User.create!(email: 'admin2@example.com', password: 'foobar', password_confirmation: 'foobar')
+second_user = User.create!(email: 'admin@example.com', password: 'admin@example.com', password_confirmation: 'admin@example.com')
 Member.create!(first_name: "Nicola", last_name: "Tesla", user_id: second_user.id)
 
 30.times do
