@@ -1,11 +1,9 @@
--# frozen_string_literal: true
 = simple_form_for(@member) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
   .form-inputs
-    = f.input :last_name, autofocus: true
-    = f.input :first_name
+    = f.input :first_name, autofocus: true
+    = f.input :last_name
     = f.input :phone_number
     = f.input :email
     = f.label :date_of_birth
@@ -14,34 +12,34 @@
     = f.label :gender
     %br
     = f.radio_button :gender, 'Undisclosed'
-    = f.label :gender_undisclosed, "Undisclosed"
+    = f.label :gender_undisclosed
     = f.radio_button :gender, 'Female'
-    = f.label :gender_female, "Female"
+    = f.label :gender_female
     = f.radio_button :gender, 'Male'
-    = f.label :gender_male, "Male"
+    = f.label :gender_male
     = f.radio_button :gender, 'Other'
-    = f.label :gender_other, "Other"
-
+    = f.label :gender_other
     / #### ADDRESS FIELD STARTS HERE ####
     .fields
       = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|
-        Street address
-        = a.text_field :street_address, id: :street_address
-        %label City
+        = f.label :country
+        = a.text_field :country, id: :country
+        = f.label :city
         = a.text_field :city, id: :city
-        %label State
-        = a .text_field :state, id: :state
-        %label Zip
+        = f.label :street
+        = a.text_field :street, id: :street
+        = f.label :zip
         = a.text_field :zip, id: :zip
     / #### ADDRESS FIELD ENDS HERE ####
 
-    = f.input :status, :as => :radio_buttons, :collection => Client.statuses.keys.to_a, label:false
+    /= f.input :status, :as => :radio_buttons, :collection => Member.statuses.keys.to_a, label:false
 
-    = f.label :skills
-    = f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
+    /= f.label :skills
+    /= f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
 
-    = f.label :location_id
-    = f.error :location, class: 'text-danger'
-    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    /= f.label :location_id
+    /= f.error :location, class: 'text-danger'
+    /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+  %hr
   .form-actions
-    = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+    = f.button :submit, class: "btn btn-success"

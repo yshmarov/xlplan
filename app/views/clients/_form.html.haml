@@ -1,8 +1,6 @@
--# frozen_string_literal: true
 = simple_form_for(@client) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
   .form-inputs
     = f.input :first_name, autofocus: true
     = f.input :last_name
@@ -10,28 +8,29 @@
     = f.input :email
     = f.label :date_of_birth
     = f.date_field :date_of_birth, value: @client.date_of_birth || nil, class: "form-control"
+    / #### GENDER FIELD STARTS HERE ####
     %p
-    = f.label :'gender'
+    = f.label :gender
     %br
     = f.radio_button :gender, 'Undisclosed'
-    = f.label :gender_undisclosed, "Undisclosed"
+    = f.label :gender_undisclosed
     = f.radio_button :gender, 'Female'
-    = f.label :gender_female, "Female"
+    = f.label :gender_female
     = f.radio_button :gender, 'Male'
-    = f.label :gender_male, "Male"
+    = f.label :gender_male
     = f.radio_button :gender, 'Other'
-    = f.label :gender_other, "Other"
-
+    = f.label :gender_other
+    / #### GENDER FIELD ENDS HERE ####
     / #### ADDRESS FIELD STARTS HERE ####
     .fields
       = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|
-        Street address
-        = a.text_field :street_address, id: :street_address
-        %label City
+        = f.label :country
+        = a.text_field :country, id: :country
+        = f.label :city
         = a.text_field :city, id: :city
-        %label State
-        = a .text_field :state, id: :state
-        %label Zip
+        = f.label :street
+        = a.text_field :street, id: :street
+        = f.label :zip
         = a.text_field :zip, id: :zip
     / #### ADDRESS FIELD ENDS HERE ####
   %hr
