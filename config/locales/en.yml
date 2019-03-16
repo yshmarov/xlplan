@@ -44,7 +44,7 @@ en:
       new: "New %{model}"
       delete: "Delete %{model}"
 
-  street:
+  static_pages:
     landing_page:
       hero: "Software for managing employees working calendars, keeping client and payment history"
       try_for_free: ">> Create your first calendar"
@@ -53,7 +53,7 @@ en:
 
   cancel: 'Cancel'
 
-  events_index: "All Events"
+  events_index: "Events"
   events_close: "Mark Events"
 
   sidebar:
@@ -145,6 +145,12 @@ en:
         client_price_cents: "Client Price"
         client_price_to_pay: "Client Due Price"
         status: "Status"
+        statuses:
+          planned: "Planned"
+          confirmed: "Confirmed"
+          member_cancelled: "Member Cancelled"
+          client_cancelled: "Client Cancelled"
+          client_not_attended: "Client Not Attended"
         status_color: "Color"
         notes: "Notes"
         jobs_count: "Jobs count"

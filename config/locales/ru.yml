@@ -275,7 +275,7 @@ ru:
       new: "Создать %{model}"
       delete: "Удалить %{model}"
 
-  street:
+  static_pages:
     landing_page:
       hero: "Программа для управления календарями сотрудников, учёта клиентов и оплат"
       try_for_free: "Создай свой первый календарь!"
@@ -284,7 +284,7 @@ ru:
 
   cancel: 'Отменить'
 
-  events_index: "Все Встречи"
+  events_index: "Встречи"
   events_close: "Отметить Встречи"
 
   sidebar:
@@ -295,7 +295,7 @@ ru:
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
     close_events: 'Отметить Встречи'
-    events: 'Все Встречи'
+    events: 'Встречи'
     clients: 'Клиенты'
     members: 'Сотрудники'
     services: 'Услуги'
@@ -428,6 +428,12 @@ ru:
         client_price_cents: "Итоговая Цена Клиента"
         client_price_to_pay: "Итого к оплате"
         status: "Статус"
+        statuses:
+          planned: "Запланирован"
+          confirmed: "Состоялся"
+          member_cancelled: "Сотрудник Отменил"
+          client_cancelled: "Клиент Отменил"
+          client_not_attended: "Клиент Не Явился"
         status_color: "Цвет"
         notes: "Заметки"
         jobs_count: "Кол. Работ"

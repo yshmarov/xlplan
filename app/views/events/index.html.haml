@@ -56,6 +56,7 @@
             /#{event.starts_at.strftime("%a")} #{event.starts_at.strftime('%d/%b/%Y %H:%M')} - #{event.ends_at.strftime('%H:%M')} (#{event.duration} min)
           %td
             = status_label(event.status)
+            /= I18n.t(event.status, scope: [:activerecord, :attributes, :event, :statuses])
             .row
             = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td
