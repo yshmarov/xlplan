@@ -54,7 +54,7 @@ en:
   cancel: 'Cancel'
 
   events_index: "All Events"
-  events_close: "Close Events"
+  events_close: "Mark Events"
 
   sidebar:
     search_client: 'Search Client'
@@ -63,7 +63,7 @@ en:
     new_payment: 'New Payment'
     my_calendar: 'My Calendar'
     calendar: 'Calendar'
-    close_events: 'Close Events'
+    close_events: 'Mark Events'
     events: 'Events'
     clients: 'Clients'
     members: 'Members'

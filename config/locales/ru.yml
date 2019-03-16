@@ -285,7 +285,7 @@ ru:
   cancel: 'Отменить'
 
   events_index: "Все Встречи"
-  events_close: "Закрыть Встречи"
+  events_close: "Отметить Встречи"
 
   sidebar:
     search_client: 'Поиск Клиента'
@@ -294,7 +294,7 @@ ru:
     new_payment: 'Новая Оплата'
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
-    close_events: 'Закрыть Встречи'
+    close_events: 'Отметить Встречи'
     events: 'Все Встречи'
     clients: 'Клиенты'
     members: 'Сотрудники'

@@ -62,10 +62,11 @@
       /%li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path(q: {jobs_member_id_eq: current_user.member.id}), class: "nav-link"
       /%li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.my_calendar')}".html_safe, my_calendar_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
-      %li
-        = link_to close_events_path, class: "nav-link" do
-          .fa-color-1.fa-fw.fa.fa-calendar-check
-          #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'}
+      - if Event.close.count > 0
+        %li
+          = link_to close_events_path, class: "nav-link" do
+            .fa-color-1.fa-fw.fa.fa-calendar-check
+            #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, members_path, class: "nav-link"
