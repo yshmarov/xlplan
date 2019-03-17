@@ -34,8 +34,9 @@
         %tr
           %td= link_to client.full_name, client_path(client) if policy(client).show?
           %td
+            /= number_to_phone(client.phone_number)
             = link_to "tel:#{client.phone_number}", class: "button" do
-              #{client.phone_number}
+              #{number_to_phone(client.phone_number)}
             - if client.email.present? && client.phone_number.present?
               \/
             %a{:href => "mailto:#{client.email}"}= client.email

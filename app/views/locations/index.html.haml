@@ -21,9 +21,8 @@
   %table#table1
     %thead
       %tr
-        %th Name
-        %th= model_class.human_attribute_name(:phone_number)
-        %th= model_class.human_attribute_name(:email)
+        %th= model_class.human_attribute_name(:name)
+        %th= model_class.human_attribute_name(:contacts)
         %th= model_class.human_attribute_name(:address)
         %th= model_class.human_attribute_name(:status)
         %th= model_class.human_attribute_name(:members_count)
@@ -34,8 +33,12 @@
       - @locations.each do |location|
         %tr
           %td= link_to location.name, location_path(location) if policy(location).show?
-          %td= location.phone_number
-          %td= location.email
+          %td
+            = link_to "tel:#{location.phone_number}", class: "button" do
+              #{number_to_phone(location.phone_number)}
+            - if location.phone_number.present? && location.phone_number.present?
+              \/
+            %a{:href => "mailto:#{location.email}"}= location.email
           %td= location.address
           %td= status_label(location.status)
           %td= location.members_count

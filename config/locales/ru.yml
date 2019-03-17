@@ -472,6 +472,7 @@ ru:
         name: "Категория"
       location:
         name: "Название"
+        contacts: "Контакты"
         phone_number: "Тел."
         email: "email"
         address: "Адрес"

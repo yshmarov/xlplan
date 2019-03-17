@@ -19,9 +19,6 @@
         %br
         %b= model_class.human_attribute_name(:payment_method) + ':'
         = @inbound_payment.payment_method
-
-    %p
-    = link_to t('.back', :default => t("helpers.links.back")), inbound_payments_path, :class => 'btn btn-secondary'
     %p
 
 .row

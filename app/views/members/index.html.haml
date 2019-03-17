@@ -50,7 +50,7 @@
             = link_to member.full_name, member_path(member) if policy(member).show?
           %td
             = link_to "tel:#{member.phone_number}", class: "button" do
-              #{member.phone_number}
+              #{number_to_phone(member.phone_number)}
             - if member.user.email.present? && member.phone_number.present?
               \/
             %a{:href => "mailto:#{member.user.email}"}= member.user.email

@@ -13,10 +13,13 @@
         = @location.name
         %br
         %b= model_class.human_attribute_name(:phone_number) + ':'
-        = @location.phone_number
+        = link_to "tel:#{@location.phone_number}", class: "button" do
+          #{number_to_phone(@location.phone_number)}
+        /%a{:href => "viber://chat?number=#{@location.phone_number}"}
+        /  Viber
         %br
         %b= model_class.human_attribute_name(:email) + ':'
-        = @location.email
+        %a{:href => "mailto:#{@location.email}"}= @location.email
         %br
         %b= model_class.human_attribute_name(:address) + ':'
         = @location.address
