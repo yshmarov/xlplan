@@ -162,6 +162,7 @@ en:
         member: "Member"
         time: "Time"
         created_at: "Created"
+        updated_at: "Updated"
       job:
         event_id: "Event"
         service_id: "Service"
@@ -172,6 +173,14 @@ en:
         client_due_price: "Client Due Price"
         member_price: "Member Price"
         member_due_price: "Member Due Price"
+        created_at: "Created"
+        updated_at: "Updated"
+        #event attributes
+        client_id: "Client"
+        starts_at: "Start"
+        ends_at: "End"
+        location_id: "Location"
+        status: "Status"
       service:
         name: "Name"
         service_category_id: "Category"

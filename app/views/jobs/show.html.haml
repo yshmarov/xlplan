@@ -1,54 +1,56 @@
+- model_class = Job
 .row
   .container
     .card
       .card-header
-        %b Job
+        .fa.fa-hand-paper
+        =t '.title', :default => model_class.model_name.human.titleize
       .card-body
-        %b Event:
+        %b= model_class.human_attribute_name(:event_id) + ':'
         = link_to @job.event, event_path(@job.event)
-        %br
-        %b Client:
+        %hr
+        %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @job.event.client, client_path(@job.event.client)
         %br
-        %b Starts at:
+        %b= model_class.human_attribute_name(:starts_at) + ':'
         = @job.event.starts_at.strftime('%d/%m/%Y %H:%M')
         %br
-        %b Ends at:
+        %b= model_class.human_attribute_name(:ends_at) + ':'
         = @job.event.ends_at.strftime('%d/%m/%Y %H:%M')
         (#{@job.service_duration} min)
         %br
-        %b Location:
+        %b= model_class.human_attribute_name(:location_id) + ':'
         = link_to @job.event.location, location_path(@job.event.location)
         %br
-        %b Status:
+        %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@job.event.status)
         %hr
-        %b Service:
+        %b= model_class.human_attribute_name(:service_id) + ':'
         = link_to @job.service.full_name_with_price, service_path(@job.service)
         %br
-        %b Employee:
+        %b= model_class.human_attribute_name(:member_id) + ':'
         = link_to @job.member, member_path(@job.member)
         %hr
-        %b Client planned price:
+        %b= model_class.human_attribute_name(:client_price) + ':'
         /= @job.client_price_cents
         = number_to_currency(@job.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
-        %b Employee planned price:
+        %b= model_class.human_attribute_name(:member_price) + ':'
         /= @job.member_price_cents if policy(@job).update?
         = number_to_currency(@job.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u") if policy(@job).update?
         %br
-        %b Client due price:
+        %b= model_class.human_attribute_name(:client_due_price) + ':'
         /= @job.client_due_price_cents
         = number_to_currency(@job.client_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
-        %b Employee due price:
+        %b= model_class.human_attribute_name(:member_due_price) + ':'
         /= @job.member_due_price_cents if policy(@job).update?
         = number_to_currency(@job.member_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")  if policy(@job).update?
         %hr
-        %b Created at:
+        %b= model_class.human_attribute_name(:created_at) + ':'
         = @job.created_at.strftime('%d/%b/%Y %H:%M')
         %br
-        %b Updated at:
+        %b= model_class.human_attribute_name(:updated_at) + ':'
         = @job.updated_at.strftime('%d/%b/%Y %H:%M')
 
 %br

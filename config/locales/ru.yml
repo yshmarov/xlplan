@@ -445,6 +445,7 @@ ru:
         member: "Сотрудник"
         time: "Время"
         created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
       job:
         event_id: "Встреча"
         service_id: "Услуга"
@@ -455,6 +456,14 @@ ru:
         client_due_price: "Конечная Цена Клиента"
         member_price: "Цена Сотрудника"
         member_due_price: "Конечная Цена Сотрудника"
+        created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
+        #event attributes
+        client_id: "Клиент"
+        starts_at: "Начало"
+        ends_at: "Конец"
+        location_id: "Локация"
+        status: "Статус"
       service:
         name: "Название"
         service_category_id: "Категория"
