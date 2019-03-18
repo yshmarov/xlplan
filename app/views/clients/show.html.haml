@@ -44,11 +44,11 @@
         %hr
         %b= model_class.human_attribute_name(:next_event) + ':'
         - if @next_event.present?
-          = distance_of_time_in_words(Time.now, @next_event.first.starts_at) 
+          = distance_of_time_in_words(Time.now, @next_event) 
         %br
         %b= model_class.human_attribute_name(:last_event) + ':'
         - if @last_event.present?
-          = distance_of_time_in_words(Time.now, @last_event.first.starts_at)
+          = distance_of_time_in_words(Time.now, @last_event)
         /%br
         /%b Status:
         /= status_label(@client.status)

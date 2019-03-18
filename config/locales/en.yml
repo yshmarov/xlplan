@@ -241,8 +241,8 @@ en:
         comments_count: "Comments count"
         comments: "Comments"
         contacts: "Contacts"
-        last_event: "Last Event"
-        next_event: "Next Event"
+        last_event: "Since last event"
+        next_event: "To next event"
       inbound_payment:
         id: "ID"
         client: "Client"

@@ -544,8 +544,8 @@ ru:
         comments_count: "Кол. Комментариев"
         comments: "Комментарии"
         contacts: "Контакты"
-        last_event: "Последняя Встреча"
-        next_event: "Следующая Встреча"
+        next_event: "До следующей встречи"
+        last_event: "С прошлой встречи"
       inbound_payment:
         id: "Код"
         client: "Клиент"
