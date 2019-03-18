@@ -19,6 +19,8 @@ class ClientsController < ApplicationController
     @comments = @commentable.comments
     @comment = Comment.new
     @inbound_payments = @client.inbound_payments.order("created_at DESC")
+    @next_event = @client.events.where("starts_at >= ?", Time.zone.now).order("starts_at ASC")
+    @last_event = @client.events.where("starts_at <= ?", Time.zone.now).order("starts_at DESC")
   end
 
   def new

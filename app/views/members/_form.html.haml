@@ -32,14 +32,14 @@
         = a.text_field :zip, id: :zip
     / #### ADDRESS FIELD ENDS HERE ####
 
-    /= f.input :status, :as => :radio_buttons, :collection => Member.statuses.keys.to_a, label:false
+    = f.input :status, :as => :radio_buttons, :collection => Member.statuses.keys.to_a, label:false
 
-    /= f.label :skills
-    /= f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
+    = f.label :skills
+    = f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
 
-    /= f.label :location_id
-    /= f.error :location, class: 'text-danger'
-    /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    = f.label :location_id
+    = f.error :location, class: 'text-danger'
+    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"
