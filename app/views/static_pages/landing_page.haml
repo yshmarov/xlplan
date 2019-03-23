@@ -71,33 +71,29 @@
 /With xlplan you can create any report in just few clicks based on 50+ custom criteria; it will provide you with the information required for making strategic business decisions.
 /xlplan has been helping business for 8 years now. With our help, business employees and managers save their time for providing better service to their customers and making better decisions based on valuable business data.
 
-.text-center
-  %p
-  .row
-    .col-lg-6
-      .text-left
-        .display-4
-          /= I18n.locale
-          = t('.hero')
-          /Software that helps service businesses schedule, invoice, and get paid — faster.
-          /Cloud-based software for service business management
-          /%h3 Event sales & management system
-          /%h3 Event scheduling & sales system
-          /%h3 Event scheduling & sales. Organised.
-          /%h3 Attendance sales & management system
-      .text-center
-        %p
-        = link_to t('.try_for_free'), new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
-        %p
-    .col-lg-6
-      .embed-responsive.embed-responsive-16by9
-        /mrjobber
-        /%iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/-Yjx9eAiI2E?rel=0", :width => "560"}
-        /xlplan
-        %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY?rel=0", :width => "560"}
+</div>
+.container
+  .text-center
+    %p
+    .row
+      .col-lg-6
+        .text-left
+          .display-4
+            /= I18n.locale
+            Software for managing employees working calendars, keeping client visit & payment history
+          %p
+      .col-lg-6
+        .embed-responsive.embed-responsive-16by9
+          %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY?rel=0", :width => "560"}
+        /.text-center
+        /  frds
 
+.jumbotron.bg-light
+  .text-center
+    %h2 Early adopter? Be first to know when we launch
+    %br= link_to 'Start using for free!', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
 
-  %hr
+.container-fluid.text-center
   .display-4
     Say goodbye to paper and excel accounting!
   %p
@@ -136,53 +132,55 @@
           How much did I earn last month? Who are my most active clients? How many appointments did I have? What's planned?
         %p
         = link_to 'See how xlplan works', new_user_registration_path, class: 'btn btn-warning'
-  /%p
-  /%hr
-  /%p
-  /.display-4 Why?
-  /%p
-  /.card
-  /  .card-body
-  /    .row
-  /      .col-lg-auto
-  /        .col-md-12
-  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
-  /      .col-lg
-  /        .text-left
-  /          %h4 Engage
-  /          Create a conversation with your audience. Receive feedback on your event.
-  /.card
-  /  .card-body
-  /    .row
-  /      .col-lg-auto
-  /        .col-md-12
-  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
-  /      .col-lg
-  /        .text-left
-  /          %h4 Prioritize
-  /          Because time is limited, speakers can now focus on popular questions.
-  /.card
-  /  .card-body
-  /    .row
-  /      .col-lg-auto
-  /        .col-md-12
-  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
-  /      .col-lg
-  /        .text-left
-  /          %h4 Bottom of the iceberg
-  /          Learn questons that would not be asked otherwise.
-  /.card
-  /  .card-body
-  /    .row
-  /      .col-lg-auto
-  /        .col-md-12
-  /          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
-  /      .col-lg
-  /        .text-left
-  /          %h4 Follow-up
-  /          Get contact details of interested audience members. Answer unanswered questions later on. 
-  %hr
-  .display-4 A solution for your business
+/%p
+/%hr
+/%p
+/.display-4 Why?
+/%p
+/.card
+/  .card-body
+/    .row
+/      .col-lg-auto
+/        .col-md-12
+/          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+/      .col-lg
+/        .text-left
+/          %h4 Engage
+/          Create a conversation with your audience. Receive feedback on your event.
+/.card
+/  .card-body
+/    .row
+/      .col-lg-auto
+/        .col-md-12
+/          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+/      .col-lg
+/        .text-left
+/          %h4 Prioritize
+/          Because time is limited, speakers can now focus on popular questions.
+/.card
+/  .card-body
+/    .row
+/      .col-lg-auto
+/        .col-md-12
+/          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+/      .col-lg
+/        .text-left
+/          %h4 Bottom of the iceberg
+/          Learn questons that would not be asked otherwise.
+/.card
+/  .card-body
+/    .row
+/      .col-lg-auto
+/        .col-md-12
+/          %i.fa.fa-thumbs-up{:style => "font-size:40px;color:orange"}
+/      .col-lg
+/        .text-left
+/          %h4 Follow-up
+/          Get contact details of interested audience members. Answer unanswered questions later on. 
+
+
+.container.text-center
+  .display-4 For whom
   %p
   .card-group
     .card
@@ -200,67 +198,67 @@
         %i.fa.fa-user-tie{:style => "font-size:40px;color:orange"}
         %h5.card-title Professional services
         %p.card-text Consulting, Tutors, sports trainers... All your appointments and fees in one place.
-  /%p
-  /%hr
-  /%p
-  /.display-4 Core Features
-  /%p
-  /.card-group
-  /  .card
-  /    .card-body
-  /      %i.fa.fa-cloud-upload.fa-3x{:style => "font-size:50px;color:orange;"}
-  /      %h5.card-title In the cloud
-  /      %p.card-text
-  /        %small.text-muted No installation or download required
-  /  .card
-  /    .card-body
-  /      %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:orange;"}
-  /      %h5.card-title Anonimity
-  /      %p.card-text
-  /        %small.text-muted Participants can comfortably raise questions anonymously.
-  /  .card
-  /    .card-body
-  /      %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:orange;"}
-  /      %h5.card-title Security
-  /      %p.card-text
-  /        %small.text-muted
-  /          Your data is private and encrypted. It is also logically separated from other events.
-  /  .card
-  /    .card-body
-  /      %i.fa.fa-signal.fa-3x{:style => "font-size:50px;color:orange;"}
-  /      %h5.card-title Analytics
-  /      %p.card-text
-  /        %small.text-muted Detaled audience engagement reports.
-  /  .card
-  /    .card-body
-  /      %i.fa.fa-download.fa-3x{:style => "font-size:50px;color:orange;"}
-  /      %h5.card-title Export
-  /      %p.card-text
-  /        %small.text-muted You own your data. Export to PDF and Excel.
-  /%p
-  /= link_to 'See more features', root_path, class: 'btn btn-warning'
-  /%p
-  /%hr
-  /%p
-  /.row
-  /  .col-4
-  /    .display-4 Don't just take our word for it
-  /  .col-8
-  /    .row.text-center
-  /      /.col
-  /      /  = image_tag "pg-xlplan-partner.png", style: 'height:auto;width:75%;', :alt => "pg-xlplan-partner"
-  /      .col
-  /        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-xlplan-partner"
-  /      .col
-  /        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "visuality-xlplan-partner"
-  /    %p
-  /    .row.text-center
-  /      .col
-  /        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "ewl-xlplan-partner"
-  /      .col
-  /        = image_tag "xlplan.png", style: 'height:auto;width:35%;', :alt => "vistula-xlplan-partner"
-  /      .col
-  /        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-xlplan-partner"
+/%p
+/%hr
+/%p
+/.display-4 Core Features
+/%p
+/.card-group
+/  .card
+/    .card-body
+/      %i.fa.fa-cloud-upload.fa-3x{:style => "font-size:50px;color:orange;"}
+/      %h5.card-title In the cloud
+/      %p.card-text
+/        %small.text-muted No installation or download required
+/  .card
+/    .card-body
+/      %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:orange;"}
+/      %h5.card-title Anonimity
+/      %p.card-text
+/        %small.text-muted Participants can comfortably raise questions anonymously.
+/  .card
+/    .card-body
+/      %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:orange;"}
+/      %h5.card-title Security
+/      %p.card-text
+/        %small.text-muted
+/          Your data is private and encrypted. It is also logically separated from other events.
+/  .card
+/    .card-body
+/      %i.fa.fa-signal.fa-3x{:style => "font-size:50px;color:orange;"}
+/      %h5.card-title Analytics
+/      %p.card-text
+/        %small.text-muted Detaled audience engagement reports.
+/  .card
+/    .card-body
+/      %i.fa.fa-download.fa-3x{:style => "font-size:50px;color:orange;"}
+/      %h5.card-title Export
+/      %p.card-text
+/        %small.text-muted You own your data. Export to PDF and Excel.
+/%p
+/= link_to 'See more features', root_path, class: 'btn btn-warning'
+/%p
+/%hr
+/%p
+/.row
+/  .col-4
+/    .display-4 Don't just take our word for it
+/  .col-8
+/    .row.text-center
+/      /.col
+/      /  = image_tag "pg-xlplan-partner.png", style: 'height:auto;width:75%;', :alt => "pg-xlplan-partner"
+/      .col
+/        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "startup-weekend-xlplan-partner"
+/      .col
+/        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "visuality-xlplan-partner"
+/    %p
+/    .row.text-center
+/      .col
+/        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "ewl-xlplan-partner"
+/      .col
+/        = image_tag "xlplan.png", style: 'height:auto;width:35%;', :alt => "vistula-xlplan-partner"
+/      .col
+/        = image_tag "xlplan.png", style: 'height:auto;width:75%;', :alt => "spark-solutions-xlplan-partner"
 
 
 /.row

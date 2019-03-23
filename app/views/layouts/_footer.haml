@@ -1,20 +1,20 @@
-%footer.page-footer.font-small.stylish-color-dark.pt-4.mt-4
-.bg-dark.text-white
-  %ul.list-unstyled.list-inline.text-center.py-2
-    %li.list-inline-item
-      %h5.mb-1 Ready to get started?
-    = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
-  %hr/
+%footer.bg-dark.text-white
+  %hr
+  .text-center
+    %h3
+      /Ready to get started?
+      = link_to 'Get started for free', new_user_registration_path, class: 'btn btn-lg btn-warning'
+  %hr
   .container.text-center.text-md-left
     .row
       .col-md-4.mx-auto
-        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Product
+        %h5.text-uppercase.mt-3.mb-4 Product
         %ul.list-unstyled
           = link_to 'Features', features_path
           %p
           = link_to 'Pricing', pricing_path
       .col-md-4.mx-auto
-        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 Legal
+        %h5.text-uppercase.mt-3.mb-4 Legal
         %ul.list-unstyled
           = link_to 'Pricing policy', root_path
           %p
@@ -24,11 +24,11 @@
           %p
           = link_to 'Security', root_path
       .col-md-4.mx-auto
-        %h5.font-weight-bold.text-uppercase.mt-3.mb-4 About us
+        %h5.text-uppercase.mt-3.mb-4 About us
         %ul.list-unstyled
-          All rights reserved
-          © #{Time.now.year}
           %a{:href => "http://www.xlplan.com/"} xlplan.com
+          © #{Time.now.year}
+          All rights reserved
           %p
           = mail_to 'yaro@xlplan.com'
           %p
@@ -36,7 +36,6 @@
             = succeed "+48-537-628-023" do
               %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
           %hr.bg-light
-          / Social buttons
           %li.list-inline-item
             = link_to "https://www.instagram.com/xlplan/", target: :_blank do
               %i.fa.fa-instagram{:style => "font-size:25px;color:white"}
