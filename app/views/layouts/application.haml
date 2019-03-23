@@ -3,6 +3,9 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "#{yield(:description)}", :name => "description"}/
+    %meta{:content => "#{yield(:keywords)}", :name => "keywords"}/
+    %meta{:content => "XLPLAN.com", :name => "author"}/
     %title 
       - if current_user
         = content_for?(:title) ? yield(:title) : "xlplan | #{Tenant.current_tenant.name}"

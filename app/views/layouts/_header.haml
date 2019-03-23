@@ -1,9 +1,7 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-warning
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
   %a.text-dark.navbar-brand{:href => "/"}
-    /= image_tag "xlplan.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "avatar"
-    %h2
-      .fa.fa-calendar-check
-      xlplan
+    = image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "xlplan.com"
+    /= image_tag "logo.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "xlplan.com logo"
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
   #navbarSupportedContent.collapse.navbar-collapse
@@ -18,13 +16,16 @@
           %li.nav-item= link_to 'Polski', root_path(locale: 'pl'), class: "nav-link"
         - if I18n.locale != :ru
           %li.nav-item= link_to 'Русский', root_path(locale: 'ru'), class: "nav-link"
-    %ul.navbar-nav.mr-auto
-      %li.nav-item= link_to "Features", features_path, class: "nav-link text-dark"
-      %li.nav-item= link_to "Pricing", pricing_path, class: "nav-link text-dark"
+    %ul.navbar-nav.ml-md-auto.d-md-flex
+      = link_to 'Features', features_path, class: 'btn btn-warning mr-sm-2'
+      = link_to 'Pricing', pricing_path, class: 'btn btn-warning mr-sm-2'
+    /%ul.navbar-nav.mr-auto
+    /  %li.nav-item= link_to "Features", features_path, class: "nav-link text-dark"
+    /  %li.nav-item= link_to "Pricing", pricing_path, class: "nav-link text-dark"
     %ul.nav.navbar-nav.navbar-right
-      %a.btn.btn-warning.mr-sm-2{:href => "tel:+48-537-628-023"}
-        = succeed "+48-537-628-023" do
-          %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
+      /%a.btn.btn-light.mr-sm-2{:href => "tel:+48-537-628-023"}
+      /  = succeed "+48-537-628-023" do
+      /    %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
       .form-inline
-        = link_to 'Log In', new_user_session_path, class: 'btn btn-light mr-sm-2'
-        = link_to 'Sign up', new_user_registration_path(plan: 'basic'), class: 'btn btn-light'
+        = link_to 'Log In', new_user_session_path, class: 'btn btn-warning mr-sm-2'
+        = link_to 'Sign up', new_user_registration_path(plan: 'basic'), class: 'btn btn-warning'
