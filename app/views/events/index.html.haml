@@ -40,7 +40,8 @@
         %th= sort_link @q, :client_last_name, model_class.human_attribute_name(:client_id)
         %th= sort_link @q, :location_id, :location_id
         %th= sort_link @q, :starts_at, model_class.human_attribute_name(:time)
-        %th= sort_link @q, :status, :status
+        /%th= sort_link @q, :status, :status
+        %th= model_class.human_attribute_name(:status)
         %th= model_class.human_attribute_name(:services)
         /%th= model_class.human_attribute_name(:created_at)
     %tbody

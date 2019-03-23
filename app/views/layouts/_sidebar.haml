@@ -31,6 +31,7 @@
 
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
   %a.navbar-brand{:href => "/"}
+    /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
     %i.fa.fa-calendar-check
     XLPLAN
     /zubCRM
@@ -38,12 +39,10 @@
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
     %ul.navbar-nav
-      .text-light
-        .badge.badge-default
-          /= @org_name
-          = Tenant.current_tenant.name 
-        .badge.badge-default
-          = plan_label(Tenant.current_tenant.plan)
+      /= @org_name
+      = link_to Tenant.current_tenant.name, organization_show_path, class: 'badge badge-default text-white'
+      .badge.badge-default
+        = plan_label(Tenant.current_tenant.plan)
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|

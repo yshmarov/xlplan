@@ -78,6 +78,8 @@ $(document).on('turbolinks:load', function(){
         inline: true,
         sideBySide: true,
         stepping: 15,
+        ignoreReadonly: true,
+        allowInputToggle: true,
         format : 'DD/MM/YYYY HH:mm'
         });
     });
