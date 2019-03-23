@@ -4,3 +4,8 @@
 #wrapper{margin-left: 200px;padding: 70px 15px 15px;}
 .navbar-nav.side-nav{background: #585f66;position:fixed;top:56px;flex-direction: column;left:0;width:200px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
 }
+
+.collapse.show {
+overflow-y: scroll !important;
+max-height: 300px !important;
+}

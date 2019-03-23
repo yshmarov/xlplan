@@ -8,9 +8,9 @@
     %meta{:content => "XLPLAN.com", :name => "author"}/
     %title 
       - if current_user
-        = content_for?(:title) ? yield(:title) : "xlplan | #{Tenant.current_tenant.name}"
+        = content_for?(:title) ? yield(:title) : "XLPLAN | #{Tenant.current_tenant.name}"
       - else
-        = content_for?(:title) ? yield(:title) : "xlplan | CRM for service business"
+        = content_for?(:title) ? yield(:title) : "XLPLAN | CRM for service business"
     = favicon_link_tag 'logo.png'
     = csrf_meta_tags
     = csp_meta_tag
