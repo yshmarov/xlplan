@@ -1,7 +1,8 @@
-.container
-  %h1 Editing service_category
-  
-  = render 'form'
-  %p
-  = link_to 'Cancel', services_path, class: "btn btn-danger", title: 'Back to Service List', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-  %p
+- model_class = ServiceCategory
+.card
+  .card-body
+    %h4=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+    %hr
+    = render 'form'
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @service, :class => 'btn btn-danger'

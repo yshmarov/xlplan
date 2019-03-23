@@ -2,7 +2,7 @@
 .card
   .card-body
     %h4=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
-    
+    %hr
     = render 'form'
     %p
     = link_to t('.cancel', :default => t("helpers.links.cancel")), @event, :class => 'btn btn-danger'

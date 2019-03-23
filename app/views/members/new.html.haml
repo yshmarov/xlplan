@@ -2,7 +2,7 @@
 .card
   .card-body
     /%h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
-    %h3 Invite a new member
+    %h4 Invite a new member
     %hr
     = simple_form_for @member do |f|
       = simple_fields_for @user do |w|
