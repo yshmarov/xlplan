@@ -314,6 +314,14 @@ ru:
   service: 'Услуга'
   member: 'Сотрудник'
 
+  dashboard:
+    start:
+      start: "Начало работы"
+      new_member: "Добавьте дополнительных сотрудников (не обязательно)"
+      new_location: "Добавьте Локацию"
+      new_service: "Добавьте ваш список услуг"
+      new_client: "Добавьте клиента (без доступа к программе)"
+      new_event: "Создайте встречу"
   inbound_payments:
     index:
       title: "Оплаты"
@@ -382,7 +390,7 @@ ru:
       success: "Сотрудник отменил"
   tenants:
     show:
-      getting_started: "С чего начать:"
+      start: "Начало работы"
       counters: "Счётчики"
       events: "Встречи"
       jobs: "Работы"
@@ -391,11 +399,6 @@ ru:
       services: "Услуги"
       locations: "Локации"
       inbound_payments: "Оплаты"
-      new_member: "Добавьте дополнительных сотрудников (не обязательно)"
-      new_location: "Добавьте Локацию"
-      new_service: "Добавьте ваш список услуг"
-      new_client: "Добавьте клиента (без доступа к программе)"
-      new_event: "Создайте встречу"
     edit:
       organization_settings: "Настройки Компании"
 
