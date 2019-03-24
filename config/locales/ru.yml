@@ -413,6 +413,7 @@ ru:
       inbound_payment: "Оплата"
     attributes:
       tenant:
+        id: "Идентификационный Код"
         name: "Название"
         plan: "Тариф"
         language: "Язык"
@@ -518,6 +519,8 @@ ru:
         location_id: "Локация"
         contacts: "Контакты"
         roles: "Права Доступа"
+        created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
       client:
         first_name: "Имя"
         last_name: "Фамилия"
@@ -546,6 +549,8 @@ ru:
         contacts: "Контакты"
         next_event: "До следующей встречи"
         last_event: "С прошлой встречи"
+        created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
       inbound_payment:
         id: "Код"
         client: "Клиент"
