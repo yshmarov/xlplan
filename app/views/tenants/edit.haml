@@ -1,8 +1,8 @@
 - model_class = Tenant
 .card
   .card-body
-    %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
-
+    %h4=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+    %hr
     = simple_form_for @tenant, url: update_plan_path do |f|
     
       = f.error_notification

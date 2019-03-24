@@ -1,7 +1,8 @@
+- model_class = Location
 .card
   .card-body
-    %h1 New location
-    
+    %h4=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+    %hr
     = render 'form'
     %p
-    = link_to 'Cancel', locations_path, class: "btn btn-danger", title: 'Back to Workplaces list', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), locations_path, :class => 'btn btn-danger'
