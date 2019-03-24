@@ -75,6 +75,7 @@ $(document).on('turbolinks:load', function(){
 
     $(function () {
       $('#datetimepicker').datetimepicker({
+        locale: app.vars.locale,
         inline: true,
         sideBySide: true,
         stepping: 15,
