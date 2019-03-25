@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_20_234830) do
+ActiveRecord::Schema.define(version: 2019_03_25_220426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -243,7 +243,6 @@ ActiveRecord::Schema.define(version: 2019_01_20_234830) do
     t.string "plan", limit: 40, null: false
     t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
-    t.string "string", limit: 2, default: "en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
