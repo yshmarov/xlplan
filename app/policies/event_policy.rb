@@ -26,6 +26,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.planned? && admin_or_manager || @record.planned? && @user.has_role?(:owner, @record)
+    #@record.planned? && admin_or_manager || @record.planned? && @user.has_role?(:owner, @record)
+    admin || @record.planned? && manager || @record.planned? && @user.has_role?(:owner, @record)
   end
 end

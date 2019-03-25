@@ -9,11 +9,12 @@
     /= f.text_field :published_at, data: { :date_format => 'YYYY/MM/DD hh:mm' }, :class => 'form-control datetimepicker', placeholder: 'YYYY/MM/DD hh:mm:ss'
     = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
 
-    = f.label :client
+    = f.label :client_id
     = f.error :client, class: 'text-danger'
     = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+    /= f.input :client_id, input_html: {value: @event.client_id || params[:client_id]}
 
-    = f.label :location
+    = f.label :location_id
     = f.error :location, class: 'text-danger'
     = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
 
@@ -37,7 +38,7 @@
           = f.simple_fields_for :jobs do |f|
             = render 'job_fields', f: f
       .links
-        = link_to_add_association "+ Add Service", f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
+        = link_to_add_association t('.add_service'), f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
     %p
     = f.input :notes
 

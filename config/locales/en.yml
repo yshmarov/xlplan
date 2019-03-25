@@ -84,6 +84,8 @@ en:
   member: 'Member'
 
   events:
+    form:
+      add_service: "+ Add Service"
     create:
       success: 'Event was successfully created.'
     update:

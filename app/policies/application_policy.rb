@@ -19,6 +19,10 @@ class ApplicationPolicy
     @user.has_role?(:admin) || @user.has_role?(:manager)
   end
 
+  def manager
+    @user.has_role?(:manager)
+  end
+
   def admin
     @user.has_role?(:admin)
   end

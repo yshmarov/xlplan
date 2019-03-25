@@ -39,6 +39,14 @@
           %del
             = t('.new_member')
         %hr
+      - unless current_user.member.phone_number.present?
+        %span.badge.badge-pill.badge-danger 2
+        = link_to t('.edit_my_page'), edit_member_path(current_user.member)
+      - else
+        %span.badge.badge-pill.badge-success 2
+        %del
+          = t('.new_service')
+      %hr
       - unless Location.any?
         %span.badge.badge-pill.badge-danger 1
         = link_to t('.new_location'), new_location_path

@@ -17,15 +17,15 @@
         - if policy(@event).update?
           .form-inline
             - unless @event.status == 'planned'
-              = button_to "planned", mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
+              = button_to t('.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
             - unless @event.status == 'confirmed'
-              = button_to "confirmed", mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+              = button_to t('.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
             - unless @event.status == 'client_not_attended'
-              = button_to "client_not_attended", mark_client_not_attended_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+              = button_to t('.client_not_attended'), mark_client_not_attended_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
             - unless @event.status == 'member_cancelled'
-              = button_to "member_cancelled", mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+              = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
             - unless @event.status == 'client_cancelled'
-              = button_to "client_cancelled", mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+              = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
         %hr
         %b= model_class.human_attribute_name(:time) + ':'
         #{l(@event.starts_at, format: "%A")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)

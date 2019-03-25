@@ -317,6 +317,7 @@ ru:
   dashboard:
     start:
       start: "Начало работы"
+      edit_my_page: "Внесите свои данные"
       new_member: "Добавьте дополнительных сотрудников (не обязательно)"
       new_location: "Добавьте Локацию"
       new_service: "Добавьте ваш список услуг"
@@ -368,6 +369,14 @@ ru:
     create:
       success: 'Клиент успешно создан.'
   events:
+    show:
+      planned: "Запланирован"
+      confirmed: "Состоялся"
+      member_cancelled: "Сотрудник Отменил"
+      client_cancelled: "Клиент Отменил"
+      client_not_attended: "Клиент Не Явился"
+    form:
+      add_service: "+ Добавить Услугу"
     index:
       title: "Встречи"
     new:
