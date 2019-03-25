@@ -26,6 +26,16 @@
               = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
             - unless @event.status == 'client_cancelled'
               = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+        /- unless @event.planned?
+        /- unless @event.payments.any?
+        /- unless @event.client_price == @event.inbound_payments.map(&:amount).sum
+        /%hr
+        /= simple_form_for InboundPayment.new do |f|
+        /  = f.input :client_id, input_html: {value: @event.client.id}, as: :hidden
+        /  = f.input :amount_cents, input_html: {value: @event.client_price_to_pay_cents}, as: :hidden
+        /  = f.input :payment_method, input_html: { value: 'cash' }, as: :hidden
+        /  /= f.button :submit, class: "btn btn-success"
+        /  = f.submit "Client paid full amount in cash", class: 'btn btn-success' 
         %hr
         %b= model_class.human_attribute_name(:time) + ':'
         #{l(@event.starts_at, format: "%A")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)

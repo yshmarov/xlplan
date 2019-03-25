@@ -1,37 +1,31 @@
-
-.panel.panel-default
-  .panel-heading
-    %h4= t('.sign_up', :default => "Sign up")
-  .panel-body
-    = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form", class: 'cc_form' }) do |f|
-      = devise_error_messages!
-      .form-group
-        = f.label :email
-        = f.email_field :email, autofocus: true, class: "form-control"
-      .form-group
-        = f.label :password
-        %br/
-        = f.password_field :password, class: "form-control"
-      .form-group
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: "form-control"
-      = fields_for( :tenant ) do |w|
-        .form-group
-          = w.label :name, 'Organization'
-          %span.description (Unique name for your group or organization for the new account)
-          = w.text_field :name, required: true, class: "form-control"
-          = w.label :plan
-          = w.select :plan, options_for_select(Plan.options, params[:plan]), {}, required: true, class: "form-control"
-
-        - if ::Milia.use_coupon
-          - @coupon ||= {}
-          .group
-            = label_tag( 'coupon', 'Coupon code', :class => "label" )
-            = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
-            %span.description optional promotional code, if any
-
-        /- if ::Milia.use_recaptcha
-        /  = recaptcha_tags( :display => { :theme => 'clean', :tabindex => 0 } )
-
-      = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
-= render "devise/shared/links"
+%p
+.row
+  .col-lg-4
+  .col-lg-4
+    .card.card-default
+      .card-header
+        %h4= t('.sign_up', :default => "Sign up")
+      .card-body
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = f.error_notification
+          /= devise_error_messages!
+          = f.input :email, required: true, autofocus: true
+          = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+          = f.input :password_confirmation, required: true
+    
+          = simple_fields_for(@tenant) do |w|
+            = w.input :name, label: "Company name"
+            = w.label :plan
+            = w.select :plan, options_for_select(Plan.options, params[:plan]), {include_blank: false}, class: "form-control"
+            = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: 'Language'
+            - if ::Milia.use_coupon
+              - @coupon ||= {}
+              .group
+                = label_tag( 'coupon', 'Coupon code', :class => "label" )
+                = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
+                %span.description optional promotional code, if any
+            /- if ::Milia.use_recaptcha
+            /  = recaptcha_tags( :display => { :theme => 'clean', :tabindex => 0 } )
+          = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
+        %hr
+        = render "devise/shared/links"
