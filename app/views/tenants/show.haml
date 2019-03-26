@@ -8,9 +8,6 @@
         .float-right
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path, :class => 'btn btn-warning btn-sm'
       .card-body
-        %b= model_class.human_attribute_name(:id) + ':'
-        %b= @tenant.id
-        %br
         %b= model_class.human_attribute_name(:name) + ':'
         %b= @tenant.name
         %br
@@ -22,6 +19,12 @@
         %br
         %b= model_class.human_attribute_name(:default_currency) + ':'
         %b= @tenant.default_currency.upcase
+        %hr
+        %b= model_class.human_attribute_name(:id) + ':'
+        %b= @tenant.id
+        %br
+        %b= model_class.human_attribute_name(:created_at) + ':'
+        %b= @tenant.created_at.strftime('%d/%h/%Y')
   .col-lg-6
     %h3.text-center
       .badge.badge-secondary.btn-block

@@ -431,6 +431,8 @@ ru:
         language: "Язык"
         locale: "Язык"
         default_currency: "Валюта"
+        created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
       event:
         client_id: "Клиент"
         location_id: "Локация"
