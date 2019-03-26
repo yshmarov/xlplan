@@ -1,0 +1,46 @@
+.row
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Payments per month
+      .card-body
+        %table.table.table-sm.table-bordered
+          %tbody
+            - InboundPayment.group_by_month(:created_at).sum("amount/100").each do |k, v|
+              %tr
+                %td= k
+                %td= v
+    %p
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Payments per month
+      .card-body
+        = bar_chart charts_payments_per_month_path
+%p
+.row
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Payments per day
+      .card-body
+        %table.table.table-sm.table-bordered
+          %tbody
+            - InboundPayment.group_by_day(:created_at).sum("amount/100").each do |k, v|
+              %tr
+                %td= k
+                %td= v
+    %p
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        Payments per day
+      .card-body
+        = bar_chart charts_payments_per_day_path
+        /= bar_chart InboundPayment.group_by_day(:created_at, format: "%B %Y").sum("amount/100")
+        /= bar_chart InboundPayment.group_by_day(:created_at).sum("amount/100")
+%p

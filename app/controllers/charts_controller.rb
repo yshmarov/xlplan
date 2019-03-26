@@ -10,10 +10,21 @@ class ChartsController < ApplicationController
   def members_jobs_per_member_per_month_quantity
     render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').count} }
   end
+
   def members_confirmed_client_price_per_month
     render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('client_due_price / 100')}}
   end
+
   def members_confirmed_earnings_per_month  
     render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price / 100')}}
   end
+
+  def payments_per_day
+    render json: InboundPayment.group_by_day(:created_at).sum("amount/100")
+  end
+
+  def payments_per_month
+    render json: InboundPayment.group_by_month(:created_at).sum("amount/100")
+  end
+
 end

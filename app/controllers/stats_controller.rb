@@ -54,4 +54,11 @@ class StatsController < ApplicationController
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end
   end
+  
+  def payments
+    if current_user.has_role?(:admin)
+    else
+      redirect_to root_path, alert: 'You are not authorized to view the page.'
+    end
+  end
 end
