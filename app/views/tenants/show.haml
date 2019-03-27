@@ -11,9 +11,6 @@
         %b= model_class.human_attribute_name(:name) + ':'
         %b= @tenant.name
         %br
-        %b= model_class.human_attribute_name(:plan) + ':'
-        = plan_label(@tenant.plan)
-        %br
         %b= model_class.human_attribute_name(:locale) + ':'
         %b= @tenant.locale.upcase
         %br
@@ -23,8 +20,13 @@
         %b= model_class.human_attribute_name(:id) + ':'
         %b= @tenant.id
         %br
+        %b= model_class.human_attribute_name(:plan) + ':'
+        = plan_label(@tenant.plan)
+        %br
         %b= model_class.human_attribute_name(:created_at) + ':'
-        %b= @tenant.created_at.strftime('%d/%h/%Y')
+        %b
+          = @tenant.created_at.strftime('%d/%h/%Y')
+          (#{distance_of_time_in_words Time.now, @tenant.created_at})
   .col-lg-6
     %h3.text-center
       .badge.badge-secondary.btn-block
