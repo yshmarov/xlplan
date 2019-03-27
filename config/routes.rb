@@ -56,7 +56,6 @@ Rails.application.routes.draw do
   get 'activity', to: 'dashboard#activity'
   get 'start', to: 'dashboard#start'
 
-  get 'stats/finances'
   get 'stats/clients'
   get 'stats/members'
   get 'stats/events'

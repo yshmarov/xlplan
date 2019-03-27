@@ -1,3 +1,9 @@
+rake db:drop db:create db:migrate
+Tenant.set_current_tenant(1)
+PublicActivity::Activity.order("created_at DESC").limit(10)
+
+
+
 # README
 
 @user.add_role(:admin)

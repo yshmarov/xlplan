@@ -1,38 +1,46 @@
+.text-center
+  %h4= t('.client_stats')
 .row
-  .col-12
+  .col-lg-12
     .card
       .card-header
-        Clients registered per month
+        .fa.fa-chart-line
+        = t('.clients_registered_per_month')
       .card-body
         = line_chart Client.group_by_month(:created_at).count, download: true
-%p
+    %p
 .row
-  .col-12
+  .col-lg-12
     .card
       .card-header
-        Clients birthdays
+        .fa.fa-chart-line
+        = t('.client_birthdays_per_year')
       .card-body
         = line_chart Client.group_by_month(:date_of_birth).count, download: true
-%p
+    %p
 .row
-  .col-6
+  .col-lg-6
     .card
       .card-header
-        Client Status
+        .fa.fa-chart-line
+        = t('.status_popularity')
       .card-body
         = pie_chart Client.group(:status).count, download: true
-  .col-6
+    %p
+  .col-lg-6
     .card
       .card-header
-        Client Gender
+        .fa.fa-chart-line
+        = t('.gender_popularity')
       .card-body
         = pie_chart Client.group(:gender).count, download: true
-%p
+    %p
 .row
-  .col-6
+  .col-lg-6
     .card
       .card-header
-        Next 5 client birthdays
+        .fa.fa-chart-line
+        = t('.next_5_client_birthdays')
       .card-body
         - @clients.each do |client|
           %p= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)

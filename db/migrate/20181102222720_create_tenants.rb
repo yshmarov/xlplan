@@ -5,7 +5,7 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.string :name, :limit => 40, null: false
       t.string :plan, :limit => 40, null: false
       t.string :default_currency, :limit => 3, null: false, default: "usd"
-      t.string :locale, :string, :limit => 2, null: false, default: 'en'
+      t.string :locale, :limit => 2, null: false, default: 'en'
       #t.string :industry, :limit => 60, null: false
       #t.string :default_time_zone, null: false
       #t.string :logo

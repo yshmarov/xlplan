@@ -1,5 +1,3 @@
-#Tenant.set_current_tenant(1)
-#PublicActivity::Activity.order("created_at DESC").limit(10)
 PublicActivity.enabled = false
 
 t = Tenant.first_or_create({

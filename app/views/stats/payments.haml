@@ -1,9 +1,11 @@
+.text-center
+  %h4= t('.payment_stats')
 .row
   .col-lg-6
     .card
       .card-header
         .fa.fa-chart-line
-        Payments per month
+        = t('.payments_per_month')
       .card-body
         %table.table.table-sm.table-bordered
           %tbody
@@ -16,7 +18,7 @@
     .card
       .card-header
         .fa.fa-chart-line
-        Payments per month
+        = t('.payments_per_month')
       .card-body
         = bar_chart charts_payments_per_month_path
 %p
@@ -25,7 +27,7 @@
     .card
       .card-header
         .fa.fa-chart-line
-        Payments per day
+        = t('.payments_per_day')
       .card-body
         %table.table.table-sm.table-bordered
           %tbody
@@ -38,7 +40,7 @@
     .card
       .card-header
         .fa.fa-chart-line
-        Payments per day
+        = t('.payments_per_day')
       .card-body
         = bar_chart charts_payments_per_day_path
         /= bar_chart InboundPayment.group_by_day(:created_at, format: "%B %Y").sum("amount/100")

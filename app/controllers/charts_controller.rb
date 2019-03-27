@@ -3,7 +3,7 @@ class ChartsController < ApplicationController
     render json: Event.group_by_month(:starts_at).count, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
   end
 
-  def finances_client_due_price_per_month
+  def events_client_due_price_per_month
     render json: Event.group_by_month(:starts_at, format: "%b %Y").sum("client_price/100")
   end
 

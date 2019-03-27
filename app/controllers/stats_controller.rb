@@ -1,5 +1,24 @@
 class StatsController < ApplicationController
-  def finances
+  def clients
+    if current_user.has_role?(:admin)
+      #next 5 bdays
+      next_bdays = (Date.today + 0.day).yday
+      @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
+    else
+      redirect_to root_path, alert: 'You are not authorized to view the page.'
+    end
+  end
+
+  def members
+    if current_user.has_role?(:admin)
+      #performance vs others
+      @members = Member.all
+    else
+      redirect_to root_path, alert: 'You are not authorized to view the page.'
+    end
+  end
+
+  def events
     if current_user.has_role?(:admin)
       #company confirmed earning
       @confirmed_hours_worked = (Job.joins(:event).where(events: {status: ['confirmed']}).map(&:service_duration).sum)/60.to_d
@@ -24,32 +43,6 @@ class StatsController < ApplicationController
   
       #average paycheck
       @average_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed']}).average(:client_due_price).to_i/100
-    else
-      redirect_to root_path, alert: 'You are not authorized to view the page.'
-    end
-  end
-
-  def clients
-    if current_user.has_role?(:admin)
-      #next 5 bdays
-      next_bdays = (Date.today + 0.day).yday
-      @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
-    else
-      redirect_to root_path, alert: 'You are not authorized to view the page.'
-    end
-  end
-
-  def members
-    if current_user.has_role?(:admin)
-      #performance vs others
-      @members = Member.all
-    else
-      redirect_to root_path, alert: 'You are not authorized to view the page.'
-    end
-  end
-
-  def events
-    if current_user.has_role?(:admin)
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end

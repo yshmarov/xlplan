@@ -1,40 +1,173 @@
 .text-center
-  %h3 Event stats
+  %h4= t('.event_stats')
+
+/.row
+/  .col-12
+/    .card
+/      .card-header
+/        .fa.fa-chart-line
+/        (Confirmed) Client due price per month
+/      .card-body
+/        = column_chart charts_events_client_due_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
+
+
+%h3.text-center
+  .badge.badge-secondary.btn-block
+    = t('.counters')
 .row
-  .col-12
+  .col-md-4
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = number_to_currency(@average_confirmed_earnings, :unit => "")
+      %div 
+        %b= t('.average_confirmed_check')
+%p
+%h3.text-center
+  .badge.badge-primary.btn-block
+    = t('.planned')
+.row
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-calendar
+      = @planned_job_q
+      %div 
+        %b= t('.jobs')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-clock
+      = @planned_hours_worked.round(0)
+      %div 
+        %b= t('.hours_worked')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_planned_earnings
+      %div 
+        %b= t('.payments')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_planned_expences
+      %div 
+        %b= t('.expences')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_planned_net_income
+      %div
+        %b= t('.net_income')
+%h3.text-center
+  .badge.badge-success.btn-block
+    = t('.confirmed')
+.row
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-calendar
+      = @confirmed_job_q
+      %div 
+        %b= t('.jobs')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-clock
+      = @confirmed_hours_worked.round(0)
+      %div 
+        %b= t('.hours_worked')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_confirmed_earnings
+      %div 
+        %b= t('.payments')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_confirmed_expences
+      %div 
+        %b= t('.expences')
+  .col-md-2
+    .card-header.bg-success
+      %i.fa.fa-hand-holding-usd
+      = @total_confirmed_net_income
+      %div
+        %b= t('.net_income')
+%h3.text-center
+  .badge.badge-danger.btn-block
+    = t('.cancelled')
+.row
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-calendar
+      = @lost_job_q
+      %div 
+        %b= t('.jobs')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-clock
+      = @lost_hours_worked.round(0)
+      %div 
+        %b= t('.hours_worked')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_lost_earnings
+      %div 
+        %b= t('.payments')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_lost_expences
+      %div 
+        %b= t('.expences')
+  .col-md-2
+    .card-header.bg-default
+      %i.fa.fa-dollar-sign
+      = @total_net_losses
+      %div
+        %b= t('.net_income')
+
+%br
+
+
+
+.row
+  .col-lg-12
     .card
       .card-header
         .fa.fa-chart-line
-        Events per month, quantity
+        = t('.events_per_month_quantity')
       .card-body
         = column_chart charts_monthly_events_path, download: true
 %p
 .row
-  .col-12
+  .col-lg-12
     .card
       .card-header
         .fa.fa-chart-line
-        Unique clients that visited events per month, quantity
+        = t('.unique_clients_per_month_quantity')
       .card-body
         = column_chart Event.group_by_month(:starts_at, format: "%b %Y").distinct.count('client_id'), download: true
 %p
 .row
-  .col-3
+  .col-lg-3
     .card
       .card-header
         .fa.fa-chart-line
-        Event Status
+        = t('.status_popularity')
       .card-body
         = pie_chart Event.group(:status).count, download: true
-  .col-3
+    %p
+  .col-lg-3
     .card
       .card-header
-        Location popularity
+        .fa.fa-chart-line
+        = t('.location_popularity')
       .card-body
         = pie_chart Event.joins(:location).group(:'locations.name').count, download: true
-  .col-3
+    %p
+  .col-lg-3
     .card
       .card-header
-        Service popularity
+        .fa.fa-chart-line
+        = t('.service_popularity')
       .card-body
         = pie_chart Job.joins(:service).group(:'services.name').count, download: true
