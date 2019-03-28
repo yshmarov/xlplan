@@ -533,7 +533,7 @@ ru:
         member_price: "Цена Сотрудника"
         member_price_cents: "Цена Сотрудника"
         member_percent: "Процентная Ставка Сотрудника"
-        repeat_reminder: "Напоминание о повторном визите через .. дней после визита"
+        repeat_reminder: "Периодичность, в днях"
         status: "Статус"
         jobs_count: "Кол. Работ"
       service_category:
