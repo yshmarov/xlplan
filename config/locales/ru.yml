@@ -279,8 +279,8 @@ ru:
     landing_page:
       hero: "Программа для управления календарями сотрудников, учёта клиентов и оплат"
       try_for_free: "Создай свой первый календарь!"
-    activity:
-      ago: 'назад'
+    pricing:
+    features:
 
   cancel: 'Отменить'
 
@@ -314,6 +314,10 @@ ru:
   member: 'Сотрудник'
 
   dashboard:
+    activity:
+      ago: 'назад'
+
+    
     start:
       start: "Начало работы"
       edit_my_page: "Внесите свои данные"
@@ -587,6 +591,11 @@ ru:
         phone_number: "Тел."
         email: "email"
         date_of_birth: "Дата Рождения"
+        #genders:
+        #  undisclosed: "Не выбран"
+        #  male: "Мужской"
+        #  female: "Женский"
+        #  other: "Другой"
         gender: "Пол"
         gender_undisclosed: "не указан"
         gender_female: "женский"
