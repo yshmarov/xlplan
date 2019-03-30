@@ -4,6 +4,7 @@ class ServiceCategory < ApplicationRecord
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
 
   has_many :services
   has_many :skills

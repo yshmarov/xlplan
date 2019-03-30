@@ -18,6 +18,7 @@ class Event < ApplicationRecord
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
   extend FriendlyId
   friendly_id :to_s, use: :slugged
   def to_s

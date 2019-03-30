@@ -22,6 +22,7 @@
         = link_to 'Try for free', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
           %li 1 Employee
+          %li 1 Location
           %li Free implementation
           %li Free support
     .card.card-pricing.text-center.px-3.mb-4
@@ -29,12 +30,13 @@
       .bg-transparent.card-header.pt-4.border-0
         %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "65"}
           $
-          %span.price 20
+          %span.price 15
           %span.h6.text-muted.ml-2 / month
       .card-body.pt-0
         = link_to 'Try for free', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
-          %li 2-6 Employees
+          %li 2-5 Employees
+          %li 1 Location
           %li Free implementation
           %li Free support
     .card.card-pricing.text-center.px-3.mb-4
@@ -47,7 +49,8 @@
       .card-body.pt-0
         = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
-          %li 7-15 Employees
+          %li Unlimited Employees
+          %li Unlimited Locations
           %li Free implementation
           %li Free support
     /.card.card-pricing.text-center.px-3.mb-4
