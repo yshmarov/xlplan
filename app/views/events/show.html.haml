@@ -37,15 +37,17 @@
         /  /= f.button :submit, class: "btn btn-success"
         /  = f.submit "Client paid full amount in cash", class: 'btn btn-success' 
         %hr
-        %b= model_class.human_attribute_name(:time) + ':'
-        #{l(@event.starts_at, format: "%A")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
-        %hr
+        .fa.fa-user
         %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @event.client, client_path(@event.client)
         %br
+        .fa.fa-map-marker-alt
         %b= model_class.human_attribute_name(:location_id) + ':'
         = link_to @event.location, location_path(@event.location)
-        /%br
+        %br
+        .fa.fa-clock
+        %b= model_class.human_attribute_name(:time) + ':'
+        #{l(@event.starts_at, format: "%A")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
         %p
         /%hr
         /%b= model_class.human_attribute_name(:services) + ':'
@@ -65,5 +67,6 @@
   .container-fluid
     .card-heading
       %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+        .fa.fa-bell
         %b Activity
   =  render 'dashboard/activity'

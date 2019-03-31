@@ -1,6 +1,7 @@
 .card.card-default
   .card-header
     %h4
+      .fa.fa-bell
       %b Activity
   .container
     = will_paginate @activities, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

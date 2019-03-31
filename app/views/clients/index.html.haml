@@ -5,6 +5,7 @@
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
           .input-group
+            /.fa.fa-user
             .mr-sm-2
               %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "Name", :autocomplete => :off
