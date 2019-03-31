@@ -47,7 +47,8 @@
       .row
         .col-lg-2
           .text-center
-            = status_label(event.status)
+            /= status_label(event.status)
+            = link_to status_label(event.status), event
             .row
             = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
