@@ -53,6 +53,6 @@
           %td
             = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
             = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
-.container
+.container.table-responsive
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

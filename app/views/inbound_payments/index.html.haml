@@ -10,6 +10,7 @@
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
+            .fa.fa-chevron-down
             /Search
           = link_to "", inbound_payments_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(InboundPayment).create?
@@ -57,6 +58,6 @@
           %td
             = link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
             = link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
-.container
+.container.table-responsive
   = will_paginate @inbound_payments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

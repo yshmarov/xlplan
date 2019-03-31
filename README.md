@@ -1,4 +1,6 @@
+heroku run rails c
 Tenant.set_current_tenant(1)
+InboundPayment.count
 PublicActivity::Activity.order("created_at DESC").limit(10)
 
 rake db:drop db:create db:migrate

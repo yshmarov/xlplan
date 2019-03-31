@@ -8,6 +8,7 @@
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
+            .fa.fa-chevron-down
             /Search
           = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Event).create?
@@ -36,33 +37,40 @@
             = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
             .row
             = f.submit
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th{:colspan => "3"}
-        %th= sort_link @q, :starts_at, model_class.human_attribute_name(:time)
-        /%th= sort_link @q, :status, :status
-        %th= model_class.human_attribute_name(:status)
-        %th= model_class.human_attribute_name(:services)
-        %th= sort_link @q, :client_last_name, model_class.human_attribute_name(:client_id)
-        %th= sort_link @q, :location_id, :location_id
-        /%th= model_class.human_attribute_name(:created_at)
-    %tbody
-      - @events.each do |event|
-        %tr
-          %td= link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
-          %td= link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
-          %td= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
-          %td
-            #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
-            /#{event.starts_at.strftime("%a")} #{event.starts_at.strftime('%d/%b/%Y %H:%M')} - #{event.ends_at.strftime('%H:%M')} (#{event.duration} min)
-          %td
+
+
+/.table-responsive
+/.container-fluid
+- @events.each do |event|
+  .card
+    .card-header.bg-light
+      .row
+        .col-lg-2
+          .text-center
             = status_label(event.status)
-            /= I18n.t(event.status, scope: [:activerecord, :attributes, :event, :statuses])
             .row
             = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          %td
+            .row
+            /%section.bg-danger.text-center
+            /  .container
+            /    t
+            /%hr{:color => "green"}/
+            /%li.list-group-item
+            /%hr
+            = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
+            = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
+            = link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
+        .col-lg-4
+          .fa.fa-user
+          = link_to event.client, client_path(event.client)
+          .row
+          .fa.fa-map-marker-alt
+          = link_to event.location, location_path(event.location)
+          .row
+          .fa.fa-clock
+          #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
+        .col-lg-6
+          .table-responsive
             - event.jobs.each do |job|
               .row
               .badge.badge-secondary
@@ -70,10 +78,9 @@
                 \/
                 = link_to job.member, member_path(job.member), class: 'text-white'
             .row
-            = truncate(event.notes, length: 60)
-          /%td= l(event.created_at, format: :long)
-          %td= link_to event.client, client_path(event.client)
-          %td= link_to event.location, location_path(event.location)
-.container
+            = event.notes
+            /= truncate(event.notes, length: 60)
+%p
+.container.table-responsive
   = will_paginate @events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

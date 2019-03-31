@@ -96,7 +96,7 @@
             = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
             = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
 
-.container
+.container.table-responsive
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
 
