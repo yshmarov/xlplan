@@ -302,7 +302,7 @@ ru:
     locations: 'Локации'
     inbound_payments: 'Оплаты'
     activity: 'Активность'
-    organization: 'Моя Компания'
+    organization: 'Настройки'
     stats: 'Статистика'
     my_page: 'Моя Страница'
     profile_settings: 'Настройки Профиля'
@@ -412,7 +412,7 @@ ru:
       locations: "Локации"
       inbound_payments: "Оплаты"
     edit:
-      organization_settings: "Настройки Компании"
+      organization_settings: "Настройки"
   stats:
     clients:
       client_stats: 'Статистика Клиентов'
@@ -461,7 +461,7 @@ ru:
 
   activerecord:
     models:
-      tenant: "Компания"
+      tenant: "Настройки"
       event: "Встреча"
       job: "Работа"
       service: "Услуга"
