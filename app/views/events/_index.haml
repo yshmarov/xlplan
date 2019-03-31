@@ -1,30 +1,27 @@
-- model_class = Event
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th{:colspan => "3"}
-        %th= model_class.human_attribute_name(:client_id)
-        %th= model_class.human_attribute_name(:location_id)
-        %th= model_class.human_attribute_name(:time)
-        %th= model_class.human_attribute_name(:status)
-        %th= model_class.human_attribute_name(:services)
-    %tbody
-      - @events.each do |event|
-        %tr
-          %td= link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
-          %td= link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
-          %td= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
-          %td= link_to event.client, client_path(event.client)
-          %td= link_to event.location, location_path(event.location)
-          %td
-            #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
-            /#{event.starts_at.strftime("%a")} #{event.starts_at.strftime('%d/%b/%Y %H:%M')} - #{event.ends_at.strftime('%H:%M')} (#{event.duration} min)
-          %td
-            = status_label(event.status)
+- @events.each do |event|
+  .card
+    .card-header.bg-light
+      .row
+        .col-lg-2
+          .text-center
+            = link_to status_label(event.status), event
             .row
             = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          %td
+            .row
+            = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
+            = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
+            = link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
+        .col-lg-4
+          .fa.fa-user
+          = link_to event.client, client_path(event.client)
+          .row
+          .fa.fa-map-marker-alt
+          = link_to event.location, location_path(event.location)
+          .row
+          .fa.fa-clock
+          #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
+        .col-lg-6
+          .table-responsive
             - event.jobs.each do |job|
               .row
               .badge.badge-secondary
@@ -32,5 +29,4 @@
                 \/
                 = link_to job.member, member_path(job.member), class: 'text-white'
             .row
-            = truncate(event.notes, length: 60)
-%br
+            = event.notes
