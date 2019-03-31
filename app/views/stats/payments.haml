@@ -10,7 +10,7 @@
       %tbody
         - InboundPayment.group_by_month(:created_at).sum("amount/100").each do |k, v|
           %tr
-            %td= k
+            %td= k.strftime('%m/%Y')
             %td= v
     %p
   .col-lg-6
@@ -31,7 +31,7 @@
       %tbody
         - InboundPayment.group_by_day(:created_at).sum("amount/100").each do |k, v|
           %tr
-            %td= k
+            %td= k.strftime('%d/%m/%Y')
             %td= v
     %p
   .col-lg-6

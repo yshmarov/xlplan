@@ -13,14 +13,25 @@ class ClientsController < ApplicationController
 
   def show
     authorize @client
-    @jobs = @client.jobs
+    #@jobs = @client.jobs
     @events = @client.events.order("starts_at DESC")
+    @inbound_payments = @client.inbound_payments.order("created_at DESC")
+
     @commentable = @client
     @comments = @commentable.comments
     @comment = Comment.new
-    @inbound_payments = @client.inbound_payments.order("created_at DESC")
+
     @next_event = @client.events.where("starts_at >= ?", Time.zone.now).order("starts_at ASC").pluck(:starts_at).first
     @last_event = @client.events.where("starts_at <= ?", Time.zone.now).order("starts_at DESC").pluck(:starts_at).first
+
+
+    @event = Event.new
+    authorize @event
+    @event.jobs.build
+
+    @inbound_payment = InboundPayment.new
+    authorize @inbound_payment
+
   end
 
   def new

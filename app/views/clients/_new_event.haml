@@ -10,7 +10,7 @@
         %h5#exampleModalLongTitle.modal-title #{t('sidebar.new_event')}
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-      = simple_form_for Event.new do |f|
+      = simple_form_for @event do |f|
         .modal-body
           - set_var 'locale', Tenant.current_tenant.locale
           .form-inputs

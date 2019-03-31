@@ -11,7 +11,7 @@ class InboundPayment < ApplicationRecord
   monetize :amount, as: :amount_cents
   validates :client, :amount, :amount_cents, :payment_method, presence: true
 
-  PAYMENT_METHODS = [:cash, :credit_card, :bank_transfer, :subscription_card, :certificate, :barter, :gift, :free, :group_buying, :other] 
+  PAYMENT_METHODS = [:cash, :tip, :bank_transfer, :credit_card, :subscription_card, :certificate, :barter, :gift, :free, :other] 
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
