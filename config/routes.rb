@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   resources :members
 
   #edit tenant info
-  match '/organization/show' => 'tenants#show', via: :get
-  match '/organization/edit' => 'tenants#edit', via: :get, as: :edit_plan
-  match '/organization/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
+  match '/settings/show' => 'tenants#show', via: :get
+  match '/settings/edit' => 'tenants#edit', via: :get, as: :edit_plan
+  match '/settings/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
 
   resources :clients do
     collection do

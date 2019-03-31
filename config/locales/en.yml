@@ -71,9 +71,8 @@ en:
     locations: 'Locations'
     inbound_payments: 'Payments'
     activity: 'Activity'
-    organization: 'Settings'
+    settings: 'Settings'
     stats: 'Stats'
-    finances: 'Finances'
     my_page: 'My Page'
     profile_settings: 'Profile Settings'
     account_settings: 'Account Settings'
@@ -122,7 +121,7 @@ en:
       new_client: "Add a client (Without access to the app)"
       new_event: "Add an event"
     edit:
-      organization_settings: "Settings"
+      settings: "Settings"
 
   activerecord:
     models:

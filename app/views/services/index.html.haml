@@ -7,17 +7,22 @@
           %b
             =t '.title', :default => model_class.model_name.human.pluralize.titleize
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+            .fa.fa-search
+            .fa.fa-chevron-down
+            /Search
           = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Service).create?
             = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
-    .card-header
-      .row
-        .col-md-4
-          = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true, :autocomplete => :off
-        .col-md-4
-          = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
-        .col-md-4
-          = f.submit
+    #accordion.collapse
+      .card-header
+        .row
+          .col-md-4
+            = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true, :autocomplete => :off
+          .col-md-4
+            = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
+          .col-md-4
+            = f.submit
 .table-responsive
   %table#table1
     %thead

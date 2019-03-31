@@ -302,7 +302,7 @@ ru:
     locations: 'Локации'
     inbound_payments: 'Оплаты'
     activity: 'Активность'
-    organization: 'Настройки'
+    settings: 'Настройки'
     stats: 'Статистика'
     my_page: 'Моя Страница'
     profile_settings: 'Настройки Профиля'
@@ -412,7 +412,7 @@ ru:
       locations: "Локации"
       inbound_payments: "Оплаты"
     edit:
-      organization_settings: "Настройки"
+      settings: "Настройки"
   stats:
     clients:
       client_stats: 'Статистика Клиентов'
@@ -537,7 +537,7 @@ ru:
         member_price: "Цена Сотрудника"
         member_price_cents: "Цена Сотрудника"
         member_percent: "Процентная Ставка Сотрудника"
-        repeat_reminder: "Периодичность, в днях"
+        repeat_reminder: "Частота, в днях"
         status: "Статус"
         jobs_count: "Кол. Работ"
       service_category:

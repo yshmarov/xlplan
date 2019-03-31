@@ -4,7 +4,7 @@
     %i.fa.fa-calendar-check
     XLPLAN
     /zubCRM
-    /= link_to Tenant.current_tenant.name, organization_show_path, class: 'badge badge-default text-white'
+    /= link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
     - unless Event.any?
       = link_to "<i class='fa-color-orange fa-fw fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link text-white" if current_user.has_role?(:admin)
@@ -14,7 +14,7 @@
     %ul.navbar-nav
       /= @org_name
       .form-inline
-        = link_to Tenant.current_tenant.name, organization_show_path, class: 'badge badge-default text-white'
+        = link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
         = link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
@@ -46,7 +46,7 @@
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-map-marker-alt'></i> #{t('sidebar.locations')}".html_safe, locations_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "nav-link"
       - if current_user.has_role?(:admin)
-        %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-cog'></i> #{t('sidebar.organization')}".html_safe, organization_show_path, class: "nav-link"
+        %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-cog'></i> #{t('sidebar.settings')}".html_safe, settings_show_path, class: "nav-link"
         %a.nav-link.btn.dropdown-toggle{"data-target" => "#service", "data-toggle" => "collapse"}
           .fa-color-1.fa.fa-chart-line
           #{t('sidebar.stats')}
