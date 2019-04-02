@@ -34,7 +34,7 @@ def create
         devise_create( user_params )   # devise resource(user) creation; sets resource
 
         @user.add_role(:admin)
-        @user.add_role(:manager)
+        #@user.add_role(:manager)
 
         if resource.errors.empty?   #  SUCCESS!
 
