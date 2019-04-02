@@ -78,6 +78,7 @@
               .badge.badge-secondary
                 = link_to job.service.full_name_with_price, service_path(job.service), class: 'text-white'
                 \/
+                .row
                 = link_to job.member, member_path(job.member), class: 'text-white'
             .row
             = event.notes

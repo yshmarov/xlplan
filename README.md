@@ -1,6 +1,7 @@
 heroku run rails c
 Tenant.set_current_tenant(1)
 InboundPayment.count
+Event.count
 User.find(1)
 PublicActivity::Activity.order("created_at DESC").limit(10)
 
