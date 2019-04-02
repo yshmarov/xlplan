@@ -313,19 +313,6 @@ ru:
   service: 'Услуга'
   member: 'Сотрудник'
 
-  dashboard:
-    activity:
-      ago: 'назад'
-
-    
-    start:
-      start: "Начало работы"
-      edit_my_page: "Внесите свои данные"
-      new_member: "Добавьте дополнительных сотрудников (не обязательно)"
-      new_location: "Добавьте Локацию"
-      new_service: "Добавьте ваш список услуг"
-      new_client: "Добавьте клиента (без доступа к программе)"
-      new_event: "Создайте встречу"
   inbound_payments:
     index:
       title: "Оплаты"
@@ -413,7 +400,15 @@ ru:
       inbound_payments: "Оплаты"
     edit:
       settings: "Настройки"
-  stats:
+  dashboard:
+    start:
+      start: "Начало работы"
+      edit_my_page: "Внесите свои данные"
+      new_member: "Добавьте дополнительных сотрудников (не обязательно)"
+      new_location: "Добавьте Локацию"
+      new_service: "Добавьте ваш список услуг"
+      new_client: "Добавьте клиента (без доступа к программе)"
+      new_event: "Создайте встречу"
     clients:
       client_stats: 'Статистика Клиентов'
       clients_registered_per_month: 'Кол клиентов создано в месяц'
