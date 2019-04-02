@@ -6,7 +6,8 @@
         .fa.fa-cog
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path, :class => 'btn btn-warning btn-sm'
+          = link_to '', edit_plan_path, class: "btn btn-warning fa fa-edit btn-sm"
+          /= link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path, :class => 'btn btn-warning btn-sm'
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
         %b= @tenant.name

@@ -7,6 +7,7 @@
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm" if policy(@service).edit?
+          = link_to '', @service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@service).destroy?
       .card-body
         .row
         %b= model_class.human_attribute_name(:name) + ':'

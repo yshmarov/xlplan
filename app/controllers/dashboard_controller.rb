@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def activity
-    @activities = PublicActivity::Activity.paginate(:page => params[:page], :per_page => 100).order("created_at DESC").where(tenant_id: Tenant.current_tenant.id)
+    @activities = PublicActivity::Activity.paginate(:page => params[:page], :per_page => 50).order("created_at DESC").where(tenant_id: Tenant.current_tenant.id)
   end
 
   def start

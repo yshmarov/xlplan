@@ -3,6 +3,10 @@ module ApplicationHelper
 		plan_span_generator(plan)
 	end
 
+	def role_label(name)
+		role_span_generator(name)
+	end
+
 	private
 		def plan_span_generator(plan)
 			case plan
@@ -18,6 +22,19 @@ module ApplicationHelper
 			end
 		end
 
+		def role_span_generator(name)
+			case name
+				#Other models
+				when 'admin'
+					content_tag(:span, name.titleize, class: 'badge badge-dark')
+				when 'manager'
+					content_tag(:span, name.titleize, class: 'badge badge-light')
+				when 'specialist'
+					content_tag(:span, name.titleize, class: 'badge badge-info')
+				when 'owner'
+					content_tag(:span, name.titleize, class: 'badge badge-secondary')
+			end
+		end
 
 
 	def status_label(status)
@@ -46,6 +63,4 @@ module ApplicationHelper
 					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-secondary')
 			end
 		end
-
-
 end

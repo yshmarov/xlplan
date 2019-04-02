@@ -39,5 +39,4 @@ class ApplicationController < ActionController::Base
   def user_activity
     current_user.try :touch
   end
-
 end

@@ -3,7 +3,7 @@
     %h4
       .fa.fa-bell
       %b Activity
-  .container
-    = will_paginate @activities, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
-
   =  render 'dashboard/activity'
+%p
+.container.table-responsive
+  = will_paginate @activities, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

@@ -90,7 +90,9 @@
               /  admin
               /- if member.user.has_role?(:specialist)
               /  specialist
-              = member.user.roles.where("name = 'admin' OR name = 'specialist'").collect{|r| r.name}.to_sentence
+              /= member.user.roles.where("name = 'admin' OR name = 'specialist'").collect{|r| role_label(r.name)}.to_sentence
+              - member.user.roles.where("name = 'admin' OR name = 'specialist'").each do |r| 
+                = role_label(r.name)
             - if current_user.has_role?(:admin) && member.user.present?
               = link_to 'Edit roles', edit_user_path(member.user), class: 'btn btn-warning btn-sm'
           %td

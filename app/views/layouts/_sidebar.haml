@@ -13,9 +13,10 @@
   .collapse.navbar-collapse.sidebar
     %ul.navbar-nav
       /= @org_name
-      .form-inline
-        = link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
-        = link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
+      = link_to settings_show_path do
+        .badge.badge-default.text-white
+          = Tenant.current_tenant.name
+          = plan_label(Tenant.current_tenant.plan)
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
