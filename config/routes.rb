@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :locations
 
   resources :events do
+    resources :inbound_payments
     get :close, on: :collection
   	member do
   		patch :mark_planned

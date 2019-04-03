@@ -63,6 +63,12 @@ class EventsController < ApplicationController
     authorize @event
     @jobs = @event.jobs
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Event", trackable_id: @event).all
+
+    #@payable = @event
+    @inbound_payments = @event.inbound_payments
+    @payment = InboundPayment.new
+    #@payment.client_id = @event.client.id
+    #@payment.amount = @event.client_price
   end
 
   def new

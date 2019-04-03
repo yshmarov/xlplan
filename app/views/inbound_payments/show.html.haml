@@ -19,6 +19,10 @@
         %br
         %b= model_class.human_attribute_name(:payment_method) + ':'
         = @inbound_payment.payment_method
+        - if @inbound_payment.payable.present?
+          %br
+          %b= model_class.human_attribute_name(:event) + ':'
+          = link_to @inbound_payment.payable, event_path(@inbound_payment.payable)
     %p
 
 .row

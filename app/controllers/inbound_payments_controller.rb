@@ -63,6 +63,7 @@ class InboundPaymentsController < ApplicationController
     end
 
     def inbound_payment_params
-      params.require(:inbound_payment).permit(:tenant_id, :client_id, :amount, :amount_cents, :payment_method)
+      params.require(:inbound_payment).permit(:tenant_id, :client_id, :amount, :amount_cents, :payment_method, :payable_id, :payable_type)
+      #params.require(:inbound_payment).permit(:tenant_id, :client_id, :amount, :amount_cents, :payment_method)
     end
 end

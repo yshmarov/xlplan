@@ -3,20 +3,15 @@
   %table#table1
     %thead
       %tr
-        %th #
-        /%th Client
-        %th Amount
-        %th Payment method
-        %th Created at
+        %th= model_class.human_attribute_name(:id)
+        %th= model_class.human_attribute_name(:amount_cents)
+        %th= model_class.human_attribute_name(:payment_method)
+        %th= model_class.human_attribute_name(:created_at)
         %th
-          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @inbound_payments.each do |inbound_payment|
         %tr
           %td= link_to inbound_payment.id, inbound_payment_path(inbound_payment) if policy(inbound_payment).show?
-          /%td
-          /  - if inbound_payment.client.present?
-          /    = link_to inbound_payment.client, client_path(inbound_payment.client)
           %td= number_to_currency(inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= inbound_payment.payment_method
           %td
@@ -24,4 +19,3 @@
           %td
             = link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
             = link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
-%br

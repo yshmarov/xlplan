@@ -3,6 +3,7 @@ class InboundPayment < ApplicationRecord
 
   belongs_to :tenant
   belongs_to :client, touch: true, counter_cache: true
+  belongs_to :payable, polymorphic: true
 
   #validates :client, :event
   validates :amount, :payment_method, presence: true

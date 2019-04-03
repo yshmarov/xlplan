@@ -360,6 +360,7 @@ ru:
       success: 'Клиент успешно создан.'
   events:
     show:
+      client_paid: "Клиент оплатил наличными"
       planned: "Запланирован"
       confirmed: "Состоялся"
       member_cancelled: "Сотрудник Отменил"
@@ -614,11 +615,11 @@ ru:
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       inbound_payment:
-        id: "Код"
+        id: "Код Оплаты"
         client: "Клиент"
         client_id: "Клиент"
         amount: "Сумма"
         amount_cents: "Сумма"
         payment_method: "Способ Оплаты"
         created_at: "Дата Создания"
-        
+        event: "Встреча"

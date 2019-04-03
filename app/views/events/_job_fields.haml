@@ -20,4 +20,4 @@
 /  = f.error :member, class: 'text-danger'
 /  = f.select :member_id, Member.all.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
 /  %br
-/  = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-secondary btn-block'
+/  = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-secondary'

@@ -26,16 +26,6 @@
               = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
             - unless @event.status == 'client_cancelled'
               = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
-        /- unless @event.planned?
-        /- unless @event.payments.any?
-        /- unless @event.client_price == @event.inbound_payments.map(&:amount).sum
-        /%hr
-        /= simple_form_for InboundPayment.new do |f|
-        /  = f.input :client_id, input_html: {value: @event.client.id}, as: :hidden
-        /  = f.input :amount_cents, input_html: {value: @event.client_price_to_pay_cents}, as: :hidden
-        /  = f.input :payment_method, input_html: { value: 'cash' }, as: :hidden
-        /  /= f.button :submit, class: "btn btn-success"
-        /  = f.submit "Client paid full amount in cash", class: 'btn btn-success' 
         %hr
         .fa.fa-user
         %b= model_class.human_attribute_name(:client_id) + ':'
@@ -58,9 +48,27 @@
         %br
         %b= model_class.human_attribute_name(:client_price_to_pay) + ':'
         = @event.client_price_to_pay_cents
-        %hr
-        %b= model_class.human_attribute_name(:notes) + ':'
-        = @event.notes
+
+        - if @event.confirmed?
+          - if @event.inbound_payments.none?
+            %hr
+            = simple_form_for @payment do |f|
+              = f.input :client_id, input_html: {value: @event.client.id}, as: :hidden
+              = f.input :amount_cents, input_html: {value: @event.client_price_to_pay_cents}, as: :hidden
+              = f.input :payable_id, input_html: {value: @event.id}, as: :hidden
+              = f.input :payable_type, input_html: {value: 'Event'}, as: :hidden
+              = f.input :payment_method, input_html: { value: 'cash' }, as: :hidden
+              /= f.button :submit, class: "btn btn-success"
+              /= f.submit "Client paid full amount in cash", class: 'btn btn-success' 
+              = f.submit t ".client_paid"
+            /= render "inbound_payments/polymorphic_form"
+          - else
+            %p
+            = render "inbound_payments/index"
+        - if @event.notes.present?
+          %hr
+          %b= model_class.human_attribute_name(:notes) + ':'
+          = @event.notes
 
 %br
 .card.card-default

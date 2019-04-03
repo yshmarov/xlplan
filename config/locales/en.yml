@@ -84,6 +84,7 @@ en:
 
   events:
     show:
+      client_paid: "Client paid cash"
       planned: "Planned"
       confirmed: "Confirmed"
       member_cancelled: "Member Cancelled"
@@ -251,10 +252,11 @@ en:
         last_event: "Since last event"
         next_event: "To next event"
       inbound_payment:
-        id: "ID"
+        id: "Payment ID"
         client: "Client"
         client_id: "Client"
         amount: "Amount"
         amount_cents: "Amount"
         payment_method: "Payment Method"
         created_at: "Created"
+        event: "Event"
