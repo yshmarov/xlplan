@@ -84,7 +84,7 @@ en:
 
   events:
     show:
-      client_paid: "Client paid cash"
+      client_paid: "Create Payment"
       planned: "Planned"
       confirmed: "Confirmed"
       member_cancelled: "Member Cancelled"
