@@ -1,51 +1,32 @@
-/%p
-/.row
-/  .col-xl-4
-/    .card
-/      .card-header
-/        .fa.fa-chart-line
-/        New Jobs in the last 30 days
-/      .card-body
-/        = Job.where('created_at >= ?', 1.month.ago).count
-/    %p
-/  .col-xl-4
-/    .card
-/      .card-header
-/        .fa.fa-chart-line
-/        New Clients in the last 30 days
-/      .card-body
-/        = Client.where('created_at >= ?', 1.month.ago).count
-/    %p
-/  .col-xl-4
-/    .card
-/      .card-header
-/        .fa.fa-chart-line
-/        Turnover in the last 30 days
-/      .card-body
-/        = number_to_currency(@total_confirmed_earnings, :unit => "$")
-
 .card
   .card-header
     .fa.fa-rocket
     = t('.start')
   .card-body
     %h5
-      - if Tenant.current_tenant.plan != 'bronze'
+
+      - if (Tenant.current_tenant.plan == "silver") || (Tenant.current_tenant.plan == "gold")
         - unless Member.count >= 2
-          %span.badge.badge-pill.badge-danger 0
+          %span.badge.badge-pill.badge-danger -
           = link_to t('.new_member'), new_member_path
         - else
-          %span.badge.badge-pill.badge-success 0
+          %span.badge.badge-pill.badge-success +
           %del
             = t('.new_member')
+
+
+
         %hr
       - unless current_user.member.phone_number.present?
-        %span.badge.badge-pill.badge-danger 2
+        %span.badge.badge-pill.badge-danger -
         = link_to t('.edit_my_page'), edit_member_path(current_user.member)
       - else
-        %span.badge.badge-pill.badge-success 2
+        %span.badge.badge-pill.badge-success +
         %del
           = t('.new_service')
+
+
+
       %hr
       - unless Location.any?
         %span.badge.badge-pill.badge-danger 1
@@ -54,6 +35,8 @@
         %span.badge.badge-pill.badge-success 1
         %del
           = t('.new_location')
+
+
       %hr
       - unless Service.any?
         %span.badge.badge-pill.badge-danger 2
@@ -62,20 +45,26 @@
         %span.badge.badge-pill.badge-success 2
         %del
           = t('.new_service')
+
+
+
       %hr
       - unless Client.any?
-        %span.badge.badge-pill.badge-danger 3
+        %span.badge.badge-pill.badge-danger -
         = link_to t('.new_client'), new_client_path
       - else
-        %span.badge.badge-pill.badge-success 3
+        %span.badge.badge-pill.badge-success +
         %del
           = t('.new_client')
+
+
+
       %hr
       - unless Event.any?
-        %span.badge.badge-pill.badge-danger 4
+        %span.badge.badge-pill.badge-danger -
         = link_to t('.new_event'), new_event_path
       - else
-        %span.badge.badge-pill.badge-success 4
+        %span.badge.badge-pill.badge-success +
         %del
           = t('.new_event')
         %hr

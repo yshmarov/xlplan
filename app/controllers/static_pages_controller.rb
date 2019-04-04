@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing ]
+  skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing, :stats ]
 
   def landing_page
     if current_user
@@ -18,4 +18,18 @@ class StaticPagesController < ApplicationController
       redirect_to calendar_path
     end
   end
+
+  def stats
+  end
+
+  before_action :authenticate, only: :stats
+
+  protected
+  
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == "passa" && password == "usera"
+    end
+  end
+
 end

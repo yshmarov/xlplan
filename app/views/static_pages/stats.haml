@@ -1,0 +1,68 @@
+%h4
+  Tenants:
+  = Tenant.count
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th ID
+        %th Name
+        %th Plan
+        %th Locale
+        %th Currency
+        %th Created
+
+        %th.bg-warning Client
+        %th.bg-warning Service
+        %th.bg-warning Event
+        %th.bg-warning Job
+        %th.bg-warning Comment
+        %th.bg-warning InboundPayment
+        %th.bg-warning Member
+        %th.bg-warning Location
+    %tbody
+      - Tenant.all.each do |tenant|
+        %tr
+          %td= tenant.id
+          %td= tenant.name
+          %td= tenant.plan
+          %td= tenant.locale
+          %td= tenant.default_currency
+          %td= tenant.created_at.strftime("%d/%m/%y")
+
+          %td= Client.unscoped.where(tenant_id: tenant.id).count 
+          %td= Service.unscoped.where(tenant_id: tenant.id).count 
+          %td= Event.unscoped.where(tenant_id: tenant.id).count 
+          %td= Job.unscoped.where(tenant_id: tenant.id).count 
+          %td= Comment.unscoped.where(tenant_id: tenant.id).count 
+          %td= InboundPayment.unscoped.where(tenant_id: tenant.id).count 
+          %td= Member.unscoped.where(tenant_id: tenant.id).count 
+          %td= Location.unscoped.where(tenant_id: tenant.id).count 
+
+%h4
+  Users:
+  = User.count
+
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th ID
+        %th Name
+        %th Tenant
+        %th Locale
+        %th Currency
+        %th
+        %th
+    %tbody
+      - User.all.joins(:member).each do |user|
+        %tr
+          %td= user.id
+          %td= user.member
+          %td= user.member.tenant_id
+
+
+
+/Tenant.set_current_tenant(tenant)
+
+%br
