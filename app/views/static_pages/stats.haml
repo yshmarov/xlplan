@@ -28,8 +28,9 @@
           %td= tenant.plan
           %td= tenant.locale
           %td= tenant.default_currency
-          %td= tenant.created_at.strftime("%d/%m/%y")
-
+          %td
+            = tenant.created_at.strftime("%d/%m/%y")
+            (#{distance_of_time_in_words Time.now, tenant.created_at} ago)
           %td= Client.unscoped.where(tenant_id: tenant.id).count 
           %td= Service.unscoped.where(tenant_id: tenant.id).count 
           %td= Event.unscoped.where(tenant_id: tenant.id).count 
@@ -42,6 +43,8 @@
 %h4
   Users:
   = User.count
+  Members:
+  = Member.unscoped.count
 
 .table-responsive
   %table#table1
@@ -49,19 +52,19 @@
       %tr
         %th ID
         %th Name
+        %th Email
+        %th Phone
         %th Tenant
-        %th Locale
-        %th Currency
-        %th
-        %th
+        %th Tenant ID
     %tbody
-      - User.all.joins(:member).each do |user|
+      - Member.all.unscoped.each do |member|
         %tr
-          %td= user.id
-          %td= user.member
-          %td= user.member.tenant_id
-
-
+          %td= member.id
+          %td= member
+          %td= member.user.email
+          %td= member.phone_number
+          %td= member.tenant.name
+          %td= member.tenant.id
 
 /Tenant.set_current_tenant(tenant)
 
