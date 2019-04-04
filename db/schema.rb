@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_104248) do
+ActiveRecord::Schema.define(version: 2019_04_04_205853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,7 +209,6 @@ ActiveRecord::Schema.define(version: 2019_04_03_104248) do
     t.integer "client_price", default: 0, null: false
     t.integer "member_percent", default: 0, null: false
     t.integer "member_price", default: 0, null: false
-    t.integer "repeat_reminder", default: 0, null: false
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

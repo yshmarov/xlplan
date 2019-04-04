@@ -10,7 +10,6 @@
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
             .fa.fa-chevron-down
-            /Search
           = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Event).create?
             = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
@@ -38,10 +37,6 @@
             = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
             .row
             = f.submit
-
-
-/.table-responsive
-/.container-fluid
 - @events.each do |event|
   .card
     .card-header.bg-light

@@ -18,7 +18,7 @@
       .card-header
         .row
           .col-md-4
-            = f.text_field :name_cont, class: "form-control", placeholder: "Name", autofocus: true, :autocomplete => :off
+            = f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
           .col-md-4
             = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
           .col-md-4
@@ -35,25 +35,22 @@
         %th= sort_link @q, :member_percent, :member_percent
         %th= sort_link @q, :member_price, :member_price
         %th= sort_link @q, :status, :status
-        %th= model_class.human_attribute_name(:repeat_reminder)
         %th= model_class.human_attribute_name(:jobs_count)
         %th
-          .fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @services.each do |service|
         %tr
           %td= link_to service.name, service_path(service)
           %td
             = service.service_category
-            - if policy(service.service_category).edit?
-              = link_to '', edit_service_category_path(service.service_category), class: "btn btn-warning fa fa-edit btn-sm"
+            /- if policy(service.service_category).edit?
+            /  = link_to '', edit_service_category_path(service.service_category), class: "btn btn-warning fa fa-edit btn-sm"
           %td= service.description
           %td= service.duration
           %td= number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_percentage(service.member_percent, precision: 0)
           %td= number_to_currency(service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= status_label(service.status)
-          %td= service.repeat_reminder
           %td= service.jobs_count
           %td
             = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?

@@ -23,9 +23,7 @@
     = f.input :client_price_cents, input_html: { autocomplete: 'off' }
     = f.input :member_percent
   
-    /Notification about repeat visit
-    = f.input :repeat_reminder, collection: 0..90
     = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
-
+  %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

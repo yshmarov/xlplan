@@ -199,7 +199,6 @@ en:
         member_price: "Member Price"
         member_price_cents: "Member Price"
         member_percent: "Member Percent"
-        repeat_reminder: "Frequency, in days"
         status: "Status"
         jobs_count: "Jobs count"
       service_category:

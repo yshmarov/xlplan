@@ -9,7 +9,8 @@
     = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
 
     = f.input :amount_cents
-    = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS
 
+    = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS
+  %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

@@ -9,6 +9,6 @@
     = f.input :email
     = f.input :address
     = f.input :status, :as => :radio_buttons, :collection => Location.statuses.keys.to_a, label:false
-
+  %hr
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

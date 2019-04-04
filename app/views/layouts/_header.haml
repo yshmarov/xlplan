@@ -1,6 +1,9 @@
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
   %a.text-dark.navbar-brand{:href => "/"}
-    = image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
+    %h3.text-secondary
+      .fa.fa-calendar-check
+      XLPLAN
+    /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
     /= image_tag "logo.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "xlplan.com logo"
   %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon

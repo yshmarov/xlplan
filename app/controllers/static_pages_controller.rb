@@ -20,6 +20,9 @@ class StaticPagesController < ApplicationController
   end
 
   def stats
+    if current_user
+      redirect_to calendar_path
+    end
   end
 
   before_action :authenticate, only: :stats

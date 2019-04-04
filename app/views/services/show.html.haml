@@ -20,8 +20,6 @@
         = @service.description
         %br
         %b= model_class.human_attribute_name(:duration) + ':'
-        /= @service.duration.to_d/60
-        /hours
         = @service.duration
         /= distance_of_time_in_words(@service.duration*60)
         %br
