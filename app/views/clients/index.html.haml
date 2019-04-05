@@ -49,6 +49,36 @@
             %a= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
             %a= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
 
+          /- @clients.each do |client|
+          /  .card
+          /    .card-header.bg-light
+          /      .row
+          /        .col-lg-2
+          /          .text-center
+          /            = link_to '', edit_inbound_payment_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
+          /            = link_to '', client, class: "btn btn-primary fa fa-eye btn-sm" if policy(client).show?
+          /            = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
+          /        .col-lg-4
+          /          .fa.fa-user
+          /          = link_to client.full_name, client_path(client) if policy(client).show?
+          /          - if client.phone_number.present?
+          /            .row
+          /            .fa.fa-phone
+          /            = link_to "tel:#{client.phone_number}", class: "button" do
+          /              #{number_to_phone(client.phone_number)}
+          /          - if client.email.present? 
+          /            .row
+          /            .fa.fa-envelope
+          /            %a{:href => "mailto:#{client.email}"}= client.email
+          /          .row
+          /          .fa.fa-dollar-sign
+          /          = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          /        .col-lg-4
+          /          .fa.fa-calendar
+          /          = client.events_count
+          /          .row
+          /          .fa.fa-hand-holding-usd
+          /          = client.inbound_payments_count
 
 
 .container.table-responsive

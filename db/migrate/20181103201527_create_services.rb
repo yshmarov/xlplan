@@ -11,7 +11,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.integer :member_percent, default: 0, null: false
       t.integer :member_price, default: 0, null: false
 
-      t.integer :repeat_reminder, default: 0, null: false
+      #t.integer :repeat_reminder, default: 0, null: false
 
       t.integer :status, default: 1, null: false
 
