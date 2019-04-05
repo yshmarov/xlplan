@@ -9,7 +9,7 @@
           = link_to '', edit_inbound_payment_path(@inbound_payment), class: 'btn btn-warning fa fa-edit btn-sm' if policy(@inbound_payment).update?
       .card-body
         %b= model_class.human_attribute_name(:id) + ':'
-        = @inbound_payment.id
+        = @inbound_payment.slug
         %br
         %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @inbound_payment.client, client_path(@inbound_payment.client)

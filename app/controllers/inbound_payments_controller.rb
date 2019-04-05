@@ -59,7 +59,7 @@ class InboundPaymentsController < ApplicationController
 
   private
     def set_inbound_payment
-      @inbound_payment = InboundPayment.find(params[:id])
+      @inbound_payment = InboundPayment.friendly.find(params[:id])
     end
 
     def inbound_payment_params

@@ -4,9 +4,20 @@ InboundPayment.count
 Event.count
 User.find(1)
 PublicActivity::Activity.order("created_at DESC").limit(10)
+InboundPayment.find_each(&:save)
 
 rake db:drop db:create db:migrate
 
+class Transaction < ApplicationRecord
+  before_create :set_slug
+  private
+  def set_slug
+    loop do
+      self.slug = SecureRandom.uuid
+      break unless Transaction.where(slug: slug).exists?
+    end
+  end
+end
 
 # README
 
