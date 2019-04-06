@@ -1,6 +1,10 @@
 %h4
   Tenants:
   = Tenant.count
+  Users:
+  = User.count
+  Members:
+  = Member.unscoped.count
 .table-responsive
   %table#table1
     %thead
@@ -21,8 +25,8 @@
         %th.bg-warning Member
         %th.bg-warning Location
     %tbody
-      - Tenant.all.each do |tenant|
-        %tr
+      - Tenant.all.unscoped.each do |tenant|
+        %tr.bg-info
           %td= tenant.id
           %td= tenant.name
           %td= tenant.plan
@@ -39,33 +43,17 @@
           %td= InboundPayment.unscoped.where(tenant_id: tenant.id).count 
           %td= Member.unscoped.where(tenant_id: tenant.id).count 
           %td= Location.unscoped.where(tenant_id: tenant.id).count 
-
-%h4
-  Users:
-  = User.count
-  Members:
-  = Member.unscoped.count
-
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th ID
-        %th Name
-        %th Email
-        %th Phone
-        %th Tenant
-        %th Tenant ID
-    %tbody
-      - Member.all.unscoped.each do |member|
-        %tr
-          %td= member.id
-          %td= member
-          %td= member.user.email
-          %td= member.phone_number
-          %td= member.tenant.name
-          %td= member.tenant.id
-
-/Tenant.set_current_tenant(tenant)
-
+        %thead.bg-light
+          %tr
+            %th UserID
+            %th Name
+            %th Email
+            %th Phone
+        %tbody.bg-light
+          - Member.all.unscoped.where(tenant_id: tenant.id).each do |member|
+            %tr
+              %td= member.id
+              %td= member
+              %td= member.user.email
+              %td= member.phone_number
 %br
