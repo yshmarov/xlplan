@@ -46,8 +46,8 @@
                 %td.bg-info= member.planned_payments/100.to_d
                 %td.bg-success= member.confirmed_jobs_count
                 %td.bg-success= member.confirmed_work_hours.round(2)
-                %td.bg-success= member.confirmed_earnings/100.to_d
                 %td.bg-success= member.confirmed_payments/100.to_d
+                %td.bg-success= member.confirmed_earnings/100.to_d
                 %td.bg-danger= member.cancelled_jobs_count
                 %td.bg-danger= member.cancelled_work_hours.round(2)
                 %td.bg-danger= member.cancelled_earnings/100.to_d

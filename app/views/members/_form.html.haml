@@ -37,9 +37,10 @@
     = f.label :skills
     = f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
 
-    = f.label :location_id
-    = f.error :location, class: 'text-danger'
-    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    /= f.label :location_id
+    /= f.error :location, class: 'text-danger'
+    /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

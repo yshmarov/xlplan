@@ -30,6 +30,11 @@ class Member < ApplicationRecord
   monetize :balance, as: :balance_cents
   after_touch :update_balance
   enum status: { inactive: 0, active: 1 }
+  scope :active, -> { where(status: [:active]) }
+  scope :inactive, -> { where(status: [:inactive]) }
+  def self.active_or_id(record_id)
+    where('id = ? OR (status=1)', record_id)    
+  end
 
   #####STATS#####
   def planned_work_hours
@@ -43,23 +48,23 @@ class Member < ApplicationRecord
   end
 
   def planned_payments
-    jobs.joins(:event).where(events: {status: 'planned'}).map(&:client_price).sum
+    jobs.joins(:event).where(events: {status: 'planned'}).map(&:client_due_price).sum
   end
   def confirmed_payments
     jobs.joins(:event).where(events: {status: ['confirmed']}).map(&:client_due_price).sum
   end
   def cancelled_payments
-    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:client_price).sum
+    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:client_due_price).sum
   end
 
   def planned_earnings
-    jobs.joins(:event).where(events: {status: 'planned'}).map(&:member_price).sum
+    jobs.joins(:event).where(events: {status: 'planned'}).map(&:member_due_price).sum
   end
   def confirmed_earnings
     jobs.joins(:event).where(events: {status: ['confirmed']}).map(&:member_due_price).sum
   end
   def cancelled_earnings
-    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:member_price).sum
+    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:member_due_price).sum
   end
 
   def planned_jobs_count
