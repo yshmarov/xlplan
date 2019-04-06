@@ -146,6 +146,7 @@ en:
       event:
         client_id: "Client"
         location_id: "Location"
+        location: "Location"
         starts_at: "Start"
         duration: "Duration"
         ends_at: "End"
@@ -188,6 +189,7 @@ en:
         starts_at: "Start"
         ends_at: "End"
         location_id: "Location"
+        location: "Location"
         status: "Status"
       service:
         name: "Name"
@@ -225,9 +227,9 @@ en:
         status: "Status"
         balance: "Balance"
         location_id: "Location"
+        location: "Location"
         jobs_count: "Jobs count"
         skills: "Available service categories"
-        location_id: "Location"
         contacts: "Contacts"
         roles: "Access rights"
       client:
@@ -243,6 +245,7 @@ en:
         status: "Status"
         balance: "Balance"
         location_id: "Location"
+        location: "Location"
         events_count: "Events count"
         inbound_payments_count: "Payments count"
         comments_count: "Comments count"

@@ -33,6 +33,12 @@ class Location < ApplicationRecord
     end
   end
 
+  scope :active, -> { where(status: [:active]) }
+  scope :inactive, -> { where(status: [:inactive]) }
+  def self.active_or_id(record_id)
+    where('id = ? OR (status=1)', record_id)    
+  end
+
   validate :free_plan_can_only_have_one_location
   def free_plan_can_only_have_one_location
     if self.new_record? && (tenant.locations.count > 0) && (tenant.plan == 'bronze')

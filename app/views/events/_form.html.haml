@@ -14,9 +14,10 @@
     = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
     /= f.input :client_id, input_html: {value: @event.client_id || params[:client_id]}
 
-    = f.label :location_id
-    = f.error :location, class: 'text-danger'
-    = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    /= f.label :location_id
+    /= f.error :location, class: 'text-danger'
+    /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+    = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false
 
     /%h3 Jobs:
     /.jobs
