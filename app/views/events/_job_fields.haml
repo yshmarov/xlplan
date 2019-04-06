@@ -4,7 +4,8 @@
   %td
     = f.error :service, class: 'text-danger'
     /= f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
-    = f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize', style: 'width: 300px'
+    /= f.select :service_id, Service.all.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize', style: 'width: 300px'
+    = f.select :service_id, Service.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize', style: 'width: 300px'
   %td
     = f.error :member, class: 'text-danger'
     = f.select :member_id, Member.all.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize', style: 'width: 300px'

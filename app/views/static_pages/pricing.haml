@@ -18,6 +18,8 @@
           $
           %span.price 7
           %span.h6.text-muted.ml-2 / month
+        %h4.text-secondary
+          84 $ / year
       .card-body.pt-0
         = link_to 'Try for free', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
@@ -32,6 +34,8 @@
           $
           %span.price 15
           %span.h6.text-muted.ml-2 / month
+        %h4.text-secondary
+          180 $ / year
       .card-body.pt-0
         = link_to 'Try for free', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
@@ -46,6 +50,8 @@
           $
           %span.price 50
           %span.h6.text-muted.ml-2 / month
+        %h4.text-secondary
+          600 $ / year
       .card-body.pt-0
         = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
@@ -67,7 +73,6 @@
     /  .card-body.pt-0
     /    = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
     /    %ul.list-unstyled.mb-4
-    /      %li Unlimited Employees
-    /      %li Online booking
+    /      %li Everything Unlimited
 
 = render 'layouts/footer'

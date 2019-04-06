@@ -16,9 +16,10 @@
           .form-inputs
             = f.input :client_id, input_html: {value: @client.id}, as: :hidden
             = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
-            = f.label :location_id
-            = f.error :location, class: 'text-danger'
-            = f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
+            = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false
+            /= f.label :location_id
+            /= f.error :location, class: 'text-danger'
+            /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
             .table-responsive
               %table.table-sm
                 %thead

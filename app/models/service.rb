@@ -23,6 +23,11 @@ class Service < ApplicationRecord
   monetize :member_price, as: :member_price_cents
 
   enum status: { inactive: 0, active: 1 }
+  scope :active, -> { where(status: [:active]) }
+  scope :inactive, -> { where(status: [:inactive]) }
+  def self.active_or_id(record_id)
+    where('id = ? OR (status=1)', record_id)    
+  end
 
   after_create :update_member_price
   after_update :update_member_price
@@ -33,12 +38,13 @@ class Service < ApplicationRecord
   end
 
   def full_name
-    service_category.to_s+'/'+name.to_s+'('+description.to_s+')'+','+duration.to_s+'min'
+    name.to_s+'/'+service_category.to_s+'('+description.to_s+')'+','+duration.to_s+'min'
   end
 
   def full_name_with_price
     #service_category.to_s+'/'+name.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+'/'+member_price_cents.to_i.to_s+')'+','+duration.to_s+'min'
-    service_category.to_s+'/'+name.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min'
+    #service_category.to_s+'/'+name.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min'
+    name.to_s++'/'+service_category.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min'
   end
 
   private

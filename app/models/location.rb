@@ -20,6 +20,11 @@ class Location < ApplicationRecord
   validates :name, :balance, :status, presence: true
 
   enum status: { inactive: 0, active: 1 }
+  scope :active, -> { where(status: [:active]) }
+  scope :inactive, -> { where(status: [:inactive]) }
+  def self.active_or_id(record_id)
+    where('id = ? OR (status=1)', record_id)    
+  end
 
   monetize :balance, as: :balance_cents
 
@@ -31,12 +36,6 @@ class Location < ApplicationRecord
     else
       id
     end
-  end
-
-  scope :active, -> { where(status: [:active]) }
-  scope :inactive, -> { where(status: [:inactive]) }
-  def self.active_or_id(record_id)
-    where('id = ? OR (status=1)', record_id)    
   end
 
   validate :free_plan_can_only_have_one_location
