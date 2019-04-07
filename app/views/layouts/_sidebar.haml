@@ -6,7 +6,7 @@
     /zubCRM
     /= link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
-    - unless Event.any?
+    - unless InboundPayment.any?
       = link_to "<i class='fa-color-orange fa-fw fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link text-white" if current_user.has_role?(:admin)
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon

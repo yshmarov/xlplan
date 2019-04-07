@@ -1,10 +1,29 @@
 heroku run rails c
 Tenant.set_current_tenant(1)
+PublicActivity.enabled = false
 InboundPayment.count
 Event.count
 User.find(1)
 PublicActivity::Activity.order("created_at DESC").limit(10)
 InboundPayment.find_each(&:save)
+
+
+#after_create :update_start_time
+def update_job_timing
+  event_job_count = Job.where(event_id: job.id).count
+  if event_job_count > 1
+    index = event.job.index
+    update_column :index, (index)
+    duration_of_events_with_smaller_index = Job.where(event_id: job.id).where.not(id: self.id).where(index < self.index).map(&:duration).sum
+    before_duration = duration_of_events_with_smaller_index
+    job.starts_at = before_duration - event.starts_at
+  else
+    job.starts_at = event.starts_at
+  end
+  job.ends_at = job.starts_at + duration
+end
+
+
 
 rake db:drop db:create db:migrate
 

@@ -82,6 +82,16 @@ en:
   service: 'Service'
   member: 'Member'
 
+  dashboard:
+    start:
+      start: "Start"
+      edit_my_page: "Add Your contact details"
+      new_member: "Add additional team Members"
+      new_location: "Add a Location"
+      new_service: "Add your Service list"
+      new_client: "Add a Client (without access rights)"
+      new_event: "Add an Event"
+      new_payment: "Add a Payment"
   events:
     show:
       client_paid: "Create Payment"

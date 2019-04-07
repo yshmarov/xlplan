@@ -4,22 +4,43 @@
     = t('.start')
   .card-body
     %h5
+      /ADD CONTACTS (PHONE)
+      - unless current_user.member.phone_number.present?
+        %span.badge.badge-pill.badge-danger -
+        = link_to t('.edit_my_page'), edit_member_path(current_user.member)
+      - else
+        %span.badge.badge-pill.badge-success +
+        %del
+          = t('.edit_my_page')
+      %hr
       /CREATE LOCATION
       - unless Location.any?
-        %span.badge.badge-pill.badge-danger 1
+        %span.badge.badge-pill.badge-danger -
         = link_to t('.new_location'), new_location_path
       - else
-        %span.badge.badge-pill.badge-success 1
+        %span.badge.badge-pill.badge-success +
         %del
           = t('.new_location')
+      %hr
+      /CREATE MEMBER
+      - if (Tenant.current_tenant.plan == "silver") || (Tenant.current_tenant.plan == "gold")
+        - if Member.count < 2
+          %span.badge.badge-pill.badge-danger -
+          = link_to t('.new_member'), new_member_path
+        - else
+          %span.badge.badge-pill.badge-success +
+          %del
+            = t('.new_member')
+      %hr
       /CREATE SERVICE
       - unless Service.any?
-        %span.badge.badge-pill.badge-danger 2
+        %span.badge.badge-pill.badge-danger -
         = link_to t('.new_service'), new_service_path
       - else
-        %span.badge.badge-pill.badge-success 2
+        %span.badge.badge-pill.badge-success +
         %del
           = t('.new_service')
+      %hr
       /CREATE CLIENT
       - unless Client.any?
         %span.badge.badge-pill.badge-danger -
@@ -28,24 +49,7 @@
         %span.badge.badge-pill.badge-success +
         %del
           = t('.new_client')
-      /CREATE MEMBER
-      - if (Tenant.current_tenant.plan == "silver") || (Tenant.current_tenant.plan == "gold")
-        - unless Member.count >= 2
-          %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_member'), new_member_path
-        - else
-          %span.badge.badge-pill.badge-success +
-          %del
-            = t('.new_member')
-      /ADD MY CONTACTS
-        %hr
-      - unless current_user.member.phone_number.present?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.edit_my_page'), edit_member_path(current_user.member)
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.new_service')
+      %hr
       /CREATE EVENT
       - unless Event.any?
         %span.badge.badge-pill.badge-danger -
@@ -54,5 +58,15 @@
         %span.badge.badge-pill.badge-success +
         %del
           = t('.new_event')
+      %hr
+      /CREATE PAYMENT
+      - unless InboundPayment.any?
+        %span.badge.badge-pill.badge-danger -
+        = link_to t('.new_payment'), new_inbound_payment_path
+      - else
+        %span.badge.badge-pill.badge-success +
+        %del
+          = t('.new_payment')
         %hr
-          Great! Now you can checkout the event
+        /FINISH
+        Great! Now you can check the statistics!
