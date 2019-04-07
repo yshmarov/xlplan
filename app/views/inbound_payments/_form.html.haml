@@ -8,7 +8,7 @@
     = f.error :client, class: 'text-danger'
     = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
 
-    = f.input :amount_cents
+    = f.input :amount_cents, input_html: { autocomplete: 'off' }
 
     = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS
   %hr

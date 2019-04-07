@@ -66,9 +66,12 @@ class EventsController < ApplicationController
 
     #@payable = @event
     @inbound_payments = @event.inbound_payments
-    @payment = InboundPayment.new
+    @inbound_payment = InboundPayment.new
+    #@inbound_payment.payable_id = @event.id
+    #@inbound_payment.payable_type = "Event"
     #@payment.client_id = @event.client.id
     #@payment.amount = @event.client_price
+    #authorize @inbound_payment
   end
 
   def new

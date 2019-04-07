@@ -12,7 +12,9 @@
           %span{"aria-hidden" => "true"} ×
       = simple_form_for @inbound_payment do |f|
         .modal-body
-          = f.input :client_id, input_html: {value: @client.id}, as: :hidden
+          = f.input :client_id, input_html: {value: @event.client.id}, as: :hidden
+          = f.input :payable_id, input_html: {value: @event.id}, as: :hidden
+          = f.input :payable_type, input_html: {value: 'Event'}, as: :hidden
           = f.input :amount_cents, input_html: { autocomplete: 'off' }
           = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS
         .modal-footer
