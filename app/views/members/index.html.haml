@@ -36,7 +36,7 @@
         %th= model_class.human_attribute_name(:location_id)
         %th= model_class.human_attribute_name(:skills)
         %th= model_class.human_attribute_name(:status)
-        %th{:colspan => "2"}= model_class.human_attribute_name(:roles)
+        %th= model_class.human_attribute_name(:roles)
         %th
     %tbody
       - @members.each do |member|
@@ -62,7 +62,8 @@
             - if member.user.present?
               - if member.user.present?
                 Active
-                = link_to 'delete account', member.user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger btn-sm" if policy(member.user).destroy?
+                .row
+                = link_to 'account', member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member.user).destroy?
               - else
                 Invite user
             - else
@@ -91,9 +92,6 @@
               /= member.user.roles.where("name = 'admin' OR name = 'specialist'").collect{|r| r.name}.to_sentence
               - member.user.roles.where("name = 'admin' OR name = 'specialist'").each do |r| 
                 = role_label(r.name)
-          %td
-            - if current_user.has_role?(:admin) && member.user.present?
-              = link_to 'Edit roles', edit_user_path(member.user), class: 'btn btn-warning btn-sm'
           %td
             = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
             = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?

@@ -17,8 +17,6 @@
     = f.label :gender_female
     = f.radio_button :gender, 'Male'
     = f.label :gender_male
-    = f.radio_button :gender, 'Other'
-    = f.label :gender_other
     / #### ADDRESS FIELD STARTS HERE ####
     .fields
       = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|

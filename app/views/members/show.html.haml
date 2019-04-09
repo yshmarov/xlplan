@@ -64,7 +64,7 @@
             /= @member.user.invitor
             -  if @member.id == current_user.id
               %br
-              = link_to 'Edit password', edit_user_registration_path(@member.user), class: 'btn btn-sm btn-warning'
+              = link_to 'Edit password', edit_user_registration_path, class: 'btn btn-sm btn-warning'
             - if @member.user.present?
               %br
               %b= model_class.human_attribute_name(:roles) + ':'
