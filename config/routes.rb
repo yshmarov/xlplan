@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   match '/settings/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
 
   resources :clients do
+    get :debtors, on: :collection
     collection do
       match 'search' => 'clients#search', via: [:get, :post], as: :search
     end

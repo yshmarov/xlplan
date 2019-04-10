@@ -295,6 +295,7 @@ ru:
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
     close_events: 'Отметить Встречи'
+    debtors: "Должники"
     events: 'Встречи'
     clients: 'Клиенты'
     members: 'Сотрудники'

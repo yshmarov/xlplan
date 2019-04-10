@@ -10,6 +10,13 @@ class ClientsController < ApplicationController
     @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
+  
+  def debtors
+    #with negative balance
+    @ransack_clients = Client.where("balance < ?", 0).search(params[:clients_search], search_key: :clients_search)
+    @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    render 'index'
+  end
 
   def show
     authorize @client

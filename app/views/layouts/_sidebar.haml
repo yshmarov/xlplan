@@ -39,6 +39,11 @@
           = link_to close_events_path, class: "nav-link" do
             .fa-color-1.fa-fw.fa.fa-calendar-check
             #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
+      - if Client.debtors.count > 0
+        %li
+          = link_to debtors_clients_path, class: "nav-link" do
+            .fa-color-1.fa-fw.fa.fa-user
+            #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, members_path, class: "nav-link"

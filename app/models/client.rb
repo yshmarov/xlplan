@@ -33,6 +33,8 @@ class Client < ApplicationRecord
 
   enum status: { inactive: 0, active: 1 }
 
+  scope :debtors, -> { where("balance < ?", 0) }
+
   ransacker :full_name do |parent|
     Arel::Nodes::InfixOperation.new('||',
       Arel::Nodes::InfixOperation.new('||',
