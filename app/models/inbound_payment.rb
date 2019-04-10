@@ -24,7 +24,7 @@ class InboundPayment < ApplicationRecord
   end
 
   def to_s
-    id
+    slug
   end
   
 end
