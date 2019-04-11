@@ -26,5 +26,7 @@ class Role < ApplicationRecord
   #validates :name, presence: true, uniqueness: true, length: {:in => 2..30}
   #validates :name, inclusion: { in: ["admin", "manager", "specialist", "viewer"] }, uniqueness: true
 
+  #scope :admin_specialist_manager, -> { where(name: [:manager, :specialist, :admin]) }
+
   scopify
 end

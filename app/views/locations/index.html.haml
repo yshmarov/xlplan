@@ -16,32 +16,62 @@
                 = t('.new', :default => t("helpers.links.new"))
                 .fa.fa-lock
                 /.fa.fa-lock-open
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th= model_class.human_attribute_name(:name)
-        %th= model_class.human_attribute_name(:contacts)
-        %th= model_class.human_attribute_name(:address)
-        %th= model_class.human_attribute_name(:status)
-        %th= model_class.human_attribute_name(:members_count)
-        %th= model_class.human_attribute_name(:events_count)
-        %th
-    %tbody
-      - @locations.each do |location|
-        %tr
-          %td= link_to location.name, location_path(location) if policy(location).show?
-          %td
+
+- @locations.each do |location|
+  .card
+    .card-header.bg-light
+      .row
+        .col-sm-6
+          .fa.fa-map-marker-alt
+          = link_to location.name, location_path(location) if policy(location).show?
+          = status_label(location.status)
+          .row
+          - if location.phone_number.present?
+            .row
+            .fa.fa-phone
             = link_to "tel:#{location.phone_number}", class: "button" do
               #{number_to_phone(location.phone_number)}
-            - if location.phone_number.present? && location.phone_number.present?
-              \/
+          - if location.email.present?
+            .row
+            .fa.fa-envelope
             %a{:href => "mailto:#{location.email}"}= location.email
-          %td= location.address
-          %td= status_label(location.status)
-          %td= location.members_count
-          %td= location.events_count
-          %td
-            = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
-            = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
+        .col-sm-4
+          .fa.fa-calendar
+          = location.events_count
+          .row
+          .fa.fa-dollar-sign
+          = number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        .col-sm-2
+          = link_to '', location, class: "btn btn-primary fa fa-eye btn-sm" if policy(location).show?
+          = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm"  if policy(location).edit?
+          = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(location).destroy?
+
+  /.table-responsive
+  /  %table#table1
+  /    %thead
+  /      %tr
+  /        %th= model_class.human_attribute_name(:name)
+  /        %th= model_class.human_attribute_name(:contacts)
+  /        %th= model_class.human_attribute_name(:address)
+  /        %th= model_class.human_attribute_name(:status)
+  /        %th= model_class.human_attribute_name(:members_count)
+  /        %th= model_class.human_attribute_name(:events_count)
+  /        %th
+  /    %tbody
+  /      - @locations.each do |location|
+  /        %tr
+  /          %td= link_to location.name, location_path(location) if policy(location).show?
+  /          %td
+  /            = link_to "tel:#{location.phone_number}", class: "button" do
+  /              #{number_to_phone(location.phone_number)}
+  /            - if location.phone_number.present? && location.phone_number.present?
+  /              \/
+  /            %a{:href => "mailto:#{location.email}"}= location.email
+  /          %td= location.address
+  /          %td= status_label(location.status)
+  /          %td= location.members_count
+  /          %td= location.events_count
+  /          %td
+  /            = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
+  /            = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
 %br

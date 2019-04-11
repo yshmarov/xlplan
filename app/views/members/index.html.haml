@@ -92,6 +92,7 @@
               /= member.user.roles.where("name = 'admin' OR name = 'specialist'").collect{|r| r.name}.to_sentence
               - member.user.roles.where("name = 'admin' OR name = 'specialist'").each do |r| 
                 = role_label(r.name)
+
           %td
             = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm" if policy(member).update?
             = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
