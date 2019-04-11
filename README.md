@@ -1,3 +1,16 @@
+#######################################################
+BAD: Instead of iterating over objects fully loaded into memory.
+Tenant.map { |tenant| tenant.name }
+#=> ["Eloquent Ruby", "Sapiens", "Agile Web Development With Rails"]
+Tenant.map(&:name)
+#=> ["Eloquent Ruby", "Sapiens", "Agile Web Development With Rails"]
+
+GOOD: Use the ActiveRelation#pluck method to pull the required fields directly from the database.
+Tenant.pluck(:name)
+#=> ["Eloquent Ruby", "Sapiens", "Agile Web Development With Rails"]
+#######################################################
+
+
 heroku run rails c
 Tenant.set_current_tenant(1)
 PublicActivity.enabled = false

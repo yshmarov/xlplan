@@ -1,6 +1,7 @@
 class Member < ApplicationRecord
   acts_as_tenant
    
+  #belongs_to :user, required: false
   belongs_to :user
   belongs_to :location, optional: true, counter_cache: true
   has_many :jobs, dependent: :restrict_with_error

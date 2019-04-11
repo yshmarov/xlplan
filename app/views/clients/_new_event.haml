@@ -15,23 +15,17 @@
           - set_var 'locale', Tenant.current_tenant.locale
           .form-inputs
             = f.input :client_id, input_html: {value: @client.id}, as: :hidden
+
             = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
+
             = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false
-            /= f.label :location_id
-            /= f.error :location, class: 'text-danger'
-            /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
-            .table-responsive
-              %table.table-sm
-                %thead
-                  %tr
-                    %th= t('service')
-                    %th= t('member')
-                    %th
-                %tbody.jobs
-                  = f.simple_fields_for :jobs do |f|
-                    = render 'job_fields', f: f
+
+            .jobs
+              = f.simple_fields_for :jobs do |job|
+                = render 'job_fields', f: job
               .links
-                = link_to_add_association t('events.form.add_service'), f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
+                = link_to_add_association t('events.form.add_service'), f, :jobs, class: 'btn btn-primary'
+
             = f.input :notes
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
