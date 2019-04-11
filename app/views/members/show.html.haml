@@ -97,4 +97,4 @@
         2
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
         - if policy(@member).show_money?
-          = bar_chart Job.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+          = bar_chart @member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
