@@ -21,7 +21,7 @@
   .card
     .card-header.bg-light
       .row
-        .col-sm-6
+        .col-sm-5
           .fa.fa-user
           = link_to client.full_name, client_path(client) if policy(client).show?
           - if client.phone_number.present?
@@ -34,9 +34,10 @@
             .fa.fa-envelope
             %a{:href => "mailto:#{client.email}"}= client.email
           .row
+        .col-sm-2
           .fa.fa-dollar-sign
           = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        .col-sm-4
+        .col-sm-3
           .fa.fa-calendar
           = client.events_count
           .row
@@ -78,7 +79,6 @@
   /          %td
   /            %a= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
   /            %a= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
-
 %p
 .container.table-responsive
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

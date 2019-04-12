@@ -10,17 +10,18 @@ Tenant.pluck(:name)
 #=> ["Eloquent Ruby", "Sapiens", "Agile Web Development With Rails"]
 #######################################################
 
-
 heroku run rails c
 Tenant.set_current_tenant(1)
 PublicActivity.enabled = false
 InboundPayment.count
+InboundPayment.all.map(&:amount).sum
+Tenant.current_tenant.update_attributes!(plan: "bronze")
 Event.count
 User.find(1)
 PublicActivity::Activity.order("created_at DESC").limit(10)
 InboundPayment.find_each(&:save)
 
-
+#######################################################
 #after_create :update_start_time
 def update_job_timing
   event_job_count = Job.where(event_id: job.id).count
@@ -35,6 +36,7 @@ def update_job_timing
   end
   job.ends_at = job.starts_at + duration
 end
+#######################################################
 
 
 
