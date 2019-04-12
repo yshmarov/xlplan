@@ -30,8 +30,8 @@ class Member < ApplicationRecord
 
   monetize :balance, as: :balance_cents
   after_touch :update_balance
-  scope :active, -> { where(status: [:active]) }
-  scope :inactive, -> { where(status: [:inactive]) }
+  #scope :active, -> { where(status: [:active]) }
+  #scope :inactive, -> { where(status: [:inactive]) }
   enum status: { inactive: 0, active: 1 }
   def self.active_or_id(record_id)
     where('id = ? OR (status=1)', record_id)    
