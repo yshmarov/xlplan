@@ -55,7 +55,7 @@ class Member < ApplicationRecord
     jobs.joins(:event).where(events: {status: ['confirmed']}).map(&:member_due_price).sum
   end
   def cancelled_salary
-    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:member_price).sum
+    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:member_due_price).sum
   end
 
   def planned_revenue
