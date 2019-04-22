@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   resources :locations
 
   resources :events do
-    resources :inbound_payments
+    resources :inbound_payments, except: [:edit, :update]
     get :close, on: :collection
   	member do
   		patch :mark_planned
@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   #for public_activity
   resources :jobs, only: :show
 
-  resources :inbound_payments
+  resources :inbound_payments, except: [:edit, :update]
 
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'

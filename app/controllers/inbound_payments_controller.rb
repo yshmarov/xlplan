@@ -1,5 +1,5 @@
 class InboundPaymentsController < ApplicationController
-  before_action :set_inbound_payment, only: [:show, :edit, :update, :destroy]
+  before_action :set_inbound_payment, only: [:show, :destroy]
 
   def index
     #@inbound_payments = InboundPayment.all.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
@@ -26,23 +26,14 @@ class InboundPaymentsController < ApplicationController
     authorize @inbound_payment
     respond_to do |format|
       if @inbound_payment.save
-        format.html { redirect_to @inbound_payment, notice: 'Inbound payment was successfully created.' }
-        format.json { render :show, status: :created, location: @inbound_payment }
+        if @inbound_payment.payable_id.present?
+          format.html { redirect_to @inbound_payment.payable, notice: 'Inbound payment was successfully created.' }
+        else
+          format.html { redirect_to @inbound_payment, notice: 'Inbound payment was successfully created.' }
+          format.json { render :show, status: :created, location: @inbound_payment }
+        end
       else
         format.html { render :new }
-        format.json { render json: @inbound_payment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    authorize @inbound_payment
-    respond_to do |format|
-      if @inbound_payment.update(inbound_payment_params)
-        format.html { redirect_to @inbound_payment, notice: 'Inbound payment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @inbound_payment }
-      else
-        format.html { render :edit }
         format.json { render json: @inbound_payment.errors, status: :unprocessable_entity }
       end
     end
@@ -51,9 +42,13 @@ class InboundPaymentsController < ApplicationController
   def destroy
     authorize @inbound_payment
     @inbound_payment.destroy
-    respond_to do |format|
-      format.html { redirect_to inbound_payments_url, notice: 'Inbound payment was successfully destroyed.' }
-      format.json { head :no_content }
+    if @inbound_payment.payable_id.present?
+      redirect_to @inbound_payment.payable, notice: 'Inbound payment was successfully destroyed.'
+    else
+      respond_to do |format|
+        format.html { redirect_to inbound_payments_url, notice: 'Inbound payment was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
