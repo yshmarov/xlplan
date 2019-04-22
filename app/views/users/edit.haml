@@ -2,16 +2,10 @@
   Editing roles for: #{@user.email}
 .card-header
   = simple_form_for @user do |f|
-    = f.collection_check_boxes :role_ids, Role.where("name = 'admin' OR name = 'specialist'").all, :id, :name
+    = f.collection_check_boxes :role_ids, Role.where.not("name = 'owner'").all, :id, :name
     = f.error :roles, class: 'text-danger'
-    /- Role.all.each do |role|
-    /  = check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id)
-    /  = role.name
     = f.submit
-    /= f.button :submit, class: "btn btn-success", title: 'Update Roles', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-
-  %br
+  %p
   = link_to "Cancel", member_path(@user.member), class: 'btn btn-danger'
-
-%br
+%p
 = render 'users/role_description'

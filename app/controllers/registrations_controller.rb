@@ -35,6 +35,8 @@ def create
 
         @user.add_role(:admin)
         #@user.add_role(:manager)
+        
+        Role.create!(name: "manager") #initially only admin and specialist are created.
 
         if resource.errors.empty?   #  SUCCESS!
 

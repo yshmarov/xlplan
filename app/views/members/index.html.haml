@@ -67,12 +67,8 @@
           /////////////////////user account/////////////////////
           - if member.user.present?
             /////////////////////user roles/////////////////////
-            /- if member.user.has_role?(:admin)
-            /  admin
-            /- if member.user.has_role?(:specialist)
-            /  specialist
-            /= member.user.roles.where("name = 'admin' OR name = 'specialist'").collect{|r| r.name}.to_sentence
-            - member.user.roles.where("name = 'admin' OR name = 'specialist'").each do |r| 
+            /= member.user.roles.where.not("name = 'owner'").collect{|r| r.name}.to_sentence
+            - member.user.roles.where.not("name = 'owner'").each do |r| 
               = role_label(r.name)
             - if member.user.confirmed_at?
               .row
