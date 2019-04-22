@@ -1,9 +1,9 @@
 %footer.bg-dark.text-white
-  %hr
-  .text-center
-    %h3
-      /Ready to get started?
-      = link_to 'Free demo!', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
+  /%hr
+  /.text-center
+  /  %h3
+  /    Ready to get started?
+  /    = link_to 'Free demo!', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
   %hr
   .container.text-center.text-md-left
     .row
@@ -30,18 +30,21 @@
           © #{Time.now.year}
           All rights reserved
           %p
-          = mail_to 'yaro@xlplan.com'
+          = mail_to 'yaroslav.shmarov@xlplan.com'
           %p
           %a{:href => "tel:+48-537-628-023"}
             = succeed "+48-537-628-023" do
               %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
           %hr.bg-light
           %li.list-inline-item
-            = link_to "https://www.instagram.com/xlplan/", target: :_blank do
-              %i.fa.fa-instagram{:style => "font-size:25px;color:white"}
+            = link_to "https://www.instagram.com/xlplan_com/", target: :_blank do
+              %i.fab.fa-instagram{:style => "font-size:25px;color:white"}
           %li.list-inline-item
-            = link_to "https://www.youtube.com/channel/UCrksy4sc0LqLP3aHSbcbLeQ/featured", target: :_blank do
-              %i.fa.fa-youtube{:style => "font-size:25px;color:white"}
+            = link_to "https://www.youtube.com/channel/UCPc7-Qx0mowN8EI8Yg7Lycw", target: :_blank do
+              %i.fab.fa-youtube{:style => "font-size:25px;color:white"}
           %li.list-inline-item
-            = link_to "https://www.linkedin.com/company/xlplan/", target: :_blank do
-              %i.fa.fa-linkedin{:style => "font-size:25px;color:white"}
+            = link_to "https://www.linkedin.com/company/18937424/", target: :_blank do
+              %i.fab.fa-linkedin{:style => "font-size:25px;color:white"}
+          %li.list-inline-item
+            = link_to "https://www.facebook.com/xlplan/", target: :_blank do
+              %i.fab.fa-facebook{:style => "font-size:25px;color:white"}

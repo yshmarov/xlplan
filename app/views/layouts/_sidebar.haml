@@ -22,7 +22,7 @@
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
           = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 100%; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
           .input-group-append
-            %button.btn.btn-success{:type => "submit"}
+            %button.btn.btn-light{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"

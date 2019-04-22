@@ -1,6 +1,5 @@
 = provide(:description, 'XLPLAN pricing. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, pricing, price, salon, management software, crm, erp, employee calendar, calendar')
-
 /%head
 /  %meta{:content => "xlplan pricing", :name => "description"}/
 .text-center
@@ -32,7 +31,7 @@
         %h4.text-secondary
           84 $ / year
       .card-body.pt-0
-        = link_to 'Start now!', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
+        = link_to 'Start now', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
           %li 1 Employee
           %li 1 Location
@@ -46,7 +45,7 @@
         %h4.text-secondary
           180 $ / year
       .card-body.pt-0
-        = link_to 'Start now!', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
+        = link_to 'Start now', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
           %li 2-5 Employees
           %li 1 Location
@@ -60,7 +59,7 @@
         %h4.text-secondary
           600 $ / year
       .card-body.pt-0
-        = link_to 'Start now!', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
+        = link_to 'Start now', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
         %ul.list-unstyled.mb-4
           %li Unlimited Employees
           %li Unlimited Locations
@@ -79,6 +78,5 @@
     /    = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
     /    %ul.list-unstyled.mb-4
     /      %li Everything Unlimited
-
 </div>
 = render 'layouts/footer'
