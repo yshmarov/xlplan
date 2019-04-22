@@ -437,6 +437,7 @@ ru:
       confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
     events:
       event_stats: 'Статистика Встреч'
+      confirmed_event_price_per_day: "Цена подтверждённых встреч в день"
       counters: "Счётчики"
       average_confirmed_check: "Средний чек"
       planned: "Запланированные"
@@ -454,8 +455,8 @@ ru:
       service_popularity: 'Популярность услуг'
     payments:
       payment_stats: 'Статистика Оплат'
-      payments_per_month: 'Кол оплат в месяц'
-      payments_per_day: 'Кол оплат в день'
+      payments_per_month: 'Сумма оплат в месяц'
+      payments_per_day: 'Сумма оплат в день'
 
   activerecord:
     models:

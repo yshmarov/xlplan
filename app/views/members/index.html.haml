@@ -4,13 +4,14 @@
     .container-fluid
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-          .form-inline
-            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+          .input-group
+            /.fa.fa-user
             .mr-sm-2
-              = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "#{model_class.human_attribute_name(:full_name)}", :autocomplete => :off
-              %span.input-group-append
-                %button.btn.btn-secondary{:type => "submit"}
-                  %span.fa.fa-search{"aria-hidden" => "true"}
+              %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+            = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
+            %span.input-group-append
+              %button.btn.btn-secondary{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Member).create?
@@ -20,9 +21,7 @@
               %span.d-inline-block{"data-toggle" => "tooltip", :tabindex => "0", :title => "Unlock Premium Feature"}
                 %button.btn.btn-sm.btn-primary{:disabled => "disabled", :style => "pointer-events: none;", :type => "button"}
                   = t('.new', :default => t("helpers.links.new"))
-                  /New Member
                   .fa.fa-lock
-
 - @members.each do |member|
   .card
     .card-header.bg-light
@@ -30,10 +29,9 @@
         .col-sm-5
           - if member.user_online.present?
             %i.fa.fa-fire{:style => "color:red;"}
-            /%i.fa.fa-circle{:style => "color:green;"}
-          /- if member.id == current_user.member.id
-          /  .fa.fa-user
-          .fa.fa-user
+            /%i.far.fa-circle{:style => "color:green;"}
+          - if member.id == current_user.member.id
+            .fa.fa-user
           = link_to member.full_name, member_path(member) if policy(member).show?
           = status_label(member.status)
           - if member.phone_number.present?
@@ -64,10 +62,11 @@
           = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
           = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(member).destroy?
       %p
-      .row.border.border-primary.rounded
-        .col-sm-6
-          /////////////////////user roles/////////////////////
+      .row
+        .col-sm-6.border.border-primary.rounded
+          /////////////////////user account/////////////////////
           - if member.user.present?
+            /////////////////////user roles/////////////////////
             /- if member.user.has_role?(:admin)
             /  admin
             /- if member.user.has_role?(:specialist)
@@ -75,16 +74,17 @@
             /= member.user.roles.where("name = 'admin' OR name = 'specialist'").collect{|r| r.name}.to_sentence
             - member.user.roles.where("name = 'admin' OR name = 'specialist'").each do |r| 
               = role_label(r.name)
-        .col-sm-6
-          /////////////////////user account/////////////////////
-          - if member.user.present?
-            Has access
+            - if member.user.confirmed_at?
+              .row
+              Has access
+            - else
+              .row
+              No access. Resend confirmation email
             - unless member == current_user.member
               .row
               = link_to "<i class='fa-fw fa fa-trash'></i> Delete Access".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
           - else
             Invite user
-            /- if member.termination_date.present?
             - if member.active?
               - if member.email.present?
                 - if policy(User).create?
@@ -103,9 +103,6 @@
 .container.table-responsive
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
-
-
-
 /= Tenant.current_tenant.users.count
 /- Tenant.current_tenant.users.each do |user| 
 /  %p= user.email

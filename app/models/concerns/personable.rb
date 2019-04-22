@@ -10,7 +10,9 @@ module Personable
   end
 
   def short_name
-    last_name.capitalize + "." + first_name[0].capitalize
+    if last_name.present? && first_name.present?
+      last_name.capitalize + "." + first_name[0].capitalize
+    end
   end
 
   def username
