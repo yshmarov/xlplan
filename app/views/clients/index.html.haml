@@ -47,38 +47,6 @@
           = link_to '', client, class: "btn btn-primary fa fa-eye btn-sm" if policy(client).show?
           = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
           = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
-  /.table-responsive
-  /  %table#table1
-  /    %thead
-  /      %tr
-  /        %th= sort_link @ransack_clients, :last_name, model_class.human_attribute_name(:full_name)
-  /        %th 
-  /          = model_class.human_attribute_name(:contacts)
-  /        /%th= sort_link @ransack_clients, :status, "Status"
-  /        %th= sort_link @ransack_clients, :balance, :balance
-  /        %th= sort_link @ransack_clients, :events_count, :events_count
-  /        %th= sort_link @ransack_clients, :inbound_payments_count, :inbound_payments_count
-  /        %th= sort_link @ransack_clients, :created_at, :created_at
-  /        %th
-  /    %tbody
-  /      - @clients.each do |client|
-  /        %tr
-  /          %td= link_to client.full_name, client_path(client) if policy(client).show?
-  /          %td
-  /            /= number_to_phone(client.phone_number)
-  /            = link_to "tel:#{client.phone_number}", class: "button" do
-  /              #{number_to_phone(client.phone_number)}
-  /            - if client.email.present? && client.phone_number.present?
-  /              \/
-  /            %a{:href => "mailto:#{client.email}"}= client.email
-  /          /%td= status_label(client.status)
-  /          %td= number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-  /          %td= client.events_count
-  /          %td= client.inbound_payments_count
-  /          %td= client.created_at.strftime("%d/%m/%Y")
-  /          %td
-  /            %a= link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm" if policy(client).update?
-  /            %a= link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(client).destroy?
 %p
 .container.table-responsive
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
