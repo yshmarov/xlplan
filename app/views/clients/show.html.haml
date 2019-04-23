@@ -43,8 +43,17 @@
         
         /= link_to @client.address, "https://www.google.com/maps/search/?api=1&query=760+West+Genesee+Street+Syracuse+NY+13204", :target => '_blank'
         %hr
+        .fa.fa-balance-scale
         %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %br
+        .fa.fa-calendar-check
+        %b= model_class.human_attribute_name(:jobs_sum) + ':'
+        = number_to_currency(@client.jobs_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %br
+        .fa.fa-hand-holding-usd
+        %b= model_class.human_attribute_name(:inbound_payments_sum) + ':'
+        = number_to_currency(@client.inbound_payments_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %hr
         %b= model_class.human_attribute_name(:next_event) + ':'
         - if @next_event.present?

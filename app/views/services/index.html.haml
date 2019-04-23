@@ -34,13 +34,15 @@
         %th= sort_link @q, :client_price, :client_price
         %th= sort_link @q, :member_percent, :member_percent
         %th= sort_link @q, :member_price, :member_price
-        %th= sort_link @q, :status, :status
         %th= model_class.human_attribute_name(:jobs_count)
         %th
     %tbody
       - @services.each do |service|
         %tr
-          %td= link_to service.name, service_path(service)
+          %td
+            = link_to service.name, service_path(service)
+            .row
+            = status_label(service.status)
           %td
             = service.service_category
             /- if policy(service.service_category).edit?
@@ -50,7 +52,6 @@
           %td= number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_percentage(service.member_percent, precision: 0)
           %td= number_to_currency(service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          %td= status_label(service.status)
           %td= service.jobs_count
           %td
             = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?

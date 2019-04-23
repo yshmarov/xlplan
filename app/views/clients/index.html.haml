@@ -35,7 +35,7 @@
             %a{:href => "mailto:#{client.email}"}= client.email
           .row
         .col-sm-2
-          .fa.fa-dollar-sign
+          .fa.fa-balance-scale
           = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .col-sm-3
           .fa.fa-calendar

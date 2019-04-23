@@ -1,5 +1,4 @@
 class Client < ApplicationRecord
-
   after_touch :update_balance
 
   acts_as_tenant
@@ -30,6 +29,8 @@ class Client < ApplicationRecord
   #store :address, accessors: [:street_address, :city, :state, :zip], coder: JSON
 
   monetize :balance, as: :balance_cents
+  monetize :inbound_payments_sum, as: :inbound_payments_sum_cents
+  monetize :jobs_sum, as: :jobs_sum_cents
 
   enum status: { inactive: 0, active: 1 }
 
@@ -44,11 +45,18 @@ class Client < ApplicationRecord
     )
   end
 
+  def inbound_payments_sum
+    inbound_payments.map(&:amount).sum
+  end
+
+  def jobs_sum
+    jobs.map(&:client_due_price).sum
+  end
+
   #private
   #protected
 
   def update_balance
     update_column :balance, (inbound_payments.map(&:amount).sum-jobs.map(&:client_due_price).sum)
   end
-
 end

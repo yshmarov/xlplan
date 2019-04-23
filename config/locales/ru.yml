@@ -605,6 +605,8 @@ ru:
         zip: "Почтовый Код"
         status: "Статус"
         balance: "Баланс"
+        jobs_sum: "Цена Работ"
+        inbound_payments_sum: "Сумма Оплат"
         location_id: "Локация"
         location: "Локация"
         events_count: "Кол. Встреч"
