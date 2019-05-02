@@ -1,7 +1,7 @@
 PublicActivity.enabled = false
 
 t = Tenant.first_or_create({
- name: 'Demo App',
+ name: 'Nika Beauty',
  plan: 'gold',
  default_currency: 'uah',
  locale: 'ru'
@@ -48,8 +48,7 @@ ServiceCategory.create!(name: 'For Children')
     description: Faker::Job.field,
     duration: Faker::Number.between(15, 120),
     client_price: Faker::Number.between(1000, 90000),
-    member_percent: Faker::Number.between(0, 90),
-    repeat_reminder: Faker::Number.between(0, 90)
+    member_percent: Faker::Number.between(0, 90)
   }])
 end
 

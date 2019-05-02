@@ -108,10 +108,10 @@ ActiveRecord::Schema.define(version: 2019_04_04_232201) do
     t.bigint "client_id"
     t.integer "amount", default: 0, null: false
     t.string "payment_method", default: "cash", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "payable_id"
     t.string "payable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["client_id"], name: "index_inbound_payments_on_client_id"
     t.index ["payable_id"], name: "index_inbound_payments_on_payable_id"
@@ -279,12 +279,13 @@ ActiveRecord::Schema.define(version: 2019_04_04_232201) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.boolean "skip_confirm_change_password", default: false
+    t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "tenant_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["tenant_id"], name: "index_users_on_tenant_id"
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|

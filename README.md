@@ -9,7 +9,6 @@ GOOD: Use the ActiveRelation#pluck method to pull the required fields directly f
 Tenant.pluck(:name)
 #=> ["Eloquent Ruby", "Sapiens", "Agile Web Development With Rails"]
 #######################################################
-
 heroku run rails c
 Tenant.set_current_tenant(1)
 PublicActivity.enabled = false
@@ -20,7 +19,8 @@ Event.count
 User.find(1)
 PublicActivity::Activity.order("created_at DESC").limit(10)
 InboundPayment.find_each(&:save)
-
+rake db:drop db:create db:migrate
+@user.add_role(:admin)
 #######################################################
 #after_create :update_start_time
 def update_job_timing
@@ -37,11 +37,6 @@ def update_job_timing
   job.ends_at = job.starts_at + duration
 end
 #######################################################
-
-
-
-rake db:drop db:create db:migrate
-
 class Transaction < ApplicationRecord
   before_create :set_slug
   private
@@ -52,11 +47,7 @@ class Transaction < ApplicationRecord
     end
   end
 end
-
-# README
-
-@user.add_role(:admin)
-
+#######################################################
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
@@ -79,7 +70,8 @@ add_column :members, :share_of_revenue, :integer, default: 0, null: false
 
 Things you may want to cover:
 
-* Ruby version
+* Rails 5.2.3
+* ruby 2.5.3p105 (2018-10-18 revision 65156) [x86_64-linux]
 
 * System dependencies
 
@@ -97,31 +89,5 @@ Things you may want to cover:
 
 * ...
 
-Milia? Acts_as_tenant?
-
-devise
-sendgrid
-
-
-rails g scaffold
-Tenant
-  Location/Office
-    Room/Machine/Work_station/Work_x
-
-  User (unique for tenant)
-    Employee
-    Supplier
-    Client
-
-  Service
-    User(Member/Supplier)Service
-
-      Event
-
-  Payment
-  Expence
-  
-  
 ## Demo
-
 ![](https://media.giphy.com/media/yMEow45RqC8HrOmmsD/giphy.gif)

@@ -56,7 +56,8 @@
             .row
           - if member.skills.any?
             .fa.fa-hand-paper
-            = member.skills.collect{|r| r.service_category}.to_sentence
+            %small
+              = member.skills.collect{|r| r.service_category}.to_sentence
         .col-sm-2
           = link_to '', member, class: "btn btn-primary fa fa-eye btn-sm" if policy(member).show?
           = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
