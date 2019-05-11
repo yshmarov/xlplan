@@ -17,6 +17,12 @@
         .badge.badge-default.text-white
           = Tenant.current_tenant.name
           = plan_label(Tenant.current_tenant.plan)
+          /= Time.now.in_time_zone(current_user.time_zone)
+          /= Time.now
+          /= Time.current
+          = Time.zone
+          /= Time.zone.now
+          /= Time.now.in_time_zone
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|

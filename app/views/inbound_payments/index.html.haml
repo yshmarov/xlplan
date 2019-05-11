@@ -28,7 +28,7 @@
               = model_class.human_attribute_name(:after)
               = f.text_field :created_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
               = model_class.human_attribute_name(:before)
-              = f.text_field :created_at_lteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+              = f.text_field :created_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
           .col-md-4
             .row
             = f.submit

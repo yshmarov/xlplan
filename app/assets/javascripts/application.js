@@ -60,8 +60,11 @@ $(document).on('turbolinks:load', function(){
     orientation: 'auto bottom',
     format: 'yyyy-mm-dd',
     autoclose: true,
-    todayHighlight:'TRUE',
-    });
+    todayHighlight: true,
+    clearBtn: true,
+    disableTouchKeyboard: true,
+    keyboardNavigation: false
+  });
 
   $(".selectize-category").selectize({
     create: function(input, callback) {

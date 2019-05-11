@@ -75,7 +75,7 @@ en:
     stats: 'Stats'
     my_page: 'My Page'
     profile_settings: 'Profile Settings'
-    account_settings: 'Account Settings'
+    account_settings: 'Password & Time'
     logout: 'Logout'
 
   services: 'Services'

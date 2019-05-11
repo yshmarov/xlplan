@@ -307,7 +307,7 @@ ru:
     stats: 'Статистика'
     my_page: 'Моя Страница'
     profile_settings: 'Настройки Профиля'
-    account_settings: 'Пароль и Доступ'
+    account_settings: 'Пароль и Время'
     logout: 'Выход'
 
   services: 'Услуги'
@@ -481,9 +481,10 @@ ru:
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       event:
+        client: "Клиент"
         client_id: "Клиент"
-        location_id: "Локация"
         location: "Локация"
+        location_id: "Локация"
         starts_at: "Начало"
         duration: "Длительность"
         ends_at: "Конец"
