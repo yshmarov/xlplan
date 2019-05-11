@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController 
 
   before_action :set_locale
-  before_action :set_global_search_variable
-  after_action :user_activity
+  before_action :set_global_search_variable, if: :user_signed_in?
+  after_action :user_activity, if: :user_signed_in?
+  #before_action :set_local_time_zone, if: :user_signed_in?
 
   private
-
   #i18n
   def set_locale
     if current_user
@@ -36,6 +36,10 @@ class ApplicationController < ActionController::Base
   def set_global_search_variable
     @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
   end
+  #time_zone
+  #def set_local_time_zone
+  #  Time.zone = current_user.time_zone if user_signed_in?
+  #end  
   #online?
   def user_activity
     current_user.try :touch
