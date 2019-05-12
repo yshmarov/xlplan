@@ -33,7 +33,9 @@ class Member < ApplicationRecord
   after_update :update_user_time_zone
   after_save :update_user_time_zone
   def update_user_time_zone
-    user.update_attributes!(time_zone: self.time_zone)
+    if user.present?
+      user.update_attributes!(time_zone: self.time_zone)
+    end
   end
 
   after_touch :update_balance
