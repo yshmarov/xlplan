@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2019_05_11_070350) do
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.string "slug"
+    t.string "time_zone", default: "UTC"
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
@@ -282,7 +283,6 @@ ActiveRecord::Schema.define(version: 2019_05_11_070350) do
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "time_zone", default: "UTC"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

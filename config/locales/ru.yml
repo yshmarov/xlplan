@@ -307,7 +307,7 @@ ru:
     stats: 'Статистика'
     my_page: 'Моя Страница'
     profile_settings: 'Настройки Профиля'
-    account_settings: 'Пароль и Время'
+    account_settings: 'Пароль и Доступ'
     logout: 'Выход'
 
   services: 'Услуги'
@@ -581,6 +581,7 @@ ru:
         location: "Локация"
         contacts: "Контакты"
         roles: "Права Доступа"
+        time_zone: "Часовой Пояс"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       client:

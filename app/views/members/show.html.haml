@@ -44,6 +44,9 @@
         %br
         %b= model_class.human_attribute_name(:location_id) + ':'
         = link_to @member.location, location_path(@member.location) if @member.location.present?
+        %br
+        %b= model_class.human_attribute_name(:time_zone) + ':'
+        = @member.time_zone
         %hr
         %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")

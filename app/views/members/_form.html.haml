@@ -39,6 +39,10 @@
     /= f.error :location, class: 'text-danger'
     /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
     = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false
+
+    /= f.label :time_zone
+    /= f.time_zone_select :time_zone, /Europe/, :default => "Kyiv"
+    = f.input :time_zone
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

@@ -15,15 +15,8 @@ class ApplicationController < ActionController::Base
   after_action :user_activity, if: :current_user
   #before_action :set_time_zone, if: :user_signed_in?
   around_action :set_time_zone, if: :current_user
-  private
 
-  #time_zone
-  def set_time_zone(&block)
-    Time.use_zone(current_user.time_zone, &block)
-  end
-  #def set_time_zone
-  #  Time.zone = current_user.time_zone if user_signed_in?
-  #end  
+  private
 
   #i18n
   def set_locale
@@ -36,6 +29,14 @@ class ApplicationController < ActionController::Base
           I18n.default_locale
     end
   end
+
+  #time_zone
+  def set_time_zone(&block)
+    Time.use_zone(current_user.member.time_zone, &block)
+  end
+  #def set_time_zone
+  #  Time.zone = current_user.member.time_zone
+  #end  
 
   #pundit
   def user_not_authorized

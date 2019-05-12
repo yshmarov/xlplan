@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
 
+  def time_zone
+    member.time_zone
+  end
+
   def online?
     updated_at > 10.minutes.ago
   end

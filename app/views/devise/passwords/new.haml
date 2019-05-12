@@ -1,0 +1,16 @@
+%p
+.row
+  .col-lg-4
+  .col-lg-4
+    .card.card-default
+      .card-header
+        %h4 Forgot your password?
+      .card-body
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = f.error_notification
+          .form-inputs
+            = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
+          .form-actions
+            = f.button :submit, "Send me reset password instructions", class: "btn btn-primary"
+        %hr
+        = render "devise/shared/links"

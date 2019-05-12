@@ -1,3 +1,4 @@
+= link_to "Back", :back
 #######################################################
 BAD: Instead of iterating over objects fully loaded into memory.
 Tenant.map { |tenant| tenant.name }

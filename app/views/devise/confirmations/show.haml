@@ -1,14 +1,17 @@
-.panel.panel-default
-  .panel-heading
-    %h4 Create Password
-  .panel-body
-    = form_for(resource, :as => resource_name, :url => update_user_confirmation_path, |
-      :html => { :method => :put, :class => "form login" }) do |f|                    |
-      = hidden_field_tag :confirmation_token, @confirmation_token
-      .form-group
-        = f.label :password, :class => "control-label"
-        = f.password_field :password, :class => "form-control"
-      .form-group
-        = f.label :password_confirmation, :class => "control-label"
-        = f.password_field :password_confirmation, :class => "form-control"
-      = f.submit 'Create Password', class: "btn btn-primary"
+%p
+.row
+  .col-lg-4
+  .col-lg-4
+    .card.card-default
+      .card-header
+        %h4 Create Password
+      .card-body
+        = form_for(resource, :as => resource_name, :url => update_user_confirmation_path, :html => { :method => :put, :class => "form login" }) do |f|
+          = hidden_field_tag :confirmation_token, @confirmation_token
+          .form-group
+            = f.label :password, :class => "control-label"
+            = f.password_field :password, :class => "form-control"
+          .form-group
+            = f.label :password_confirmation, :class => "control-label"
+            = f.password_field :password_confirmation, :class => "form-control"
+          = f.submit 'Create Password', class: "btn btn-primary"

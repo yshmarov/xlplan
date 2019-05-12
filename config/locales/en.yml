@@ -75,7 +75,7 @@ en:
     stats: 'Stats'
     my_page: 'My Page'
     profile_settings: 'Profile Settings'
-    account_settings: 'Password & Time'
+    account_settings: 'Password & Access'
     logout: 'Logout'
 
   services: 'Services'
@@ -242,6 +242,7 @@ en:
         skills: "Available service categories"
         contacts: "Contacts"
         roles: "Access rights"
+        time_zone: "Time Zone"
       client:
         first_name: "First Name"
         last_name: "Last Name"
