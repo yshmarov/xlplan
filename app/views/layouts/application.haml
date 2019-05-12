@@ -21,10 +21,11 @@
       #wrapper
         = render 'layouts/sidebar'
         = render 'layouts/messages'
-        /- unless current_user.confirmed_at
-        /  .card.card-header.bg-warning
-        /    Confirm your email
-        /  %p
+        - unless current_user.confirmed_at
+          .card.card-header.bg-warning
+            Confirm your email #{@current_user.email}
+            = link_to "Didn't receive confirmation instructions?", new_user_confirmation_path
+          %p
         = yield
         = rjv_tags
     - else
