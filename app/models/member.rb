@@ -29,6 +29,13 @@ class Member < ApplicationRecord
   serialize :address
 
   monetize :balance, as: :balance_cents
+
+  after_update :update_user_time_zone
+  after_save :update_user_time_zone
+  def update_user_time_zone
+    user.update_attributes!(time_zone: self.time_zone)
+  end
+
   after_touch :update_balance
   #scope :active, -> { where(status: [:active]) }
   #scope :inactive, -> { where(status: [:inactive]) }

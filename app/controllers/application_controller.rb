@@ -32,9 +32,7 @@ class ApplicationController < ActionController::Base
 
   #time_zone
   def set_time_zone(&block)
-    if current_user.present? && current_user.member.present?
-      Time.use_zone(current_user.member.time_zone, &block)
-    end
+    Time.use_zone(current_user.time_zone, &block)
   end
   #def set_time_zone
   #  Time.zone = current_user.member.time_zone

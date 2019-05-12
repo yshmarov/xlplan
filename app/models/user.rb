@@ -22,14 +22,6 @@ class User < ApplicationRecord
 
   scope :online, lambda{ where("updated_at > ?", 10.minutes.ago) }
 
-  def time_zone
-    if member.present?
-      member.time_zone
-    else
-      Time.zone.now
-    end
-  end
-
   def online?
     updated_at > 10.minutes.ago
   end
