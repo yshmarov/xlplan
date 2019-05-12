@@ -10,6 +10,7 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.date :date_of_birth
       t.string :gender, default: "undisclosed"
       t.text :address
+      t.string :time_zone, default: "UTC"
 
       t.integer :status, default: 1, null: false
       t.integer :balance, default: 0, null: false
