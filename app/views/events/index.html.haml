@@ -43,17 +43,33 @@
       .row
         .col-lg-2
           .text-center
-            /= status_label(event.status)
-            = link_to status_label(event.status), event
+            /= link_to status_label(event.status), event
+            - if policy(event).update?
+              /.dropdown
+              /  %button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              /    Dropdown button
+              /  .dropdown-menu{"aria-labelledby" => "dropdownMenuButton"}
+              /    %a.dropdown-item{:href => "#"} Action
+              /    %a.dropdown-item{:href => "#"} Another action
+              /    %a.dropdown-item{:href => "#"} Something else here
+              .dropdown.show
+                %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  /= event.status
+                  = status_label(event.status)
+                .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
+                  - unless event.status == 'planned'
+                    = button_to t('events.show.planned'), mark_planned_event_path(event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
+                  - unless event.status == 'confirmed'
+                    = button_to t('events.show.confirmed'), mark_confirmed_event_path(event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2 btn-block'
+                  - unless event.status == 'client_not_attended'
+                    = button_to t('events.show.client_not_attended'), mark_client_not_attended_event_path(event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2 btn-block'
+                  - unless event.status == 'member_cancelled'
+                    = button_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2 btn-block'
+                  - unless event.status == 'client_cancelled'
+                    = button_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2 btn-block'
             .row
             = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
-            /%section.bg-danger.text-center
-            /  .container
-            /    t
-            /%hr{:color => "green"}/
-            /%li.list-group-item
-            /%hr
             = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
             = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
             = link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?

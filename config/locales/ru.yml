@@ -365,6 +365,12 @@ ru:
       event_statuses: "Посещаемость"
       favorite_services: "Популярность услуг"
   events:
+    index:
+      planned: "Запланирован"
+      confirmed: "Состоялся"
+      member_cancelled: "Сотрудник Отменил"
+      client_cancelled: "Клиент Отменил"
+      client_not_attended: "Клиент Не Явился"
     show:
       client_paid: "Создать оплату"
       planned: "Запланирован"
@@ -407,6 +413,7 @@ ru:
       inbound_payments: "Оплаты"
     edit:
       settings: "Настройки"
+
   dashboard:
     start:
       start: "Начало работы"

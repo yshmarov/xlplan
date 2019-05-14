@@ -93,6 +93,12 @@ en:
       new_event: "Add an Event"
       new_payment: "Add a Payment"
   events:
+    index:
+      planned: "Planned"
+      confirmed: "Confirmed"
+      member_cancelled: "Member Cancelled"
+      client_cancelled: "Client Cancelled"
+      client_not_attended: "Client Not Attended"
     show:
       client_paid: "Create Payment"
       planned: "Planned"
