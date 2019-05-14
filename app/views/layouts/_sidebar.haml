@@ -59,14 +59,14 @@
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "nav-link"
       - if current_user.has_role?(:admin)
         %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-cog'></i> #{t('sidebar.settings')}".html_safe, settings_show_path, class: "nav-link"
-        %a.nav-link.btn.dropdown-toggle{"data-target" => "#service", "data-toggle" => "collapse"}
+        %a.nav-link.btn.dropdown-toggle{"data-target" => "#stats", "data-toggle" => "collapse"}
           .fa-color-1.fa.fa-chart-line
           #{t('sidebar.stats')}
-        %ul#service.sub-menu.collapse
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-dollar-sign'></i> #{t('sidebar.inbound_payments')}".html_safe, dashboard_payments_path, class: "nav-link"
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, dashboard_events_path, class: "nav-link"
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, dashboard_clients_path, class: "nav-link"
-          %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, dashboard_members_path, class: "nav-link"
+        %ul#stats.sub-menu.collapse
+          .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-dollar-sign'></i> #{t('sidebar.inbound_payments')}".html_safe, dashboard_payments_path, class: "nav-link"
+          .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, dashboard_events_path, class: "nav-link"
+          .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, dashboard_clients_path, class: "nav-link"
+          .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, dashboard_members_path, class: "nav-link"
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
