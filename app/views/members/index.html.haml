@@ -26,7 +26,8 @@
   .card
     .card-header.bg-light
       .row
-        .col-sm-5
+        /contacts
+        .col-sm-3
           - if member.user_online.present?
             %i.fa.fa-fire{:style => "color:red;"}
             /%i.far.fa-circle{:style => "color:green;"}
@@ -43,12 +44,11 @@
             .row
             .fa.fa-envelope
             %a{:href => "mailto:#{member.email}"}= member.email
-        .col-sm-2
-          .fa.fa-balance-scale
-          = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           .row
-          .fa.fa-calendar
-          = member.jobs_count
+          = link_to '', member, class: "btn btn-primary fa fa-eye btn-sm" if policy(member).show?
+          = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
+          = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(member).destroy?
+        /location & skills
         .col-sm-3
           - if member.location.present?
             .fa.fa-map-marker-alt
@@ -57,14 +57,20 @@
           - if member.skills.any?
             .fa.fa-hand-paper
             %small
-              = member.skills.collect{|r| r.service_category}.to_sentence
-        .col-sm-2
-          = link_to '', member, class: "btn btn-primary fa fa-eye btn-sm" if policy(member).show?
-          = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
-          = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(member).destroy?
-      %p
-      .row
-        .col-sm-6.border.border-primary.rounded
+              /= member.skills.collect{|r| r.service_category}.to_sentence
+              - member.skills.each do |skill|
+                .badge.badge-secondary
+                  = skill.service_category
+        /ADMIN - stats
+        - if current_user.has_role?(:admin)
+          .col-sm-2
+            .fa.fa-balance-scale
+            = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            .row
+            .fa.fa-calendar
+            = member.jobs_count
+        /USER
+        .col-sm-4
           /////////////////////user account/////////////////////
           - if member.user.present?
             /////////////////////user roles/////////////////////
@@ -76,19 +82,21 @@
               Has access
             - else
               .row
-              No access. Resend confirmation email
+              No access. Resend invitation email
             - unless member == current_user.member
-              .row
-              = link_to "<i class='fa-fw fa fa-trash'></i> Delete Access".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
+              - if member.user.present?
+                .row
+                = link_to "<i class='fa-fw fa fa-trash'></i> Delete Access".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
           - else
-            Invite user
+            Invite user.
             - if member.active?
               - if member.email.present?
-                - if policy(User).create?
-                  = simple_form_for(User.new, url: user_invitation_path) do |z|
-                    = z.input :email, input_html: {value: member.email}, as: :hidden
-                    = z.input :member_id, input_html: {value: member.id}, as: :hidden
-                    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
+                Devise invitable here
+                /- if policy(User).create?
+                /  = simple_form_for(User.new, url: user_invitation_path) do |z|
+                /    = z.input :email, input_html: {value: member.email}, as: :hidden
+                /    = z.input :member_id, input_html: {value: member.id}, as: :hidden
+                /    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
               - else
                 Add email to invite user
             - else

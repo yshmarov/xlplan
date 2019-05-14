@@ -359,6 +359,11 @@ ru:
       title: "Изменить Клиента"
     create:
       success: 'Клиент успешно создан.'
+    show:
+      event_quantity_per_month: "Посещений в месяц"
+      payment_sum_per_month: "Оплат в месяц"
+      event_statuses: "Посещаемость"
+      favorite_services: "Популярность услуг"
   events:
     show:
       client_paid: "Создать оплату"

@@ -2,7 +2,7 @@ class Member < ApplicationRecord
   acts_as_tenant
    
   #belongs_to :user, required: false
-  belongs_to :user
+  belongs_to :user, required: false
   belongs_to :location, optional: true, counter_cache: true
   has_many :jobs, dependent: :restrict_with_error
   has_many :events, through: :jobs
@@ -17,7 +17,7 @@ class Member < ApplicationRecord
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
-  validates :user_id, presence: true
+  #validates :user_id, presence: true
   validates :user_id, uniqueness: true
   validates :first_name, :last_name, length: { maximum: 144 }
   validates :email, :phone_number, length: { maximum: 255 }

@@ -34,7 +34,7 @@
           /#{@member.address[:street_address]}, #{@member.address[:city]}, #{@member.address[:state]}, #{@member.address[:zip]}
           = @member.address[:country]
           = @member.address[:city]
-          = @member.address[:street_address]
+          = @member.address[:street]
           = @member.address[:zip]
         %br
         %b= model_class.human_attribute_name(:skills) + ':'

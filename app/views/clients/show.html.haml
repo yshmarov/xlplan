@@ -38,7 +38,7 @@
           /#{@client.address[:street_address]}, #{@client.address[:city]}, #{@client.address[:state]}, #{@client.address[:zip]}
           = @client.address[:country]
           = @client.address[:city]
-          = @client.address[:street_address]
+          = @client.address[:street]
           = @client.address[:zip]
         
         /= link_to @client.address, "https://www.google.com/maps/search/?api=1&query=760+West+Genesee+Street+Syracuse+NY+13204", :target => '_blank'
@@ -95,14 +95,18 @@
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
         .card
           .card-body
-            .text-center Event quantity per month
+            .text-center 
+              = t('.event_quantity_per_month')
             = column_chart @client.events.group_by_month(:starts_at).count, download: true
             %hr
-            .text-center Payment sum per month
+            .text-center 
+              = t('.payment_sum_per_month')
             = column_chart @client.inbound_payments.group_by_month(:created_at).sum('amount/100'), prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
             %hr
-            .text-center Event Statuses
+            .text-center 
+              = t('.event_statuses')
             = pie_chart @client.events.group(:status).count, download: true
             %hr
-            .text-center Favorite Services
+            .text-center 
+              = t('.favorite_services')
             = pie_chart @client.services.group('name').count, download: true

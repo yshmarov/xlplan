@@ -4,7 +4,7 @@ class MembersController < ApplicationController
 
   def index
     @ransack_members = Member.search(params[:members_search], search_key: :members_search)
-    @members = @ransack_members.result.includes(:user).paginate(:page => params[:page], :per_page => 15)
+    @members = @ransack_members.result.includes(:user, :skills).paginate(:page => params[:page], :per_page => 15)
   end
 
   def show
