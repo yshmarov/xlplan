@@ -502,7 +502,7 @@ ru:
     attributes:
       tenant:
         id: "Идентификационный Код"
-        name: "Название"
+        name: "Название Организации"
         plan: "Тариф"
         language: "Язык"
         locale: "Язык"

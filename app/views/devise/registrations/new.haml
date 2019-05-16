@@ -16,10 +16,11 @@
           /= f.input :password_confirmation, required: true
           %hr
           = simple_fields_for(:tenant) do |w|
-            = w.input :name, label: "Company name"
-            = w.label :plan
+            = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}"
+            = w.label :plan, label: "#{t('activerecord.attributes.tenant.plan')}"
             = w.select :plan, options_for_select(Plan.options, params[:plan]), {include_blank: false}, class: "form-control"
-            = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: 'Language'
+            %p
+            = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
             - if ::Milia.use_coupon
               - @coupon ||= {}
               .group
