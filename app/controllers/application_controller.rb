@@ -21,13 +21,17 @@ class ApplicationController < ActionController::Base
   #i18n
   def set_locale
     if current_user
-      I18n.locale = Tenant.current_tenant.try(:locale)  || I18n.default_locale
+      lang = Tenant.current_tenant.try(:locale)  || I18n.default_locale
+    elsif params['locale'].present?
+      lang = params['locale'].to_sym
+      session['locale'] = lang
+      redirect_to root_path
+    elsif session['locale'].present?
+      lang = session['locale']
     else
-      locale = params[:locale].to_s.strip.to_sym
-      I18n.locale = I18n.available_locales.include?(locale) ?
-          locale :
-          I18n.default_locale
+      lang = 'en'
     end
+    I18n.locale = lang
   end
 
   #time_zone

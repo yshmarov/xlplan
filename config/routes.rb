@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
+
+  #total stats for the superadmin
   get 'stats', to: 'static_pages#stats'
+
   get 'features', to: 'static_pages#features'
   get 'pricing', to: 'static_pages#pricing'
 

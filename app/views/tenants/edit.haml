@@ -19,7 +19,7 @@
       = f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
     
       = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false
-    
+      %hr
       = f.button :submit, class: "btn btn-success"
-    %p
+      %p
     = link_to t('.cancel', :default => t("helpers.links.cancel")), settings_show_path, :class => 'btn btn-danger'

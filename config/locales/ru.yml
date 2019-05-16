@@ -259,7 +259,6 @@ ru:
       short: "%d %b, %H:%M"
     pm: вечера
 
-
   helpers:
     actions: "Действия"
     links:
@@ -275,17 +274,35 @@ ru:
       new: "Создать %{model}"
       delete: "Удалить %{model}"
 
+  cancel: 'Отменить'
+
+  events_index: "Встречи"
+  events_close: "Отметить Встречи"
+
   static_pages:
     landing_page:
       hero: "Программа для управления календарями сотрудников, учёта клиентов и оплат"
       try_for_free: "Создай свой первый календарь!"
     pricing:
+      pricing: "Тарифы"
+      demo: "Пробный период"
+      bronze: "Бронза"
+      silver: "Серебро"
+      gold: "Золото"
+      employees: "Сотрудники"
+      locations: "Филиалы"
+      unlimited: "Безлимит"
+      month: "Месяц"
+      try_for_free: "Попробовать бесплатно 14 дней"
+      free_implementation: "Бесплатная установка"
+      free_support: "Бесплатная поддержка"
     features:
 
-  cancel: 'Отменить'
-
-  events_index: "Встречи"
-  events_close: "Отметить Встречи"
+  header:
+    pricing: "Цены"
+    features: "Продукт"
+    sign_in: Войти
+    sign_up: Регистрация
 
   sidebar:
     search_client: 'Поиск Клиента'
@@ -300,7 +317,7 @@ ru:
     clients: 'Клиенты'
     members: 'Сотрудники'
     services: 'Услуги'
-    locations: 'Локации'
+    locations: 'Филиалы'
     inbound_payments: 'Оплаты'
     activity: 'Активность'
     settings: 'Настройки'
@@ -325,13 +342,13 @@ ru:
       success: 'Оплата успешно создана.'
   locations:
     index:
-      title: "Локации"
+      title: "Филиалы"
     new:
-      title: "Создать Локацию"
+      title: "Создать Филиал"
     edit:
-      title: "Изменить Локацию"
+      title: "Изменить Филиал"
     create:
-      success: 'Локация успешно создана.'
+      success: 'Филиал успешно создана.'
   services:
     index:
       title: "Услуги"
@@ -409,7 +426,7 @@ ru:
       clients: "Клиенты"
       members: "Сотрудники"
       services: "Услуги"
-      locations: "Локации"
+      locations: "Филиалы"
       inbound_payments: "Оплаты"
     edit:
       settings: "Настройки"
@@ -419,7 +436,7 @@ ru:
       start: "Начало работы"
       edit_my_page: "Внесите свои контактые данные"
       new_member: "Добавьте дополнительных сотрудников"
-      new_location: "Добавьте Локацию"
+      new_location: "Добавьте Филиал"
       new_service: "Добавьте ваш список услуг"
       new_client: "Добавьте Клиента (без доступа к программе)"
       new_event: "Создайте Встречу"
@@ -463,7 +480,7 @@ ru:
       events_per_month_quantity: 'Кол встреч в месяц'
       unique_clients_per_month_quantity: 'Кол уникальных посетителей в месяц'
       status_popularity: 'Популярность статусов'
-      location_popularity: 'Популярность локаций'
+      location_popularity: 'Популярность филиалов'
       service_popularity: 'Популярность услуг'
     payments:
       payment_stats: 'Статистика Оплат'
@@ -477,7 +494,7 @@ ru:
       job: "Работа"
       service: "Услуга"
       service_category: "Категория"
-      location: "Локация"
+      location: "Филиал"
       member: "Сотрудник"
       client: "Клиент"
       comment: "Комментарий"
@@ -495,8 +512,8 @@ ru:
       event:
         client: "Клиент"
         client_id: "Клиент"
-        location: "Локация"
-        location_id: "Локация"
+        location: "Филиал"
+        location_id: "Филиал"
         starts_at: "Начало"
         duration: "Длительность"
         ends_at: "Конец"
@@ -538,8 +555,8 @@ ru:
         client_id: "Клиент"
         starts_at: "Начало"
         ends_at: "Конец"
-        location_id: "Локация"
-        location: "Локация"
+        location_id: "Филиал"
+        location: "Филиал"
         status: "Статус"
       service:
         name: "Название"
@@ -589,8 +606,8 @@ ru:
         balance: "Баланс"
         jobs_count: "Кол. Работ"
         skills: "Доступные Категориии Услуг"
-        location_id: "Локация"
-        location: "Локация"
+        location_id: "Филиал"
+        location: "Филиал"
         contacts: "Контакты"
         roles: "Права Доступа"
         time_zone: "Часовой Пояс"
@@ -621,8 +638,8 @@ ru:
         balance: "Баланс"
         jobs_sum: "Цена Работ"
         inbound_payments_sum: "Сумма Оплат"
-        location_id: "Локация"
-        location: "Локация"
+        location_id: "Филиал"
+        location: "Филиал"
         events_count: "Кол. Встреч"
         inbound_payments_count: "Кол. Оплат"
         comments_count: "Кол. Комментариев"

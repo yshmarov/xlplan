@@ -1,85 +1,86 @@
+/- if I18n.locale == :en
+/  %h1 ENG
+/- elsif I18n.locale == :ru
+/  %h1 RUS
+/- elsif I18n.locale == :pl
+/  %h1 POL
+/- else
+/  %h1 ELSER
+
 = provide(:description, 'XLPLAN pricing. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
-= provide(:keywords, 'xlplan, pricing, price, salon, management software, crm, erp, employee calendar, calendar')
+= provide(:keywords, 'xlplan, pricing, price, salon, management software, crm, erp, employees calendar, calendar')
 /%head
 /  %meta{:content => "xlplan pricing", :name => "description"}/
 .text-center
   .display-4
-    Pricing
-  %p
-  %h5 We offer free implementation & support with all options!
-.container.mb-5.mt-5
-  .pricing.card-deck.flex-column.flex-md-row.mb-3
-    .card.card-pricing.text-center.px-3.mb-4
-      %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm demo
-      .bg-transparent.card-header.pt-4.border-0
-        %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "7"}
-          $
-          %span.price 0
-          %span.h6.text-muted.ml-2 / 14 days
-      .card-body.pt-0
-        = link_to 'Try for free!', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
-        %ul.list-unstyled.mb-4
-          %li 1 Employee
-          %li 1 Location
-    .card.card-pricing.text-center.px-3.mb-4
-      %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm bronze
-      .bg-transparent.card-header.pt-4.border-0
-        %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "7"}
-          $
-          %span.price 7
-          %span.h6.text-muted.ml-2 / month
-        %h4.text-secondary
-          84 $ / year
-      .card-body.pt-0
-        = link_to 'Start now', new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
-        %ul.list-unstyled.mb-4
-          %li 1 Employee
-          %li 1 Location
-    .card.card-pricing.text-center.px-3.mb-4.border.border-warning.rounded
-      %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm silver
-      .bg-transparent.card-header.pt-4.border-0
-        %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "15"}
-          $
-          %span.price 15
-          %span.h6.text-muted.ml-2 / month
-        %h4.text-secondary
-          180 $ / year
-      .card-body.pt-0
-        = link_to 'Start now', new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-warning'
-        %ul.list-unstyled.mb-4
-          %li 2-5 Employees
-          %li 1 Location
-    .card.card-pricing.text-center.px-3.mb-4
-      %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm gold
-      .bg-transparent.card-header.pt-4.border-0
-        %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "50"}
-          $
-          %span.price 50
-          %span.h6.text-muted.ml-2 / month
-        %h4.text-secondary
-          600 $ / year
-      .card-body.pt-0
-        = link_to 'Start now', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
-        %ul.list-unstyled.mb-4
-          %li Unlimited Employees
-          %li Unlimited Locations
-          /%li Automatic reminders (SMS, email, Viber, Telegram, WhatsApp)
-          %li Automatic reminders (SMS, email, Viber)
-          /%li IP-telephony
-          %li Material expences
-          %li Physical Product sales & inventory management
-          %li Client portal
-          %li Online booking
-    /.card.card-pricing.text-center.px-3.mb-4
-    /  %span.h6.w-60.mx-auto.px-4.py-1.rounded-bottom.bg-warning.text-black.shadow-sm gold
-    /  .bg-transparent.card-header.pt-4.border-0
-    /    %h1.h1.font-weight-normal.text-warning.text-center.mb-0{"data-pricing-value" => "500"}
-    /      $
-    /      %span.price 1099
-    /      %span.h6.text-muted.ml-2 / forever
-    /  .card-body.pt-0
-    /    = link_to 'Try for free', new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-warning'
-    /    %ul.list-unstyled.mb-4
-    /      %li Everything Unlimited
+    = t('.pricing')
+%p
+.container
+  .card-deck.mb-3.text-center
+    .card.mb-4.box-shadow
+      .card-header
+        %h4.my-0.font-weight-normal= t('.bronze')
+      .card-body
+        %h1.card-title.pricing-card-title
+          $7
+          %small.text-muted / #{t(".month")}
+        %ul.list-unstyled.mt-3.mb-4
+          %hr
+          %li #{t('.employees')}: 1
+          %hr
+          %li #{t('.locations')}: 1
+          %hr
+          = link_to t('.try_for_free'), new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-block btn-warning'
+          %hr
+          %li #{t('.free_implementation')}
+          %hr
+          %li #{t('.free_support')}
+    .card.mb-4.box-shadow
+      .card-header
+        %h4.my-0.font-weight-normal= t('.silver')
+      .card-body
+        %h1.card-title.pricing-card-title
+          $15
+          %small.text-muted / #{t(".month")}
+        %ul.list-unstyled.mt-3.mb-4
+          %hr
+          %li #{t('.employees')}: 2-5
+          %hr
+          %li #{t('.locations')}: 1
+          %hr
+          = link_to t('.try_for_free'), new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-block btn-warning'
+          %hr
+          %li #{t('.free_implementation')}
+          %hr
+          %li #{t('.free_support')}
+    .card.mb-4.box-shadow
+      .card-header
+        %h4.my-0.font-weight-normal= t('.gold')
+      .card-body
+        %h1.card-title.pricing-card-title
+          $50
+          %small.text-muted / #{t(".month")}
+        %ul.list-unstyled.mt-3.mb-4
+          %hr
+          %li #{t('.employees')}: #{t('.unlimited')}
+          %hr
+          %li #{t('.locations')}: #{t('.unlimited')}
+          %hr
+          /%li 
+          /  .fa.fa-plus
+          /  Automatic reminders (SMS, email, Viber)
+          /Automatic reminders (SMS, email, Viber, Telegram, WhatsApp)
+          /IP-telephony
+          /Material expences
+          /Physical Product sales & inventory management
+          /Client portal
+          /Online booking
+          /Phone and email support
+          /Help center access
+          = link_to t('.try_for_free'), new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-block btn-warning'
+          %hr
+          %li #{t('.free_implementation')}
+          %hr
+          %li #{t('.free_support')}
 </div>
 = render 'layouts/footer'
