@@ -1,86 +1,105 @@
-/- if I18n.locale == :en
-/  %h1 ENG
-/- elsif I18n.locale == :ru
-/  %h1 RUS
-/- elsif I18n.locale == :pl
-/  %h1 POL
-/- else
-/  %h1 ELSER
-
 = provide(:description, 'XLPLAN pricing. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, pricing, price, salon, management software, crm, erp, employees calendar, calendar')
 /%head
 /  %meta{:content => "xlplan pricing", :name => "description"}/
-.text-center
+.jumbotron.bg-white.text-center
   .display-4
     = t('.pricing')
-%p
 .container
   .card-deck.mb-3.text-center
-    .card.mb-4.box-shadow
-      .card-header
+    .card.mb-4.box-shadow.border-danger
+      .card-header.bg-danger
         %h4.my-0.font-weight-normal= t('.bronze')
       .card-body
         %h1.card-title.pricing-card-title
           $7
           %small.text-muted / #{t(".month")}
+        %hr
+        %h1.card-title.pricing-card-title
+          $84
+          %small.text-muted / #{t(".year")}
         %ul.list-unstyled.mt-3.mb-4
-          %hr
-          %li #{t('.employees')}: 1
-          %hr
-          %li #{t('.locations')}: 1
-          %hr
-          = link_to t('.try_for_free'), new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-block btn-warning'
-          %hr
-          %li #{t('.free_implementation')}
-          %hr
-          %li #{t('.free_support')}
-    .card.mb-4.box-shadow
-      .card-header
+          %b
+            %hr
+            .fa.fa-user-tie
+            #{t('.employees')}: 1
+            %hr
+            .fa.fa-map-marker-alt
+            #{t('.locations')}: 1
+            %hr
+            = link_to t('.try_for_free_html'), new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-block btn-danger'
+            %hr
+            .fa.fa-rocket
+            #{t('.free_implementation')}
+            %hr
+            .fa.fa-phone
+            #{t('.free_support')}
+    .card.mb-4.box-shadow.border-secondary
+      .card-header.bg-secondary
         %h4.my-0.font-weight-normal= t('.silver')
       .card-body
         %h1.card-title.pricing-card-title
           $15
           %small.text-muted / #{t(".month")}
+        %hr
+        %h1.card-title.pricing-card-title
+          $180
+          %small.text-muted / #{t(".year")}
         %ul.list-unstyled.mt-3.mb-4
-          %hr
-          %li #{t('.employees')}: 2-5
-          %hr
-          %li #{t('.locations')}: 1
-          %hr
-          = link_to t('.try_for_free'), new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-block btn-warning'
-          %hr
-          %li #{t('.free_implementation')}
-          %hr
-          %li #{t('.free_support')}
-    .card.mb-4.box-shadow
-      .card-header
+          %b
+            %hr
+            .fa.fa-user-tie
+            #{t('.employees')}: 2-5
+            %hr
+            .fa.fa-map-marker-alt
+            #{t('.locations')}: 1
+            %hr
+            = link_to t('.try_for_free_html'), new_user_registration_path(plan: 'silver'), class: 'btn btn-lg btn-block btn-secondary'
+            %hr
+            .fa.fa-rocket
+            #{t('.free_implementation')}
+            %hr
+            .fa.fa-phone
+            #{t('.free_support')}
+    .card.mb-4.box-shadow.border-warning
+      .card-header.bg-warning
         %h4.my-0.font-weight-normal= t('.gold')
       .card-body
         %h1.card-title.pricing-card-title
           $50
           %small.text-muted / #{t(".month")}
+        %hr
+        %h1.card-title.pricing-card-title
+          .form-inline
+            %s.text-danger
+              $600
+            .text-success.ml-3
+              $499
+              %small.text-muted / #{t(".year")}
         %ul.list-unstyled.mt-3.mb-4
-          %hr
-          %li #{t('.employees')}: #{t('.unlimited')}
-          %hr
-          %li #{t('.locations')}: #{t('.unlimited')}
-          %hr
-          /%li 
-          /  .fa.fa-plus
-          /  Automatic reminders (SMS, email, Viber)
-          /Automatic reminders (SMS, email, Viber, Telegram, WhatsApp)
-          /IP-telephony
-          /Material expences
-          /Physical Product sales & inventory management
-          /Client portal
-          /Online booking
-          /Phone and email support
-          /Help center access
-          = link_to t('.try_for_free'), new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-block btn-warning'
-          %hr
-          %li #{t('.free_implementation')}
-          %hr
-          %li #{t('.free_support')}
+          %b
+            %hr
+            .fa.fa-user-tie
+            #{t('.employees')}: #{t('.unlimited')}
+            %hr
+            .fa.fa-map-marker-alt
+            #{t('.locations')}: #{t('.unlimited')}
+            %hr
+            /.fa.fa-plus
+            /Automatic reminders (SMS, email, Viber, Telegram, WhatsApp)
+            /IP-telephony
+            /Material expences
+            /Physical Product sales & inventory management
+            /Client portal
+            /Online booking
+            /Phone and email support
+            /Help center access
+            = link_to t('.try_for_free_html'), new_user_registration_path(plan: 'gold'), class: 'btn btn-lg btn-block btn-warning'
+            %hr
+            .fa.fa-rocket
+            #{t('.free_implementation')}
+            %hr
+            .fa.fa-phone
+            #{t('.free_support')}
 </div>
 = render 'layouts/footer'

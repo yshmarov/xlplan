@@ -3,6 +3,16 @@
 /%title UKR.NET: Всі новини України, останні новини дня в Україні та Світі
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
+
+/- if I18n.locale == :en
+/  %h1 ENG
+/- elsif I18n.locale == :ru
+/  %h1 RUS
+/- elsif I18n.locale == :pl
+/  %h1 POL
+/- else
+/  %h1 ELSER
+
 /_________________________________
 /HIGHLIGHT A SHIFT IN THE WORLD, NOT A PROBLEM?
 /there are more effective ways/tools of running the business
@@ -66,37 +76,88 @@
     .row
       .col-lg-6
         .text-left
-          %h3
-            = t('.hero')
-            Software for service business management.
-            %p
-            Manage employee working calendars, keep client visit & payment history.
-            %p
-            = link_to 'Free Demo', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
+          .display-4= t('.hero')
+          %p
+          %h5= t('.hero_description')
+          %p= link_to "#{t(".try_for_free")}", new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
           %p
       .col-lg-6
         .embed-responsive.embed-responsive-16by9
           %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY?rel=0", :width => "560"}
 %hr
 .container.text-center
-  .display-4 Designed for
+  .display-4= t('.designed_for')
   %p
   .card-deck
     .card
       .card-body.bg-light
         %i.fa.fa-hand-holding-heart{:style => "font-size:40px;color:orange"}
         %h5.card-title Beauty industy
-        %p.card-text Haor & beauty saloon, Barbershop, SPA, Cosmetology, Tattoo studio
+        /%p.card-text ddsdsdvsd
+        .fa.fa-spa
+        SPA
+        /%p
+        /.fa.fa-hot-tub
+        %p
+        .fa.fa-sun
+        Solarium
+        %p
+        .fa.fa-syringe
+        Cosmetology
+        %p
+        .fa.fa-dragon
+        Tattoo studio
+        %p
+        .fa.fa-cut
+        Hair & beauty saloons, Barbershops
     .card
       .card-body.bg-light
         %i.fa.fa-hospital{:style => "font-size:40px;color:orange"}
         %h5.card-title Private medicine
-        %p.card-text Massage, Dentists, Therapist, Psychologist, Veterinary clinic
+        /%p.card-text Psychologist Psychologist
+        %p
+        .fa.fa-tooth
+        Dentists
+        %p
+        .fa.fa-eye
+        Ophthalmologists
+        %p
+        .fa.fa-hospital
+        .fa.fa-user-md
+        Therapist
+        %p
+        .fa.fa-notes-medical
+        Psychologist
+        %p
+        .fa.fa-dog
+        Veterinary clinic
+        %p
+        .fa.fa-sign-language
+        Massage
     .card
       .card-body.bg-light
         %i.fa.fa-user-tie{:style => "font-size:40px;color:orange"}
         %h5.card-title Professional services
-        %p.card-text Field services, Legal & Business Consulting, Tutors (language, dance, sport, music), guides, cleaning services
+        /%p.card-text Tutors (language, dance, sport, music), guides
+        %p
+        .fa.fa-car-side
+        Car services
+        %p
+        .fa.fa-gavel
+        Legal consulting
+        %p
+        .fa.fa-user-tie
+        Business Consulting
+        %p
+        .fa.fa-wrench
+        .fa.fa-people-carry
+        Field services
+        %p
+        .fa.fa-broom
+        Cleaning Services
+        %p
+        .fa.fa-user-graduate
+        Tutors (language, dance, sport, music), guides
 %hr
 .container
   .text-center.display-4 How it works

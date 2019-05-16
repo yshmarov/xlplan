@@ -281,8 +281,10 @@ ru:
 
   static_pages:
     landing_page:
-      hero: "Программа для управления календарями сотрудников, учёта клиентов и оплат"
+      hero: "Программа для управления бизнесом в сфере услуг"
+      hero_description: "График работ сотрудников, список клиентов и оплат - всё в одном месте!"
       try_for_free: "Создай свой первый календарь!"
+      designed_for: "Для кого создан XLPLAN"
     pricing:
       pricing: "Тарифы"
       demo: "Пробный период"
@@ -292,8 +294,12 @@ ru:
       employees: "Сотрудники"
       locations: "Филиалы"
       unlimited: "Безлимит"
-      month: "Месяц"
-      try_for_free: "Попробовать бесплатно 14 дней"
+      month: "месяц"
+      year: "год"
+      #try_for_free: " 14 дней"
+      try_for_free_html: |
+        Попробовать бесплатно</br>
+        14 дней
       free_implementation: "Бесплатная установка"
       free_support: "Бесплатная поддержка"
     features:

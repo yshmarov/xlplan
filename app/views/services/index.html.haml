@@ -47,7 +47,9 @@
             = service.service_category
             /- if policy(service.service_category).edit?
             /  = link_to '', edit_service_category_path(service.service_category), class: "btn btn-warning fa fa-edit btn-sm"
-          %td= service.description
+          %td
+            %small
+              = service.description
           %td= service.duration
           %td= number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_percentage(service.member_percent, precision: 0)

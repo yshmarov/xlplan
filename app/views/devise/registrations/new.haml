@@ -16,7 +16,7 @@
           /= f.input :password_confirmation, required: true
           %hr
           = simple_fields_for(:tenant) do |w|
-            = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}"
+            = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
             = w.label :plan, label: "#{t('activerecord.attributes.tenant.plan')}"
             = w.select :plan, options_for_select(Plan.options, params[:plan]), {include_blank: false}, class: "form-control"
             %p
@@ -32,3 +32,4 @@
           = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
         %hr
         = render "devise/shared/links"
+%br

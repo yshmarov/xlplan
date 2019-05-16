@@ -56,6 +56,37 @@ en:
   events_index: "Events"
   events_close: "Mark Events"
 
+  static_pages:
+    landing_page:
+      hero: "CRM for Service Business Management"
+      hero_description: "Manage employee working calendars, keep client visit & payment history"
+      try_for_free: "Try now!"
+      designed_for: "Who chooses XLPLAN"
+    pricing:
+      pricing: "Pricing"
+      demo: "demo"
+      bronze: "Bronze"
+      silver: "Silver"
+      gold: "Gold"
+      employees: "Employees"
+      locations: "Locations"
+      unlimited: "Unlimited"
+      month: "month"
+      year: "year"
+      #try_for_free: " 14 days"
+      try_for_free_html: |
+        Try for free </br>
+        14 days
+      free_implementation: "Free implementation"
+      free_support: "Free support"
+    features:
+
+  header:
+    pricing: "Pricing"
+    features: "Features"
+    sign_in: "Sign in"
+    sign_up: "Sign up"
+
   sidebar:
     search_client: 'Search Client'
     new_event: 'New Event'
