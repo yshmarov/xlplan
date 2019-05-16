@@ -434,6 +434,7 @@ ru:
       services: "Услуги"
       locations: "Филиалы"
       inbound_payments: "Оплаты"
+      comments: "Комментарии"
     edit:
       settings: "Настройки"
 
