@@ -27,4 +27,8 @@ class ChartsController < ApplicationController
     render json: InboundPayment.group_by_month(:created_at).sum("amount/100")
   end
 
+  def events_per_day
+    render json: Event.group_by_day(:starts_at).sum("client_price/100")
+  end
+
 end

@@ -76,5 +76,6 @@ Rails.application.routes.draw do
     get "members_confirmed_earnings_per_month"
     get "payments_per_day"
     get "payments_per_month"
+    get "events_per_day"
   end
 end

@@ -8,11 +8,19 @@
         = t('.confirmed_event_price_per_day')
     %table.table.table-sm.table-bordered
       %tbody
-        - Event.confirmed.group_by_day(:created_at).sum("client_price/100").each do |k, v|
+        - Event.confirmed.group_by_day(:starts_at).sum("client_price/100").each do |k, v|
           %tr
             %td= k.strftime('%d/%m/%Y')
             %td= v
             /%td= number_to_currency(v, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+    %p
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.confirmed_event_price_per_day')
+      .card-body
+        = bar_chart charts_events_per_day_path
 %h3.text-center
   .badge.badge-secondary.btn-block
     = t('.counters')

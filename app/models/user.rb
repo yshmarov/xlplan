@@ -33,8 +33,10 @@ class User < ApplicationRecord
 
   private
   def must_have_a_role
-    unless Tenant.current_tenant.nil?
-      errors.add(:roles, "must have at least one role") unless roles.any?
+    unless Tenant.current_tenant.nil? 
+      if member.present?
+        errors.add(:roles, "must have at least one role") unless roles.any?
+      end
     end
   end
 
