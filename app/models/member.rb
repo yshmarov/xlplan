@@ -103,10 +103,19 @@ class Member < ApplicationRecord
 
   ################
 
-  validate :free_plan_can_only_have_one_member
-  def free_plan_can_only_have_one_member
-    if self.new_record? && (tenant.members.count > 0) && (tenant.plan == 'bronze')
-      errors.add(:base, "Free plans cannot have more than one member")
+  validate :tenant_plan_quantity_limit
+  def tenant_plan_quantity_limit
+    if self.new_record?
+      if tenant.plan == 'bronze' || tenant.plan == 'demo'
+        if tenant.members.count > 1
+          errors.add(:base, "Bronze plan cannot have more than 1 employee. Upgrade your plan")
+        end
+      elsif tenant.plan == 'silver'
+        if tenant.members.count > 4
+          errors.add(:base, "Silver plan cannot have more than 5 employees. Upgrade your plan")
+        end
+      #elsif tenant.plan == 'gold'
+      end
     end
   end
 
@@ -125,9 +134,7 @@ class Member < ApplicationRecord
     unless new_member.errors.empty?
       raise ArgumentError, new_member.errors.full_messages.uniq.join(", ")
     end
-
     return new_member
-      
   end
 
   ransacker :full_name do |parent|

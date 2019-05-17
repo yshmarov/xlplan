@@ -70,9 +70,11 @@
             .fa.fa-calendar
             = member.jobs_count
         /USER
-        .col-sm-4
+        %small.col-sm-4
           /////////////////////user account/////////////////////
           - if member.user.present?
+            = member.user.email
+            .row
             /////////////////////user roles/////////////////////
             /= member.user.roles.where.not("name = 'owner'").collect{|r| r.name}.to_sentence
             - member.user.roles.where.not("name = 'owner'").each do |r| 

@@ -20,14 +20,16 @@ class Tenant < ApplicationRecord
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
 
+  ###plan limits###
   def can_create_locations?
-    (plan == 'bronze' && locations.count < 1) || (plan == 'silver') || (plan == 'gold')
+    (plan == 'demo' && locations.count < 1) || (plan == 'bronze' && locations.count < 1) || (plan == 'silver' && locations.count < 5) || (plan == 'gold')
   end
 
   def can_create_members?
-    (plan == 'bronze' && members.count < 1) || (plan == 'silver') || (plan == 'gold')
+    (plan == 'demo' && locations.count < 1) || (plan == 'bronze' && members.count < 1) || (plan == 'silver' && members.count < 5) || (plan == 'gold')
   end
 
+  ###milia###
   def self.create_new_tenant(tenant_params, user_params, coupon_params)
 
     #tenant = Tenant.new(:name => tenant_params[:name])
