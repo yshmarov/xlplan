@@ -10,7 +10,16 @@ class ClientsController < ApplicationController
     @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
-  
+
+  def contacts_callback
+    @contacts = request.env['omnicontacts.contacts']
+    @user = request.env['omnicontacts.user']
+    puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
+    @contacts.each do |contact|
+      puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
+    end
+  end
+
   def debtors
     #with negative balance
     @ransack_clients = Client.where("balance < ?", 0).search(params[:clients_search], search_key: :clients_search)

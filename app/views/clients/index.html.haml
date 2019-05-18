@@ -1,3 +1,9 @@
+= link_to "gmail", "/contacts/gmail"
+- if !@contacts.nil?
+  - @contacts.each do |c|
+    = c[:name]
+    = c[:email]
+
 - model_class = Client
 = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
   .card.card-default
