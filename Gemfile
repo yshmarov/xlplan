@@ -94,3 +94,6 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'faker'
 gem 'rack-attack'
+
+gem "omnicontacts"
+

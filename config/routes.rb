@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
-
-  #total stats for the superadmin
-  get 'stats', to: 'static_pages#stats'
-
+  #pages before logging in
   get 'features', to: 'static_pages#features'
   get 'pricing', to: 'static_pages#pricing'
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'terms_of_service', to: 'static_pages#terms_of_service'
+  get 'security', to: 'static_pages#security'
+  #total stats for the superadmin
+  get 'stats', to: 'static_pages#stats'
 
   # *MUST* come *BEFORE* devise's definitions (below)
   as :user do   
