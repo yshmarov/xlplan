@@ -1,28 +1,34 @@
-%ul.list-group.list-group-flush
-  - @activities.each do |a|
-    %li.list-group-item
-      /= a.id
-      /= a.tenant_id
-      = a.created_at.strftime('%d/%b/%Y %H:%M')
-      (#{time_ago_in_words a.created_at} #{t('.ago')})
-      = link_to a.owner.to_s, member_path(a.owner.member.id) if a.owner.member
-      %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
-    
-      = a.key
-      - if a.trackable
-        - unless a.trackable_type == 'Comment'
-          = link_to a.trackable, a.trackable
+.card.card-default
+  .container-fluid
+    .card-heading
+      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+        .fa.fa-bell
+        %b= t("dashboard.activity.activity")
+  %ul.list-group.list-group-flush
+    - @activities.each do |a|
+      %li.list-group-item
+        /= a.id
+        /= a.tenant_id
+        #{l(a.created_at, format: "%d/%b/%Y %H:%M")}
+        (#{time_ago_in_words a.created_at} #{t('.ago')})
+        = link_to a.owner.to_s, member_path(a.owner.member.id) if a.owner.member
+        %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
+      
+        = a.key
+        - if a.trackable
+          - unless a.trackable_type == 'Comment'
+            = link_to a.trackable, a.trackable
+          - else
+            = link_to a.trackable.commentable, a.trackable.commentable
+          - if a.parameters.present?
+            /= a.parameters.empty?
+            - unless a.parameters == "{}"
+              - unless a.trackable_type == 'Comment'
+                = status_label(a.parameters[:status])
+              - else
+                .card-header
+                  .font-weight-light.font-italic= a.parameters[:content]
         - else
-          = link_to a.trackable.commentable, a.trackable.commentable
-        - if a.parameters.present?
-          /= a.parameters.empty?
-          - unless a.parameters == "{}"
-            - unless a.trackable_type == 'Comment'
-              = status_label(a.parameters[:status])
-            - else
-              .card-header
-                .font-weight-light.font-italic= a.parameters[:content]
-      - else
-        which has since been removed
-      /= a.trackable_type
-      /= a.trackable_id
+          which has since been removed
+        /= a.trackable_type
+        /= a.trackable_id

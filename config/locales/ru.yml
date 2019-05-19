@@ -464,6 +464,9 @@ ru:
       settings: "Настройки"
 
   dashboard:
+    activity:
+      activity: "Активность"
+      ago: "назад"
     start:
       start: "Начало работы"
       edit_my_page: "Внесите свои контактые данные"

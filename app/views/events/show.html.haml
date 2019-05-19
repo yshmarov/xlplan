@@ -21,11 +21,26 @@
             - unless @event.status == 'confirmed'
               = button_to t('.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
             - unless @event.status == 'client_not_attended'
-              = button_to t('.client_not_attended'), mark_client_not_attended_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+              = button_to t('.client_not_attended'), mark_client_not_attended_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
             - unless @event.status == 'member_cancelled'
-              = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+              = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
             - unless @event.status == 'client_cancelled'
-              = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-secondary mr-sm-2'
+              = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+        /- if policy(@event).update?
+        /  .dropdown.show
+        /    %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+        /      = status_label(@event.status)
+        /    .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
+        /      - unless @event.status == 'planned'
+        /        = button_to t('events.show.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
+        /      - unless @event.status == 'confirmed'
+        /        = button_to t('events.show.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2 btn-block'
+        /      - unless @event.status == 'client_not_attended'
+        /        = button_to t('events.show.client_not_attended'), mark_client_not_attended_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
+        /      - unless @event.status == 'member_cancelled'
+        /        = button_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
+        /      - unless @event.status == 'client_cancelled'
+        /        = button_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
         %hr
         .fa.fa-user
         %b= model_class.human_attribute_name(:client_id) + ':'
@@ -44,10 +59,10 @@
         /%p
         = render 'jobs/index'
         %b= model_class.human_attribute_name(:client_price_cents) + ':'
-        = @event.client_price_cents
+        = number_to_currency(@event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         %b= model_class.human_attribute_name(:client_price_to_pay) + ':'
-        = @event.client_price_to_pay_cents
+        = number_to_currency(@event.client_price_to_pay_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         - if @event.notes.present?
           %hr
           %b= model_class.human_attribute_name(:notes) + ':'
@@ -58,10 +73,4 @@
         - if @event.confirmed?
           = render 'events/new_payment'
 %br
-.card.card-default
-  .container-fluid
-    .card-heading
-      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-        .fa.fa-bell
-        %b Activity
-  =  render 'dashboard/activity'
+=  render 'dashboard/activity'

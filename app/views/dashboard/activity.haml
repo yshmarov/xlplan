@@ -1,9 +1,4 @@
-.card.card-default
-  .card-header
-    %h4
-      .fa.fa-bell
-      %b Activity
-  =  render 'dashboard/activity'
+= render 'dashboard/activity'
 %p
 .container.table-responsive
   = will_paginate @activities, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
