@@ -80,7 +80,7 @@ class Event < ApplicationRecord
     if status == 'confirmed'
       update_column :status_color, ('green')
     elsif status == 'member_cancelled' || status == 'client_cancelled' || status == 'client_not_attended'
-      update_column :status_color, ('grey')
+      update_column :status_color, ('red')
     elsif status == 'planned'
       update_column :status_color, ('blue')
     else
