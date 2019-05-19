@@ -10,15 +10,15 @@
     
       = f.input :name, required: true, class: "form-control"
     
-      = f.label :plan
-      = f.error :plan, class: 'text-danger'
-      = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {include_blank: false}, class: "form-control"
-    
       = f.label :default_currency
       = f.error :default_currency, class: 'text-danger'
       = f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
     
       = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false
+    
+      = f.label :plan
+      = f.error :plan, class: 'text-danger'
+      = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {include_blank: false}, class: "form-control"
       %hr
       = f.button :submit, class: "btn btn-success"
       %p

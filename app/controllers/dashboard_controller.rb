@@ -30,13 +30,7 @@ class DashboardController < ApplicationController
     if current_user.has_role?(:admin)
       #performance vs others
       @members = Member.all
-    else
-      redirect_to root_path, alert: 'You are not authorized to view the page.'
-    end
-  end
 
-  def events
-    if current_user.has_role?(:admin)
       #company confirmed earning
       @confirmed_hours_worked = (Job.joins(:event).where(events: {status: ['confirmed']}).map(&:service_duration).sum)/60.to_d
       @confirmed_job_q = Job.joins(:event).where(events: {status: ['confirmed']}).count
@@ -57,7 +51,13 @@ class DashboardController < ApplicationController
       @total_lost_earnings = Job.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:client_price_cents).sum
       @total_lost_expences = Job.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'client_not_attended']}).map(&:member_price_cents).sum
       @total_net_losses = @total_lost_earnings - @total_lost_expences
-  
+    else
+      redirect_to root_path, alert: 'You are not authorized to view the page.'
+    end
+  end
+
+  def events
+    if current_user.has_role?(:admin)
       #average paycheck
       @average_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed']}).average(:client_due_price).to_i/100
     else

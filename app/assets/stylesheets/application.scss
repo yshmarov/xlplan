@@ -34,15 +34,6 @@
 }
 /* thead { @extend .bg-primary } */  
 
-.card-pricing.popular {
-    z-index: 1;
-    border: 3px solid #007bff;
-}
-.card-pricing .list-unstyled li {
-    padding: .5rem 0;
-    color: #6c757d;
-}
-
 .fa-update {
   @extend .fa-edit;
 }

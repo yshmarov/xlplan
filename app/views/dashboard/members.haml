@@ -55,8 +55,26 @@
                 %td.bg-success= number_to_percentage(member.share_of_revenue, precision: 1)
                 /%td= member.cost_per_hour.round(2)
                 /%td= member.average_service_price
+          %thead
+            %tr
+              %th= t('.total')
+              %th= @planned_job_q
+              %th= @planned_hours_worked.round(0)
+              %th= @total_planned_earnings
+              %th= @total_planned_expences
+              /%th= @total_planned_net_income
+              %th= @confirmed_job_q
+              %th= @confirmed_hours_worked.round(0)
+              %th= @total_confirmed_earnings
+              %th= @total_confirmed_expences
+              /%th= @total_confirmed_net_income
+              %th= @lost_job_q
+              %th= @lost_hours_worked.round(0)
+              %th= @total_lost_earnings
+              %th= @total_lost_expences
+              /%th= @total_net_losses
+              %th 100%
 %br
-
 .row
   .col-12
     .card
