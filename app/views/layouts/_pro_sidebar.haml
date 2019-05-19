@@ -1,0 +1,170 @@
+%body
+  .page-wrapper.chiller-theme.toggled
+    %a#show-sidebar.btn.btn-sm.btn-dark{:href => "#"}
+      %i.fas.fa-bars
+    %nav#sidebar.sidebar-wrapper
+      .sidebar-content
+        .sidebar-brand
+          %a{:href => "#"} pro sidebar
+          #close-sidebar
+            %i.fas.fa-times
+        .sidebar-header
+          .user-pic
+            %img.img-responsive.img-rounded{:alt => "User picture", :src => "https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"}/
+          .user-info
+            %span.user-name
+              Jhon
+              %strong Smith
+            %span.user-role Administrator
+            %span.user-status
+              %i.fa.fa-circle
+              %span Online
+        / sidebar-header
+        .sidebar-search
+          %div
+            .input-group
+              %input.form-control.search-menu{:placeholder => "Search...", :type => "text"}/
+              .input-group-append
+                %span.input-group-text
+                  %i.fa.fa-search{"aria-hidden" => "true"}
+        / sidebar-search
+        .sidebar-menu
+          %ul
+            %li.header-menu
+              %span General
+            %li.sidebar-dropdown
+              %a{:href => "#"}
+                %i.fa.fa-tachometer-alt
+                %span Dashboard
+                %span.badge.badge-pill.badge-warning New
+              .sidebar-submenu
+                %ul
+                  %li
+                    %a{:href => "#"}
+                      Dashboard 1
+                      %span.badge.badge-pill.badge-success Pro
+                  %li
+                    %a{:href => "#"} Dashboard 2
+                  %li
+                    %a{:href => "#"} Dashboard 3
+            %li.sidebar-dropdown
+              %a{:href => "#"}
+                %i.fa.fa-shopping-cart
+                %span E-commerce
+                %span.badge.badge-pill.badge-danger 3
+              .sidebar-submenu
+                %ul
+                  %li
+                    %a{:href => "#"}
+                      Products
+                  %li
+                    %a{:href => "#"} Orders
+                  %li
+                    %a{:href => "#"} Credit cart
+            %li.sidebar-dropdown
+              %a{:href => "#"}
+                %i.far.fa-gem
+                %span Components
+              .sidebar-submenu
+                %ul
+                  %li
+                    %a{:href => "#"} General
+                  %li
+                    %a{:href => "#"} Panels
+                  %li
+                    %a{:href => "#"} Tables
+                  %li
+                    %a{:href => "#"} Icons
+                  %li
+                    %a{:href => "#"} Forms
+            %li.sidebar-dropdown
+              %a{:href => "#"}
+                %i.fa.fa-chart-line
+                %span Charts
+              .sidebar-submenu
+                %ul
+                  %li
+                    %a{:href => "#"} Pie chart
+                  %li
+                    %a{:href => "#"} Line chart
+                  %li
+                    %a{:href => "#"} Bar chart
+                  %li
+                    %a{:href => "#"} Histogram
+            %li.sidebar-dropdown
+              %a{:href => "#"}
+                %i.fa.fa-globe
+                %span Maps
+              .sidebar-submenu
+                %ul
+                  %li
+                    %a{:href => "#"} Google maps
+                  %li
+                    %a{:href => "#"} Open street map
+            %li.header-menu
+              %span Extra
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-book
+                %span Documentation
+                %span.badge.badge-pill.badge-primary Beta
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-calendar
+                %span Calendar
+            %li
+              %a{:href => "#"}
+                %i.fa.fa-folder
+                %span Examples
+        / sidebar-menu
+      / sidebar-content
+      .sidebar-footer
+        %a{:href => "#"}
+          %i.fa.fa-bell
+          %span.badge.badge-pill.badge-warning.notification 3
+        %a{:href => "#"}
+          %i.fa.fa-envelope
+          %span.badge.badge-pill.badge-success.notification 7
+        %a{:href => "#"}
+          %i.fa.fa-cog
+          %span.badge-sonar
+        %a{:href => "#"}
+          %i.fa.fa-power-off
+    / sidebar-wrapper
+    %main.page-content
+      .container-fluid
+        %h2 Pro Sidebar
+        %hr/
+        .row
+          .form-group.col-md-12
+            %p This is a responsive sidebar template with dropdown menu based on bootstrap 4 framework.
+            %p
+              You can find the complete code on
+              = succeed "," do
+                %a{:href => "https://github.com/azouaoui-med/pro-sidebar-template", :target => "_blank"}
+                  Github
+          .form-group.col-md-12
+            %iframe{:frameborder => "0", :height => "30px", :scrolling => "0", :src => "https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=star&count=true&size=large", :width => "140px"}
+            %iframe{:frameborder => "0", :height => "30px", :scrolling => "0", :src => "https://ghbtns.com/github-btn.html?user=azouaoui-med&repo=pro-sidebar-template&type=fork&count=true&size=large", :width => "140px"}
+        %h5 More templates
+        %hr/
+        .row
+          .col-xs-12.col-sm-6.col-md-6.col-lg-4
+            .card.rounded-0.p-0.shadow-sm
+              %img.card-img-top.rounded-0{:alt => "Angular pro sidebar", :src => "https://user-images.githubusercontent.com/25878302/53659076-e2204680-3c5a-11e9-8c00-0c10bcd945e6.jpg"}/
+              .card-body.text-center
+                %h6.card-title Angular Pro Sidebar
+                %a.btn.btn-primary.btn-sm{:href => "https://github.com/azouaoui-med/angular-pro-sidebar", :target => "_blank"} Github
+                %a.btn.btn-success.btn-sm{:href => "https://azouaoui-med.github.io/angular-pro-sidebar/demo/", :target => "_blank"} Preview
+          .col-xs-12.col-sm-6.col-md-6.col-lg-4
+            .card.rounded-0.p-0.shadow-sm
+              %img.card-img-top.rounded-0{:alt => "Angular pro sidebar", :src => "https://user-images.githubusercontent.com/25878302/53659497-016ba380-3c5c-11e9-8dfd-4901ddaf090b.jpg"}/
+              .card-body.text-center
+                %h6.card-title Angular Dashboard
+                %a.btn.btn-primary.btn-sm{:href => "https://github.com/azouaoui-med/lightning-admin-angular", :target => "_blank"} Github
+                %a.btn.btn-success.btn-sm{:href => "https://azouaoui-med.github.io/lightning-admin-angular/demo/", :target => "_blank"} Preview
+    / page-content"
+  / page-wrapper
+  %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"}
+  %script{:crossorigin => "anonymous", :integrity => "sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"}
+  %script{:crossorigin => "anonymous", :integrity => "sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl", :src => "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"}

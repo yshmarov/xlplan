@@ -70,17 +70,29 @@
 // Container element
 /.parallax
 </div>
+
+
+.jumbotron.bg-white.text-center
+  .display-4= t('.hero')
+  %p
+  %br
+  %p
+  %h5= t('.hero_description')
+  %p
+  %p= link_to "#{t(".try_for_free")}", new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
+%hr
 .container
   .text-center
     %p
     .row
-      .col-lg-6
-        .text-left
-          .display-4= t('.hero')
-          %p
-          %h5= t('.hero_description')
-          %p= link_to "#{t(".try_for_free")}", new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
-          %p
+      /.col-lg-6
+      /  .text-left
+      /    .display-4= t('.hero')
+      /    %p
+      /    %h5= t('.hero_description')
+      /    %p= link_to "#{t(".try_for_free")}", new_user_registration_path(plan: 'bronze'), class: 'btn btn-lg btn-warning'
+      /    %p
+      .col-lg-3
       .col-lg-6
         .embed-responsive.embed-responsive-16by9
           %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY?rel=0", :width => "560"}
@@ -92,72 +104,73 @@
     .card
       .card-body.bg-light
         %i.fa.fa-hand-holding-heart{:style => "font-size:40px;color:orange"}
-        %h5.card-title Beauty industy
+        %h5.card-title= t('.beauty_industry')
         /%p.card-text ddsdsdvsd
-        .fa.fa-spa
-        SPA
-        /%p
-        /.fa.fa-hot-tub
-        %p
-        .fa.fa-sun
-        Solarium
+        .fa.fa-cut
+        = t('.hair_beauty_barbershop')
         %p
         .fa.fa-syringe
-        Cosmetology
+        = t('.cosmetology')
+        %p
+        .fa.fa-sun
+        = t('.solarium')
         %p
         .fa.fa-dragon
-        Tattoo studio
+        = t('.tattoo_studio')
         %p
-        .fa.fa-cut
-        Hair & beauty saloons, Barbershops
+        .fa.fa-spa
+        = t('.spa')
+        %p
+        .fa.fa-hot-tub
+        = t('.sauna')
     .card
       .card-body.bg-light
         %i.fa.fa-hospital{:style => "font-size:40px;color:orange"}
-        %h5.card-title Private medicine
-        /%p.card-text Psychologist Psychologist
-        %p
-        .fa.fa-tooth
-        Dentists
-        %p
-        .fa.fa-eye
-        Ophthalmologists
-        %p
+        %h5.card-title= t('.private_medicine')
         .fa.fa-hospital
         .fa.fa-user-md
-        Therapist
+        = t('.private_clinic')
+        %p
+        .fa.fa-tooth
+        = t('.stomatology')
+        %p
+        .fa.fa-eye
+        = t('.ophtalmologist')
         %p
         .fa.fa-notes-medical
-        Psychologist
-        %p
-        .fa.fa-dog
-        Veterinary clinic
+        = t('.psychologist')
         %p
         .fa.fa-sign-language
-        Massage
+        = t('.massage')
+        %p
+        .fa.fa-dog
+        = t('.veterinary_clinic')
     .card
       .card-body.bg-light
         %i.fa.fa-user-tie{:style => "font-size:40px;color:orange"}
-        %h5.card-title Professional services
-        /%p.card-text Tutors (language, dance, sport, music), guides
+        %h5.card-title= t('.professional_services')
         %p
         .fa.fa-car-side
-        Car services
+        = t('.car_services')
         %p
-        .fa.fa-gavel
-        Legal consulting
+        .fa.fa-car-crash
+        = t('.driving_school')
+        %p
+        .fa.fa-balance-scale
+        = t('.legal_consulting')
         %p
         .fa.fa-user-tie
-        Business Consulting
+        = t('.business_consulting')
         %p
         .fa.fa-wrench
         .fa.fa-people-carry
-        Field services
+        = t('.field_services')
         %p
         .fa.fa-broom
-        Cleaning Services
+        = t('.cleaning_services')
         %p
         .fa.fa-user-graduate
-        Tutors (language, dance, sport, music), guides
+        = t('.tutors')
 %hr
 .container
   .text-center.display-4 How it works

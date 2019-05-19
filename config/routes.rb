@@ -30,10 +30,8 @@ Rails.application.routes.draw do
   match '/settings/edit' => 'tenants#edit', via: :get, as: :edit_plan
   match '/settings/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
 
-  #match "/contacts/:importer/callback" => "clients#callback"
   get "/contacts/:provider/contacts_callback" => "clients#index"
   get "/contacts/failure" => "clients#failure"
-
 
   resources :clients do
     get :debtors, on: :collection

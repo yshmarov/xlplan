@@ -54,6 +54,8 @@
             %tr
               %td= member.id
               %td= member
-              %td= member.user.email
+              %td
+                - if member.user.present?
+                  = member.user.email
               %td= member.phone_number
 %br

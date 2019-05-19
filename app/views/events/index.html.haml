@@ -18,9 +18,11 @@
         .row
           .col-md-4
             = model_class.human_attribute_name(:client_id)
+            /without selectize
             /= f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
             = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
             = model_class.human_attribute_name(:member)
+            /without selectize
             /= f.search_field :jobs_member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Member name", :autocomplete => :off
             = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
           .col-md-4
@@ -33,6 +35,7 @@
             = model_class.human_attribute_name(:status)
             = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
             = model_class.human_attribute_name(:service)
+            /without selectize
             /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
             = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
             .row
@@ -45,16 +48,8 @@
           .text-center
             /= link_to status_label(event.status), event
             - if policy(event).update?
-              /.dropdown
-              /  %button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-              /    Dropdown button
-              /  .dropdown-menu{"aria-labelledby" => "dropdownMenuButton"}
-              /    %a.dropdown-item{:href => "#"} Action
-              /    %a.dropdown-item{:href => "#"} Another action
-              /    %a.dropdown-item{:href => "#"} Something else here
               .dropdown.show
                 %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  /= event.status
                   = status_label(event.status)
                 .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
                   - unless event.status == 'planned'

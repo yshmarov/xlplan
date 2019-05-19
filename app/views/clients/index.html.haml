@@ -1,9 +1,8 @@
-= link_to "gmail", "/contacts/gmail"
-- if !@contacts.nil?
-  - @contacts.each do |c|
-    = c[:name]
-    = c[:email]
-
+/= link_to "gmail", "/contacts/gmail"
+/- if !@contacts.nil?
+/  - @contacts.each do |c|
+/    = c[:name]
+/    = c[:email]
 - model_class = Client
 = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
   .card.card-default
@@ -22,7 +21,6 @@
           = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Client).create?
             = link_to t('.new', :default => t("helpers.links.new")), new_client_path, class: 'btn btn-sm btn-primary'
-
 - @clients.each do |client|
   .card
     .card-header.bg-light
