@@ -10,7 +10,7 @@
 
     = f.input :amount_cents, input_html: { autocomplete: 'off' }
 
-    = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS
+    = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS, :include_blank => false
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

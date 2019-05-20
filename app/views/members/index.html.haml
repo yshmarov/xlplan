@@ -40,7 +40,7 @@
             .fa.fa-phone
             = link_to "tel:#{member.phone_number}", class: "button" do
               #{number_to_phone(member.phone_number)}
-          - if member.email.present? 
+          - if member.email.present?
             .row
             .fa.fa-envelope
             %a{:href => "mailto:#{member.email}"}= member.email

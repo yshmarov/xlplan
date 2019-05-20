@@ -51,7 +51,7 @@
               .dropdown.show
                 %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                   = status_label(event.status)
-                .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
+                .dropdown-menu.transparent{"aria-labelledby" => "dropdownMenuLink"}
                   - unless event.status == 'planned'
                     = button_to t('events.show.planned'), mark_planned_event_path(event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
                   - unless event.status == 'confirmed'
