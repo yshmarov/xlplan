@@ -120,7 +120,7 @@ class Member < ApplicationRecord
   end
 
   DEFAULT_ADMIN = {
-    last_name:  "Organization",
+    last_name:  "Organisation",
     first_name: "Admin"
   }
 

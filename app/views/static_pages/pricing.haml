@@ -4,9 +4,7 @@
 /  %meta{:content => "xlplan pricing", :name => "description"}/
 .jumbotron.bg-white.text-center
   .display-4= t('.pricing')
-  /Free 14-day trial, no credit card required. Try our software and see for yourself!
-  /Our flat-rate pricing plans provide flexibility to accommodate your appointment-based business, regardless of size or industry.
-  /Read on to find the plan and add-ons that work best for you.
+  /find the plan and add-ons that work best for you.
 .container
   .card-deck.mb-3.text-center
     .card.mb-4.box-shadow.border-danger
@@ -107,14 +105,27 @@
 /  = link_to features_path do
 /    .btn.btn-info
 /      %p
-/      %b Need a larger or more customized plan?
-/      %p Talk to us about XLPLAN Enterprise
-
-/.far.fa-question-circle
-/Frequently asked questions
-/How to pay for the service?
-/Is VAT included?
-/Not needed
-/We can have a paper contract, if you need it. However it is not required for using the service and paying legaly. In most cases, our clients work with us 
+/      %b #{t('.larger_plan')}
+/      %p #{t('.contact_us')}
+/%br
+/.container
+/  %hr
+/  %h3.text-center
+/    .far.fa-question-circle
+/    #{t('.faq')}
+/  %br
+/  .card
+/    .card-header
+/      How to pay for the service?
+/    .card-body
+/      r
+/  %br
+/  .card
+/    .card-header
+/      Is VAT included?
+/    .card-body
+/      r
+/  %br
+//We can have a paper contract, if you need it. However it is not required for using the service and paying legaly. In most cases, our clients work with us 
 </div>
 = render 'layouts/footer'

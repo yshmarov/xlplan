@@ -24,7 +24,7 @@
           .col-md-4
             = f.submit
 .table-responsive
-  %table#table1
+  %table.table-responsive-xl.table-sm.table-striped
     %thead
       %tr
         %th= sort_link @q, :name, :name
@@ -48,10 +48,7 @@
             = link_to '', service_path(service), class: "btn btn-primary fa fa-eye btn-sm" if policy(service).show?
             = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
             = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
-          %td
-            = service.service_category
-            /- if policy(service.service_category).edit?
-            /  = link_to '', edit_service_category_path(service.service_category), class: "btn btn-warning fa fa-edit btn-sm"
+          %td= service.service_category
           %td
             %small
               = service.description

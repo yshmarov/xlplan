@@ -102,7 +102,11 @@ en:
         14 days
       free_implementation: "Free implementation"
       free_support: "Free support"
+      larger_plan: "Need a larger or more customized plan?"
+      contact_us: "Talk to us about XLPLAN Enterprise"
+      faq: "Frequently asked questions"
     features:
+      features: "Product features"
 
   header:
     pricing: "Pricing"
@@ -126,6 +130,8 @@ en:
     inbound_payments: 'Payments'
     activity: 'Activity'
     settings: 'Settings'
+    tenant: "My Organisation"
+    service_categories: "Service Categories"
     stats: 'Stats'
     my_page: 'My Page'
     profile_settings: 'Profile Settings'
@@ -191,8 +197,6 @@ en:
       new_service: "Add your Services Price list"
       new_client: "Add a client (Without access to the app)"
       new_event: "Add an event"
-    edit:
-      settings: "Settings"
 
   activerecord:
     models:

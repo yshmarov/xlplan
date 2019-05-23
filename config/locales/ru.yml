@@ -291,7 +291,7 @@ ru:
       solarium: "Солярии"
       cosmetology: "Косметологии"
       tattoo_studio: "Тату студии"
-      hair_beauty_barbershop: "Салоны красоты и макияжа, парикмахерские и барбершопы, косметологии"
+      hair_beauty_barbershop: "Салоны красоты и макияжа, парикмахерские и барбершопы"
       private_medicine: "Частная медицина"
       stomatology: "Стоматология"
       ophtalmologist: "Офтальмология"
@@ -327,7 +327,11 @@ ru:
         14 дней
       free_implementation: "Бесплатная установка"
       free_support: "Бесплатная поддержка"
+      larger_plan: "Специальные условия"
+      contact_us: "Для сетей и известных брендов действуют специальные условия"
+      faq: "Часто задаваемые вопросы"
     features:
+      features: "Функции программы"
 
   header:
     pricing: "Цены"
@@ -352,6 +356,8 @@ ru:
     inbound_payments: 'Оплаты'
     activity: 'Активность'
     settings: 'Настройки'
+    tenant: "Моя Организация"
+    service_categories: "Категории услуг"
     stats: 'Статистика'
     my_page: 'Моя Страница'
     profile_settings: 'Настройки Профиля'
@@ -389,6 +395,15 @@ ru:
       title: "Изменить Услугу"
     create:
       success: 'Услуга успешно создана.'
+  service_categories:
+    index:
+      title: "Категории Услуг"
+    new:
+      title: "Создать Категорию"
+    edit:
+      title: "Изменить Категорию"
+    create:
+      success: 'Категорию успешно создана.'
   members:
     index:
       title: "Сотрудники"
@@ -460,8 +475,7 @@ ru:
       locations: "Филиалы"
       inbound_payments: "Оплаты"
       comments: "Комментарии"
-    edit:
-      settings: "Настройки"
+      service_categories: "Категории Услуг"
 
   dashboard:
     activity:
@@ -524,7 +538,7 @@ ru:
 
   activerecord:
     models:
-      tenant: "Настройки"
+      tenant: "Организация"
       event: "Встреча"
       job: "Работа"
       service: "Услуга"
@@ -607,6 +621,7 @@ ru:
         jobs_count: "Кол. Работ"
       service_category:
         name: "Категория"
+        services_count: "Кол. Услуг"
       location:
         name: "Название"
         contacts: "Контакты"

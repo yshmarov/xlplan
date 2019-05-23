@@ -1,12 +1,12 @@
 #wrapper{padding:90px 15px;}
 .navbar-expand-lg .navbar-nav.side-nav{flex-direction: column;}
 @media(min-width:992px) {
-  #wrapper{margin-left: 180px;padding: 70px 15px 15px;}
-  .navbar-nav.side-nav{background: #585f66;position:fixed;top:56px;flex-direction: column;left:0;width:180px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
+  #wrapper{margin-left: 190px;padding: 70px 15px 15px;}
+  .navbar-nav.side-nav{background: #585f66;position:fixed;top:56px;flex-direction: column;left:0;width:190px;overflow-y:auto;bottom:0;overflow-x:hidden;padding-bottom:40px}
 }
 
 .side-nav { font-size: 0.9rem; }
-.dropdown-menu { width: 100%; background-color: rgba(88, 95, 102, 1.0); border-color: rgba(88, 95, 102, 1.0); font-size: 0.9rem; }
+.dropdown-menu { width: 100%; font-size: 0.9rem; }
 
 .navbar-collapse {
   @media (max-width: breakpoint-max(md)) {

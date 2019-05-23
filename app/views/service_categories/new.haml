@@ -1,0 +1,8 @@
+- model_class = ServiceCategory
+.card
+  .card-body
+    %h4=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+    %hr
+    = render 'form'
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), service_categories_path, :class => 'btn btn-danger'

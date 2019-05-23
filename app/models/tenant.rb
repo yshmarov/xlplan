@@ -1,21 +1,21 @@
 class Tenant < ApplicationRecord
   acts_as_universal_and_determines_tenant
 
-  has_many :members, dependent: :destroy
+  has_many :activities, dependent: :destroy
   has_many :clients, dependent: :destroy
-  has_many :skills, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :events, dependent: :destroy
+  has_many :inbound_payments, dependent: :destroy
+  has_many :jobs, dependent: :destroy
+  has_many :locations, dependent: :destroy
+  has_many :members, dependent: :destroy
   has_many :service_categories, dependent: :destroy
   has_many :services, dependent: :destroy
-  has_many :locations, dependent: :destroy
-  has_many :events, dependent: :destroy
-  has_many :jobs, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :activities, dependent: :destroy
-  has_many :inbound_payments, dependent: :destroy
+  has_many :skills, dependent: :destroy
 
   validates_presence_of :name, :plan
   validates_uniqueness_of :name
-  validates :name, length: { maximum: 20 }
+  validates :name, length: { maximum: 20 } #in schema it is 40, but 20 is better
   validates :plan, length: { maximum: 40 }
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }

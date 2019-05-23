@@ -1,9 +1,11 @@
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
   %a.text-dark.navbar-brand{:href => "/"}
-    .text-secondary
-      .fa-color-indigo
-        .far.fa-calendar-check
-        %b XLPLAN
+    %i.far.fa-calendar-check
+    .badge.badge-default XLPLAN
+    /.text-secondary
+    /  .fa-color-indigo
+    /    .far.fa-calendar-check
+    /    %b XLPLAN
     /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
     /= image_tag "logo.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "xlplan.com logo"
   .btn-group.mr-sm-2
@@ -35,6 +37,7 @@
       /  = succeed "+48-537-628-023" do
       /    %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
       = link_to t("header.sign_up"), new_user_registration_path(plan: 'bronze'), class: 'btn btn-warning mr-sm-2'
+      %p
       = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-outline-warning mr-sm-2 text-dark'
     /%ul.navbar-nav.mr-auto.mt-2.mt-lg-0
     /  %li.nav-item.active

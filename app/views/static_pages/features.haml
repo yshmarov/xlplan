@@ -1,68 +1,94 @@
 = provide(:description, 'XLPLAN features. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, features, salon, management software, crm, erp, employee calendar, calendar')
-
 /%head
 /  %meta{:content => "xlplan features", :name => "description"}/
-/https://www.versum.com/m/features/
+
+.jumbotron.bg-white.text-center
+  .display-4= t('.features')
+  Discover the benefits of XLPLAN
+  One integrated system to effectively manage and grow your salon. 
+  It is fast to learn, and simple to use.
 %p
 .row
   .col-lg-5
+    = image_tag "https://i.imgur.com/35bJwqE.png", style: 'height:auto;width:70%;'
+  .col-lg-7
     .text-center
-      %h2 Event calendar
-    .card.card-body.bg-light
-      /%li Location, services, price, client, employee
-      /%li No more paper 
-      /%li One calendar for all employees
+      %h4 Detailed customer records and appointment history
+    .jumbotron.bg-light
+      XLPLAN is the knowledgebase about your clients. 
+      In one place, you’ll find all the information you need to provide first-rate customer service. 
+      %p
+      %li Electronic, personalised client records
+      %li Complete history of appointments and payments
+      %li Advanced client data protection
+      %li Unlimited clients
+%hr
+.row
+  .col-lg-5
+    .text-center
+      %h4 Simple and intuitive appointment book
+    .jumbotron.bg-light
+      Manage the workload of all employees and increase productivity.
+      Wherever you are and whatever device you’re using – your appointment book is with you.
+      %p
+      %li All employee calendars in one place
       %li No more booking errors
       %li Manage employee workload
+      %li Instant scheduling and editing of appointments
       %li Remote access to the calendar (for employees and managers)
   .col-lg-7
     = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
 %hr
 .row
   .col-lg-7
-    = image_tag "https://i.imgur.com/35bJwqE.png", style: 'height:auto;width:70%;'
+    = image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
   .col-lg-5
     .text-center
-      %h2 Client records
-    .card.card-body.bg-light
-      %li Event history & details
-      %li Payment history
-      %li Client data protection
-%hr
-.row
-  .col-lg-5
-    .text-center
-      %h2 Employee management
-    .card.card-body.bg-light
-      %li Automatic calculation of commissions (Salary calculation)
+      %h4 Efficient employee management
+    .jumbotron.bg-light
+      With XLPLAN, it’ll be a piece of cake to fulfill the duties of an ideal manager. 
+      You will quickly plan your work, and easily make nessesary payments.
+      %p
+      %li Automatic calculation of commissions
       %li Salary history
       %li Work schedules
       %li Detailed work reports
       %li Organisation of work and assignment of tasks
-  .col-lg-7
-    = image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
 %hr
 .row
-  .col-lg-7
-    = image_tag "https://i.imgur.com/xqDvUIj.png", style: 'height:auto;width:100%;'
   .col-lg-5
     .text-center
-      %h2 Automatic statistics and reports
-    .card.card-body.bg-light
+      %h4 Precise real-time statistics and reports
+    .jumbotron.bg-light
+      Having all information at hand is easier than you think. 
+      With one click, you get a full picture of the salon’s financial situation or customer satisfaction levels. 
+      Keep all numbers under control.
+      %p
       %li Employee performance reports
       %li Detailed financial report
       %li Real-time cash reports
-      %li Event statistics and popularity of services
+      %li Appointment statistics and popularity of services
       %li Customer rebooking rate report
       %li Work time analysis
+  .col-lg-7
+    = image_tag "https://i.imgur.com/xqDvUIj.png", style: 'height:auto;width:100%;'
+
+    /SMS reminders and communication
+    /Thanks to Versum, your clients won’t forget about you. Sending them personalised messages will make them more engaged. Automatic appointment notifications will reduce the number of no-shows by up to 70%!
+    /%li SMS and email communication
+    /%li Single and bulk messaging marketing campaigns
+    /%li Automated messages, eg. birthday wishes
+    /%li Targeting the right audience
+    /%li Ready-made message templates
+
 /%hr
 /.row
 /  .col-lg-7
 /    /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
 /  .col-lg-5
 /    .text-center
-/      %h2 Event reminders
+/      %h4 Event reminders
 /    .card.card-body.bg-light
 /      %li Increase attendance rate
 /      %li Send automatic reminders via email / SMS / Messenger/ Whatsapp / Telegram / Viber
@@ -70,7 +96,7 @@
 /.row
 /  .col-lg-5
 /    .text-center
-/      %h2 Automatic marketing
+/      %h4 Automatic marketing
 /    .card.card-body.bg-light
 /      %li Notify about promotion & special events via Viber, Whatsapp, email, SMS!
 /  .col-lg-7

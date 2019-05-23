@@ -6,12 +6,13 @@ class ServiceCategory < ApplicationRecord
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
 
-  has_many :services
+  has_many :services, dependent: :restrict_with_error
   has_many :skills
   has_many :members, through: :skills
   has_many :jobs, through: :services
 
-  validates :name, uniqueness: true
+
+  validates_uniqueness_of :name, scope: :tenant_id
   validates :name, presence: true
   validates :name, length: { maximum: 144 }
 

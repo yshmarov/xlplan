@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :service_categories, only: [:edit, :update, :create]
+  resources :service_categories
   resources :services
 
   resources :locations
