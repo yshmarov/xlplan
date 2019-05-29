@@ -113,6 +113,16 @@ en:
     features: "Features"
     sign_in: "Sign in"
     sign_up: "Sign up"
+  footer:
+    phone_consult: "Questions? Call us for a free consultation!"
+    product: "Product"
+    pricing: "Pricing"
+    features: "Features"
+    legal: "Legal"
+    privacy_policy: "Privacy Policy"
+    terms_of_service: "Terms Of Service"
+    security: "Security"
+    about_us: "About us"
 
   sidebar:
     search_client: 'Search Client'

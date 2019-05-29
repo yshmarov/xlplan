@@ -53,7 +53,6 @@ class EventsController < ApplicationController
 	end
 
   def index
-    #@events = Event.all
     @q = Event.ransack(params[:q])
     @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
     #respond_to :json # add this line
@@ -63,11 +62,10 @@ class EventsController < ApplicationController
     authorize @event
     @jobs = @event.jobs
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Event", trackable_id: @event).all
-
-    #@payable = @event
     @inbound_payments = @event.inbound_payments
     @inbound_payment = InboundPayment.new
     authorize @inbound_payment
+    #@payable = @event
     #@inbound_payment.payable_id = @event.id
     #@inbound_payment.payable_type = "Event"
     #@payment.client_id = @event.client.id
@@ -87,7 +85,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     authorize @event
-
     respond_to do |format|
       Event.public_activity_off
       if @event.save
@@ -99,7 +96,6 @@ class EventsController < ApplicationController
         EventMailer.event_created.deliver_now
         #EventMailer.with(event: @event, member: @user.member).welcome_email.deliver_later
         #EventMailer.with(user: @user).welcome_email.deliver_later
-
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -135,10 +131,8 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:tenant_id, :client_id, :location_id,
-          :starts_at, :duration, :ends_at,
-          :client_price, :client_price_cents, 
-          :status, :status_color, :notes,
+      params.require(:event).permit(:tenant_id, :client_id, :location_id, :starts_at, :duration, :ends_at,
+          :client_price, :client_price_cents, :status, :status_color, :notes,
           jobs_attributes: [:id, :service_id, :member_id, :_destroy])
     end
 end

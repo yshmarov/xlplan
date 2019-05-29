@@ -1,34 +1,33 @@
 %footer.bg-dark.text-white
-  /%hr
-  /.text-center
-  /  %h3
-  /    Ready to get started?
-  /    = link_to 'Free demo!', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
+  %hr
+  .text-center
+    %h5
+      = t("footer.phone_consult")
+      /= link_to 'Free demo!', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
+    %a{:href => "tel:+48-537-628-023"} +48-537-628-023
+
   %hr
   .container.text-center.text-md-left
     .row
       .col-md-4.mx-auto
-        %h5.text-uppercase.mt-3.mb-4 Product
+        %h5.text-uppercase.mt-3.mb-4= t("footer.product")
         %ul.list-unstyled
-          = link_to 'Features', features_path
+          = link_to t("footer.features"), features_path
           %p
-          = link_to 'Pricing', pricing_path
+          = link_to t("footer.pricing"), pricing_path
       .col-md-4.mx-auto
-        %h5.text-uppercase.mt-3.mb-4 Legal
+        %h5.text-uppercase.mt-3.mb-4= t("footer.legal")
         %ul.list-unstyled
-          = link_to 'Privacy policy', privacy_policy_path
-          /%p
-          /= link_to 'Customer agreement', root_path
+          = link_to t("footer.privacy_policy"), privacy_policy_path
           %p
-          = link_to 'Terms of service', terms_of_service_path
+          = link_to t("footer.terms_of_service"), terms_of_service_path
           %p
-          = link_to 'Security', security_path
+          = link_to t("footer.security"), security_path
       .col-md-4.mx-auto
-        %h5.text-uppercase.mt-3.mb-4 About us
+        %h5.text-uppercase.mt-3.mb-4= t("footer.about_us")
         %ul.list-unstyled
-          %a{:href => "http://www.xlplan.com/"} XLPLAN.com
           © 2018 - #{Time.now.year}
-          All rights reserved
+          %a{:href => "http://www.xlplan.com/"} XLPLAN.com
           %p
           = mail_to 'yshmarov@gmail.com'
           %p
