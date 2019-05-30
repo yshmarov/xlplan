@@ -240,10 +240,79 @@ pl:
       short: "%d %b %H:%M"
     pm: po południu
 
+  ######################################################
+
+  helpers:
+    actions: "Akcje"
+    links:
+      back: "Powrót"
+      cancel: "Anuluj"
+      confirm: "Jesteś pewien?"
+      destroy: "Usuń"
+      new: "Nowy"
+      edit: "Edytuj"
+    titles:
+      edit: "Edytuj %{model}"
+      save: "Zapisz %{model}"
+      new: "Nowy %{model}"
+      delete: "Usuń %{model}"
+
+  ######################################################
+
+  cancel: 'Anuluj'
+  events_index: "Spotkania"
+  events_close: "Zaznaczyć Spotkania"
+  services: 'Usługi'
+  service: 'Usługa'
+  member: 'Pracownik'
+
+  ######################################################
+
+  header:
+    pricing: "Cennik"
+    features: "Funkcje"
+    sign_in: "Zaloguj się"
+    sign_up: "Zarejestruj się"
+  footer:
+    phone_consult: "Masz pytania? Zadzwoń do nas na bezpłatną konsultację!!"
+    product: "Product"
+    pricing: "Cennik"
+    features: "Funkcje"
+    legal: "Informacje prawne"
+    privacy_policy: "Polityka prywatności"
+    terms_of_service: "Warunki usługi"
+    security: "Bezpieczeństwo"
+    about_us: "O nas"
   sidebar:
-    search_client: 'Szukać klienta'
+    search_client: 'Poszuk klienta'
+    new_event: 'Nowe Spotkanie'
+    new_client: 'Nowy Klient'
+    new_payment: 'Nowa Opłata'
+    my_calendar: 'Kalendarz'
+    calendar: 'Kalendarz'
+    close_events: 'Zaznaczyć Spotkania'
+    debtors: 'Dłużnicy'
+    events: 'Spotkania'
+    clients: 'Klienci'
+    members: 'Pracownicy'
+    services: 'Usługi'
+    locations: 'Oddziały'
+    inbound_payments: 'Opłaty'
+    activity: 'Aktywność'
+    settings: 'Ustawienia'
+    tenant: "Moja Firma"
+    service_categories: "Kategorie Usług"
+    stats: 'Statystyki'
+    my_page: 'Moja Strona'
+    profile_settings: 'Ustawienia Strony'
+    account_settings: 'Hasło & Dostęp'
+    logout: 'Wylogować'
 
+  ######################################################
 
+  static_pages:
+    activity:
+      ago: 'temu'
   static_pages:
     landing_page:
       hero: "Zarządzanie salonem łatwe jak nigdy dotąd"
@@ -251,7 +320,69 @@ pl:
       try_for_free: "Zacznij korzystać za darmo"
       designed_for: "Для кого создан XLPLAN"
 
+  ######################################################
+
+  events:
+    index:
+      planned: "Planned"
+      confirmed: "Confirmed"
+      member_cancelled: "Member Cancelled"
+      client_cancelled: "Client Cancelled"
+      client_not_attended: "Client Not Attended"
+    show:
+      client_paid: "Create Payment"
+      planned: "Planned"
+      confirmed: "Confirmed"
+      member_cancelled: "Member Cancelled"
+      client_cancelled: "Client Cancelled"
+      client_not_attended: "Client Not Attended"
+    form:
+      add_service: "+ Add Service"
+    create:
+      success: 'Event was successfully created.'
+    update:
+      success: 'Event was successfully updated.'
+    mark_planned:
+      success: "Marked Planned"
+    mark_confirmed:
+      success: "Marked Confirmed"
+    mark_client_not_attended:
+      success: "Marked Client Not Attended"
+    mark_client_cancelled:
+      success: "Marked Client Cancelled"
+    mark_member_cancelled:
+      success: "Marked Member Cancelled"
+  tenants:
+    show:
+      getting_started: "Getting started"
+      counters: "Counters"
+      events: "Events"
+      jobs: "Jobs"
+      clients: "Clients"
+      members: "Members"
+      services: "Services"
+      locations: "Locations"
+      new_member: "Invite members (employees) (not required)"
+      new_location: "Add your Business Locations"
+      new_service: "Add your Services Price list"
+      new_client: "Add a client (Without access to the app)"
+      new_event: "Add an event"
+
+  ######################################################
+
   activerecord:
+    models:
+      tenant: "Ustawienia"
+      event: "Spotkanie"
+      job: "Praca"
+      service: "Usługa"
+      service_category: "Kategoria Usług"
+      location: "Oddzial"
+      member: "Pracownik"
+      client: "Klient"
+      comment: "Komentarz"
+      inbound_payment: "Opłata"
+
     attributes:
       tenant:
         name: "Name"

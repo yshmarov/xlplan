@@ -18,8 +18,7 @@
             = w.label :plan, label: "#{t('activerecord.attributes.tenant.plan')}"
             = w.select :plan, options_for_select(Plan.options, params[:plan]), {include_blank: false}, class: "form-control"
             %p
-            /= w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
-            = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+            = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
             - if ::Milia.use_coupon
               - @coupon ||= {}
               .group

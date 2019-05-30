@@ -6,7 +6,7 @@ class InboundPayment < ApplicationRecord
   belongs_to :payable, polymorphic: true
 
   validates :amount, :payment_method, presence: true
-  validates :amount, :numericality => {:greater_than => -100000000, :less_than => 100000000}
+  validates :amount, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
 
   monetize :amount, as: :amount_cents
   validates :client, :amount, :amount_cents, :payment_method, presence: true

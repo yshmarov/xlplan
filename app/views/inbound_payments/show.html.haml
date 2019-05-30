@@ -24,13 +24,5 @@
           %br
           %b= model_class.human_attribute_name(:event) + ':'
           = link_to @inbound_payment.payable, event_path(@inbound_payment.payable)
-    %p
-
-.row
-
-.card.card-default
-  .container-fluid
-    .card-heading
-      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-        %b Activity
-  =  render 'dashboard/activity'
+%br
+=  render 'dashboard/activity'
