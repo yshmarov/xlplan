@@ -176,7 +176,12 @@
   .text-center.display-4 How it works
   .row
     .col-lg-8
-      = image_tag "https://i.imgur.com/lKo0S0U.png", style: 'height:100%;width:100%;'
+      - if I18n.locale == :en
+        = image_tag "https://i.imgur.com/lKo0S0U.png", style: 'height:100%;width:100%;'
+      - if I18n.locale == :pl
+        = image_tag "https://i.imgur.com/lKo0S0U.png", style: 'height:100%;width:100%;'
+      - if I18n.locale == :ru
+        = image_tag "https://i.imgur.com/L1hjfck.png", style: 'height:100%;width:100%;'
     .col-lg-4
       .card.card-body.bg-light
         %li Employee provides a service to a client at a specific time in a specific location. This is an event.
