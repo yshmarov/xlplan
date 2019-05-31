@@ -57,7 +57,7 @@ class ServiceCategoriesController < ApplicationController
 
   private
     def set_service_category
-      @service_category = ServiceCategory.find(params[:id])
+      @service_category = ServiceCategory.friendly.find(params[:id])
     end
 
     def service_category_params

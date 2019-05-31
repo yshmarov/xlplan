@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_12_145431) do
+ActiveRecord::Schema.define(version: 2019_05_31_170311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,10 +108,10 @@ ActiveRecord::Schema.define(version: 2019_05_12_145431) do
     t.bigint "client_id"
     t.integer "amount", default: 0, null: false
     t.string "payment_method", default: "cash", null: false
-    t.integer "payable_id"
-    t.string "payable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payable_id"
+    t.string "payable_type"
     t.string "slug"
     t.index ["client_id"], name: "index_inbound_payments_on_client_id"
     t.index ["payable_id"], name: "index_inbound_payments_on_payable_id"
@@ -200,6 +200,8 @@ ActiveRecord::Schema.define(version: 2019_05_12_145431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "services_count", default: 0, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_service_categories_on_slug", unique: true
     t.index ["tenant_id"], name: "index_service_categories_on_tenant_id"
   end
 
@@ -249,6 +251,7 @@ ActiveRecord::Schema.define(version: 2019_05_12_145431) do
     t.string "plan", limit: 40, null: false
     t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
+    t.string "string", limit: 2, default: "en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"

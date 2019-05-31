@@ -1,0 +1,4 @@
+.card.card-header.bg-warning
+  #{t("devise.registrations.signed_up_but_unconfirmed")} #{@current_user.email}
+  = link_to "#{t("devise.confirmations.new.resend_confirmation_instructions")}", new_user_confirmation_path
+%p

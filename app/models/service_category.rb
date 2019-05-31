@@ -16,6 +16,9 @@ class ServiceCategory < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 144 }
 
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   #validate :free_plan_can_only_have_one
   #def free_plan_can_only_have_one
   #  if self.new_record? && (tenant.service_categories.count > 0) && (tenant.plan == 'free')

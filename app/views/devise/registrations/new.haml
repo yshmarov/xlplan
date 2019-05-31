@@ -14,7 +14,9 @@
           = f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" }
           %hr
           = simple_fields_for(:tenant) do |w|
+            /= w.error_notification
             = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
+            /= w.error :name
             = w.label :plan, label: "#{t('activerecord.attributes.tenant.plan')}"
             = w.select :plan, options_for_select(Plan.options, params[:plan]), {include_blank: false}, class: "form-control"
             %p

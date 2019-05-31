@@ -15,7 +15,7 @@ class Tenant < ApplicationRecord
 
   validates_presence_of :name, :plan
   validates_uniqueness_of :name
-  validates :name, length: { maximum: 20 } #in schema it is 40, but 20 is better
+  validates :name, length: { maximum: 40 } #in schema it is 40, but 20 is better
   validates :plan, length: { maximum: 40 }
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
