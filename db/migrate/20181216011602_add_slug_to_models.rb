@@ -17,5 +17,8 @@ class AddSlugToModels < ActiveRecord::Migration[5.2]
 
     add_column :locations, :slug, :string
     add_index :locations, :slug, unique: true
+
+    add_column :service_categories, :slug, :string
+    add_index :service_categories, :slug, unique: true
   end
 end
