@@ -2,11 +2,13 @@
   %a.navbar-brand{:href => "/"}
     /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
     %i.far.fa-calendar-check
-    .badge.badge-default XLPLAN
+    .badge.badge-default 
+      XLPLAN
+      = plan_label(Tenant.current_tenant.plan)
+    /.fa.fa-shopping-cart
     = link_to settings_show_path do
       .badge.badge-default.text-white
         = Tenant.current_tenant.name
-        = plan_label(Tenant.current_tenant.plan)
     /zubCRM
     /= link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'

@@ -415,7 +415,7 @@ en:
 
     attributes:
       tenant:
-        name: "Name"
+        name: "Organization Name"
         plan: "Plan"
         language: "Language"
         locale: "Language"

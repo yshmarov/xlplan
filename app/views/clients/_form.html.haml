@@ -5,7 +5,7 @@
   .form-inputs
     = f.input :first_name, autofocus: true, input_html: { autocomplete: 'nope' }
     = f.input :last_name, input_html: { autocomplete: 'nope' }
-    = f.input :phone_number, input_html: { autocomplete: 'nope' }
+    = f.input :phone_number, input_html: { autocomplete: 'nope' } 
     = f.input :email, input_html: { autocomplete: 'nope' }
     = f.label :date_of_birth
     = f.date_field :date_of_birth, value: @client.date_of_birth || nil, class: "form-control"
