@@ -349,6 +349,7 @@ en:
       new_client: "Add a Client (without access rights)"
       new_event: "Add an Event"
       new_payment: "Add a Payment"
+      finish: "Great! Now you are ready to start using the software"
 
   ######################################################
 

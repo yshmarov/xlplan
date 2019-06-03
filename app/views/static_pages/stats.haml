@@ -48,14 +48,15 @@
             %th UserID
             %th Name
             %th Email
+            %th Confirmed?
             %th Phone
         %tbody.bg-light
           - Member.all.unscoped.where(tenant_id: tenant.id).each do |member|
             %tr
               %td= member.id
               %td= member
-              %td
-                - if member.user.present?
-                  = member.user.email
+              - if member.user.present?
+                %td= member.user.email
+                %td= member.user.confirmed_at.present?
               %td= member.phone_number
 %br
