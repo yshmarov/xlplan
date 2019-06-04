@@ -1,37 +1,51 @@
 = provide(:description, 'XLPLAN is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, salon, management software, crm, erp, employee calendar, calendar')
+/appointment-based business, regardless of size or industry.
+
 /%title UKR.NET: Всі новини України, останні новини дня в Україні та Світі
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
-
-/- if I18n.locale == :en
-/  %h1 ENG
-/- elsif I18n.locale == :ru
-/  %h1 RUS
-/- elsif I18n.locale == :pl
-/  %h1 POL
-/- else
-/  %h1 ELSER
-
 /_________________________________
-/HIGHLIGHT A SHIFT IN THE WORLD, NOT A PROBLEM?
-/there are more effective ways/tools of running the business
-/don't lose clients
-/spend less time 
-/All in one place
-/Be modern, do not stay behind competition
-/Your strongest competitors are already using XLPLAN!
-/Say goodbye to paper and excel accounting!
+/%hr
+/.container
+/  .text-center
+/    %h1.display-4= t('.how_it_works')
+/  .row
+/    .col-lg-8
+/      - if I18n.locale == :en
+/        = image_tag "https://i.imgur.com/lKo0S0U.png", style: 'height:100%;width:100%;'
+/      - if I18n.locale == :pl
+/        = image_tag "https://i.imgur.com/lKo0S0U.png", style: 'height:100%;width:100%;'
+/      - if I18n.locale == :ru
+/        = image_tag "https://i.imgur.com/L1hjfck.png", style: 'height:100%;width:100%;'
+/    .col-lg-4
+/      .card.card-body.bg-light
+/        %li Employee provides a service to a client at a specific time in a specific location. This is an event.
+/        %li Based on the event, employee receives salary, material expenses are calculated, client provides payments & gets automatic reminders about upcoming visits. 
+/        %li You have all your business data in one place and can control everything in real time with live automatic statistics and reports.
+/      %p
+/%hr
+/.container
+/  .row
+/    .col-lg-5
+/      .text-center
+/        %h1.display-4 Online calendar
+/      .card.card-body.bg-light
+/        Still using a paper diary in #{Time.now.year}?
+/        %p
+/        XLPLAN is a professional tool for a serious business.
+/        %p
+/        Now you can have all employee calendars in one place.
+/      %p
+/      .text-center
+/        = link_to 'Start using now >>', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-outline-warning text-dark'
+/    .col-lg-7
+/      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+/_________________________________
+/VALUE /HIGHLIGHT A SHIFT IN THE WORLD, NOT A PROBLEM?
 /%small.text-muted.container
 /How much did I earn last month? Who are my most active clients? How many appointments did I have? What's planned?
 /XLPLAN - your personal marketer, admin, accountant, salesman, financial analyst
-/_________________________________
-/VALUE
-/Generate more Money (upsales, loyalty, special offers, event reminders, repeat reminders) / earn more
-/Passive
-/Control - all info in 1 place. signle source of truth.
-/Time (salary calculation, schedule management, audit [jobs, income, expences])
-/Growth (analytics = business descisions), instrument for growing your business / Competitive advantage
 /_________________________________
 /Today:
 /Excel
@@ -41,6 +55,8 @@
 /Email
 /Tomorrow:
 /XLPLAN
+/there are more effective ways/tools of running the business
+/Say goodbye to paper and excel accounting!
 /_________________________________
 /Full supervised setup in 5 days. No special skill required
 /Day 1
@@ -70,41 +86,32 @@
 // Container element
 /.parallax
 </div>
-
-
-.jumbotron.bg-white.text-center
-  .display-4= t('.hero')
-  %p
-  %br
-  %p
-  %h5= t('.hero_description')
-  %p
-  %p= link_to "#{t(".try_for_free")}", new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
-%hr
 .container
   .text-center
-    %p
     .row
-      /.col-lg-6
-      /  .text-left
-      /    .display-4= t('.hero')
-      /    %p
-      /    %h5= t('.hero_description')
-      /    %p= link_to "#{t(".try_for_free")}", new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
-      /    %p
-      .col-lg-3
       .col-lg-6
+        %h1.display-4= t('.hero')
+        %p
+        %br
+        %p
+        %h5= t('.hero_description')
+        %p
+        %p= link_to t(".try_for_free"), new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
+      .col-lg-6
+        /%h1.display-4= t('.how_it_works')
         .embed-responsive.embed-responsive-16by9
           %iframe.embed-responsive-item{:allow => "autoplay; encrypted-media", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY?rel=0", :width => "560"}
 %hr
 .container.text-center
-  .display-4= t('.designed_for')
+  %h1.display-4= t('.designed_for')
   %p
   .card-deck
     .card
       .card-body.bg-light
         %i.fa.fa-hand-holding-heart{:style => "font-size:40px;color:orange"}
+        %p
         %h5.card-title= t('.beauty_industry')
+        %hr
         /%p.card-text ddsdsdvsd
         .fa.fa-cut
         = t('.hair_beauty_barbershop')
@@ -126,8 +133,9 @@
     .card
       .card-body.bg-light
         %i.fa.fa-hospital{:style => "font-size:40px;color:orange"}
+        %p
         %h5.card-title= t('.private_medicine')
-        .fa.fa-hospital
+        %hr
         .fa.fa-user-md
         = t('.private_clinic')
         %p
@@ -148,8 +156,9 @@
     .card
       .card-body.bg-light
         %i.fa.fa-user-tie{:style => "font-size:40px;color:orange"}
-        %h5.card-title= t('.professional_services')
         %p
+        %h5.card-title= t('.professional_services')
+        %hr
         .fa.fa-car-side
         = t('.car_services')
         %p
@@ -172,78 +181,82 @@
         .fa.fa-user-graduate
         = t('.tutors')
 %hr
-.container
-  .text-center.display-4 How it works
+.container-fluid.text-center
+  %h1.display-4= t('.why_do_you_need_it')
+  %br
   .row
-    .col-lg-8
-      - if I18n.locale == :en
-        = image_tag "https://i.imgur.com/lKo0S0U.png", style: 'height:100%;width:100%;'
-      - if I18n.locale == :pl
-        = image_tag "https://i.imgur.com/lKo0S0U.png", style: 'height:100%;width:100%;'
-      - if I18n.locale == :ru
-        = image_tag "https://i.imgur.com/L1hjfck.png", style: 'height:100%;width:100%;'
     .col-lg-4
-      .card.card-body.bg-light
-        %li Employee provides a service to a client at a specific time in a specific location. This is an event.
-        %li Based on the event, employee receives salary, material expenses are calculated, client provides payments & gets automatic reminders about upcoming visits. 
-        %li You have all your business data in one place and can control everything in real time with live automatic statistics and reports.
-      %p
       .text-center
-        = link_to 'More about XLPLAN features', features_path, class: 'btn btn-lg btn-outline-warning text-dark'
-%hr
-.container
-  .row
-    .col-lg-5
-      .text-center.display-4 Online calendar
-      .card.card-body.bg-light
-        Still using a paper diary in #{Time.now.year}?
-        %p
-        XLPLAN is a professional tool for a serious business.
-        %p
-        Now you can have all employee calendars in one place.
+        %i.fa.fa-calendar-check{:style => "font-size:40px;color:orange"}
+      %h3= t('.control_business')
       %p
+      %li= t('.all_business_data_secure_in_one_place')
+      %li= t('.manage_workload')
+      %li= t('.more_professional')
+      /Be modern, do not stay behind competition
+      /Control - all info in 1 place. signle source of truth.
+    .col-lg-4
       .text-center
-        = link_to 'Start using now >>', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-outline-warning text-dark'
-    .col-lg-7
-      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-%hr
+        %i.fa.fa-history{:style => "font-size:40px;color:orange"}
+      %h3= t('.save_time')
+      %p
+      %li= t('.automatic_reminders')
+      %li= t('.automatic_salary_calculation')
+      %li= t('.automatic_marketing')
+      /Passive
+      /spend less time 
+      /Time (salary calculation, schedule management, audit [jobs, income, expences])
+    .col-lg-4
+      .text-center
+        %i.fa.fa-chart-line{:style => "font-size:40px;color:orange"}
+      %h3= t('.increase_revenue_and_grow')
+      %p
+      /Generate more Money (upsales, loyalty, special offers, event reminders, repeat reminders) / earn more
+      /Growth (analytics = business descisions), instrument for growing your business / Competitive advantage
+      %li= t('.dont_lose_clients')
+      %li= t('.make_data_drived_descisions')
+      %li= t('.growth_of_your_business_is_easier_to_manage')
+      %li= t('.competitive_advantage')
+  %br
+  = link_to t(".features"), features_path, class: 'btn btn-lg btn-warning text-dark'
+  %p
+.jumbotron.text-center
+  %h3= t('.small_investment')
+  %p
+  = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-warning text-dark'
 .container.text-center
-  .display-4 Technology
+  %h1.display-4= t('.technology')
   %p
   .card-group
     .card
       .card-body.bg-light
         %i.fa.fa-cloud-upload-alt.fa-3x{:style => "font-size:50px;color:orange;"}
-        %h5.card-title In the cloud
+        %h5.card-title= t('.in_the_cloud')
         %p.card-text
-          %small.text-muted No installation or download required
+          %small.text-muted= t('.in_the_cloud2')
     .card
       .card-body.bg-light
         %i.fa.fa-mobile-alt.fa-3x{:style => "font-size:50px;color:orange;"}
         %i.fa.fa-laptop.fa-3x{:style => "font-size:50px;color:orange;"}
-        %h5.card-title Any device
+        %h5.card-title= t('.any_device')
         %p.card-text
-          %small.text-muted On your phone or computer. Open in your browser (Google Chrome, Safari, Mozilla, Opera)
+          %small.text-muted= t('.any_device2')
     .card
       .card-body.bg-light
         %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:orange;"}
-        %h5.card-title Anonimity
+        %h5.card-title= t('.anonimity')
         %p.card-text
-          %small.text-muted XLPLAN is not a free service. We do not analyze your data, or share it with 3rd parties
+          %small.text-muted= t('.anonimity2')
     .card
       .card-body.bg-light
         %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:orange;"}
-        %h5.card-title Security
+        %h5.card-title= t('.security')
         %p.card-text
-          %small.text-muted
-            Your company data is private and encrypted. Only you can see it
+          %small.text-muted= t('.security2')
     .card
       .card-body.bg-light
         %i.fa.fa-cloud-download-alt.fa-3x{:style => "font-size:50px;color:orange;"}
-        %h5.card-title Export
+        %h5.card-title= t('.export')
         %p.card-text
-          %small.text-muted You own your data. Export to PDF and Excel.
-
-
-
+          %small.text-muted= t('.export2')
 = render 'layouts/footer'
