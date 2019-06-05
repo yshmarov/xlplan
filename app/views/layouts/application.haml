@@ -6,6 +6,8 @@
     %meta{:content => "#{yield(:description)}", :name => "description"}/
     %meta{:content => "#{yield(:keywords)}", :name => "keywords"}/
     %meta{:content => "XLPLAN.com", :name => "author"}/
+    /%title 
+    /  = content_for?(:title) ? yield(:title) : "XLPLAN"
     %title 
       - if current_user
         = content_for?(:title) ? yield(:title) : "XLPLAN | #{Tenant.current_tenant.name}"
@@ -15,8 +17,8 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = render 'layouts/google_analytics'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = render 'layouts/google_analytics'
   %body
     - if current_user
       #wrapper
