@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   #pages before logging in
   get 'features', to: 'static_pages#features'
   get 'pricing', to: 'static_pages#pricing'
+  get 'about', to: 'static_pages#about'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
   get 'security', to: 'static_pages#security'

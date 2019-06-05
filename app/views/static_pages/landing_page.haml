@@ -38,7 +38,7 @@
 /        Now you can have all employee calendars in one place.
 /      %p
 /      .text-center
-/        = link_to 'Start using now >>', new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-outline-warning text-dark'
+/        = link_to 'Start using now >>', new_user_registration_path, class: 'btn btn-lg btn-outline-warning text-dark'
 /    .col-lg-7
 /      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
 /_________________________________
@@ -86,6 +86,7 @@
 // Container element
 /.parallax
 </div>
+%br
 .container
   .text-center
     .row
@@ -93,10 +94,10 @@
         %h1.display-4= t('.hero')
         %p
         %br
+        /%p
+        /%h5= t('.hero_description')
         %p
-        %h5= t('.hero_description')
-        %p
-        %p= link_to t(".try_for_free"), new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
+        %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-warning'
       .col-lg-6
         /%h1.display-4= t('.how_it_works')
         .embed-responsive.embed-responsive-16by9

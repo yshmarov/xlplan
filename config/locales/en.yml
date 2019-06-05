@@ -251,6 +251,7 @@ en:
     phone_consult: "Questions? Call us for a free consultation!"
     product: "Product"
     pricing: "Pricing"
+    about: "About us"
     features: "Features"
     legal: "Legal"
     privacy_policy: "Privacy Policy"
@@ -290,7 +291,7 @@ en:
     landing_page:
       hero: "CRM for Service Business Management"
       hero_description: "Manage employee working calendars, keep client visit & payment history"
-      try_for_free: "Try now!"
+      try_for_free: "Free 14-day trial!"
       ########################################
       how_it_works: "Video about XLPLAN"
       features: "More about XLPLAN Features"
@@ -376,6 +377,8 @@ en:
       faq: "Frequently asked questions"
     features:
       features: "Product features"
+    about:
+      about: "XLPLAN team"
 
   ######################################################
 

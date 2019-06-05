@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing, :privacy_policy, :terms_of_service, :security, :stats ]
+  skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing, :privacy_policy, :terms_of_service, :security, :stats, :about ]
 
   def landing_page
     if current_user
@@ -14,6 +14,12 @@ class StaticPagesController < ApplicationController
   end
   
   def pricing
+    if current_user
+      redirect_to calendar_path
+    end
+  end
+  
+  def about
     if current_user
       redirect_to calendar_path
     end

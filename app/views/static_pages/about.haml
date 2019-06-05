@@ -1,0 +1,29 @@
+.jumbotron.bg-white.text-center
+  %h1.display-4= t('.about')
+  /%br 
+  /%h5 Lorem ipsum dolor sit
+.container
+  .row.text-center
+    .col-lg-4
+    .col-lg-4
+      %img.rounded-circle{:alt => "Yaroslav Shmarov", :src => "https://i.imgur.com/oQNA52Q.jpg", :width => "100%"}/
+      .team-member
+        %h4 Yaroslav Shmarov / Ярослав Шмаров
+        /%h4 Iryna Shmarova / Ирина Шмарова
+        /%h4 Yuliia Zahoruiko / Юлия Загоруйко
+        %p Founder, developer
+      %p
+        %li.list-inline-item
+          = link_to "https://www.facebook.com/1yarotheslav", target: :_blank do
+            %i.fab.fa-facebook{:style => "font-size:25px;"}
+        %li.list-inline-item
+          = link_to "https://www.instagram.com/yaro_the_slav", target: :_blank do
+            %i.fab.fa-instagram{:style => "font-size:25px;"}
+        %li.list-inline-item
+          = link_to "https://www.linkedin.com/in/yaroslav-shmarov", target: :_blank do
+            %i.fab.fa-linkedin{:style => "font-size:25px;"}
+      %hr
+      /I've been working in a 
+      /problems with 
+</div>
+= render 'layouts/footer'
