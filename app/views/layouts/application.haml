@@ -6,8 +6,6 @@
     %meta{:content => "#{yield(:description)}", :name => "description"}/
     %meta{:content => "#{yield(:keywords)}", :name => "keywords"}/
     %meta{:content => "XLPLAN.com", :name => "author"}/
-    /%title 
-    /  = content_for?(:title) ? yield(:title) : "XLPLAN"
     %title 
       - if current_user
         = content_for?(:title) ? yield(:title) : "XLPLAN | #{Tenant.current_tenant.name}"
