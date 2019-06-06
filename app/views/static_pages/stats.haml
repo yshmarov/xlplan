@@ -9,12 +9,12 @@
   %table#table1
     %thead
       %tr
-        %th ID
-        %th Name
-        %th Plan
-        %th Locale
-        %th Currency
-        %th Created
+        %th= sort_link @ransack_tenants, :id, "ID"
+        %th= sort_link @ransack_tenants, :name, "Name"
+        %th= sort_link @ransack_tenants, :plan, "Plan"
+        %th= sort_link @ransack_tenants, :locale, "Locale"
+        %th= sort_link @ransack_tenants, :default_currency, "Currency"
+        %th= sort_link @ransack_tenants, :created_at, "Created"
 
         %th.bg-warning Client
         %th.bg-warning Service
@@ -25,8 +25,8 @@
         %th.bg-warning Member
         %th.bg-warning Location
     %tbody
-      - Tenant.all.unscoped.each do |tenant|
-        %tr.bg-info
+      - @tenants.each do |tenant|
+        %tr.bg-secondary
           %td= tenant.id
           %td= tenant.name
           %td= tenant.plan
