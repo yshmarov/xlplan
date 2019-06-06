@@ -5,10 +5,11 @@
     .badge.badge-default 
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)
+      = Tenant.current_tenant.name
     /.fa.fa-shopping-cart
-    = link_to settings_show_path do
-      .badge.badge-default.text-white
-        = Tenant.current_tenant.name
+    /= link_to settings_show_path do
+    /  .badge.badge-default.text-white
+    /    = Tenant.current_tenant.name
     /zubCRM
     /= link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
