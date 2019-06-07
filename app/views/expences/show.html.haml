@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Amount:
+  = @expence.amount
+%p
+  %b Payment method:
+  = @expence.payment_method
+%p
+  %b Expendable type:
+  = @expence.expendable_type
+%p
+  %b Expendable:
+  = @expence.expendable_id
+%p
+  %b Slug:
+  = @expence.slug
+
+= link_to 'Edit', edit_expence_path(@expence)
+\|
+= link_to 'Back', expences_path

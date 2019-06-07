@@ -1,0 +1,26 @@
+%h1 Listing expences
+
+%table#table1
+  %thead
+    %tr
+      %th Slug
+      %th Amount
+      %th Payment method
+      %th Expendable type
+      %th Expendable
+      %th
+      %th
+  %tbody
+    - @expences.each do |expence|
+      %tr
+        %td= link_to expence.slug, expence
+        %td= expence.amount
+        %td= expence.payment_method
+        %td= expence.expendable_type
+        %td= expence.expendable_id
+        %td= link_to 'Edit', edit_expence_path(expence)
+        %td= link_to 'Destroy', expence, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Expence', new_expence_path

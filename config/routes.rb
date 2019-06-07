@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :expences
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
   #pages before logging in
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
   resources :jobs, only: :show
 
   resources :inbound_payments, except: [:edit, :update]
+  resources :expences
 
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'
