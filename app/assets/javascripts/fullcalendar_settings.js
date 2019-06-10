@@ -19,7 +19,7 @@ function eventCalendar() {
     header: {
         left: 'prev,next, today',
         center: 'title',
-        right: 'agendaDay,agendaWeek'
+        right: 'agendaDay,agendaWeek,month'
     },
     titleFormat: 'D/MMM/YY',
     eventBackgroundColor: 'purple',

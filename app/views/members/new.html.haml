@@ -12,6 +12,9 @@
       = f.error :first_name, class: 'text-danger'
       = f.input :last_name
       = f.error :last_name, class: 'text-danger'
+
+      = f.input :time_zone
+
       %hr
       = f.button :submit, 'Create user and send invitation', class: 'btn btn-success'
     %p

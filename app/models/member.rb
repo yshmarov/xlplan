@@ -9,6 +9,7 @@ class Member < ApplicationRecord
   has_many :skills, dependent: :destroy, inverse_of: :member
   has_many :comments
   has_many :service_categories, through: :skills
+  #has_many :expences, as: :expendable
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

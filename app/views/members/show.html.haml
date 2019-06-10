@@ -73,9 +73,12 @@
               %b= model_class.human_attribute_name(:roles) + ':'
               - @member.user.roles.where.not("name = 'owner'").each do |r| 
                 = role_label(r.name)
-            - if current_user.has_role?(:admin) && @member.user.present?
+            - if policy(@member.user).destroy? && @member.user.present?
               %br
-              = link_to 'Edit roles', edit_user_path(@member.user), class: 'btn btn-warning btn-sm'
+              = link_to t('edit_roles'), edit_user_path(@member.user), class: 'btn btn-warning btn-sm mb-sm-1 mt-sm-1'
+              - unless @member == current_user.member
+                %br
+                = link_to "<i class='fa-fw fa fa-trash'></i> #{t('delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}

@@ -10,13 +10,7 @@
           - if (Tenant.current_tenant.can_create_locations?)
             = link_to t('.new', :default => t("helpers.links.new")), new_location_path, class: 'btn btn-sm btn-primary'
           - else
-            /= link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
-            %span.d-inline-block{"data-toggle" => "tooltip", :tabindex => "0", :title => "Unlock Premium Feature"}
-              %button.btn.btn-sm.btn-primary{:disabled => "disabled", :style => "pointer-events: none;", :type => "button"}
-                = t('.new', :default => t("helpers.links.new"))
-                .fa.fa-lock
-                /.fa.fa-lock-open
-
+            = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, settings_show_path, class: "btn btn-sm btn-primary"
 - @locations.each do |location|
   .card
     .card-header.bg-light

@@ -6,19 +6,12 @@
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)
       = Tenant.current_tenant.name
-    /.fa.fa-shopping-cart
     /= link_to settings_show_path do
     /  .badge.badge-default.text-white
     /    = Tenant.current_tenant.name
     /zubCRM
     /= link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
-    /= @org_name
-    - unless InboundPayment.any?
-      = link_to "<i class='fa-color-orange fa-fw fa fa-rocket'></i> Start".html_safe, start_path, class: "nav-link text-white" if current_user.has_role?(:admin)
-  %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
-    %span.navbar-toggler-icon
-  .collapse.navbar-collapse.sidebar
     /%ul.navbar-nav
     /= Time.now.in_time_zone(current_user.time_zone)
     /= Time.now
@@ -26,6 +19,13 @@
     /= Time.zone
     /= Time.zone.now
     /= Time.now.in_time_zone
+    - unless InboundPayment.any?
+      = link_to "<i class='fa-color-1 fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "btn btn-sm btn-success mb-sm-1 mt-sm-1 text-white mr-sm-2" if current_user.has_role?(:admin)
+  %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
+    %span.navbar-toggler-icon
+  .collapse.navbar-collapse.sidebar
+    - if Tenant.current_tenant.plan == "demo"
+      = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, settings_show_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
@@ -58,6 +58,7 @@
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-map-marker-alt'></i> #{t('sidebar.locations')}".html_safe, locations_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "nav-link"
       - if current_user.has_role?(:admin)
+        /alternative dropdown
         /%a.nav-link.btn.dropdown-toggle{"data-target" => "#stats", "data-toggle" => "collapse"}
         /  .fa-color-1.fa.fa-chart-line
         /  #{t('sidebar.stats')}
@@ -73,6 +74,7 @@
           .dropdown-menu{"aria-labelledby" => "navbarDropdown3"}
             = link_to "<i class='fa-fw fa fa-landmark'></i> #{t('sidebar.tenant')}".html_safe, settings_show_path, class: "dropdown-item navdrop-link"
             = link_to "<i class='fa-fw fa fa-hand-paper'></i> #{t('sidebar.service_categories')}".html_safe, service_categories_path, class: "dropdown-item navdrop-link"
+            = link_to "<i class='fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "dropdown-item navdrop-link"
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             .fa-color-1.fa.fa-chart-line

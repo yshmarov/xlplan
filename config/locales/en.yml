@@ -239,6 +239,8 @@ en:
   services: 'Services'
   service: 'Service'
   member: 'Member'
+  delete_access: 'Delete access'
+  edit_roles: 'Edit roles'
 
   ######################################################
 
@@ -282,6 +284,8 @@ en:
     profile_settings: 'Profile Settings'
     account_settings: 'Password & Access'
     logout: 'Logout'
+    start: 'Начать!'
+    order_system: 'заказать систему'
 
   ######################################################
 

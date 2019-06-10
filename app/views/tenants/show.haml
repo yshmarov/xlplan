@@ -4,7 +4,7 @@
     .card
       .card-header
         .fa.fa-landmark
-        =t '.title', :default => model_class.model_name.human.titleize
+        %b=t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', edit_plan_path, class: "btn btn-warning fa fa-edit btn-sm"
           /= link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path, :class => 'btn btn-warning btn-sm'
@@ -29,6 +29,40 @@
           = @tenant.created_at.strftime('%d/%h/%Y')
           (#{distance_of_time_in_words Time.now, @tenant.created_at})
     %p
+    %table#table1
+      %thead
+        %tr
+          %th{:scope => "col"} #
+          %th{:scope => "col"} Demo
+          %th{:scope => "col"} Bronze
+          %th{:scope => "col"} Silver
+          %th{:scope => "col"} Gold
+      %tbody
+        %tr
+          %td= t('static_pages.pricing.employees')
+          %td 1
+          %td 1
+          %td 5
+          %td= t('static_pages.pricing.unlimited')
+        %tr
+          %td= t('static_pages.pricing.locations')
+          %td 1
+          %td 1
+          %td 1
+          %td= t('static_pages.pricing.unlimited')
+        %tr
+          %td Период
+          %td 14 дней
+          %td 1 месяц
+          %td 1 месяц
+          %td 1 месяц
+        %tr
+          %td Цена
+          %td 0$
+          %td 7$
+          %td 15$
+          %td 50$
+
   .col-lg-6
     .card-header
       %h6= t('.counters')
