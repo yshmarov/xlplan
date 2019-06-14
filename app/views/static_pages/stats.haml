@@ -59,4 +59,7 @@
                 %td= member.user.email
                 %td= member.user.confirmed_at.present?
               %td= member.phone_number
+%p
+.container.table-responsive
+  = will_paginate @tenants, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

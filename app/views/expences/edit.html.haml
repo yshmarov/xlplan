@@ -1,7 +1,8 @@
-%h1 Editing expence
-
-= render 'form'
-
-= link_to 'Show', @expence
-\|
-= link_to 'Back', expences_path
+- model_class = Expence
+.card
+  .card-body
+    %h4=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+    %hr
+    = render 'form'
+    %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @expence, :class => 'btn btn-danger'

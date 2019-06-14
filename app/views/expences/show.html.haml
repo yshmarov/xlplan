@@ -1,21 +1,28 @@
-%p#notice= notice
-
-%p
-  %b Amount:
-  = @expence.amount
-%p
-  %b Payment method:
-  = @expence.payment_method
-%p
-  %b Expendable type:
-  = @expence.expendable_type
-%p
-  %b Expendable:
-  = @expence.expendable_id
-%p
-  %b Slug:
-  = @expence.slug
-
-= link_to 'Edit', edit_expence_path(@expence)
-\|
-= link_to 'Back', expences_path
+- model_class = Expence
+.row
+  .container
+    .card
+      .card-header
+        .fa.fa-dollar-sign
+        =t '.title', :default => model_class.model_name.human.titleize
+        .float-right
+          = link_to '', edit_expence_path(@expence), class: 'btn btn-warning fa fa-edit btn-sm' if policy(@expence).update?
+          = link_to '', @expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@expence).destroy?
+      .card-body
+        %b= model_class.human_attribute_name(:id) + ':'
+        = @expence.slug
+        %br
+        /%b= model_class.human_attribute_name(:expendable) + ':'
+        /= link_to @expence.client, client_path(@expence.client)
+        %b Expendable type:
+        = @expence.expendable_type
+        .row
+        %b Expendable:
+        = @expence.expendable_id
+        %br
+        %b= model_class.human_attribute_name(:amount) + ':'
+        = number_to_currency(@expence.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %br
+        %b= model_class.human_attribute_name(:payment_method) + ':'
+%br
+=  render 'dashboard/activity'

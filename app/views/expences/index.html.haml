@@ -1,26 +1,63 @@
-%h1 Listing expences
-
-%table#table1
-  %thead
-    %tr
-      %th Slug
-      %th Amount
-      %th Payment method
-      %th Expendable type
-      %th Expendable
-      %th
-      %th
-  %tbody
-    - @expences.each do |expence|
-      %tr
-        %td= link_to expence.slug, expence
-        %td= expence.amount
-        %td= expence.payment_method
-        %td= expence.expendable_type
-        %td= expence.expendable_id
-        %td= link_to 'Edit', edit_expence_path(expence)
-        %td= link_to 'Destroy', expence, method: :delete, data: { confirm: 'Are you sure?' }
-
+- model_class = Expence
+= search_form_for @q, url: expences_path do |f|
+  .card.card-default
+    .container-fluid
+      .card-heading
+        %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+          .fa.fa-dollar-sign
+          %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+        %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
+          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+            .fa.fa-search
+            .fa.fa-chevron-down
+            /Search
+          = link_to "", expences_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          - if policy(InboundPayment).create?
+            = link_to t('.new', :default => t("helpers.links.new")), new_expence_path, class: 'btn btn-sm btn-primary'
+    #accordion.collapse
+      .card-header
+        .row
+          .col-md-4
+            = model_class.human_attribute_name(:id)
+            = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block', autofocus: true
+            .row
+            /= model_class.human_attribute_name(:client_id)
+            /= f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+          .col-md-4
+            .input-daterange
+              = model_class.human_attribute_name(:after)
+              = f.text_field :created_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
+              = model_class.human_attribute_name(:before)
+              = f.text_field :created_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+          .col-md-4
+            .row
+            = f.submit
+- @expences.each do |expence|
+  .card
+    .card-header.bg-light
+      .row
+        .col-lg-2
+          .text-center
+            = link_to expence.slug, expence_path(expence) if policy(expence).show?
+            .row
+            = link_to '', edit_expence_path(expence), class: "btn btn-warning fa fa-edit btn-sm"  if policy(expence).edit?
+            = link_to '', expence, class: "btn btn-primary fa fa-eye btn-sm" if policy(expence).show?
+            = link_to '', expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(expence).destroy?
+        .col-lg-2
+          Expendable type
+          = expence.expendable_type
+          .row
+          Expendable
+          = expence.expendable_id
+        .col-lg-4
+          .fa.fa-hand-holding-usd
+          = number_to_currency(expence.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          .badge.badge-secondary.text-white
+            = expence.payment_method
+        .col-lg-4
+          .fa.fa-clock
+          #{l(expence.created_at, format: "%a")} #{l(expence.created_at, format: "%d/%b/%Y %H:%M")}
+%p
+.container.table-responsive
+  = will_paginate @expences, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
-
-= link_to 'New Expence', new_expence_path

@@ -3,7 +3,7 @@
   .card-body
     %h4=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
     %hr
-    = simple_form_for @tenant, url: update_plan_path do |f|
+    = simple_form_for @tenant, url: update_tenant_path do |f|
     
       = f.error_notification
       = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?

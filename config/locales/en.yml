@@ -358,6 +358,10 @@ en:
       export2: "You own your data. Export to PDF and Excel available."
     pricing:
       pricing: "Pricing"
+      price: "Price"
+      period: "Period"
+      month: "month"
+      days: "days"
       small_investment: "Small Investment, Big Results"
       best_for_you: "Choose the plan that works best for your business."
       demo: "demo"

@@ -8,6 +8,7 @@ class Expence < ApplicationRecord
   validates :amount, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
 
   monetize :amount, as: :amount_cents
+  #validates :client, :amount, :amount_cents, :payment_method, presence: true
 
   PAYMENT_METHODS = [:cash, :bank_transfer]
 

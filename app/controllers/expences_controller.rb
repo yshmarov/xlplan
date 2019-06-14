@@ -1,31 +1,24 @@
 class ExpencesController < ApplicationController
   before_action :set_expence, only: [:show, :edit, :update, :destroy]
 
-  # GET /expences
-  # GET /expences.json
   def index
-    @expences = Expence.all
+    @q = Expence.ransack(params[:q])
+    @expences = @q.result.includes(:expendable).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
   end
 
-  # GET /expences/1
-  # GET /expences/1.json
   def show
+    @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Expence", trackable_id: @expence).all
   end
 
-  # GET /expences/new
   def new
     @expence = Expence.new
   end
 
-  # GET /expences/1/edit
   def edit
   end
 
-  # POST /expences
-  # POST /expences.json
   def create
     @expence = Expence.new(expence_params)
-
     respond_to do |format|
       if @expence.save
         format.html { redirect_to @expence, notice: 'Expence was successfully created.' }
@@ -37,8 +30,6 @@ class ExpencesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /expences/1
-  # PATCH/PUT /expences/1.json
   def update
     respond_to do |format|
       if @expence.update(expence_params)
@@ -51,8 +42,6 @@ class ExpencesController < ApplicationController
     end
   end
 
-  # DELETE /expences/1
-  # DELETE /expences/1.json
   def destroy
     @expence.destroy
     respond_to do |format|
@@ -62,12 +51,10 @@ class ExpencesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_expence
       @expence = Expence.friendly.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def expence_params
       params.require(:expence).permit(:tenant_id, :amount, :payment_method, :expendable_type, :expendable_id, :slug)
     end

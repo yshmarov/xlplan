@@ -6,7 +6,9 @@
         .fa.fa-landmark
         %b=t '.title', :default => model_class.model_name.human.titleize
         .float-right
-          = link_to '', edit_plan_path, class: "btn btn-warning fa fa-edit btn-sm"
+          = link_to '', edit_tenant_path, class: "btn btn-warning fa fa-edit btn-sm"
+          /= link_to 'Tenant', edit_tenant_path, class: "btn btn-warning fa fa-edit btn-sm"
+          /= link_to 'Plan', edit_plan_path, class: "btn btn-warning fa fa-edit btn-sm"
           /= link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path, :class => 'btn btn-warning btn-sm'
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
@@ -39,6 +41,26 @@
           %th{:scope => "col"} Gold
       %tbody
         %tr
+          %td= t('static_pages.pricing.price')
+          %td 0$
+          %td 7$
+          %td 15$
+          %td 50$
+        %tr
+          %td= t('static_pages.pricing.period')
+          %td
+            14
+            = t('static_pages.pricing.days')
+          %td
+            1
+            = t('static_pages.pricing.month')
+          %td
+            1
+            = t('static_pages.pricing.month')
+          %td
+            1
+            = t('static_pages.pricing.month')
+        %tr
           %td= t('static_pages.pricing.employees')
           %td 1
           %td 1
@@ -50,18 +72,6 @@
           %td 1
           %td 1
           %td= t('static_pages.pricing.unlimited')
-        %tr
-          %td Период
-          %td 14 дней
-          %td 1 месяц
-          %td 1 месяц
-          %td 1 месяц
-        %tr
-          %td Цена
-          %td 0$
-          %td 7$
-          %td 15$
-          %td 50$
 
   .col-lg-6
     .card-header
