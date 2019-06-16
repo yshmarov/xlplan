@@ -34,9 +34,6 @@
             %button.btn.btn-light{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-plus'></i> #{t('sidebar.new_event')}".html_safe, new_event_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa-color-1  fa-fw fa fa-user-plus'></i> #{t('sidebar.new_client')}".html_safe, new_client_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa-color-1  fa-fw fa fa-hand-holding-usd'></i> #{t('sidebar.new_payment')}".html_safe, new_inbound_payment_path, class: "nav-link"
       /link to ransack search query
       /%li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path(q: {jobs_member_id_eq: current_user.member.id}), class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
@@ -50,9 +47,15 @@
           = link_to debtors_clients_path, class: "nav-link" do
             .fa-color-1.fa-fw.fa.fa-user
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-dollar-sign'></i> #{t('sidebar.inbound_payments')}".html_safe, inbound_payments_path, class: "nav-link"
+      %li.clearfix
+        %a= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, events_path, class: "btn btn-default ml-sm-1 text-white"
+        %a= link_to "<i class='fa-color-1 fa-fw fa fa-plus'></i>".html_safe, new_event_path, class: "btn btn-default ml-sm-2 text-white mr-sm-1 float-right"
+      %li.clearfix
+        %a= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, clients_path, class: "btn btn-default ml-sm-1 text-white"
+        %a= link_to "<i class='fa-color-1 fa-fw fa fa-plus'></i>".html_safe, new_client_path, class: "btn btn-default ml-sm-2 text-white mr-sm-1 float-right"
+      %li.clearfix
+        %a= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.inbound_payments')}".html_safe, inbound_payments_path, class: "btn btn-default ml-sm-1 text-white"
+        %a= link_to "<i class='fa-color-1 fa-fw fa fa-plus'></i>".html_safe, new_inbound_payment_path, class: "btn btn-default ml-sm-2 text-white mr-sm-1 float-right"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, members_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-hand-paper'></i> #{t('sidebar.services')}".html_safe, services_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-map-marker-alt'></i> #{t('sidebar.locations')}".html_safe, locations_path, class: "nav-link"
