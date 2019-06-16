@@ -5,9 +5,9 @@
 
   .form-inputs
     = f.input :amount, autofocus: true
-    = f.input :payment_method
+    = f.input :payment_method, collection: Expence::PAYMENT_METHODS, :include_blank => false
     = f.input :expendable_type
     = f.input :expendable_id
-
+  %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"
