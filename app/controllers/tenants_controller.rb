@@ -4,6 +4,9 @@ class TenantsController < ApplicationController
     authorize @tenant
   end
 
+  def edit_plan
+  end
+
   def show
     authorize @tenant
     #@tenant = Tenant.current_tenant
@@ -12,7 +15,7 @@ class TenantsController < ApplicationController
   def update
     authorize @tenant
     if @tenant.update(tenant_params)
-      redirect_to settings_show_path, notice: 'Successfully updated.'
+      redirect_to settings_show_path, notice: "#{@tenant.name} successfully updated."
     else
       render :edit
     end

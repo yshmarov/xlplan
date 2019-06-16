@@ -1,0 +1,17 @@
+- model_class = Tenant
+.card
+  .card-body
+    %h4
+      .fa.fa-shopping-cart
+      =t '.title'
+    %hr
+    = simple_form_for @tenant, url: update_tenant_path do |f|
+    
+      = f.label :plan
+      = f.error :plan, class: 'text-danger'
+      = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {include_blank: false}, class: "form-control"
+      
+      %hr
+      = f.button :submit, class: "btn btn-success"
+      %p
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), settings_show_path, :class => 'btn btn-danger'

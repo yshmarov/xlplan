@@ -31,8 +31,7 @@ Rails.application.routes.draw do
   match '/settings/show' => 'tenants#show', via: :get
   match '/settings/edit' => 'tenants#edit', via: :get, as: :edit_tenant
   match '/settings/update' => 'tenants#update', via: [:put, :patch], as: :update_tenant
-  #match '/plan/edit' => 'tenants#edit', via: :get, as: :edit_plan
-  #match '/plan/update' => 'tenants#update', via: [:put, :patch], as: :update_plan
+  match '/plan/edit' => 'tenants#edit_plan', via: :get, as: :edit_plan
 
   get "/contacts/:provider/contacts_callback" => "clients#index"
   get "/contacts/failure" => "clients#failure"

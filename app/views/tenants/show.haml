@@ -7,9 +7,6 @@
         %b=t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', edit_tenant_path, class: "btn btn-warning fa fa-edit btn-sm"
-          /= link_to 'Tenant', edit_tenant_path, class: "btn btn-warning fa fa-edit btn-sm"
-          /= link_to 'Plan', edit_plan_path, class: "btn btn-warning fa fa-edit btn-sm"
-          /= link_to t('.edit', :default => t("helpers.links.edit")), edit_plan_path, :class => 'btn btn-warning btn-sm'
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
         %b= @tenant.name
@@ -25,6 +22,7 @@
         %br
         %b= model_class.human_attribute_name(:plan) + ':'
         = plan_label(@tenant.plan)
+        = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
         %br
         %b= model_class.human_attribute_name(:created_at) + ':'
         %b
@@ -72,10 +70,11 @@
           %td 1
           %td 1
           %td= t('static_pages.pricing.unlimited')
-
+    %p
   .col-lg-6
-    .card-header
-      %h6= t('.counters')
+    .card
+      .card-header
+        %h6= t('.counters')
     %ul.list-group
       %li.list-group-item
         %i.fa.fa-user

@@ -284,8 +284,8 @@ en:
     profile_settings: 'Profile Settings'
     account_settings: 'Password & Access'
     logout: 'Logout'
-    start: 'Начать!'
-    order_system: 'заказать систему'
+    start: 'Start!'
+    order_system: 'order system'
 
   ######################################################
 
@@ -449,6 +449,8 @@ en:
       new_service: "Add your Services Price list"
       new_client: "Add a client (Without access to the app)"
       new_event: "Add an event"
+    edit_plan:
+      title: "order system"
 
   ######################################################
 

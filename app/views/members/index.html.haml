@@ -18,7 +18,7 @@
             - if (Tenant.current_tenant.can_create_members?)
               = link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
             - else
-              = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, settings_show_path, class: "btn btn-sm btn-danger"
+              = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, edit_plan_path, class: "btn btn-sm btn-danger"
 - @members.each do |member|
   .card
     .card-header.bg-light
