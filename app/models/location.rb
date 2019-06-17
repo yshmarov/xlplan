@@ -5,6 +5,7 @@ class Location < ApplicationRecord
   validates :phone_number, length: { maximum: 144 }
   validates :email, length: { maximum: 144 }
   validates :address, length: { maximum: 255 }
+  #serialize :address
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

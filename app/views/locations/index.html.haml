@@ -19,6 +19,9 @@
           .fa.fa-map-marker-alt
           = link_to location.name, location_path(location) if policy(location).show?
           = status_label(location.status)
+          /.row
+          /- if location.address?
+          /  = location.address
           .row
           - if location.phone_number.present?
             .row
