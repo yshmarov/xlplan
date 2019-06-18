@@ -6,10 +6,29 @@
       =t '.title'
     %hr
     = simple_form_for @tenant, url: update_tenant_path do |f|
-    
+
+      / #### plan FIELD STARTS HERE ####
+      %p
       = f.label :plan
-      = f.error :plan, class: 'text-danger'
-      = f.select :plan, options_for_select(Plan.options, @tenant.plan ), {include_blank: false}, class: "form-control"
+      .row.text-center
+        .col-lg-3
+          = f.radio_button :plan, :demo
+          = f.label :plan_demo
+          /= f.label :plan_demo, class: 'btn btn-info'
+        .col-lg-3
+          = f.radio_button :plan, :bronze
+          = f.label :plan_bronze
+        .col-lg-3
+          = f.radio_button :plan, :silver
+          = f.label :plan_silver
+        .col-lg-3
+          = f.radio_button :plan, :gold
+          = f.label :plan_gold
+      / #### plan FIELD ENDS HERE ####
+
+      /= f.label :plan
+      /= f.error :plan, class: 'text-danger'
+      /= f.select :plan, options_for_select(Plan.options, @tenant.plan ), {include_blank: false}, class: "form-control"
       
       %hr
       = f.button :submit, class: "btn btn-success"
