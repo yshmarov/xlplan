@@ -29,47 +29,48 @@
           = @tenant.created_at.strftime('%d/%h/%Y')
           (#{distance_of_time_in_words Time.now, @tenant.created_at})
     %p
-    %table#table1
-      %thead
-        %tr
-          %th{:scope => "col"} #
-          %th{:scope => "col"} Demo
-          %th{:scope => "col"} Bronze
-          %th{:scope => "col"} Silver
-          %th{:scope => "col"} Gold
-      %tbody
-        %tr
-          %td= t('static_pages.pricing.price')
-          %td 0$
-          %td 7$
-          %td 15$
-          %td 50$
-        %tr
-          %td= t('static_pages.pricing.period')
-          %td
-            14
-            = t('static_pages.pricing.days')
-          %td
-            1
-            = t('static_pages.pricing.month')
-          %td
-            1
-            = t('static_pages.pricing.month')
-          %td
-            1
-            = t('static_pages.pricing.month')
-        %tr
-          %td= t('static_pages.pricing.employees')
-          %td 1
-          %td 1
-          %td 5
-          %td= t('static_pages.pricing.unlimited')
-        %tr
-          %td= t('static_pages.pricing.locations')
-          %td 1
-          %td 1
-          %td 1
-          %td= t('static_pages.pricing.unlimited')
+    .table-responsive
+      %table#table1
+        %thead
+          %tr
+            %th{:scope => "col"} #
+            %th{:scope => "col"} Demo
+            %th{:scope => "col"} Bronze
+            %th{:scope => "col"} Silver
+            %th{:scope => "col"} Gold
+        %tbody
+          %tr
+            %td= t('static_pages.pricing.price')
+            %td 0$
+            %td 7$
+            %td 15$
+            %td 50$
+          %tr
+            %td= t('static_pages.pricing.period')
+            %td
+              14
+              = t('static_pages.pricing.days')
+            %td
+              1
+              = t('static_pages.pricing.month')
+            %td
+              1
+              = t('static_pages.pricing.month')
+            %td
+              1
+              = t('static_pages.pricing.month')
+          %tr
+            %td= t('static_pages.pricing.employees')
+            %td 1
+            %td 1
+            %td 5
+            %td= t('static_pages.pricing.unlimited')
+          %tr
+            %td= t('static_pages.pricing.locations')
+            %td 1
+            %td 1
+            %td 1
+            %td= t('static_pages.pricing.unlimited')
     %p
   .col-lg-6
     .card

@@ -35,6 +35,7 @@ Rails.application.routes.draw do
 
   get "/contacts/:provider/contacts_callback" => "clients#index"
   get "/contacts/failure" => "clients#failure"
+  #match "/contacts/:importer/callback" => "your_controller#callback"
 
   resources :clients do
     get :debtors, on: :collection
