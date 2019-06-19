@@ -10,20 +10,57 @@
       / #### plan FIELD STARTS HERE ####
       %p
       = f.label :plan
-      .row.text-center
-        .col-lg-3
-          = f.radio_button :plan, :demo
-          = f.label :plan_demo
-          /= f.label :plan_demo, class: 'btn btn-info'
-        .col-lg-3
-          = f.radio_button :plan, :bronze
-          = f.label :plan_bronze
-        .col-lg-3
-          = f.radio_button :plan, :silver
-          = f.label :plan_silver
-        .col-lg-3
-          = f.radio_button :plan, :gold
-          = f.label :plan_gold
+
+      %table.table.table-bordered.table-sm.table-striped.table-hover
+        %thead
+          %tr
+            %th
+            %th
+              = f.radio_button :plan, :demo
+              = f.label :plan_demo, "Demo", class: 'badge badge-info'
+            %th
+              = f.radio_button :plan, :bronze
+              = f.label :plan_bronze, "Bronze", class: 'badge badge-danger'
+            %th
+              = f.radio_button :plan, :silver
+              = f.label :plan_silver, "Silver", class: 'badge badge-secondary'
+            %th
+              = f.radio_button :plan, :gold
+              = f.label :plan_gold, "Gold", class: 'badge badge-warning'
+
+        %tbody
+          %tr
+            %td= t('static_pages.pricing.price')
+            %td 0$
+            %td 7$
+            %td 15$
+            %td 50$
+          %tr
+            %td= t('static_pages.pricing.period')
+            %td
+              14
+              = t('static_pages.pricing.days')
+            %td
+              1
+              = t('static_pages.pricing.month')
+            %td
+              1
+              = t('static_pages.pricing.month')
+            %td
+              1
+              = t('static_pages.pricing.month')
+          %tr
+            %td= t('static_pages.pricing.employees')
+            %td 1
+            %td 1
+            %td 5
+            %td= t('static_pages.pricing.unlimited')
+          %tr
+            %td= t('static_pages.pricing.locations')
+            %td 1
+            %td 1
+            %td 1
+            %td= t('static_pages.pricing.unlimited')
       / #### plan FIELD ENDS HERE ####
 
       /= f.label :plan

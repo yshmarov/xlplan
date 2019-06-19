@@ -23,8 +23,8 @@
             = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
           .col-md-4
             = f.submit
-.table-responsive
-  %table.table-responsive-xl.table-sm.table-striped
+.table-responsive-xl
+  %table.table-sm.table-striped
     %thead
       %tr
         %th= sort_link @q, :name, :name
