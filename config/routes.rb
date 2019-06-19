@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :inbound_payments, except: [:edit, :update]
-    get :close, on: :collection
+    get :close, :tomorrow, on: :collection
   	member do
   		patch :mark_planned
   		patch :mark_confirmed
