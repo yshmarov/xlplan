@@ -13,20 +13,28 @@
 
       %table.table.table-bordered.table-sm.table-striped.table-hover
         %thead
-          %tr
+          %tr.text-center
             %th
             %th
-              = f.radio_button :plan, :demo
-              = f.label :plan_demo, "Demo", class: 'badge badge-info'
+              %h3
+                = f.radio_button :plan, :demo
+                .row
+                = f.label :plan_demo, "Demo", class: 'badge badge-info'
             %th
-              = f.radio_button :plan, :bronze
-              = f.label :plan_bronze, "Bronze", class: 'badge badge-danger'
+              %h3
+                = f.radio_button :plan, :bronze
+                .row
+                = f.label :plan_bronze, "Bronze", class: 'badge badge-danger'
             %th
-              = f.radio_button :plan, :silver
-              = f.label :plan_silver, "Silver", class: 'badge badge-secondary'
+              %h3
+                = f.radio_button :plan, :silver
+                .row
+                = f.label :plan_silver, "Silver", class: 'badge badge-secondary'
             %th
-              = f.radio_button :plan, :gold
-              = f.label :plan_gold, "Gold", class: 'badge badge-warning'
+              %h3
+                = f.radio_button :plan, :gold
+                .row
+                = f.label :plan_gold, "Gold", class: 'badge badge-warning'
 
         %tbody
           %tr
