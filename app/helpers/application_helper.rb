@@ -28,7 +28,7 @@ module ApplicationHelper
 				when 'admin'
 					content_tag(:span, name.titleize, class: 'badge badge-dark')
 				when 'manager'
-					content_tag(:span, name.titleize, class: 'badge badge-light')
+					content_tag(:span, name.titleize, class: 'badge badge-primary')
 				when 'specialist'
 					content_tag(:span, name.titleize, class: 'badge badge-info')
 				when 'owner'

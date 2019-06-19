@@ -9,6 +9,7 @@ class Role < ApplicationRecord
     ROLES.map { |role| [role.capitalize, role] }
   end
 
+  #enum role: [:user, :admin, :silver, :gold, :platinum]
 
   has_and_belongs_to_many :users, :join_table => :users_roles
   belongs_to :resource,

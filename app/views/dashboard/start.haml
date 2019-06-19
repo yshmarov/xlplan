@@ -13,6 +13,10 @@
         %del
           = t('.edit_my_page')
       %hr
+      /TENANT SETTINGS
+      %span.badge.badge-pill.badge-danger -
+      = link_to t('.select_currency'), settings_show_path
+      %hr
       /CREATE LOCATION
       - unless Location.any?
         %span.badge.badge-pill.badge-danger -

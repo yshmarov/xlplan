@@ -37,16 +37,23 @@
           = @member.address[:street]
           = @member.address[:zip]
         %br
-        %b= model_class.human_attribute_name(:skills) + ':'
-        /- @member.skills.each do |skill|
-        /  = skill.service_category
-        = @member.skills.map{|p| p.service_category}.join(", ")
-        %br
-        %b= model_class.human_attribute_name(:location_id) + ':'
-        = link_to @member.location, location_path(@member.location) if @member.location.present?
-        %br
         %b= model_class.human_attribute_name(:time_zone) + ':'
         = @member.time_zone
+        %hr
+        %b= model_class.human_attribute_name(:skills) + ':'
+        - if @member.skills.any?
+          .fa.fa-hand-paper
+          %small
+            - @member.skills.each do |skill|
+              .badge.badge-secondary
+                = skill.service_category
+        /- @member.skills.each do |skill|
+        /  = skill.service_category
+        /= @member.skills.map{|p| p.service_category}.join(", ")
+        %br
+        %b= model_class.human_attribute_name(:location_id) + ':'
+        .fa.fa-map-marker-alt
+        = link_to @member.location, location_path(@member.location) if @member.location.present?
         %hr
         %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
@@ -67,7 +74,7 @@
             /= @member.user.invitor
             -  if @member.id == current_user.id
               %br
-              = link_to 'Edit password', edit_user_registration_path, class: 'btn btn-sm btn-warning'
+              = link_to t('edit_password'), edit_user_registration_path, class: 'btn btn-sm btn-warning'
             - if @member.user.present?
               %br
               %b= model_class.human_attribute_name(:roles) + ':'

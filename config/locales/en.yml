@@ -241,6 +241,8 @@ en:
   member: 'Member'
   delete_access: 'Delete access'
   edit_roles: 'Edit roles'
+  edit_password: "Edit password"
+
 
   ######################################################
 
@@ -394,6 +396,7 @@ en:
     start:
       start: "Start"
       edit_my_page: "Add Your contact details"
+      select_currency: "Select default currency"
       new_member: "Add additional team Members"
       new_location: "Add a Location"
       new_service: "Add your Service list"
