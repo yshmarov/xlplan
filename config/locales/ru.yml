@@ -796,3 +796,5 @@ ru:
         payment_method: "Способ Оплаты"
         created_at: "Дата Создания"
         event: "Встреча"
+        after: "Начало после.."
+        before: "Начало до.."

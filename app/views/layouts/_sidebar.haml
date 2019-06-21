@@ -19,13 +19,13 @@
     /= Time.zone
     /= Time.zone.now
     /= Time.now.in_time_zone
-    - unless InboundPayment.any?
-      = link_to "<i class='fa-color-1 fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "btn btn-sm btn-success mb-sm-1 mt-sm-1 text-white mr-sm-2" if current_user.has_role?(:admin)
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
+    - unless InboundPayment.any?
+      .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "btn btn-sm btn-success mb-sm-1 mt-sm-1 text-white mr-sm-2" if current_user.has_role?(:admin)
     - if Tenant.current_tenant.plan == "demo"
-      = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
+      .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
     %ul.navbar-nav.ml-md-auto.d-md-flex
       .input-group
         = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|

@@ -5,43 +5,53 @@
   /%br 
   /%h5 Lorem ipsum dolor sit
 .container
-  .row.text-center
-    .col-lg-4
-    .col-lg-4
-      %img.rounded-circle{:alt => "Yaroslav Shmarov", :src => "https://i.imgur.com/oQNA52Q.jpg", :width => "100%"}/
-      .team-member
+  .row
+    .col-lg-3
+    .col-lg-6
+      .text-center
+        %img.rounded-circle{:alt => "Yaroslav Shmarov", :src => "https://i.imgur.com/oQNA52Q.jpg", :width => "50%"}/
         %h4 Yaroslav Shmarov / Ярослав Шмаров
         /%h4 Iryna Shmarova / Ирина Шмарова
         /%h4 Yuliia Zahoruiko / Юлия Загоруйко
         %p Founder, developer
-      %p
-        %li.list-inline-item
-          = link_to "https://www.facebook.com/1yarotheslav", target: :_blank do
-            %i.fab.fa-facebook{:style => "font-size:25px;"}
-        %li.list-inline-item
-          = link_to "https://www.instagram.com/yaro_the_slav", target: :_blank do
-            %i.fab.fa-instagram{:style => "font-size:25px;"}
-        %li.list-inline-item
-          = link_to "https://www.linkedin.com/in/yaroslav-shmarov", target: :_blank do
-            %i.fab.fa-linkedin{:style => "font-size:25px;"}
+        %p
+          %li.list-inline-item
+            = link_to "https://www.facebook.com/1yarotheslav", target: :_blank do
+              %i.fab.fa-facebook{:style => "font-size:25px;"}
+          %li.list-inline-item
+            = link_to "https://www.instagram.com/yaro_the_slav", target: :_blank do
+              %i.fab.fa-instagram{:style => "font-size:25px;"}
+          %li.list-inline-item
+            = link_to "https://www.linkedin.com/in/yaroslav-shmarov", target: :_blank do
+              %i.fab.fa-linkedin{:style => "font-size:25px;"}
       %hr
-      /shift in the world
-      /winners and losers
-      /Since I was 18 years old, I've been helping my parents to manage their appointment-based business (a language school).
-      /Salary calculation based on appointments was a time-consuming challange each month.
-      /Having different information abouth the business in different formats, something in paper, something in excel or other formats...
-      /I noticed so many things that can be improved with modern technology like moving all the data from many different formats
-      /I've been working in a 
-      /problems with 
-      /.row
-      /I decided to make a tool that would automate the processes - Myclass.com
-      /I studied all the business processes and created a tailored application to digitalize all the workflows and automate as much as possible. It took me 3 years to do 
-      /.row
-      /Now, I proudly present to you XLPLAN - a software product to manage business opreations and customer relations in an appointment-based service business.
-      /I created XLPLAN with close collaboration with industry professionals.
-      /A light tool to manage your business
-      /I hope XLPLAN will fit your business needs. Give it a try!
-      /If you are still hesitant, you can contact me directly via phone or social media.
-      /Best regards, Yaroslav Shmarov
+      %p The way we manage business is changing fast:
+      %p Before we had the list of client contacts on our phone, the list of appointments in paper calendar books, employee commission calculation in excel. 
+      %p Today it is possible to manage and track all business operations with special software. 
+      %p Businesses that use such software:
+      %ul
+        %li
+          %span have more control and visibility over operations
+        %li
+          %span are easier to manage
+        %li
+          %span have more growth opportunities
+      %p Consequently, a competitive advantage in business management.
+      %hr
+      %p Since I was 18 years old, I've been helping my parents to manage their appointment-based business (a big language school with 25+ employees and 4 locations). When I started, I was surprised to learn how manual the business operations process was:
+      %ul
+        %li
+          %span Commissions calculation based on appointments was a time-consuming challenge each month.
+        %li
+          %span Different information about the business in paper notebooks, in Excel, Word and other formats.
+        %li
+          %span Business results analysis was not consistent.
+      %p So, I saw an opportunity for improvement. I studied all the business processes and created a tailored application to digitalize all the workflows. It took me 4 years to create and implement the software. Today, the business is enjoying the software, ready for the digital era.
+      %hr
+      %p Now, I proudly present to you XLPLAN - an easy to use CRM system to manage business operations and customer relations in an appointment-based service business. I created XLPLAN with inspiration from my family business and in close collaboration with industry professionals.
+      %p
+      %p I encourage you to try managing your business with XLPLAN and see for yourself how much better it is!
+      %p
+      %p If you have any doubts, feel free to contact me directly.
 </div>
 = render 'layouts/footer'
