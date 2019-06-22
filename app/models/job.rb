@@ -58,6 +58,8 @@ class Job < ApplicationRecord
   validates :event, :service, :member,
             :service_duration, :service_member_percent, 
             :client_price, :member_price, presence: true
+  validates :slug, uniqueness: true
+  validates :slug, uniqueness: { case_sensitive: false }
 
   ############GEM MONEY############
   monetize :client_price, as: :client_price_cents

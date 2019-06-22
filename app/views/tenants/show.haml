@@ -20,24 +20,33 @@
         %b= model_class.human_attribute_name(:id) + ':'
         %b= @tenant.id
         %br
-        %b= model_class.human_attribute_name(:plan) + ':'
-        = plan_label(@tenant.plan)
-        = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
-        %br
         %b= model_class.human_attribute_name(:created_at) + ':'
         %b
           = @tenant.created_at.strftime('%d/%h/%Y')
           (#{distance_of_time_in_words Time.now, @tenant.created_at})
+        %br
+        %b= model_class.human_attribute_name(:plan) + ':'
+        = plan_label(@tenant.plan)
+        %br
+        = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
     %p
     .table-responsive
       %table#table1
         %thead
           %tr
-            %th{:scope => "col"} #
-            %th{:scope => "col"} Demo
-            %th{:scope => "col"} Bronze
-            %th{:scope => "col"} Silver
-            %th{:scope => "col"} Gold
+            %th #
+            %th 
+              .badge.badge-info
+                Demo
+            %th
+              .badge.badge-danger
+                Bronze
+            %th 
+              .badge.badge-secondary
+                Silver
+            %th 
+              .badge.badge-warning
+                Gold
         %tbody
           %tr
             %td= t('static_pages.pricing.price')

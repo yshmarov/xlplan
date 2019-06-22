@@ -5,6 +5,8 @@ class Location < ApplicationRecord
   validates :phone_number, length: { maximum: 144 }
   validates :email, length: { maximum: 144 }
   validates :address, length: { maximum: 255 }
+  validates :slug, uniqueness: true
+  validates :slug, uniqueness: { case_sensitive: false }
   #serialize :address
 
   include PublicActivity::Model

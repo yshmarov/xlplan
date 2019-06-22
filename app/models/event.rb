@@ -16,6 +16,8 @@ class Event < ApplicationRecord
 
   validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
   validates :notes, length: { maximum: 500 }
+  validates :slug, uniqueness: true
+  validates :slug, uniqueness: { case_sensitive: false }
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

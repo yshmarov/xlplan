@@ -7,6 +7,8 @@ class InboundPayment < ApplicationRecord
 
   validates :amount, :payment_method, presence: true
   validates :amount, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
+  validates :slug, uniqueness: true
+  validates :slug, uniqueness: { case_sensitive: false }
 
   monetize :amount, as: :amount_cents
   validates :client, :amount, :amount_cents, :payment_method, presence: true

@@ -15,6 +15,8 @@ class ServiceCategory < ApplicationRecord
   validates_uniqueness_of :name, scope: :tenant_id
   validates :name, presence: true
   validates :name, length: { maximum: 144 }
+  validates :slug, uniqueness: true
+  validates :slug, uniqueness: { case_sensitive: false }
 
   extend FriendlyId
   friendly_id :name, use: :slugged

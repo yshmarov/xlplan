@@ -20,9 +20,14 @@ class Member < ApplicationRecord
 
   #validates :user_id, presence: true
   validates :user_id, uniqueness: true
+  validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { maximum: 144 }
+  validates :status, presence: true
   validates :email, :phone_number, length: { maximum: 255 }
   validates :first_name, :last_name, :status, presence: true
+  validates :slug, uniqueness: true
+  validates :slug, uniqueness: { case_sensitive: false }
+  #validates :gender, inclusion: %w(Male Female Undisclosed male female undisclosed)
   #validates :email, uniqueness: { case_sensitive: false }
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   #validates :email, format: { with: VALID_EMAIL_REGEX }
