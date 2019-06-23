@@ -62,6 +62,14 @@ class EventsController < ApplicationController
     @q = Event.ransack(params[:q])
     @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
     #respond_to :json # add this line
+    #respond_to do |format|
+    #  format.html { render 'index' }
+    #  format.json { render json: @events }
+    #end
+    #respond_to do |format|
+    #  format.json
+    #  format.html
+    #end
   end
 
   def show
