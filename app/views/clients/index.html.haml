@@ -4,6 +4,7 @@
 /    = c[:name]
 /    = c[:email]
 - model_class = Client
+/= render 'clients/form'
 = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
   .card.card-default
     .container-fluid
@@ -54,6 +55,7 @@
           = link_to '', client, class: "btn btn-primary fa fa-eye btn-sm" if policy(client).show?
           = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
           = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
+          /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
 %p
 .container.table-responsive
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
