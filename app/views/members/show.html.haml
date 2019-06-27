@@ -1,3 +1,7 @@
+- set_var 'locale', Tenant.current_tenant.locale
+/- set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
+- set_var 'events', @jobs.map{|e| {title: e.event.client.full_name.to_s + " (" + e.service.name.to_s+")", start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+
 - model_class = Member
 .row
   .col-lg-4
@@ -60,21 +64,25 @@
         %br
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@member.status)
-        %hr
-        %b User account
+    %p
+    .card
+      .card-header
+        .fa.fa-lock
+        %b= t('.access_rights')
+      .card-body
         - if @member.user.present?
           %p
-            %b Created:
+            %b= model_class.human_attribute_name(:created_at) + ':'
             = @member.user.created_at.strftime('%d/%b/%Y, %H:%M')
             %br
-            %b Confirmed:
+            %b= t('.confirmed_at')
             = @member.user.confirmed_at.strftime('%d/%b/%Y, %H:%M') if @member.user.confirmed_at.present?
             /%br
             /%b Invited by:
             /= @member.user.invitor
             -  if @member.id == current_user.id
               %br
-              = link_to t('edit_password'), edit_user_registration_path, class: 'btn btn-sm btn-warning'
+              = link_to t('.edit_password'), edit_user_registration_path, class: 'btn btn-sm btn-warning'
             - if @member.user.present?
               %br
               %b= model_class.human_attribute_name(:roles) + ':'
@@ -82,17 +90,20 @@
                 = role_label(r.name)
             - if policy(@member.user).destroy? && @member.user.present?
               %br
-              = link_to t('edit_roles'), edit_user_path(@member.user), class: 'btn btn-warning btn-sm mb-sm-1 mt-sm-1'
+              = link_to t('.edit_roles'), edit_user_path(@member.user), class: 'btn btn-warning btn-sm mb-sm-1 mt-sm-1'
               - unless @member == current_user.member
                 %br
-                = link_to "<i class='fa-fw fa fa-trash'></i> #{t('delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
+                = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item
-        %a#first-tab.nav-link.active{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
-          Planned events:
-          = @events.count
+        %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+          = t('sidebar.calendar')
+      /%li.nav-item
+      /  %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
+      /    Planned events:
+      /    = @events.count
       %li.nav-item
         %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
           Salaries/Payments
@@ -100,8 +111,11 @@
         %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
           Earnings/month
     #myTabContent.tab-content
-      #first.tab-pane.fade.show.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}
-        = render 'events/index'
+      #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
+        %br
+        #event_calendar
+      /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
+      /  = render 'events/index'
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
         2
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}

@@ -1,10 +1,10 @@
 class EventMailer < ApplicationMailer
-  default from: 'support@xlplan.com'
   #default to: -> { Admin.pluck(:email) }, from: 'notification@example.com'
 
   def welcome_email(user)
-    @greeting = "Hi"
     @user = user
+    mail(to: @user.email, subject: 'Welcome to XLPLAN.com')
+    #@greeting = "Hi"
   end
 
   def welcome_email_actionmailer

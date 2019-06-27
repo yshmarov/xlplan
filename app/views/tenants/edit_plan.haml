@@ -35,27 +35,63 @@
                   = f.radio_button :plan, :gold
                   .row
                   = f.label :plan_gold, "Gold", class: 'badge badge-warning'
-          %tbody
+          %tbody.text-center
             %tr
               %td= t('static_pages.pricing.price')
-              %td 0$
-              %td 7$
-              %td 15$
-              %td 50$
-            %tr
-              %td= t('static_pages.pricing.period')
               %td
-                14
-                = t('static_pages.pricing.days')
+                %b
+                  0$ / 14
+                  = t('static_pages.pricing.days')
               %td
-                1
+                %b
+                  84$ / 
+                  = t('static_pages.pricing.year')
+                .row
+                (
+                7 / 
                 = t('static_pages.pricing.month')
+                )
               %td
-                1
+                %b
+                  180$ / 
+                  = t('static_pages.pricing.year')
+                .row
+                (
+                15$ / 
                 = t('static_pages.pricing.month')
+                )
               %td
-                1
+                %s.text-danger
+                  600$ /
+                  = t('static_pages.pricing.year')
+                %b.text-success.ml-1.mr-1
+                  499$ /
+                  = t('static_pages.pricing.year')
+                .row
+                (
+                %s.text-danger.mr-2
+                  50$
+                42$ / 
                 = t('static_pages.pricing.month')
+                )
+            /%tr
+            /  %td= t('static_pages.pricing.price')
+            /  %td 0$
+            /  %td 7$
+            /  %td 15$
+            /  %td 50$
+            /%tr
+            /  %td= t('static_pages.pricing.period')
+            /  %td
+            /  %td
+            /    1
+            /    = t('static_pages.pricing.month')
+            /  %td
+            /    1
+            /    = t('static_pages.pricing.month')
+            /  %td
+            /    1
+            /    = t('static_pages.pricing.month')
             %tr
               %td= t('static_pages.pricing.employees')
               %td 1

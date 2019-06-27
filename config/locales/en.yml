@@ -239,10 +239,6 @@ en:
   services: 'Services'
   service: 'Service'
   member: 'Member'
-  delete_access: 'Delete access'
-  edit_roles: 'Edit roles'
-  edit_password: "Edit password"
-
 
   ######################################################
 
@@ -288,6 +284,7 @@ en:
     logout: 'Logout'
     start: 'Start!'
     order_system: 'order system'
+    change_plan: 'change plan'
 
   ######################################################
 
@@ -454,6 +451,13 @@ en:
       new_event: "Add an event"
     edit_plan:
       title: "order system"
+  members:
+    show:
+      access_rights: 'Access rights'
+      delete_access: 'Delete access'
+      edit_roles: 'Edit roles'
+      edit_password: "Edit password"
+      confirmed_at: "Confirmation date"
 
   ######################################################
 

@@ -28,7 +28,10 @@
         %b= model_class.human_attribute_name(:plan) + ':'
         = plan_label(@tenant.plan)
         %br
-        = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
+        - if Tenant.current_tenant.plan == "demo"
+          = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
+        - else
+          = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.change_plan')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
     %p
     .table-responsive
       %table#table1
@@ -50,24 +53,42 @@
         %tbody
           %tr
             %td= t('static_pages.pricing.price')
-            %td 0$
-            %td 7$
-            %td 15$
-            %td 50$
-          %tr
-            %td= t('static_pages.pricing.period')
             %td
-              14
-              = t('static_pages.pricing.days')
+              %b
+                0$ / 14
+                = t('static_pages.pricing.days')
             %td
-              1
+              %b
+                84$ / 
+                = t('static_pages.pricing.year')
+              .row
+              (
+              7 / 
               = t('static_pages.pricing.month')
+              )
             %td
-              1
+              %b
+                180$ / 
+                = t('static_pages.pricing.year')
+              .row
+              (
+              15$ / 
               = t('static_pages.pricing.month')
+              )
             %td
-              1
+              %s.text-danger
+                600$ /
+                = t('static_pages.pricing.year')
+              %b.text-success.ml-1.mr-1
+                499$ /
+                = t('static_pages.pricing.year')
+              .row
+              (
+              %s.text-danger.mr-2
+                50$
+              42$ / 
               = t('static_pages.pricing.month')
+              )
           %tr
             %td= t('static_pages.pricing.employees')
             %td 1
@@ -86,6 +107,16 @@
       .card-header
         %h6= t('.counters')
     %ul.list-group
+      %li.list-group-item
+        %i.fa.fa-user-tie
+        %b= t('.members')
+        %span.badge.badge-success
+          = Member.count
+      %li.list-group-item
+        %i.fa.fa-map-marker-alt
+        %b= t('.locations')
+        %span.badge.badge-success
+          = Location.count
       %li.list-group-item
         %i.fa.fa-user
         %b= t('.clients')
@@ -107,11 +138,6 @@
         %span.badge.badge-secondary
           = Job.count
       %li.list-group-item
-        %i.fa.fa-user-tie
-        %b= t('.members')
-        %span.badge.badge-secondary
-          = Member.count
-      %li.list-group-item
         %i.fa.fa-hand-paper
         %b= t('.services')
         %span.badge.badge-secondary
@@ -121,11 +147,6 @@
         %b= t('.service_categories')
         %span.badge.badge-secondary
           = ServiceCategory.count
-      %li.list-group-item
-        %i.fa.fa-map-marker-alt
-        %b= t('.locations')
-        %span.badge.badge-secondary
-          = Location.count
       %li.list-group-item
         %i.fa.fa-map-marker-alt
         %b= t('.comments')
