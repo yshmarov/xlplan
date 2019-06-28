@@ -1,3 +1,6 @@
+- set_var 'locale', Tenant.current_tenant.locale
+- set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
+/- set_var 'events', @jobs.map{|e| {title: e.event.client.full_name.to_s + " (" + e.service.name.to_s+")", start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - model_class = Location
 .row
   .col-lg-4
@@ -27,4 +30,13 @@
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@location.status)
     %p
-    = link_to t('.back', :default => t("helpers.links.back")), locations_path, :class => 'btn btn-secondary'
+  .col-lg-8
+    %ul#myTab.nav.nav-tabs{:role => "tablist"}
+      %li.nav-item
+        %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+          .fa.fa-calendar-alt
+          = t('sidebar.calendar')
+    #myTabContent.tab-content
+      #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
+        %br
+        #event_calendar

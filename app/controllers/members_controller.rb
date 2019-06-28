@@ -1,5 +1,4 @@
 class MembersController < ApplicationController
-
   before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -17,9 +16,6 @@ class MembersController < ApplicationController
   def edit
     authorize @member
   end
-
-  # uncomment to ensure common layout for forms
-  #layout  "sign", :only => [:new, :edit, :create]
 
   def new()
     @member = Member.new()
@@ -67,7 +63,6 @@ class MembersController < ApplicationController
   end
 
   private
-
     def set_member
       @member = Member.friendly.find(params[:id])
     end
