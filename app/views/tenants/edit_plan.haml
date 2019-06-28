@@ -64,34 +64,20 @@
                 %s.text-danger
                   600$ /
                   = t('static_pages.pricing.year')
+                  .row
+                  (
+                  50$ /
+                  = t('static_pages.pricing.month')
+                  )
+                .row
                 %b.text-success.ml-1.mr-1
                   499$ /
                   = t('static_pages.pricing.year')
-                .row
-                (
-                %s.text-danger.mr-2
-                  50$
-                42$ / 
-                = t('static_pages.pricing.month')
-                )
-            /%tr
-            /  %td= t('static_pages.pricing.price')
-            /  %td 0$
-            /  %td 7$
-            /  %td 15$
-            /  %td 50$
-            /%tr
-            /  %td= t('static_pages.pricing.period')
-            /  %td
-            /  %td
-            /    1
-            /    = t('static_pages.pricing.month')
-            /  %td
-            /    1
-            /    = t('static_pages.pricing.month')
-            /  %td
-            /    1
-            /    = t('static_pages.pricing.month')
+                  .row
+                  (
+                  42$ / 
+                  = t('static_pages.pricing.month')
+                  )
             %tr
               %td= t('static_pages.pricing.employees')
               %td 1
