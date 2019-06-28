@@ -1,6 +1,5 @@
 - set_var 'locale', Tenant.current_tenant.locale
 - set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
-/- set_var 'events', @jobs.map{|e| {title: e.event.client.full_name.to_s + " (" + e.service.name.to_s+")", start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - model_class = Client
 .row
   .col-lg-4
@@ -43,7 +42,6 @@
           = @client.address[:city]
           = @client.address[:street]
           = @client.address[:zip]
-        
         /= link_to @client.address, "https://www.google.com/maps/search/?api=1&query=760+West+Genesee+Street+Syracuse+NY+13204", :target => '_blank'
         %hr
         .fa.fa-balance-scale
@@ -78,6 +76,7 @@
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item
         %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+          .fa.fa-calendar-alt
           = t('sidebar.calendar')
       %li.nav-item
         %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}

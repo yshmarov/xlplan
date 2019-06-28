@@ -58,7 +58,7 @@ module ApplicationHelper
 					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-danger')
 				when 'client_cancelled'
 					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-danger')
-				when 'client_not_attended'
+				when 'no_show'
 					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-danger')
 			end
 		end

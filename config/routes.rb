@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   		patch :mark_confirmed
   		patch :mark_member_cancelled
   		patch :mark_client_cancelled
-  		patch :mark_client_not_attended
+  		patch :mark_no_show
     end
   end
 

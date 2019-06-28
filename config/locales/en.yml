@@ -410,14 +410,14 @@ en:
       confirmed: "Confirmed"
       member_cancelled: "Member Cancelled"
       client_cancelled: "Client Cancelled"
-      client_not_attended: "Client Not Attended"
+      no_show: "Client Not Attended"
     show:
       client_paid: "Create Payment"
       planned: "Planned"
       confirmed: "Confirmed"
       member_cancelled: "Member Cancelled"
       client_cancelled: "Client Cancelled"
-      client_not_attended: "Client Not Attended"
+      no_show: "Client Not Attended"
     form:
       add_service: "+ Add Service"
     create:
@@ -428,7 +428,7 @@ en:
       success: "Marked Planned"
     mark_confirmed:
       success: "Marked Confirmed"
-    mark_client_not_attended:
+    mark_no_show:
       success: "Marked Client Not Attended"
     mark_client_cancelled:
       success: "Marked Client Cancelled"
@@ -497,7 +497,7 @@ en:
           confirmed: "Confirmed"
           member_cancelled: "Member Cancelled"
           client_cancelled: "Client Cancelled"
-          client_not_attended: "Client Not Attended"
+          no_show: "Client Not Attended"
         status_color: "Color"
         notes: "Notes"
         jobs_count: "Jobs count"
