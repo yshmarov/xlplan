@@ -13,7 +13,7 @@ class Tenant < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :skills, dependent: :destroy
 
-  validates_presence_of :name, :plan, :default_currency, :locale
+  validates_presence_of :name, :plan, :default_currency, :locale, :industry
   validates_uniqueness_of :name
   validates :name, length: { maximum: 40 } #in schema it is 40, but 20 is better
   validates :plan, length: { maximum: 10 } #in schema it is 40, but 10 is better

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_085830) do
+ActiveRecord::Schema.define(version: 2019_06_29_123244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -269,7 +269,7 @@ ActiveRecord::Schema.define(version: 2019_06_29_085830) do
     t.string "string", limit: 2, default: "en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "industry", limit: 144
+    t.string "industry", limit: 144, default: "other", null: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
