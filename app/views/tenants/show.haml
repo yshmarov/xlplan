@@ -11,14 +11,14 @@
         %b= model_class.human_attribute_name(:name) + ':'
         %b= @tenant.name
         %br
+        %b= model_class.human_attribute_name(:industry) + ':'
+        %b= I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
+        %br
         %b= model_class.human_attribute_name(:locale) + ':'
         %b= @tenant.locale.upcase
         %br
         %b= model_class.human_attribute_name(:default_currency) + ':'
         %b= @tenant.default_currency.upcase
-        %br
-        %b= model_class.human_attribute_name(:industry) + ':'
-        %b= I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
         %hr
         %b= model_class.human_attribute_name(:id) + ':'
         %b= @tenant.id
