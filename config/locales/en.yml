@@ -325,6 +325,7 @@ en:
       field_services: "Field services"
       cleaning_services: "Cleaning Services"
       tutors: "Tutors (language, dance, sport, music), guides"
+      other: "Other"
       ########################################
       why_do_you_need_it: "What for?"
       control_business: "Control"
@@ -481,6 +482,7 @@ en:
         language: "Language"
         locale: "Language"
         default_currency: "Currency"
+        industy: "Industry"
       event:
         client_id: "Client"
         location_id: "Location"

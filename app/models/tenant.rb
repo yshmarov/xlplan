@@ -13,13 +13,23 @@ class Tenant < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :skills, dependent: :destroy
 
-  validates_presence_of :name, :plan
+  validates_presence_of :name, :plan, :default_currency, :locale
   validates_uniqueness_of :name
   validates :name, length: { maximum: 40 } #in schema it is 40, but 20 is better
-  validates :plan, length: { maximum: 40 }
+  validates :plan, length: { maximum: 10 } #in schema it is 40, but 10 is better
+  validates :industry, length: { maximum: 144 }
   validates :plan, inclusion: %w(demo bronze silver gold)
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
+
+  ###select industry###
+  INDUSTRIES = [:hair_beauty_barbershop, :cosmetology, :solarium, :tattoo_studio, :spa, :sauna,
+  :private_clinic, :stomatology, :ophtalmologist, :psychologist, :veterinary_clinic, :massage,
+  :car_services, :driving_school, :legal_consulting, :business_consulting, :field_services, :cleaning_services, :tutors,
+  :other]
+  def self.industries
+    INDUSTRIES.map { |industry| [I18n.t(industry, scope: [:static_pages, :landing_page]), industry] }
+  end
 
   ###plan limits###
   def can_create_locations?

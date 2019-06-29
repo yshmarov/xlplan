@@ -356,17 +356,17 @@ ru:
       designed_for: "Для кого создан XLPLAN"
       #industries
       beauty_industry: "Индустрия красоты"
+      hair_beauty_barbershop: "Салоны красоты и макияжа, парикмахерские и барбершопы"
+      cosmetology: "Косметологии"
+      solarium: "Солярии"
+      tattoo_studio: "Тату студии"
       spa: "СПА-салоны"
       sauna: "Сауны"
-      solarium: "Солярии"
-      cosmetology: "Косметологии"
-      tattoo_studio: "Тату студии"
-      hair_beauty_barbershop: "Салоны красоты и макияжа, парикмахерские и барбершопы"
       #industries
       private_medicine: "Частная медицина"
+      private_clinic: "Частные клиники"
       stomatology: "Стоматология"
       ophtalmologist: "Офтальмология"
-      private_clinic: "Частные клиники"
       psychologist: "Психологи"
       veterinary_clinic: "Ветеринарии"
       massage: "Массажные салоны"
@@ -379,6 +379,7 @@ ru:
       field_services: "Выездные услуги"
       cleaning_services: "Клининговые услуги"
       tutors: "Образовательные центры, курсы, частные школы и консультации (языковые, танцевальные, спортивные, музыкальные)"
+      other: "Другой бизнес"
       ########################################
       why_do_you_need_it: "Зачем нужна программа?"
       control_business: "Контроль"
@@ -648,6 +649,7 @@ ru:
         language: "Язык программы"
         locale: "Язык программы"
         default_currency: "Валюта"
+        industry: "Сфера деятельности"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       event:

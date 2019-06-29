@@ -16,6 +16,8 @@
       = f.input :default_currency, collection: [ "usd", "eur", "pln", "uah", "rub"], include_blank: false
 
       = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false
+      
+      = f.input :industry, collection: Tenant.industries
 
       %hr
       = f.button :submit, class: "btn btn-success"
