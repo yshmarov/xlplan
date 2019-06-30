@@ -94,7 +94,7 @@
           /- if user_signed_in? && current_user.member.present?
           - if user_signed_in?
             = current_user.member.short_name
-        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+        .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdown"}
           /- if user_signed_in? && current_user.member.present?
           = link_to t('sidebar.my_page'), member_path(current_user.member), class: "dropdown-item"
           = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item"
