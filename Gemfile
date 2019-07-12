@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '2.6.3'
 
-gem 'rails', '~> 5.2.2'
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'rails', '~> 5.2.3'
+#gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -87,7 +87,7 @@ gem 'ransack'
 gem 'money-rails', '~>1.12'
 gem "selectize-rails"
 gem "cocoon"
-gem 'public_activity'
+gem 'public_activity', github: 'chaps-io/public_activity'
 gem 'friendly_id', '~> 5.2.4'
 gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 gem 'bootstrap-datepicker-rails'

@@ -109,7 +109,10 @@ class EventsController < ApplicationController
 
         #current working version
         #EventMailer.event_created.deliver_now
-        
+        #EventMailer.with(event: @event, member: @user.member).welcome_email(event).deliver_now
+
+        #EventMailer.new_signup_booking_admin(@user, @booking).deliver_later
+
         #EventMailer.with(event: @event, member: @user.member).welcome_email.deliver_later
         #EventMailer.with(user: @user).welcome_email.deliver_later
       else

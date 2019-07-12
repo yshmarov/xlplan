@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/chaps-io/public_activity.git
+  revision: aff5b50ff474c9434e619c0fb0f8daa6acf47655
+  specs:
+    public_activity (2.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
+
+GIT
   remote: https://github.com/jekuno/milia.git
   revision: 4c36b46f3f422b22fa48a98abd646e562667ed83
   specs:
@@ -66,10 +76,10 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (9.6.0)
+    autoprefixer-rails (9.6.1)
       execjs
     bcrypt (3.1.13)
-    bindex (0.7.0)
+    bindex (0.8.1)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
     bootstrap (4.2.1)
@@ -84,7 +94,7 @@ GEM
       momentjs-rails (>= 2.10.5, <= 3.0.0)
     builder (3.2.3)
     byebug (11.0.1)
-    capybara (3.24.0)
+    capybara (3.25.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -98,7 +108,7 @@ GEM
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
-    cocoon (1.2.13)
+    cocoon (1.2.14)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     devise (4.6.2)
@@ -107,20 +117,14 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    equatable (0.6.0)
     erubi (1.8.0)
     erubis (2.7.0)
     exception_notification (4.3.0)
       actionmailer (>= 4.0, < 6)
       activesupport (>= 4.0, < 6)
     execjs (2.7.0)
-    faker (1.9.4)
+    faker (1.9.6)
       i18n (>= 0.7)
-      pastel (~> 0.7.2)
-      thor (~> 0.20.0)
-      tty-pager (~> 0.12.0)
-      tty-screen (~> 0.6.5)
-      tty-tree (~> 0.3.0)
     ffi (1.11.1)
     font-awesome-sass (5.5.0.1)
       sassc (>= 1.11)
@@ -173,14 +177,14 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
     mimemagic (0.3.3)
-    mini_mime (1.0.1)
+    mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     moment-timezone-rails (1.0.0)
       momentjs-rails (>= 2.10.5, <= 3.0.0)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
-    monetize (1.9.1)
+    monetize (1.9.2)
       money (~> 6.12)
     money (6.13.4)
       i18n (>= 0.6.4, <= 2)
@@ -191,29 +195,20 @@ GEM
       railties (>= 3.0)
     msgpack (1.3.0)
     multi_json (1.13.1)
-    nio4r (2.3.1)
+    nio4r (2.4.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     omnicontacts (0.3.10)
       json
       rack
     orm_adapter (0.5.0)
-    pastel (0.7.3)
-      equatable (~> 0.6)
-      tty-color (~> 0.5)
-    pg (1.1.4)
     popper_js (1.14.5)
-    public_activity (1.6.3)
-      actionpack (>= 3.0.0)
-      activerecord (>= 3.0)
-      i18n (>= 0.5.0)
-      railties (>= 3.0.0)
-    public_suffix (3.1.0)
+    public_suffix (3.1.1)
     puma (3.12.1)
     pundit (2.0.1)
       activesupport (>= 3.0.0)
     rack (2.0.7)
-    rack-attack (6.0.0)
+    rack-attack (6.1.0)
       rack (>= 1.0, < 3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -254,9 +249,9 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     regexp_parser (1.5.1)
-    responders (2.4.1)
-      actionpack (>= 4.2.0, < 6.0)
-      railties (>= 4.2.0, < 6.0)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rjv (0.1.3)
     rolify (5.2.0)
     ruby_dep (1.5.0)
@@ -302,23 +297,10 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    strings (0.1.5)
-      strings-ansi (~> 0.1)
-      unicode-display_width (~> 1.5)
-      unicode_utils (~> 1.4)
-    strings-ansi (0.1.0)
     temple (0.8.1)
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    tty-color (0.5.0)
-    tty-pager (0.12.1)
-      strings (~> 0.1.4)
-      tty-screen (~> 0.6)
-      tty-which (~> 0.4)
-    tty-screen (0.6.5)
-    tty-tree (0.3.0)
-    tty-which (0.4.1)
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -326,8 +308,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.6.0)
-    unicode_utils (1.4.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -374,12 +354,11 @@ DEPENDENCIES
   momentjs-rails
   money-rails (~> 1.12)
   omnicontacts
-  pg (>= 0.18, < 2.0)
-  public_activity
+  public_activity!
   puma (~> 3.11)
   pundit
   rack-attack
-  rails (~> 5.2.2)
+  rails (~> 5.2.3)
   rails-i18n (~> 5.1)
   ransack
   rjv
@@ -397,7 +376,7 @@ DEPENDENCIES
   will_paginate-bootstrap4
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.6.3p62
 
 BUNDLED WITH
-   1.17.1
+   1.17.3
