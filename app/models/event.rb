@@ -1,38 +1,31 @@
 class Event < ApplicationRecord
+  #-----------------------gem milia-------------------#
   acts_as_tenant
+  #-----------------------gem public_activity-------------------#
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
+  #-----------------------gem friendly_id-------------------#
+  extend FriendlyId
+  friendly_id :to_s, use: :slugged
+  #-----------------------gem rolify-------------------#
   resourcify
-
-  belongs_to :tenant
+  #-----------------------relationships-------------------#
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
   has_many :jobs, inverse_of: :event, dependent: :destroy
   has_many :members, through: :jobs
   has_many :services, through: :jobs
   has_many :inbound_payments, as: :payable
-
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
-
-  enum status: { planned: 0, confirmed: 1, member_cancelled: 2, client_cancelled: 3, no_show: 4}
-
+  #-----------------------validation-------------------#
   validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
   validates :notes, length: { maximum: 500 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
-
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
-  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
-  extend FriendlyId
-  friendly_id :to_s, use: :slugged
-  def to_s
-    #"#{service} for #{client} at #{starts_at}"
-    if client.present? && location.present?
-      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
-    else
-      id
-    end
-  end
-
+  #-----------------------enums-------------------#
+  enum status: { planned: 0, confirmed: 1, member_cancelled: 2, client_cancelled: 3, no_show: 4}
+  #-----------------------scopes-------------------#
   scope :tomorrow, -> { where("starts_at > ?", Date.tomorrow).where(status: 'planned') }
   scope :close, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
@@ -42,6 +35,16 @@ class Event < ApplicationRecord
   scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned]) }
   #rename no_show to client_not_arrived?
 
+  def to_s
+    #"#{service} for #{client} at #{starts_at}"
+    if client.present? && location.present?
+      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
+    else
+      id
+    end
+  end
+
+  #-----------------------callbacks-------------------#
   after_create :update_status_color
   after_update :update_status_color
   after_save :update_status_color
@@ -58,6 +61,7 @@ class Event < ApplicationRecord
   after_create :touch_associations
   after_save :touch_associations
 
+  #-----------------------gem money-------------------#
   monetize :client_price, as: :client_price_cents
   monetize :client_price_to_pay, as: :client_price_to_pay_cents
   ############GEM VALIDATES_TIMELINESS############
