@@ -18,6 +18,7 @@
             %span.input-group-append
               %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
+          /= sort_link @ransack_clients, :balance, :balance
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Client).create?
