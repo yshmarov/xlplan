@@ -109,9 +109,9 @@
       /%li.nav-item
       /  %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
       /    Salaries/Payments
-      %li.nav-item
-        %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
-          Earnings/month
+      /%li.nav-item
+      /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
+      /    Earnings/month
       %li.nav-item
         %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
           .fa.fa-chart-line
@@ -124,9 +124,9 @@
       /  = render 'events/index'
       /#second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
       /  2
-      #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
-        - if policy(@member).show_money?
-          = bar_chart @member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+      /#third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
+      /  - if policy(@member).show_money?
+      /    = bar_chart @member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
       #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
         - if policy(@member).show_money?
           %p
@@ -136,19 +136,19 @@
                 .card-header
                   = t('dashboard.members.confirmed_jobs_per_month_quantity')
                 .card-body
-                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').count
+                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').count
               %p
             .col-12
               .card
                 .card-header
                   = t('dashboard.members.confirmed_jobs_per_month_client_price')
                 .card-body
-                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('client_due_price / 100')
+                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').sum('client_due_price / 100')
               %p
             .col-12
               .card
                 .card-header
                   = t('dashboard.members.confirmed_jobs_per_month_member_price')
                 .card-body
-                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price / 100')
+                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').sum('member_due_price / 100')
           %p
