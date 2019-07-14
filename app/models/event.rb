@@ -24,15 +24,15 @@ class Event < ApplicationRecord
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------enums-------------------#
-  enum status: { planned: 0, confirmed: 1, member_cancelled: 2, client_cancelled: 3, no_show: 4}
+  enum status: { planned: 0, confirmed: 1, member_cancelled: 2, client_cancelled: 3, no_show: 4, no_show_refunded: 5}
   #-----------------------scopes-------------------#
   scope :tomorrow, -> { where("starts_at > ?", Date.tomorrow).where(status: 'planned') }
   scope :close, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_planned, -> { where(status: [:planned]) }
-  scope :is_confirmed, -> { where(status: [:confirmed]) }
+  scope :is_confirmed, -> { where(status: [:confirmed, :no_show_refunded]) }
   scope :is_cancelled, -> { where(status: [:no_show, :member_cancelled, :client_cancelled]) }
-  scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned]) }
+  scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned, :no_show_refunded]) }
   #rename no_show to client_not_arrived?
 
   def to_s
@@ -84,12 +84,14 @@ class Event < ApplicationRecord
   protected
 
   def update_status_color
-    if status == 'confirmed'
+    if status == 'planned'
+      update_column :status_color, ('blue')
+    elsif status == 'confirmed'
       update_column :status_color, ('green')
     elsif status == 'member_cancelled' || status == 'client_cancelled' || status == 'no_show'
       update_column :status_color, ('red')
-    elsif status == 'planned'
-      update_column :status_color, ('blue')
+    elsif status == 'no_show_refunded'
+      update_column :status_color, ('yellow')
     else
       update_column :status_color, ('black')
     end

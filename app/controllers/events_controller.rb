@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_no_show, :mark_member_cancelled, :mark_client_cancelled]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_no_show, :mark_member_cancelled, :mark_client_cancelled, :mark_no_show_refunded]
 
   def close
     @q = Event.close.ransack(params[:q])
@@ -53,6 +53,15 @@ class EventsController < ApplicationController
     authorize @event, :update?
     Event.public_activity_off
 		@event.update_attribute(:status, 'member_cancelled')
+    Event.public_activity_on
+    @event.create_activity :change_status, parameters: {status: @event.status}
+		redirect_to @event, notice: "Status updated to #{@event.status}"
+	end
+
+	def mark_no_show_refunded
+    authorize @event, :update?
+    Event.public_activity_off
+		@event.update_attribute(:status, 'no_show_refunded')
     Event.public_activity_on
     @event.create_activity :change_status, parameters: {status: @event.status}
 		redirect_to @event, notice: "Status updated to #{@event.status}"

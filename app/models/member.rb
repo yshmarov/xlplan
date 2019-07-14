@@ -57,7 +57,7 @@ class Member < ApplicationRecord
     jobs.joins(:event).where(events: {status: 'planned'}).map(&:service_duration).sum/60.to_d
   end
   def confirmed_work_hours
-    jobs.joins(:event).where(events: {status: ['confirmed']}).map(&:service_duration).sum/60.to_d
+    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:service_duration).sum/60.to_d
   end
   def cancelled_work_hours
     jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:service_duration).sum/60.to_d
@@ -67,7 +67,7 @@ class Member < ApplicationRecord
     jobs.joins(:event).where(events: {status: 'planned'}).map(&:member_price).sum
   end
   def confirmed_salary
-    jobs.joins(:event).where(events: {status: ['confirmed']}).map(&:member_due_price).sum
+    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:member_due_price).sum
   end
   def cancelled_salary
     jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:member_due_price).sum
@@ -77,7 +77,7 @@ class Member < ApplicationRecord
     jobs.joins(:event).where(events: {status: 'planned'}).map(&:client_price).sum
   end
   def confirmed_revenue
-    jobs.joins(:event).where(events: {status: ['confirmed']}).map(&:client_due_price).sum
+    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:client_due_price).sum
   end
   def cancelled_revenue
     jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:client_price).sum
@@ -87,7 +87,7 @@ class Member < ApplicationRecord
     jobs.joins(:event).where(events: {status: 'planned'}).count
   end
   def confirmed_jobs_count
-    jobs.joins(:event).where(events: {status: ['confirmed']}).count
+    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).count
   end
   def cancelled_jobs_count
     jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).count
@@ -95,7 +95,7 @@ class Member < ApplicationRecord
 
   def share_of_revenue
     def total_revenue
-      Job.joins(:event).where(events: {status: ['confirmed']}).map(&:client_due_price).sum.to_d
+      Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:client_due_price).sum.to_d
     end
     (confirmed_revenue.to_d / total_revenue)*100
   end

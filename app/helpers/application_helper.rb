@@ -60,6 +60,8 @@ module ApplicationHelper
 					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-danger')
 				when 'no_show'
 					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-danger')
+				when 'no_show_refunded'
+					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-primary')
 			end
 		end
 end

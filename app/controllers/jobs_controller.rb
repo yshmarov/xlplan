@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_confirmed_by_client, :mark_not_attended, :mark_rejected_by_us, :mark_cancelled_by_client]
+  before_action :set_job, only: [:show, :edit, :update, :destroy]
 
   def index
     @q = Job.ransack(params[:q])

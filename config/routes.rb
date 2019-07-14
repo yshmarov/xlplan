@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   		patch :mark_member_cancelled
   		patch :mark_client_cancelled
   		patch :mark_no_show
+  		patch :mark_no_show_refunded
     end
   end
 

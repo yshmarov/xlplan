@@ -579,6 +579,7 @@ ru:
       member_cancelled: "Сотрудник Отменил"
       client_cancelled: "Клиент Отменил"
       no_show: "Клиент Не Явился"
+      no_show_refunded: "Клиент Не Явился - Оплачиваемо"
     show:
       client_paid: "Создать оплату"
       planned: "Запланирован"
@@ -586,6 +587,7 @@ ru:
       member_cancelled: "Сотрудник Отменил"
       client_cancelled: "Клиент Отменил"
       no_show: "Клиент Не Явился"
+      no_show_refunded: "Клиент Не Явился - Оплачиваемо"
     form:
       add_service: "+ Добавить Услугу"
     index:
@@ -599,15 +601,17 @@ ru:
     update:
       success: 'Встреча успешно обновлена.'
     mark_planned:
-      success: "Встреча Запланирована"
+      success: "Запланирован"
     mark_confirmed:
-      success: "Встреча Подтверждена"
+      success: "Состоялся"
     mark_no_show:
-      success: "Клиент не пришел"
+      success: "Клиент Не Явился"
     mark_client_cancelled:
-      success: "Клиент отменил"
+      success: "Клиент Отменил"
     mark_member_cancelled:
-      success: "Сотрудник отменил"
+      success: "Сотрудник Отменил"
+    mark_no_show_refunded:
+      success: "Клиент Не Явился - Оплачиваемо"
   tenants:
     show:
       start: "Начало работы"
@@ -670,6 +674,7 @@ ru:
           member_cancelled: "Сотрудник Отменил"
           client_cancelled: "Клиент Отменил"
           no_show: "Клиент Не Явился"
+          no_show_refunded: "Клиент Не Явился - Оплачиваемо"
         status_color: "Цвет"
         notes: "Заметки"
         jobs_count: "Кол. Работ"

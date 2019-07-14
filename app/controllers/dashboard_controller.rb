@@ -32,10 +32,10 @@ class DashboardController < ApplicationController
       @members = Member.all
 
       #company confirmed earning
-      @confirmed_hours_worked = (Job.joins(:event).where(events: {status: ['confirmed']}).map(&:service_duration).sum)/60.to_d
-      @confirmed_job_q = Job.joins(:event).where(events: {status: ['confirmed']}).count
-      @total_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed']}).map(&:client_due_price_cents).sum
-      @total_confirmed_expences = Job.joins(:event).where(events: {status: ['confirmed']}).map(&:member_due_price_cents).sum
+      @confirmed_hours_worked = (Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:service_duration).sum)/60.to_d
+      @confirmed_job_q = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).count
+      @total_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:client_due_price_cents).sum
+      @total_confirmed_expences = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:member_due_price_cents).sum
       @total_confirmed_net_income = @total_confirmed_earnings - @total_confirmed_expences
   
       #company planned earnings
@@ -59,7 +59,7 @@ class DashboardController < ApplicationController
   def events
     if current_user.has_role?(:admin)
       #average paycheck
-      @average_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed']}).average(:client_due_price).to_i/100
+      @average_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).average(:client_due_price).to_i/100
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end

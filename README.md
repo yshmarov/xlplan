@@ -1,3 +1,13 @@
+#######################################################
+#console commands to update counters, if needed
+#Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
+#Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }
+#Location.find_each { |location| Location.reset_counters(location.id, :jobs_count) }
+#Employee.find_each { |member| Employee.reset_counters(member.id, :jobs_count) }
+#ServiceCategory.find_each { |service_category| ServiceCategory.reset_counters(service_category.id, :services_count) }
+#Client.find_each { |client| Client.reset_counters(client.id, :comments_count) }
+#Location.find_each { |location| Location.reset_counters(location.id, :workplaces_count) }
+#######################################################
 = link_to "Back", :back
 #######################################################
 BAD: Instead of iterating over objects fully loaded into memory.

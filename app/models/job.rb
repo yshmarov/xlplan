@@ -46,15 +46,6 @@ class Job < ApplicationRecord
   #touch to calculate duration and total_client_price
   belongs_to :event, touch: true, counter_cache: true
 
-  #console commands to update counters, if needed
-  #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
-  #Service.find_each { |service| Service.reset_counters(service.id, :jobs_count) }
-  #Location.find_each { |location| Location.reset_counters(location.id, :jobs_count) }
-  #Employee.find_each { |member| Employee.reset_counters(member.id, :jobs_count) }
-  #ServiceCategory.find_each { |service_category| ServiceCategory.reset_counters(service_category.id, :services_count) }
-  #Client.find_each { |client| Client.reset_counters(client.id, :comments_count) }
-  #Location.find_each { |location| Location.reset_counters(location.id, :workplaces_count) }
-
   validates :event, :service, :member,
             :service_duration, :service_member_percent, 
             :client_price, :member_price, presence: true
@@ -73,7 +64,7 @@ class Job < ApplicationRecord
 
   def update_due_prices
     if id?
-      if event.status == 'confirmed'
+      if event.status == 'confirmed' || event.status == 'no_show_refunded'
         update_column :client_due_price, (client_price)
         update_column :member_due_price, (member_price)
       else
