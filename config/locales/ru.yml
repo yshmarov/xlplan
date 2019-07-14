@@ -579,7 +579,7 @@ ru:
       member_cancelled: "Сотрудник Отменил"
       client_cancelled: "Клиент Отменил"
       no_show: "Клиент Не Явился"
-      no_show_refunded: "Клиент Не Явился - Оплачиваемо"
+      no_show_refunded: "Оплачиваемая Неявка"
     show:
       client_paid: "Создать оплату"
       planned: "Запланирован"
@@ -587,7 +587,7 @@ ru:
       member_cancelled: "Сотрудник Отменил"
       client_cancelled: "Клиент Отменил"
       no_show: "Клиент Не Явился"
-      no_show_refunded: "Клиент Не Явился - Оплачиваемо"
+      no_show_refunded: "Оплачиваемая Неявка"
     form:
       add_service: "+ Добавить Услугу"
     index:
@@ -611,7 +611,7 @@ ru:
     mark_member_cancelled:
       success: "Сотрудник Отменил"
     mark_no_show_refunded:
-      success: "Клиент Не Явился - Оплачиваемо"
+      success: "Оплачиваемая Неявка"
   tenants:
     show:
       start: "Начало работы"
@@ -666,7 +666,7 @@ ru:
         ends_at: "Конец"
         client_price: "Итоговая Цена Клиента"
         client_price_cents: "Итоговая Цена Клиента"
-        client_price_to_pay: "Итого к оплате"
+        client_due_price: "Итого к оплате"
         status: "Статус"
         statuses:
           planned: "Запланирован"
@@ -674,7 +674,7 @@ ru:
           member_cancelled: "Сотрудник Отменил"
           client_cancelled: "Клиент Отменил"
           no_show: "Клиент Не Явился"
-          no_show_refunded: "Клиент Не Явился - Оплачиваемо"
+          no_show_refunded: "Оплачиваемая Неявка"
         status_color: "Цвет"
         notes: "Заметки"
         jobs_count: "Кол. Работ"

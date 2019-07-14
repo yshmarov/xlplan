@@ -56,15 +56,12 @@
         %b= model_class.human_attribute_name(:time) + ':'
         #{l(@event.starts_at, format: "%A")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
         %p
-        /%hr
-        /%b= model_class.human_attribute_name(:services) + ':'
-        /%p
         = render 'jobs/index'
         %b= model_class.human_attribute_name(:client_price_cents) + ':'
         = number_to_currency(@event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
-        %b= model_class.human_attribute_name(:client_price_to_pay) + ':'
-        = number_to_currency(@event.client_price_to_pay_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %b= model_class.human_attribute_name(:client_due_price) + ':'
+        = number_to_currency(@event.client_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         - if @event.notes.present?
           %hr
           %b= model_class.human_attribute_name(:notes) + ':'

@@ -411,16 +411,16 @@ en:
       confirmed: "Confirmed"
       member_cancelled: "Employee Cancelled"
       client_cancelled: "Client Cancelled"
-      no_show: "Client Not Attended"
-      no_show_refunded: "Not Attended - Refunded"
+      no_show: "Client No Show"
+      no_show_refunded: "No Show Refund"
     show:
       client_paid: "Create Payment"
       planned: "Planned"
       confirmed: "Confirmed"
       member_cancelled: "Employee Cancelled"
       client_cancelled: "Client Cancelled"
-      no_show: "Client Not Attended"
-      no_show_refunded: "Not Attended - Refunded"
+      no_show: "Client No Show"
+      no_show_refunded: "No Show Refund"
     form:
       add_service: "+ Add Service"
     create:
@@ -432,13 +432,13 @@ en:
     mark_confirmed:
       success: "Marked Confirmed"
     mark_no_show:
-      success: "Marked Client Not Attended"
+      success: "Marked Client No Show"
     mark_client_cancelled:
       success: "Marked Client Cancelled"
     mark_member_cancelled:
       success: "Marked Employee Cancelled"
     mark_no_show_refunded:
-      success: "Marked Not Attended - Refunded"
+      success: "Marked No Show Refund"
   tenants:
     show:
       getting_started: "Getting started"
@@ -496,15 +496,15 @@ en:
         ends_at: "End"
         client_price: "Client Price"
         client_price_cents: "Client Price"
-        client_price_to_pay: "Client Due Price"
+        client_due_price: "Client Due Price"
         status: "Status"
         statuses:
           planned: "Planned"
           confirmed: "Confirmed"
           member_cancelled: "Employee Cancelled"
           client_cancelled: "Client Cancelled"
-          no_show: "Client Not Attended"
-          no_show_refunded: "Not Attended - Refunded"
+          no_show: "Client No Show"
+          no_show_refunded: "No Show Refund"
         status_color: "Color"
         notes: "Notes"
         jobs_count: "Jobs count"

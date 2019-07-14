@@ -63,14 +63,14 @@ class Event < ApplicationRecord
 
   #-----------------------gem money-------------------#
   monetize :client_price, as: :client_price_cents
-  monetize :client_price_to_pay, as: :client_price_to_pay_cents
+  monetize :client_due_price, as: :client_due_price_cents
   ############GEM VALIDATES_TIMELINESS############
   #validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
   #validates_date :starts_at, :on_or_after => lambda { Date.current }
   #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
 
-  def client_price_to_pay
-    if confirmed?
+  def client_due_price
+    if is_confirmed?
       client_price
     else
       0
