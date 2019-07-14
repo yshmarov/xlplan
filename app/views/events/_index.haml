@@ -21,7 +21,7 @@
                   - unless event.status == 'client_cancelled'
                     = button_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
                   - unless event.status == 'no_show_refunded'
-                    = button_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(event), method: :patch, class: 'btn btn-sm btn-warning mr-sm-2 btn-block'
+                    = button_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2 btn-block'
             - else
               .badge.badge-sm.badge-default
                 = status_label(event.status)

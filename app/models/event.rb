@@ -91,7 +91,7 @@ class Event < ApplicationRecord
     elsif status == 'member_cancelled' || status == 'client_cancelled' || status == 'no_show'
       update_column :status_color, ('red')
     elsif status == 'no_show_refunded'
-      update_column :status_color, ('yellow')
+      update_column :status_color, ('green')
     else
       update_column :status_color, ('black')
     end
