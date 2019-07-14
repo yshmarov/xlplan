@@ -4,7 +4,7 @@ class ChartsController < ApplicationController
   end
 
   def events_client_due_price_per_month
-    render json: Event.group_by_month(:starts_at, format: "%b %Y").sum("client_price/100")
+    render json: Event.is_confirmed.group_by_month(:starts_at, format: "%b %Y").sum("client_price/100")
   end
 
   def members_jobs_per_member_per_month_quantity
@@ -28,7 +28,7 @@ class ChartsController < ApplicationController
   end
 
   def events_per_day
-    render json: Event.group_by_day(:starts_at).sum("client_price/100")
+    render json: Event.is_confirmed.group_by_day(:starts_at).sum("client_price/100")
   end
 
 end

@@ -8,7 +8,7 @@
         = t('.confirmed_event_price_per_day')
     %table.table.table-sm.table-bordered
       %tbody
-        - Event.confirmed.group_by_day(:starts_at).sum("client_price/100").each do |k, v|
+        - Event.is_confirmed.group_by_day(:starts_at).sum("client_price/100").each do |k, v|
           %tr
             %td= k.strftime('%d/%m/%Y')
             %td= v
