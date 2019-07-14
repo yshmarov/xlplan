@@ -202,6 +202,7 @@ GEM
       json
       rack
     orm_adapter (0.5.0)
+    pg (1.1.4)
     popper_js (1.14.5)
     public_suffix (3.1.1)
     puma (3.12.1)
@@ -354,6 +355,7 @@ DEPENDENCIES
   momentjs-rails
   money-rails (~> 1.12)
   omnicontacts
+  pg (>= 0.18, < 2.0)
   public_activity!
   puma (~> 3.11)
   pundit
