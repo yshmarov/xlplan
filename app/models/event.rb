@@ -70,7 +70,7 @@ class Event < ApplicationRecord
   #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
 
   def client_due_price
-    if is_confirmed?
+    if confirmed? || no_show_refunded?
       client_price
     else
       0
