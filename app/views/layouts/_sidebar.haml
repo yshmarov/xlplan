@@ -34,8 +34,21 @@
             %button.btn.btn-light{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
-      /link to ransack search query
+      ////link to ransack search query
       /%li.nav-item= link_to "<i class='fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path(q: {jobs_member_id_eq: current_user.member.id}), class: "nav-link"
+      ////links to dropdown with create
+      /%li.nav-item.dropdown
+      /  %a#navbarDropdownCreate.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      /    .fa-color-1.fa.fa-plus
+      /    #{t('sidebar.create')}
+      /  .dropdown-menu{"aria-labelledby" => "navbarDropdownCreate"}
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_event_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_client_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_payment_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_member_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_service_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_location_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_service_category_path, class: "dropdown-item navdrop-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
       - if Event.close.count > 0
         %li
