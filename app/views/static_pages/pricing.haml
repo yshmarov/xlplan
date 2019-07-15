@@ -10,15 +10,14 @@
   %h5= t('.small_investment')
   %br
   %h5= t('.best_for_you')
-  /For individual professionals. Everything you need to manage your schedule, sell services, and streamline everyday tasks.
-  /For small business. Build relationships and keep clients coming back with elegant email campaigns and smart contact lists.
-  /For bigger companies. Take your business to the next level with advanced marketing tools, automations, and analytics. Сетевой бизнес
 .container
   .card-deck.mb-3.text-center
     .card.mb-4.box-shadow.border-danger
       .card-header.bg-danger
         %h4.my-0.font-weight-normal= t('.bronze')
       .card-body
+        %small= t('.for_individuals')
+        %hr
         %h2.card-title.pricing-card-title
           $84
           %small.text-muted / #{t(".year")}
@@ -48,6 +47,8 @@
       .card-header.bg-secondary
         %h4.my-0.font-weight-normal= t('.silver')
       .card-body
+        %small= t('.for_small')
+        %hr
         %h2.card-title.pricing-card-title
           $180
           %small.text-muted / #{t(".year")}
@@ -77,6 +78,8 @@
       .card-header.bg-warning
         %h4.my-0.font-weight-normal= t('.gold')
       .card-body
+        %small= t('.for_big')
+        %hr
         %h2.card-title.pricing-card-title
           %s.text-danger
             $600

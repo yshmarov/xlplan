@@ -8,6 +8,7 @@ class ServicesController < ApplicationController
 
   def show
     authorize @service
+    @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Service", trackable_id: @service).all
   end
 
   def new

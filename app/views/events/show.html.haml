@@ -31,7 +31,7 @@
                 = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
               - unless @event.status == 'no_show_refunded'
                 = button_to t('.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
-        %hr
+        /%hr
         .fa.fa-user
         %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @event.client, client_path(@event.client)

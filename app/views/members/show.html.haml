@@ -138,6 +138,7 @@
                 .card-body
                   = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').count
               %p
+            /client_price might be confidential
             .col-12
               .card
                 .card-header

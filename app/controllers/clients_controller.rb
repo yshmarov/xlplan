@@ -54,6 +54,8 @@ class ClientsController < ApplicationController
 
     @inbound_payment = InboundPayment.new
     authorize @inbound_payment
+
+    #@activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Client", trackable_id: @client).all
   end
 
   def new
