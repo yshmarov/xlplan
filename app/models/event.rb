@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
   validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
-  validates :notes, length: { maximum: 500 }
+  validates :notes, length: { maximum: 3000 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------enums-------------------#
