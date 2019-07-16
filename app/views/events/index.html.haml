@@ -96,7 +96,7 @@
                 \/
                 = link_to job.member, member_path(job.member), class: 'text-white'
             .row
-            = event.notes
+            %small= simple_format(event.notes)
             /= truncate(event.notes, length: 60)
 %p
 .container.table-responsive
