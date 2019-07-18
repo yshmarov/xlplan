@@ -1,7 +1,7 @@
 class Tenant < ApplicationRecord
   acts_as_universal_and_determines_tenant
 
-  has_many :activities, dependent: :destroy
+  #has_many :activities, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :events, dependent: :destroy
@@ -21,6 +21,11 @@ class Tenant < ApplicationRecord
   validates :plan, inclusion: %w(demo bronze silver gold)
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
+
+  #-----------------------gem public_activity-------------------#
+  #include PublicActivity::Model
+  #tracked owner: Proc.new{ |controller, model| controller.current_user }
+  #tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
 
   ###select industry###
   INDUSTRIES = [:hair_beauty_barbershop, :cosmetology, :solarium, :tattoo_studio, :spa, :sauna,
