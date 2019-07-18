@@ -12,6 +12,7 @@ class Tenant < ApplicationRecord
   has_many :service_categories, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :skills, dependent: :destroy
+  has_many :roles, dependent: :destroy
 
   validates_presence_of :name, :plan, :default_currency, :locale, :industry
   validates_uniqueness_of :name
