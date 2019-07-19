@@ -11,8 +11,8 @@
           = link_to '', edit_client_path(@client), class: "btn btn-warning fa fa-edit btn-sm" if policy(@client).edit?
           = link_to '', @client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@client).destroy?
       .card-header
-        = render 'clients/new_payment'
         = render 'clients/new_event'
+        = render 'clients/new_payment'
       .card-body
         %b= model_class.human_attribute_name(:full_name) + ':'
         = @client.full_name
