@@ -14,7 +14,7 @@
           .input-group
             .mr-sm-2
               %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-            = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
+            = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
             %span.input-group-append
               %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}

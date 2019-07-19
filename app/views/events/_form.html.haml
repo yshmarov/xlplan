@@ -26,9 +26,8 @@
       = f.simple_fields_for :jobs do |job|
         = render 'job_fields', f: job
       .links
-        = link_to_add_association t('.add_service'), f, :jobs, class: 'btn btn-primary'
-
-
+        .float-right
+          = link_to_add_association t('.add_service'), f, :jobs, class: 'btn btn-primary'
     /.table-responsive
     /  %table.table-sm
     /    %thead
