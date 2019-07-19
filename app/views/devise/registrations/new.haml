@@ -27,8 +27,9 @@
             /    = label_tag( 'coupon', 'Coupon code', :class => "label" )
             /    = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
             /    %span.description optional promotional code, if any
-            - if ::Milia.use_recaptcha
-              = recaptcha_tags( :display => { :theme => 'clean', :tabindex => 0 } )
+          - if ::Milia.use_recaptcha
+            %hr
+            = recaptcha_tags
           = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
         %hr
         = render "devise/shared/links"
