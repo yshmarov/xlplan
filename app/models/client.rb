@@ -1,6 +1,7 @@
 class Client < ApplicationRecord
-  after_touch :update_balance
   include Personable
+  #-----------------------callbacks-------------------#
+  after_touch :update_balance
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------gem public_activity-------------------#
@@ -37,8 +38,8 @@ class Client < ApplicationRecord
   scope :debtors, -> { where("balance < ?", 0) }
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
-  monetize :inbound_payments_sum, as: :inbound_payments_sum_cents
-  monetize :jobs_sum, as: :jobs_sum_cents
+  monetize :payments_amount_sum, as: :payments_amount_sum_cents
+  monetize :jobs_amount_sum, as: :jobs_amount_sum_cents
   #-----------------------Ransack full_name-------------------#
   ransacker :full_name do |parent|
     Arel::Nodes::InfixOperation.new('||',
@@ -49,18 +50,13 @@ class Client < ApplicationRecord
     )
   end
 
-  def inbound_payments_sum
-    inbound_payments.map(&:amount).sum
-  end
-
-  def jobs_sum
-    jobs.map(&:client_due_price).sum
-  end
-
   #private
   #protected
 
   def update_balance
-    update_column :balance, (inbound_payments.map(&:amount).sum-jobs.map(&:client_due_price).sum)
+    #update_column :balance, (inbound_payments.map(&:amount).sum-jobs.map(&:client_due_price).sum)
+    update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
+    update_column :jobs_amount_sum, (jobs.map(&:client_due_price).sum)
+    update_column :balance, (payments_amount_sum - update_jobs_amount_sum)
   end
 end
