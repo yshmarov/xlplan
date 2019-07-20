@@ -10,7 +10,7 @@ Milia.setup do |config|
 # true if you use recaptcha on your sign-up form;
   # be sure to include the gem 'recaptcha' in your Gemfile
 # false if you do not
-  config.use_recaptcha = false
+  config.use_recaptcha = true
 
 # true if action after signing out is to return to the home (root) page
 # false to return to the sign-in form (devise default)

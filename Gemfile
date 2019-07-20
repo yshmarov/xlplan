@@ -96,3 +96,5 @@ gem 'faker'
 gem 'rack-attack'
 
 gem "omnicontacts"
+
+gem "recaptcha"

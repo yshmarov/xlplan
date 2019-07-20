@@ -59,7 +59,7 @@ def create
     end  #  wrap tenant/user creation in a transaction
 
   else
-    flash[:error] = "Recaptcha codes didn't match; please try again"
+    #flash[:error] = "Recaptcha codes didn't match; please try again"
        # all validation errors are passed when the sign_up form is re-rendered
     resource.valid?
     @tenant.valid?

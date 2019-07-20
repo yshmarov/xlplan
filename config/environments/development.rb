@@ -2,16 +2,25 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   config.action_mailer.delivery_method = :smtp
+
+  #ActionMailer::Base.smtp_settings = {
+  #  :address => "smtp.gmail.com",
+  #  :port => "587",
+  #  :authentication => :plain,
+  #  :user_name => "support@xlplan.com",
+  #  :password => ENV["SMTP_ENTRY"],
+  #  :enable_starttls_auto => true
+  #}
   
   ActionMailer::Base.smtp_settings = {
-    :address => "smtp.gmail.com",
-    :port => "587",
-    :authentication => :plain,
-    :user_name => "support@xlplan.com",
-    :password => ENV["SMTP_ENTRY"],
-    :enable_starttls_auto => true
-  }  
-  
+    address:        'smtp.sendgrid.net',
+    port:           '587',
+    authentication: :plain,
+    user_name:      "username",
+    password:       "password",
+    enable_starttls_auto: true
+  }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

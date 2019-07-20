@@ -17,9 +17,6 @@
             = w.error_notification
             = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
             /= w.error :name
-            /= w.label :plan, label: "#{t('activerecord.attributes.tenant.plan')}"
-            /= w.select :plan, options_for_select(Plan.options, params[:plan]), {include_blank: false}, class: "form-control"
-            %p
             = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
             /- if ::Milia.use_coupon
             /  - @coupon ||= {}
@@ -28,8 +25,8 @@
             /    = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
             /    %span.description optional promotional code, if any
           - if ::Milia.use_recaptcha
-            %hr
             = recaptcha_tags
+          %hr
           = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
         %hr
         = render "devise/shared/links"
