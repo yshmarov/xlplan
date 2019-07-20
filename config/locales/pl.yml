@@ -316,9 +316,9 @@ pl:
   static_pages:
     landing_page:
       hero: "Zarządzanie salonem łatwe jak nigdy dotąd"
-      hero_description: "График работ сотрудников, список клиентов и оплат - всё в одном месте!"
+      hero_description: "Harmonogram pracowników, lista klientów i płatności - wszystko w jednym miejscu!"
       try_for_free: "Zacznij korzystać za darmo"
-      designed_for: "Для кого создан XLPLAN"
+      designed_for: "Dla kogo został stworzony XLPLAN"
 
   ######################################################
 
