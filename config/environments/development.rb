@@ -1,26 +1,26 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  #config.action_mailer.default_url_options = { :host => 'xlplan.herokuapp.com', :protocol => 'https' }
+  #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { :host => 'bf020d3ad8e840fe89766c5a2d1fcc54.vfs.cloud9.us-east-1.amazonaws.com', :protocol => 'https' }
 
   config.action_mailer.delivery_method = :smtp
 
-  #ActionMailer::Base.smtp_settings = {
-  #  :address => "smtp.gmail.com",
-  #  :port => "587",
-  #  :authentication => :plain,
-  #  :user_name => "support@xlplan.com",
-  #  :password => ENV["SMTP_ENTRY"],
-  #  :enable_starttls_auto => true
-  #}
-  
   ActionMailer::Base.smtp_settings = {
-    address:        'smtp.sendgrid.net',
-    port:           '587',
-    authentication: :plain,
-    user_name:      "username",
-    password:       "password",
-    enable_starttls_auto: true
+    :address => "smtp.gmail.com",
+    :port => "587",
+    :authentication => :plain,
+    :user_name => "support@xlplan.com",
+    :password => ENV["SMTP_ENTRY"],
+    :enable_starttls_auto => true
   }
+  
+  #ActionMailer::Base.smtp_settings = {
+  #  address:        'smtp.sendgrid.net',
+  #  port:           '587',
+  #  authentication: :plain,
+  #  user_name:      "username",
+  #  password:       "password",
+  #  enable_starttls_auto: true
+  #}
 
   # Settings specified here will take precedence over those in config/application.rb.
 

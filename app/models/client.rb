@@ -49,14 +49,20 @@ class Client < ApplicationRecord
       parent.table[:last_name]
     )
   end
-
+  #-----------------------last - next event-------------------#
+  def next_event
+    events.where("starts_at >= ?", Time.zone.now).order("starts_at ASC").pluck(:starts_at).first
+  end
+  def last_event
+    events.where("starts_at <= ?", Time.zone.now).order("starts_at DESC").pluck(:starts_at).first
+  end
+  #-----------------------callbacks details-------------------#
   #private
   #protected
-
   def update_balance
     #update_column :balance, (inbound_payments.map(&:amount).sum-jobs.map(&:client_due_price).sum)
     update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
     update_column :jobs_amount_sum, (jobs.map(&:client_due_price).sum)
-    update_column :balance, (payments_amount_sum - update_jobs_amount_sum)
+    update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end
 end

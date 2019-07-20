@@ -44,10 +44,12 @@ class Member < ApplicationRecord
     end
   end
 
+  #-----------------------callbacks-------------------#
   after_touch :update_balance
+  #-----------------------enums-------------------#
+  enum status: { inactive: 0, active: 1 }
   #scope :active, -> { where(status: [:active]) }
   #scope :inactive, -> { where(status: [:inactive]) }
-  enum status: { inactive: 0, active: 1 }
   def self.active_or_id(record_id)
     where('id = ? OR (status=1)', record_id)    
   end
@@ -126,8 +128,8 @@ class Member < ApplicationRecord
   end
 
   DEFAULT_ADMIN = {
-    last_name:  "Organisation",
-    first_name: "Admin"
+    last_name:  "Admin",
+    first_name: "Super"
   }
 
   def self.create_new_member(user, params)

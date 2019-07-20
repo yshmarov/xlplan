@@ -11,6 +11,7 @@
           = link_to '', edit_client_path(@client), class: "btn btn-warning fa fa-edit btn-sm" if policy(@client).edit?
           = link_to '', @client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@client).destroy?
       .card-header
+        /.text-center #also pulls the modal content
         = render 'clients/new_event'
         = render 'clients/new_payment'
       .card-body
@@ -44,25 +45,25 @@
           = @client.address[:zip]
         /= link_to @client.address, "https://www.google.com/maps/search/?api=1&query=760+West+Genesee+Street+Syracuse+NY+13204", :target => '_blank'
         %hr
-        .fa.fa-balance-scale
-        %b= model_class.human_attribute_name(:balance) + ':'
-        = number_to_currency(@client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %br
         .fa.fa-calendar-check
-        %b= model_class.human_attribute_name(:jobs_sum) + ':'
+        %b= model_class.human_attribute_name(:jobs_amount_sum) + ':'
         = number_to_currency(@client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         .fa.fa-hand-holding-usd
-        %b= model_class.human_attribute_name(:inbound_payments_sum) + ':'
+        %b= model_class.human_attribute_name(:payments_amount_sum) + ':'
         = number_to_currency(@client.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %hr
-        %b= model_class.human_attribute_name(:next_event) + ':'
-        - if @next_event.present?
-          = distance_of_time_in_words(Time.now, @next_event) 
         %br
+        .fa.fa-balance-scale
+        %b= model_class.human_attribute_name(:balance) + ':'
+        = number_to_currency(@client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %hr
         %b= model_class.human_attribute_name(:last_event) + ':'
-        - if @last_event.present?
-          = distance_of_time_in_words(Time.now, @last_event)
+        - if @client.last_event.present?
+          = distance_of_time_in_words(Time.now, @client.last_event)
+        %br
+        %b= model_class.human_attribute_name(:next_event) + ':'
+        - if @client.next_event.present?
+          = distance_of_time_in_words(Time.now, @client.next_event) 
         /%br
         /%b Status:
         /= status_label(@client.status)
