@@ -64,7 +64,7 @@
           /ADMIN - stats
           - if current_user.has_role?(:admin)
             %td
-              .fa.fa-calendar
+              .fa.fa-calendar-check
               = service.jobs_count
 .container.table-responsive
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

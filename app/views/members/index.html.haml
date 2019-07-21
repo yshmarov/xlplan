@@ -62,11 +62,11 @@
         /ADMIN - stats
         - if current_user.has_role?(:admin)
           .col-sm-2
-            .fa.fa-balance-scale
+            .fa.fa-hand-paper
             = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            .row
-            .fa.fa-calendar-check
-            = member.jobs_count
+            (#{member.jobs_count})
+            /.row
+            /.fa.fa-balance-scale
         /USER
         %small.col-sm-4
           /////////////////////user account/////////////////////
