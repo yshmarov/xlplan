@@ -40,7 +40,7 @@ class Client < ApplicationRecord
   monetize :balance, as: :balance_cents
   monetize :payments_amount_sum, as: :payments_amount_sum_cents
   monetize :jobs_amount_sum, as: :jobs_amount_sum_cents
-  #-----------------------Ransack full_name-------------------#
+  #-----------------------Ransack first_name or last_name-------------------#
   ransacker :full_name do |parent|
     Arel::Nodes::InfixOperation.new('||',
       Arel::Nodes::InfixOperation.new('||',

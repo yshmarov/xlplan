@@ -18,9 +18,15 @@
             %span.input-group-append
               %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
-          /= sort_link @ransack_clients, :balance, :balance
-          /= sort_link @ransack_clients, :payments_amount_sum, :payments_amount_sum
-          /= sort_link @ransack_clients, :jobs_amount_sum, :jobs_amount_sum
+            /= sort_link @ransack_clients, :balance do
+            /  .ml.ml-2.fa.fa-calendar-check
+            /= sort_link @ransack_clients, :payments_amount_sum do
+            /  .ml.ml-2.fa.fa-hand-holding-usd
+            /= sort_link @ransack_clients, :jobs_amount_sum do
+            /  .ml.ml-2.fa.fa-balance-scale
+            /= sort_link @ransack_clients, :balance, :balance
+            /= sort_link @ransack_clients, :payments_amount_sum, :payments_amount_sum
+            /= sort_link @ransack_clients, :jobs_amount_sum, :jobs_amount_sum
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Client).create?

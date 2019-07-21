@@ -41,6 +41,7 @@ class Location < ApplicationRecord
     end
   end
 
+  ################TENANT VALIDATION#################
   validate :tenant_plan_quantity_limit
   def tenant_plan_quantity_limit
     if self.new_record?

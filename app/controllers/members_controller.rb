@@ -17,43 +17,40 @@ class MembersController < ApplicationController
     authorize @member
   end
 
-  def new()
-    @member = Member.new()
-    @user   = User.new()
+  def new
+    @member = Member.new
     authorize @member
-    authorize @user
   end
 
-  def create()
-    @user   = User.new( user_params )
+  def create
+    @member   = Member.new(member_params)
     #authorize @member
-    authorize @user
-
-    # ok to create user, member
-    if @user.save_and_invite_member() && @user.create_member( member_params )
-      flash[:notice] = "New member added and invitation email sent to #{@user.email}."
-      redirect_to @user.member
-    else
-      #flash[:error] = "errors occurred!"
-      @member = Member.new( member_params ) # only used if need to revisit form
-      render :new
+    respond_to do |format|
+      if @member.save
+        format.html { redirect_to @member, notice: 'Member was successfully created.' }
+        format.json { render :show, status: :created, location: @member }
+      else
+        format.html { render :new }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
     end
-
   end
 
   def update
     authorize @member
-    #authorize @user
-    if @member.update(member_params)
-      redirect_to @member, notice: 'Member was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @member.update(member_params)
+        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.json { render :show, status: :ok, location: @member }
+      else
+        format.html { render :edit }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
     authorize @member
-    #authorize @user
     @member.destroy
     if @member.errors.present?
       redirect_to members_url, alert: 'Member has associated jobs. Can not delete.'
@@ -67,12 +64,8 @@ class MembersController < ApplicationController
       @member = Member.friendly.find(params[:id])
     end
   
-    def member_params()
+    def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address, :time_zone,
-      :status, :balance, :location_id, service_category_ids: [], address: [:country, :city, :street, :zip])
-    end
-  
-    def user_params()
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      :status, :location_id, service_category_ids: [], address: [:country, :city, :street, :zip])
     end
 end

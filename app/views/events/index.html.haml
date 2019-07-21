@@ -4,7 +4,7 @@
     .container-fluid
       .card-heading
         %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-          .fa.fa-calendar
+          .fa.fa-calendar-check
           %b= t "#{controller_name}_#{action_name}"
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
@@ -18,7 +18,7 @@
         .row
           .col-md-4
             = model_class.human_attribute_name(:client_id)
-            = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+            = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
             = model_class.human_attribute_name(:member)
             = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
           .col-md-4
@@ -93,7 +93,7 @@
               .badge.badge-secondary
                 = link_to job.service.full_name_with_price, service_path(job.service), class: 'text-white'
                 \/
-                = link_to job.member, member_path(job.member), class: 'text-white'
+                = link_to job.member.short_name, member_path(job.member), class: 'text-white'
             .row
             %small= simple_format(event.notes)
             /= truncate(event.notes, length: 60)

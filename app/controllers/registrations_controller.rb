@@ -1,10 +1,5 @@
 class RegistrationsController < ::Milia::RegistrationsController
-
   skip_before_action :authenticate_tenant!, :only => [:new, :create, :cancel]
-
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-# TODO: options if non-standard path for new signups view
 # ------------------------------------------------------------------------------
 # create -- intercept the POST create action upon new sign-up
 # new tenant account is vetted, then created, then proceed with devise create user
@@ -12,8 +7,6 @@ class RegistrationsController < ::Milia::RegistrationsController
 # CALLBACK: Tenant.tenant_signup      -- after completing user account
 # ------------------------------------------------------------------------------
 def create
-    # have a working copy of the params in case Tenant callbacks
-    # make any changes
   tenant_params = sign_up_params_tenant
   user_params   = sign_up_params_user
   coupon_params = sign_up_params_coupon

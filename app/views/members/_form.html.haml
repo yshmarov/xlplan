@@ -30,9 +30,7 @@
         = f.label :zip
         = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
     / #### ADDRESS FIELD ENDS HERE ####
-
-    = f.input :status, :as => :radio_buttons, :collection => Member.statuses.keys.to_a, label:false
-
+    %hr
     = f.label :skills
     = f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
 
@@ -44,6 +42,7 @@
     /= f.label :time_zone
     /= f.time_zone_select :time_zone, /Europe/, :default => "Kyiv"
     = f.input :time_zone
+    = f.input :status, :as => :radio_buttons, :collection => Member.statuses.keys.to_a, label:false
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

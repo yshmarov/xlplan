@@ -87,7 +87,7 @@
                 .row
                 = link_to "<i class='fa-fw fa fa-trash'></i> Delete Access".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
           - else
-            Invite user.
+            No access. Invite user.
             - if member.active?
               - if member.email.present?
                 Devise invitable here

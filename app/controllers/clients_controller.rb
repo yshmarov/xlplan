@@ -7,7 +7,6 @@ class ClientsController < ApplicationController
   end
 
   def index
-    #@client = Client.new
     @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
@@ -37,7 +36,6 @@ class ClientsController < ApplicationController
 
   def show
     authorize @client
-    #@jobs = @client.jobs
     @events = @client.events.order("starts_at DESC")
     @inbound_payments = @client.inbound_payments.order("created_at DESC")
 
@@ -55,19 +53,18 @@ class ClientsController < ApplicationController
     #@activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Client", trackable_id: @client).all
   end
 
-  def new
-    @client = Client.new
+  def edit
     authorize @client
   end
 
-  def edit
+  def new
+    @client = Client.new
     authorize @client
   end
 
   def create
     @client = Client.new(client_params)
     authorize @client
-
     respond_to do |format|
       if @client.save
         format.html { redirect_to @client, notice: 'Client was successfully created.' }

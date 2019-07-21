@@ -4,21 +4,30 @@
   .col-lg-6
     .card
       .card-body
-        /%h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
-        %h4 Invite a new member
+        %h5
+          .fa.fa-user
+          =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
         %hr
-        = simple_form_for @member do |f|
-          = simple_fields_for @user do |w|
-            = w.input :email, autofocus: true
-            /= w.error :email, class: 'text-danger'
-          = f.input :first_name
-          = f.error :first_name, class: 'text-danger'
-          = f.input :last_name
-          = f.error :last_name, class: 'text-danger'
-    
-          = f.input :time_zone
-    
-          %hr
-          = f.button :submit, 'Create user and send invitation', class: 'btn btn-success'
+        = render 'form'
         %p
-        = link_to t('.cancel', :default => t("helpers.links.cancel")), members_path, :class => 'btn btn-danger'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn btn-danger'
+    /.card
+    /  .card-body
+    /    /%h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+    /    %h4 Invite a new member
+    /    %hr
+    /    = simple_form_for @member do |f|
+    /      = simple_fields_for @user do |w|
+    /        = w.input :email, autofocus: true
+    /        /= w.error :email, class: 'text-danger'
+    /      = f.input :first_name
+    /      = f.error :first_name, class: 'text-danger'
+    /      = f.input :last_name
+    /      = f.error :last_name, class: 'text-danger'
+    /
+    /      = f.input :time_zone
+    /
+    /      %hr
+    /      = f.button :submit, 'Create user and send invitation', class: 'btn btn-success'
+    /    %p
+    /    = link_to t('.cancel', :default => t("helpers.links.cancel")), members_path, :class => 'btn btn-danger'
