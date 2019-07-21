@@ -460,6 +460,14 @@ en:
     edit_plan:
       title: "order system"
   members:
+    index:
+      title: "Employees"
+      has_access: "Has access"
+      no_access_resend_invitation_email: "Invited. Send email reminder"
+      no_access: "No access"
+      invite_user: "Invite user"
+      add_email_to_invite_user: "Add email"
+      terminated: "Not active"
     show:
       access_rights: 'Access rights'
       delete_access: 'Delete access'

@@ -44,6 +44,7 @@
           .row
           = link_to '', member, class: "btn btn-primary fa fa-eye btn-sm" if policy(member).show?
           = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
+          /  - unless member.associations?
           = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(member).destroy?
         /location & skills
         .col-sm-3
@@ -78,31 +79,29 @@
               = role_label(r.name)
             - if member.user.confirmed_at?
               .row
-              Has access
+              = t('.has_access')
             - else
               .row
-              No access. Resend invitation email
+              = t('.no_access_resend_invitation_email')
             - unless member == current_user.member
               - if member.user.present?
                 .row
                 = link_to "<i class='fa-fw fa fa-trash'></i> Delete Access".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
           - else
-            No access. Invite user.
+            = t('.no_access')
             - if member.active?
               - if member.email.present?
-                Devise invitable here
+                = t('.invite_user')
+                /Devise invitable here
                 /- if policy(User).create?
                 /  = simple_form_for(User.new, url: user_invitation_path) do |z|
                 /    = z.input :email, input_html: {value: member.email}, as: :hidden
                 /    = z.input :member_id, input_html: {value: member.id}, as: :hidden
                 /    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
               - else
-                Add email to invite user
+                = t('.add_email_to_invite_user')
             - else
-              Terminated
-          /  - unless member.associations?
-          /    - if policy(member).destroy?
-          /      = link_to 'x totally', member, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default btn-sm"
+              = t('.terminated')
 %p
 .container.table-responsive
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

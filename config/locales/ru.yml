@@ -549,6 +549,12 @@ ru:
   members:
     index:
       title: "Сотрудники"
+      has_access: "Есть доступ"
+      no_access_resend_invitation_email: "Приглашен. Послать email напоминание"
+      no_access: "Без доступа."
+      invite_user: "Пригласить"
+      add_email_to_invite_user: "Добавьте email"
+      terminated: "Не активен"
     new:
       title: "Создать Сотрудника"
     edit:
