@@ -35,10 +35,11 @@
         /ADMIN - stats
         - if current_user.has_role?(:admin)
           .col-sm-4
-            .fa.fa-calendar
+            .fa.fa-calendar-check
             = location.events_count
             .row
-            .fa.fa-dollar-sign
+            /.fa.fa-hand-holding-usd
+            .fa.fa-balance-scale
             = number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .col-sm-2
           = link_to '', location, class: "btn btn-primary fa fa-eye btn-sm" if policy(location).show?

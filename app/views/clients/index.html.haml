@@ -45,25 +45,22 @@
         .col-sm-2
           .fa.fa-calendar-check
           = number_to_currency(client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          (#{client.events_count})
           .row
           .fa.fa-hand-holding-usd
           = number_to_currency(client.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          (#{client.inbound_payments_count})
           .row
           .fa.fa-balance-scale
           = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .col-sm-3
-          .fa.fa-calendar
-          = client.events_count
-          .row
-          .fa.fa-hand-holding-usd
-          = client.inbound_payments_count
-          .row
           .fa.fa-comment-alt
           = client.comments.count
         .col-sm-2
           = link_to '', client, class: "btn btn-primary fa fa-eye btn-sm" if policy(client).show?
           = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
           = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
+          /with AJAX
           /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
 %p
 .container.table-responsive

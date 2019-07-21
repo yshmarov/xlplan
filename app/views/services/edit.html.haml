@@ -1,10 +1,13 @@
 - model_class = Service
-.card
-  .card-body
-    %h5
-      .fa.fa-hand-paper
-      =t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
-    %hr
-    = render 'form', service: @service
-    %p
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), @service, :class => 'btn btn-danger'
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h5
+          .fa.fa-hand-paper
+          =t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+        %hr
+        = render 'form', service: @service
+        %p
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), @service, :class => 'btn btn-danger'

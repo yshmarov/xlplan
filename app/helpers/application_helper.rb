@@ -7,6 +7,10 @@ module ApplicationHelper
 		role_span_generator(name)
 	end
 
+	def status_label(status)
+		status_span_generator(status)
+	end
+
 	private
 		def plan_span_generator(plan)
 			case plan
@@ -36,12 +40,7 @@ module ApplicationHelper
 			end
 		end
 
-	def status_label(status)
-		status_span_generator(status)
-	end
-
-  #I18n.t(event.status, scope: [:activerecord, :attributes, :event, :statuses])
-	private
+	  #I18n.t(event.status, scope: [:activerecord, :attributes, :event, :statuses])
 		def status_span_generator(status)
 			case status
 				#Other models

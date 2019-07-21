@@ -8,21 +8,39 @@ class StaticPagesController < ApplicationController
   end
   
   def features
+    if current_user
+      redirect_to calendar_path
+    end
   end
   
   def pricing
+    if current_user
+      redirect_to calendar_path
+    end
   end
   
   def about
+    if current_user
+      redirect_to calendar_path
+    end
   end
   
   def privacy_policy
+    if current_user
+      redirect_to calendar_path
+    end
   end
   
   def terms_of_service
+    if current_user
+      redirect_to calendar_path
+    end
   end
   
   def security
+    if current_user
+      redirect_to calendar_path
+    end
   end
   
   def stats

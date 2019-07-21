@@ -7,7 +7,7 @@
     %meta{:content => "#{yield(:keywords)}", :name => "keywords"}/
     %meta{:content => "XLPLAN.com", :name => "author"}/
     %title 
-      - if current_user
+      - if Tenant.current_tenant
         = content_for?(:title) ? yield(:title) : "XLPLAN | #{Tenant.current_tenant.name}"
       - else
         = content_for?(:title) ? yield(:title) : "XLPLAN | CRM for service business"

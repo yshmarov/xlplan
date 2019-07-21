@@ -26,7 +26,10 @@
               .badge.badge-sm.badge-default
                 = status_label(event.status)
             .row
-            = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            - if event.planned?
+              = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            - else
+              = number_to_currency(event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
             = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
             = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?

@@ -18,6 +18,7 @@
 
         %th.bg-warning Client
         %th.bg-warning Service
+        %th.bg-warning ServiceCategory
         %th.bg-warning Event
         %th.bg-warning Job
         %th.bg-warning Comment
@@ -26,10 +27,10 @@
         %th.bg-warning Location
     %tbody
       - @tenants.each do |tenant|
-        %tr.bg-secondary
+        %tr.bg-info
           %td= tenant.id
           %td= tenant.name
-          %td= tenant.plan
+          %td= plan_label(tenant.plan)
           %td= tenant.locale
           %td= tenant.default_currency
           %td
@@ -37,6 +38,7 @@
             (#{distance_of_time_in_words Time.now, tenant.created_at} ago)
           %td= Client.unscoped.where(tenant_id: tenant.id).count 
           %td= Service.unscoped.where(tenant_id: tenant.id).count 
+          %td= ServiceCategory.unscoped.where(tenant_id: tenant.id).count 
           %td= Event.unscoped.where(tenant_id: tenant.id).count 
           %td= Job.unscoped.where(tenant_id: tenant.id).count 
           %td= Comment.unscoped.where(tenant_id: tenant.id).count 

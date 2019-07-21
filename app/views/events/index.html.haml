@@ -18,12 +18,8 @@
         .row
           .col-md-4
             = model_class.human_attribute_name(:client_id)
-            /without selectize
-            /= f.search_field :client_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Client name", :autocomplete => :off
-            = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+            = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
             = model_class.human_attribute_name(:member)
-            /without selectize
-            /= f.search_field :jobs_member_full_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Member name", :autocomplete => :off
             = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
           .col-md-4
             .input-daterange
@@ -68,7 +64,10 @@
               .badge.badge-sm.badge-default
                 = status_label(event.status)
             .row
-            = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            - if event.planned?
+              = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            - else
+              = number_to_currency(event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
             = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
             = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?

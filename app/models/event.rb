@@ -33,7 +33,6 @@ class Event < ApplicationRecord
   scope :is_confirmed, -> { where(status: [:confirmed, :no_show_refunded]) }
   scope :is_cancelled, -> { where(status: [:no_show, :member_cancelled, :client_cancelled]) }
   scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned, :no_show_refunded]) }
-  #rename no_show to client_not_arrived?
 
   def to_s
     #"#{service} for #{client} at #{starts_at}"
@@ -54,6 +53,10 @@ class Event < ApplicationRecord
   after_save :update_ends_at_and_client_price_and_due_prices
   after_touch :update_ends_at_and_client_price_and_due_prices
 
+  after_update :update_event_due_price
+  after_save :update_event_due_price
+  after_touch :update_event_due_price
+
   before_validation do
     self.ends_at = starts_at + 30*60
   end
@@ -63,22 +66,24 @@ class Event < ApplicationRecord
 
   #-----------------------gem money-------------------#
   monetize :client_price, as: :client_price_cents
-  monetize :client_due_price, as: :client_due_price_cents
+  monetize :event_due_price, as: :event_due_price_cents
   ############GEM VALIDATES_TIMELINESS############
   #validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
   #validates_date :starts_at, :on_or_after => lambda { Date.current }
   #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
 
-  def client_due_price
-    if confirmed? || no_show_refunded?
-      client_price
-    else
-      0
-    end
-  end
-
   def update_client_price
     update_column :client_price, (jobs.map(&:client_price).sum)
+  end
+
+  def update_event_due_price
+    if id?
+      if confirmed? || no_show_refunded?
+        update_column :event_due_price, (client_price)
+      else
+        update_column :event_due_price, (0)
+      end
+    end
   end
 
   protected

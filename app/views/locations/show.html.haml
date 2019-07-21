@@ -29,6 +29,14 @@
         %br
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@location.status)
+        %hr
+        .fa.fa-balance-scale
+        %b= model_class.human_attribute_name(:balance) + ':'
+        = number_to_currency(@location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %br
+        .fa.fa-calendar
+        %b= model_class.human_attribute_name(:events_count) + ':'
+        = @location.events_count
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}

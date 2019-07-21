@@ -64,7 +64,7 @@
             .fa.fa-balance-scale
             = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
-            .fa.fa-calendar
+            .fa.fa-calendar-check
             = member.jobs_count
         /USER
         %small.col-sm-4

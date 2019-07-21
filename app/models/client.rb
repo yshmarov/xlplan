@@ -1,9 +1,9 @@
 class Client < ApplicationRecord
   include Personable
-  #-----------------------callbacks-------------------#
-  after_touch :update_balance
   #-----------------------gem milia-------------------#
   acts_as_tenant
+  #-----------------------callbacks-------------------#
+  after_touch :update_balance
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -49,7 +49,7 @@ class Client < ApplicationRecord
       parent.table[:last_name]
     )
   end
-  #-----------------------last - next event-------------------#
+  #-----------------------last and next event-------------------#
   def next_event
     events.where("starts_at >= ?", Time.zone.now).order("starts_at ASC").pluck(:starts_at).first
   end
@@ -62,7 +62,7 @@ class Client < ApplicationRecord
   def update_balance
     #update_column :balance, (inbound_payments.map(&:amount).sum-jobs.map(&:client_due_price).sum)
     update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
-    update_column :jobs_amount_sum, (jobs.map(&:client_due_price).sum)
+    update_column :jobs_amount_sum, (events.map(&:event_due_price).sum)
     update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end
 end

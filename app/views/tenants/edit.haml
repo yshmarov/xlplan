@@ -1,25 +1,28 @@
 - model_class = Tenant
-.card
-  .card-body
-    %h4=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
-    %hr
-    = simple_form_for @tenant, url: update_tenant_path do |f|
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h4=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+        %hr
+        = simple_form_for @tenant, url: update_tenant_path do |f|
+        
+          = f.error_notification
+          = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+        
+          = f.input :name, required: true, class: "form-control"
+          
+          = f.input :industry, collection: Tenant.industries, include_blank: false
+        
+          /= f.label :default_currency
+          /= f.error :default_currency, class: 'text-danger'
+          /= f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
+          = f.input :default_currency, collection: [ "usd", "eur", "pln", "uah", "rub"], include_blank: false
     
-      = f.error_notification
-      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+          = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false
     
-      = f.input :name, required: true, class: "form-control"
-      
-      = f.input :industry, collection: Tenant.industries, include_blank: false
-    
-      /= f.label :default_currency
-      /= f.error :default_currency, class: 'text-danger'
-      /= f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
-      = f.input :default_currency, collection: [ "usd", "eur", "pln", "uah", "rub"], include_blank: false
-
-      = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false
-
-      %hr
-      = f.button :submit, class: "btn btn-success"
-      %p
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), settings_show_path, :class => 'btn btn-danger'
+          %hr
+          = f.button :submit, class: "btn btn-success"
+          %p
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), settings_show_path, :class => 'btn btn-danger'

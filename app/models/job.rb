@@ -1,7 +1,22 @@
 class Job < ApplicationRecord
+  #-----------------------gem milia-------------------#
   acts_as_tenant
+  #-----------------------gem rolify-------------------#
   resourcify
-
+  #-----------------------relationships-------------------#
+  #counter_cache for job_count
+  #touch to calculate balance
+  belongs_to :member, touch: true, counter_cache: true
+  belongs_to :service, counter_cache: true
+  #touch to calculate duration and total_client_price
+  belongs_to :event, touch: true, counter_cache: true
+  #-----------------------validation-------------------#
+  validates :event, :service, :member,
+            :service_duration, :service_member_percent, 
+            :client_price, :member_price, presence: true
+  validates :slug, uniqueness: true
+  validates :slug, uniqueness: { case_sensitive: false }
+  #-----------------------callbacks-------------------#
   after_touch :update_due_prices
   after_create :update_service_details
   after_save :update_service_details
@@ -11,6 +26,7 @@ class Job < ApplicationRecord
   after_save :update_service_details do event.update_client_price end
   after_update :update_service_details do event.update_client_price end
 
+  #-----------------------rolify ownership-------------------#
   after_create :add_user_ownership
   after_update :add_user_ownership
   #after_destroy :destroy_user_ownership
@@ -22,12 +38,11 @@ class Job < ApplicationRecord
       user.add_role(:owner, self.event) unless user.has_role?(:owner, self.event)
     end
   end
-
-
+  #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
-
+  #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :generated_slug, use: :slugged
   def generated_slug
@@ -39,20 +54,7 @@ class Job < ApplicationRecord
   #  "#{created_at} #{service} for #{event.client} at #{event.starts_at} by #{member}"
   #end
 
-  #counter_cache for job_count
-  #touch to calculate balance
-  belongs_to :member, touch: true, counter_cache: true
-  belongs_to :service, counter_cache: true
-  #touch to calculate duration and total_client_price
-  belongs_to :event, touch: true, counter_cache: true
-
-  validates :event, :service, :member,
-            :service_duration, :service_member_percent, 
-            :client_price, :member_price, presence: true
-  validates :slug, uniqueness: true
-  validates :slug, uniqueness: { case_sensitive: false }
-
-  ############GEM MONEY############
+  #-----------------------gem money-------------------#
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents
   monetize :client_due_price, as: :client_due_price_cents
@@ -81,5 +83,4 @@ class Job < ApplicationRecord
     update_column :service_member_percent, (service.member_percent)
     update_column :member_price, (service.member_price)
   end
-
 end

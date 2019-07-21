@@ -26,13 +26,13 @@
     .fields
       = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|
         = f.label :country
-        = a.text_field :country, id: :country, input_html: { autocomplete: 'nope' }
+        = a.text_field :country, id: :country, input_html: { autocomplete: 'nope' }, class: 'form-control'
         = f.label :city
-        = a.text_field :city, id: :city, input_html: { autocomplete: 'nope' }
+        = a.text_field :city, id: :city, input_html: { autocomplete: 'nope' }, class: 'form-control'
         = f.label :street
-        = a.text_field :street, id: :street, input_html: { autocomplete: 'nope' }
+        = a.text_field :street, id: :street, input_html: { autocomplete: 'nope' }, class: 'form-control'
         = f.label :zip
-        = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }
+        = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
     / #### ADDRESS FIELD ENDS HERE ####
   %hr
   .form-actions

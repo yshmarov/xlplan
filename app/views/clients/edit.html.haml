@@ -1,10 +1,13 @@
 - model_class = Client
-.card
-  .card-body
-    %h5
-      .fa.fa-user
-      =t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
-    %hr
-    = render 'form'
-    %p
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), @client, :class => 'btn btn-danger'
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h5
+          .fa.fa-user
+          =t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+        %hr
+        = render 'form'
+        %p
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), @client, :class => 'btn btn-danger'
