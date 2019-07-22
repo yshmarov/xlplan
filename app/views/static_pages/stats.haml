@@ -64,4 +64,16 @@
 %p
 .container.table-responsive
   = will_paginate @tenants, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+All users
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th id
+        %th email
+    %tbody
+      - User.all.each do |user|
+        %tr
+          %th= user.id
+          %th= user.email
 %br
