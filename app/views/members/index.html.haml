@@ -59,8 +59,8 @@
                 .badge.badge-secondary
                   = skill.service_category
         /ADMIN - stats
-        - if current_user.has_role?(:admin)
-          .col-sm-2
+        .col-sm-2
+          - if policy(member).show_money?
             .fa.fa-hand-paper
             = number_to_currency(member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             (#{member.jobs_count})

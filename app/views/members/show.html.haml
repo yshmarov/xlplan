@@ -66,20 +66,21 @@
           .fa.fa-map-marker-alt
           = model_class.human_attribute_name(:location_id) + ':'
           = link_to @member.location, location_path(@member.location) if @member.location.present?
-        %hr
-        .fa.fa-hand-paper
-        %b= model_class.human_attribute_name(:jobs_due_price_sum) + ':'
-        = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        /%br
-        .row
-        .fa.fa-dollar-sign
-        %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
-        = number_to_currency(@member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        /(#{@member.expences.count})
-        %br
-        .fa.fa-balance-scale
-        %b= model_class.human_attribute_name(:balance) + ':'
-        = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        - if policy(@member).show_money?
+          %hr
+          .fa.fa-hand-paper
+          %b= model_class.human_attribute_name(:jobs_due_price_sum) + ':'
+          = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          /%br
+          .row
+          .fa.fa-dollar-sign
+          %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
+          = number_to_currency(@member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          /(#{@member.expences.count})
+          %br
+          .fa.fa-balance-scale
+          %b= model_class.human_attribute_name(:balance) + ':'
+          = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
     %p
     .card
       .card-header
@@ -124,6 +125,7 @@
       %li.nav-item
         %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
           = t('sidebar.expences')
+          (#{@member.expences.count})
       /%li.nav-item
       /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
       /    Earnings/month
@@ -138,7 +140,8 @@
       /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
       /  = render 'events/index'
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
-        = render 'expences/index'
+        - if policy(@member).show_money?
+          = render 'expences/index'
       /#third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
       /  - if policy(@member).show_money?
       /    = bar_chart @member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
