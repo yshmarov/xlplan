@@ -43,12 +43,12 @@
       /    #{t('sidebar.create')}
       /  .dropdown-menu{"aria-labelledby" => "navbarDropdownCreate"}
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_event_path, class: "dropdown-item navdrop-link"
-      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_client_path, class: "dropdown-item navdrop-link"
-      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_inbound_payment_path, class: "dropdown-item navdrop-link"
-      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_member_path, class: "dropdown-item navdrop-link"
-      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_service_path, class: "dropdown-item navdrop-link"
-      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_location_path, class: "dropdown-item navdrop-link"
-      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_service_category_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.client')}".html_safe, new_client_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.payment')}".html_safe, new_inbound_payment_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.member')}".html_safe, new_member_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.service')}".html_safe, new_service_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.location')}".html_safe, new_location_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.service_category')}".html_safe, new_service_category_path, class: "dropdown-item navdrop-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
       - if Event.close.count > 0
         %li

@@ -19,6 +19,8 @@
     = f.label :service_id
     = f.error :service, class: 'text-danger'
     = f.select :service_id, Service.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+    /= f.input :service_id, collection: ServiceCategory.all, as: :grouped_select, group_method: :services, class: 'selectize'
+    /= f.grouped_collection_select(:service_id, ServiceCategory.all, :countries, :name, :id, :name)
 
     = f.label :member_id
     = f.error :member, class: 'text-danger'

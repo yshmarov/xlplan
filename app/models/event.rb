@@ -27,6 +27,7 @@ class Event < ApplicationRecord
   enum status: { planned: 0, confirmed: 1, member_cancelled: 2, client_cancelled: 3, no_show: 4, no_show_refunded: 5}
   #-----------------------scopes-------------------#
   scope :tomorrow, -> { where("starts_at > ?", Date.tomorrow).where(status: 'planned') }
+  scope :today, -> { where("starts_at > ?", Date.today).where(status: 'planned') }
   scope :close, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_planned, -> { where(status: [:planned]) }
