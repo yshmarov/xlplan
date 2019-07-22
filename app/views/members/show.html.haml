@@ -10,6 +10,10 @@
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm" if policy(@member).update?
+      - if current_user.has_role?(:admin)
+        .card-header
+          /.text-center #also pulls the modal content
+          = render 'members/new_expence'
       .card-body
         %b= model_class.human_attribute_name(:full_name) + ':'
         = @member.full_name

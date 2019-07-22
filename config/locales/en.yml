@@ -263,6 +263,7 @@ en:
     new_event: 'New Event'
     new_client: 'New Client'
     new_payment: 'New Payment'
+    new_expence: "New Expence"
     my_calendar: 'My Calendar'
     calendar: 'Calendar'
     close_events: 'Mark Events'
@@ -273,6 +274,7 @@ en:
     services: 'Services'
     locations: 'Locations'
     inbound_payments: 'Payments'
+    expences: 'Expences'
     activity: 'Activity'
     settings: 'Settings'
     tenant: "My Organisation"

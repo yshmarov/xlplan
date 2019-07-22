@@ -11,6 +11,9 @@ class MembersController < ApplicationController
     @jobs = @member.jobs.includes(:event)
     #@events = @member.events.planned.order("starts_at DESC")
     #@member.includes(:user)
+    #@expendable = @member
+    #@expences = @expendable.expences
+    @expence = Expence.new
   end
   
   def edit

@@ -65,6 +65,10 @@
             = number_to_currency(member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             (#{member.jobs_count})
             .row
+            .fa.fa-dollar-sign
+            = number_to_currency(member.expences.map(&:amount_cents).sum, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            (#{member.expences.count})
+            .row
             .fa.fa-balance-scale
             = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         /USER

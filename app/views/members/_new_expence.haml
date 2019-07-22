@@ -1,0 +1,22 @@
+/ Button trigger modal EXPENCE
+%button.btn.btn-info.btn-sm.mb.mb-1.mt-1{"data-target" => "#exampleModalCenter", "data-toggle" => "modal", :type => "button"}
+  .fa.fa-dollar-sign
+  #{t('sidebar.new_expence')}
+/ Modal
+#exampleModalCenter.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalCenterTitle", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-dialog-centered{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLongTitle.modal-title #{t('sidebar.new_payment')}
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      /= simple_form_for [@expendable, @expence] do |f|
+      = simple_form_for @expence do |f|
+        .modal-body
+          = f.input :expendable_id, input_html: {value: @member.id}, as: :hidden
+          = f.input :expendable_type, input_html: {value: "Member"}, as: :hidden
+          = f.input :amount_cents, input_html: { autocomplete: 'off' }
+          = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS, :include_blank => false
+        .modal-footer
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+          = f.button :submit, class: "btn btn-success"

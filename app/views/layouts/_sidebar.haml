@@ -44,7 +44,7 @@
       /  .dropdown-menu{"aria-labelledby" => "navbarDropdownCreate"}
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_event_path, class: "dropdown-item navdrop-link"
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_client_path, class: "dropdown-item navdrop-link"
-      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_payment_path, class: "dropdown-item navdrop-link"
+      /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_inbound_payment_path, class: "dropdown-item navdrop-link"
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_member_path, class: "dropdown-item navdrop-link"
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_service_path, class: "dropdown-item navdrop-link"
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.event')}".html_safe, new_location_path, class: "dropdown-item navdrop-link"
@@ -89,6 +89,7 @@
             #{t('sidebar.settings')}
           .dropdown-menu{"aria-labelledby" => "navbarDropdown3"}
             = link_to "<i class='fa-fw fa fa-landmark'></i> #{t('sidebar.tenant')}".html_safe, settings_show_path, class: "dropdown-item navdrop-link"
+            = link_to "<i class='fa-fw fa fa-dollar-sign'></i> #{t('sidebar.expences')}".html_safe, expences_path, class: "dropdown-item navdrop-link"
             = link_to "<i class='fa-fw fa fa-hand-paper'></i> #{t('sidebar.service_categories')}".html_safe, service_categories_path, class: "dropdown-item navdrop-link"
             = link_to "<i class='fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "dropdown-item navdrop-link"
         %li.nav-item.dropdown

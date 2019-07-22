@@ -56,6 +56,6 @@ class ExpencesController < ApplicationController
     end
 
     def expence_params
-      params.require(:expence).permit(:tenant_id, :amount, :payment_method, :expendable_type, :expendable_id, :slug)
+      params.require(:expence).permit(:tenant_id, :amount, :amount_cents, :payment_method, :expendable_type, :expendable_id, :slug)
     end
 end

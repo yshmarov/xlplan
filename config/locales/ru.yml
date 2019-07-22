@@ -317,6 +317,7 @@ ru:
     new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
     new_payment: 'Новая Оплата'
+    new_expence: "Новая Выплата"
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
     close_events: 'Отметить Встречи'
@@ -327,6 +328,7 @@ ru:
     services: 'Услуги'
     locations: 'Филиалы'
     inbound_payments: 'Оплаты'
+    expences: 'Расходы'
     activity: 'Активность'
     settings: 'Настройки'
     tenant: "Моя Организация"
@@ -513,12 +515,25 @@ ru:
   inbound_payments:
     index:
       title: "Оплаты"
+    show:
+      title: "Оплата"
     new:
       title: "Создать Оплату"
     edit:
       title: "Изменить Оплату"
     create:
       success: 'Оплата успешно создана.'
+  expences:
+    index:
+      title: "Расходы"
+    show:
+      title: "Расход"
+    new:
+      title: "Создать Расход"
+    edit:
+      title: "Изменить Расход"
+    create:
+      success: 'Расход успешно создан.'
   locations:
     index:
       title: "Филиалы"
