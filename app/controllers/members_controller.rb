@@ -11,8 +11,10 @@ class MembersController < ApplicationController
     @jobs = @member.jobs.includes(:event)
     #@events = @member.events.planned.order("starts_at DESC")
     #@member.includes(:user)
-    #@expendable = @member
-    #@expences = @expendable.expences
+    #for polymorphic show
+    @expendable = @member
+    @expences = @expendable.expences
+    #for polymorphic new
     @expence = Expence.new
   end
   

@@ -121,9 +121,9 @@
       /  %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
       /    Planned events:
       /    = @events.count
-      /%li.nav-item
-      /  %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
-      /    Salaries/Payments
+      %li.nav-item
+        %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
+          = t('sidebar.expences')
       /%li.nav-item
       /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
       /    Earnings/month
@@ -137,8 +137,8 @@
         #event_calendar
       /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
       /  = render 'events/index'
-      /#second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
-      /  2
+      #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
+        = render 'expences/index'
       /#third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
       /  - if policy(@member).show_money?
       /    = bar_chart @member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
