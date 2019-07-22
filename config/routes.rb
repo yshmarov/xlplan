@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get 'dashboard/members'
   get 'dashboard/events'
   get 'dashboard/payments'
+  get 'dashboard/expences'
 
   #get 'charts/monthly_events'
   namespace :charts do

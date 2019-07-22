@@ -60,5 +60,4 @@ class StaticPagesController < ApplicationController
       username == "passa" && password == "usera"
     end
   end
-
 end

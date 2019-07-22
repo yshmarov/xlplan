@@ -61,6 +61,14 @@ class DashboardController < ApplicationController
     end
   end
 
+  def expences
+    if current_user.has_role?(:admin)
+      @expences = Expence.all
+    else
+      redirect_to root_path, alert: 'You are not authorized to view the page.'
+    end
+  end
+
   def events
     if current_user.has_role?(:admin)
       #average paycheck
