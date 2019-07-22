@@ -13,7 +13,7 @@
     = f.input :description, input_html: { autocomplete: 'off' }
     /= f.input :duration, collection: ['15', '30', '45', '60', '75', '90', '120']
     /= f.input :duration, collection: [['0', 'female'], ['1', 'male']]
-    = f.input :duration, collection: [['15 minutes', '15'], ['30  minutes', '30'], ['45 minutes', '45'], ['1 H', '60'], 
+    = f.input :duration, collection: [['0 minutes', '0'], ['15 minutes', '15'], ['30  minutes', '30'], ['45 minutes', '45'], ['1 H', '60'], 
                                       ['1 H 15 minutes', '75'], ['1 H 30 minutes', '90'], ['1 H 45 minutes', '105'], 
                                       ['2 H', '120'], ['2 H 15 minutes', '135'], ['2 H 30 minutes', '150'], ['2 H 45 minutes', '165'],
                                       ['3 H', '180'], ['3 H 15 minutes', '195'], ['3 H 30 minutes', '210'], ['3 H 45 minutes', '225'],
