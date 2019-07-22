@@ -44,7 +44,7 @@
             = link_to '', expence, class: "btn btn-primary fa fa-eye btn-sm" if policy(expence).show?
             = link_to '', expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(expence).destroy?
         .col-lg-2
-          Expendable type
+          /Expendable type
           = expence.expendable_type
           = link_to expence.expendable, expence.expendable
           /.row

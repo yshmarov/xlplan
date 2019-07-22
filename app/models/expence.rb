@@ -2,7 +2,7 @@ class Expence < ApplicationRecord
   acts_as_tenant
 
   belongs_to :tenant
-  belongs_to :expendable, polymorphic: true
+  belongs_to :expendable, polymorphic: true, touch: true
   
   validates :amount, :payment_method, presence: true
   validates :amount, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}

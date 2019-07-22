@@ -74,7 +74,7 @@
         .row
         .fa.fa-dollar-sign
         %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
-        = number_to_currency(@member.expences.map(&:amount_cents).sum, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        = number_to_currency(@member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         /(#{@member.expences.count})
         %br
         .fa.fa-balance-scale
