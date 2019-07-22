@@ -44,7 +44,6 @@
           .row
           = link_to '', member, class: "btn btn-primary fa fa-eye btn-sm" if policy(member).show?
           = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
-          /  - unless member.associations?
           = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(member).destroy?
         /location & skills
         .col-sm-3
@@ -63,10 +62,11 @@
         - if current_user.has_role?(:admin)
           .col-sm-2
             .fa.fa-hand-paper
-            = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            = number_to_currency(member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             (#{member.jobs_count})
-            /.row
-            /.fa.fa-balance-scale
+            .row
+            .fa.fa-balance-scale
+            = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         /USER
         %small.col-sm-4
           /////////////////////user account/////////////////////

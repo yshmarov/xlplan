@@ -761,6 +761,8 @@ ru:
         street: "Адрес"
         zip: "Почтовый Код"
         status: "Статус"
+        jobs_due_price_sum: "Цена работ"
+        jobs_due_price_sum_cents: "Цена работ"
         balance: "Баланс"
         jobs_count: "Кол. Работ"
         skills: "Доступные Категориии Услуг"

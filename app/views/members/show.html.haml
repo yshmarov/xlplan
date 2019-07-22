@@ -42,6 +42,9 @@
         %br
         %b= model_class.human_attribute_name(:time_zone) + ':'
         = @member.time_zone
+        %br
+        %b= model_class.human_attribute_name(:status) + ':'
+        = status_label(@member.status)
         %hr
         %b
           .fa.fa-hand-paper
@@ -60,11 +63,17 @@
           = model_class.human_attribute_name(:location_id) + ':'
           = link_to @member.location, location_path(@member.location) if @member.location.present?
         %hr
+        .fa.fa-hand-paper
+        %b= model_class.human_attribute_name(:jobs_due_price_sum) + ':'
+        = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        /%br
+        /.fa.fa-hand-holding-usd
+        /%b= model_class.human_attribute_name(:payments_amount_sum) + ':'
+        /= number_to_currency(@client.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %br
+        .fa.fa-balance-scale
         %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %br
-        %b= model_class.human_attribute_name(:status) + ':'
-        = status_label(@member.status)
     %p
     .card
       .card-header

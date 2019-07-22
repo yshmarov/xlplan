@@ -33,6 +33,7 @@ class Member < ApplicationRecord
   #-----------------------serialization-------------------#
   serialize :address
   #-----------------------money gem-------------------#
+  monetize :jobs_due_price_sum, as: :jobs_due_price_sum_cents
   monetize :balance, as: :balance_cents
   #-----------------------callbacks-------------------#
   after_touch :update_balance
@@ -151,6 +152,8 @@ class Member < ApplicationRecord
 
   #protected
   def update_balance
-    update_column :balance, (jobs.map(&:member_due_price).sum)
+    update_column :jobs_due_price_sum, (jobs.map(&:member_due_price).sum)
+    update_column :balance, (jobs_due_price_sum)
+    #update_column :balance, (expences_amount_sum - jobs_due_price_sum)
   end
 end
