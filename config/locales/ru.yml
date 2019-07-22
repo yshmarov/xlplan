@@ -778,6 +778,8 @@ ru:
         status: "Статус"
         jobs_due_price_sum: "Цена работ"
         jobs_due_price_sum_cents: "Цена работ"
+        expences_amount_sum: "Сумма выплат"
+        expences_amount_sum_cents: "Сумма выплат"
         balance: "Баланс"
         jobs_count: "Кол. Работ"
         skills: "Доступные Категориии Услуг"

@@ -71,9 +71,11 @@
         %b= model_class.human_attribute_name(:jobs_due_price_sum) + ':'
         = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         /%br
-        /.fa.fa-hand-holding-usd
-        /%b= model_class.human_attribute_name(:payments_amount_sum) + ':'
-        /= number_to_currency(@client.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        .row
+        .fa.fa-dollar-sign
+        %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
+        = number_to_currency(@member.expences.map(&:amount_cents).sum, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        /(#{@member.expences.count})
         %br
         .fa.fa-balance-scale
         %b= model_class.human_attribute_name(:balance) + ':'
