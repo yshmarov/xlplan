@@ -98,3 +98,6 @@ gem 'rack-attack'
 gem "omnicontacts"
 
 gem "recaptcha"
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

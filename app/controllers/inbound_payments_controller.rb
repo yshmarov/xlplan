@@ -9,6 +9,19 @@ class InboundPaymentsController < ApplicationController
   def show
     authorize @inbound_payment
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "InboundPayment", trackable_id: @inbound_payment).all
+    respond_to do |format|
+        format.html
+        format.pdf do
+            render pdf: "Payment No. #{@inbound_payment.id}",
+            page_size: 'A4',
+            template: "inbound_payments/show.html.haml",
+            layout: "pdf.html",
+            orientation: "Landscape",
+            lowquality: true,
+            zoom: 1,
+            dpi: 75
+        end
+    end
   end
 
   def new
