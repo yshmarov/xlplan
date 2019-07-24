@@ -478,6 +478,8 @@ ru:
       today: "Сегодня"
       next_5_member_birthdays: 'Следующие 5 дней рождений сотрудников'
       client_birthdays_today: 'Дни рождения клиентов сегодня'
+      events_today: "Встречи сегодня"
+      events_tomorrow: "Встречи завтра"
     members:
       member_stats: "Статистика Сотрудников"
       productivity: "Продуктивность"

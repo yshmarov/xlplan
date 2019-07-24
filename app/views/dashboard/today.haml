@@ -19,3 +19,21 @@
       .card-body
         - @members.each do |member|
           = link_to "#{member.date_of_birth.strftime('%b, %d')} - #{member}", member_path(member)
+%p
+.row
+  .col-lg-6
+    .card
+      - @events = Event.today
+      .card-header
+        = t('.events_today')
+        .badge.badge-danger
+          = @events.count
+      = render 'events/index'
+  .col-lg-6
+    .card
+      - @events = Event.tomorrow
+      .card-header
+        = t('.events_tomorrow')
+        .badge.badge-danger
+          = @events.count
+      = render 'events/index'
