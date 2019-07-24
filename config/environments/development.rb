@@ -1,10 +1,10 @@
 Rails.application.configure do
   #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   #config.action_mailer.default_url_options = { :host => 'bf020d3ad8e840fe89766c5a2d1fcc54.vfs.cloud9.us-east-1.amazonaws.com', :protocol => 'https' }
-  config.action_mailer.default_url_options = { :host => 'bf020d3ad8e840fe89766c5a2d1fcc54.vfs.cloud9.us-east-1.amazonaws.com'}
+  config.action_mailer.default_url_options = { :host => 'https://bf020d3ad8e840fe89766c5a2d1fcc54.vfs.cloud9.us-east-1.amazonaws.com'}
 
-  #config.action_mailer.delivery_method = :test
-  config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :test
 
   ActionMailer::Base.smtp_settings = {
     :address => "smtp.gmail.com",
