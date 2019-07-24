@@ -474,7 +474,10 @@ ru:
       client_birthdays_per_year: 'Дни рождения клиентов по годам'
       status_popularity: 'Популярность статусов'
       gender_popularity: 'Популярность полов'
-      next_5_client_birthdays: 'Следующие 5 дней рождений'
+    today:
+      today: "Сегодня"
+      next_5_member_birthdays: 'Следующие 5 дней рождений сотрудников'
+      client_birthdays_today: 'Дни рождения клиентов сегодня'
     members:
       member_stats: "Статистика Сотрудников"
       productivity: "Продуктивность"
@@ -492,10 +495,10 @@ ru:
       confirmed_jobs_per_month_client_price: "Подтвержденные работ в месяц, к оплате от клиентов"
       confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
     events:
+      event_stats: 'Статистика Встреч'
       per_day: "По дням"
       per_month: "По месяцам"
       other_stats: "Другие показатели"
-      event_stats: 'Статистика Встреч'
       confirmed_event_price_per_day: "Цена подтверждённых встреч в день"
       confirmed_event_price_per_month: "Цена подтверждённых встреч в месяц"
       counters: "Счётчики"

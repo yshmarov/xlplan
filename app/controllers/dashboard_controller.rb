@@ -5,6 +5,14 @@ class DashboardController < ApplicationController
 
   def start
   end
+  
+  def today
+    #next 5 bdays
+    next_bdays = (Date.today + 0.day).yday
+    @members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
+    #all bdays today
+    @clients = Client.where("EXTRACT(YEAR FROM date_of_birth) >= ?", 1948).where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday).order('EXTRACT (DOY FROM date_of_birth) ASC')
+  end
 
   def calendar
     @jobs = Job.includes(:event, :service, :event => :client)
@@ -23,9 +31,6 @@ class DashboardController < ApplicationController
 
   def clients
     if current_user.has_role?(:admin)
-      #next 5 bdays
-      next_bdays = (Date.today + 0.day).yday
-      @clients = Client.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end

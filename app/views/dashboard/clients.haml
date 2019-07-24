@@ -35,12 +35,3 @@
       .card-body
         = pie_chart Client.group(:gender).count, download: true
     %p
-.row
-  .col-lg-6
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.next_5_client_birthdays')
-      .card-body
-        - @clients.each do |client|
-          %p= link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)

@@ -1,0 +1,21 @@
+.text-center
+  %h4
+    = t('.today')
+    = I18n.localize Date.today, format: :short
+.row
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.client_birthdays_today')
+      .card-body
+        - @clients.each do |client|
+          = link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.next_5_member_birthdays')
+      .card-body
+        - @members.each do |member|
+          = link_to "#{member.date_of_birth.strftime('%b, %d')} - #{member}", member_path(member)
