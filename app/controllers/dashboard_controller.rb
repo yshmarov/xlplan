@@ -74,9 +74,9 @@ class DashboardController < ApplicationController
       #average paycheck
       @average_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).average(:client_due_price).to_i/100
       if params.has_key?(:select)
-        start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
-        end_date = start_date.end_of_month
-        @events = Event.where("starts_at BETWEEN ? AND ?",start_date, end_date)
+        @start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
+        @end_date = @start_date.end_of_month
+        @events = Event.where("starts_at BETWEEN ? AND ?",@start_date, @end_date)
       else
         @events = Event.where("starts_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
       end
@@ -88,9 +88,9 @@ class DashboardController < ApplicationController
   def payments
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
-        start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
-        end_date = start_date.end_of_month
-        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",start_date, end_date)
+        @start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
+        @end_date = @start_date.end_of_month
+        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",@start_date, @end_date)
       else
         @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
       end

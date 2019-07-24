@@ -12,24 +12,16 @@
       = t('.other_stats')
 #myTabContent.tab-content
   #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-    .text-center
-      - if params.has_key?(:select)
-        = params[:select][:month]
-        = params[:select][:year]
-      - else
-        = Time.now.month
-        /= Time.now.strftime("%B")
-        /= l(Time.now, format: '%B')
-        = Time.now.year
     %p
-    .text-center
-      = form_tag dashboard_events_path, method: :get do
+    = form_tag dashboard_events_path, method: :get do
+      - if params.has_key?(:select)
+        = select_month(@start_date, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
+        = select_year(@start_date, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year'})
+      - else
         = select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
-        /= select_month(Date.today, {use_short_month: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
         = select_year(Date.today, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year'})
-        = submit_tag("Search", :id=>"button", :class=>"Test", :name=>"submit")
-        = link_to "", dashboard_events_path, class: "btn btn-secondary fa fa-redo mb mb-1", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-    /  = select_tag :product,  options_for_select(["Product1", "Product2"], params[:product]), id: "different_option_value_html", onchange: "this.form.submit();", include_blank: "Which product ?"
+      = submit_tag("Search", :id=>"button", :class=>"Test", :name=>"submit")
+      = link_to "", dashboard_events_path, class: "btn btn-secondary fa fa-redo mb mb-1", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
     %p
     .row
       .col-lg-6
