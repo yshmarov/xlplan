@@ -492,9 +492,12 @@ ru:
       confirmed_jobs_per_month_client_price: "Подтвержденные работ в месяц, к оплате от клиентов"
       confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
     events:
+      per_day: "По дням"
+      per_month: "По месяцам"
+      other_stats: "Другие показатели"
       event_stats: 'Статистика Встреч'
       confirmed_event_price_per_day: "Цена подтверждённых встреч в день"
-      confirmed_event_price_per_day: "Цена подтверждённых встреч в месяц"
+      confirmed_event_price_per_month: "Цена подтверждённых встреч в месяц"
       counters: "Счётчики"
       average_confirmed_check: "Средний чек"
       planned: "Запланированные"
@@ -511,6 +514,8 @@ ru:
       location_popularity: 'Популярность филиалов'
       service_popularity: 'Популярность услуг'
     payments:
+      per_day: "По дням"
+      per_month: "По месяцам"
       payment_stats: 'Статистика Оплат'
       payments_per_month: 'Сумма оплат в месяц'
       payments_per_day: 'Сумма оплат в день'

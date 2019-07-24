@@ -96,4 +96,11 @@
         = t('.confirmed_jobs_per_month_member_price')
       .card-body
         = line_chart charts_members_confirmed_earnings_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
+  /  %p
+  /.col-12
+  /  .card
+  /    .card-header
+  /      = t('.expences_per_month_amount')
+  /    .card-body
+  /      = line_chart charts_members_expences_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
 %p

@@ -1,102 +1,116 @@
 .text-center
   %h4= t('.event_stats')
-%p
-.text-center
-  - if params.has_key?(:select)
-    = params[:select][:month]
-    = params[:select][:year]
-  - else
-    = Time.now.month
-    /= Time.now.strftime("%B")
-    /= l(Time.now, format: '%B')
-    = Time.now.year
-%p
-.text-center
-  = form_tag dashboard_events_path, method: :get do
-    = select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
-    /= select_month(Date.today, {use_short_month: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
-    = select_year(Date.today, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year'})
-    = submit_tag("Search", :id=>"button", :class=>"Test", :name=>"submit")
-    = link_to "", dashboard_events_path, class: "btn btn-secondary fa fa-redo mb mb-1", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-/  = select_tag :product,  options_for_select(["Product1", "Product2"], params[:product]), id: "different_option_value_html", onchange: "this.form.submit();", include_blank: "Which product ?"
-%p
-.row
-  .col-lg-6
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.confirmed_event_price_per_day')
-    %table.table.table-sm.table-bordered
-      %tbody
-        - @events.is_confirmed.group_by_day(:starts_at).sum("event_due_price/100").each do |k, v|
-          %tr
-            %td= k.strftime('%d/%m/%Y')
-            %td= v
-            /%td= number_to_currency(v, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+%ul#myTab.nav.nav-tabs{:role => "tablist"}
+  %li.nav-item
+    %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+      = t('.per_day')
+  %li.nav-item
+    %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
+      = t('.per_month')
+  %li.nav-item
+    %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
+      = t('.other_stats')
+#myTabContent.tab-content
+  #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
+    .text-center
+      - if params.has_key?(:select)
+        = params[:select][:month]
+        = params[:select][:year]
+      - else
+        = Time.now.month
+        /= Time.now.strftime("%B")
+        /= l(Time.now, format: '%B')
+        = Time.now.year
     %p
-  .col-lg-6
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.confirmed_event_price_per_day')
-      .card-body
-        /= bar_chart charts_events_per_day_path
-        = bar_chart @events.is_confirmed.group_by_day(:starts_at).sum("client_price/100")
-%p
-.row
-  .col-lg-12
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.events_per_month_quantity')
-      .card-body
-        = column_chart charts_monthly_events_path, download: true
-%p
-.row
-  .col-lg-12
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.unique_clients_per_month_quantity')
-      .card-body
-        = column_chart Event.group_by_month(:starts_at, format: "%b %Y").distinct.count('client_id'), download: true
-%p
-.row
-  .col-lg-12
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.confirmed_event_price_per_month')
-      .card-body
-        = column_chart Event.is_confirmed.group_by_month(:starts_at).sum("client_price/100")
-%p
-.row
-  .col-lg-3
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.status_popularity')
-      .card-body
-        = pie_chart Event.group(:status).count, download: true
+    .text-center
+      = form_tag dashboard_events_path, method: :get do
+        = select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
+        /= select_month(Date.today, {use_short_month: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
+        = select_year(Date.today, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year'})
+        = submit_tag("Search", :id=>"button", :class=>"Test", :name=>"submit")
+        = link_to "", dashboard_events_path, class: "btn btn-secondary fa fa-redo mb mb-1", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+    /  = select_tag :product,  options_for_select(["Product1", "Product2"], params[:product]), id: "different_option_value_html", onchange: "this.form.submit();", include_blank: "Which product ?"
     %p
-  .col-lg-3
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.location_popularity')
-      .card-body
-        = pie_chart Event.joins(:location).group(:'locations.name').count, download: true
+    .row
+      .col-lg-6
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.confirmed_event_price_per_day')
+        %table.table.table-sm.table-bordered
+          %tbody
+            - @events.is_confirmed.group_by_day(:starts_at).sum("event_due_price/100").each do |k, v|
+              %tr
+                %td= k.strftime('%d/%m/%Y')
+                %td= v
+                /%td= number_to_currency(v, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %p
+      .col-lg-6
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.confirmed_event_price_per_day')
+          .card-body
+            /= bar_chart charts_events_per_day_path
+            = bar_chart @events.is_confirmed.group_by_day(:starts_at).sum("client_price/100")
+  #first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
     %p
-  .col-lg-3
-    .card
-      .card-header
-        .fa.fa-chart-line
-        = t('.service_popularity')
-      .card-body
-        = pie_chart Job.joins(:service).group(:'services.name').count, download: true
-  .col-lg-3
-    .card-header.bg-default
-      %i.fa.fa-dollar-sign
-      = number_to_currency(@average_confirmed_earnings, :unit => "")
-      %div 
-        %b= t('.average_confirmed_check')
+    .row
+      .col-lg-12
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.events_per_month_quantity')
+          .card-body
+            = column_chart charts_monthly_events_path, download: true
+    %p
+    .row
+      .col-lg-12
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.unique_clients_per_month_quantity')
+          .card-body
+            = column_chart Event.group_by_month(:starts_at, format: "%b %Y").distinct.count('client_id'), download: true
+    %p
+    .row
+      .col-lg-12
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.confirmed_event_price_per_month')
+          .card-body
+            = column_chart Event.is_confirmed.group_by_month(:starts_at).sum("client_price/100")
+  #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
+    %p
+    .row
+      .col-lg-6
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.status_popularity')
+          .card-body
+            = pie_chart Event.group(:status).count, download: true
+        %p
+      .col-lg-6
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.location_popularity')
+          .card-body
+            = pie_chart Event.joins(:location).group(:'locations.name').count, download: true
+        %p
+      .col-lg-6
+        .card
+          .card-header
+            .fa.fa-chart-line
+            = t('.service_popularity')
+          .card-body
+            = pie_chart Job.joins(:service).group(:'services.name').count, download: true
+      .col-lg-6
+        .card-header.bg-default
+          %i.fa.fa-dollar-sign
+          = number_to_currency(@average_confirmed_earnings, :unit => "")
+          %div 
+            %b= t('.average_confirmed_check')
+%br
