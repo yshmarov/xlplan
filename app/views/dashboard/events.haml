@@ -1,5 +1,25 @@
 .text-center
   %h4= t('.event_stats')
+%p
+.text-center
+  - if params.has_key?(:select)
+    = params[:select][:month]
+    = params[:select][:year]
+  - else
+    = Time.now.month
+    /= Time.now.strftime("%B")
+    /= l(Time.now, format: '%B')
+    = Time.now.year
+%p
+.text-center
+  = form_tag dashboard_events_path, method: :get do
+    = select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
+    /= select_month(Date.today, {use_short_month: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month'})
+    = select_year(Date.today, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year'})
+    = submit_tag("Search", :id=>"button", :class=>"Test", :name=>"submit")
+    = link_to "", dashboard_events_path, class: "btn btn-secondary fa fa-redo mb mb-1", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+/  = select_tag :product,  options_for_select(["Product1", "Product2"], params[:product]), id: "different_option_value_html", onchange: "this.form.submit();", include_blank: "Which product ?"
+%p
 .row
   .col-lg-6
     .card
@@ -8,7 +28,7 @@
         = t('.confirmed_event_price_per_day')
     %table.table.table-sm.table-bordered
       %tbody
-        - Event.is_confirmed.group_by_day(:starts_at).sum("event_due_price/100").each do |k, v|
+        - @events.is_confirmed.group_by_day(:starts_at).sum("event_due_price/100").each do |k, v|
           %tr
             %td= k.strftime('%d/%m/%Y')
             %td= v
@@ -20,7 +40,8 @@
         .fa.fa-chart-line
         = t('.confirmed_event_price_per_day')
       .card-body
-        = bar_chart charts_events_per_day_path
+        /= bar_chart charts_events_per_day_path
+        = bar_chart @events.is_confirmed.group_by_day(:starts_at).sum("client_price/100")
 %p
 .row
   .col-lg-12
@@ -39,6 +60,15 @@
         = t('.unique_clients_per_month_quantity')
       .card-body
         = column_chart Event.group_by_month(:starts_at, format: "%b %Y").distinct.count('client_id'), download: true
+%p
+.row
+  .col-lg-12
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.confirmed_event_price_per_month')
+      .card-body
+        = column_chart Event.is_confirmed.group_by_month(:starts_at).sum("client_price/100")
 %p
 .row
   .col-lg-3

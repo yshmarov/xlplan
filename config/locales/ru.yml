@@ -494,6 +494,7 @@ ru:
     events:
       event_stats: 'Статистика Встреч'
       confirmed_event_price_per_day: "Цена подтверждённых встреч в день"
+      confirmed_event_price_per_day: "Цена подтверждённых встреч в месяц"
       counters: "Счётчики"
       average_confirmed_check: "Средний чек"
       planned: "Запланированные"
