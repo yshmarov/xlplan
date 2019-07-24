@@ -80,22 +80,13 @@ class DashboardController < ApplicationController
   
   def payments
     if current_user.has_role?(:admin)
-      #if params.has_key?(:select)
-      #  if params[:select][:month] == 'all'
-      #    @inbound_payments = query.where("YEAR(created_at) = ?", params[:select][:year])
-      #  else
-      #    @inbound_payments = query.where("MONTH(created_at) = ? AND YEAR(created_at) = ?", params[:select][:month], params[:select][:year])
-      #  end
-      #end
-
-      #if params.has_key?(:select)
-      #  start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_day
-      #  end_date = Date.today.end_of_day
-      #  @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",start_date, end_date)
-      #else
-      #  @inbound_payments = InboundPayment.all
-      #end
-      @inbound_payments = InboundPayment.all
+      if params.has_key?(:select)
+        start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
+        end_date = start_date.end_of_month
+        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",start_date, end_date)
+      else
+        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
+      end
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end

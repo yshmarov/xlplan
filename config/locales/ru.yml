@@ -334,7 +334,7 @@ ru:
     tenant: "Моя Организация"
     service_categories: "Категории услуг"
     stats: 'Статистика'
-    my_page: 'Моя Страница'
+    my_page: 'Мой Кабинет'
     profile_settings: 'Настройки Профиля'
     account_settings: 'Пароль и Доступ'
     logout: 'Выход'
