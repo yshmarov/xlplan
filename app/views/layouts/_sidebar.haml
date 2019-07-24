@@ -50,6 +50,8 @@
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.location')}".html_safe, new_location_path, class: "dropdown-item navdrop-link"
       /    = link_to "<i class='fa-fw fa fa-plus'></i> #{t('sidebar.service_category')}".html_safe, new_service_category_path, class: "dropdown-item navdrop-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
+      /= Event.today.count
+      /= Event.tomorrow.count
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
