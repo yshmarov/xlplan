@@ -8,7 +8,8 @@ class MembersController < ApplicationController
 
   def show
     authorize @member
-    @jobs = @member.jobs.includes(:event)
+    #@jobs = @member.jobs.includes(:event)
+    @jobs = @member.jobs.includes(:event, :service, :event => :client)
     #@events = @member.events.planned.order("starts_at DESC")
     #@member.includes(:user)
     #for polymorphic show

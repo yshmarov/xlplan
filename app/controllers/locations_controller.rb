@@ -8,7 +8,8 @@ class LocationsController < ApplicationController
 
   def show
     authorize @location
-    @events = @location.events
+    #@events = @location.events
+    @events = @location.events.includes(:client, :jobs, :jobs => [:service, :member]).order("starts_at DESC")
   end
 
   def new
