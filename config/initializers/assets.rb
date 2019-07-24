@@ -13,4 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 # file: config/initializers/assets.rb
-Rails.application.config.assets.precompile += %w( inbound_payment.scss )
+Rails.application.config.assets.precompile += %w( pdf.scss )

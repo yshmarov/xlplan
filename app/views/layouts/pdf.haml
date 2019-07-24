@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    = wicked_pdf_stylesheet_link_tag "pdf"
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
+    %meta{:charset => "utf-8"}/
+  %body
+    = wicked_pdf_image_tag 'logo.png', height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
+    = Tenant.current_tenant.name
+    = yield
