@@ -7,9 +7,10 @@
           .text-center
             = link_to inbound_payment.slug, inbound_payment_path(inbound_payment) if policy(inbound_payment).show?
             .row
-            = link_to '', edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
-            = link_to '', inbound_payment, class: "btn btn-primary fa fa-eye btn-sm" if policy(inbound_payment).show?
-            = link_to '', inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
+            = link_to "", edit_inbound_payment_path(inbound_payment), class: "btn btn-warning fa fa-edit btn-sm"  if policy(inbound_payment).edit?
+            = link_to "", inbound_payment, class: "btn btn-primary fa fa-eye btn-sm" if policy(inbound_payment).show?
+            /= link_to "", inbound_payment_path(inbound_payment, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank  if policy(inbound_payment).show?
+            = link_to "", inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(inbound_payment).destroy?
         .col-lg-4
           .fa.fa-user
           - if inbound_payment.client.present?
