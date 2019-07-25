@@ -8,6 +8,7 @@
         /below works the same
         /= model_class.model_name.human.titleize
         .float-right
+          = link_to "", event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm"
           = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).update?
           = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
       .card-body

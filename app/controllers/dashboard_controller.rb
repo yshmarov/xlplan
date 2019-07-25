@@ -9,6 +9,7 @@ class DashboardController < ApplicationController
     @members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
     #all bdays today
     @clients = Client.where("EXTRACT(YEAR FROM date_of_birth) >= ?", 1948).where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday).order('EXTRACT (DOY FROM date_of_birth) ASC')
+    #@events = Event.today_and_tomorrow
   end
 
   def calendar

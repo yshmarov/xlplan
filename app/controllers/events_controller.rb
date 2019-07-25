@@ -99,6 +99,19 @@ class EventsController < ApplicationController
     #@inbound_payment.payable_type = "Event"
     #@payment.client_id = @event.client.id
     #@payment.amount = @event.client_price
+    respond_to do |format|
+        format.html
+        format.pdf do
+            render pdf: "Event No. #{@event.slug}",
+            page_size: 'A4',
+            template: "events/show.html.haml",
+            layout: "pdf.haml",
+            orientation: "Landscape",
+            lowquality: true,
+            zoom: 1,
+            dpi: 75
+        end
+    end
   end
 
   def new

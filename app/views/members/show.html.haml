@@ -124,7 +124,7 @@
       /    = @events.count
       %li.nav-item
         %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
-          = t('sidebar.expences')
+          = t('sidebar.member_expences')
           (#{@member.expences.count})
       /%li.nav-item
       /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
@@ -141,6 +141,7 @@
       /  = render 'events/index'
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
         - if policy(@member).show_money?
+          %p
           = render 'expences/index'
       /#third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
       /  - if policy(@member).show_money?

@@ -329,6 +329,7 @@ ru:
     locations: 'Филиалы'
     inbound_payments: 'Оплаты'
     expences: 'Расходы'
+    member_expences: 'Выплаты'
     activity: 'Активность'
     settings: 'Настройки'
     tenant: "Моя Организация"

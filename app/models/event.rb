@@ -28,6 +28,7 @@ class Event < ApplicationRecord
   #-----------------------scopes-------------------#
   scope :today, -> { where(starts_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).where(status: 'planned') }
   scope :tomorrow, -> { where(starts_at: Time.zone.now.tomorrow.beginning_of_day..Time.zone.now.tomorrow.end_of_day).where(status: 'planned') }
+  scope :today_and_tomorrow, -> { where(starts_at: Time.zone.now.beginning_of_day..Time.zone.now.tomorrow.end_of_day).where(status: 'planned') }
   scope :close, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_planned, -> { where(status: [:planned]) }

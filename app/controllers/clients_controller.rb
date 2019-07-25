@@ -36,7 +36,7 @@ class ClientsController < ApplicationController
 
   def show
     authorize @client
-    @events = @client.events.includes(:client, :jobs, :jobs => [:service, :member]).order("starts_at DESC")
+    @events = @client.events.includes(:jobs, :jobs => [:service, :member]).order("starts_at DESC")
     #@events = @client.events.order("starts_at DESC")
     @inbound_payments = @client.inbound_payments.order("created_at DESC")
 
