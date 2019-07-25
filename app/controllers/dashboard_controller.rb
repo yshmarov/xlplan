@@ -4,9 +4,6 @@ class DashboardController < ApplicationController
   end
 
   def start
-  end
-  
-  def today
     #next 5 bdays
     next_bdays = (Date.today + 0.day).yday
     @members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
