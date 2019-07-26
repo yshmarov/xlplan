@@ -8,6 +8,19 @@ class ExpencesController < ApplicationController
 
   def show
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Expence", trackable_id: @expence).all
+    respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Expence No. #{@expence.slug}",
+          page_size: 'A4',
+          template: "expences/show.html.haml",
+          layout: "pdf.haml",
+          orientation: "Landscape",
+          lowquality: true,
+          zoom: 1,
+          dpi: 75
+        end
+    end
   end
 
   def new

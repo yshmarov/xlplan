@@ -12,17 +12,17 @@ class InboundPaymentsController < ApplicationController
     respond_to do |format|
         format.html
         format.pdf do
-            render pdf: "Payment No. #{@inbound_payment.slug}",
-            page_size: 'A4',
-            template: "inbound_payments/show.html.haml",
-            #template: "inbound_payments/inbound_payment_pdf.html.haml",
-            #template: "inbound_payments/show.html.haml",
-            #format.pdf {render template: "payments/report", pdf: 'report'}   # Excluding ".pdf" extension.
-            layout: "pdf.haml",
-            orientation: "Landscape",
-            lowquality: true,
-            zoom: 1,
-            dpi: 75
+          render pdf: "Payment No. #{@inbound_payment.slug}",
+          page_size: 'A4',
+          template: "inbound_payments/show.html.haml",
+          #template: "inbound_payments/inbound_payment_pdf.html.haml",
+          #template: "inbound_payments/show.html.haml",
+          #format.pdf {render template: "payments/report", pdf: 'report'}   # Excluding ".pdf" extension.
+          layout: "pdf.haml",
+          orientation: "Landscape",
+          lowquality: true,
+          zoom: 1,
+          dpi: 75
         end
     end
   end
