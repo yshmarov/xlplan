@@ -52,6 +52,20 @@ class ClientsController < ApplicationController
     authorize @inbound_payment
 
     #@activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Client", trackable_id: @client).all
+
+    respond_to do |format|
+        format.html
+        format.pdf do
+          render pdf: "Client #{@client.full_name}",
+          page_size: 'A4',
+          template: "clients/show.html.haml",
+          layout: "pdf.haml",
+          orientation: "Landscape",
+          lowquality: true,
+          zoom: 1,
+          dpi: 75
+        end
+    end
   end
 
   def edit

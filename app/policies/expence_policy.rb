@@ -6,6 +6,13 @@ class ExpencePolicy < ApplicationPolicy
   end
 
   def show?
+    #if @user.has_role?(:admin)
+    #
+    #elsif @user.has_role?(:manager)
+    #  
+    #elsif @user.has_role?(:specialist)
+    #  
+    #end
     any_member
   end
 
