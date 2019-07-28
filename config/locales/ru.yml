@@ -520,12 +520,14 @@ ru:
       status_popularity: 'Популярность статусов'
       location_popularity: 'Популярность филиалов'
       service_popularity: 'Популярность услуг'
+      current_month: "Сегодня"
     payments:
       per_day: "По дням"
       per_month: "По месяцам"
       payment_stats: 'Статистика Оплат'
       payments_per_month: 'Сумма оплат в месяц'
       payments_per_day: 'Сумма оплат в день'
+      current_month: "Этот месяц"
 
   ######################################################
 
