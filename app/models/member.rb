@@ -128,6 +128,7 @@ class Member < ApplicationRecord
     last_name:  "Admin",
     first_name: "Super"
   }
+  #business owner - also a good name
 
   def self.create_new_member(user, params)
     # add any other initialization for a new member
