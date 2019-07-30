@@ -83,22 +83,25 @@
 .row
   .col-lg-4
     %li.list-group-item
-      .fa.fa-calendar-check
-      %b= t('tenants.show.events')
-      %span.badge.badge-secondary
-        = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+      = link_to events_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}) do
+        .fa.fa-calendar-check
+        %b= t('tenants.show.events')
+        %span.badge.badge-secondary
+          = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
   .col-lg-4
     %li.list-group-item
-      %i.fa.fa-user
-      %b= t('tenants.show.clients')
-      %span.badge.badge-secondary
-        = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+      = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}) do
+        %i.fa.fa-user
+        %b= t('tenants.show.clients')
+        %span.badge.badge-secondary
+          = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
   .col-lg-4
     %li.list-group-item
-      %i.fa.fa-hand-holding-usd
-      %b= t('tenants.show.inbound_payments')
-      %span.badge.badge-secondary
-        = InboundPayment.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+      = link_to inbound_payments_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}) do
+        %i.fa.fa-hand-holding-usd
+        %b= t('tenants.show.inbound_payments')
+        %span.badge.badge-secondary
+          = InboundPayment.where("created_at >= ?", Time.zone.now.beginning_of_day).count
 %p
 .row
   .col-lg-6
