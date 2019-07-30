@@ -88,4 +88,17 @@ $(document).on('turbolinks:load', function(){
         });
     });
 
+    $("#datepickerforcalendarselect").datepicker({
+        weekStart:1,
+        format: "dd.mm.yyyy",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true,
+          gotoCurrent: true,
+        autoSize: true
+    })
+    .on('changeDate', function(ev){
+        $('#event_calendar').fullCalendar('gotoDate', ev.date);
+    });
+
 });
