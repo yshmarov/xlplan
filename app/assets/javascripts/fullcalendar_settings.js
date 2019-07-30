@@ -12,6 +12,12 @@ function eventCalendar() {
     height: "auto",
     // render data
     resources: app.vars.resources,
+
+    viewRender: function(view, element){
+        var currentdate = view.intervalStart;
+        $('#datepickerforcalendarselect').datepicker().datepicker('setDate', new Date(currentdate));
+    },
+
     events: app.vars.events,
     locale: app.vars.locale,
     // design
