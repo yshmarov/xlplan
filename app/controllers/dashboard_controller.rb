@@ -70,7 +70,7 @@ class DashboardController < ApplicationController
   def expences
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
-        @start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
+        @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
         @end_date = @start_date.end_of_month
         @expences = Expence.where("created_at BETWEEN ? AND ?",@start_date, @end_date)
       else
@@ -86,7 +86,7 @@ class DashboardController < ApplicationController
       #average paycheck
       @average_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).average(:client_due_price).to_i/100
       if params.has_key?(:select)
-        @start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
+        @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime
         @end_date = @start_date.end_of_month
         @events = Event.where("starts_at BETWEEN ? AND ?",@start_date, @end_date)
       else
@@ -100,7 +100,9 @@ class DashboardController < ApplicationController
   def payments
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
-        @start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month
+        #@start_date = ("2019" + "-" + "5" + "-" + Date.today.day.to_s).to_datetime.beginning_of_month         #test version - works
+        #@start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month #Date.today.day produces invalid_date error on 31st day of the month
+        @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
         @end_date = @start_date.end_of_month
         @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",@start_date, @end_date)
       else
