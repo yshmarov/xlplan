@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_095100) do
+ActiveRecord::Schema.define(version: 2019_07_31_002036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,10 +126,10 @@ ActiveRecord::Schema.define(version: 2019_07_22_095100) do
     t.bigint "client_id"
     t.integer "amount", default: 0, null: false
     t.string "payment_method", default: "cash", null: false
-    t.integer "payable_id"
-    t.string "payable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "payable_id"
+    t.string "payable_type"
     t.string "slug"
     t.index ["client_id"], name: "index_inbound_payments_on_client_id"
     t.index ["payable_id"], name: "index_inbound_payments_on_payable_id"
@@ -186,7 +186,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_095100) do
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
     t.text "address"
-    t.string "time_zone", default: "UTC"
     t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
     t.bigint "location_id"
@@ -194,6 +193,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_095100) do
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.string "slug"
+    t.string "time_zone", default: "UTC"
     t.integer "jobs_due_price_sum", default: 0, null: false
     t.integer "expences_amount_sum", default: 0, null: false
     t.index ["location_id"], name: "index_members_on_location_id"
@@ -271,9 +271,12 @@ ActiveRecord::Schema.define(version: 2019_07_22_095100) do
     t.string "plan", limit: 40, default: "demo", null: false
     t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
-    t.string "industry", limit: 144, default: "other", null: false
+    t.string "string", limit: 2, default: "en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "industry", limit: 144, default: "other", null: false
+    t.string "logo", limit: 500
+    t.string "website", limit: 500
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
@@ -288,7 +291,6 @@ ActiveRecord::Schema.define(version: 2019_07_22_095100) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "time_zone", default: "UTC"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -307,6 +309,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_095100) do
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "time_zone", default: "UTC"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

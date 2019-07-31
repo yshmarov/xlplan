@@ -697,6 +697,8 @@ ru:
         locale: "Язык программы"
         default_currency: "Валюта"
         industry: "Сфера деятельности"
+        website: "Веб-сайт"
+        logo: "Логотип"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       event:

@@ -9,6 +9,7 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.string :industry, :limit => 144, default: "other", null: false
       #t.string :default_time_zone, null: false
       #t.string :logo
+      #t.string :website
       #t.string :default_working_hours
 
       t.timestamps

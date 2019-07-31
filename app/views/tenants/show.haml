@@ -19,6 +19,12 @@
         %br
         %b= model_class.human_attribute_name(:default_currency) + ':'
         %b= @tenant.default_currency.upcase
+        %br
+        %b= model_class.human_attribute_name(:website) + ':'
+        %b= @tenant.website
+        %br
+        %b= model_class.human_attribute_name(:logo) + ':'
+        %b= @tenant.logo
         %hr
         %b= model_class.human_attribute_name(:id) + ':'
         %b= @tenant.id
