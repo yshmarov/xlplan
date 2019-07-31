@@ -354,6 +354,8 @@ en:
       any_device2: "On your phone or computer. Open in your browser (Chrome, Safari, Mozilla, Opera)"
       anonimity: "Anonimity"
       anonimity2: "XLPLAN is not a free service. We do not analyze your data, or share it with 3rd parties"
+      user_roles: "User roles"
+      user_roles2: "Different access rights for business owners, managers and employees"
       security: "Security"
       security2: "Your company data is private and encrypted. Only you can see it"
       export: "Export"
