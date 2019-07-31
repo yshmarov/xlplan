@@ -13,7 +13,8 @@
               %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
         %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-          = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          - if params.has_key?(:members_search)
+            = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Member).create?
             - if (Tenant.current_tenant.can_create_members?)
               = link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'

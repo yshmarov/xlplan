@@ -10,7 +10,8 @@
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
             .fa.fa-chevron-down
-          = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          - if params.has_key?(:q)
+            = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
           - if policy(Event).create?
             = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
     #accordion.collapse
@@ -22,11 +23,14 @@
             = model_class.human_attribute_name(:member)
             = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
           .col-md-4
-            .input-daterange
-              = model_class.human_attribute_name(:after)
-              = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-              = model_class.human_attribute_name(:before)
-              = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+            #input-daterange
+              = f.hidden_field :starts_at_gteq
+              = f.hidden_field :starts_at_datelteq
+            /.input-daterange
+            /  = model_class.human_attribute_name(:after)
+            /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
+            /  = model_class.human_attribute_name(:before)
+            /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
           .col-md-4
             = model_class.human_attribute_name(:status)
             = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
