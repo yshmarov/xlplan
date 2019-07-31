@@ -11,6 +11,8 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.text :address
 
       t.integer :status, default: 1, null: false
+      t.integer :payments_amount_sum, default: 0, null: false
+      t.integer :jobs_amount_sum, default: 0, null: false
       t.integer :balance, default: 0, null: false
 
       t.timestamps
