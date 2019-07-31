@@ -89,7 +89,7 @@ $(document).on('turbolinks:load', function(){
       todayBtn: "linked",
       autoclose: true,
       todayHighlight: true,
-        gotoCurrent: true,
+      gotoCurrent: true,
       autoSize: true
   })
   .on('changeDate', function(ev){
