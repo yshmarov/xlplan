@@ -51,9 +51,9 @@ $(document).on('turbolinks:load', function(){
     })
   });
 
- 	$('.input-daterange').datepicker({
-    orientation: 'auto bottom',
+ 	$('#input-daterange').datepicker({
     format: 'yyyy-mm-dd',
+    orientation: 'auto bottom',
     autoclose: true,
     todayHighlight: true,
     clearBtn: true,
