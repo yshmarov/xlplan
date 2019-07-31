@@ -51,11 +51,6 @@ $(document).on('turbolinks:load', function(){
     })
   });
 
-	$('.datepicker').datepicker({
-     orientation: 'auto bottom',
-     format: 'yyyy-mm-dd',
-	});
- 	
  	$('.input-daterange').datepicker({
     orientation: 'auto bottom',
     format: 'yyyy-mm-dd',
@@ -76,29 +71,29 @@ $(document).on('turbolinks:load', function(){
     }
   });
 
-    $(function () {
-      $('#datetimepicker').datetimepicker({
-        locale: app.vars.locale,
-        inline: true,
-        sideBySide: true,
-        stepping: 15,
-        ignoreReadonly: true,
-        allowInputToggle: true,
-        format : 'DD/MM/YYYY HH:mm'
-        });
-    });
+  $(function () {
+    $('#datetimepicker').datetimepicker({
+      locale: app.vars.locale,
+      inline: true,
+      sideBySide: true,
+      stepping: 15,
+      ignoreReadonly: true,
+      allowInputToggle: true,
+      format : 'DD/MM/YYYY HH:mm'
+      });
+  });
 
-    $("#datepickerforcalendarselect").datepicker({
-        weekStart:1,
-        format: "dd.mm.yyyy",
-        todayBtn: "linked",
-        autoclose: true,
-        todayHighlight: true,
-          gotoCurrent: true,
-        autoSize: true
-    })
-    .on('changeDate', function(ev){
-        $('#event_calendar').fullCalendar('gotoDate', ev.date);
-    });
+  $("#datepicker").datepicker({
+      weekStart:1,
+      format: "dd.mm.yyyy",
+      todayBtn: "linked",
+      autoclose: true,
+      todayHighlight: true,
+        gotoCurrent: true,
+      autoSize: true
+  })
+  .on('changeDate', function(ev){
+      $('#event_calendar').fullCalendar('gotoDate', ev.date);
+  });
 
 });
