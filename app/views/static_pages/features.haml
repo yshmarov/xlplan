@@ -2,8 +2,23 @@
   XLPLAN | Features
 = provide(:description, 'XLPLAN features. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, features, salon, management software, crm, erp, employee calendar, calendar')
-/%head
-/  %meta{:content => "xlplan features", :name => "description"}/
+/%hr
+/.container
+/  .row
+/    .col-lg-5
+/      .text-center
+/        %h1.display-4 Online calendar
+/      .card.card-body.bg-light
+/        Still using a paper diary in #{Time.now.year}?
+/        %p
+/        XLPLAN is a professional tool for a serious business.
+/        %p
+/        Now you can have all employee calendars in one place.
+/      %p
+/      .text-center
+/        = link_to 'Start using now >>', new_user_registration_path, class: 'btn btn-lg btn-outline-warning text-dark'
+/    .col-lg-7
+/      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
 
 
 /%hr
