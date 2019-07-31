@@ -105,6 +105,25 @@
 %p
 .row
   .col-lg-6
+    - @events = Event.today
+    .card-header
+      .fa.fa-calendar-check
+      = t('.events_today')
+      .badge.badge-danger
+        = @events.count
+    = render 'events/index'
+    %p
+  .col-lg-6
+    - @events = Event.tomorrow
+    .card-header
+      .fa.fa-calendar-check
+      = t('.events_tomorrow')
+      .badge.badge-danger
+        = @events.count
+    = render 'events/index'
+%p
+.row
+  .col-lg-6
     .card
       .card-header
         .fa.fa-birthday-cake
@@ -123,22 +142,3 @@
       .card-body
         - @members.each do |member|
           = link_to "#{member.date_of_birth.strftime('%b, %d')} - #{member}", member_path(member)
-%p
-.row
-  .col-lg-6
-    - @events = Event.today
-    .card-header
-      .fa.fa-calendar-check
-      = t('.events_today')
-      .badge.badge-danger
-        = @events.count
-    = render 'events/index'
-    %p
-  .col-lg-6
-    - @events = Event.tomorrow
-    .card-header
-      .fa.fa-calendar-check
-      = t('.events_tomorrow')
-      .badge.badge-danger
-        = @events.count
-    = render 'events/index'

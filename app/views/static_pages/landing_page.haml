@@ -21,7 +21,7 @@
   %p
   .row
     .col-lg-4
-      .card
+      .card.border-warning
         .card-body.bg-light
           %i.fa.fa-hand-holding-heart{:style => "font-size:40px;color:orange"}
           %p
@@ -44,8 +44,9 @@
           %p
           .fa.fa-hot-tub
           = t('.sauna')
+      %p
     .col-lg-4
-      .card
+      .card.border-warning
         .card-body.bg-light
           %i.fa.fa-hospital{:style => "font-size:40px;color:orange"}
           %p
@@ -68,8 +69,9 @@
           %p
           .fa.fa-dog
           = t('.veterinary_clinic')
+      %p
     .col-lg-4
-      .card
+      .card.border-warning
         .card-body.bg-light
           %i.fa.fa-user-tie{:style => "font-size:40px;color:orange"}
           %p
@@ -96,45 +98,67 @@
           %p
           .fa.fa-user-graduate
           = t('.tutors')
+      %p
 %hr
-.container-fluid.text-center
-  %h1.display-4= t('.why_do_you_need_it')
-  %br
+.container-fluid
+  .text-center
+    %h1.display-4= t('.why_do_you_need_it')
+    %br
   .row
     .col-lg-4
-      .text-center
-        %i.fa.fa-calendar-check{:style => "font-size:40px;color:orange"}
-      %h3= t('.control_business')
+      .card.card-header.border-warning
+        .text-center
+          %i.fa.fa-calendar-check{:style => "font-size:40px;color:orange"}
+          %h3= t('.control_business')
       %p
-      %li= t('.all_business_data_secure_in_one_place')
-      %li= t('.manage_workload')
-      %li= t('.more_professional')
-      /Be modern, do not stay behind competition
-      /Control - all info in 1 place. signle source of truth.
+      %i.fa.fa-calendar-check{:style => "color:orange"}
+      = t('.all_business_data_secure_in_one_place')
+      %p
+      %i.fa.fa-calendar-check{:style => "color:orange"}
+      = t('.online_calendar')
+      %p
+      %i.fa.fa-calendar-check{:style => "color:orange"}
+      = t('.more_professional')
+      %p
     .col-lg-4
-      .text-center
-        %i.fa.fa-history{:style => "font-size:40px;color:orange"}
-      %h3= t('.save_time')
+      .card.card-header.border-warning
+        .text-center
+          %i.fa.fa-history{:style => "font-size:40px;color:orange"}
+          %h3= t('.save_time')
       %p
-      %li= t('.automatic_reminders')
-      %li= t('.automatic_salary_calculation')
-      %li= t('.automatic_marketing')
-      /Passive
-      /spend less time 
-      /Time (salary calculation, schedule management, audit [jobs, income, expences])
+      %i.fa.fa-history{:style => "color:orange"}
+      = t('.automatic_reminders')
+      %p
+      %i.fa.fa-history{:style => "color:orange"}
+      = t('.automatic_salary_calculation')
+      %p
+      %i.fa.fa-history{:style => "color:orange"}
+      = t('.quick_search')
+      %p
+      %i.fa.fa-history{:style => "color:orange"}
+      = t('.automatic_marketing')
+      %p
     .col-lg-4
-      .text-center
-        %i.fa.fa-chart-line{:style => "font-size:40px;color:orange"}
-      %h3= t('.increase_revenue_and_grow')
+      .card.card-header.border-warning
+        .text-center
+          %i.fa.fa-chart-line{:style => "font-size:40px;color:orange"}
+          %h3= t('.increase_revenue_and_grow')
       %p
-      /Generate more Money (upsales, loyalty, special offers, event reminders, repeat reminders) / earn more
-      /Growth (analytics = business descisions), instrument for growing your business / Competitive advantage
-      %li= t('.dont_lose_clients')
-      %li= t('.make_data_drived_descisions')
-      %li= t('.growth_of_your_business_is_easier_to_manage')
-      %li= t('.competitive_advantage')
-  %br
-  = link_to t(".features"), features_path, class: 'btn btn-lg btn-warning text-dark'
+      %i.fa.fa-chart-line{:style => "color:orange"}
+      = t('.dont_lose_clients')
+      %p
+      %i.fa.fa-chart-line{:style => "color:orange"}
+      = t('.make_data_drived_descisions')
+      %p
+      %i.fa.fa-chart-line{:style => "color:orange"}
+      = t('.growth_of_your_business_is_easier_to_manage')
+      %p
+      %i.fa.fa-chart-line{:style => "color:orange"}
+      = t('.competitive_advantage')
+      %p
+  .text-center
+    %br
+    = link_to t(".features"), features_path, class: 'btn btn-lg btn-warning text-dark'
   %p
 
 :css
