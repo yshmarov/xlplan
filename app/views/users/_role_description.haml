@@ -1,4 +1,6 @@
-%h4 Role description
+.card.card-default
+  .card-header
+    %b= t('sidebar.user_roles')
 /User types:
 /Admin
 /Manager
@@ -6,70 +8,186 @@
 /Client
 /Viewer
 /Owner
-
 .table-responsive
   %table#table1
     %thead
       %tr
         %th 
-        %th Show
-        %th Create
-        %th Edit
-        %th Delete
+        %th= t('helpers.links.show')
+        %th= t('helpers.links.new')
+        %th= t('helpers.links.edit')
+        %th= t('helpers.links.destroy')
     %tbody
       %tr
-        %th{:scope => "row"} Members
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-danger #{'admin'.humanize}
-        %td.bg-primary #{'admin_or_owner'.humanize}
-        %td.bg-danger #{'admin'.humanize}
+        %th
+          .fa.fa-user-tie
+          = t('sidebar.members')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+        %td
+          .badge.badge-dark admin
+          .badge.badge-warning owner
+        %td
+          .badge.badge-dark admin
     %tbody
       %tr
-        %th{:scope => "row"} Accounts and roles
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-danger #{'admin'.humanize}
-        %td.bg-danger #{'admin'.humanize}
-        %td.bg-danger #{'admin'.humanize}
+        %th
+          .fa.fa-lock
+          = t('members.show.access_rights')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+        %td
+          .badge.badge-dark admin
+        
+        %td
+          .badge.badge-dark admin
     %tbody
       %tr
-        %th{:scope => "row"} Events
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-info #{'admin_or_manager_or_owner'.humanize}
-        %td.bg-info #{'admin_or_manager_or_owner'.humanize}
+        %th
+          .fa.fa-calendar-check
+          = t('sidebar.events')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-warning owner
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-warning owner
     %tbody
       %tr
-        %th{:scope => "row"} Clients
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-warning #{'admin_or_manager'.humanize}
+        %th
+          .fa.fa-user
+          = t('sidebar.clients')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
     %tbody
       %tr
-        %th{:scope => "row"} Services
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-warning #{'admin_or_manager'.humanize}
-        %td.bg-warning #{'admin_or_manager'.humanize}
+        %th
+          .fa.fa-hand-paper
+          = t('sidebar.services')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
     %tbody
       %tr
-        %th{:scope => "row"} Locations
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-danger #{'admin'.humanize}
-        %td.bg-danger #{'admin'.humanize}
-        %td.bg-danger #{'admin'.humanize}
+        %th
+          .fa.fa-hand-holding-usd
+          = t('sidebar.inbound_payments')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
     %tbody
       %tr
-        %th{:scope => "row"} Activity
-        %td.bg-success #{'anybody'.humanize}
-        %td.bg-light N/A
-        %td.bg-light N/A
-        %td.bg-light N/A
+        %th
+          .fa.fa-dollar-sign
+          = t('sidebar.expences')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
     %tbody
       %tr
-        %th{:scope => "row"} Stats
-        %td.bg-danger #{'admin'.humanize}
-        %td.bg-danger #{'admin'.humanize}
-        %td.bg-light N/A
-        %td.bg-light N/A
+        %th
+          .fa.fa-map-marker-alt
+          = t('sidebar.locations')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .badge.badge-dark admin
+        %td
+          .badge.badge-dark admin
+        %td
+          .badge.badge-dark admin
+    %tbody
+      %tr
+        %th
+          .fa.fa-bell
+          = t('sidebar.activity')
+        %td
+          .badge.badge-dark admin
+          .badge.badge-primary manager
+          .badge.badge-info specialist
+        %td
+          .fa.fa-times
+        %td
+          .fa.fa-times
+        %td
+          .fa.fa-times
+    %tbody
+      %tr
+        %th
+          .fa.fa-chart-line
+          = t('sidebar.stats')
+        %td
+          .badge.badge-dark admin
+        %td
+          .fa.fa-times
+        %td
+          .fa.fa-times
+        %td
+          .fa.fa-times
 %br

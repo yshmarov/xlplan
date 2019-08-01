@@ -1,11 +1,24 @@
-%h4
-  Editing roles for: #{@user.email}
-.card-header
-  = simple_form_for @user do |f|
-    = f.collection_check_boxes :role_ids, Role.where.not("name = 'owner'").all, :id, :name
-    = f.error :roles, class: 'text-danger'
-    = f.submit
-  %p
-  = link_to "Cancel", member_path(@user.member), class: 'btn btn-danger'
+- model_class = User
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h4
+        = t('helpers.links.edit')
+        = t('sidebar.user_roles')
+        \:
+        - if @user.member.present?
+          = @user.member
+        - else
+          = @user.email
+        %hr
+        = simple_form_for @user do |f|
+          = f.collection_check_boxes :role_ids, Role.where.not("name = 'owner'").all, :id, :name
+          = f.error :roles, class: 'text-danger'
+          %hr
+          = f.button :submit, class: "btn btn-success"
+        %p
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), member_path(@user.member), :class => 'btn btn-danger'
 %p
 = render 'users/role_description'

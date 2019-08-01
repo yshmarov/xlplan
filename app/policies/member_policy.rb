@@ -30,7 +30,7 @@ class MemberPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.jobs.none? && admin
+    admin && @record.jobs.none? && @record.user.nil?
   end
 
   def admin_or_manager_or_owner

@@ -91,7 +91,7 @@
             - unless member == current_user.member
               - if member.user.present?
                 .row
-                = link_to "<i class='fa-fw fa fa-trash'></i> Delete Access".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
+                = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
           - else
             = t('.no_access')
             - if member.active?
@@ -110,7 +110,7 @@
 %p
 .container.table-responsive
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
-%br
+/%br
 /= Tenant.current_tenant.users.count
 /- Tenant.current_tenant.users.each do |user| 
 /  %p= user.email

@@ -279,6 +279,7 @@ ru:
       destroy: "Удалить"
       new: "Создать"
       edit: "Изменить"
+      show: "Посмотреть"
     titles:
       edit: "Изменить %{model}"
       save: "Сохранить %{model}"
@@ -342,6 +343,7 @@ ru:
     start: 'Старт'
     order_system: 'заказать систему'
     change_plan: 'изменить тариф'
+    user_roles: "Права доступа"
 
   ######################################################
 
@@ -595,6 +597,7 @@ ru:
       invite_user: "Пригласить"
       add_email_to_invite_user: "Добавьте email"
       terminated: "Не активен"
+      delete_access: 'Удалить доступ'
     new:
       title: "Создать Сотрудника"
     edit:
