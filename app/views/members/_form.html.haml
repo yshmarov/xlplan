@@ -11,6 +11,7 @@
     = f.date_field :date_of_birth, value: @member.date_of_birth || nil, class: "form-control"
     %p
     = f.label :gender
+    = f.error :gender, class: 'text-danger' if f.object.errors.any?
     %br
     = f.radio_button :gender, 'undisclosed'
     = f.label :gender_undisclosed
