@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   before_action :set_global_search_variable, if: :user_signed_in?
-  after_action :user_activity, if: :user_signed_in?
+  #after_action :user_activity, if: :user_signed_in?
   before_action :set_time_zone, if: :user_signed_in?
   #around_action :set_time_zone, if: :current_user
 
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   #  Time.use_zone(current_user.time_zone, &block)
   #end
   def set_time_zone
-    Time.zone = current_user.member.time_zone
+    Time.zone = current_user.time_zone
   end  
 
   #pundit
@@ -54,8 +54,8 @@ class ApplicationController < ActionController::Base
   end
 
   #online?
-  def user_activity
-    current_user.try :touch
-  end
+  #def user_activity
+  #  current_user.try :touch
+  #end
 
 end
