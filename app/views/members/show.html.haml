@@ -72,12 +72,13 @@
           .fa.fa-hand-paper
           %b= model_class.human_attribute_name(:jobs_due_price_sum) + ':'
           = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          (#{@member.jobs_count})
           /%br
           .row
           .fa.fa-dollar-sign
           %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
           = number_to_currency(@member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          /(#{@member.expences.count})
+          (#{@member.expences.count})
           %br
           .fa.fa-balance-scale
           %b= model_class.human_attribute_name(:balance) + ':'

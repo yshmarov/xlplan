@@ -1,8 +1,8 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :invite_user]
 
   def index
-    @ransack_members = Member.search(params[:members_search], search_key: :members_search)
+    @ransack_members = Member.ransack(params[:members_search], search_key: :members_search)
     @members = @ransack_members.result.includes(:user, :skills).paginate(:page => params[:page], :per_page => 15)
   end
 
@@ -30,7 +30,7 @@ class MembersController < ApplicationController
 
   def create
     @member   = Member.new(member_params)
-    #authorize @member
+    authorize @member
     respond_to do |format|
       if @member.save
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
@@ -40,6 +40,25 @@ class MembersController < ApplicationController
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def invite_user
+    @user = User.new(user_params)
+    #@user.email = @member.email
+    #authorize @user
+    #authorize @member
+    # ok to create user, member
+    if @user.save_and_invite_member
+      @member.user_id = @user.id
+      flash[:notice] = "New user added and invitation email sent to #{@user.email}."
+      redirect_to @user.member
+    else
+      flash[:error] = "errors occurred!"
+      redirect_to members_url
+      #@member = Member.new( member_params ) # only used if need to revisit form
+      #render :new
+    end
+
   end
 
   def update
@@ -73,5 +92,9 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address, :time_zone,
       :status, :location_id, service_category_ids: [], address: [:country, :city, :street, :zip])
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 end

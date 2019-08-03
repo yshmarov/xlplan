@@ -7,7 +7,7 @@ class ClientsController < ApplicationController
   end
 
   def index
-    @ransack_clients = Client.search(params[:clients_search], search_key: :clients_search)
+    @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
   end
 

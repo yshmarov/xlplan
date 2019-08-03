@@ -97,6 +97,7 @@
             - if member.active?
               - if member.email.present?
                 = t('.invite_user')
+                /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
                 /Devise invitable here
                 /- if policy(User).create?
                 /  = simple_form_for(User.new, url: user_invitation_path) do |z|
@@ -110,7 +111,7 @@
 %p
 .container.table-responsive
   = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
-/%br
-/= Tenant.current_tenant.users.count
-/- Tenant.current_tenant.users.each do |user| 
-/  %p= user.email
+%br
+= Tenant.current_tenant.users.count
+- Tenant.current_tenant.users.each do |user| 
+  %p= user.email

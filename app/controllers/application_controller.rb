@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController 
 
   before_action :set_locale
-  before_action :set_global_search_variable, if: :current_user
-  after_action :user_activity, if: :current_user
-  #before_action :set_time_zone, if: :user_signed_in?
-  around_action :set_time_zone, if: :current_user
+  before_action :set_global_search_variable, if: :user_signed_in?
+  after_action :user_activity, if: :user_signed_in?
+  before_action :set_time_zone, if: :user_signed_in?
+  #around_action :set_time_zone, if: :current_user
 
   private
 
@@ -35,12 +35,12 @@ class ApplicationController < ActionController::Base
   end
 
   #time_zone
-  def set_time_zone(&block)
-    Time.use_zone(current_user.time_zone, &block)
-  end
-  #def set_time_zone
-  #  Time.zone = current_user.member.time_zone
-  #end  
+  #def set_time_zone(&block)
+  #  Time.use_zone(current_user.time_zone, &block)
+  #end
+  def set_time_zone
+    Time.zone = current_user.member.time_zone
+  end  
 
   #pundit
   def user_not_authorized
