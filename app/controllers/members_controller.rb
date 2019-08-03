@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy, :invite_user]
+  before_action :set_member, only: [:show, :edit, :update, :destroy]
 
   def index
     @ransack_members = Member.ransack(params[:members_search], search_key: :members_search)
@@ -8,9 +8,7 @@ class MembersController < ApplicationController
 
   def show
     authorize @member
-    #@jobs = @member.jobs.includes(:event)
     @jobs = @member.jobs.includes(:event, :service, :event => :client)
-    #@events = @member.events.planned.order("starts_at DESC")
     #@member.includes(:user)
     #for polymorphic show
     @expendable = @member
@@ -40,25 +38,6 @@ class MembersController < ApplicationController
         format.json { render json: @member.errors, status: :unprocessable_entity }
       end
     end
-  end
-  
-  def invite_user
-    @user = User.new(user_params)
-    #@user.email = @member.email
-    #authorize @user
-    #authorize @member
-    # ok to create user, member
-    if @user.save_and_invite_member
-      @member.user_id = @user.id
-      flash[:notice] = "New user added and invitation email sent to #{@user.email}."
-      redirect_to @user.member
-    else
-      flash[:error] = "errors occurred!"
-      redirect_to members_url
-      #@member = Member.new( member_params ) # only used if need to revisit form
-      #render :new
-    end
-
   end
 
   def update
@@ -92,9 +71,5 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address, :time_zone,
       :status, :location_id, service_category_ids: [], address: [:country, :city, :street, :zip])
-    end
-
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 end
