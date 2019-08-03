@@ -47,8 +47,9 @@
           %td= Location.unscoped.where(tenant_id: tenant.id).count 
         %thead.bg-light
           %tr
-            %th UserID
+            %th memberID
             %th Name
+            %th userID
             %th Email
             %th Confirmed?
             %th Phone
@@ -58,6 +59,7 @@
               %td= member.id
               %td= member
               - if member.user.present?
+                %td= member.user.id
                 %td= member.user.email
                 %td= member.user.confirmed_at.present?
               %td= member.phone_number

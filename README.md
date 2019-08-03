@@ -1,3 +1,4 @@
+#pg_restore --verbose --clean --no-acl --no-owner -h localhost -d xplan_development latest.dump
 #######################################################
 #console commands to update counters, if needed
 #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }

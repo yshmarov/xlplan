@@ -45,12 +45,16 @@ class Location < ApplicationRecord
   validate :tenant_plan_quantity_limit
   def tenant_plan_quantity_limit
     if self.new_record?
-      if tenant.plan == 'bronze' || tenant.plan == 'demo'
+      if tenant.plan == 'demo'
+        if tenant.locations.count > 4
+          errors.add(:base, "Demo plan cannot have more than 5 locations. Upgrade your plan")
+        end
+      elsif tenant.plan == 'bronze'
         if tenant.locations.count > 0
           errors.add(:base, "Bronze plan cannot have more than 1 location. Upgrade your plan")
         end
       elsif tenant.plan == 'silver'
-        if tenant.locations.count > 4
+        if tenant.locations.count > 0
           errors.add(:base, "Silver plan cannot have more than 5 locations. Upgrade your plan")
         end
       #elsif tenant.plan == 'gold'

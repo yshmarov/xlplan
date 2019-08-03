@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     :passwords => "milia/passwords", 
   }
 
-  resources :users, only: [:destroy, :edit, :update]
+  resources :users, only: [:destroy, :edit, :update], only: [:destroy, :edit, :update]
   resources :members
 
   #edit tenant info

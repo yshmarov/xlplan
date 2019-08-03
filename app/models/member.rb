@@ -40,6 +40,7 @@ class Member < ApplicationRecord
   after_touch :update_balance
   after_update :update_user_time_zone
   after_save :update_user_time_zone
+  after_create :update_first_member_email
   def update_user_time_zone
     if user.present?
       user.update_attributes!(time_zone: self.time_zone)
@@ -111,9 +112,13 @@ class Member < ApplicationRecord
   validate :tenant_plan_quantity_limit
   def tenant_plan_quantity_limit
     if self.new_record?
-      if tenant.plan == 'bronze' || tenant.plan == 'demo'
+      if tenant.plan == 'demo'
+        if tenant.members.count > 4
+          errors.add(:base, "Demo plan cannot have more than 5 employees. Upgrade your plan")
+        end
+      elsif tenant.plan == 'bronze'
         if tenant.members.count > 0
-          errors.add(:base, "Demo & Bronze cannot have more than 1 employee. Upgrade your plan")
+          errors.add(:base, "Bronze cannot have more than 1 employee. Upgrade your plan")
         end
       elsif tenant.plan == 'silver'
         if tenant.members.count > 4
@@ -153,6 +158,12 @@ class Member < ApplicationRecord
   end
 
   #protected
+  def update_first_member_email
+    if self.user.present?
+    update_column :email, (user.email)
+  end
+  end
+  
   def update_balance
     update_column :jobs_due_price_sum, (jobs.map(&:member_due_price).sum)
     update_column :expences_amount_sum, (expences.map(&:amount).sum)

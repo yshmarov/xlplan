@@ -1,10 +1,10 @@
 .nested-fields
   .card-body.border.border-primary.rounded
-    = f.label :service_id
+    = f.label :service
     = f.error :service, class: 'text-danger'
     = f.select :service_id, Service.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
 
-    = f.label :member_id
+    = f.label :member
     = f.error :member, class: 'text-danger'
     = f.select :member_id, Member.active_or_id(f.object.member_id).map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
     .text-right

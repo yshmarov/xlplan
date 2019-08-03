@@ -1,12 +1,12 @@
 - if current_user.has_role?(:admin)
   .card
-    .card-header
+    .card-header.bg-success
       .fa.fa-rocket
       = t('.start')
     .card-body
       %h5
         /CREATE MEMBER
-        - unless (Tenant.current_tenant.plan == "bronze") || (Tenant.current_tenant.plan == "demo") 
+        - if Tenant.current_tenant.can_create_members?
           - if Member.count < 2
             %span.badge.badge-pill.badge-danger -
             = link_to t('.new_member'), new_member_path
@@ -16,13 +16,14 @@
               = t('.new_member')
           %hr
         /CREATE LOCATION
-        - unless Location.any?
-          %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_location'), new_location_path
-        - else
-          %span.badge.badge-pill.badge-success +
-          %del
-            = t('.new_location')
+        - if Tenant.current_tenant.can_create_locations?
+          - unless Location.any?
+            %span.badge.badge-pill.badge-danger -
+            = link_to t('.new_location'), new_location_path
+          - else
+            %span.badge.badge-pill.badge-success +
+            %del
+              = t('.new_location')
           %hr
         /CREATE SERVICE
         - unless Service.any?

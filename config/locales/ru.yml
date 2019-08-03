@@ -506,6 +506,7 @@ ru:
       confirmed_jobs_per_month_quantity: "Подтвержденные работ в месяц, количество"
       confirmed_jobs_per_month_client_price: "Подтвержденные работ в месяц, к оплате от клиентов"
       confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
+      payments_per_month: "Выплаты по месяцам"
     events:
       event_stats: 'Статистика Встреч'
       per_day: "По дням"

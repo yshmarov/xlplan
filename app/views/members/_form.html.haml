@@ -7,8 +7,7 @@
     = f.input :last_name, input_html: { autocomplete: 'nope' }
     = f.input :phone_number, input_html: { autocomplete: 'nope' }
     = f.input :email, input_html: { autocomplete: 'nope' }
-    = f.label :date_of_birth
-    = f.date_field :date_of_birth, value: @member.date_of_birth || nil, class: "form-control"
+    = f.input :date_of_birth, start_year: Date.today.year - 65, end_year: Date.today.year - 3, include_blank: true
     %p
     = f.label :gender
     = f.error :gender, class: 'text-danger' if f.object.errors.any?
