@@ -5,6 +5,7 @@ class TenantsController < ApplicationController
   end
 
   def edit_plan
+    authorize @tenant
   end
 
   def show

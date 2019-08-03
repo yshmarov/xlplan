@@ -1,80 +1,59 @@
-.card
-  .card-header
-    .fa.fa-rocket
-    = t('.start')
-  .card-body
-    %h5
-      /ADD CONTACTS (PHONE)
-      - unless current_user.member.phone_number.present?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.edit_my_page'), edit_member_path(current_user.member)
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.edit_my_page')
-      %hr
-      /TENANT SETTINGS
-      %span.badge.badge-pill.badge-danger -
-      = link_to t('.select_currency'), edit_tenant_path
-      %hr
-      /CREATE LOCATION
-      - unless Location.any?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.new_location'), new_location_path
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.new_location')
-      %hr
-      /CREATE MEMBER
-      - if (Tenant.current_tenant.plan == "silver") || (Tenant.current_tenant.plan == "gold")
-        - if Member.count < 2
+- if current_user.has_role?(:admin)
+  .card
+    .card-header
+      .fa.fa-rocket
+      = t('.start')
+    .card-body
+      %h5
+        /CREATE MEMBER
+        - unless (Tenant.current_tenant.plan == "bronze") || (Tenant.current_tenant.plan == "demo") 
+          - if Member.count < 2
+            %span.badge.badge-pill.badge-danger -
+            = link_to t('.new_member'), new_member_path
+          - else
+            %span.badge.badge-pill.badge-success +
+            %del
+              = t('.new_member')
+          %hr
+        /CREATE LOCATION
+        - unless Location.any?
           %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_member'), new_member_path
+          = link_to t('.new_location'), new_location_path
         - else
           %span.badge.badge-pill.badge-success +
           %del
-            = t('.new_member')
+            = t('.new_location')
+          %hr
+        /CREATE SERVICE
+        - unless Service.any?
+          %span.badge.badge-pill.badge-danger -
+          = link_to t('.new_service'), new_service_path
+        - else
+          %span.badge.badge-pill.badge-success +
+          %del
+            = t('.new_service')
         %hr
-      /CREATE SERVICE
-      - unless Service.any?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.new_service'), new_service_path
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.new_service')
-      %hr
-      /CREATE CLIENT
-      - unless Client.any?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.new_client'), new_client_path
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.new_client')
-      %hr
-      /CREATE EVENT
-      - unless Event.any?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.new_event'), new_event_path
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.new_event')
-      %hr
-      /CREATE PAYMENT
-      - unless InboundPayment.any?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.new_payment'), new_inbound_payment_path
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.new_payment')
+        /CREATE CLIENT
+        - unless Client.any?
+          %span.badge.badge-pill.badge-danger -
+          = link_to t('.new_client'), new_client_path
+        - else
+          %span.badge.badge-pill.badge-success +
+          %del
+            = t('.new_client')
         %hr
-        /FINISH
-        = t('.finish')
-%br
+        /CREATE EVENT
+        - unless Event.any?
+          %span.badge.badge-pill.badge-danger -
+          = link_to t('.new_event'), new_event_path
+        - else
+          %span.badge.badge-pill.badge-success +
+          %del
+            = t('.new_event')
+          %hr
+          /FINISH
+          = t('.finish')
+  %br
 .text-center
   %h4
     = t('.today')

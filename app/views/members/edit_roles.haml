@@ -1,8 +1,0 @@
-%h4
-  Editing roles for: #{@user.member.full_name}
-= form_for @user do |f|
-  - Role.all.each do |role|
-    = check_box_tag "user[role_ids][]", role.id, @user.role_ids.include?(role.id)
-    = role.name
-  = f.submit
-= link_to "Back to member", member_path(@user.member), class: 'btn btn-default'

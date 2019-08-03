@@ -5,13 +5,12 @@
     .card
       .card-body
         %h4
-        = t('helpers.links.edit')
-        = t('sidebar.user_roles')
-        \:
-        - if @user.member.present?
-          = @user.member
-        - else
-          = @user.email
+          = t('members.show.edit_roles')
+          \:
+          - if @user.member.present?
+            = @user.member.full_name
+          - else
+            = @user.email
         %hr
         = simple_form_for @user do |f|
           = f.collection_check_boxes :role_ids, Role.where.not("name = 'owner'").all, :id, :name

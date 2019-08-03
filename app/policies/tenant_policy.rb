@@ -7,6 +7,10 @@ class TenantPolicy < ApplicationPolicy
     admin
   end
 
+  def edit_plan?
+    admin
+  end
+
   def update?
     admin
   end

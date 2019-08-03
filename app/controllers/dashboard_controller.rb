@@ -22,7 +22,7 @@ class DashboardController < ApplicationController
     #else
     #  @members = current_user.member
     #end
-    @members = Member.active
+    @members = Member.active.order('created_at ASC')
     #@events = Event.includes(:client, :jobs, :jobs => [:service, :member])
   end
 

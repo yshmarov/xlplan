@@ -76,4 +76,15 @@ All users
         %tr
           %th= user.id
           %th= user.email
-%br
+          %th
+            - user.tenants.each do |t|
+              = t.name
+/%br
+/- Tenant.all.each do |t|
+/  %p.bg-danger
+/    = t.id  
+/    = t.name  
+/  - t.users.each do |u|
+/    %p
+/      = u.id  
+/      = u.email  
