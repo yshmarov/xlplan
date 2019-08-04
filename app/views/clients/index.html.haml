@@ -29,17 +29,17 @@
         .row
           .col-sm-5
           .col-sm-2
-            = sort_link @ransack_clients, :balance do
+            = sort_link @ransack_clients, :jobs_amount_sum do
               .ml.ml-2.fa.fa-calendar-check
-              = model_class.human_attribute_name(:balance)
+              = model_class.human_attribute_name(:jobs_amount_sum)
             .row
             = sort_link @ransack_clients, :payments_amount_sum do
               .ml.ml-2.fa.fa-hand-holding-usd
               = model_class.human_attribute_name(:payments_amount_sum)
             .row
-            = sort_link @ransack_clients, :jobs_amount_sum do
+            = sort_link @ransack_clients, :balance do
               .ml.ml-2.fa.fa-balance-scale
-              = model_class.human_attribute_name(:jobs_amount_sum)
+              = model_class.human_attribute_name(:balance)
           .col-sm-3
           .col-sm-2
 - @clients.each do |client|

@@ -23,20 +23,24 @@ class MembersController < ApplicationController
 
   def new
     @member = Member.new
-    authorize @member
+    @user   = User.new
+    #authorize @member
+    #authorize @user
   end
 
   def create
-    @member   = Member.new(member_params)
-    authorize @member
-    respond_to do |format|
-      if @member.save
-        format.html { redirect_to @member, notice: 'Member was successfully created.' }
-        format.json { render :show, status: :created, location: @member }
-      else
-        format.html { render :new }
-        format.json { render json: @member.errors, status: :unprocessable_entity }
-      end
+    @user   = User.new( user_params )
+    #authorize @member
+    #authorize @user
+
+    # ok to create user, member
+    if @user.save_and_invite_member() && @user.create_member( member_params )
+      flash[:notice] = "New member added and invitation email sent to #{@user.email}."
+      redirect_to @user.member
+    else
+      #flash[:error] = "errors occurred!"
+      @member = Member.new( member_params ) # only used if need to revisit form
+      render :new
     end
   end
 
@@ -71,5 +75,9 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address, :time_zone,
       :status, :location_id, service_category_ids: [], address: [:country, :city, :street, :zip])
+    end
+
+    def user_params
+      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 end

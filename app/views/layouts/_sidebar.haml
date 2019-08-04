@@ -22,7 +22,7 @@
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
-    - unless InboundPayment.any?
+    - unless Event.any?
       .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "btn btn-sm btn-success mb-sm-1 mt-sm-1 text-white mr-sm-2"
     - if Tenant.current_tenant.plan == "demo"
       .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'

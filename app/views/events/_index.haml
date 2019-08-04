@@ -47,9 +47,13 @@
           .table-responsive
             - event.jobs.each do |job|
               .row
-              .badge.badge-secondary
-                = link_to job.service.full_name_with_price, service_path(job.service), class: 'text-white'
-                \/
-                = link_to job.member.short_name, member_path(job.member), class: 'text-white'
+              %small
+                .border.border-info.rounded
+                  .mr.ml-1.fa.fa-hand-paper
+                  = link_to job.service.full_name_with_price, service_path(job.service), class: 'text-dark'
+                  .row
+                  .mr.ml-1.fa.fa-user-tie
+                  = link_to job.member.short_name, member_path(job.member), class: 'text-dark'
+              .mr.mb-1
             .row
             %small= simple_format(event.notes)

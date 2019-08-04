@@ -31,33 +31,7 @@
           .col-md-4
             .row
             = f.submit
-- @expences.each do |expence|
-  .card
-    .card-header.bg-light
-      .row
-        .col-lg-2
-          .text-center
-            = link_to expence.slug, expence_path(expence) if policy(expence).show?
-            .row
-            = link_to "", expence_path(expence, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank if policy(expence).show?
-            = link_to '', expence, class: "btn btn-primary fa fa-eye btn-sm" if policy(expence).show?
-            = link_to '', edit_expence_path(expence), class: "btn btn-warning fa fa-edit btn-sm"  if policy(expence).edit?
-            = link_to '', expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(expence).destroy?
-        .col-lg-2
-          /Expendable type
-          = expence.expendable_type
-          = link_to expence.expendable, expence.expendable
-          /.row
-          /Expendable
-          /= expence.expendable_id
-        .col-lg-4
-          .fa.fa-hand-holding-usd
-          = number_to_currency(expence.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          .badge.badge-secondary.text-white
-            = expence.payment_method
-        .col-lg-4
-          .fa.fa-clock
-          #{l(expence.created_at, format: "%a")} #{l(expence.created_at, format: "%d/%b/%Y %H:%M")}
+= render 'expences/index'
 %p
 .container.table-responsive
   = will_paginate @expences, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

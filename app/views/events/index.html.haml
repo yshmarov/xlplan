@@ -40,67 +40,7 @@
             = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
             .row
             = f.submit
-- @events.each do |event|
-  .card
-    .card-header.bg-light
-      .row
-        .col-lg-2
-          .text-center
-            /= link_to status_label(event.status), event
-            - if policy(event).update?
-              .dropdown.show
-                %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                  = status_label(event.status)
-                .dropdown-menu.transparent{"aria-labelledby" => "dropdownMenuLink"}
-                  - unless event.status == 'planned'
-                    = button_to t('events.show.planned'), mark_planned_event_path(event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
-                  - unless event.status == 'confirmed'
-                    = button_to t('events.show.confirmed'), mark_confirmed_event_path(event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2 btn-block'
-                  - unless event.status == 'no_show'
-                    = button_to t('events.show.no_show'), mark_no_show_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
-                  - unless event.status == 'member_cancelled'
-                    = button_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
-                  - unless event.status == 'client_cancelled'
-                    = button_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
-                  - unless event.status == 'no_show_refunded'
-                    = button_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2 btn-block'
-            - else
-              .badge.badge-sm.badge-default
-                = status_label(event.status)
-            .row
-            - if event.planned?
-              = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            - else
-              = number_to_currency(event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            .row
-            = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
-            = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
-            = link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
-        .col-lg-4
-          .fa.fa-user
-          = link_to event.client, client_path(event.client)
-          - if event.client.phone_number.present?
-            .row
-            .fa.fa-phone
-            = link_to "tel:#{event.client.phone_number}", class: "button" do
-              #{number_to_phone(event.client.phone_number)}
-          .row
-          .fa.fa-map-marker-alt
-          = link_to event.location, location_path(event.location)
-          .row
-          .fa.fa-clock
-          #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
-        .col-lg-6
-          .table-responsive
-            - event.jobs.each do |job|
-              .row
-              .badge.badge-secondary
-                = link_to job.service.full_name_with_price, service_path(job.service), class: 'text-white'
-                \/
-                = link_to job.member.short_name, member_path(job.member), class: 'text-white'
-            .row
-            %small= simple_format(event.notes)
-            /= truncate(event.notes, length: 60)
+= render 'events/index'
 %p
 .container.table-responsive
   = will_paginate @events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

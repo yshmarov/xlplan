@@ -536,7 +536,7 @@ ru:
       payment_stats: 'Статистика Оплат'
       payments_per_month: 'Сумма оплат в месяц'
       payments_per_day: 'Сумма оплат в день'
-      current_month: "Этот месяц"
+      current_month: "Сегодня"
 
   ######################################################
 
