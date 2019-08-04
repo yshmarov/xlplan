@@ -134,7 +134,10 @@ class EventsController < ApplicationController
         @event.create_activity :create, parameters: {status: @event.status}
         format.html { redirect_to @event, notice: t('.success') }
         format.json { render :show, status: :created, location: @event }
-
+        
+        if @event.client.email.present?
+          EventMailer.client_event_created(@event).deliver_now
+        end
         #current working version
         #EventMailer.event_created.deliver_now
         #EventMailer.with(event: @event, member: @user.member).welcome_email(event).deliver_now

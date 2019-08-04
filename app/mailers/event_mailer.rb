@@ -1,6 +1,11 @@
 class EventMailer < ApplicationMailer
   #default to: -> { Admin.pluck(:email) }, from: 'notification@example.com'
 
+  def client_event_created(event)
+    @event = event
+    mail(to: @event.client.email, subject: 'Booking created in XLPLAN.com')
+  end
+
   def welcome_email(user)
     @user = user
     mail(to: @user.email, subject: 'Welcome to XLPLAN.com')
@@ -26,5 +31,4 @@ class EventMailer < ApplicationMailer
     #@user = params[:user]
     mail(to: "yshmarov@gmail.com", subject: 'Event created')
   end
-
 end

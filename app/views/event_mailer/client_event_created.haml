@@ -1,0 +1,16 @@
+/%p= @event.slug
+%p Booking created.
+%p Company:
+= Tenant.current_tenant.name
+%p Address:
+= @event.location.address
+%p Time:
+= @event.starts_at
+/(
+/= @event.duration
+/min)
+- @event.jobs.each do |job|
+  %p= job.service.name
+  %p= job.member.full_name
+
+/%p= link_to "This event", @event
