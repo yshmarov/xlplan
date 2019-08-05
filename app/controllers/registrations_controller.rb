@@ -36,7 +36,7 @@ def create
           log_action( "signup user/tenant success", resource )
             # do any needed tenant initial setup
           Tenant.tenant_signup(resource, @tenant, coupon_params)
-          TenantMailer.tenant_created.deliver_now
+          TenantMailer.tenant_created(@tenant).deliver_now
 
         else  # user creation failed; force tenant rollback
           log_action( "signup user create failed", resource )

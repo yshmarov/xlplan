@@ -1,6 +1,4 @@
 - model_class = Event
-/= @event.members.pluck(:email)
-/= @event.client.event_created_notifications?
 .row
   .container
     .card{:style => "border-color:#{@event.status_color};"}
