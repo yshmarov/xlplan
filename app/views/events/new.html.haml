@@ -1,10 +1,13 @@
 - model_class = Event
-.card
-  .card-body
-    %h5
-      .fa.fa-calendar
-      =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
-    %hr
-    = render 'form'
-    %p
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-danger'
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h5
+          .fa.fa-calendar
+          =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+        %hr
+        = render 'form'
+        %p
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-danger'

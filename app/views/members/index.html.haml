@@ -14,7 +14,7 @@
               %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
         .col-md-4
-          .float-right
+          .mr.mt-1.float-right
             - if params.has_key?(:members_search)
               = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
             - if policy(Member).create?

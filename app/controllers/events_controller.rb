@@ -135,7 +135,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: t('.success') }
         format.json { render :show, status: :created, location: @event }
         
-        if @event.client.email.present? && @event.client.event_created_notifications.true?
+        if @event.client.email.present? && @event.client.event_created_notifications?
           EventMailer.client_event_created(@event).deliver_now
         end
 
