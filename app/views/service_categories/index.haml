@@ -1,14 +1,11 @@
 - model_class = ServiceCategory
-.card.card-default
-  .container-fluid
-    .card-heading
-      %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-        .input-group
-          .mr-sm-2
-            .fa.fa-hand-paper
-            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-      %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-        = link_to t('.new', :default => t("helpers.links.new")), new_service_category_path, class: 'btn btn-sm btn-primary'
+.card
+  .card-header
+    %h4.float-left
+      .fa.fa-map-marker-alt
+      %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+    %h4.float-right
+      = link_to t('.new', :default => t("helpers.links.new")), new_service_category_path, class: 'btn btn-sm btn-primary'
 - @service_categories.each do |service_category|
   .card
     .card-header.bg-light

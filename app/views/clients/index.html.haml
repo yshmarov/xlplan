@@ -6,47 +6,49 @@
 - model_class = Client
 /= render 'clients/form'
 = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
-  .card.card-default
-    .container-fluid
-      .card-heading
-        %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
-          /.fa.fa-user
+  .card.bg-light
+    .card-header
+      .row
+        .col-md-4
+          %h4
+            .fa.fa-user
+            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+        .col-md-4
           .input-group
-            .mr-sm-2
-              %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+            .mr-md-2
             = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
             %span.input-group-append
               %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
-        %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-          - if params.has_key?(:clients_search)
-            = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          - if policy(Client).create?
-            = link_to t('.new', :default => t("helpers.links.new")), new_client_path, class: 'btn btn-sm btn-primary'
-  .card.card-default
-    .container-fluid
-      .card-heading
+        .col-md-4
+          .float-right
+            %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+              .fa.fa-search
+              .fa.fa-chevron-down
+            - if params.has_key?(:clients_search)
+              = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            - if policy(Client).create?
+              = link_to t('.new', :default => t("helpers.links.new")), new_client_path, class: 'btn btn-sm btn-primary'
+    #accordion.collapse
+      .card-header
+        = sort_link @ransack_clients, :jobs_amount_sum do
+          .ml.ml-2.fa.fa-calendar-check
+          = model_class.human_attribute_name(:jobs_amount_sum)
         .row
-          .col-sm-5
-          .col-sm-2
-            = sort_link @ransack_clients, :jobs_amount_sum do
-              .ml.ml-2.fa.fa-calendar-check
-              = model_class.human_attribute_name(:jobs_amount_sum)
-            .row
-            = sort_link @ransack_clients, :payments_amount_sum do
-              .ml.ml-2.fa.fa-hand-holding-usd
-              = model_class.human_attribute_name(:payments_amount_sum)
-            .row
-            = sort_link @ransack_clients, :balance do
-              .ml.ml-2.fa.fa-balance-scale
-              = model_class.human_attribute_name(:balance)
-          .col-sm-3
-          .col-sm-2
+        = sort_link @ransack_clients, :payments_amount_sum do
+          .ml.ml-2.fa.fa-hand-holding-usd
+          = model_class.human_attribute_name(:payments_amount_sum)
+        .row
+        = sort_link @ransack_clients, :balance do
+          .ml.ml-2.fa.fa-balance-scale
+          = model_class.human_attribute_name(:balance)
+        .row
+        %br= f.submit
 - @clients.each do |client|
   .card
     .card-header.bg-light
       .row
-        .col-sm-5
+        .col-md-5
           .fa.fa-user
           = link_to client.full_name, client_path(client) if policy(client).show?
           - if client.phone_number.present?
@@ -59,7 +61,7 @@
             .fa.fa-envelope
             %a{:href => "mailto:#{client.email}"}= client.email
           .row
-        .col-sm-2
+        .col-md-2
           .fa.fa-calendar-check
           = number_to_currency(client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{client.events_count})
@@ -70,10 +72,10 @@
           .row
           .fa.fa-balance-scale
           = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        .col-sm-3
+        .col-md-3
           .fa.fa-comment-alt
           = client.comments.count
-        .col-sm-2
+        .col-md-2
           = link_to '', client, class: "btn btn-primary fa fa-eye btn-sm" if policy(client).show?
           = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
           = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?

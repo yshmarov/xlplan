@@ -592,6 +592,7 @@ ru:
   members:
     index:
       title: "Сотрудники"
+      search_member: 'Поиск Сотрудника'
       has_access: "Есть доступ"
       no_access_resend_invitation_email: "Приглашен. Послать email напоминание"
       no_access: "Без доступа."

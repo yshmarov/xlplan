@@ -1,31 +1,33 @@
 - model_class = Member
 = search_form_for @ransack_members, as: :members_search, url: members_path do |f|
-  .card.card-default
-    .container-fluid
-      .card-heading
-        %h4.card-title.float-left{:style => "padding-top: 7.5px;"} 
+  .card.bg-light
+    .card-header
+      .row
+        .col-md-4
+          %h4
+            .fa.fa-user-tie
+            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+        .col-md-4
           .input-group
-            /.fa.fa-user
-            .mr-sm-2
-              %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-            = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
+            = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('.search_member'), :autocomplete => :off
             %span.input-group-append
               %button.btn.btn-secondary{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
-        %h4.card-title.float-right{:style => "padding-top: 7.5px;"} 
-          - if params.has_key?(:members_search)
-            = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-          - if policy(Member).create?
-            - if (Tenant.current_tenant.can_create_members?)
-              = link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
-            - else
-              = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, edit_plan_path, class: "btn btn-sm btn-danger"
+        .col-md-4
+          .float-right
+            - if params.has_key?(:members_search)
+              = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            - if policy(Member).create?
+              - if (Tenant.current_tenant.can_create_members?)
+                = link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
+              - else
+                = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, edit_plan_path, class: "btn btn-sm btn-danger"
 - @members.each do |member|
   .card
     .card-header.bg-light
       .row
         /contacts
-        .col-sm-3
+        .col-md-3
           /- if member.user_online.present?
           /  %i.fa.fa-fire{:style => "color:red;"}
           /  /%i.far.fa-circle{:style => "color:green;"}
@@ -47,7 +49,7 @@
           = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
           = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(member).destroy?
         /location & skills
-        .col-sm-3
+        .col-md-3
           - if member.location.present?
             .fa.fa-map-marker-alt
             = link_to member.location, location_path(member.location)
@@ -60,7 +62,7 @@
                 .badge.badge-secondary
                   = skill.service_category
         /ADMIN - stats
-        .col-sm-2
+        .col-md-2
           - if policy(member).show_money?
             .fa.fa-hand-paper
             = number_to_currency(member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
@@ -73,7 +75,7 @@
             .fa.fa-balance-scale
             = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         /USER
-        %small.col-sm-4
+        %small.col-md-4
           /////////////////////user account/////////////////////
           - if member.user.present?
             = member.user.email
@@ -97,7 +99,7 @@
             - if member.active?
               - if member.email.present?
                 = t('.invite_user')
-                /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
+                /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-md-2'
                 /Devise invitable here
                 /- if policy(User).create?
                 /  = simple_form_for(User.new, url: user_invitation_path) do |z|
