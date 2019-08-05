@@ -1,16 +1,19 @@
-/= @event.slug
 Booking created.
-Company:
-= Tenant.current_tenant.name
-Address:
-= @event.location.address
-Time:
-= @event.starts_at
-/(
-/= @event.duration
-/min)
-- @event.jobs.each do |job|
-  = job.service.name
-  = job.member.full_name
 
-/= link_to "This event", @event
+- model_class = Job
+- @event.jobs.each do |job|
+  
+    = model_class.human_attribute_name(:service_id) + ':'
+    = job.service.name
+
+    = model_class.human_attribute_name(:member_id) + ':'
+    = job.member.full_name
+- model_class = Event
+  = model_class.human_attribute_name(:time) + ':'
+  = @event.starts_at
+
+  = model_class.human_attribute_name(:location_id) + ':'
+  = Tenant.current_tenant.name
+  = @event.location.address
+
+/%p= link_to "This event", @event
