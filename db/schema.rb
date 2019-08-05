@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_130110) do
+ActiveRecord::Schema.define(version: 2019_08_05_143541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,6 +199,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_130110) do
     t.string "time_zone", default: "UTC"
     t.integer "jobs_due_price_sum", default: 0, null: false
     t.integer "expences_amount_sum", default: 0, null: false
+    t.integer "expences_count", default: 0, null: false
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
