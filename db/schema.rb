@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_05_104130) do
+ActiveRecord::Schema.define(version: 2019_08_05_130110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,7 +274,6 @@ ActiveRecord::Schema.define(version: 2019_08_05_104130) do
     t.string "plan", limit: 40, default: "demo", null: false
     t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
-    t.string "string", limit: 2, default: "en", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "industry", limit: 144, default: "other", null: false
