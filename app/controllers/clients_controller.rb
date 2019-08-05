@@ -120,6 +120,8 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :date_of_birth, :gender, :email, :phone_number, :status, address: [:country, :city, :street, :zip])
+      params.require(:client).permit(:first_name, :last_name, :date_of_birth, :gender, :email, :phone_number, :status,
+                                     :personal_data_consent, :event_created_notifications, :marketing_notifications,
+                                      address: [:country, :city, :street, :zip])
     end
 end

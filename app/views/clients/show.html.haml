@@ -75,6 +75,16 @@
         = @client.comments_count
         = render "comments/form"
         = render "comments/index"
+        %hr
+        %small
+          %b= model_class.human_attribute_name(:personal_data_consent) + ':'
+          = @client.personal_data_consent
+          %br
+          %b= model_class.human_attribute_name(:event_created_notifications) + ':'
+          = @client.event_created_notifications
+          %br
+          %b= model_class.human_attribute_name(:marketing_notifications) + ':'
+          = @client.marketing_notifications
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}

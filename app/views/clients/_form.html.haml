@@ -34,5 +34,9 @@
         = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
     / #### ADDRESS FIELD ENDS HERE ####
   %hr
+  = f.input :personal_data_consent
+  = f.input :event_created_notifications
+  = f.input :marketing_notifications
+  %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

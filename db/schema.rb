@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_002036) do
+ActiveRecord::Schema.define(version: 2019_08_05_104130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(version: 2019_07_31_002036) do
     t.string "slug"
     t.integer "payments_amount_sum", default: 0, null: false
     t.integer "jobs_amount_sum", default: 0, null: false
+    t.boolean "personal_data_consent", default: true
+    t.boolean "event_created_notifications", default: true
+    t.boolean "marketing_notifications", default: true
     t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end

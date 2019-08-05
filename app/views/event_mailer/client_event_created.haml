@@ -11,10 +11,10 @@
 - model_class = Event
 %p
   = model_class.human_attribute_name(:time) + ':'
-  = @event.starts_at
+  %b= @event.starts_at
 %p
   = model_class.human_attribute_name(:location_id) + ':'
-  = Tenant.current_tenant.name
-  = @event.location.address
+  %b= Tenant.current_tenant.name
+  %b= @event.location.address
 
 /%p= link_to "This event", @event
