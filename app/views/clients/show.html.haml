@@ -78,13 +78,22 @@
         %hr
         %small
           %b= model_class.human_attribute_name(:personal_data_consent) + ':'
-          = @client.personal_data_consent
+          - if @client.personal_data_consent
+            .fa.fa-check
+          - else
+            .fa.fa-times
           %br
           %b= model_class.human_attribute_name(:event_created_notifications) + ':'
-          = @client.event_created_notifications
+          - if @client.event_created_notifications
+            .fa.fa-check
+          - else
+            .fa.fa-times
           %br
           %b= model_class.human_attribute_name(:marketing_notifications) + ':'
-          = @client.marketing_notifications
+          - if @client.marketing_notifications
+            .fa.fa-check
+          - else
+            .fa.fa-times
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
