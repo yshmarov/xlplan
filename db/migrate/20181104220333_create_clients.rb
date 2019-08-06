@@ -10,6 +10,10 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.string :gender, default: "undisclosed"
       t.text :address
 
+      t.string :personal_data_consent, :boolean, default: true
+      t.string :event_created_notifications, :boolean, default: true
+      t.string :marketing_notifications, :boolean, default: true
+
       t.integer :status, default: 1, null: false
       t.integer :payments_amount_sum, default: 0, null: false
       t.integer :jobs_amount_sum, default: 0, null: false
