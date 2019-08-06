@@ -737,6 +737,8 @@ ru:
           no_show_refunded: "Оплачиваемая Неявка"
         status_color: "Цвет"
         notes: "Заметки"
+        percent_off: "Скидка, %"
+        amount_off: "Скидка, сумма"
         jobs_count: "Кол. Работ"
         after: "Начало после.."
         before: "Начало до.."
