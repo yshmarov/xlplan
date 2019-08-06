@@ -9,6 +9,9 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.integer :balance, default: 0, null: false
       t.integer :status, default: 1, null: false
 
+      t.integer :locations, :events_count, :integer, default: 0, null: false
+      t.integer :locations, :members_count, :integer, default: 0, null: false
+
       t.timestamps
     end
   end

@@ -17,6 +17,7 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.integer :expences_amount_sum, default: 0, null: false
       t.integer :jobs_due_price_sum, default: 0, null: false
       t.integer :expences_count, :integer, default: 0, null: false
+      t.integer :jobs_count, :integer, default: 0, null: false
 
       t.belongs_to :location, foreign_key: true
 

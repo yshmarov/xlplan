@@ -7,10 +7,12 @@ class CreateInboundPayments < ActiveRecord::Migration[5.2]
       t.string :payment_method, default: 'cash', null: false
       t.integer :payable_id
       t.string :payable_type
+      t.string :slug
 
       t.timestamps
     end
     add_index :inbound_payments, :payable_id
     add_index :inbound_payments, :payable_type
+    add_index :inbound_payments, :slug, unique: true
   end
 end

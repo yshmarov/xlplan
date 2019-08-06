@@ -17,6 +17,8 @@ class CreateEvents < ActiveRecord::Migration[5.2]
 
       t.text :notes, :limit => 500
 
+      t.integer :jobs_count, :integer, default: 0, null: false
+
       t.timestamps
 
       #add_index :events, :status
