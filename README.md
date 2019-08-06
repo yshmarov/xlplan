@@ -22,7 +22,7 @@ Tenant.pluck(:name)
 #=> ["Eloquent Ruby", "Sapiens", "Agile Web Development With Rails"]
 #######################################################
 heroku run rails c
-Tenant.set_current_tenant(1)
+Tenant.set_current_tenant(13)
 PublicActivity.enabled = false
 InboundPayment.count
 InboundPayment.all.map(&:amount).sum
