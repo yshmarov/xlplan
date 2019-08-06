@@ -291,6 +291,8 @@ ru:
   cancel: 'Отменить'
   events_index: "Встречи"
   events_close: "Отметить Встречи"
+  clients_index: "Клиенты"
+  clients_debtors: "Клиенты Должники"
   services: 'Услуги'
   service: 'Услуга'
   member: 'Сотрудник'
@@ -332,7 +334,7 @@ ru:
     expences: 'Расходы'
     member_expences: 'Выплаты'
     activity: 'Активность'
-    settings: 'Настройки'
+    settings: "Настройки"
     tenant: "Моя Организация"
     service_categories: "Категории услуг"
     stats: 'Статистика'
@@ -482,6 +484,8 @@ ru:
 
     expences:
       expence_stats: "Статистика Расходов"
+      per_day: "По дням"
+      per_month: "По месяцам"
       expences_per_month: "Расходов по месяцам"
       expence_types: "Статьи расходов"
     clients:

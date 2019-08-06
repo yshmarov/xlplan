@@ -5,7 +5,7 @@ module Personable
   end
 
   def full_name
-    [first_name, last_name].join(' ')
+    [last_name, first_name].join(' ')
     #last_name.capitalize + " " + first_name.capitalize
   end
 

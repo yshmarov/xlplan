@@ -36,7 +36,10 @@
             = link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
         .col-lg-4
           .fa.fa-user
-          = link_to event.client, client_path(event.client)
+          = link_to event.client.full_name, client_path(event.client)
+          /.fa.fa-user
+          /= link_to event.client.phone_number
+          /.row
           .row
           .fa.fa-map-marker-alt
           = link_to event.location, location_path(event.location)
