@@ -236,6 +236,8 @@ en:
   cancel: 'Cancel'
   events_index: "Events"
   events_close: "Mark Events"
+  clients_index: "Clients"
+  clients_debtors: "Debtors"
   services: 'Services'
   service: 'Service'
   member: 'Employee'

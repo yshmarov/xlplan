@@ -74,7 +74,6 @@
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, members_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-hand-paper'></i> #{t('sidebar.services')}".html_safe, services_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-map-marker-alt'></i> #{t('sidebar.locations')}".html_safe, locations_path, class: "nav-link"
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "nav-link"
       /alternative dropdown
       /%a.nav-link.btn.dropdown-toggle{"data-target" => "#stats", "data-toggle" => "collapse"}
       /  .fa-color-1.fa.fa-chart-line
@@ -89,10 +88,11 @@
           .fa-color-1.fa.fa-cog
           #{t('sidebar.settings')}
         .dropdown-menu{"aria-labelledby" => "navbarDropdown3"}
-          = link_to "<i class='fa-fw fa fa-landmark'></i> #{t('sidebar.tenant')}".html_safe, settings_show_path, class: "dropdown-item navdrop-link" if current_user.has_role?(:admin)
-          = link_to "<i class='fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "dropdown-item navdrop-link"
+          = link_to "<i class='fa-fw fa fa-cog'></i> #{t('sidebar.tenant')}".html_safe, settings_show_path, class: "dropdown-item navdrop-link" if current_user.has_role?(:admin)
           = link_to "<i class='fa-fw fa fa-dollar-sign'></i> #{t('sidebar.expences')}".html_safe, expences_path, class: "dropdown-item navdrop-link"
           = link_to "<i class='fa-fw fa fa-hand-paper'></i> #{t('sidebar.service_categories')}".html_safe, service_categories_path, class: "dropdown-item navdrop-link"
+          = link_to "<i class='fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "dropdown-item navdrop-link"
+          = link_to "<i class='fa-fw fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "dropdown-item navdrop-link"
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
