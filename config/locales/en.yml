@@ -241,6 +241,8 @@ en:
   services: 'Services'
   service: 'Service'
   member: 'Employee'
+  by_creating_an_account_you_accept_the: "By creating an account you accept the"
+  click_to_view: "- click to view"
 
   ######################################################
 

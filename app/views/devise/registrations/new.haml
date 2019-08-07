@@ -28,6 +28,13 @@
             = recaptcha_tags
           %hr
           = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary"
+          %small
+            .row
+            = t('by_creating_an_account_you_accept_the')
+            = link_to t("footer.terms_of_service"), terms_of_service_path
+            .row
+            = link_to t("footer.privacy_policy"), privacy_policy_path
+            = t('click_to_view')
         %hr
         = render "devise/shared/links"
 %br
