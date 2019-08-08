@@ -279,6 +279,7 @@ en:
     locations: 'Locations'
     inbound_payments: 'Payments'
     expences: 'Expences'
+    member_expences: 'Employee Expences'
     activity: 'Activity'
     settings: 'Settings'
     tenant: "My Organisation"
@@ -291,6 +292,7 @@ en:
     start: 'Start!'
     order_system: 'order system'
     change_plan: 'change plan'
+    user_roles: "User Roles"
 
   ######################################################
 
@@ -308,12 +310,12 @@ en:
       designed_for: "Who chooses XLPLAN"
       #industries
       beauty_industry: "Beauty industy"
+      hair_beauty_barbershop: "Hair & beauty saloons, Barbershops"
       spa: "SPA"
       sauna: "Sauna"
       solarium: "Solarium"
       cosmetology: "Cosmetology"
       tattoo_studio: "Tattoo studio"
-      hair_beauty_barbershop: "Hair & beauty saloons, Barbershops"
       #industries
       private_medicine: "Private medicine"
       stomatology: "Dentists"
@@ -326,26 +328,30 @@ en:
       professional_services: "Professional services"
       car_services: "Car service, car wash, car service centers"
       driving_school: "Driving school"
-      legal_consulting: "Legal consulting"
       business_consulting: "Business Consulting"
+      legal_consulting: "Legal Services"
       field_services: "Field services"
       cleaning_services: "Cleaning Services"
       tutors: "Tutors (language, dance, sport, music), guides"
       other: "Other"
       ########################################
       why_do_you_need_it: "What for?"
+
       control_business: "Control"
       all_business_data_secure_in_one_place: "Access all your business information in one place"
       manage_workload: "Manage all business processes"
       more_professional: "Professional software for modern business"
+
       save_time: "Save time"
       automatic_reminders: "Automatic visit reminders for clients"
       automatic_salary_calculation: "Automatic salary calculation"
+      quick_search: "Instantly find information about customers, appointments and payments"
       automatic_marketing: "Automated marketing and messaging"
+
       increase_revenue_and_grow: "Incraese revenue and grow"
       dont_lose_clients: "Tools for client retention"
-      growth_of_your_business_is_easier_to_manage: "Growth of your business will be easier to manage"
       make_data_drived_descisions: "Make data-driven descisions"
+      growth_of_your_business_is_easier_to_manage: "Growth of your business will be easier to manage"
       competitive_advantage: "XLPLAN - a competitive_advantage for your business"
       ########################################
       small_investment: "Small investment, Big results"
@@ -353,7 +359,6 @@ en:
       ########################################
       technology: "Technology"
       in_the_cloud: "In the cloud"
-      in_the_cloud2: "No installation or download required"
       any_device: "Any device"
       any_device2: "On your phone or computer. Open in your browser (Chrome, Safari, Mozilla, Opera)"
       anonimity: "Anonimity"
@@ -401,21 +406,179 @@ en:
 
   ######################################################
 
+      in_the_cloud2: "No installation or download required"
   dashboard:
+    activity:
+      activity: "Activity"
+      ago: "ago"
     start:
       start: "Start"
       edit_my_page: "Add Your contact details"
       select_currency: "Select default currency"
-      new_member: "Add additional employees"
-      new_location: "Add a Location"
-      new_service: "Add your Service list"
-      new_client: "Add a Client (without access rights)"
+      new_member: "Invite employees (not required)"
+      new_location: "Add your Business Locations"
+      new_service: "Add your Services Price list"
+      new_client: "Add a client (Without access to the app)"
       new_event: "Add an Event"
       new_payment: "Add a Payment"
       finish: "Great! Now you are ready to start using the software"
 
+      today: "Today"
+      next_5_member_birthdays: 'Next 5 employee birthdays'
+      client_birthdays_today: 'Client birthdays today'
+      events_today: "Events today"
+      events_tomorrow: "Events tomorrow"
+
+    expences:
+      expence_stats: "Expence stats"
+      per_day: "By day"
+      per_month: "By month"
+      current_month: "Today"
+      expences_per_month: "Expences by month"
+      expence_types: "Expence types"
+    clients:
+      client_stats: 'Client stats'
+      clients_registered_per_month: 'Clients created by month'
+      client_birthdays_per_year: 'Client birthdays per year'
+      status_popularity: 'Status popularity'
+      gender_popularity: 'Gender stats'
+    members:
+      member_stats: "Employee stats"
+      productivity: "Productivity"
+      name: "Name"
+      planned: "Planned"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"
+      jobs: "Jobs"
+      hours_worked: "Hours worked"
+      payments: "Client Payments"
+      expences: "Employee comission"
+      net_income: "Net income"
+      revenue_share: "Revenue share"
+      confirmed_jobs_per_month_quantity: "Confirmed jobs per month, quantity"
+      confirmed_jobs_per_month_client_price: "Confirmed jobs per month, payable by clients"
+      confirmed_jobs_per_month_member_price: "Confirmed jobs per month, payable to employees"
+      payments_per_month: "Payments per month"
+    events:
+      per_day: "By day"
+      per_month: "By month"
+      current_month: "Today"
+      event_stats: 'Event stats'
+      other_stats: "Other stats"
+      confirmed_event_price_per_day: "Price of confirmed events per day"
+      confirmed_event_price_per_month: "Price of confirmed events per month"
+      counters: "Counters"
+      average_confirmed_check: "Average paycheck"
+      planned: "Planned"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"
+      jobs: "Jobs"
+      hours_worked: "Hours worked"
+      payments: "Client Payments"
+      expences: "Employee comission"
+      net_income: "Net income"
+      events_per_month_quantity: 'Events per month'
+      unique_clients_per_month_quantity: 'Unique clients per month'
+      status_popularity: 'Status popularity'
+      location_popularity: 'Location popularity'
+      service_popularity: 'Service popularity'
+      current_month: "Today"
+    payments:
+      per_day: "By day"
+      per_month: "By month"
+      current_month: "Today"
+      payment_stats: 'Payment stats'
+      payments_per_month: 'Payments per month'
+      payments_per_day: 'Payments per day'
+
   ######################################################
 
+  inbound_payments:
+    index:
+      title: "Payments"
+    show:
+      title: "Payment"
+    new:
+      title: "Create Payment"
+    edit:
+      title: "Edit Payment"
+    create:
+      success: 'Payment was successfully created.'
+  expences:
+    index:
+      title: "Expences"
+    show:
+      title: "Expence"
+    new:
+      title: "Create Expence"
+    edit:
+      title: "Edit Expence"
+    create:
+      success: 'Expence was successfully created.'
+  locations:
+    index:
+      title: "Locations"
+    new:
+      title: "Create Location"
+    edit:
+      title: "Edit Location"
+    create:
+      success: 'Location was successfully created.'
+  services:
+    index:
+      title: "Services"
+    new:
+      title: "Create Service"
+    edit:
+      title: "Edit Service"
+    create:
+      success: 'Service was successfully created.'
+  service_categories:
+    index:
+      title: "Service Categories Услуг"
+    new:
+      title: "Create Category"
+    edit:
+      title: "Edit Category"
+    create:
+      success: 'Category was successfully created.'
+  members:
+    index:
+      title: "Employees"
+      search_member: 'Search employee'
+      has_access: "Has access"
+      no_access_resend_invitation_email: "Invited. Send email reminder"
+      no_access: "No access"
+      invite_user: "Invite user"
+      add_email_to_invite_user: "Add email"
+      terminated: "Not active"
+      delete_access: 'Delete access'
+    new:
+      title: "Create Employee"
+    edit:
+      title: "Edit Employee"
+    create:
+      success: 'Employee was successfully created.'
+    show:
+      access_rights: 'Access rights'
+      delete_access: 'Delete access'
+      edit_roles: 'Edit roles'
+      edit_password: "Edit password"
+      confirmed_at: "Confirmation date"
+  clients:
+    index:
+      title: "Clients"
+    new:
+      title: "Create Client"
+    edit:
+      title: "Edit Client"
+    create:
+      success: 'Client was successfully created.'
+    show:
+      event_quantity_per_month: "Events each month"
+      payment_sum_per_month: "Payments each month"
+      event_statuses: "Attendance"
+      favorite_services: "Favorite services"
   events:
     index:
       planned: "Planned"
@@ -425,7 +588,7 @@ en:
       no_show: "Client No Show"
       no_show_refunded: "No Show Refund"
     show:
-      client_paid: "Create Payment"
+      #client_paid: "Create Payment"
       planned: "Planned"
       confirmed: "Confirmed"
       member_cancelled: "Employee Cancelled"
@@ -434,6 +597,12 @@ en:
       no_show_refunded: "No Show Refund"
     form:
       add_service: "+ Add Service"
+    index:
+      title: "Events"
+    new:
+      title: "Create Event"
+    edit:
+      title: "Edit Event"
     create:
       success: 'Event was successfully created.'
     update:
@@ -460,28 +629,13 @@ en:
       members: "Employees"
       services: "Services"
       locations: "Locations"
-      new_member: "Invite employees (not required)"
-      new_location: "Add your Business Locations"
-      new_service: "Add your Services Price list"
-      new_client: "Add a client (Without access to the app)"
-      new_event: "Add an event"
+      inbound_payments: "Payments"
+      comments: "Comments"
+      service_categories: "Service Categories"
+    edit:
+      title: "Edit Settings"
     edit_plan:
       title: "order system"
-  members:
-    index:
-      title: "Employees"
-      has_access: "Has access"
-      no_access_resend_invitation_email: "Invited. Send email reminder"
-      no_access: "No access"
-      invite_user: "Invite user"
-      add_email_to_invite_user: "Add email"
-      terminated: "Not active"
-    show:
-      access_rights: 'Access rights'
-      delete_access: 'Delete access'
-      edit_roles: 'Edit roles'
-      edit_password: "Edit password"
-      confirmed_at: "Confirmation date"
 
   ######################################################
 

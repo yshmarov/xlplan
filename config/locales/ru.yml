@@ -366,16 +366,16 @@ ru:
       #industries
       beauty_industry: "Индустрия красоты"
       hair_beauty_barbershop: "Салон красоты и макияжа, парикмахерская, барбершоп"
-      cosmetology: "Косметология"
-      solarium: "Солярий"
-      tattoo_studio: "Тату студия"
       spa: "СПА-салон"
       sauna: "Сауна"
+      solarium: "Солярий"
+      cosmetology: "Косметология"
+      tattoo_studio: "Тату студия"
       #industries
       private_medicine: "Частная медицина"
-      private_clinic: "Частная клиника"
       stomatology: "Стоматология"
       ophtalmologist: "Офтальмология"
+      private_clinic: "Частная клиника"
       psychologist: "Кабинет психолога"
       veterinary_clinic: "Ветеринарная клиника"
       massage: "Массажный салон"
@@ -383,8 +383,8 @@ ru:
       professional_services: "Профессиональные услуги"
       car_services: "Автосервис, автомойка, шиномонтаж"
       driving_school: "Школа вождения"
-      legal_consulting: "Юридическая компания"
       business_consulting: "Бизнес консультации"
+      legal_consulting: "Юридическая компания"
       field_services: "Выездные услуги"
       cleaning_services: "Клининговые услуги"
       tutors: "Образовательный центр, курсы, частная школа. Консультации (языковые, танцевальные, спортивные, музыкальные)"
@@ -414,7 +414,6 @@ ru:
       ########################################
       technology: "Технология"
       in_the_cloud: "В облаке"
-      in_the_cloud2: "Мгновенный доступ. Не требуется загрузка или установка."
       any_device: "Любое устройство"
       any_device2: "На вашем телефоне или компьютере. Программа открывается через браузер (Chrome, Safari, Mozilla, Opera)"
       anonimity: "Анонимность"
@@ -462,6 +461,7 @@ ru:
 
   ######################################################
 
+      in_the_cloud2: "Мгновенный доступ. Не требуется загрузка или установка."
   dashboard:
     activity:
       activity: "Активность"
@@ -488,6 +488,7 @@ ru:
       expence_stats: "Статистика Расходов"
       per_day: "По дням"
       per_month: "По месяцам"
+      current_month: "Сегодня"
       expences_per_month: "Расходов по месяцам"
       expence_types: "Статьи расходов"
     clients:
@@ -514,9 +515,10 @@ ru:
       confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
       payments_per_month: "Выплаты по месяцам"
     events:
-      event_stats: 'Статистика Встреч'
       per_day: "По дням"
       per_month: "По месяцам"
+      current_month: "Сегодня"
+      event_stats: 'Статистика Встреч'
       other_stats: "Другие показатели"
       confirmed_event_price_per_day: "Цена подтверждённых встреч в день"
       confirmed_event_price_per_month: "Цена подтверждённых встреч в месяц"
@@ -539,10 +541,10 @@ ru:
     payments:
       per_day: "По дням"
       per_month: "По месяцам"
+      current_month: "Сегодня"
       payment_stats: 'Статистика Оплат'
       payments_per_month: 'Сумма оплат в месяц'
       payments_per_day: 'Сумма оплат в день'
-      current_month: "Сегодня"
 
   ######################################################
 
@@ -576,7 +578,7 @@ ru:
     edit:
       title: "Изменить Филиал"
     create:
-      success: 'Филиал успешно создана.'
+      success: 'Филиал успешно создан.'
   services:
     index:
       title: "Услуги"
@@ -594,7 +596,7 @@ ru:
     edit:
       title: "Изменить Категорию"
     create:
-      success: 'Категорию успешно создана.'
+      success: 'Категория успешно создана.'
   members:
     index:
       title: "Сотрудники"
@@ -641,7 +643,7 @@ ru:
       no_show: "Клиент Не Явился"
       no_show_refunded: "Оплачиваемая Неявка"
     show:
-      client_paid: "Создать оплату"
+      #client_paid: "Создать оплату"
       planned: "Запланирован"
       confirmed: "Состоялся"
       member_cancelled: "Сотрудник Отменил"
