@@ -1,124 +1,56 @@
-- if current_user.has_role?(:admin)
-  .card
-    .card-header
-      .fa.fa-rocket
-      = t('.start')
-    .card-body
-      %h5
-        /CREATE MEMBER
-        - if Tenant.current_tenant.can_create_members?
-          - if Member.count < 2
-            %span.badge.badge-pill.badge-danger -
-            = link_to t('.new_member'), new_member_path
-          - else
-            %span.badge.badge-pill.badge-success +
-            %del
-              = t('.new_member')
-          %hr
-        /CREATE LOCATION
-        - if Tenant.current_tenant.can_create_locations?
-          - unless Location.any?
-            %span.badge.badge-pill.badge-danger -
-            = link_to t('.new_location'), new_location_path
-          - else
-            %span.badge.badge-pill.badge-success +
-            %del
-              = t('.new_location')
-          %hr
-        /CREATE SERVICE
-        - unless Service.any?
+.card
+  .card-header
+    .fa.fa-rocket
+    = t('.start')
+  .card-body
+    %h5
+      /CREATE MEMBER
+      - if Tenant.current_tenant.can_create_members?
+        - if Member.count < 2
           %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_service'), new_service_path
+          = link_to t('.new_member'), new_member_path
         - else
           %span.badge.badge-pill.badge-success +
           %del
-            = t('.new_service')
+            = t('.new_member')
         %hr
-        /CREATE CLIENT
-        - unless Client.any?
+      /CREATE LOCATION
+      - if Tenant.current_tenant.can_create_locations?
+        - unless Location.any?
           %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_client'), new_client_path
+          = link_to t('.new_location'), new_location_path
         - else
           %span.badge.badge-pill.badge-success +
           %del
-            = t('.new_client')
+            = t('.new_location')
         %hr
-        /CREATE EVENT
-        - unless Event.any?
-          %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_event'), new_event_path
-        - else
-          %span.badge.badge-pill.badge-success +
-          %del
-            = t('.new_event')
-          %hr
-          /FINISH
-          = t('.finish')
-  %br
-.text-center
-  %h4
-    = t('.today')
-    = I18n.localize Date.today, format: :short
-%p
-.row
-  .col-lg-4
-    %li.list-group-item
-      = link_to events_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}) do
-        .fa.fa-calendar-check
-        %b= t('tenants.show.events')
-        %span.badge.badge-secondary
-          = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-  .col-lg-4
-    %li.list-group-item
-      = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}) do
-        %i.fa.fa-user
-        %b= t('tenants.show.clients')
-        %span.badge.badge-secondary
-          = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-  .col-lg-4
-    %li.list-group-item
-      = link_to inbound_payments_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}) do
-        %i.fa.fa-hand-holding-usd
-        %b= t('tenants.show.inbound_payments')
-        %span.badge.badge-secondary
-          = InboundPayment.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-%p
-.row
-  .col-lg-6
-    - @events = Event.today
-    .card-header
-      .fa.fa-calendar-check
-      = t('.events_today')
-      .badge.badge-danger
-        = @events.count
-    = render 'events/index'
-    %p
-  .col-lg-6
-    - @events = Event.tomorrow
-    .card-header
-      .fa.fa-calendar-check
-      = t('.events_tomorrow')
-      .badge.badge-danger
-        = @events.count
-    = render 'events/index'
-%p
-.row
-  .col-lg-6
-    .card
-      .card-header
-        .fa.fa-birthday-cake
-        = t('.client_birthdays_today')
-        .badge.badge-secondary
-          = @clients.count
-      .card-body
-        - @clients.each do |client|
-          = link_to "#{client.date_of_birth.strftime('%b, %d')} - #{client}", client_path(client)
-    %p
-  .col-lg-6
-    .card
-      .card-header
-        .fa.fa-birthday-cake
-        = t('.next_5_member_birthdays')
-      .card-body
-        - @members.each do |member|
-          = link_to "#{member.date_of_birth.strftime('%b, %d')} - #{member}", member_path(member)
+      /CREATE SERVICE
+      - unless Service.any?
+        %span.badge.badge-pill.badge-danger -
+        = link_to t('.new_service'), new_service_path
+      - else
+        %span.badge.badge-pill.badge-success +
+        %del
+          = t('.new_service')
+      %hr
+      /CREATE CLIENT
+      - unless Client.any?
+        %span.badge.badge-pill.badge-danger -
+        = link_to t('.new_client'), new_client_path
+      - else
+        %span.badge.badge-pill.badge-success +
+        %del
+          = t('.new_client')
+      %hr
+      /CREATE EVENT
+      - unless Event.any?
+        %span.badge.badge-pill.badge-danger -
+        = link_to t('.new_event'), new_event_path
+      - else
+        %span.badge.badge-pill.badge-success +
+        %del
+          = t('.new_event')
+        %hr
+        /FINISH
+        = t('.finish')
+%br

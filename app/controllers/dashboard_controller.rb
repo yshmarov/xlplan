@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
     @activities = PublicActivity::Activity.paginate(:page => params[:page], :per_page => 50).order("created_at DESC").where(tenant_id: Tenant.current_tenant.id)
   end
 
-  def start
+  def today
     #next 5 bdays
     next_bdays = (Date.today + 0.day).yday
     #@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
@@ -13,6 +13,9 @@ class DashboardController < ApplicationController
     #all bdays today
     @clients = Client.where("EXTRACT(YEAR FROM date_of_birth) >= ?", 1948).where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC'))
     #@events = Event.today_and_tomorrow
+  end
+
+  def start
   end
 
   def calendar

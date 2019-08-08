@@ -263,6 +263,7 @@ en:
     security: "Security"
     about_us: "About us"
   sidebar:
+    today: "Today"
     search_client: 'Search Client'
     new_event: 'New Event'
     new_client: 'New Client'
@@ -408,9 +409,12 @@ en:
 
       in_the_cloud2: "No installation or download required"
   dashboard:
-    activity:
-      activity: "Activity"
-      ago: "ago"
+    today:
+      today: "Today"
+      next_5_member_birthdays: 'Next 5 employee birthdays'
+      client_birthdays_today: 'Client birthdays today'
+      events_today: "Events today"
+      events_tomorrow: "Events tomorrow"
     start:
       start: "Start"
       edit_my_page: "Add Your contact details"
@@ -422,13 +426,9 @@ en:
       new_event: "Add an Event"
       new_payment: "Add a Payment"
       finish: "Great! Now you are ready to start using the software"
-
-      today: "Today"
-      next_5_member_birthdays: 'Next 5 employee birthdays'
-      client_birthdays_today: 'Client birthdays today'
-      events_today: "Events today"
-      events_tomorrow: "Events tomorrow"
-
+    activity:
+      activity: "Activity"
+      ago: "ago"
     expences:
       expence_stats: "Expence stats"
       per_day: "By day"
@@ -535,7 +535,7 @@ en:
       success: 'Service was successfully created.'
   service_categories:
     index:
-      title: "Service Categories Услуг"
+      title: "Service Categories"
     new:
       title: "Create Category"
     edit:

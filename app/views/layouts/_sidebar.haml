@@ -92,6 +92,7 @@
           = link_to "<i class='fa-fw fa fa-dollar-sign'></i> #{t('sidebar.expences')}".html_safe, expences_path, class: "dropdown-item navdrop-link"
           = link_to "<i class='fa-fw fa fa-hand-paper'></i> #{t('sidebar.service_categories')}".html_safe, service_categories_path, class: "dropdown-item navdrop-link"
           = link_to "<i class='fa-fw fa fa-rocket'></i> #{t('sidebar.start')}".html_safe, start_path, class: "dropdown-item navdrop-link"
+          = link_to "<i class='fa-fw fa fa-check-square'></i> #{t('sidebar.today')}".html_safe, today_path, class: "dropdown-item navdrop-link"
           = link_to "<i class='fa-fw fa fa-bell'></i> #{t('sidebar.activity')}".html_safe, activity_path, class: "dropdown-item navdrop-link"
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown

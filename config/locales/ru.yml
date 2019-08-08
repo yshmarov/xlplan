@@ -318,6 +318,7 @@ ru:
     security: "Безопасность"
     about_us: "Компания"
   sidebar:
+    today: "Сегодня"
     search_client: 'Поиск Клиента'
     new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
@@ -463,9 +464,12 @@ ru:
 
       in_the_cloud2: "Мгновенный доступ. Не требуется загрузка или установка."
   dashboard:
-    activity:
-      activity: "Активность"
-      ago: "назад"
+    today:
+      today: "Сегодня"
+      next_5_member_birthdays: 'Следующие 5 дней рождений сотрудников'
+      client_birthdays_today: 'Дни рождения клиентов сегодня'
+      events_today: "Встречи сегодня"
+      events_tomorrow: "Встречи завтра"
     start:
       start: "Начало работы"
       edit_my_page: "Внесите свои контактые данные"
@@ -477,13 +481,9 @@ ru:
       new_event: "Создайте Встречу"
       new_payment: "Внесите Оплату"
       finish: "Отлично! Теперь вы готовы пользоваться программой"
-
-      today: "Сегодня"
-      next_5_member_birthdays: 'Следующие 5 дней рождений сотрудников'
-      client_birthdays_today: 'Дни рождения клиентов сегодня'
-      events_today: "Встречи сегодня"
-      events_tomorrow: "Встречи завтра"
-
+    activity:
+      activity: "Активность"
+      ago: "назад"
     expences:
       expence_stats: "Статистика Расходов"
       per_day: "По дням"
