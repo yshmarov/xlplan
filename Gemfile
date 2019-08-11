@@ -101,3 +101,6 @@ gem "recaptcha"
 
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+gem "aws-sdk-s3"
+#gem "mini_magic"

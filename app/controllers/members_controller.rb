@@ -46,6 +46,7 @@ class MembersController < ApplicationController
 
   def update
     authorize @member
+    #@member.avatar.attach(params[:avatar])
     respond_to do |format|
       if @member.update(member_params)
         format.html { redirect_to @member, notice: 'Member was successfully updated.' }
@@ -74,7 +75,8 @@ class MembersController < ApplicationController
   
     def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address, :time_zone,
-      :status, :location_id, service_category_ids: [], address: [:country, :city, :street, :zip])
+      :status, :location_id, :avatar,
+      service_category_ids: [], address: [:country, :city, :street, :zip])
     end
 
     def user_params

@@ -16,26 +16,53 @@
           /.text-center #also pulls the modal content
           = render 'members/new_expence'
       .card-body
+        - if @member.avatar.attached?
+          .text-center
+            /%image{:scr => "#{(url_for(@member.avatar))}"}
+            /= url_for(@member.avatar)
+            %img.rounded{:alt => "#{@member.full_name}", :src => "#{url_for(@member.avatar)}", :height => "200px"}/
+          /= @member.avatar.attached?
+          /= @member.avatar.id
+          /= image_tag @member.avatar, size: "150", class: "rounded-circle"
+          /= link_to image_tag(@member.avatar), upload
+          /, :width => "30%", class: "rounded-circle"
+          /= image_tag @member.avatar, :width => "30%", class: "rounded-circle"
+          /= image_tag @member.avatar, :width => "30%", :height => "auto", class: "rounded-circle"
+  
+          /= image_tag @member.avatar, :height => "30%", class: "rounded-circle"
+          /%img.rounded-circle{:alt => "Yaroslav Shmarov", :src => "https://i.imgur.com/oQNA52Q.jpg", :width => "30%"}/
+          /= rails_blob_path(@member.avatar, disposition: "attachment")
+          /= link_to "download", rails_blob_path(@member.avatar, disposition: "attachment")
+        /- else
+        /  s
+        /.far.fa-user
+        .row
         %b= model_class.human_attribute_name(:full_name) + ':'
         = @member.full_name
-        %br
+        .row
         %b= model_class.human_attribute_name(:phone_number) + ':'
         = link_to "tel:#{@member.phone_number}", class: "button" do
           #{number_to_phone(@member.phone_number)}
         /%a{:href => "viber://chat?number=#{@member.phone_number}"}
         /  Viber
-        %br
+        .row
         %b= model_class.human_attribute_name(:email) + ':'
         %a{:href => "mailto:#{@member.email}"}= @member.email
-        %br
+        .row
         %b= model_class.human_attribute_name(:date_of_birth) + ':'
         - if @member.date_of_birth.present?
           = @member.date_of_birth.strftime('%d/%b/%Y') 
           (#{@member.age})
-        %br
+        .row
         %b= model_class.human_attribute_name(:gender) + ':'
-        = @member.gender
-        %br
+        - if @member.gender == "female"
+          .fa.fa-female
+        - elsif @member.gender == "male"
+          .fa.fa-male
+        - else
+          .fa.fa-question
+        /= @member.gender
+        .row
         %b= model_class.human_attribute_name(:address) + ':'
         - if @member.address?
           /= @member.address
@@ -44,10 +71,10 @@
           = @member.address[:city]
           = @member.address[:street]
           = @member.address[:zip]
-        %br
+        .row
         %b= model_class.human_attribute_name(:time_zone) + ':'
         = @member.time_zone
-        %br
+        .row
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@member.status)
         %hr

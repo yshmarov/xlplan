@@ -31,6 +31,7 @@
 /    /      = f.button :submit, 'Create user and send invitation', class: 'btn btn-success'
 /    /    %p
 /    /    = link_to t('.cancel', :default => t("helpers.links.cancel")), members_path, :class => 'btn btn-danger'
+
 - model_class = Member
 .card
   .card-body
@@ -45,6 +46,9 @@
       = f.error :first_name, class: 'text-danger'
       = f.input :last_name
       = f.error :last_name, class: 'text-danger'
+
+      /= f.label "profile photo" 
+      /= f.file_field :avatar
 
       = f.input :time_zone
 

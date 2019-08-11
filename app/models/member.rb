@@ -3,6 +3,7 @@ class Member < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------relationships-------------------#
+  has_one_attached :avatar
   #belongs_to :user, required: false
   belongs_to :user, required: false
   belongs_to :location, optional: true, counter_cache: true
