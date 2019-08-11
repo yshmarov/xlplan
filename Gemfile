@@ -102,5 +102,7 @@ gem "recaptcha"
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-gem "aws-sdk-s3"
+group :production do
+  gem "aws-sdk-s3"
+end
 #gem "mini_magic"
