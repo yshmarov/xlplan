@@ -21,6 +21,14 @@ class MembersController < ApplicationController
     authorize @member
   end
 
+  def delete_avatar
+    avatar = ActiveStorage::Attachment.find(params[:id])
+    avatar.purge # or use purge_later
+    #redirect_to @member
+    redirect_to members_url, notice: 'Avatar deleted.'
+    #redirect_back(fallback_location: members_path)
+  end
+
   def new
     @member = Member.new
     @user   = User.new

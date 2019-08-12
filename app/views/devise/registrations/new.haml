@@ -17,7 +17,7 @@
             = w.error_notification
             = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
             /= w.error :name
-            = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+            = w.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
             /- if ::Milia.use_coupon
             /  - @coupon ||= {}
             /  .group

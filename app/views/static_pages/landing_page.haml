@@ -98,7 +98,11 @@
           %p
           .fa.fa-user-graduate
           = t('.tutors')
-      %p
+  .text-center
+    %br
+    = link_to t(".features"), features_path, class: 'btn btn-lg btn-warning text-dark'
+  %p
+
 %hr
 .container-fluid
   .text-center
@@ -156,10 +160,6 @@
       %i.fa.fa-chart-line{:style => "color:orange"}
       = t('.competitive_advantage')
       %p
-  .text-center
-    %br
-    = link_to t(".features"), features_path, class: 'btn btn-lg btn-warning text-dark'
-  %p
 
 :css
   .parallax { 

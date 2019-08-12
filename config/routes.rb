@@ -24,7 +24,11 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:destroy, :edit, :update]
-  resources :members
+  resources :members do
+    member do
+      delete :delete_avatar
+    end
+  end
 
   #edit tenant info
   match '/settings/show' => 'tenants#show', via: :get

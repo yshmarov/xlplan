@@ -11,6 +11,7 @@ class Event < ApplicationRecord
   #-----------------------gem rolify-------------------#
   resourcify
   #-----------------------relationships-------------------#
+  #has_many_attached :files
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
   has_many :jobs, inverse_of: :event, dependent: :destroy

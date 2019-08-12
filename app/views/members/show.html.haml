@@ -21,6 +21,8 @@
             /%image{:scr => "#{(url_for(@member.avatar))}"}
             /= url_for(@member.avatar)
             %img.rounded{:alt => "#{@member.full_name}", :src => "#{url_for(@member.avatar)}", :height => "200px"}/
+            .row
+            %small= link_to 'Remove Avatar', delete_avatar_member_path(@member.avatar.id), method: :delete, data: { confirm: 'Are you sure?' } 
           /= @member.avatar.attached?
           /= @member.avatar.id
           /= image_tag @member.avatar, size: "150", class: "rounded-circle"
