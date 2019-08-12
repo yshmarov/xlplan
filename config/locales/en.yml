@@ -214,6 +214,60 @@ en:
       short: "%d %b %H:%M"
     pm: pm
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   ######################################################
 
   helpers:
@@ -274,12 +328,15 @@ en:
     close_events: 'Mark Events'
     debtors: 'Debtors'
     events: 'Events'
+    expences: 'Expences'
+    inbound_payments: 'Payments'
+    all_events: 'All events'
+    all_expences: 'All expences'
+    all_inbound_payments: 'All payments'
     clients: 'Clients'
     members: 'Employees'
     services: 'Services'
     locations: 'Locations'
-    inbound_payments: 'Payments'
-    expences: 'Expences'
     member_expences: 'Employee Expences'
     activity: 'Activity'
     settings: 'Settings'

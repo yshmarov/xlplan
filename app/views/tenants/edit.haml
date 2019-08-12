@@ -5,7 +5,7 @@
     .card
       .card-body
         %h4
-          .fa.fa-cog
+          .fa.fa-globe-africa
           =t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
         %hr
         = simple_form_for @tenant, url: update_tenant_path do |f|

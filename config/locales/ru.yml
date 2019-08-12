@@ -329,12 +329,15 @@ ru:
     close_events: 'Отметить Встречи'
     debtors: "Должники"
     events: 'Встречи'
+    expences: 'Расходы'
+    inbound_payments: 'Оплаты'
+    all_events: 'Все встречи'
+    all_expences: 'Все расходы'
+    all_inbound_payments: 'Все оплаты'
     clients: 'Клиенты'
     members: 'Сотрудники'
     services: 'Услуги'
     locations: 'Филиалы'
-    inbound_payments: 'Оплаты'
-    expences: 'Расходы'
     member_expences: 'Выплаты'
     activity: 'Активность'
     settings: "Настройки"

@@ -3,40 +3,40 @@
   .col-lg-6
     .card
       .card-header
-        .fa.fa-cog
+        .fa.fa-globe-africa
         %b=t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', edit_tenant_path, class: "btn btn-warning fa fa-edit btn-sm"
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
         %b= @tenant.name
-        %br
+        .row
         %b= model_class.human_attribute_name(:industry) + ':'
         %b= I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
-        %br
+        .row
         %b= model_class.human_attribute_name(:locale) + ':'
         %b= @tenant.locale.upcase
-        %br
+        .row
         %b= model_class.human_attribute_name(:default_currency) + ':'
         %b= @tenant.default_currency.upcase
-        %br
+        .row
         %b= model_class.human_attribute_name(:website) + ':'
         %b= @tenant.website
-        %br
+        .row
         %b= model_class.human_attribute_name(:logo) + ':'
         %b= @tenant.logo
         %hr
         %b= model_class.human_attribute_name(:id) + ':'
         %b= @tenant.id
-        %br
+        .row
         %b= model_class.human_attribute_name(:created_at) + ':'
         %b
           = @tenant.created_at.strftime('%d/%h/%Y')
           (#{distance_of_time_in_words Time.now, @tenant.created_at})
-        %br
+        .row
         %b= model_class.human_attribute_name(:plan) + ':'
         = plan_label(@tenant.plan)
-        %br
+        .row
         - if Tenant.current_tenant.plan == "demo"
           = link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
         - else
