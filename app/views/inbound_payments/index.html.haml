@@ -6,30 +6,48 @@
         .fa.fa-hand-holding-usd
         %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
       %h4.float-right
-        %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-          .fa.fa-search
-          .fa.fa-chevron-down
-          /Search
-        - if params.has_key?(:q)
+        - unless params.has_key?(:q)
+          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+            .fa.fa-search
+            .fa.fa-chevron-down
+        - else
           = link_to "", inbound_payments_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         - if policy(InboundPayment).create?
           = link_to t('.new', :default => t("helpers.links.new")), new_inbound_payment_path, class: 'btn btn-sm btn-primary'
-    #accordion.collapse
-      .card-header
-        .row
-          .col-md-4
-            #input-daterange
-              = f.hidden_field :created_at_gteq
-              = f.hidden_field :created_at_datelteq
-          .col-md-4
-            = model_class.human_attribute_name(:id)
-            = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block', autofocus: true
-            .row
-            = model_class.human_attribute_name(:client_id)
-            = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-          .col-md-4
-            .row
-            = f.submit
+    - unless params.has_key?(:q)
+      #accordion.collapse
+        .card-header
+          .row
+            .col-md-4
+              #input-daterange
+                = f.hidden_field :created_at_gteq
+                = f.hidden_field :created_at_datelteq
+            .col-md-4
+              = model_class.human_attribute_name(:id)
+              = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block', autofocus: true
+              .row
+              = model_class.human_attribute_name(:client_id)
+              = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+            .col-md-4
+              .row
+              = f.submit
+    - else
+      #accordion.collapse.show
+        .card-header
+          .row
+            .col-md-4
+              #input-daterange
+                = f.hidden_field :created_at_gteq
+                = f.hidden_field :created_at_datelteq
+            .col-md-4
+              = model_class.human_attribute_name(:id)
+              = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block', autofocus: true
+              .row
+              = model_class.human_attribute_name(:client_id)
+              = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+            .col-md-4
+              .row
+              = f.submit
 = render 'inbound_payments/index'
 %p
 .container.table-responsive

@@ -6,22 +6,34 @@
         .fa.fa-hand-paper
         %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
       %h4.float-right
-        %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-          .fa.fa-search
-          .fa.fa-chevron-down
-        - if params.has_key?(:q)
+        - unless params.has_key?(:q)
+          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+            .fa.fa-search
+            .fa.fa-chevron-down
+        - else
           = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         - if policy(Service).create?
           = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
-    #accordion.collapse
-      .card-header
-        .row
-          .col-md-4
-            = f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
-          .col-md-4
-            = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
-          .col-md-4
-            = f.submit
+    - unless params.has_key?(:q)
+      #accordion.collapse
+        .card-header
+          .row
+            .col-md-4
+              = f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
+            .col-md-4
+              = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
+            .col-md-4
+              = f.submit
+    - else
+      #accordion.collapse.show
+        .card-header
+          .row
+            .col-md-4
+              = f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
+            .col-md-4
+              = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
+            .col-md-4
+              = f.submit
 .table-responsive-xl
   %table.table-sm.table-striped
     %thead

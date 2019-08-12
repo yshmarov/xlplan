@@ -6,39 +6,68 @@
         .fa.fa-calendar-check
         %b= t "#{controller_name}_#{action_name}"
       %h4.float-right
-        %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-          .fa.fa-search
-          .fa.fa-chevron-down
-        - if params.has_key?(:q)
+        - unless params.has_key?(:q)
+          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+            .fa.fa-search
+            .fa.fa-chevron-down
+        - else
           = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         - if policy(Event).create?
           = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
-    #accordion.collapse
-      .card-header
-        .row
-          .col-md-4
-            = model_class.human_attribute_name(:client_id)
-            = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-            = model_class.human_attribute_name(:member)
-            = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-          .col-md-4
-            #input-daterange
-              = f.hidden_field :starts_at_gteq
-              = f.hidden_field :starts_at_datelteq
-            /.input-daterange
-            /  = model_class.human_attribute_name(:after)
-            /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-            /  = model_class.human_attribute_name(:before)
-            /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
-          .col-md-4
-            = model_class.human_attribute_name(:status)
-            = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
-            = model_class.human_attribute_name(:service)
-            /without selectize
-            /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
-            = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
-            .row
-            = f.submit
+    - unless params.has_key?(:q)
+      #accordion.collapse
+        .card-header
+          .row
+            .col-md-4
+              = model_class.human_attribute_name(:client_id)
+              = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+              = model_class.human_attribute_name(:member)
+              = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+            .col-md-4
+              #input-daterange
+                = f.hidden_field :starts_at_gteq
+                = f.hidden_field :starts_at_datelteq
+              /.input-daterange
+              /  = model_class.human_attribute_name(:after)
+              /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
+              /  = model_class.human_attribute_name(:before)
+              /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+            .col-md-4
+              = model_class.human_attribute_name(:status)
+              = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+              = model_class.human_attribute_name(:service)
+              /without selectize
+              /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
+              = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+              .row
+              = f.submit
+    - else
+      #accordion.collapse.show
+        .card-header
+          .row
+            .col-md-4
+              = model_class.human_attribute_name(:client_id)
+              = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+              = model_class.human_attribute_name(:member)
+              = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+            .col-md-4
+              #input-daterange
+                = f.hidden_field :starts_at_gteq
+                = f.hidden_field :starts_at_datelteq
+              /.input-daterange
+              /  = model_class.human_attribute_name(:after)
+              /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
+              /  = model_class.human_attribute_name(:before)
+              /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+            .col-md-4
+              = model_class.human_attribute_name(:status)
+              = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+              = model_class.human_attribute_name(:service)
+              /without selectize
+              /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
+              = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+              .row
+              = f.submit
 = render 'events/index'
 %p
 .container.table-responsive

@@ -23,32 +23,54 @@
                 %span.fa.fa-search{"aria-hidden" => "true"}
         .col-md-4
           .mr.mt-1.float-right
-            %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-              .fa.fa-search
-              .fa.fa-chevron-down
-            - if params.has_key?(:clients_search)
+            - unless params.has_key?(:clients_search)
+              %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+                .fa.fa-search
+                .fa.fa-chevron-down
+            - else
               = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
             - if policy(Client).create?
               = link_to t('.new', :default => t("helpers.links.new")), new_client_path, class: 'btn btn-sm btn-primary'
-    #accordion.collapse
-      .card-header
-        .row
-          .col-md-4
-          .col-md-4
-            = sort_link @ransack_clients, :jobs_amount_sum do
-              .ml.ml-2.fa.fa-calendar-check
-              = model_class.human_attribute_name(:jobs_amount_sum)
-            .row
-            = sort_link @ransack_clients, :payments_amount_sum do
-              .ml.ml-2.fa.fa-hand-holding-usd
-              = model_class.human_attribute_name(:payments_amount_sum)
-            .row
-            = sort_link @ransack_clients, :balance do
-              .ml.ml-2.fa.fa-balance-scale
-              = model_class.human_attribute_name(:balance)
-            .row
-            %br= f.submit
-          .col-md-4
+    - unless params.has_key?(:clients_search)
+      #accordion.collapse
+        .card-header
+          .row
+            .col-md-4
+            .col-md-4
+              = sort_link @ransack_clients, :jobs_amount_sum do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:jobs_amount_sum)
+              .row
+              = sort_link @ransack_clients, :payments_amount_sum do
+                .ml.ml-2.fa.fa-hand-holding-usd
+                = model_class.human_attribute_name(:payments_amount_sum)
+              .row
+              = sort_link @ransack_clients, :balance do
+                .ml.ml-2.fa.fa-balance-scale
+                = model_class.human_attribute_name(:balance)
+              .row
+              %br= f.submit
+            .col-md-4
+    - else
+      #accordion.collapse.show
+        .card-header
+          .row
+            .col-md-4
+            .col-md-4
+              = sort_link @ransack_clients, :jobs_amount_sum do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:jobs_amount_sum)
+              .row
+              = sort_link @ransack_clients, :payments_amount_sum do
+                .ml.ml-2.fa.fa-hand-holding-usd
+                = model_class.human_attribute_name(:payments_amount_sum)
+              .row
+              = sort_link @ransack_clients, :balance do
+                .ml.ml-2.fa.fa-balance-scale
+                = model_class.human_attribute_name(:balance)
+              .row
+              %br= f.submit
+            .col-md-4
 - @clients.each do |client|
   .card
     .card-header.bg-light
