@@ -22,7 +22,7 @@
           /= f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
           = f.input :default_currency, collection: [ "usd", "eur", "pln", "uah", "rub"], include_blank: false
     
-          = f.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false
+          = f.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false
           
           = f.input :website
           
