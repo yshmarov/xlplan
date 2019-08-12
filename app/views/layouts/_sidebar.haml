@@ -19,8 +19,6 @@
     /= Time.zone
     /= Time.zone.now
     /= Time.now.in_time_zone
-    /= Event.today.count
-    /= Event.tomorrow.count
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
@@ -61,6 +59,12 @@
       /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, dashboard_clients_path, class: "nav-link"
       /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, dashboard_members_path, class: "nav-link"
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
+      %li.nav-item
+        = link_to today_path, class: "nav-link" do 
+          .fa-color-1.fa-fw.far.fa-check-square
+          = t('sidebar.today')
+          .badge.badge-danger
+            = Event.today_and_tomorrow.count
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
@@ -125,13 +129,14 @@
           /= link_to start_path, class: "dropdown-item navdrop-link" do 
           /  .fa-fw.fa.fa-rocket
           /  = t('sidebar.start')
-          = link_to today_path, class: "dropdown-item navdrop-link" do 
-            .fa-fw.fa.fa-check-square
-            = t('sidebar.today')
+          /= link_to today_path, class: "dropdown-item navdrop-link" do 
+          /  .fa-fw.fa.fa-check-square
+          /  = t('sidebar.today')
       %li.nav-item
         = link_to settings_show_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-globe-africa
           = t('sidebar.tenant')
+          /%small= Tenant.current_tenant.name
           .badge.badge-dark admin
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown

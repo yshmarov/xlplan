@@ -28,9 +28,9 @@ class Event < ApplicationRecord
   enum status: { planned: 0, confirmed: 1, member_cancelled: 2, client_cancelled: 3, no_show: 4, no_show_refunded: 5}
   #-----------------------scopes-------------------#
   scope :created_today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
-  scope :today, -> { where(starts_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).where(status: 'planned') }
-  scope :tomorrow, -> { where(starts_at: Time.zone.now.tomorrow.beginning_of_day..Time.zone.now.tomorrow.end_of_day).where(status: 'planned') }
-  scope :today_and_tomorrow, -> { where(starts_at: Time.zone.now.beginning_of_day..Time.zone.now.tomorrow.end_of_day).where(status: 'planned') }
+  scope :today, -> { where(starts_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
+  scope :tomorrow, -> { where(starts_at: Time.zone.now.tomorrow.beginning_of_day..Time.zone.now.tomorrow.end_of_day) }
+  scope :today_and_tomorrow, -> { where(starts_at: Time.zone.now.beginning_of_day..Time.zone.now.tomorrow.end_of_day) }
   scope :close, -> { where("starts_at < ?", Time.zone.now+15.minutes).where(status: 'planned') }
   scope :is_upcoming, -> { where("starts_at > ?", Time.zone.now-15.minutes).where(status: 'planned') }
   scope :is_planned, -> { where(status: [:planned]) }

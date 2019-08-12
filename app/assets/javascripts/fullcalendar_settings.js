@@ -15,7 +15,10 @@ function eventCalendar() {
 
     viewRender: function(view, element){
         var currentdate = view.intervalStart;
-        $('#datepicker').datepicker({todayHighlight: true}).datepicker('setDate', new Date(currentdate));
+        $('#datepicker').datepicker({
+          todayHighlight: true,
+          language: app.vars.locale
+        }).datepicker('setDate', new Date(currentdate));
     },
 
     events: app.vars.events,

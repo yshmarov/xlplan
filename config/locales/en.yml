@@ -690,7 +690,7 @@ en:
       comments: "Comments"
       service_categories: "Service Categories"
     edit:
-      title: "Edit Settings"
+      title: "Edit My Organisation"
     edit_plan:
       title: "order system"
 
@@ -698,7 +698,7 @@ en:
 
   activerecord:
     models:
-      tenant: "Settings"
+      tenant: "My Organisation"
       event: "Event"
       job: "Job"
       service: "Service"
@@ -712,7 +712,7 @@ en:
     attributes:
       tenant:
         id: "ID #"
-        name: "Organization Name"
+        name: "Organisation Name"
         plan: "Plan"
         language: "Language"
         locale: "Language"

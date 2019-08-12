@@ -11,9 +11,9 @@
 /- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
 
 .row
-  .col-lg-3
-    #datepicker
-    %p
   .col-lg-9
     #event_calendar
+    %p
+  .col-lg-3
+    #datepicker
 /%br

@@ -691,7 +691,7 @@ ru:
       comments: "Комментарии"
       service_categories: "Категории Услуг"
     edit:
-      title: "Изменить Организацию"
+      title: "Редактировать Организацию"
     edit_plan:
       title: "Заказать систему"
 
@@ -699,7 +699,7 @@ ru:
 
   activerecord:
     models:
-      tenant: "Организация"
+      tenant: "Моя Организация"
       event: "Встреча"
       job: "Работа"
       service: "Услуга"
