@@ -36,6 +36,7 @@ class Client < ApplicationRecord
   enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
   scope :debtors, -> { where("balance < ?", 0) }
+  scope :no_gender, -> { where(gender: "undisclosed") }
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
   monetize :payments_amount_sum, as: :payments_amount_sum_cents

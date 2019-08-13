@@ -291,8 +291,11 @@ ru:
   cancel: 'Отменить'
   events_index: "Встречи"
   events_close: "Отметить Встречи"
+  events_today: "Встречи сегодня"
+  events_tomorrow: "Встречи завтра"
   clients_index: "Клиенты"
   clients_debtors: "Клиенты Должники"
+  clients_no_gender: "Клиенты без пола"
   services: 'Услуги'
   service: 'Услуга'
   member: 'Сотрудник'
@@ -328,6 +331,7 @@ ru:
     calendar: 'Календарь'
     close_events: 'Отметить Встречи'
     debtors: "Должники"
+    no_gender: "Клиенты без пола"
     events: 'Встречи'
     expences: 'Расходы'
     inbound_payments: 'Оплаты'
@@ -471,8 +475,6 @@ ru:
       today: "Сегодня"
       next_5_member_birthdays: 'Следующие 5 дней рождений сотрудников'
       client_birthdays_today: 'Дни рождения клиентов сегодня'
-      events_today: "Встречи сегодня"
-      events_tomorrow: "Встречи завтра"
     start:
       start: "Начало работы"
       edit_my_page: "Внесите свои контактые данные"

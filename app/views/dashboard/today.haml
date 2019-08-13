@@ -31,19 +31,21 @@
   .col-lg-6
     - @events = Event.today
     .card-header
-      .fa.fa-calendar-check
-      = t('.events_today')
-      .badge.badge-danger
-        = @events.count
+      = link_to today_events_path do 
+        .fa.fa-calendar-check
+        = t('events_today')
+        .badge.badge-danger
+          = @events.count
     = render 'events/index'
     %p
   .col-lg-6
     - @events = Event.tomorrow
     .card-header
-      .fa.fa-calendar-check
-      = t('.events_tomorrow')
-      .badge.badge-danger
-        = @events.count
+      = link_to tomorrow_events_path do 
+        .fa.fa-calendar-check
+        = t('events_tomorrow')
+        .badge.badge-danger
+          = @events.count
     = render 'events/index'
 %p
 .row

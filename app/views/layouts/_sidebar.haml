@@ -58,7 +58,25 @@
       /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar'></i> #{t('sidebar.events')}".html_safe, dashboard_events_path, class: "nav-link"
       /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user'></i> #{t('sidebar.clients')}".html_safe, dashboard_clients_path, class: "nav-link"
       /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, dashboard_members_path, class: "nav-link"
+      /CALENDAR
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
+      /CREATE NEW
+      %li.nav-item
+        = link_to new_event_path, class: "nav-link" do 
+          .fa-color-1.fa-fw.fa.fa-plus
+          .fa-color-1.fa-fw.fa.fa-calendar
+          = t('sidebar.new_event')
+      %li.nav-item
+        = link_to new_client_path, class: "nav-link" do 
+          .fa-color-1.fa-fw.fa.fa-plus
+          .fa-color-1.fa-fw.fa.fa-user
+          = t('sidebar.new_client')
+      %li.nav-item
+        = link_to new_inbound_payment_path, class: "nav-link" do 
+          .fa-color-1.fa-fw.fa.fa-plus
+          .fa-color-1.fa-fw.fa.fa-hand-holding-usd
+          = t('sidebar.new_payment')
+      /LINKS WITH COUNTERS
       %li.nav-item
         = link_to today_path, class: "nav-link" do 
           .fa-color-1.fa-fw.far.fa-check-square
@@ -75,21 +93,12 @@
           = link_to debtors_clients_path, class: "nav-link" do
             .fa-color-1.fa-fw.fa.fa-user
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
-      %li.nav-item
-        = link_to new_event_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-plus
-          .fa-color-1.fa-fw.fa.fa-calendar
-          = t('sidebar.new_event')
-      %li.nav-item
-        = link_to new_client_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-plus
-          .fa-color-1.fa-fw.fa.fa-user
-          = t('sidebar.new_client')
-      %li.nav-item
-        = link_to new_inbound_payment_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-plus
-          .fa-color-1.fa-fw.fa.fa-hand-holding-usd
-          = t('sidebar.new_payment')
+      - if Client.no_gender.count > 0
+        %li
+          = link_to no_gender_clients_path, class: "nav-link" do
+            .fa-color-1.fa-fw.fa.fa-user
+            #{t('sidebar.no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-danger'} 
+      /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-user

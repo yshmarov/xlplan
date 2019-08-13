@@ -290,8 +290,11 @@ en:
   cancel: 'Cancel'
   events_index: "Events"
   events_close: "Mark Events"
+  events_today: "Events today"
+  events_tomorrow: "Events tomorrow"
   clients_index: "Clients"
   clients_debtors: "Debtors"
+  clients_no_gender: "Clients without gender"
   services: 'Services'
   service: 'Service'
   member: 'Employee'
@@ -327,6 +330,7 @@ en:
     calendar: 'Calendar'
     close_events: 'Mark Events'
     debtors: 'Debtors'
+    no_gender: "Clients without gender"
     events: 'Events'
     expences: 'Expences'
     inbound_payments: 'Payments'
@@ -470,8 +474,6 @@ en:
       today: "Today"
       next_5_member_birthdays: 'Next 5 employee birthdays'
       client_birthdays_today: 'Client birthdays today'
-      events_today: "Events today"
-      events_tomorrow: "Events tomorrow"
     start:
       start: "Start"
       edit_my_page: "Add Your contact details"

@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   #match "/contacts/:importer/callback" => "your_controller#callback"
 
   resources :clients do
-    get :debtors, on: :collection
+    get :debtors, :no_gender, on: :collection
     collection do
       match 'search' => 'clients#search', via: [:get, :post], as: :search
     end
