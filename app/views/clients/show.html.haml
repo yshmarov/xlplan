@@ -34,7 +34,13 @@
           (#{@client.age})
         %br
         %b= model_class.human_attribute_name(:gender) + ':'
-        = @client.gender
+        - if @client.gender == "female"
+          .fa.fa-female
+        - elsif @client.gender == "male"
+          .fa.fa-male
+        - else
+          .fa.fa-question
+        /= @client.gender
         %br
         %b= model_class.human_attribute_name(:address) + ':'
         - if @client.address?

@@ -31,8 +31,8 @@
           /- if member.user_online.present?
           /  %i.fa.fa-fire{:style => "color:red;"}
           /  /%i.far.fa-circle{:style => "color:green;"}
-          - if member.id == current_user.member.id
-            .fa.fa-user
+          /- if member.id == current_user.member.id
+          /  .fa.fa-user
           = link_to member.full_name, member_path(member) if policy(member).show?
           = status_label(member.status)
           - if member.phone_number.present?

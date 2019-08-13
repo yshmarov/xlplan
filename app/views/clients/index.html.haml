@@ -76,7 +76,13 @@
     .card-header.bg-light
       .row
         .col-md-5
-          .fa.fa-user
+          - if client.gender == "female"
+            .fa.fa-female
+          - elsif client.gender == "male"
+            .fa.fa-male
+          - else
+            .fa.fa-question
+          /.fa.fa-user
           = link_to client.full_name, client_path(client) if policy(client).show?
           - if client.phone_number.present?
             .row
@@ -87,8 +93,11 @@
             .row
             .fa.fa-envelope
             %a{:href => "mailto:#{client.email}"}= client.email
-          .row
-        .col-md-2
+          - if client.date_of_birth.present? 
+            .row
+            .fa.fa-birthday-cake
+            = client.date_of_birth
+        .col-md-4
           .fa.fa-calendar-check
           = number_to_currency(client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{client.events_count})
@@ -99,7 +108,7 @@
           .row
           .fa.fa-balance-scale
           = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        .col-md-3
+        .col-md-1
           .fa.fa-comment-alt
           = client.comments.count
         .col-md-2
