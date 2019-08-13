@@ -24,7 +24,9 @@
         %b= @tenant.website
         .row
         %b= model_class.human_attribute_name(:logo) + ':'
-        %b= @tenant.logo
+        .row
+        = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
+        /%b= @tenant.logo
         %hr
         %b= model_class.human_attribute_name(:id) + ':'
         %b= @tenant.id

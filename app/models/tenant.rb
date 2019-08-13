@@ -1,6 +1,12 @@
 class Tenant < ApplicationRecord
+  #-----------------------gem milia-------------------#
   acts_as_universal_and_determines_tenant
-
+  #-----------------------gem public_activity-------------------#
+  #include PublicActivity::Model
+  #tracked owner: Proc.new{ |controller, model| controller.current_user }
+  #tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
+  #-----------------------relationships-------------------#
+  has_one_attached :logo
   #has_many :activities, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -13,7 +19,7 @@ class Tenant < ApplicationRecord
   has_many :services, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :roles, dependent: :destroy
-
+  #-----------------------validation-------------------#
   validates_presence_of :name, :plan, :default_currency, :locale, :industry
   validates_uniqueness_of :name
   validates :name, length: { maximum: 40 } #in schema it is 40, but 20 is better
@@ -22,11 +28,6 @@ class Tenant < ApplicationRecord
   validates :plan, inclusion: %w(demo bronze silver gold)
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
-
-  #-----------------------gem public_activity-------------------#
-  #include PublicActivity::Model
-  #tracked owner: Proc.new{ |controller, model| controller.current_user }
-  #tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
 
   ###select industry###
   INDUSTRIES = [:hair_beauty_barbershop, :cosmetology, :solarium, :tattoo_studio, :spa, :sauna,

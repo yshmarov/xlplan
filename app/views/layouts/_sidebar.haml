@@ -1,7 +1,10 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark
   %a.navbar-brand{:href => "/"}
     /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
-    %i.far.fa-calendar-check
+    - unless Tenant.current_tenant.logo.attached?
+      %i.far.fa-calendar-check
+    - else
+      = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
     .badge.badge-default 
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)

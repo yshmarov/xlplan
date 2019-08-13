@@ -5,11 +5,11 @@
   .form-inputs
     .text-center
       - if @member.avatar.attached?
-        %img.rounded{:alt => "Yaroslav Shmarov", :src => "#{url_for(@member.avatar)}", :height => "200px"}/
+        %img.rounded{:alt => "XLPLAN", :src => "#{url_for(@member.avatar)}", :height => "200px"}/
       - else
         .far.fa-user{:style => "font-size:60px"}
         .row
-        = f.label :photo
+        = f.label :avatar
       %p
       = f.file_field :avatar
     = f.input :first_name, autofocus: true, input_html: { autocomplete: 'nope' }
