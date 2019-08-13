@@ -25,7 +25,8 @@
         .row
         %b= model_class.human_attribute_name(:logo) + ':'
         .row
-        = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
+        - if @tenant.logo.attached?
+          = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
         /%b= @tenant.logo
         %hr
         %b= model_class.human_attribute_name(:id) + ':'
