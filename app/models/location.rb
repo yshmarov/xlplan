@@ -1,37 +1,40 @@
 class Location < ApplicationRecord
-
+  #-----------------------gem milia-------------------#
   acts_as_tenant
+  #-----------------------callbacks-------------------#
+  after_touch :update_balance
+  #-----------------------gem public_activity-------------------#
+  include PublicActivity::Model
+  tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
+  #-----------------------gem friendly_id-------------------#
+  extend FriendlyId
+  friendly_id :to_s, use: :slugged
+  #-----------------------relationships-------------------#
+  has_many :members, dependent: :restrict_with_error
+  has_many :events, dependent: :restrict_with_error
+  has_many :jobs, through: :events
+  #-----------------------validation-------------------#
+  validates_uniqueness_of :name, scope: :tenant_id
+  validates :name, :balance, :status, presence: true
   validates :name, length: { maximum: 50 }
   validates :phone_number, length: { maximum: 144 }
   validates :email, length: { maximum: 144 }
   validates :address, length: { maximum: 255 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
-  #serialize :address
-
-  include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
-  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
-  extend FriendlyId
-  friendly_id :to_s, use: :slugged
-
-  has_many :members, dependent: :restrict_with_error
-  has_many :events, dependent: :restrict_with_error
-  has_many :jobs, through: :events
-
-  validates_uniqueness_of :name, scope: :tenant_id
-  validates :name, :balance, :status, presence: true
-
+  #-----------------------serialization-------------------#
+  serialize :address
+  #-----------------------enums-------------------#
   enum status: { inactive: 0, active: 1 }
+  #-----------------------scopes-------------------#
   #scope :active, -> { where(status: [:active]) }
   #scope :inactive, -> { where(status: [:inactive]) }
   def self.active_or_id(record_id)
     where('id = ? OR (status=1)', record_id)    
   end
-
+  #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
-
-  after_touch :update_balance
 
   def to_s
     if name.present?

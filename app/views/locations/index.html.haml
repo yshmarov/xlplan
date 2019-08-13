@@ -33,7 +33,11 @@
             %a{:href => "mailto:#{location.email}"}= location.email
           - if location.address.present?
             .row
-            = location.address
+            /= location.address
+            = location.address[:country]
+            = location.address[:city]
+            = location.address[:street]
+            = location.address[:zip]
         .col-sm-2
           = link_to "<i class='fa fa-user-tie'></i> #{location.members_count}".html_safe, members_path(members_search: {location_id_eq: location.id}), class: "nav-link"
 
