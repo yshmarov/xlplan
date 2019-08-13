@@ -43,9 +43,9 @@
 
     /%p
     /= f.input :notes, :input_html => {:rows => 5}
-    /%hr
-    /= f.input :percent_off
-    /= f.input :amount_off
+    %hr
+    = f.input :percent_off
+    = f.input :amount_off
     %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'

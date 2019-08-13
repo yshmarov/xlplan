@@ -83,7 +83,8 @@ class Event < ApplicationRecord
   def update_event_due_price
     if id?
       if confirmed? || no_show_refunded?
-        update_column :event_due_price, (client_price)
+        #update_column :event_due_price, (client_price)
+        update_column :event_due_price, (client_price - client_price*percent_off/100 - amount_off*100)
       else
         update_column :event_due_price, (0)
       end
