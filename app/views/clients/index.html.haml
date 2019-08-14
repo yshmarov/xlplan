@@ -112,6 +112,9 @@
           .fa.fa-comment-alt
           = client.comments.count
         .col-md-2
+          .fa.fa-clock
+          #{l(client.created_at, format: "%a")} #{l(client.created_at, format: "%d/%b/%Y %H:%M")}
+          .row
           = link_to '', client, class: "btn btn-primary fa fa-eye btn-sm" if policy(client).show?
           = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
           = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?

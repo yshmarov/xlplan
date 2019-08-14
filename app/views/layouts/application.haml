@@ -25,6 +25,8 @@
         = render 'layouts/messages'
         - unless current_user.confirmed_at
           = render 'layouts/not_confirmed'
+        - unless Event.any?
+          = render 'layouts/getting_started'
         = yield
         = rjv_tags
     - else

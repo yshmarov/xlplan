@@ -1,8 +1,13 @@
 .card.card-header.bg-warning
-  #{t("devise.registrations.signed_up_but_unconfirmed")} #{@current_user.email}
-  = link_to "#{t("devise.confirmations.new.resend_confirmation_instructions")}", new_user_confirmation_path
+  %small
+    #{t("devise.registrations.signed_up_but_unconfirmed")} 
+    .row
+    %b
+      Email:
+      #{@current_user.email}
   .clearfix
     .fa.fa-clock
     = ((current_user.created_at + 60.minutes - Time.now)/60).to_i
     min
+    %small= link_to "#{t("devise.confirmations.new.resend_confirmation_instructions")}", new_user_confirmation_path
 %p

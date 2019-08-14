@@ -1,7 +1,7 @@
 .card
-  .card-header
-    .fa.fa-rocket
-    = t('.start')
+  /.card-header.bg-success.text-white
+  /  .fa.fa-rocket
+  /  = t('.start')
   .card-body
     %h5
       /CREATE MEMBER
@@ -41,6 +41,15 @@
         %span.badge.badge-pill.badge-success +
         %del
           = t('.new_client')
+      /%hr
+      //CREATE PAYMENT
+      /- unless InboundPayment.any?
+      /  %span.badge.badge-pill.badge-danger -
+      /  = link_to t('.new_payment'), new_inbound_payment_path
+      /- else
+      /  %span.badge.badge-pill.badge-success +
+      /  %del
+      /    = t('.new_payment')
       %hr
       /CREATE EVENT
       - unless Event.any?

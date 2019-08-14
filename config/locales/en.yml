@@ -351,7 +351,7 @@ en:
     profile_settings: 'Profile Settings'
     account_settings: 'Password & Access'
     logout: 'Logout'
-    start: 'Start!'
+    start: 'Getting started'
     order_system: 'order system'
     change_plan: 'change plan'
     user_roles: "User Roles"
@@ -475,15 +475,20 @@ en:
       next_5_member_birthdays: 'Next 5 employee birthdays'
       client_birthdays_today: 'Client birthdays today'
     start:
-      start: "Start"
+      start_steps: "Only 4 steps separate you from the first launch of XLPLAN"
+      start_description: "Providing some basic information will take several minutes and allow you to fully use the capabilities of the system."
+      start: "Getting started"
+
       edit_my_page: "Add Your contact details"
       select_currency: "Select default currency"
-      new_member: "Invite employees (not required)"
-      new_location: "Add your Business Locations"
+
+      new_member: "Invite Employees (not required)"
+      new_location: "Add your Business address"
       new_service: "Add your Services Price list"
-      new_client: "Add a client (Without access to the app)"
+      new_client: "Add a Client (without access to the app)"
       new_event: "Add an Event"
       new_payment: "Add a Payment"
+
       finish: "Great! Now you are ready to start using the software"
     activity:
       activity: "Activity"
