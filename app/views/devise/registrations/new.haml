@@ -17,7 +17,12 @@
             = w.error_notification
             = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
             /= w.error :name
-            = w.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+            - if I18n.locale == :ru
+              = w.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+            - elsif I18n.locale == :pl
+              = w.input :locale, collection: [['Polski', 'pl'], ['English', 'en'], ['Русский', 'ru']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+            - else I18n.locale == :en
+              = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
             /- if ::Milia.use_coupon
             /  - @coupon ||= {}
             /  .group
