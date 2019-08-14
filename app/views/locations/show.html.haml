@@ -14,16 +14,16 @@
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
         = @location.name
-        %br
+        .row
         %b= model_class.human_attribute_name(:phone_number) + ':'
         = link_to "tel:#{@location.phone_number}", class: "button" do
           #{number_to_phone(@location.phone_number)}
         /%a{:href => "viber://chat?number=#{@location.phone_number}"}
         /  Viber
-        %br
+        .row
         %b= model_class.human_attribute_name(:email) + ':'
         %a{:href => "mailto:#{@location.email}"}= @location.email
-        %br
+        .row
         %b= model_class.human_attribute_name(:address) + ':'
         /= @location.address
         - if @location.address?
@@ -31,17 +31,22 @@
           = @location.address[:city]
           = @location.address[:street]
           = @location.address[:zip]
-        %br
+        .row
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@location.status)
         %hr
-        .fa.fa-balance-scale
-        %b= model_class.human_attribute_name(:balance) + ':'
-        = number_to_currency(@location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %br
-        .fa.fa-calendar
-        %b= model_class.human_attribute_name(:events_count) + ':'
-        = @location.events_count
+        .fa.fa-calendar-check
+        %b= model_class.human_attribute_name(:events_amount_sum) + ':'
+        = number_to_currency(@location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        (#{@location.events_count})
+        /.row
+        /.fa.fa-balance-scale
+        /%b= model_class.human_attribute_name(:balance) + ':'
+        /= number_to_currency(@location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        /.row
+        /.fa.fa-calendar
+        /%b= model_class.human_attribute_name(:events_count) + ':'
+        /= @location.events_count
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}

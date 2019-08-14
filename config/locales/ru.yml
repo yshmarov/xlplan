@@ -807,6 +807,7 @@ ru:
         street: "Адрес"
         zip: "Почтовый Код"
         balance: "Баланс"
+        events_amount_sum: "Цена всех встреч"
         status: "Статус"
         events_count: "Кол. Встреч"
         members_count: "Кол. Сотрудников"

@@ -807,6 +807,7 @@ en:
         street: "Street"
         zip: "ZIP"
         balance: "Balance"
+        events_amount_sum: "Total earnings"
         status: "Status"
         events_count: "Event count"
         members_count: "Employee count"
