@@ -161,8 +161,8 @@ class Member < ApplicationRecord
   #protected
   def update_first_member_email
     if self.user.present?
-    update_column :email, (user.email)
-  end
+      update_column :email, (user.email)
+    end
   end
   
   def update_balance

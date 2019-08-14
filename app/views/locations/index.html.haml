@@ -45,11 +45,15 @@
         - if current_user.has_role?(:admin)
           .col-sm-4
             .fa.fa-calendar-check
-            = number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            = number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             (#{location.events_count})
-            .row
-            /.fa.fa-hand-holding-usd
+            /.row
             /.fa.fa-balance-scale
+            /= number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            /.row
+            /%i.fas.fa-cash-register
+            /.fas.fa-cash-register
+            /.fa.fa-hand-holding-usd
         .col-sm-2
           = link_to '', location, class: "btn btn-primary fa fa-eye btn-sm" if policy(location).show?
           = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm"  if policy(location).edit?
