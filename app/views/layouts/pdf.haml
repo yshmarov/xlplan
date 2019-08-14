@@ -5,7 +5,16 @@
     = wicked_pdf_stylesheet_link_tag "pdf"
     %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet", :type => "text/css"}/
     %meta{:charset => "utf-8"}/
+  /%body{:onload => "number_pages"}
   %body
-    = wicked_pdf_image_tag 'logo.png', height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
-    = Tenant.current_tenant.name
+    .text-center
+      - unless Tenant.current_tenant.logo.attached?
+        = wicked_pdf_image_tag 'logo.png', height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
+        /%i.far.fa-calendar-check
+      - else
+        = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
+      = Tenant.current_tenant.name
+      .row
+      = Tenant.current_tenant.website
+    %p
     = yield

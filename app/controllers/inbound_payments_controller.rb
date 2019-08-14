@@ -13,13 +13,14 @@ class InboundPaymentsController < ApplicationController
         format.html
         format.pdf do
           render pdf: "Payment No. #{@inbound_payment.slug}",
-          page_size: 'A4',
-          template: "inbound_payments/show.html.haml",
+          page_size: 'A6',
+          template: "inbound_payments/show.pdf.haml",
           #template: "inbound_payments/inbound_payment_pdf.html.haml",
           #template: "inbound_payments/show.html.haml",
           #format.pdf {render template: "payments/report", pdf: 'report'}   # Excluding ".pdf" extension.
+          #format.pdf {render template: "projects/report", pdf: "invoice #{@project.id}"}
           layout: "pdf.haml",
-          orientation: "Landscape",
+          orientation: "Portrait",
           lowquality: true,
           zoom: 1,
           dpi: 75

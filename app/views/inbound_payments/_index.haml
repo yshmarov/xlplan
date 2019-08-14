@@ -20,6 +20,12 @@
           = number_to_currency(inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           .badge.badge-secondary.text-white
             = inbound_payment.payment_method
+          .row
+          - if inbound_payment.payable.present?
+            - if inbound_payment.payable_type == "Event"
+              .fa.fa-calendar
+              %b= model_class.human_attribute_name(:event) + ':'
+              = link_to inbound_payment.payable, event_path(inbound_payment.payable)
         .col-lg-4
           .fa.fa-clock
           #{l(inbound_payment.created_at, format: "%a")} #{l(inbound_payment.created_at, format: "%d/%b/%Y %H:%M")}
