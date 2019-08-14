@@ -7,6 +7,7 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.string :email, :limit => 144
       t.string :address, :limit => 255
       t.integer :balance, default: 0, null: false
+      t.integer :events_amount_sum, default: 0, null: false
       t.integer :status, default: 1, null: false
 
       t.integer :locations, :events_count, :integer, default: 0, null: false
