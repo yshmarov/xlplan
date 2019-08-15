@@ -344,8 +344,9 @@ ru:
     locations: 'Филиалы'
     member_expences: 'Выплаты'
     activity: 'Активность'
+    more: "Ещё"
     settings: "Настройки"
-    tenant: "Моя Организация"
+    tenant: "Настройки организации"
     service_categories: "Категории услуг"
     stats: 'Статистика'
     my_page: 'Мой Кабинет'
@@ -697,7 +698,7 @@ ru:
       comments: "Комментарии"
       service_categories: "Категории Услуг"
     edit:
-      title: "Редактировать Организацию"
+      title: "Изменить настройки организации"
     edit_plan:
       title: "Заказать систему"
 
@@ -705,7 +706,7 @@ ru:
 
   activerecord:
     models:
-      tenant: "Моя Организация"
+      tenant: "Настройки организации"
       event: "Встреча"
       job: "Работа"
       service: "Услуга"

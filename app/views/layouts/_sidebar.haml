@@ -9,11 +9,7 @@
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)
       = Tenant.current_tenant.name
-    /= link_to settings_show_path do
-    /  .badge.badge-default.text-white
-    /    = Tenant.current_tenant.name
     /zubCRM
-    /= link_to Tenant.current_tenant.name, settings_show_path, class: 'badge badge-default text-white'
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
     /%ul.navbar-nav
     /= Time.now.in_time_zone(current_user.time_zone)
@@ -118,8 +114,8 @@
           = t('sidebar.locations')
       %li.nav-item.dropdown
         %a#navbarDropdown3.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          .fa-color-1.fa.fa-cog
-          #{t('sidebar.settings')}
+          .fa-color-1.fa.fa-chevron-circle-down
+          #{t('sidebar.more')}
         .dropdown-menu{"aria-labelledby" => "navbarDropdown3"}
           = link_to events_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-calendar
@@ -141,8 +137,8 @@
           /  = t('sidebar.start')
       %li.nav-item
         = link_to settings_show_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-globe-africa
-          = t('sidebar.tenant')
+          .fa-color-1.fa-fw.fa.fa-cog
+          = t('sidebar.settings')
           /%small= Tenant.current_tenant.name
           .badge.badge-dark admin
       - if current_user.has_role?(:admin)

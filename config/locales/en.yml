@@ -343,8 +343,9 @@ en:
     locations: 'Locations'
     member_expences: 'Employee Expences'
     activity: 'Activity'
+    more: "More"
     settings: 'Settings'
-    tenant: "My Organisation"
+    tenant: "Organisation settings"
     service_categories: "Service Categories"
     stats: 'Stats'
     my_page: 'My Page'
@@ -685,7 +686,6 @@ en:
       success: "Marked No Show Refund"
   tenants:
     show:
-      getting_started: "Getting started"
       counters: "Counters"
       events: "Events"
       jobs: "Jobs"
@@ -697,7 +697,7 @@ en:
       comments: "Comments"
       service_categories: "Service Categories"
     edit:
-      title: "Edit My Organisation"
+      title: "Edit organisation settings"
     edit_plan:
       title: "order system"
 
@@ -705,7 +705,7 @@ en:
 
   activerecord:
     models:
-      tenant: "My Organisation"
+      tenant: "Organisation settings"
       event: "Event"
       job: "Job"
       service: "Service"
