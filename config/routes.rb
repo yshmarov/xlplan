@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'contacts/index'
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
   #pages before logging in
@@ -36,8 +37,8 @@ Rails.application.routes.draw do
   match '/settings/update' => 'tenants#update', via: [:put, :patch], as: :update_tenant
   match '/plan/edit' => 'tenants#edit_plan', via: :get, as: :edit_plan
 
-  get "/contacts/:provider/contacts_callback" => "clients#index"
-  get "/contacts/failure" => "clients#failure"
+  get "/contacts/:provider/contact_callback" => "contacts#index"
+  get "/contacts/failure" => "contacts#failure"
   #match "/contacts/:importer/callback" => "your_controller#callback"
 
   resources :clients do

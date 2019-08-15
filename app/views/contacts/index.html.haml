@@ -1,0 +1,24 @@
+- if !@contacts.nil?
+  %b
+    Contacts imported:
+    = @contacts.count
+  %br
+  .table-responsive-xl
+    %table.table-sm.table-striped
+      %thead
+        %tr
+          /%th #
+          %th Name
+          %th Surname
+          %th Phone
+          %th Birthday
+          %th Email
+      %tbody
+        - @contacts.each do |c|
+          %tr
+            /%td= c[:id]
+            %td= c[:first_name]
+            %td= c[:last_name]
+            %td= c[:phone_number]
+            %td= c[:birthday]
+            %td= c[:email]
