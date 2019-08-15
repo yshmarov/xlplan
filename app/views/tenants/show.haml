@@ -27,6 +27,7 @@
         .row
         - if @tenant.logo.attached?
           = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
+          /= image_tag url_for(@tenant.logo)
         /%b= @tenant.logo
         %hr
         %b= model_class.human_attribute_name(:id) + ':'

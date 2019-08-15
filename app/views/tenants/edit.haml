@@ -28,7 +28,8 @@
           ///ACTIVE_STORAGE LOGO
           .text-center
             - if @tenant.logo.attached?
-              %img.rounded{:alt => "XLPLAN", :src => "#{url_for(@tenant.logo)}", :height => "200px"}/
+              = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
+              /%img.rounded{:alt => "XLPLAN", :src => "#{url_for(@tenant.logo)}", :height => "200px"}/
             - else
               .fa.fa-globe-africa{:style => "font-size:60px"}
               .row

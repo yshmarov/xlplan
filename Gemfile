@@ -63,6 +63,7 @@ gem 'simple_form'
 gem 'font-awesome-sass', '~> 5.5.0'
 #calendar3
 gem 'fullcalendar-rails'
+#gem 'fullcalendar-rails', github: 'EverardB/fullcalendar-rails/tree/fullcalendar-4.2.0'
 gem 'momentjs-rails'
 gem 'rjv'
 #access6
@@ -102,7 +103,7 @@ gem "recaptcha"
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
-group :production do
-  gem "aws-sdk-s3"
-end
+#group :production do
+gem "aws-sdk-s3"
+#end
 #gem "mini_magic"
