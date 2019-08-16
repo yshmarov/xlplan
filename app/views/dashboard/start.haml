@@ -41,6 +41,10 @@
         %span.badge.badge-pill.badge-success +
         %del
           = t('.new_client')
+      = link_to "/contacts/gmail", class: 'btn btn-success btn-sm mr ml-1' do 
+        .fab.fa-google
+        Import Google Contacts
+
       /%hr
       //CREATE PAYMENT
       /- unless InboundPayment.any?

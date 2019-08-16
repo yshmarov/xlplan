@@ -51,6 +51,10 @@
           = @client.address[:street]
           = @client.address[:zip]
         /= link_to @client.address, "https://www.google.com/maps/search/?api=1&query=760+West+Genesee+Street+Syracuse+NY+13204", :target => '_blank'
+        .row
+        .fa.fa-clock
+        %b= model_class.human_attribute_name(:created_at) + ':'
+        #{l(@client.created_at, format: "%a")} #{l(@client.created_at, format: "%d/%b/%Y %H:%M")}
         %hr
         .fa.fa-calendar-check
         %b= model_class.human_attribute_name(:jobs_amount_sum) + ':'
