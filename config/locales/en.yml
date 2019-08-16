@@ -362,6 +362,8 @@ en:
   event_mailer:
     client_event_created:
       event_created: "Booking confirmation"
+      address: "Address"
+      powered_by: "Powered by"
   static_pages:
     activity:
       ago: 'ago'

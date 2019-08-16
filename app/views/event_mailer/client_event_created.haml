@@ -19,14 +19,23 @@
       = model_class.human_attribute_name(:time) + ':'
       %b= @event.starts_at
     %p
-      = model_class.human_attribute_name(:location_id) + ':'
+      /= model_class.human_attribute_name(:location_id) + ':'
+      = t('.address')
       %b= Tenant.current_tenant.name
-      %b= @event.location.address
+      %b
+        /= @event.location.address
+        - if @event.location.address?
+          = @event.location.address[:country]
+          = @event.location.address[:city]
+          = @event.location.address[:street]
+          = @event.location.address[:zip]
+
     
     /%p= link_to "This event", @event
 
   %hr
   = link_to "https://www.xlplan.com", target: :_blank do
-    Powered by 
+    = t('.powered_by')
+    /Powered by 
     %i.fab.fa-calendar-check
     XLPLAN
