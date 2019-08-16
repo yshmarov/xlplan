@@ -1,4 +1,4 @@
-Booking created.
+= t('.event_created')
 
 - model_class = Job
 - @event.jobs.each do |job|
@@ -17,3 +17,6 @@ Booking created.
 = @event.location.address
 
 /%p= link_to "This event", @event
+
+= link_to "https://www.xlplan.com", target: :_blank do
+  Powered by XLPLAN

@@ -359,6 +359,9 @@ en:
 
   ######################################################
 
+  event_mailer:
+    client_event_created:
+      event_created: "Booking confirmation"
   static_pages:
     activity:
       ago: 'ago'

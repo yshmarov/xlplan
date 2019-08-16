@@ -64,6 +64,7 @@ gem 'font-awesome-sass', '~> 5.5.0'
 #calendar3
 gem 'fullcalendar-rails'
 #gem 'fullcalendar-rails', github: 'EverardB/fullcalendar-rails/tree/fullcalendar-4.2.0'
+#gem 'fullcalendar-rails', github: 'yshmarov/fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'rjv'
 #access6

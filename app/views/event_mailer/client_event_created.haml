@@ -3,8 +3,8 @@
   %head
     %meta{:content => "text/html; charset = UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h1
-      %p Booking created.
+    %h3
+      %p= t('.event_created')
     %p
     - model_class = Job
     - @event.jobs.each do |job|
@@ -24,3 +24,9 @@
       %b= @event.location.address
     
     /%p= link_to "This event", @event
+
+  %hr
+  = link_to "https://www.xlplan.com", target: :_blank do
+    Powered by 
+    %i.fab.fa-calendar-check
+    XLPLAN
