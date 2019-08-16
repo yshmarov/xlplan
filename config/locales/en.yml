@@ -654,6 +654,7 @@ en:
       no_show_refunded: "No Show Refund"
     show:
       #client_paid: "Create Payment"
+      email_client: "Email client"
       planned: "Planned"
       confirmed: "Confirmed"
       member_cancelled: "Employee Cancelled"

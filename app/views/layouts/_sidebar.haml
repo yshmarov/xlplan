@@ -132,6 +132,9 @@
           = link_to activity_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-bell
             = t('sidebar.activity')
+          = link_to start_path, class: "dropdown-item navdrop-link" do 
+            .fa-fw.fa.fa-rocket
+            = t('sidebar.start')
       %li.nav-item
         = link_to settings_show_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-cog

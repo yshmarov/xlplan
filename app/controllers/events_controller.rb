@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :mark_planned, :mark_confirmed, :mark_no_show, :mark_member_cancelled, :mark_client_cancelled, :mark_no_show_refunded]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, 
+              :mark_planned, :mark_confirmed, :mark_no_show,
+              :mark_member_cancelled, :mark_client_cancelled, :mark_no_show_refunded,
+              :send_email_to_client]
 
   def close
     @q = Event.close.ransack(params[:q])
@@ -124,6 +127,16 @@ class EventsController < ApplicationController
     authorize @event
   end
 
+  def send_email_to_client
+    authorize @event, :show?
+    if @event.client.email.present? && @event.client.event_created_notifications?
+      Event.public_activity_off
+      EventMailer.client_event_created(@event).deliver_now
+      Event.public_activity_on
+    end
+		redirect_to @event, notice: "Email invitation sent to #{@event.client}"
+  end
+
   def create
     @event = Event.new(event_params)
     authorize @event
@@ -135,9 +148,9 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: t('.success') }
         format.json { render :show, status: :created, location: @event }
         
-        if @event.client.email.present? && @event.client.event_created_notifications?
-          EventMailer.client_event_created(@event).deliver_now
-        end
+        #if @event.client.email.present? && @event.client.event_created_notifications?
+        #  EventMailer.client_event_created(@event).deliver_now
+        #end
 
         #if @event.client.email.present?
         #  EventMailer.member_event_created(@event).deliver_now

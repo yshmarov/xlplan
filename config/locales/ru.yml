@@ -655,6 +655,7 @@ ru:
       no_show_refunded: "Оплачиваемая Неявка"
     show:
       #client_paid: "Создать оплату"
+      email_client: "Имейл клиенту"
       planned: "Запланирован"
       confirmed: "Состоялся"
       member_cancelled: "Сотрудник Отменил"
