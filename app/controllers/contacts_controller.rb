@@ -49,6 +49,7 @@ class ContactsController < ApplicationController
   	  @client.phone_number = @contact.phone_number
   	  @client.save
 		#@event.update_attribute(:status, 'planned')
+		#@contact.destroy
 		redirect_to contacts_list_path, notice: "Client created"
 	end
 

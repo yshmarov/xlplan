@@ -356,6 +356,7 @@ en:
     order_system: 'order system'
     change_plan: 'change plan'
     user_roles: "User Roles"
+    import_contacts: "Import contacts"
 
   ######################################################
 

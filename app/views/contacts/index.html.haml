@@ -4,7 +4,7 @@
     %h4.float-left
       .fa-fw.fa.fa-user-plus
       %b
-        Contacts import
+        = t('sidebar.import_contacts')
         = @contacts.count
     %h4.float-right
       = link_to "/contacts/gmail", class: 'btn btn-success btn-sm mr ml-1' do 
@@ -50,5 +50,5 @@
             /%td= contact.birthday
             /%td= contact.gender
             /%td= contact.relation
-            %td= button_to 'create contact', create_client_from_contact_contact_path(contact), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
+            %td= button_to 'create client', create_client_from_contact_contact_path(contact), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
 
