@@ -1,25 +1,54 @@
-.row
+- model_class = Contact
+.card
+  .card-header
+    %h4.float-left
+      .fa-fw.fa.fa-user-plus
+      %b
+        Contacts import
+        = @contacts.count
+    %h4.float-right
+      = link_to "/contacts/gmail", class: 'btn btn-success btn-sm mr ml-1' do 
+        .fab.fa-google
+        Import Google Contacts
+
 - if !@contacts.nil?
-  %b
-    Contacts imported:
-    = @contacts.count
-  %br
   .table-responsive-xl
     %table.table-sm.table-striped
       %thead
         %tr
-          /%th #
-          %th Name
-          %th Surname
-          %th Phone
-          %th Birthday
-          %th Email
+          %th email
+          /%th import_id
+          %th name
+          %th first_name
+          %th last_name
+          /%th address_1
+          /%th address_2
+          /%th city
+          /%th region
+          /%th postcode
+          /%th country
+          %th phone_number
+          /%th birthday
+          /%th gender
+          /%th relation
+          %th create contact
       %tbody
-        - @contacts.each do |c|
+        - @contacts.each do |contact|
           %tr
-            /%td= c[:id]
-            %td= c[:first_name]
-            %td= c[:last_name]
-            %td= c[:phone_number]
-            %td= c[:birthday]
-            %td= c[:email]
+            %td= contact.email
+            /%td= contact.import_id
+            %td= contact.name
+            %td= contact.first_name
+            %td= contact.last_name
+            /%td= contact.address_1
+            /%td= contact.address_2
+            /%td= contact.city
+            /%td= contact.region
+            /%td= contact.postcode
+            /%td= contact.country
+            %td= contact.phone_number
+            /%td= contact.birthday
+            /%td= contact.gender
+            /%td= contact.relation
+            %td= button_to 'create contact', create_client_from_contact_contact_path(contact), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
+

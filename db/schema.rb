@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_165335) do
+ActiveRecord::Schema.define(version: 2019_08_17_125041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,28 @@ ActiveRecord::Schema.define(version: 2019_08_14_165335) do
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["tenant_id"], name: "index_comments_on_tenant_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.string "email"
+    t.string "import_id"
+    t.string "name"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address_1"
+    t.string "address_2"
+    t.string "city"
+    t.string "region"
+    t.string "postcode"
+    t.string "country"
+    t.string "phone_number"
+    t.string "birthday"
+    t.string "gender"
+    t.string "relation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenant_id"], name: "index_contacts_on_tenant_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -357,6 +379,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_165335) do
   add_foreign_key "clients", "tenants"
   add_foreign_key "comments", "tenants"
   add_foreign_key "comments", "users"
+  add_foreign_key "contacts", "tenants"
   add_foreign_key "events", "clients"
   add_foreign_key "events", "locations"
   add_foreign_key "events", "tenants"

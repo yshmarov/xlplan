@@ -137,9 +137,14 @@
           = link_to activity_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-bell
             = t('sidebar.activity')
+          .dropdown-divider
           = link_to start_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-rocket
             = t('sidebar.start')
+          = link_to contacts_list_path, class: "dropdown-item navdrop-link" do 
+            .fa-fw.fa.fa-user-plus
+            Contacts import
+            = Contact.count
       - if current_user.has_role?(:admin)
         %li.nav-item
           = link_to settings_show_path, class: "nav-link" do 
