@@ -8,13 +8,16 @@
   .text-center
     .row
       .col-lg-6
-        %h1.display-4= t('.hero')
-        %br
+        %h1.display-5= t('.hero')
+        %p
+        = t('.hero_description')
+        %p
+        .row
+        %p
         %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-warning'
       .col-lg-6
         .embed-responsive.embed-responsive-16by9
           %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
-        %small= t('.hero_description')
 %hr
 .container.text-center
   %h1.display-4= t('.designed_for')
@@ -77,11 +80,12 @@
           %p
           %h5.card-title= t('.professional_services')
           %hr
-          .fa.fa-car-side
-          = t('.car_services')
+          .fa.fa-wrench
+          .fa.fa-people-carry
+          = t('.field_services')
           %p
-          .fa.fa-car-crash
-          = t('.driving_school')
+          .fa.fa-broom
+          = t('.cleaning_services')
           %p
           .fa.fa-balance-scale
           = t('.legal_consulting')
@@ -89,12 +93,8 @@
           .fa.fa-user-tie
           = t('.business_consulting')
           %p
-          .fa.fa-wrench
-          .fa.fa-people-carry
-          = t('.field_services')
-          %p
-          .fa.fa-broom
-          = t('.cleaning_services')
+          .fa.fa-car-side
+          = t('.car_services')
           %p
           .fa.fa-user-graduate
           = t('.tutors')

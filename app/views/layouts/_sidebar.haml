@@ -18,6 +18,11 @@
     /= Time.zone
     /= Time.zone.now
     /= Time.now.in_time_zone
+    /%a{:href => "viber://pa?chatURI=[public account URI]&text=[message text]"} some text
+    /%a{:href => "viber://chat/?number=+380960459047"} Viber Chat
+    /%a{:href => "viber://contact?number=+380960459047"} Viber Contact
+    /%a{:href => "viber://chat?number=+380960459047"} Viber
+    /%a{:href => "viber://add?number=+380960459047"} Viber
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
@@ -135,13 +140,13 @@
           = link_to start_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-rocket
             = t('sidebar.start')
-      %li.nav-item
-        = link_to settings_show_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-cog
-          = t('sidebar.settings')
-          /%small= Tenant.current_tenant.name
-          .badge.badge-dark admin
       - if current_user.has_role?(:admin)
+        %li.nav-item
+          = link_to settings_show_path, class: "nav-link" do 
+            .fa-color-1.fa-fw.fa.fa-cog
+            = t('sidebar.settings')
+            /%small= Tenant.current_tenant.name
+            .badge.badge-dark admin
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             .fa-color-1.fa.fa-chart-line
@@ -175,6 +180,8 @@
           /- if user_signed_in? && current_user.member.present?
           - if user_signed_in?
             = current_user.member.short_name
+            /- if current_user.has_role?(:admin)
+            /  .badge.badge-dark admin
         .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdown"}
           /- if user_signed_in? && current_user.member.present?
           = link_to t('sidebar.my_page'), member_path(current_user.member), class: "dropdown-item"

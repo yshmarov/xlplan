@@ -370,7 +370,7 @@ en:
     landing_page:
       hero: "CRM for appointment-based business management"
       hero_description: "Manage employee working calendars, and keep client visit & payment history in one place!"
-      try_for_free: "Free 14-day trial!"
+      try_for_free: "Free 7-day trial"
       ########################################
       how_it_works: "Video about XLPLAN"
       features: "More about XLPLAN Features"
@@ -394,8 +394,7 @@ en:
       massage: "Massage"
       #industries
       professional_services: "Professional services"
-      car_services: "Car service, car wash, car service centers"
-      driving_school: "Driving school"
+      car_services: "Car service center, car wash, driving school"
       business_consulting: "Business Consulting"
       legal_consulting: "Legal Services"
       field_services: "Field services"
@@ -457,10 +456,10 @@ en:
       unlimited: "Unlimited"
       month: "month"
       year: "year"
-      #try_for_free: " 14 days"
+      #try_for_free: " 7 days"
       try_for_free_html: |
         Try for free </br>
-        14 days
+        7 days
       free_implementation: "Free implementation"
       free_support: "Free support"
       larger_plan: "Need a larger or more customized plan?"
