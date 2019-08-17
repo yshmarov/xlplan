@@ -48,6 +48,9 @@ class ContactsController < ApplicationController
   	  @client.email = @contact.email
   	  @client.phone_number = @contact.phone_number
   	  @client.save
+		@contact.update_attribute(:client_id, @client.id)
+	  #@contact.client = @client
+	  #@contact.client_id = @client.id
 		#@event.update_attribute(:status, 'planned')
 		#@contact.destroy
 		redirect_to contacts_list_path, notice: "Client created"
@@ -55,7 +58,7 @@ class ContactsController < ApplicationController
 
 
   def list
-    @contacts = Contact.all
+    @contacts = Contact.order('created_at DESC')
     render 'index'
   end
 

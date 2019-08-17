@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_17_125041) do
+ActiveRecord::Schema.define(version: 2019_08_17_193107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,8 @@ ActiveRecord::Schema.define(version: 2019_08_17_125041) do
     t.string "relation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_contacts_on_client_id"
     t.index ["tenant_id"], name: "index_contacts_on_tenant_id"
   end
 
@@ -379,6 +381,7 @@ ActiveRecord::Schema.define(version: 2019_08_17_125041) do
   add_foreign_key "clients", "tenants"
   add_foreign_key "comments", "tenants"
   add_foreign_key "comments", "users"
+  add_foreign_key "contacts", "clients"
   add_foreign_key "contacts", "tenants"
   add_foreign_key "events", "clients"
   add_foreign_key "events", "locations"

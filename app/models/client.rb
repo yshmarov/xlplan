@@ -17,6 +17,7 @@ class Client < ApplicationRecord
   has_many :services, through: :jobs
   has_many :comments, as: :commentable
   has_many :inbound_payments, dependent: :restrict_with_error
+  has_one :contact, inverse_of: :client, dependent: :nullify
   #-----------------------validation-------------------#
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { maximum: 144 }

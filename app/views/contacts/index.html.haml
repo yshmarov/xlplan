@@ -10,17 +10,17 @@
       = link_to "/contacts/gmail", class: 'btn btn-success btn-sm mr ml-1' do 
         .fab.fa-google
         Import Google Contacts
-
 - if !@contacts.nil?
   .table-responsive-xl
     %table.table-sm.table-striped
       %thead
         %tr
-          %th email
+          %th
+            /create contact
           /%th import_id
           %th name
-          %th first_name
-          %th last_name
+          /%th first_name
+          /%th last_name
           /%th address_1
           /%th address_2
           /%th city
@@ -28,18 +28,25 @@
           /%th postcode
           /%th country
           %th phone_number
+          %th email
           /%th birthday
           /%th gender
           /%th relation
-          %th create contact
+          /%th has client?
       %tbody
         - @contacts.each do |contact|
           %tr
-            %td= contact.email
+            %td
+              - unless contact.client.present?
+                = button_to 'create client', create_client_from_contact_contact_path(contact), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
+              - else
+                .text-center
+                  .fa.fa-check
+                  /Client exists
             /%td= contact.import_id
             %td= contact.name
-            %td= contact.first_name
-            %td= contact.last_name
+            /%td= contact.first_name
+            /%td= contact.last_name
             /%td= contact.address_1
             /%td= contact.address_2
             /%td= contact.city
@@ -47,8 +54,11 @@
             /%td= contact.postcode
             /%td= contact.country
             %td= contact.phone_number
+            %td= contact.email
             /%td= contact.birthday
             /%td= contact.gender
             /%td= contact.relation
-            %td= button_to 'create client', create_client_from_contact_contact_path(contact), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
+            /%td
+            /  = contact.client
+            /  = contact.client_id
 
