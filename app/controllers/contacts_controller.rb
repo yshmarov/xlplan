@@ -38,12 +38,12 @@ class ContactsController < ApplicationController
   	  if @contact.first_name.present?
     	  @client.first_name = @contact.first_name
   	  else
-    	  @client.first_name = @contact.name
+    	  @client.first_name = "?"
   	  end
   	  if @contact.last_name.present?
     	  @client.last_name = @contact.last_name
   	  else
-    	  @client.last_name = @contact.name
+    	  @client.last_name = "?"
   	  end
   	  @client.email = @contact.email
   	  @client.phone_number = @contact.phone_number
