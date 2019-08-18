@@ -1,0 +1,8 @@
+#edit_event.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Edit Event
+      .modal-body
+        = render 'form', event: @event
