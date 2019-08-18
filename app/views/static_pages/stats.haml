@@ -25,6 +25,7 @@
         %th.bg-warning InboundPayment
         %th.bg-warning Member
         %th.bg-warning Location
+        %th.bg-warning Contact
     %tbody
       - @tenants.each do |tenant|
         %tr.bg-info
@@ -45,6 +46,7 @@
           %td= InboundPayment.unscoped.where(tenant_id: tenant.id).count 
           %td= Member.unscoped.where(tenant_id: tenant.id).count 
           %td= Location.unscoped.where(tenant_id: tenant.id).count 
+          %td= Contact.unscoped.where(tenant_id: tenant.id).count 
         %thead.bg-light
           %tr
             %th memberID
