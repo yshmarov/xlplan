@@ -10,7 +10,7 @@
       - if Tenant.current_tenant
         = content_for?(:title) ? yield(:title) : "XLPLAN | #{Tenant.current_tenant.name}"
       - else
-        = content_for?(:title) ? yield(:title) : "XLPLAN | CRM for service business"
+        = content_for?(:title) ? yield(:title) : "XLPLAN | CRM for service business management"
     = favicon_link_tag 'logo.png'
     = csrf_meta_tags
     = csp_meta_tag

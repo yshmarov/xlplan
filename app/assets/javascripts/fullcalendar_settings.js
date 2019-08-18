@@ -1,7 +1,3 @@
-/*global $*/
-/*global app*/
-/*global moment*/
-
 //to show current time in calendar
 var TimeNow  = moment().format("HH") + ":00:00";
 
@@ -11,7 +7,9 @@ function eventCalendar() {
     // 100% height
     height: "auto",
     // render data
+    events: app.vars.events,
     resources: app.vars.resources,
+    locale: app.vars.locale,
 
     viewRender: function(view, element){
         var currentdate = view.intervalStart;
@@ -21,8 +19,6 @@ function eventCalendar() {
         }).datepicker('setDate', new Date(currentdate));
     },
 
-    events: app.vars.events,
-    locale: app.vars.locale,
     // design
     themeSystem: 'bootstrap4',
     header: {

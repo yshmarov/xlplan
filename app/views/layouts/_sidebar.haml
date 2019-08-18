@@ -62,6 +62,13 @@
       /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-user-tie'></i> #{t('sidebar.members')}".html_safe, dashboard_members_path, class: "nav-link"
       /CALENDAR
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
+      /SEARCH CLIENT IN SIDEBAR
+      /.input-group
+      /  = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
+      /    = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
+      /    %span.input-group-append
+      /      %button.btn.btn-secondary{:type => "submit"}
+      /        %span.fa.fa-search{"aria-hidden" => "true"}
       /CREATE NEW
       %li.nav-item
         = link_to new_event_path, class: "nav-link" do 
