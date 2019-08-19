@@ -4,6 +4,7 @@ class EventMailer < ApplicationMailer
   def client_event_created(event)
     @event = event
     mail(to: @event.client.email, subject: 'Booking created in XLPLAN.com')
+    #mail(to: "yshmarov@gmail.com", subject: 'Booking created in XLPLAN.com')
   end
 
   def member_event_created(event)
