@@ -12,20 +12,13 @@
 = model_class.human_attribute_name(:time) + ':'
 = @event.starts_at
 
-/= model_class.human_attribute_name(:location_id) + ':'
 = t('.address')
 = Tenant.current_tenant.name
-/= @event.location.address
 - if @event.location.address?
   = @event.location.address[:country]
   = @event.location.address[:city]
   = @event.location.address[:street]
   = @event.location.address[:zip]
 
-
-/%p= link_to "This event", @event
-
-= link_to "https://www.xlplan.com", target: :_blank do
-  = t('.powered_by')
-  /Powered by 
-  XLPLAN
+#{t('.powered_by')} XLPLAN
+https://www.xlplan.com
