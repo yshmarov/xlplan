@@ -2,10 +2,10 @@
 = search_form_for @q, url: events_path do |f|
   .card
     .card-header
-      %h4.float-left
+      %h5.float-left
         .fa.fa-calendar-check
         %b= t "#{controller_name}_#{action_name}"
-      %h4.float-right
+      %h5.float-right
         - unless params.has_key?(:q)
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search

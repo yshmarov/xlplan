@@ -4,7 +4,7 @@
   .col-lg-6
     .card.card-default
       .card-header
-        %h4= t('.sign_in', :default => "Sign up")
+        %h5= t('.sign_in', :default => "Sign up")
       .card-body
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .form-inputs
