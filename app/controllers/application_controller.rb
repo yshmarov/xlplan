@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   #  I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
   # end
   def set_locale
-    parsed_locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/)[0]
     if current_user
       lang = Tenant.current_tenant.try(:locale)  || I18n.default_locale
     elsif params['locale'].present?
@@ -32,8 +31,6 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     elsif session['locale'].present?
       lang = session['locale']
-    elsif I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
-      lang = parsed_locale
     else
       lang = 'en'
     end
