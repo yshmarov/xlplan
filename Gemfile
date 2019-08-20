@@ -55,56 +55,56 @@ group :test do
 end
 
 #basic6
-gem 'haml'
-gem "haml-rails", "~> 1.0"
-gem 'bootstrap', '~> 4.2.1'
+gem 'haml'                                                                      #HAML
+gem "haml-rails", "~> 1.0"                                                      #HAML
+gem 'bootstrap', '~> 4.2.1'                                                     #BOOTSTRAP
 gem 'jquery-rails'
-gem 'simple_form'
+gem 'simple_form'                                                               #SIMPLE_FORM
 gem 'font-awesome-sass', '~> 5.5.0'
 #calendar3
-gem 'fullcalendar-rails'
+gem 'fullcalendar-rails'                                                        #FULLCALENDAR.IO in Rails
 #gem 'fullcalendar-rails', github: 'EverardB/fullcalendar-rails/tree/fullcalendar-4.2.0'
 #gem 'fullcalendar-rails', github: 'yshmarov/fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'rjv'
 #access6
-gem 'exception_notification'
-gem 'devise'
+gem 'devise'                                                                    #USER AUTHENTICATION
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
-gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git'
+gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git'             #MULTIPLE COMPANIES IN 1 PROGRAM
 #gem 'milia', github: 'jekuno/milia', branch: 'issue#76'
-gem "pundit"
-gem "rolify"
+gem "rolify"                                                                    #USER ROLES
+gem "pundit"                                                                    #WHAT CAN USERS WITH DIFFERENT ROLES DO
 #charts2
-gem "chartkick"
-gem 'groupdate'
+gem "chartkick"                                                                 #EASY CHARTS FOR RAILS
+gem 'groupdate'                                                                 #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
 #design
-gem 'will_paginate', '~> 3.1.0'
-gem 'will_paginate-bootstrap4'
-gem 'ransack'
+gem 'will_paginate', '~> 3.1.0'                                                 #PAGINATION
+gem 'will_paginate-bootstrap4'                                                  #STYLE FOR PAGINATION
+gem 'ransack'                                                                   #SEARCH
 
 #gem 'validates_timeliness', '~> 5.0.0.alpha3'
 #gem 'validates_overlap'
 
-gem 'money-rails', '~>1.12'
+gem 'money-rails', '~>1.12'                                                     #HANDLING MONEY IN THE DATABASE
 gem "selectize-rails"
 gem "cocoon"
-gem 'public_activity', github: 'chaps-io/public_activity'
-gem 'friendly_id', '~> 5.2.4'
+gem 'public_activity', github: 'chaps-io/public_activity'                       #A SEPARATE TABLE TO SAVE THE HISTORY OF EACH "CRUD" ACTION.
+gem 'friendly_id', '~> 5.2.4'                                                   #CUSTOM ID (NOT ALPHABETIC NUMBER)
 gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
-gem 'faker'
-gem 'rack-attack'
+gem 'faker'                                                                     #FILL THE DATABASE WITH FAKE DATA
 
-gem "omnicontacts"
+gem "omnicontacts"                                                              #IMPORT CONTACTS FROM GOOGLE
 
-gem "recaptcha"
+gem 'exception_notification'                                                    #EMAIL ERRORS FOR PRODUCTION
+gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
+gem "recaptcha"                                                                 #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
 
-gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'                                                                #GENERATE PDF
+gem 'wkhtmltopdf-binary'                                                        #ALSO NEEDED TO GENERATE PDF
 
 #group :production do
-gem "aws-sdk-s3"
+gem "aws-sdk-s3"                                                                #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
 #end
 #gem "mini_magic"
