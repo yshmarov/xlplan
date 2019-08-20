@@ -563,6 +563,10 @@ en:
 
   ######################################################
 
+  contacts:
+    index:
+      create_client: "Create Client"
+      import_google_contacts: "Import Google Contacts"
   inbound_payments:
     index:
       title: "Payments"
@@ -721,8 +725,25 @@ en:
       client: "Client"
       comment: "Comment"
       inbound_payment: "Payment"
+      contact: "Contact"
 
     attributes:
+      contact:
+        email: "email"
+        id: "id"
+        name: "name"
+        first_name: "first_name"
+        last_name: "last_name"
+        address_1: "address_1"
+        address_2: "address_2"
+        city: "city"
+        region: "region"
+        postcode: "postcode"
+        country: "country"
+        phone_number: "phone_number"
+        birthday: "birthday"
+        gender: "gender"
+        relation: "relation"
       tenant:
         id: "ID #"
         name: "Organisation Name"

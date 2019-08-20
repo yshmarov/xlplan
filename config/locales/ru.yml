@@ -564,6 +564,10 @@ ru:
 
   ######################################################
 
+  contacts:
+    index:
+      create_client: "Создать Клиента"
+      import_google_contacts: "Импорт Контактов Google "
   inbound_payments:
     index:
       title: "Оплаты"
@@ -722,8 +726,25 @@ ru:
       client: "Клиент"
       comment: "Комментарий"
       inbound_payment: "Оплата"
+      contact: "Контакт"
 
     attributes:
+      contact:
+        email: "email"
+        id: "код"
+        name: "имя"
+        first_name: "имя"
+        last_name: "фамилия"
+        address_1: "адрес_1"
+        address_2: "адрес_2"
+        city: "город"
+        region: "регион"
+        postcode: "почтовый код"
+        country: "страна"
+        phone_number: "телефон"
+        birthday: "день рождения"
+        gender: "пол"
+        relation: "отношение"
       tenant:
         id: "Идентификационный Код"
         name: "Название Организации"
