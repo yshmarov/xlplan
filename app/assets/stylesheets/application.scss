@@ -73,20 +73,24 @@ input[type=radio] {
     color: #6610f2;
 }
 
+.navbar {
+  background-color: #25364a;
+}
+
 .navbar .side-nav > li > a:hover, .navbar .side-nav > li > a:focus {
-    background-color: #6f42c1;
+    background-color: #6610f2;
     color: green;
 }
 
 .label-purple {
-  background-color: #6f42c1;
+  background-color: #6610f2;
 }
 .label-purple[href]:hover,
 .label-purple[href]:focus {
-  background-color: #6f42c1;
+  background-color: #6610f2;
 }
 
 .btn-purple {
-    background-color:#6f42c1;
+    background-color:#6610f2;
     color:white;
 }
