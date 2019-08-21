@@ -1,0 +1,65 @@
+- model_class = Client
+.row
+  .container
+    .card
+      .card-header
+        =t '.title', :default => model_class.model_name.human.titleize
+      .card-body
+        %b= model_class.human_attribute_name(:full_name) + ':'
+        = @client.full_name
+        .row
+        %b= model_class.human_attribute_name(:phone_number) + ':'
+        = @client.phone_number
+        .row
+        %b= model_class.human_attribute_name(:email) + ':'
+        = @client.email
+        .row
+        %b= model_class.human_attribute_name(:date_of_birth) + ':'
+        = @client.date_of_birth
+        .row
+        %b= model_class.human_attribute_name(:gender) + ':'
+        = @client.gender
+        .row
+        %b= model_class.human_attribute_name(:address) + ':'
+        - if @client.address?
+          = @client.address[:country]
+          = @client.address[:city]
+          = @client.address[:street]
+          = @client.address[:zip]
+.row
+  .container
+    .card
+      .card-header
+        = t("sidebar.events") + ':'
+        = @client.events_count
+      - @events.each do |event|
+        .card.card-header
+          = status_label(event.status)
+          .row
+          = event.event_due_price_cents
+          .row
+          = event.location
+          .row
+          #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
+          .row
+          = event.notes
+          .row
+          - event.jobs.each do |job|
+            .row
+            = job.service.full_name_with_price
+            = job.member.short_name
+
+
+.row
+  .container
+    .card
+      .card-header
+        = t("sidebar.inbound_payments") + ':'
+        = @client.inbound_payments.count
+      - @inbound_payments.each do |inbound_payment|
+        .card.card-header
+          = inbound_payment.client
+          = inbound_payment.amount_cents
+          = inbound_payment.payment_method
+          #{l(inbound_payment.created_at, format: "%a")} #{l(inbound_payment.created_at, format: "%d/%b/%Y %H:%M")}
+
