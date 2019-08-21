@@ -51,10 +51,6 @@ function eventCalendar() {
     nowIndicator: true,
     scrollTime: TimeNow,
     allDaySlot: false,
-    // 15 minute timeslots
-    slotDuration: '00:15:00',
-    slotLabelInterval: 15,
-    slotLabelFormat: 'h(:mm)a',
     // Clickable week number
     navLinks: true,
     // The day that each week begins
