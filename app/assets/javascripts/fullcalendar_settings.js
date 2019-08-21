@@ -7,9 +7,27 @@ function eventCalendar() {
     // 100% height
     height: "auto",
     // render data
-    events: app.vars.events,
-    resources: app.vars.resources,
+    // events: app.vars.events,
+    events: '/events.json',
+    // resources: app.vars.resources,
     locale: app.vars.locale,
+
+    selectable: true,
+      selectHelper: true,
+      editable: true,
+      eventLimit: true,
+
+      select: function(start, end) {
+        $.getScript('/events/new', function() {
+          $('#event_date_range').val(moment(start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(end).format("MM/DD/YYYY HH:mm"))
+          date_range_picker();
+          $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
+          $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
+        });
+
+        $('#event_calendar').fullCalendar('unselect');
+      },
+
 
     viewRender: function(view, element){
         var currentdate = view.intervalStart;
@@ -33,7 +51,10 @@ function eventCalendar() {
     nowIndicator: true,
     scrollTime: TimeNow,
     allDaySlot: false,
-    slotMinutes: 30,
+    // 15 minute timeslots
+    slotDuration: '00:15:00',
+    slotLabelInterval: 15,
+    slotLabelFormat: 'h(:mm)a',
     // Clickable week number
     navLinks: true,
     // The day that each week begins

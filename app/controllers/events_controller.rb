@@ -79,14 +79,23 @@ class EventsController < ApplicationController
   def index
     @q = Event.ransack(params[:q])
     @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+
+
+    #format.json { 
+    #  render :plain => {success:true}.to_json, status: 200, content_type: 'application/json'
+    #}
     #respond_to :json # add this line
     #respond_to do |format|
     #  format.html { render 'index' }
     #  format.json { render json: @events }
     #end
+    
     #respond_to do |format|
-    #  format.json
+    ##  #  format.json
     #  format.html
+    #  #format.json { render :partial => "events/index.json" }
+    #  #format.json { render json: "events/index.json" }
+    #  format.json { render 'index_as_json.html', content_type: "text/html" }
     #end
   end
 

@@ -4,6 +4,7 @@ json.array! @events do |event|
   json.title event.id
   json.start event.starts_at
   json.end event.ends_at
+  json.url event_url(event)
 
 
   //## json.color event.status_color unless event.status_color.blank?
