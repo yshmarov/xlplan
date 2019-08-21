@@ -23,7 +23,8 @@
       = t('.address')
       %b= Tenant.current_tenant.name
       %b
-        /= @event.location.address
+        = @event.location
+        = @event.location.phone_number
         - if @event.location.address?
           = @event.location.address[:country]
           = @event.location.address[:city]

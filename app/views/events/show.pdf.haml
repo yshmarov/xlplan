@@ -1,0 +1,30 @@
+- model_class = Event
+.row
+  .container
+    .card
+      .card-header
+        =t '.title', :default => model_class.model_name.human.titleize
+      .card.card-header
+        = status_label(@event.status)
+        .row
+        = @event.event_due_price_cents
+        .row
+        = @event.location
+        = @event.location.phone_number
+        - if @event.location.address?
+          = @event.location.address[:country]
+          = @event.location.address[:city]
+          = @event.location.address[:street]
+          = @event.location.address[:zip]
+
+        .row
+        #{l(@event.starts_at, format: "%a")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
+        .row
+        = @event.notes
+        .row
+        - @event.jobs.each do |job|
+          .row
+          = job.service.full_name_with_price
+          = job.member.short_name
+
+

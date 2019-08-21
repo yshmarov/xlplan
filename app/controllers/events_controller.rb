@@ -115,8 +115,8 @@ class EventsController < ApplicationController
         format.html
         format.pdf do
             render pdf: "Event No. #{@event.slug}",
-            page_size: 'A4',
-            template: "events/show.html.haml",
+            page_size: 'A6',
+            template: "events/show.pdf.haml",
             layout: "pdf.haml",
             orientation: "Landscape",
             lowquality: true,

@@ -14,6 +14,8 @@
 
 = t('.address')
 = Tenant.current_tenant.name
+= @event.location
+= @event.location.phone_number
 - if @event.location.address?
   = @event.location.address[:country]
   = @event.location.address[:city]
