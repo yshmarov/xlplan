@@ -57,11 +57,11 @@ end
 
 #basic6
 gem 'haml'                                                                      #HAML
-gem "haml-rails", "~> 1.0"                                                      #HAML
-gem 'bootstrap', '~> 4.2.1'                                                     #BOOTSTRAP
+gem "haml-rails"                                                                #HAML
+gem 'bootstrap'                                                                 #BOOTSTRAP
 gem 'jquery-rails'
 gem 'simple_form'                                                               #SIMPLE_FORM
-gem 'font-awesome-sass', '~> 5.5.0'
+gem 'font-awesome-sass'                                                         #FONT_AWESOME ICONS FOR DESIGN
 #calendar3
 gem 'fullcalendar-rails'                                                        #FULLCALENDAR.IO in Rails
 #gem 'fullcalendar-rails', github: 'EverardB/fullcalendar-rails/tree/fullcalendar-4.2.0'
@@ -79,19 +79,19 @@ gem "pundit"                                                                    
 gem "chartkick"                                                                 #EASY CHARTS FOR RAILS
 gem 'groupdate'                                                                 #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
 #design
-gem 'will_paginate', '~> 3.1.0'                                                 #PAGINATION
+gem 'will_paginate'                                                             #PAGINATION
 gem 'will_paginate-bootstrap4'                                                  #STYLE FOR PAGINATION
 gem 'ransack'                                                                   #SEARCH
 
 #gem 'validates_timeliness', '~> 5.0.0.alpha3'
 #gem 'validates_overlap'
 
-gem 'money-rails', '~>1.12'                                                     #HANDLING MONEY IN THE DATABASE
+gem 'money-rails'                                                               #HANDLING MONEY IN THE DATABASE
 gem "selectize-rails"
 gem "cocoon"
 gem 'public_activity', github: 'chaps-io/public_activity'                       #A SEPARATE TABLE TO SAVE THE HISTORY OF EACH "CRUD" ACTION.
-gem 'friendly_id', '~> 5.2.4'                                                   #CUSTOM ID (NOT ALPHABETIC NUMBER)
-gem 'rails-i18n', '~> 5.1' # For 5.0.x, 5.1.x and 5.2.x
+gem 'friendly_id'                                                               #CUSTOM ID (NOT ALPHABETIC NUMBER)
+gem 'rails-i18n'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'faker'                                                                     #FILL THE DATABASE WITH FAKE DATA
