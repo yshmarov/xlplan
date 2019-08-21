@@ -94,3 +94,20 @@ input[type=radio] {
     background-color:#6610f2;
     color:white;
 }
+
+.navbar .navbar-nav .dropdown-menu {
+  background-color: #cacaca;
+  border-color: #6610f2;
+}
+.navbar .navbar-nav .dropdown-menu .dropdown-item {
+  color: black;
+}
+.navbar .navbar-nav .dropdown-menu .dropdown-item:hover,
+.navbar .navbar-nav .dropdown-menu .dropdown-item:focus,
+.navbar .navbar-nav .dropdown-menu .dropdown-item.active {
+  color: #cacaca;
+  background-color: #6610f2;
+}
+.navbar .navbar-nav .dropdown-menu .dropdown-divider {
+  border-top-color: #acacac;
+}
