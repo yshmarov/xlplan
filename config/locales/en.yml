@@ -915,3 +915,12 @@ en:
         event: "Event"
         after: "Starts after.."
         before: "Starts before.."
+      expence:
+        id: "Payment ID"
+        amount: "Amount"
+        amount_cents: "Amount"
+        payment_method: "Payment Method"
+        expendable_type: "Purpose of payment"
+        created_at: "Created"
+        updated_at: "Updated"
+

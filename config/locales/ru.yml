@@ -920,3 +920,11 @@ ru:
         event: "Встреча"
         after: "Начало после.."
         before: "Начало до.."
+      expence:
+        id: "Код Расхода"
+        amount: "Сумма"
+        amount_cents: "Сумма"
+        payment_method: "Способ Оплаты"
+        expendable_type: "Назначение платежа"
+        created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
