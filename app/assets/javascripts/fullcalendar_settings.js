@@ -7,9 +7,9 @@ function eventCalendar() {
     // 100% height
     height: "auto",
     // render data
-    // events: app.vars.events,
-    events: '/events.json',
-    // resources: app.vars.resources,
+    events: app.vars.events,
+    // events: '/events.json',
+    resources: app.vars.resources,
     locale: app.vars.locale,
 
     selectable: true,
