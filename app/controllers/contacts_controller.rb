@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
     @contacts = request.env['omnicontacts.contacts']
 
     @contacts.each do |contact|
-      contact1 = Contact.new
+      contact1 = Contact.find_or_create_by(import_id: contact[:id])
       contact1.email = contact[:email]
       contact1.import_id = contact[:id]
       contact1.name = contact[:name]
