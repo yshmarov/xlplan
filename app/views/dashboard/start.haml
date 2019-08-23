@@ -4,16 +4,6 @@
   /  = t('.start')
   .card-body
     %h5
-      /CREATE MEMBER
-      - if Tenant.current_tenant.can_create_members?
-        - if Member.count < 2
-          %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_member'), new_member_path
-        - else
-          %span.badge.badge-pill.badge-success +
-          %del
-            = t('.new_member')
-        %hr
       /CREATE LOCATION
       - if Tenant.current_tenant.can_create_locations?
         - unless Location.any?
@@ -41,16 +31,17 @@
         %span.badge.badge-pill.badge-success +
         %del
           = t('.new_client')
-      /%hr
-      //CREATE PAYMENT
-      /- unless InboundPayment.any?
-      /  %span.badge.badge-pill.badge-danger -
-      /  = link_to t('.new_payment'), new_inbound_payment_path
-      /- else
-      /  %span.badge.badge-pill.badge-success +
-      /  %del
-      /    = t('.new_payment')
       %hr
+      /CREATE MEMBER
+      - if Tenant.current_tenant.can_create_members?
+        - if Member.count < 2
+          %span.badge.badge-pill.badge-danger -
+          = link_to t('.new_member'), new_member_path
+        - else
+          %span.badge.badge-pill.badge-success +
+          %del
+            = t('.new_member')
+        %hr
       /CREATE EVENT
       - unless Event.any?
         %span.badge.badge-pill.badge-danger -
@@ -60,6 +51,15 @@
         %del
           = t('.new_event')
         %hr
-        /FINISH
-        = t('.finish')
+      //CREATE PAYMENT
+      /- unless InboundPayment.any?
+      /  %span.badge.badge-pill.badge-danger -
+      /  = link_to t('.new_payment'), new_inbound_payment_path
+      /- else
+      /  %span.badge.badge-pill.badge-success +
+      /  %del
+      /    = t('.new_payment')
+      /%hr
+      /FINISH
+      = t('.finish')
 %br

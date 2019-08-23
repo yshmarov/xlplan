@@ -30,6 +30,7 @@ def create
         #@user.add_role(:manager)
         
         Role.create!(name: "manager") #initially only admin and specialist are created.
+        #Location.create!(name: @tenant.name)
 
         if resource.errors.empty?   #  SUCCESS!
 
