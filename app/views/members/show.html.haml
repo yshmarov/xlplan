@@ -66,13 +66,7 @@
         /= @member.gender
         .row
         %b= model_class.human_attribute_name(:address) + ':'
-        - if @member.address?
-          /= @member.address
-          /#{@member.address[:street_address]}, #{@member.address[:city]}, #{@member.address[:state]}, #{@member.address[:zip]}
-          = @member.address[:country]
-          = @member.address[:city]
-          = @member.address[:street]
-          = @member.address[:zip]
+        = @member.address_line
         .row
         %b= model_class.human_attribute_name(:time_zone) + ':'
         = @member.time_zone

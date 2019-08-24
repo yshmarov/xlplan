@@ -25,6 +25,11 @@ class Location < ApplicationRecord
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------serialization-------------------#
   serialize :address
+  def address_line
+    if address.present?
+      [address[:country], address[:city], address[:street], address[:zip]].join(', ')
+    end
+  end
   #-----------------------enums-------------------#
   enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
@@ -43,10 +48,6 @@ class Location < ApplicationRecord
     else
       id
     end
-  end
-  
-  def address_line
-    [address[:country], address[:city], address[:street], address[:zip]].join(', ')
   end
 
   ################TENANT VALIDATION#################

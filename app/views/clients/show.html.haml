@@ -43,13 +43,8 @@
         /= @client.gender
         %br
         %b= model_class.human_attribute_name(:address) + ':'
-        - if @client.address?
-          /= @client.address
-          /#{@client.address[:street_address]}, #{@client.address[:city]}, #{@client.address[:state]}, #{@client.address[:zip]}
-          = @client.address[:country]
-          = @client.address[:city]
-          = @client.address[:street]
-          = @client.address[:zip]
+        = @client.address_line
+        /#{@client.address[:street_address]}, #{@client.address[:city]}, #{@client.address[:state]}, #{@client.address[:zip]}
         /= link_to @client.address, "https://www.google.com/maps/search/?api=1&query=760+West+Genesee+Street+Syracuse+NY+13204", :target => '_blank'
         .row
         .fa.fa-clock

@@ -33,6 +33,11 @@ class Client < ApplicationRecord
   #serialize :address, Hash
   serialize :address
   #store :address, accessors: [:street_address, :city, :state, :zip], coder: JSON
+  def address_line
+    if address.present?
+      [address[:country], address[:city], address[:street], address[:zip]].join(', ')
+    end
+  end
   #-----------------------enums-------------------#
   enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
