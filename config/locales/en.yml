@@ -365,6 +365,10 @@ en:
       event_created: "Booking confirmation"
       address: "Address"
       powered_by: "Powered by"
+    member_event_created:
+      event_created: "Booking confirmation"
+      address: "Address"
+      powered_by: "Powered by"
   static_pages:
     activity:
       ago: 'ago'
@@ -664,6 +668,7 @@ en:
     show:
       #client_paid: "Create Payment"
       email_client: "Email client"
+      email_members: "Email employee"
       planned: "Planned"
       confirmed: "Confirmed"
       member_cancelled: "Employee Cancelled"

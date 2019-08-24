@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, 
               :mark_planned, :mark_confirmed, :mark_no_show,
               :mark_member_cancelled, :mark_client_cancelled, :mark_no_show_refunded,
-              :send_email_to_client]
+              :send_email_to_client, :send_email_to_members]
 
   def close
     @q = Event.close.ransack(params[:q])
@@ -137,13 +137,21 @@ class EventsController < ApplicationController
   end
 
   def send_email_to_client
-    authorize @event, :show?
+    authorize @event, :edit?
     if @event.client.email.present? && @event.client.event_created_notifications?
       Event.public_activity_off
       EventMailer.client_event_created(@event).deliver_now
       Event.public_activity_on
     end
 		redirect_to @event, notice: "Email invitation sent to #{@event.client}"
+  end
+  
+  def send_email_to_members
+    authorize @event, :edit?
+    Event.public_activity_off
+    EventMailer.member_event_created(@event).deliver_now
+    Event.public_activity_on
+		redirect_to @event, notice: "Email invitation sent to #{@event.members.pluck(:email)}"
   end
 
   def create

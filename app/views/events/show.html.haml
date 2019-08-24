@@ -15,7 +15,13 @@
           - if @event.client.email.present? && @event.client.event_created_notifications?
             = button_to send_email_to_client_event_path(@event), method: :patch, class: 'btn btn-success btn-sm fa' do 
               .far.fa-envelope
-              = t '.email_client'
+              .fa.fa-user
+              /= t '.email_client'
+        .float-right.mr.mr-1
+          = button_to send_email_to_members_event_path(@event), method: :patch, class: 'btn btn-success btn-sm fa' do 
+            .far.fa-envelope
+            .fa.fa-user-tie
+            /= t '.email_members'
       .card-body
         /%b= model_class.human_attribute_name(:status) + ':'
         /= status_label(@event.status)

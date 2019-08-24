@@ -71,6 +71,7 @@ Rails.application.routes.draw do
   		patch :mark_no_show
   		patch :mark_no_show_refunded
   		patch :send_email_to_client
+  		patch :send_email_to_members
     end
   end
 

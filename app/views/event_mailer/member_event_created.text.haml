@@ -1,0 +1,21 @@
+= t('.event_created')
+
+- model_class = Job
+- model_class = Job
+- @event.jobs.each do |job|
+  
+  = model_class.human_attribute_name(:service_id) + ':'
+  = job.service.name
+  (#{job.member.full_name})
+- model_class = Event
+= model_class.human_attribute_name(:time) + ':'
+= @event.starts_at
+
+= t('.address')
+= Tenant.current_tenant.name
+= @event.location
+= @event.location.phone_number
+= @event.location.address_line
+
+#{t('.powered_by')} XLPLAN
+https://www.xlplan.com

@@ -366,6 +366,10 @@ ru:
       event_created: "Подтверждение резервации"
       address: "Адрес"
       powered_by: "При поддержке"
+    member_event_created:
+      event_created: "Подтверждение резервации"
+      address: "Адрес"
+      powered_by: "При поддержке"
   static_pages:
     activity:
       ago: 'назад'
@@ -665,6 +669,7 @@ ru:
     show:
       #client_paid: "Создать оплату"
       email_client: "Имейл клиенту"
+      email_members: "Email сотруднику"
       planned: "Запланирован"
       confirmed: "Состоялся"
       member_cancelled: "Сотрудник Отменил"

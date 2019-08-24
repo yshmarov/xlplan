@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset = UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %b= t('.event_created')
+    %hr
+    - model_class = Job
+    /%b= @event.services.pluck(:name).join(', ')
+
+    - @event.jobs.each do |job|
+      %p
+        = model_class.human_attribute_name(:service_id) + ':'
+        %b
+          = job.service.name
+          (#{job.member.full_name})
+    - model_class = Event
+    %p
+      = model_class.human_attribute_name(:time) + ':'
+      %b= @event.starts_at
+    %p
+      /= model_class.human_attribute_name(:location_id) + ':'
+      = t('.address') + ":"
+      %b= Tenant.current_tenant.name
+      %b
+        = @event.location
+        = @event.location.phone_number
+        = @event.location.address_line
+
+    /%p= link_to "This event", @event
+
+  %hr
+  = link_to "https://www.xlplan.com", target: :_blank do
+    = t('.powered_by')
+    /Powered by 
+    %i.fab.fa-calendar-check
+    XLPLAN
