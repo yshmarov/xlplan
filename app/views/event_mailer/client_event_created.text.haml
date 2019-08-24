@@ -1,13 +1,7 @@
 = t('.event_created')
 
 - model_class = Job
-- @event.jobs.each do |job|
-  
-  = model_class.human_attribute_name(:service_id) + ':'
-  = job.service.name
-
-  = model_class.human_attribute_name(:member_id) + ':'
-  = job.member.full_name
+= @event.services.pluck(:name).join(', ')
 - model_class = Event
 = model_class.human_attribute_name(:time) + ':'
 = @event.starts_at
@@ -16,11 +10,7 @@
 = Tenant.current_tenant.name
 = @event.location
 = @event.location.phone_number
-- if @event.location.address?
-  = @event.location.address[:country]
-  = @event.location.address[:city]
-  = @event.location.address[:street]
-  = @event.location.address[:zip]
+= @event.location.address_line
 
 #{t('.powered_by')} XLPLAN
 https://www.xlplan.com

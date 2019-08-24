@@ -44,6 +44,10 @@ class Location < ApplicationRecord
       id
     end
   end
+  
+  def address_line
+    [address[:country], address[:city], address[:street], address[:zip]].join(', ')
+  end
 
   ################TENANT VALIDATION#################
   validate :tenant_plan_quantity_limit

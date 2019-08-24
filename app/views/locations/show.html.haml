@@ -25,12 +25,7 @@
         %a{:href => "mailto:#{@location.email}"}= @location.email
         .row
         %b= model_class.human_attribute_name(:address) + ':'
-        /= @location.address
-        - if @location.address?
-          = @location.address[:country]
-          = @location.address[:city]
-          = @location.address[:street]
-          = @location.address[:zip]
+        = @location.address_line
         .row
         %b= model_class.human_attribute_name(:status) + ':'
         = status_label(@location.status)

@@ -3,35 +3,31 @@
   %head
     %meta{:content => "text/html; charset = UTF-8", "http-equiv" => "Content-Type"}/
   %body
-    %h3
-      %p= t('.event_created')
-    %p
+    %b= t('.event_created')
+    %hr
     - model_class = Job
-    - @event.jobs.each do |job|
-      %p
-        = model_class.human_attribute_name(:service_id) + ':'
-        %b= job.service.name
-      %p
-        = model_class.human_attribute_name(:member_id) + ':'
-        %b= job.member.full_name
+    %b= @event.services.pluck(:name).join(', ')
+
+    /- @event.jobs.each do |job|
+    /  %p
+    /    = model_class.human_attribute_name(:service_id) + ':'
+    /    %b= job.service.name
+    /  %p
+    /    = model_class.human_attribute_name(:member_id) + ':'
+    /    %b= job.member.full_name
     - model_class = Event
     %p
       = model_class.human_attribute_name(:time) + ':'
       %b= @event.starts_at
     %p
       /= model_class.human_attribute_name(:location_id) + ':'
-      = t('.address')
+      = t('.address') + ":"
       %b= Tenant.current_tenant.name
       %b
         = @event.location
         = @event.location.phone_number
-        - if @event.location.address?
-          = @event.location.address[:country]
-          = @event.location.address[:city]
-          = @event.location.address[:street]
-          = @event.location.address[:zip]
+        = @event.location.address_line
 
-    
     /%p= link_to "This event", @event
 
   %hr

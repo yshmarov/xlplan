@@ -3,8 +3,39 @@ class EventMailer < ApplicationMailer
 
   def client_event_created(event)
     @event = event
+
+    event_start = @event.starts_at.strftime("%Y%m%dT%H%M%S%Z")
+    event_end = @event.ends_at.strftime("%Y%m%dT%H%M%S%Z")
+    @location = @event.location.address_line
+    @summary = "#{@event.services.pluck(:name).join(', ')} (#{Tenant.current_tenant.name})"
+    @description = "#{@event.services.pluck(:name).join(', ')}.
+                    #{Tenant.current_tenant.name},
+                    #{@event.location},
+                    #{@event.location.phone_number},
+                    #{@event.location.address_line}. 
+                    Powered by XLPLAN https://www.xlplan.com"
+
+    #@organiser = "mailto:organizer@example.com"
+    #@attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
+    #@attendee = %w(mailto: #{@event.client.email})
+
+    ical = Icalendar::Calendar.new
+    e = Icalendar::Event.new    
+    e.dtstart = Icalendar::Values::DateTime.new event_start
+    e.dtend   = Icalendar::Values::DateTime.new event_end
+    e.location = @location      
+    e.summary = @summary   
+    e.description = @description
+
+    #e.organizer = @organiser
+    #e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: 'Organizer sales')
+    #e.attendee  = @attendee   
+
+    ical.add_event(e)    
+    ical.append_custom_property('METHOD', 'REQUEST')
+    #mail.attachments['slackminder.ics'] = { mime_type: 'application/ics', content: ical.to_ical }
+    mail.attachments['booking.ics'] = { :mime_type => 'text/calendar', content: ical.to_ical }
     mail(to: @event.client.email, subject: 'Booking created in XLPLAN.com')
-    #mail(to: "yshmarov@gmail.com", subject: 'Booking created in XLPLAN.com')
   end
 
   def member_event_created(event)
