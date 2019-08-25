@@ -1,0 +1,18 @@
+.jumbotron.bg-white.text-center
+  %h1 Sign up for an appointment online!
+  %p Select a company, a service, a time that suits you. So simple! 
+
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        /%th ID
+        %th Name
+        %th Industry
+    %tbody
+      - @tenants.each do |tenant|
+        %tr
+          /%td= tenant.id
+          /%td= tenant.name
+          %td= link_to tenant.name, booking_path(tenant)
+          %td= tenant.industry

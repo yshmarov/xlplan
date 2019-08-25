@@ -87,4 +87,3 @@ function clearCalendar() {
 
 $(document).on('turbolinks:load', eventCalendar);
 $(document).on('turbolinks:before-cache', clearCalendar)
-

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  #get 'xl/list', to: 'booking#list'
+  #get '/xl/:id', to: 'booking#show'
+  #get 'booking/list'
+  #get '/booking/:id', to: 'booking#show', as: :booking
+
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
   #pages before logging in
