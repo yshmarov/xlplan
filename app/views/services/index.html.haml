@@ -69,7 +69,9 @@
           %td
             .fa.fa-clock
             = service.duration
-          %td= number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %td
+            /.fa.fa-tag
+            = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_percentage(service.member_percent, precision: 0)
           %td= number_to_currency(service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           /ADMIN - stats

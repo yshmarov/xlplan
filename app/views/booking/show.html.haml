@@ -11,5 +11,33 @@
 - set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: "BUSY", start: e.starts_at, end: e.ends_at, color: "grey"}}
 
 /.container
-#event_calendar
-%p
+.row
+  .col-lg-3
+    - Location.all.each do |location|
+      .card.card-header
+        %b= location.name
+        .row
+        .form-inline
+          .fa.fa-phone.mr.mr-2
+          = location.phone_number
+        .row
+        .form-inline
+          .fa.fa-map-marker-alt.mr.mr-2
+          = location.address_line
+  .col-lg-3
+    - Service.active.each do |service|
+      .card.card-header
+        %b= service.name
+        .row
+        .form-inline
+          .fa.fa-tag.mr.mr-2
+          = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        .row
+        .form-inline
+          .fa.fa-clock.mr.mr-2
+          = service.duration
+          min
+  .col-lg-6
+    #event_calendar
+    %p
+/%br
