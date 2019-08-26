@@ -15,8 +15,6 @@
           %hr
           = simple_fields_for(:tenant) do |w|
             = w.error_notification
-            = w.input :phone, label: "#{t('activerecord.attributes.tenant.phone')}"
-            = w.input :coupon, label: "#{t('activerecord.attributes.tenant.coupon')}"
             = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
             /= w.error :name
             - if I18n.locale == :ru
