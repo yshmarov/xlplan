@@ -37,7 +37,7 @@
           .fa.fa-map-marker-alt.mr.mr-2
           = location.address_line
     %p
-  .col-lg-3
+  .col-lg-4
     .text-center
       %h4= t('sidebar.services')
     - @services.each do |service|
@@ -47,17 +47,21 @@
           .fa.fa-hand-paper.mr.mr-2
           %b= service.name
         .row
-          .col-md-6
+          .col-md-5
             .form-inline
               .fa.fa-tag.mr.mr-2
               = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          .col-md-6
+          .col-md-4
             .form-inline
               .fa.fa-clock.mr.mr-2
               = service.duration
               min
+          .col-md-3
+            .btn.btn-success.btn-xs.btn-block
+              /.fa.fa-angle-right
+              Book
     %p
-  .col-lg-6
+  .col-lg-5
     #event_calendar
     %p
 /%br
