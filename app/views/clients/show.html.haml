@@ -16,23 +16,27 @@
         = render 'clients/new_event'
         = render 'clients/new_payment'
       .card-body
+        - if @client.avatar.attached?
+          .text-center
+            = image_tag @client.avatar, width: "200px", class: "mx-auto d-inline align-top rounded"
+        .row
         %b= model_class.human_attribute_name(:full_name) + ':'
         = @client.full_name
-        %br
+        .row
         %b= model_class.human_attribute_name(:phone_number) + ':'
         = link_to "tel:#{@client.phone_number}", class: "button" do
           #{number_to_phone(@client.phone_number)}
         /%a{:href => "viber://chat?number=#{@client.phone_number}"}
         /  Viber
-        %br
+        .row
         %b= model_class.human_attribute_name(:email) + ':'
         %a{:href => "mailto:#{@client.email}"}= @client.email
-        %br
+        .row
         %b= model_class.human_attribute_name(:date_of_birth) + ':'
         - if @client.date_of_birth.present?
           = @client.date_of_birth.strftime('%d/%b/%Y') 
           (#{@client.age})
-        %br
+        .row
         %b= model_class.human_attribute_name(:gender) + ':'
         - if @client.gender == "female"
           .fa.fa-female
@@ -41,7 +45,7 @@
         - else
           .fa.fa-question
         /= @client.gender
-        %br
+        .row
         %b= model_class.human_attribute_name(:address) + ':'
         = @client.address_line
         .row
@@ -53,20 +57,20 @@
         %b= model_class.human_attribute_name(:jobs_amount_sum) + ':'
         = number_to_currency(@client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         (#{@client.events_count})
-        %br
+        .row
         .fa.fa-hand-holding-usd
         %b= model_class.human_attribute_name(:payments_amount_sum) + ':'
         = number_to_currency(@client.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         (#{@client.inbound_payments_count})
-        %br
+        .row
         .fa.fa-balance-scale
         %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %hr
+        .row
         %b= model_class.human_attribute_name(:last_event) + ':'
         - if @client.last_event.present?
           = distance_of_time_in_words(Time.now, @client.last_event)
-        %br
+        .row
         %b= model_class.human_attribute_name(:next_event) + ':'
         - if @client.next_event.present?
           = distance_of_time_in_words(Time.now, @client.next_event) 

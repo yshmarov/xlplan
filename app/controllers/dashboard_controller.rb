@@ -23,6 +23,7 @@ class DashboardController < ApplicationController
 
   def calendar
     @jobs = Job.includes(:event, :service, :event => :client)
+    #@jobs = Job.includes(:event, :service, :member, :event => :client)
     #if user.has_role(:admin) || user.has_role(:manager)
     #  @members = Member.active
     #else

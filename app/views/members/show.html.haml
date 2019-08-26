@@ -18,11 +18,10 @@
       .card-body
         - if @member.avatar.attached?
           .text-center
-            /%image{:scr => "#{(url_for(@member.avatar))}"}
-            /= url_for(@member.avatar)
-            %img.rounded{:alt => "#{@member.full_name}", :src => "#{url_for(@member.avatar)}", :height => "200px"}/
+            = image_tag @member.avatar, width: "200px", class: "mx-auto d-inline align-top rounded"
             .row
             %small= link_to 'Remove Avatar', delete_avatar_member_path(@member.avatar.id), method: :delete, data: { confirm: 'Are you sure?' } 
+          /%img.rounded{:alt => "#{@member.full_name}", :src => "#{url_for(@member.avatar)}", :width => "200px"}/
           /= @member.avatar.attached?
           /= @member.avatar.id
           /= image_tag @member.avatar, size: "150", class: "rounded-circle"
