@@ -23,12 +23,10 @@
               = w.input :locale, collection: [['Polski', 'pl'], ['English', 'en'], ['Русский', 'ru']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
             - else I18n.locale == :en
               = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
-            /- if ::Milia.use_coupon
-            /  - @coupon ||= {}
-            /  .group
-            /    = label_tag( 'coupon', 'Coupon code', :class => "label" )
-            /    = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
-            /    %span.description optional promotional code, if any
+          - if ::Milia.use_coupon
+            - @coupon ||= {}
+            = label_tag( 'coupon', 'Coupon code', :class => "label" )
+            = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
           - if ::Milia.use_recaptcha
             = recaptcha_tags
           %hr

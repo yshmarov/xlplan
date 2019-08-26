@@ -7,7 +7,7 @@
 .container
   .text-center
     .row
-      .col-lg-6
+      .col-lg-5
         %h1.display-5= t('.hero')
         %p
         = t('.hero_description')
@@ -15,13 +15,13 @@
         .row
         %p
         %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-warning'
-      .col-lg-6
-        .embed-responsive.embed-responsive-16by9
-          %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
+      .col-lg-7
+        = image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
+        /.embed-responsive.embed-responsive-16by9
+        /  %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
 
-= image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
-#hrnotopmargin
-
+/#hrnotopmargin
+%hr
 .container.text-center
   %h1.display-4= t('.designed_for')
   %p
@@ -159,10 +159,10 @@
       %p
       %i.fa.fa-chart-line{:style => "color:orange"}
       = t('.growth_of_your_business_is_easier_to_manage')
-      %p
-      %i.fa.fa-chart-line{:style => "color:orange"}
-      = t('.competitive_advantage')
-      %p
+      /%p
+      /%i.fa.fa-chart-line{:style => "color:orange"}
+      /= t('.competitive_advantage')
+      /%p
 
 :css
   .parallax { 
