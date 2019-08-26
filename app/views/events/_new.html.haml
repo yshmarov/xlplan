@@ -1,8 +1,14 @@
+- model_class = Event
 #new_event.modal.fade
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-        %h5.modal-title Create New Event
+        %h5.modal-title
+          .fa.fa-calendar
+          =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
       .modal-body
         = render 'form', event: @event
+        %p
+        %button.btn.btn-danger{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.cancel"))
