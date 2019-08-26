@@ -2,17 +2,20 @@
   %h1 Sign up for an appointment online!
   %p Select a company, a service, a time that suits you. So simple! 
 
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        /%th ID
-        %th Name
-        %th Industry
-    %tbody
-      - @tenants.each do |tenant|
-        %tr
-          /%td= tenant.id
-          /%td= tenant.name
-          %td= link_to tenant.name, booking_path(tenant)
-          %td= tenant.industry
+- @tenants.each do |tenant|
+  .card.card-header
+    .row
+      .col-md-2
+        - if tenant.logo.attached?
+          = image_tag tenant.logo, height: "50px", class: "mx-auto d-inline align-top"
+        - else
+          .fa.fa-image{:style => "font-size:50px"}
+      .col-md-10
+        %b= link_to tenant.name, booking_path(tenant)
+        - if tenant.website.present?
+          .row
+          .fa.fa-globe-africa
+          = tenant.website
+        .row
+        = tenant.industry
+%br
