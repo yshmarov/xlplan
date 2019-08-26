@@ -13,22 +13,40 @@ function eventCalendar() {
     locale: app.vars.locale,
 
     selectable: true,
-      selectHelper: true,
-      editable: true,
-      eventLimit: true,
+    selectHelper: true,
+    eventLimit: true,
 
-      select: function(start, end) {
-        $.getScript('/events/new', function() {
-          $('#event_date_range').val(moment(start).format("MM/DD/YYYY HH:mm") + ' - ' + moment(end).format("MM/DD/YYYY HH:mm"))
-          date_range_picker();
-          $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
-          $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
-        });
+    select: function(start, end) {
+      $.getScript('/events/new', function() {
+        //initialize selectize
+        if ($('.selectize')){
+            $('.selectize').selectize({
+                sortField: 'text'
+            });
+        };
 
-        $('#event_calendar').fullCalendar('unselect');
-      },
+        //initialize datetimepicker
+        $('#datetimepicker').datetimepicker({
+          locale: app.vars.locale,
+          inline: true,
+          sideBySide: true,
+          stepping: 15,
+          ignoreReadonly: true,
+          allowInputToggle: true,
+          format : 'DD/MM/YYYY HH:mm'
+          });
 
+        //select start and end time - not working
+        $('.starter').val(moment(start).format("MM/DD/YYYY HH:mm"))
+        datetimepicker();
+        $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
+        $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
+      });
 
+      $('#event_calendar').fullCalendar('unselect');
+    },
+
+    // sidebar small calendar to pick a date
     viewRender: function(view, element){
         var currentdate = view.intervalStart;
         $('#datepicker').datepicker({

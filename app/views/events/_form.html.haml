@@ -1,14 +1,20 @@
 -# frozen_string_literal: true
 - set_var 'locale', Tenant.current_tenant.locale
-= simple_form_for(@event) do |f|
+
+/= simple_form_for(@event) do |f|
+= simple_form_for @event, remote: true do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
+    /= f.input_field :starts_at, input_html: { class: "starter" }
+    /= f.input_field :starts_at, value: Date.today, class: 'form-control input-sm start_hidden'
+    /= f.input_field :ends_at, as: :hidden, value: Date.today, class: 'form-control input-sm end_hidden'
+
     /= f.input :starts_at, :minute_step => 15, start_year: Date.today.year
     /= f.text_field :published_at, data: { :date_format => 'YYYY/MM/DD hh:mm' }, :class => 'form-control datetimepicker', placeholder: 'YYYY/MM/DD hh:mm:ss'
     = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
-
+    .row
     /.fa.fa-user
     = f.label :client
     = f.error :client, class: 'text-danger'
@@ -47,15 +53,4 @@
     %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'
-
-
-/= simple_form_for @event, remote: true do |f|
-/  .form-inputs
-/    = f.input :title
-/    = f.input :date_range, input_html: { class: "form-control input-sm date-range-picker" }
-/    = f.input_field :start, as: :hidden, value: Date.today, class: 'form-control input-sm start_hidden'
-/    = f.input_field :end, as: :hidden, value: Date.today, class: 'form-control input-sm end_hidden'
-/    = f.input :color, as: :select, collection: [['Black','black'], ['Green','green'], ['Red','red']]
-/  .form-actions
-/    = f.button :submit
-/    = link_to 'Delete', event, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
+    /= link_to 'Delete', event, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
