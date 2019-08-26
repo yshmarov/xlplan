@@ -1,13 +1,17 @@
 %p
 /.text-center
-= link_to 'all listings', booking_list_path
-.jumbotron.bg-white.text-center
+= link_to booking_list_path, class: 'btn btn-secondary' do
+  .fa.fa-step-backward
+  all listings
+%p
+.jumbotron.bg-dark.text-center.text-light
   - if @tenant.logo.attached?
     = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
   - else
     .fa.fa-image{:style => "font-size:50px"}
 
   %h1= @tenant.name
+  %p= @tenant.website
   %p= @tenant.industry
 
 - set_var 'locale', @tenant.locale
@@ -18,20 +22,25 @@
 /.container
 .row
   .col-lg-3
+    .text-center
+      %h4= t('sidebar.locations')
     - Location.all.each do |location|
       .card.card-header
         %b= location.name
-        .row
-        .form-inline
-          .fa.fa-phone.mr.mr-2
-          = location.phone_number
+        - if location.phone_number.present?
+          .row
+          .form-inline
+            .fa.fa-phone.mr.mr-2
+            = location.phone_number
         .row
         .form-inline
           .fa.fa-map-marker-alt.mr.mr-2
           = location.address_line
     %p
   .col-lg-3
-    - Service.active.each do |service|
+    .text-center
+      %h4= t('sidebar.services')
+    - Service.active.order(jobs_count: :desc).each do |service|
       .card.card-header
         %b= service.service_category
         .form-inline
