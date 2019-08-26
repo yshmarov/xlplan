@@ -29,6 +29,7 @@ function eventCalendar() {
         $('#datetimepicker').datetimepicker({
           locale: app.vars.locale,
           inline: true,
+          'date': moment(start).format("MM/DD/YYYY HH:mm"),
           sideBySide: true,
           stepping: 15,
           ignoreReadonly: true,
