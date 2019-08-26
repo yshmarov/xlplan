@@ -24,7 +24,7 @@
   .col-lg-3
     .text-center
       %h4= t('sidebar.locations')
-    - Location.all.each do |location|
+    - @locations.each do |location|
       .card.card-header
         %b= location.name
         - if location.phone_number.present?
@@ -40,7 +40,7 @@
   .col-lg-3
     .text-center
       %h4= t('sidebar.services')
-    - Service.active.order(jobs_count: :desc).each do |service|
+    - @services.each do |service|
       .card.card-header
         %b= service.service_category
         .form-inline
