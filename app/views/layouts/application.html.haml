@@ -18,7 +18,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'layouts/google_analytics'
   %body
-    - if current_user
+    - if user_signed_in? && current_user.member.present?
+      /- if current_user
       /- unless Tenant.current_tenant.nil?
       #wrapper
         = render 'layouts/sidebar'

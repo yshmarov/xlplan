@@ -190,12 +190,11 @@
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa-color-1.fa-fw.fa.fa-user
           /- if user_signed_in? && current_user.member.present?
-          - if user_signed_in?
-            = current_user.member.short_name
-            /- if current_user.has_role?(:admin)
-            /  .badge.badge-dark admin
+          /- if user_signed_in?
+          = current_user.member.short_name
+          /- if current_user.has_role?(:admin)
+          /  .badge.badge-dark admin
         .dropdown-menu.dropdown-menu-right{"aria-labelledby" => "navbarDropdown"}
-          /- if user_signed_in? && current_user.member.present?
           = link_to t('sidebar.my_page'), member_path(current_user.member), class: "dropdown-item"
           = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item"
           = link_to t('sidebar.account_settings'), edit_user_registration_path, class: "dropdown-item"
