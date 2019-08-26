@@ -12,6 +12,12 @@
         %b= model_class.human_attribute_name(:name) + ':'
         = @tenant.name
         .row
+        %b= model_class.human_attribute_name(:coupon) + ':'
+        = @tenant.coupon
+        .row
+        %b= model_class.human_attribute_name(:phone) + ':'
+        = @tenant.phone
+        .row
         %b= model_class.human_attribute_name(:industry) + ':'
         = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
         .row

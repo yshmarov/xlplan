@@ -31,7 +31,7 @@ module Xlplan
     #I18n.enforce_available_locales = false
      
     # Set default locale to something other than :en
-    I18n.default_locale = :en
+    I18n.default_locale = :ru
     #I18n.default_locale = Tenant.current_tenant.locale
 
     config.time_zone = 'UTC'

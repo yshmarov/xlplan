@@ -750,6 +750,8 @@ en:
         gender: "gender"
         relation: "relation"
       tenant:
+        phone: "Your phone"
+        coupon: "Your coupon"
         id: "ID #"
         name: "Organisation Name"
         plan: "Plan"
