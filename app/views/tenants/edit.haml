@@ -28,7 +28,7 @@
           ///ACTIVE_STORAGE LOGO
           .text-center
             - if @tenant.logo.attached?
-              = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
+              = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
               /%img.rounded{:alt => "XLPLAN", :src => "#{url_for(@tenant.logo)}", :height => "200px"}/
             - else
               .far.fa-calendar-check{:style => "font-size:60px"}

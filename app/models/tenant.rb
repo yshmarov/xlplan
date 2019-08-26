@@ -32,7 +32,7 @@ class Tenant < ApplicationRecord
   ###select industry###
   INDUSTRIES = [:hair_beauty_barbershop, :cosmetology, :solarium, :tattoo_studio, :spa, :sauna,
   :private_clinic, :stomatology, :ophtalmologist, :psychologist, :veterinary_clinic, :massage,
-  :car_services, :driving_school, :legal_consulting, :business_consulting, :field_services, :cleaning_services, :tutors,
+  :car_services, :legal_consulting, :business_consulting, :field_services, :cleaning_services, :tutors,
   :other]
   def self.industries
     INDUSTRIES.map { |industry| [I18n.t(industry, scope: [:static_pages, :landing_page]), industry] }

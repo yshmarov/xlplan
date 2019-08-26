@@ -4,7 +4,7 @@
     - unless Tenant.current_tenant.logo.attached?
       %i.far.fa-calendar-check
     - else
-      = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top"
+      = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     .badge.badge-default 
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)

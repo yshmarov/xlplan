@@ -3,7 +3,7 @@
 = link_to 'all listings', booking_list_path
 .jumbotron.bg-white.text-center
   - if @tenant.logo.attached?
-    = image_tag @tenant.logo, height: "50px", class: "mx-auto d-inline align-top"
+    = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
   - else
     .fa.fa-image{:style => "font-size:50px"}
 

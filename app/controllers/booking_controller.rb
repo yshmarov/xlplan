@@ -3,7 +3,7 @@ class BookingController < ApplicationController
   #skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing, :privacy_policy, :terms_of_service, :security, :stats, :about ]
 
   def list
-    @tenants = Tenant.all.unscoped    
+    @tenants = Tenant.all.unscoped.order(created_at: :desc)
   end
 
   def show
