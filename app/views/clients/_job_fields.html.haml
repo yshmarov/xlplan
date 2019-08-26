@@ -1,0 +1,7 @@
+.nested-fields
+  .card-body.border.border-primary.rounded
+    = f.input :service_id, collection: ServiceCategory.all, as: :grouped_select, group_method: :services, class: 'selectize'
+    = f.association :member, collection: Member.active_or_id(f.object.member_id), selected: current_user.member.id
+    .text-right
+      = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-danger'
+  %p
