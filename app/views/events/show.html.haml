@@ -79,7 +79,7 @@
             = model_class.human_attribute_name(:files) + ':'
           - @event.files.each do |file|
             .row
-            = link_to file.filename, rails_blob_path(file, disposition: "file")
+            = link_to file.filename, rails_blob_path(file, disposition: "file"), target: :_blank
       .card-header
         - if @event.inbound_payments.any?
           = render "inbound_payments/index"

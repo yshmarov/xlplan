@@ -1,8 +1,8 @@
-.text-center
-  %h5
-    .far.fa-check-square
-    = t('.today')
-    = I18n.localize Date.today, format: :short
+/.text-center
+/  %h5
+/    .far.fa-check-square
+/    = t('.today')
+/    = I18n.localize Date.today, format: :short
 /%p
 /.row
 /  .col-lg-4
@@ -34,6 +34,7 @@
       = link_to today_events_path do 
         .fa.fa-calendar-check
         = t('events_today')
+        = I18n.localize Date.today, format: :short
         .badge.badge-danger
           = @events.count
     = render 'events/index'
@@ -44,6 +45,7 @@
       = link_to tomorrow_events_path do 
         .fa.fa-calendar-check
         = t('events_tomorrow')
+        = I18n.localize Date.tomorrow, format: :short
         .badge.badge-danger
           = @events.count
     = render 'events/index'
