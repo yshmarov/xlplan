@@ -59,5 +59,9 @@
                   .mr.ml-1.fa.fa-user-tie
                   = link_to job.member.short_name, member_path(job.member), class: 'text-dark'
               .mr.mb-1
+            - if event.files.any?
+              .row
+              .fa.fa-paperclip
+              = event.files.count
             .row
             %small= simple_format(event.notes)

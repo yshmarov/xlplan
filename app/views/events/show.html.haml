@@ -75,6 +75,7 @@
         - if @event.files.any?
           %hr
           %b
+            .fa.fa-paperclip
             = model_class.human_attribute_name(:files) + ':'
           - @event.files.each do |file|
             .row
