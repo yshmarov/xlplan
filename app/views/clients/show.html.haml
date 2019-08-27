@@ -104,12 +104,12 @@
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
+      /%li.nav-item
+      /  %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+      /    .fa.fa-calendar-alt
+      /    = t('sidebar.calendar')
       %li.nav-item
-        %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
-          .fa.fa-calendar-alt
-          = t('sidebar.calendar')
-      %li.nav-item
-        %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
+        %a#first-tab.nav-link.active{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
           .fa.fa-caret-down
           = t("sidebar.events") + ':'
           = @client.events_count
@@ -123,12 +123,12 @@
           .fa.fa-chart-line
           = t("sidebar.stats")
     #myTabContent.tab-content
-      #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-        %br
-        #event_calendar
+      /#zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
+      /  %br
+      /  #event_calendar
       /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
       /  = render 'events/index'
-      #first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
+      #first.tab-pane.fade.show.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}
         = render 'events/index'
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
         = render 'inbound_payments/index'
