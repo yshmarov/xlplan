@@ -797,6 +797,7 @@ ru:
         time: "Время"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
+        files: "Документы"
       job:
         event_id: "Встреча"
         service_id: "Услуга"

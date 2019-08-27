@@ -50,6 +50,12 @@
     = f.input :percent_off
     = f.input :amount_off
     = f.input :notes, :input_html => {:rows => 5}
+    = f.file_field :files, multiple: true
+    - if @event.files.any?
+      - @event.files.each do |file|
+        .row
+        = file.filename
+    /= f.file_field :files, multiple: true, direct_upload: true
     %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'
