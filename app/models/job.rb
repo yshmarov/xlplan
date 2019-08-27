@@ -11,7 +11,7 @@ class Job < ApplicationRecord
   #touch to calculate duration and total_client_price
   belongs_to :event, touch: true, counter_cache: true
   #-----------------------validation-------------------#
-  validates :event, :service, :member,
+  validates :event, :service_id, :member,
             :service_duration, :service_member_percent, 
             :client_price, :member_price, presence: true
   validates :slug, uniqueness: true
