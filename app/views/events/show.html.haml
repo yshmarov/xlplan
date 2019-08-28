@@ -66,8 +66,11 @@
         %b= model_class.human_attribute_name(:amount_off) + ':'
         = number_to_currency(@event.amount_off, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .row
-        %b= model_class.human_attribute_name(:event_due_price) + ':'
-        = number_to_currency(@event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %b
+          .form-inline
+            = model_class.human_attribute_name(:event_due_price) + ':'
+            .text-success.mr.ml-1
+              = number_to_currency(@event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         - if @event.notes.present?
           %hr
           %b= model_class.human_attribute_name(:notes) + ':'

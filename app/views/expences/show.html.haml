@@ -26,5 +26,8 @@
         = number_to_currency(@expence.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
         %b= model_class.human_attribute_name(:payment_method) + ':'
+        .badge.badge-secondary.text-white
+          = @expence.payment_method
+        
 %br
 =  render 'dashboard/activity'

@@ -7,7 +7,7 @@
   .modal-dialog.modal-dialog-centered{:role => "document"}
     .modal-content
       .modal-header
-        %h5#exampleModalLongTitle.modal-title #{t('sidebar.new_payment')}
+        %h5#exampleModalLongTitle.modal-title #{t('sidebar.new_expence')}
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       /= simple_form_for [@expendable, @expence] do |f|
