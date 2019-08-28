@@ -5,6 +5,8 @@
       .fa-fw.fa.fa-user-plus
       %b
         = t('sidebar.import_contacts')
+        = @contacts.where.not(client_id: nil).count
+        \/
         = @contacts.count
     %h5.float-right
       = link_to "/contacts/gmail", class: 'btn btn-success btn-sm mr ml-1' do 
@@ -73,3 +75,7 @@
             /  = contact.client
             /  = contact.client_id
 
+%p
+.container.table-responsive
+  = will_paginate @contacts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+%br

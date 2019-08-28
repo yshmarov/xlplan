@@ -58,10 +58,8 @@ class ContactsController < ApplicationController
 
 
   def list
-    @contacts = Contact.order('created_at DESC')
-
-    @clients = Client.all #for selectize
-
+    @contacts = Contact.paginate(:page => params[:page], :per_page => 100).order("created_at DESC")
+    #@clients = Client.all #for selectize
     render 'index'
   end
 
