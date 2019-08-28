@@ -12,9 +12,11 @@ class BookingController < ApplicationController
     @tenant = Tenant.find(params[:id])
     Tenant.set_current_tenant( @tenant )
 
+    #FOR CALENDAR
     #@jobs = Job.includes(:event, :service, :event => :client)
     @members = Member.active.order('created_at ASC')
-    @events = Event.today.includes(:client, :jobs, :jobs => [:service, :member])
+    #@events = Event.today.includes(:client, :jobs, :jobs => [:service, :member])
+
     @locations = Location.all.order(events_count: :desc)
     @service_categories = ServiceCategory.all
   end

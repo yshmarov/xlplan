@@ -1,27 +1,19 @@
 %p
-/.text-center
 = link_to booking_list_path, class: 'btn btn-secondary' do
   .fa.fa-step-backward
-  all listings
+/  all listings
 %p
 .jumbotron.bg-dark.text-center.text-light
   - if @tenant.logo.attached?
     = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
   - else
     .fa.fa-image{:style => "font-size:50px"}
-
   %h1= @tenant.name
-  %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+  - if @tenant.website.present?
+    %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
   %p= @tenant.industry
-
-- set_var 'locale', @tenant.locale
-- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s}}
-/ - set_var 'events', @jobs.map{|e| {id: e.id, title: "XXX", resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: "grey"}}
-- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: "BUSY", start: e.starts_at, end: e.ends_at, color: "grey"}}
-
-/.container
 .row
-  .col-lg-3
+  .col-lg-4
     .text-center
       %h4= t('sidebar.locations')
     - @locations.each do |location|
@@ -31,11 +23,13 @@
           .row
           .form-inline
             .fa.fa-phone.mr.mr-2
-            = location.phone_number
-        .row
-        .form-inline
-          .fa.fa-map-marker-alt.mr.mr-2
-          = location.address_line
+            = link_to "tel:#{location.phone_number}", class: "button" do
+              #{number_to_phone(location.phone_number)}
+        - if location.address.present?
+          .row
+          .form-inline
+            .fa.fa-map-marker-alt.mr.mr-2
+            = location.address_line
       %p
   .col-lg-4
     .text-center
@@ -64,8 +58,24 @@
                   /.fa.fa-angle-right
                   Book
       %p
+  .col-lg-4
+    .text-center
+      %h4= t('sidebar.members')
+    - @members.each do |member|
+      .card
+        .card-header
+          - if member.avatar.attached?
+            = image_tag @member.avatar, width: "200px", class: "mx-auto d-inline align-top rounded"
+          - else
+            .fa.fa-user
+          = member.first_name
+      %p
     %p
-  .col-lg-5
-    #event_calendar
-    %p
+  /.col-lg-5
+  /- set_var 'locale', @tenant.locale
+  /- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s}}
+  // - set_var 'events', @jobs.map{|e| {id: e.id, title: "XXX", resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: "grey"}}
+  /- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: "BUSY", start: e.starts_at, end: e.ends_at, color: "grey"}}
+  /  #event_calendar
+  /  %p
 /%br
