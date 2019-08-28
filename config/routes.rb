@@ -43,9 +43,9 @@ Rails.application.routes.draw do
 
   get 'contacts/index'
   get 'contacts/list'
+  get 'contacts/add_all'
   get "/contacts/:provider/contact_callback" => "contacts#index"
   get "/contacts/failure" => "contacts#failure"
-  #match "/contacts/:importer/callback" => "your_controller#callback"
   resources :contacts, except: [:index, :show, :destroy, :create, :new, :edit, :update] do
     member do
       patch :create_client_from_contact

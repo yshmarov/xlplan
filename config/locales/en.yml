@@ -571,6 +571,7 @@ en:
     index:
       create_client: "Create Client"
       import_google_contacts: "Import Google Contacts"
+      add_all: "Add all"
   inbound_payments:
     index:
       title: "Payments"

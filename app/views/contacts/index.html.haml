@@ -10,6 +10,8 @@
       = link_to "/contacts/gmail", class: 'btn btn-success btn-sm mr ml-1' do 
         .fab.fa-google
         = t('.import_google_contacts')
+      - if Contact.any?
+        = link_to t('.add_all'), contacts_add_all_path, class: 'btn btn-primary btn-sm mr ml-1'
 - if !@contacts.nil?
   .table-responsive-xl
     %table.table-sm.table-striped

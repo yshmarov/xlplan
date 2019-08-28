@@ -572,6 +572,7 @@ ru:
     index:
       create_client: "Создать Клиента"
       import_google_contacts: "Импорт Контактов Google "
+      add_all: "Добавить всех"
   inbound_payments:
     index:
       title: "Оплаты"

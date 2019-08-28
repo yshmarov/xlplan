@@ -62,6 +62,36 @@ class ContactsController < ApplicationController
     render 'index'
   end
 
+  def add_all
+    Contact.where(client_id: nil).each do |contact|
+      client = Client.new
+      if contact.first_name.present?
+        client.first_name = contact.first_name
+      else
+    	  client.first_name = "?"
+      end
+      if contact.last_name.present?
+        client.last_name = contact.last_name
+      else
+    	  client.last_name = "?"
+      end
+      #client.address_1 = contact.address_1
+      #client.address_2 = contact.address_2
+      #client.city = contact.city
+      #client.region = contact.region
+      #client.postcode = contact.postcode
+      #client.country = contact.country
+      client.email = contact.email
+      client.phone_number = contact.phone_number
+      #client.birthday = contact.birthday
+      #client.gender = contact.gender
+      #client.relation = contact.relation
+      client.save
+  		contact.update_attribute(:client_id, client.id)
+    end
+    redirect_to contacts_list_path, notice: 'All clients successfully added'
+  end
+
   #def contact_callback
   #  @contacts = request.env["omnicontacts.contacts"]
   #  @user = request.env["omnicontacts.user"]
