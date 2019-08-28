@@ -65,7 +65,6 @@ class ClientsController < ApplicationController
         format.pdf do
           render pdf: "Client #{@client.full_name}",
           page_size: 'A4',
-          template: "clients/show.html.haml",
           template: "clients/show.pdf.haml",
           layout: "pdf.haml",
           orientation: "Portrait",

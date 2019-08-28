@@ -8,33 +8,44 @@
       - if Tenant.current_tenant.can_create_locations?
         - unless Location.any?
           %span.badge.badge-pill.badge-danger
-            +25%
+            +20%
           = link_to t('.new_location'), new_location_path
         - else
           %span.badge.badge-pill.badge-success
-            +25%
+            +20%
           %del
             = t('.new_location')
         %hr
+      /CREATE SERVICE CATEGORY
+      - unless ServiceCategory.any?
+        %span.badge.badge-pill.badge-danger
+          +20%
+        = link_to t('.new_service_category'), new_service_category_path
+      - else
+        %span.badge.badge-pill.badge-success
+          +20%
+        %del
+          = t('.new_service_category')
+      %hr
       /CREATE SERVICE
       - unless Service.any?
         %span.badge.badge-pill.badge-danger
-          +25%
+          +20%
         = link_to t('.new_service'), new_service_path
       - else
         %span.badge.badge-pill.badge-success
-          +25%
+          +20%
         %del
           = t('.new_service')
       %hr
       /CREATE CLIENT
       - unless Client.any?
         %span.badge.badge-pill.badge-danger
-          +25%
+          +20%
         = link_to t('.new_client'), new_client_path
       - else
         %span.badge.badge-pill.badge-success
-          +25%
+          +20%
         %del
           = t('.new_client')
       %hr
@@ -53,11 +64,11 @@
       /CREATE EVENT
       - unless Event.any?
         %span.badge.badge-pill.badge-danger
-          +25%
+          +20%
         = link_to t('.new_event'), new_event_path
       - else
         %span.badge.badge-pill.badge-success
-          +25%
+          +20%
         %del
           = t('.new_event')
         %hr

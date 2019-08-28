@@ -13,7 +13,6 @@ class ExpencesController < ApplicationController
         format.pdf do
           render pdf: "Expence No. #{@expence.slug}",
           page_size: 'A6',
-          template: "expences/show.html.haml",
           template: "expences/show.pdf.haml",
           layout: "pdf.haml",
           orientation: "Landscape",

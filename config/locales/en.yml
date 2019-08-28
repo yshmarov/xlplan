@@ -494,6 +494,7 @@ en:
 
       new_member: "Invite Employees (not required)"
       new_location: "Add your Business address"
+      new_service_category: "Add your service categories"
       new_service: "Add your Services Price list"
       new_client: "Add a Client (without access to the app)"
       new_event: "Add an Event"
