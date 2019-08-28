@@ -59,6 +59,9 @@ class ContactsController < ApplicationController
 
   def list
     @contacts = Contact.order('created_at DESC')
+
+    @clients = Client.all #for selectize
+
     render 'index'
   end
 
@@ -91,6 +94,22 @@ class ContactsController < ApplicationController
     end
     redirect_to contacts_list_path, notice: 'All clients successfully added'
   end
+  
+  #def fill_missing_client_data #DOES NOT WORK!!!!
+  #  if params.has_key?(:select)
+  #    @client = (params[:select][:client].to_s)
+  #  end
+	#  @contact = Contact.find(params[:id])
+  #  #select client
+  #  if client.phone_number.nil? && @contact.phone_number.present?
+  #		client.update_attribute(:phone_number, @contact.phone_number)
+  #  end
+  #  if client.email.nil? && @contact.email.present?
+  #		client.update_attribute(:email, @contact.email)
+  #  end
+	#  @contact.update_attribute(:client_id, client.id)
+  #  redirect_to contacts_list_path, notice: 'Missing client data successfully added'
+  #end
 
   #def contact_callback
   #  @contacts = request.env["omnicontacts.contacts"]

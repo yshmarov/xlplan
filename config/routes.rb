@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   get "/contacts/failure" => "contacts#failure"
   resources :contacts, except: [:index, :show, :destroy, :create, :new, :edit, :update] do
     member do
-      patch :create_client_from_contact
+      patch :create_client_from_contact, :fill_missing_client_data
     end
   end
 
