@@ -16,6 +16,6 @@ class BookingController < ApplicationController
     @members = Member.active.order('created_at ASC')
     @events = Event.today.includes(:client, :jobs, :jobs => [:service, :member])
     @locations = Location.all.order(events_count: :desc)
-    @services = Service.active.order(jobs_count: :desc)
+    @service_categories = ServiceCategory.all
   end
 end
