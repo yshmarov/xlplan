@@ -7,47 +7,57 @@
       /CREATE LOCATION
       - if Tenant.current_tenant.can_create_locations?
         - unless Location.any?
-          %span.badge.badge-pill.badge-danger -
+          %span.badge.badge-pill.badge-danger
+            +25%
           = link_to t('.new_location'), new_location_path
         - else
-          %span.badge.badge-pill.badge-success +
+          %span.badge.badge-pill.badge-success
+            +25%
           %del
             = t('.new_location')
         %hr
       /CREATE SERVICE
       - unless Service.any?
-        %span.badge.badge-pill.badge-danger -
+        %span.badge.badge-pill.badge-danger
+          +25%
         = link_to t('.new_service'), new_service_path
       - else
-        %span.badge.badge-pill.badge-success +
+        %span.badge.badge-pill.badge-success
+          +25%
         %del
           = t('.new_service')
       %hr
       /CREATE CLIENT
       - unless Client.any?
-        %span.badge.badge-pill.badge-danger -
+        %span.badge.badge-pill.badge-danger
+          +25%
         = link_to t('.new_client'), new_client_path
       - else
-        %span.badge.badge-pill.badge-success +
+        %span.badge.badge-pill.badge-success
+          +25%
         %del
           = t('.new_client')
       %hr
       /CREATE MEMBER
       - if Tenant.current_tenant.can_create_members?
         - if Member.count < 2
-          %span.badge.badge-pill.badge-danger -
+          %span.badge.badge-pill.badge-warning
+            bonus
           = link_to t('.new_member'), new_member_path
         - else
-          %span.badge.badge-pill.badge-success +
+          %span.badge.badge-pill.badge-success
+            bonus
           %del
             = t('.new_member')
         %hr
       /CREATE EVENT
       - unless Event.any?
-        %span.badge.badge-pill.badge-danger -
+        %span.badge.badge-pill.badge-danger
+          +25%
         = link_to t('.new_event'), new_event_path
       - else
-        %span.badge.badge-pill.badge-success +
+        %span.badge.badge-pill.badge-success
+          +25%
         %del
           = t('.new_event')
         %hr
@@ -57,7 +67,8 @@
       /  %span.badge.badge-pill.badge-danger -
       /  = link_to t('.new_payment'), new_inbound_payment_path
       /- else
-      /  %span.badge.badge-pill.badge-success +
+      /  %span.badge.badge-pill.badge-success
+      /    .fa.fa-plus
       /  %del
       /    = t('.new_payment')
       /%hr

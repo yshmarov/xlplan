@@ -28,6 +28,8 @@ class Tenant < ApplicationRecord
   validates :plan, inclusion: %w(demo bronze silver gold)
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
+  #-----------------------onboarding_percent-------------------#
+  include Onboarding
 
   ###select industry###
   INDUSTRIES = [:hair_beauty_barbershop, :cosmetology, :solarium, :tattoo_studio, :spa, :sauna,
