@@ -17,6 +17,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'layouts/google_analytics'
+    /needed on static_pages and on devise registration. does not work well with turbolinks
+    /= render 'layouts/chaport'
   %body
     - if user_signed_in? && current_user.member.present?
       /- if current_user
