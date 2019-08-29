@@ -4,11 +4,12 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
-
     = f.label :service_category_id
     = f.collection_select :service_category_id, ServiceCategory.order(:name), :id, :name, {prompt: 'Select or create a category'}, {class: 'selectize-category'}
-    = f.error :service_category_id, class: 'text-danger'
+    = f.error :service_category, class: 'text-danger'
+    /= f.error :service_category_id, class: 'text-danger'
+
+    = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
 
     = f.input :description, input_html: { autocomplete: 'off' }
 
@@ -22,8 +23,8 @@
                                       ['10 H', '600'], ['11 H', '660'], ['12 H', '720']]
 
     - if f.object.new_record?
-      = f.input :member_percent, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
       = f.input :client_price_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
+      = f.input :member_percent, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
     - else
       = f.input :client_price_cents, input_html: { autocomplete: 'off' }
       = f.input :member_percent
