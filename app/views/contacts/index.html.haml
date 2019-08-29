@@ -21,6 +21,7 @@
         %tr
           %th
             /create contact
+          /%th fill missing client data
           /%th import_id
           %th= model_class.human_attribute_name(:name)
           /%th first_name
@@ -43,19 +44,23 @@
             %td
               - unless contact.client.present?
                 = button_to t('.create_client'), create_client_from_contact_contact_path(contact), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
-                /.row
-                /= select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
-                /= select_tag(:client_id, options_for_select(@clients))
-                /= select("post", "person_id", @clients.collect {|p| [ p.full_name, p.id ] }, {include_blank: 'None'})
-                /= select :client_id, @clients.map{|c| [c.full_name, c.id]}, {include_blank: false}, class: 'selectize'
-                /= select_tag(:client_id, options_for_select(@clients.map{|c| [c.full_name, c.id]}))
-                /= select_tag(:client_id), @clients.map{|c| [c.full_name, c.id]}, class: 'selectize'
-                /= text_field_tag(:q)
-                /= text_field_tag(:q), @clients.map{|c| [c.full_name, c.id]}, class: 'selectize'
               - else
                 .text-center
                   .fa.fa-check
                   /Client exists
+            /%td
+            /  - unless contact.client.present?
+            /    connect with client
+            /    = select_tag :product,  options_for_select(@clients , params[:client]), id: "different_option_value_html", onchange: "this.form.submit();", include_blank: "Client?"
+            /    /.row
+            /    /= select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
+            /    /= select_tag(:client_id, options_for_select(@clients))
+            /    /= select("post", "person_id", @clients.collect {|p| [ p.full_name, p.id ] }, {include_blank: 'None'})
+            /    /= select :client_id, @clients.map{|c| [c.full_name, c.id]}, {include_blank: false}, class: 'selectize'
+            /    /= select_tag(:client_id, options_for_select(@clients.map{|c| [c.full_name, c.id]}))
+            /    /= select_tag(:client_id), @clients.map{|c| [c.full_name, c.id]}, class: 'selectize'
+            /    /= text_field_tag(:q)
+            /    /= text_field_tag(:q), @clients.map{|c| [c.full_name, c.id]}, class: 'selectize'
             /%td= contact.import_id
             %td= contact.name
             /%td= contact.first_name

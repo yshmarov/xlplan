@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   def index
+    #IMPORT CONTACTS FROM GOOGLE
     @contacts = request.env['omnicontacts.contacts']
 
     @contacts.each do |contact|
@@ -27,12 +28,15 @@ class ContactsController < ApplicationController
       #end
   end
 
-  #def create
-  #  @contact = Contact.new(contact_params)
-  #  @contact.save
-  #end
+  def list
+    #SHOW ALL CONTACTS
+    @contacts = Contact.paginate(:page => params[:page], :per_page => 100).order("created_at DESC")
+    #@clients = Client.all #for selectize
+    render 'index'
+  end
 
 	def create_client_from_contact
+    #SELECT A CONTACT AND CONVERT HIM INTO A CLIENT
 	  @contact = Contact.find(params[:id])
 	  @client = Client.new
   	  if @contact.first_name.present?
@@ -49,22 +53,12 @@ class ContactsController < ApplicationController
   	  @client.phone_number = @contact.phone_number
   	  @client.save
 		@contact.update_attribute(:client_id, @client.id)
-	  #@contact.client = @client
-	  #@contact.client_id = @client.id
-		#@event.update_attribute(:status, 'planned')
-		#@contact.destroy
 		redirect_to contacts_list_path, notice: "Client created"
 	end
 
-
-  def list
-    @contacts = Contact.paginate(:page => params[:page], :per_page => 100).order("created_at DESC")
-    #@clients = Client.all #for selectize
-    render 'index'
-  end
-
   def add_all
-    Contact.where(client_id: nil).each do |contact|
+    #CONVERT ALL CONTACTS TO CLIENTS
+    Contact.where(client_id: nil).limit(5).each do |contact|
       client = Client.new
       if contact.first_name.present?
         client.first_name = contact.first_name
@@ -93,48 +87,19 @@ class ContactsController < ApplicationController
     redirect_to contacts_list_path, notice: 'All clients successfully added'
   end
   
-  #def fill_missing_client_data #DOES NOT WORK!!!!
-  #  if params.has_key?(:select)
-  #    @client = (params[:select][:client].to_s)
-  #  end
-	#  @contact = Contact.find(params[:id])
-  #  #select client
-  #  if client.phone_number.nil? && @contact.phone_number.present?
-  #		client.update_attribute(:phone_number, @contact.phone_number)
-  #  end
-  #  if client.email.nil? && @contact.email.present?
-  #		client.update_attribute(:email, @contact.email)
-  #  end
-	#  @contact.update_attribute(:client_id, client.id)
-  #  redirect_to contacts_list_path, notice: 'Missing client data successfully added'
-  #end
-
-  #def contact_callback
-  #  @contacts = request.env["omnicontacts.contacts"]
-  #  @user = request.env["omnicontacts.user"]
-  #  puts "List of contacts of #{user[:name]} obtained from #params[:importer]}:"
-  #  @contacts.each do|contact|
-  #    puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
-  #  end
-  #end
-
-  #private
-  #  def contact_params
-  #    params.require(:contact).permit(:email,
-  #                                    :id,
-  #                                    :name,
-  #                                    :first_name,
-  #                                    :last_name,
-  #                                    :address_1,
-  #                                    :address_2,
-  #                                    :city,
-  #                                    :region,
-  #                                    :postcode,
-  #                                    :country,
-  #                                    :phone_number,
-  #                                    :birthday,
-  #                                    :gender,
-  #                                    :relation)
-  #  end
-
+  def fill_missing_client_data #DOES NOT WORK!!!!
+    if params.has_key?(:select)
+      client = (params[:select][:client].to_s)
+    end
+	  @contact = Contact.find(params[:id])
+    #select client
+    if client.phone_number.nil? && @contact.phone_number.present?
+  		client.update_attribute(:phone_number, @contact.phone_number)
+    end
+    if client.email.nil? && @contact.email.present?
+  		client.update_attribute(:email, @contact.email)
+    end
+	  @contact.update_attribute(:client_id, client.id)
+    redirect_to contacts_list_path, notice: 'Missing client data successfully added'
+  end
 end
