@@ -44,9 +44,20 @@ class Service < ApplicationRecord
   end
 
   def full_name_with_price
-    #service_category.to_s+'/'+name.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+'/'+member_price_cents.to_i.to_s+')'+','+duration.to_s+'min'
-    #service_category.to_s+'/'+name.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min'
-    name.to_s++'/'+service_category.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min'
+    name.to_s+'/'+service_category.to_s+'('+description.to_s+')('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min'
+  end
+
+  def name_price_duration_description
+    name.to_s+
+    '/'+
+    client_price_cents.to_i.to_s+
+    ''+
+    Tenant.current_tenant.default_currency.to_s+
+    '/'+
+    duration.to_s+
+    'min ('+
+    description.to_s+
+    ')'
   end
 
   private

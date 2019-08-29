@@ -20,7 +20,7 @@
     /= f.error :service, class: 'text-danger'
     /= f.select :service_id, Service.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
     /MAKE SERVICE ACTIVE OR ID
-    = f.input :service_id, collection: ServiceCategory.all, as: :grouped_select, group_method: :services, class: 'selectize'
+    = f.input :service_id, collection: ServiceCategory.all, as: :grouped_select, group_method: :services, label_method: :name_price_duration_description, class: 'selectize'
     /= f.input :country_id, collection: @continents, as: :grouped_select, group_method: :countries
     /= f.grouped_collection_select :service_id, ServiceCategory.all, :services, :name, :id, :name, class: 'form-control'
     /= f.grouped_collection_select(:service, :service_id, ServiceCategory.all, :services, :name, :id, :name)
