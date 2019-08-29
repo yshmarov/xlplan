@@ -829,6 +829,8 @@ en:
         member_percent: "Employee Percent"
         status: "Status"
         jobs_count: "Jobs count"
+        created_at: "Created"
+        updated_at: "Updated"
       service_category:
         name: "Category"
         services_count: "Service quantity"

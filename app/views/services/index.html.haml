@@ -46,6 +46,8 @@
         %th= sort_link @q, :client_price, :client_price
         %th= sort_link @q, :member_percent, :member_percent
         %th= sort_link @q, :member_price, :member_price
+        /%th= sort_link @q, :created_at, :created_at
+        /%th= sort_link @q, :updated_at, :updated_at
         /ADMIN - stats
         - if current_user.has_role?(:admin)
           %th= sort_link @q, :jobs_count, model_class.human_attribute_name(:jobs_count)
@@ -74,6 +76,8 @@
             = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_percentage(service.member_percent, precision: 0)
           %td= number_to_currency(service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          /%td= service.created_at
+          /%td= service.updated_at
           /ADMIN - stats
           - if current_user.has_role?(:admin)
             %td
