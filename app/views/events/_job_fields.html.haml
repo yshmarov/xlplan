@@ -21,16 +21,14 @@
     /= f.select :service_id, Service.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
     /MAKE SERVICE ACTIVE OR ID
     = f.input :service_id, collection: ServiceCategory.all, as: :grouped_select, group_method: :services, label_method: :name_price_duration_description, class: 'selectize'
-    /= f.input :country_id, collection: @continents, as: :grouped_select, group_method: :countries
-    /= f.grouped_collection_select :service_id, ServiceCategory.all, :services, :name, :id, :name, class: 'form-control'
-    /= f.grouped_collection_select(:service, :service_id, ServiceCategory.all, :services, :name, :id, :name)
-    /= f.select :service_id, grouped_options_for_select(ServiceCategory.all)
-
     /= f.label :member
     /= f.error :member, class: 'text-danger'
     /= f.association :member, include_blank: false, as: :radio_buttons, selected: Member.first.id
     /= f.association :member, selected: current_user.member.id
-    = f.association :member, collection: Member.active_or_id(f.object.member_id), selected: current_user.member.id
+    - if f.object.new_record?
+      = f.association :member, collection: Member.active_or_id(f.object.member_id), selected: current_user.member.id
+    - else
+      = f.association :member, collection: Member.active_or_id(f.object.member_id)
     /, :value => current_user.category_country.name, :selected => current_user.category_country_id
     /= f.select :member_id, Member.active_or_id(f.object.member_id).map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
     .text-right

@@ -8,7 +8,9 @@ class User < ApplicationRecord
   #-----------------------relationships-------------------#
   #has_one :member, :dependent => :destroy
   has_one :member, :dependent => :nullify
-  has_many :comments, :dependent => :nullify
+  #has_many :comments, :dependent => :nullify
+  #has_many :jobs, through: :members
+  has_many :events, through: :jobs
   #belongs_to :invitor, class_name: 'Employee', foreign_key: :invited_by_id, required: false
   #-----------------------gem rolify-------------------#
   rolify

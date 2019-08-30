@@ -148,9 +148,11 @@ class EventsController < ApplicationController
   
   def send_email_to_members
     authorize @event, :edit?
-    Event.public_activity_off
-    EventMailer.member_event_created(@event).deliver_now
-    Event.public_activity_on
+    if @event.users.distinct.pluck(:email).present?
+      Event.public_activity_off
+      EventMailer.member_event_created(@event).deliver_now
+      Event.public_activity_on
+    end
 		redirect_to @event, notice: "Email invitation sent to #{@event.members.pluck(:email)}"
   end
 

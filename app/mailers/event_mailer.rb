@@ -43,7 +43,7 @@ class EventMailer < ApplicationMailer
 
   def member_event_created(event)
     @event = event
-    mail(to: @event.members.distinct.pluck(:email), subject: 'Booking created in XLPLAN.com')
+    mail(to: @event.users.distinct.pluck(:email), subject: 'Booking created in XLPLAN.com')
   end
 
   def welcome_email(user)
