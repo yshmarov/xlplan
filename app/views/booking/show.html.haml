@@ -1,34 +1,39 @@
-unscoped leads
-= Lead.all.unscoped.count
-tenant leads
-= Lead.count
-.row
-= Tenant.current_tenant.id
-= Tenant.current_tenant.name
-.row
-= @tenant.id
-= @tenant.name
-.row
-.container
-  .row
-    .col-md-4
-      = render 'leads/form'
-    .col-md-8
-      = render 'leads/index'
-%p
-= link_to booking_list_path, class: 'btn btn-secondary' do
-  .fa.fa-step-backward
+/= render 'leads/index'
+/%p
+/= link_to booking_list_path, class: 'btn btn-secondary' do
+/  .fa.fa-step-backward
 /  all listings
+
+/ Online Booking Modal
+#exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title Online booking
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        = render 'leads/form'
+        %p
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+/ End of Online Booking Modal
 %p
-.jumbotron.bg-dark.text-center.text-light
-  - if @tenant.logo.attached?
-    = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
-  - else
-    .fa.fa-image{:style => "font-size:50px"}
-  %h1= @tenant.name
-  - if @tenant.website.present?
-    %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
-  %p= @tenant.industry
+.jumbotron.bg-dark
+  .text-center.text-light
+    - if @tenant.logo.attached?
+      = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
+    - else
+      .fa.fa-image{:style => "font-size:50px"}
+    %h1= @tenant.name
+    .row
+    - if @tenant.website.present?
+      %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+    %p= @tenant.industry
+
+    / Button trigger Online Booking Modal
+    %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+      Online booking
+
 .row
   .col-lg-4
     .text-center

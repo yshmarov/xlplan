@@ -31,7 +31,8 @@ class BookingController < ApplicationController
     if @lead.save
       redirect_to booking_path(@lead.tenant), notice: 'Lead was successfully created.'
     else
-      render :new
+      redirect_to booking_path(@lead.tenant), alert: 'You have missing fields.'
+      #render :new
     end
   end
 

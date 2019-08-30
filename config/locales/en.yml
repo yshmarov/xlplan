@@ -934,4 +934,11 @@ en:
         expendable_type: "Purpose of payment"
         created_at: "Created"
         updated_at: "Updated"
-
+      lead:
+        first_name: "First Name"
+        last_name: "Last Name"
+        full_name: "Name"
+        phone_number: "Phone"
+        email: "Email"
+        created_at: "Created"
+        updated_at: "Updated"

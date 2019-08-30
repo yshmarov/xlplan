@@ -1,5 +1,4 @@
-%h1 Listing leads
-
+%h1 All leads
 .table-responsive
   %table#table1
     %thead
@@ -14,7 +13,6 @@
         %th
         %th
         %th
-  
     %tbody
       - @leads.each do |lead|
         %tr
@@ -28,5 +26,4 @@
           %td= link_to 'Show', lead
           %td= link_to 'Edit', edit_lead_path(lead)
           %td= link_to 'Destroy', lead, method: :delete, data: { confirm: 'Are you sure?' }
-
 %br

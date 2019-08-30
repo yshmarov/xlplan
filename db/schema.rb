@@ -211,10 +211,10 @@ ActiveRecord::Schema.define(version: 2019_08_30_103557) do
 
   create_table "leads", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone_number"
-    t.string "email"
+    t.string "first_name", limit: 144, null: false
+    t.string "last_name", limit: 144, null: false
+    t.string "phone_number", limit: 255, null: false
+    t.string "email", limit: 255
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
