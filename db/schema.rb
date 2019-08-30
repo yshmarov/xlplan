@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_191436) do
+ActiveRecord::Schema.define(version: 2019_08_30_103557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,6 +209,18 @@ ActiveRecord::Schema.define(version: 2019_08_26_191436) do
     t.index ["tenant_id"], name: "index_jobs_on_tenant_id"
   end
 
+  create_table "leads", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.string "email"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenant_id"], name: "index_leads_on_tenant_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 50, null: false
@@ -393,6 +405,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_191436) do
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "tenants"
+  add_foreign_key "leads", "tenants"
   add_foreign_key "locations", "tenants"
   add_foreign_key "members", "locations"
   add_foreign_key "members", "tenants"

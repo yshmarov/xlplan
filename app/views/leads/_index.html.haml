@@ -1,0 +1,32 @@
+%h1 Listing leads
+
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th First name
+        %th Last name
+        %th Phone number
+        %th Email
+        %th Comment
+        %th Tenant
+        %th Tenant ID
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @leads.each do |lead|
+        %tr
+          %td= lead.first_name
+          %td= lead.last_name
+          %td= lead.phone_number
+          %td= lead.email
+          %td= lead.comment
+          %td= lead.tenant.name
+          %td= lead.tenant.id
+          %td= link_to 'Show', lead
+          %td= link_to 'Edit', edit_lead_path(lead)
+          %td= link_to 'Destroy', lead, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br

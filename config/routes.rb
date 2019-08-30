@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   #get 'xl/list', to: 'booking#list'
   #get '/xl/:id', to: 'booking#show'
-  #get 'booking/list'
-  #get '/booking/:id', to: 'booking#show', as: :booking
+  get 'booking/list'
+  get '/booking/:id', to: 'booking#show', as: :booking
+  match '/booking/:id' => 'booking#create_lead', via: [:post], as: :create_lead
+  #post 'booking/create'
+  #, via: [:post], as: :create_lead
 
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
@@ -34,6 +37,8 @@ Rails.application.routes.draw do
       delete :delete_avatar
     end
   end
+
+  resources :leads
 
   #edit tenant info
   match '/settings/show' => 'tenants#show', via: :get

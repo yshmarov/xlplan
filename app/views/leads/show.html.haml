@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @lead.first_name
+%p
+  %b Last name:
+  = @lead.last_name
+%p
+  %b Phone number:
+  = @lead.phone_number
+%p
+  %b Email:
+  = @lead.email
+%p
+  %b Comment:
+  = @lead.comment
+%p
+  %b Tenant:
+  = @lead.tenant
+
+= link_to 'Edit', edit_lead_path(@lead)
+\|
+= link_to 'Back', leads_path

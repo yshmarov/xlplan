@@ -1,3 +1,20 @@
+unscoped leads
+= Lead.all.unscoped.count
+tenant leads
+= Lead.count
+.row
+= Tenant.current_tenant.id
+= Tenant.current_tenant.name
+.row
+= @tenant.id
+= @tenant.name
+.row
+.container
+  .row
+    .col-md-4
+      = render 'leads/form'
+    .col-md-8
+      = render 'leads/index'
 %p
 = link_to booking_list_path, class: 'btn btn-secondary' do
   .fa.fa-step-backward

@@ -11,6 +11,9 @@ class BookingController < ApplicationController
     #@tenant = Tenant.find(Tenant.current_tenant_id)
     @tenant = Tenant.find(params[:id])
     Tenant.set_current_tenant( @tenant )
+    
+    @lead = Lead.new
+    @leads = Lead.all
 
     #FOR CALENDAR
     #@jobs = Job.includes(:event, :service, :event => :client)
@@ -20,4 +23,22 @@ class BookingController < ApplicationController
     @locations = Location.all.order(events_count: :desc)
     @service_categories = ServiceCategory.all
   end
+
+  def create_lead
+    @tenant = Tenant.find(params[:id])
+    Tenant.set_current_tenant( @tenant )
+    @lead = Lead.new(lead_params)
+    if @lead.save
+      redirect_to booking_path(@lead.tenant), notice: 'Lead was successfully created.'
+    else
+      render :new
+    end
+  end
+
+  private
+    def lead_params
+      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment)
+      #params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, :tenant_id)
+    end
+
 end
