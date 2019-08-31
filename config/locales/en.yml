@@ -357,6 +357,7 @@ en:
     change_plan: 'change plan'
     user_roles: "User Roles"
     import_contacts: "Import contacts"
+    online_booking: "Online booking"
 
   ######################################################
 
@@ -940,5 +941,6 @@ en:
         full_name: "Name"
         phone_number: "Phone"
         email: "Email"
+        comment: "Comment"
         created_at: "Created"
         updated_at: "Updated"

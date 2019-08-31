@@ -92,6 +92,11 @@
           = t('sidebar.today')
           .badge.badge-danger
             = Event.today_and_tomorrow.count
+      - if Lead.any?
+        %li
+          = link_to leads_path, class: "nav-link" do
+            .fa-color-1.fa-fw.fa.fa-globe-africa
+            #{t('sidebar.online_booking')} #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
@@ -151,7 +156,9 @@
           = link_to contacts_list_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-user-plus
             = t('sidebar.import_contacts')
-            /= Contact.count
+          = link_to leads_path, class: "dropdown-item navdrop-link" do 
+            .fa-fw.fa.fa-globe-africa
+            = t('sidebar.online_booking')
       - if current_user.has_role?(:admin)
         %li.nav-item
           = link_to settings_show_path, class: "nav-link" do 

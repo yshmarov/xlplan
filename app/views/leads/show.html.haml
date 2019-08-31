@@ -15,10 +15,7 @@
 %p
   %b Comment:
   = @lead.comment
-%p
-  %b Tenant:
-  = @lead.tenant
 
-= link_to 'Edit', edit_lead_path(@lead)
+/= link_to 'Edit', edit_lead_path(@lead)
 \|
 = link_to 'Back', leads_path

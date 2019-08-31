@@ -1,17 +1,26 @@
-%h1 All leads
+- model_class = Lead
+.card
+  .card-header
+    %h5.float-left
+      .fa.fa-globe-africa
+      %b= t('sidebar.online_booking')
+    %h5.float-right
+      /= link_to 'Public page', booking_path(Tenant.current_tenant)
 .table-responsive
   %table#table1
     %thead
       %tr
-        %th First name
-        %th Last name
-        %th Phone number
-        %th Email
-        %th Comment
-        %th Tenant
-        %th Tenant ID
-        %th
-        %th
+        %th= model_class.human_attribute_name(:first_name)
+        %th= model_class.human_attribute_name(:last_name)
+        %th= model_class.human_attribute_name(:phone_number)
+        %th= model_class.human_attribute_name(:email)
+        %th= model_class.human_attribute_name(:comment)
+        %th= model_class.human_attribute_name(:created_at)
+        %th= model_class.human_attribute_name(:updated_at)
+        /%th Tenant
+        /%th Tenant ID
+        /%th
+        /%th
         %th
     %tbody
       - @leads.each do |lead|
@@ -21,9 +30,13 @@
           %td= lead.phone_number
           %td= lead.email
           %td= lead.comment
-          %td= lead.tenant.name
-          %td= lead.tenant.id
-          %td= link_to 'Show', lead
-          %td= link_to 'Edit', edit_lead_path(lead)
-          %td= link_to 'Destroy', lead, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= lead.created_at
+          %td= lead.updated_at
+          /%td= lead.tenant.name
+          /%td= lead.tenant.id
+          /%td= link_to 'Show', lead
+          /%td= link_to 'Edit', edit_lead_path(lead)
+          %td
+            = link_to '', lead, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
+
 %br
