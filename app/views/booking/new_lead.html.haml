@@ -5,9 +5,10 @@
     .card
       .card-body
         %h5
-          .fa.fa-user
-          =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+          .fa.fa-globe-africa
+          = t('sidebar.online_booking')
+          /=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
         %hr
         = render 'leads/form'
         %p
-        = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn btn-danger'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_path(@tenant), :class => 'btn btn-danger'

@@ -33,9 +33,12 @@
           %td= lead.phone_number
           %td= lead.email
           %td= lead.comment
-          %td= lead.location
-          %td= lead.member
-          %td= lead.service
+          %td
+            = link_to lead.location, location_path(lead.location) if lead.location.present?
+          %td
+            = link_to lead.member, member_path(lead.member) if lead.member.present?
+          %td
+            = link_to lead.service, service_path(lead.service) if lead.service.present?
           %td= lead.created_at
           %td= lead.updated_at
           /%td= lead.tenant.name
