@@ -21,7 +21,9 @@ class BookingController < ApplicationController
     #@events = Event.today.includes(:client, :jobs, :jobs => [:service, :member])
 
     @locations = Location.active.online_booking.order(events_count: :desc)
-    @service_categories = ServiceCategory.all
+
+    #show service categories that have a service that has online booking
+    @service_categories = ServiceCategory.joins(:services).where(services: {online_booking: true})
   end
 
   def create_lead

@@ -40,75 +40,78 @@
 
 .row
   .col-lg-8
-    .text-center
-      %h4= t('sidebar.services')
-    - @service_categories.each do |service_category|
-      .card
-        .card-header
-          = service_category.name
-        - service_category.services.active.online_booking.order(jobs_count: :desc).each do |service| 
-          .card-header.bg-white
-            .row
-              .col-lg-6
-                .form-inline
-                  .fa.fa-hand-paper.mr.mr-2
-                  %b= service.name
-                .form-inline
-                  .fa.fa-clock.mr.mr-2
-                  = service.duration
-                  min
-              .col-lg-3
-                .form-inline
-                  .fa.fa-tag.mr.mr-2
-                  = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-              .col-lg-3
-                .btn.btn-success.btn-xs.btn-block
-                  = t('sidebar.online_booking')
+    - if @service_categories.any?
+      .text-center
+        %h4= t('sidebar.services')
+      - @service_categories.each do |service_category|
+        .card
+          .card-header
+            = service_category.name
+          - service_category.services.active.online_booking.order(jobs_count: :desc).each do |service| 
+            .card-header.bg-white
+              .row
+                .col-lg-6
+                  .form-inline
+                    .fa.fa-hand-paper.mr.mr-2
+                    %b= service.name
+                  .form-inline
+                    .fa.fa-clock.mr.mr-2
+                    = service.duration
+                    min
+                .col-lg-3
+                  .form-inline
+                    .fa.fa-tag.mr.mr-2
+                    = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+                .col-lg-3
+                  .btn.btn-success.btn-xs.btn-block
+                    = t('sidebar.online_booking')
       %p
   .col-lg-4
-    .text-center
-      %h4= t('sidebar.locations')
-    - @locations.each do |location|
-      .card.card-header
-        %b= location.name
-        - if location.phone_number.present?
-          .row
-          .form-inline
-            .fa.fa-phone.mr.mr-2
-            = link_to "tel:#{location.phone_number}", class: "button" do
-              #{number_to_phone(location.phone_number)}
-        - if location.phone_number.present?
-          .row
-          .form-inline
-            = link_to "viber://chat?number=#{location.phone_number}", class: "button" do
-              .fab.fa-viber
-              Viber
-          /%a{:href => "https://api.whatsapp.com/send?phone={#{location.phone_number}}", :target => "_blank"} WhatsApp
-          /%a{:href => "https://api.whatsapp.com/send?phone=+48888023488", :target => "_blank"} WhatsApp
-          /%a{:href => "whatsapp://send?text=Hello World!&phone=+48888023488", :target => "_blank"} WhatsApp
-        /- if location.phone_number.present?
-        /  .row
-        /  .form-inline
-        /    /= link_to "https://api.whatsapp.com/send?phone=+48888023488", class: "button" do
-        /    = link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
-        /      .fab.fa-whatsapp
-        - if location.address.present?
-          .row
-          .form-inline
-            .fa.fa-map-marker-alt.mr.mr-2
-            = location.address_line
+    - if @locations.any?
+      .text-center
+        %h4= t('sidebar.locations')
+      - @locations.each do |location|
+        .card.card-header
+          %b= location.name
+          - if location.phone_number.present?
+            .row
+            .form-inline
+              .fa.fa-phone.mr.mr-2
+              = link_to "tel:#{location.phone_number}", class: "button" do
+                #{number_to_phone(location.phone_number)}
+          - if location.phone_number.present?
+            .row
+            .form-inline
+              = link_to "viber://chat?number=#{location.phone_number}", class: "button" do
+                .fab.fa-viber
+                Viber
+            /%a{:href => "https://api.whatsapp.com/send?phone={#{location.phone_number}}", :target => "_blank"} WhatsApp
+            /%a{:href => "https://api.whatsapp.com/send?phone=+48888023488", :target => "_blank"} WhatsApp
+            /%a{:href => "whatsapp://send?text=Hello World!&phone=+48888023488", :target => "_blank"} WhatsApp
+          /- if location.phone_number.present?
+          /  .row
+          /  .form-inline
+          /    /= link_to "https://api.whatsapp.com/send?phone=+48888023488", class: "button" do
+          /    = link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
+          /      .fab.fa-whatsapp
+          - if location.address.present?
+            .row
+            .form-inline
+              .fa.fa-map-marker-alt.mr.mr-2
+              = location.address_line
       %p
-    .text-center
-      %h4= t('sidebar.members')
-    - @members.each do |member|
-      .card
-        .card-header
-          - if member.avatar.attached?
-            = image_tag @member.avatar, width: "200px", class: "mx-auto d-inline align-top rounded"
-          - else
-            .fa.fa-user
-          = member.first_name
-      %p
+    - if @members.any?
+      .text-center
+        %h4= t('sidebar.members')
+      - @members.each do |member|
+        .card
+          .card-header
+            - if member.avatar.attached?
+              = image_tag member.avatar, width: "40px", class: "mx-auto d-inline align-top rounded"
+            - else
+              .fa.fa-user
+            = member.first_name
+        %p
     %p
   /.col-lg-5
   /- set_var 'locale', @tenant.locale
