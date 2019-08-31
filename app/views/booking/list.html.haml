@@ -1,5 +1,6 @@
-.jumbotron.bg-white.text-center
-  %h1 Sign up for an appointment online!
+%p
+.jumbotron.bg-dark.text-white.text-center
+  %h1 Online booking
   %p Select a company, a service, a time that suits you. So simple! 
 
 - @tenants.each do |tenant|
@@ -10,7 +11,7 @@
           = image_tag tenant.logo, height: "50px", class: "mx-auto d-inline align-top"
         - else
           .fa.fa-image{:style => "font-size:50px"}
-      .col-md-10
+      .col-md-3
         %b= link_to tenant.name, booking_path(tenant)
         - if tenant.website.present?
           .row
@@ -18,4 +19,24 @@
           = tenant.website
         .row
         = tenant.industry
+      .col-md-7
+        - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
+          .card.card-header.bg-white
+            .row
+              .col-lg-6
+                .form-inline
+                  .fa.fa-hand-paper.mr.mr-2
+                  %b= service.name
+                .form-inline
+                  .fa.fa-clock.mr.mr-2
+                  = service.duration
+                  min
+              .col-lg-3
+                .form-inline
+                  .fa.fa-tag.mr.mr-2
+                  = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+              .col-lg-3
+                .btn.btn-success.btn-xs.btn-block
+                  = t('sidebar.online_booking')
+            %small= service.description
 %br
