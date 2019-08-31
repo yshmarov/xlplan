@@ -24,6 +24,8 @@ class BookingController < ApplicationController
 
     #show service categories that have a service that has online booking
     @service_categories = ServiceCategory.joins(:services).where(services: {online_booking: true})
+    #used only for the lead form
+    @services = Service.online_booking
   end
 
   def create_lead
