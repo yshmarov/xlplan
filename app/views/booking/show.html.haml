@@ -1,8 +1,11 @@
 /= render 'leads/index'
-/%p
-/= link_to booking_list_path, class: 'btn btn-secondary' do
-/  .fa.fa-step-backward
-/  all listings
+%p
+= link_to booking_list_path, class: 'text-dark' do
+  /.fa.fa-step-backward
+  booking
+\/
+= link_to booking_path(@tenant), class: 'text-dark' do
+  = @tenant.name
 
 / Online Booking Modal
 #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -60,7 +63,6 @@
                   = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
               .col-lg-3
                 .btn.btn-success.btn-xs.btn-block
-                  /.fa.fa-angle-right
                   = t('sidebar.online_booking')
       %p
   .col-lg-4
