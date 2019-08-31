@@ -5,7 +5,7 @@
       .fa.fa-globe-africa
       %b= t('sidebar.online_booking')
     %h5.float-right
-      /= link_to 'Public page', booking_path(Tenant.current_tenant)
+      = link_to t('sidebar.public_page'), booking_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
 .table-responsive
   %table#table1
     %thead

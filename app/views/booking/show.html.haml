@@ -9,7 +9,7 @@
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
-        %h5#exampleModalLabel.modal-title Online booking
+        %h5#exampleModalLabel.modal-title= t('sidebar.online_booking')
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
       .modal-body
@@ -33,9 +33,36 @@
 
     / Button trigger Online Booking Modal
     %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-      Online booking
+      = t('sidebar.online_booking')
 
 .row
+  .col-lg-8
+    .text-center
+      %h4= t('sidebar.services')
+    - @service_categories.each do |service_category|
+      .card
+        .card-header
+          = service_category.name
+        - service_category.services.order(jobs_count: :desc).each do |service| 
+          .card-header.bg-white
+            .row
+              .col-lg-6
+                .form-inline
+                  .fa.fa-hand-paper.mr.mr-2
+                  %b= service.name
+                .form-inline
+                  .fa.fa-clock.mr.mr-2
+                  = service.duration
+                  min
+              .col-lg-3
+                .form-inline
+                  .fa.fa-tag.mr.mr-2
+                  = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+              .col-lg-3
+                .btn.btn-success.btn-xs.btn-block
+                  /.fa.fa-angle-right
+                  = t('sidebar.online_booking')
+      %p
   .col-lg-4
     .text-center
       %h4= t('sidebar.locations')
@@ -69,34 +96,6 @@
             .fa.fa-map-marker-alt.mr.mr-2
             = location.address_line
       %p
-  .col-lg-4
-    .text-center
-      %h4= t('sidebar.services')
-    - @service_categories.each do |service_category|
-      .card
-        .card-header
-          = service_category.name
-        - service_category.services.order(jobs_count: :desc).each do |service| 
-          .card-header.bg-white
-            .form-inline
-              .fa.fa-hand-paper.mr.mr-2
-              %b= service.name
-            .row
-              .col-md-5
-                .form-inline
-                  .fa.fa-tag.mr.mr-2
-                  = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-              .col-md-4
-                .form-inline
-                  .fa.fa-clock.mr.mr-2
-                  = service.duration
-                  min
-              .col-md-3
-                .btn.btn-success.btn-xs.btn-block
-                  /.fa.fa-angle-right
-                  Book
-      %p
-  .col-lg-4
     .text-center
       %h4= t('sidebar.members')
     - @members.each do |member|
