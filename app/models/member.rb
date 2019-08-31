@@ -13,6 +13,7 @@ class Member < ApplicationRecord
   has_many :comments
   has_many :service_categories, through: :skills
   has_many :expences, as: :expendable
+  has_many :leads
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

@@ -947,6 +947,9 @@ ru:
         phone_number: "Тел."
         email: "Email"
         comment: "Комментарий"
+        location: "Филиал"
+        member: "Сотрудник"
+        service: "Услуга"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
         

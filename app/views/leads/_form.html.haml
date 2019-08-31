@@ -9,6 +9,9 @@
     = f.input :phone_number
     = f.input :email
     = f.input :comment
+    = f.association :location
+    = f.association :member
+    = f.association :service
   %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'

@@ -15,6 +15,9 @@
         %th= model_class.human_attribute_name(:phone_number)
         %th= model_class.human_attribute_name(:email)
         %th= model_class.human_attribute_name(:comment)
+        %th= model_class.human_attribute_name(:location)
+        %th= model_class.human_attribute_name(:member)
+        %th= model_class.human_attribute_name(:service)
         %th= model_class.human_attribute_name(:created_at)
         %th= model_class.human_attribute_name(:updated_at)
         /%th Tenant
@@ -30,6 +33,9 @@
           %td= lead.phone_number
           %td= lead.email
           %td= lead.comment
+          %td= lead.location
+          %td= lead.member
+          %td= lead.service
           %td= lead.created_at
           %td= lead.updated_at
           /%td= lead.tenant.name

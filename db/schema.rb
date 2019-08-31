@@ -216,8 +216,14 @@ ActiveRecord::Schema.define(version: 2019_08_30_103557) do
     t.string "phone_number", limit: 255, null: false
     t.string "email", limit: 255
     t.text "comment"
+    t.bigint "location_id"
+    t.bigint "service_id"
+    t.bigint "member_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_leads_on_location_id"
+    t.index ["member_id"], name: "index_leads_on_member_id"
+    t.index ["service_id"], name: "index_leads_on_service_id"
     t.index ["tenant_id"], name: "index_leads_on_tenant_id"
   end
 
@@ -405,6 +411,9 @@ ActiveRecord::Schema.define(version: 2019_08_30_103557) do
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "tenants"
+  add_foreign_key "leads", "locations"
+  add_foreign_key "leads", "members"
+  add_foreign_key "leads", "services"
   add_foreign_key "leads", "tenants"
   add_foreign_key "locations", "tenants"
   add_foreign_key "members", "locations"

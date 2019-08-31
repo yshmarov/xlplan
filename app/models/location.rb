@@ -14,6 +14,7 @@ class Location < ApplicationRecord
   has_many :members, dependent: :restrict_with_error
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
+  has_many :leads
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
   validates :name, :balance, :status, presence: true

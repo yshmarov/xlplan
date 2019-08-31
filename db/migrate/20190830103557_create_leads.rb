@@ -7,10 +7,9 @@ class CreateLeads < ActiveRecord::Migration[5.2]
       t.string :phone_number, :limit => 255, null: false
       t.string :email, :limit => 255
       t.text :comment, :limit => 500
-
-      #t.belongs_to :location, foreign_key: true
-      #t.belongs_to :service, foreign_key: true
-      #t.belongs_to :member, foreign_key: true
+      t.belongs_to :location, foreign_key: true
+      t.belongs_to :service, foreign_key: true
+      t.belongs_to :member, foreign_key: true
 
       t.timestamps
     end

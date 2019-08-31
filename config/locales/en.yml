@@ -942,5 +942,8 @@ en:
         phone_number: "Phone"
         email: "Email"
         comment: "Comment"
+        location: "Location"
+        member: "Employee"
+        service: "Service"
         created_at: "Created"
         updated_at: "Updated"

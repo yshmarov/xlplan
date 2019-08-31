@@ -18,6 +18,7 @@
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
 / End of Online Booking Modal
 %p
+
 .jumbotron.bg-dark
   .text-center.text-light
     - if @tenant.logo.attached?
@@ -53,6 +54,9 @@
             = link_to "viber://chat?number=#{location.phone_number}", class: "button" do
               .fab.fa-viber
               Viber
+          /%a{:href => "https://api.whatsapp.com/send?phone={#{location.phone_number}}", :target => "_blank"} WhatsApp
+          /%a{:href => "https://api.whatsapp.com/send?phone=+48888023488", :target => "_blank"} WhatsApp
+          /%a{:href => "whatsapp://send?text=Hello World!&phone=+48888023488", :target => "_blank"} WhatsApp
         /- if location.phone_number.present?
         /  .row
         /  .form-inline

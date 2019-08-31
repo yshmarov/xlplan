@@ -38,8 +38,7 @@ class BookingController < ApplicationController
 
   private
     def lead_params
-      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment)
-      #params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, :tenant_id)
+      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, :location_id, :member_id, :service_id)
     end
 
 end
