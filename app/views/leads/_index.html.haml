@@ -19,7 +19,7 @@
         %th= model_class.human_attribute_name(:member)
         %th= model_class.human_attribute_name(:service)
         %th= model_class.human_attribute_name(:created_at)
-        %th= model_class.human_attribute_name(:updated_at)
+        /%th= model_class.human_attribute_name(:updated_at)
         /%th Tenant
         /%th Tenant ID
         /%th
@@ -40,7 +40,7 @@
           %td
             = link_to lead.service, service_path(lead.service) if lead.service.present?
           %td= lead.created_at
-          %td= lead.updated_at
+          /%td= lead.updated_at
           /%td= lead.tenant.name
           /%td= lead.tenant.id
           /%td= link_to 'Show', lead
