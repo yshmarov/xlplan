@@ -46,7 +46,7 @@
       .card
         .card-header
           = service_category.name
-        - service_category.services.order(jobs_count: :desc).each do |service| 
+        - service_category.services.active.online_booking.order(jobs_count: :desc).each do |service| 
           .card-header.bg-white
             .row
               .col-lg-6

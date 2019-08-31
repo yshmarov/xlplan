@@ -29,6 +29,8 @@ class Tenant < ApplicationRecord
   validates :plan, inclusion: %w(demo bronze silver gold)
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
+  #-----------------------scopes-------------------#
+  scope :online_booking, -> { where(online_booking: true) }
   #-----------------------onboarding_percent-------------------#
   include Onboarding
 

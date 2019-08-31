@@ -18,6 +18,10 @@
           .fa.fa-map-marker-alt
           = link_to location.name, location_path(location) if policy(location).show?
           = status_label(location.status)
+          .row
+          - if location.online_booking?
+            .badge.badge-success
+              online_booking
           /.row
           /- if location.address?
           /  = location.address

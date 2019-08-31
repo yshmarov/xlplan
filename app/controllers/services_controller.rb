@@ -66,6 +66,6 @@ class ServicesController < ApplicationController
     def service_params
       params.require(:service).permit(:service_category_id, :name, :description, :duration, 
           :client_price, :member_price, :client_price_cents, :member_price_cents, :member_percent, 
-          :status)
+          :status, :online_booking)
     end
 end

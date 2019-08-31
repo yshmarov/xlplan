@@ -92,7 +92,7 @@
           = t('sidebar.today')
           .badge.badge-danger
             = Event.today_and_tomorrow.count
-      - if Lead.any?
+      - if Lead.any? && Tenant.current_tenant.online_booking
         %li
           = link_to leads_path, class: "nav-link" do
             .fa-color-1.fa-fw.fa.fa-globe-africa
@@ -156,9 +156,10 @@
           = link_to contacts_list_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-user-plus
             = t('sidebar.import_contacts')
-          = link_to leads_path, class: "dropdown-item navdrop-link" do 
-            .fa-fw.fa.fa-globe-africa
-            = t('sidebar.online_booking')
+          - if Tenant.current_tenant.online_booking
+            = link_to leads_path, class: "dropdown-item navdrop-link" do 
+              .fa-fw.fa.fa-globe-africa
+              = t('sidebar.online_booking')
       - if current_user.has_role?(:admin)
         %li.nav-item
           = link_to settings_show_path, class: "nav-link" do 

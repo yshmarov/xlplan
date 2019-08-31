@@ -58,6 +58,10 @@
             = link_to service.name, service_path(service)
             .row
             = status_label(service.status)
+            .row
+            - if service.online_booking?
+              .badge.badge-success
+                online_booking
           %td
             = link_to '', service_path(service), class: "btn btn-primary fa fa-eye btn-sm" if policy(service).show?
             = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?

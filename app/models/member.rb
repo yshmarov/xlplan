@@ -56,6 +56,7 @@ class Member < ApplicationRecord
   #-----------------------enums-------------------#
   enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
+  scope :online_booking, -> { where(online_booking: true) }
   #scope :active, -> { where(status: [:active]) }
   #scope :inactive, -> { where(status: [:inactive]) }
   def self.active_or_id(record_id)

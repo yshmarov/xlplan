@@ -84,24 +84,25 @@
         /- @member.skills.each do |skill|
         /  = skill.service_category
         /= @member.skills.map{|p| p.service_category}.join(", ")
-        %br
-        %b
-          .fa.fa-map-marker-alt
-          = model_class.human_attribute_name(:location_id) + ':'
-          = link_to @member.location, location_path(@member.location) if @member.location.present?
+        .row
+        .fa.fa-map-marker-alt
+        = model_class.human_attribute_name(:location_id) + ':'
+        = link_to @member.location, location_path(@member.location) if @member.location.present?
+        .row
+        %b= model_class.human_attribute_name(:online_booking) + ':'
+        = @member.online_booking
         - if policy(@member).show_money?
           %hr
           .fa.fa-hand-paper
           %b= model_class.human_attribute_name(:jobs_due_price_sum) + ':'
           = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.jobs_count})
-          /%br
           .row
           .fa.fa-dollar-sign
           %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
           = number_to_currency(@member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.expences_count})
-          %br
+          .row
           .fa.fa-balance-scale
           %b= model_class.human_attribute_name(:balance) + ':'
           = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
@@ -115,25 +116,25 @@
           %p
             %b= model_class.human_attribute_name(:created_at) + ':'
             = @member.user.created_at.strftime('%d/%b/%Y, %H:%M')
-            %br
+            .row
             %b= t('.confirmed_at')
             = @member.user.confirmed_at.strftime('%d/%b/%Y, %H:%M') if @member.user.confirmed_at.present?
-            /%br
+            /.row
             /%b Invited by:
             /= @member.user.invitor
             -  if @member.id == current_user.id
-              %br
+              .row
               = link_to t('.edit_password'), edit_user_registration_path, class: 'btn btn-sm btn-warning'
             - if @member.user.present?
-              %br
+              .row
               %b= model_class.human_attribute_name(:roles) + ':'
               - @member.user.roles.where.not("name = 'owner'").each do |r| 
                 = role_label(r.name)
             - if policy(@member.user).destroy? && @member.user.present?
-              %br
+              .row
               = link_to t('.edit_roles'), edit_user_path(@member.user), class: 'btn btn-warning btn-sm mb-sm-1 mt-sm-1'
               - unless @member == current_user.member
-                %br
+                .row
                 = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
       %p
   .col-lg-8
@@ -159,7 +160,7 @@
           = t('sidebar.stats')
     #myTabContent.tab-content
       #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-        %br
+        .row
         #event_calendar
       /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
       /  = render 'events/index'

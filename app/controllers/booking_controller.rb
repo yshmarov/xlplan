@@ -3,7 +3,7 @@ class BookingController < ApplicationController
   #skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing, :privacy_policy, :terms_of_service, :security, :stats, :about ]
 
   def list
-    @tenants = Tenant.all.unscoped.order(created_at: :desc)
+    @tenants = Tenant.online_booking.order(created_at: :desc)
   end
 
   def show
@@ -13,14 +13,14 @@ class BookingController < ApplicationController
     Tenant.set_current_tenant( @tenant )
     
     @lead = Lead.new
-    @leads = Lead.all
+    #@leads = Lead.all
 
     #FOR CALENDAR
     #@jobs = Job.includes(:event, :service, :event => :client)
-    @members = Member.active.order('created_at ASC')
+    @members = Member.active.online_booking.order('created_at ASC')
     #@events = Event.today.includes(:client, :jobs, :jobs => [:service, :member])
 
-    @locations = Location.all.order(events_count: :desc)
+    @locations = Location.active.online_booking.order(events_count: :desc)
     @service_categories = ServiceCategory.all
   end
 

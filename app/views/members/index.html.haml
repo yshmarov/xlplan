@@ -35,6 +35,9 @@
           /  .fa.fa-user
           = link_to member.full_name, member_path(member) if policy(member).show?
           = status_label(member.status)
+          - if member.online_booking?
+            .badge.badge-success
+              online_booking
           - if member.phone_number.present?
             .row
             .fa.fa-phone

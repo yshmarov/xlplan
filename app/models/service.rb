@@ -26,6 +26,8 @@ class Service < ApplicationRecord
   monetize :member_price, as: :member_price_cents
   #-----------------------enums-------------------#
   enum status: { inactive: 0, active: 1 }
+  #-----------------------scopes-------------------#
+  scope :online_booking, -> { where(online_booking: true) }
   #scope :active, -> { where(status: [:active]) }
   #scope :inactive, -> { where(status: [:inactive]) }
   def self.active_or_id(record_id)

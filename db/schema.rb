@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_30_103557) do
+ActiveRecord::Schema.define(version: 2019_08_31_103410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -241,6 +241,7 @@ ActiveRecord::Schema.define(version: 2019_08_30_103557) do
     t.integer "members_count", default: 0, null: false
     t.string "slug"
     t.integer "events_amount_sum", default: 0, null: false
+    t.boolean "online_booking", default: false
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
   end
@@ -266,6 +267,7 @@ ActiveRecord::Schema.define(version: 2019_08_30_103557) do
     t.integer "jobs_due_price_sum", default: 0, null: false
     t.integer "expences_amount_sum", default: 0, null: false
     t.integer "expences_count", default: 0, null: false
+    t.boolean "online_booking", default: false
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
@@ -309,6 +311,7 @@ ActiveRecord::Schema.define(version: 2019_08_30_103557) do
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.string "slug"
+    t.boolean "online_booking", default: false
     t.index ["name"], name: "index_services_on_name", unique: true
     t.index ["service_category_id"], name: "index_services_on_service_category_id"
     t.index ["slug"], name: "index_services_on_slug", unique: true
@@ -345,6 +348,7 @@ ActiveRecord::Schema.define(version: 2019_08_30_103557) do
     t.datetime "updated_at", null: false
     t.string "industry", limit: 144, default: "other", null: false
     t.string "website", limit: 500
+    t.boolean "online_booking", default: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"

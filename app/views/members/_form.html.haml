@@ -52,6 +52,8 @@
     /= f.error :location, class: 'text-danger'
     /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
     = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false
+
+    = f.input :online_booking
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

@@ -21,6 +21,8 @@
         = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
     / #### ADDRESS FIELD ENDS HERE ####
     = f.input :status, :as => :radio_buttons, :collection => Location.statuses.keys.to_a, label:false
+    
+    = f.input :online_booking
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

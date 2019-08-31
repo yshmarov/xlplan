@@ -83,7 +83,7 @@ class MembersController < ApplicationController
   
     def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address, :time_zone,
-      :status, :location_id, :avatar,
+      :status, :location_id, :avatar, :online_booking,
       service_category_ids: [], address: [:country, :city, :street, :zip])
     end
 
