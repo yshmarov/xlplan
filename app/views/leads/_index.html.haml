@@ -4,7 +4,19 @@
     %h5.float-left
       .fa.fa-globe-africa
       %b= t('sidebar.online_booking')
-    %h5.float-right
+    .float-right
+      / The text field
+      %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
+      / The button used to copy the text
+      %button{:onclick => "myFunction()"}
+        .fa.fa-copy
+      :javascript
+        function myFunction() {
+          var copyText = document.getElementById("myInput");
+          copyText.select(); 
+          copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+          document.execCommand("copy");
+        }
       = link_to t('sidebar.public_page'), booking_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
 .table-responsive
   %table#table1

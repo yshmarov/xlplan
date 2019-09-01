@@ -9,11 +9,14 @@
     = f.input :phone_number
     = f.input :email
     = f.input :comment
-    /= f.association :service, as: :radio_buttons, collection: @services
-    = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description
-    = f.association :location, as: :radio_buttons, collection: @locations
-    /= f.association :location, collection: @locations, prompt: "Any location"
-    = f.association :member, as: :radio_buttons, collection: @members
+    - if @services.any?
+      /= f.association :service, as: :radio_buttons, collection: @services
+      = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description
+    - if @locations.any?
+      = f.association :location, as: :radio_buttons, collection: @locations
+      /= f.association :location, collection: @locations, prompt: "Any location"
+    - if @members.any?
+      = f.association :member, as: :radio_buttons, collection: @members
   %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'
