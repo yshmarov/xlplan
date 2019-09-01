@@ -23,6 +23,14 @@
     = f.input :status, :as => :radio_buttons, :collection => Location.statuses.keys.to_a, label:false
     
     = f.input :online_booking
+
+    /.operating_hours
+    /#operating_hours
+    /  = f.simple_fields_for :operating_hours do |operating_hour|
+    /    = render 'operating_hour_fields', f: operating_hour
+    /  .links
+    /    = link_to_add_association t('.add_operating_hour'), f, :operating_hours, class: 'btn btn-primary'
+
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'

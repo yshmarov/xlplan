@@ -15,6 +15,8 @@ class Location < ApplicationRecord
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
   has_many :leads
+  has_many :operating_hours, inverse_of: :location, dependent: :destroy
+  accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
   validates :name, :balance, :status, presence: true
@@ -34,6 +36,9 @@ class Location < ApplicationRecord
   #-----------------------enums-------------------#
   enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
+  #def open?  #for operating_hours
+  #  operating_hours.where("? BETWEEN opens AND closes", Time.zone.now).any?
+  #end
   scope :online_booking, -> { where(online_booking: true) }
   #scope :active, -> { where(status: [:active]) }
   #scope :inactive, -> { where(status: [:inactive]) }

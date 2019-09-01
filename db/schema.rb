@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_31_103410) do
+ActiveRecord::Schema.define(version: 2019_09_01_101654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -272,6 +272,16 @@ ActiveRecord::Schema.define(version: 2019_08_31_103410) do
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
     t.index ["user_id"], name: "index_members_on_user_id"
+  end
+
+  create_table "operating_hours", force: :cascade do |t|
+    t.bigint "location_id"
+    t.integer "day_of_week"
+    t.time "closes"
+    t.time "opens"
+    t.datetime "valid_from"
+    t.datetime "valid_through"
+    t.index ["location_id"], name: "index_operating_hours_on_location_id"
   end
 
   create_table "roles", force: :cascade do |t|
