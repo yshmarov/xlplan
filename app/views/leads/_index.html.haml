@@ -1,23 +1,27 @@
 - model_class = Lead
 .card
   .card-header
-    %h5.float-left
-      .fa.fa-globe-africa
-      %b= t('sidebar.online_booking')
-    .float-right
-      / COPY TO CLIPBOARD WITH JAVASCRIPT
-      %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
-      / The button used to copy the text
-      %button{:onclick => "myFunction()"}
-        .fa.fa-copy
-      :javascript
-        function myFunction() {
-          var copyText = document.getElementById("myInput");
-          copyText.select(); 
-          copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-          document.execCommand("copy");
-        }
-      = link_to t('sidebar.public_page'), booking_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
+    .row
+      .col-md-4
+        %h5.float-left
+          .fa.fa-globe-africa
+          %b= t('sidebar.online_booking')
+      .col-md-4
+        / COPY TO CLIPBOARD WITH JAVASCRIPT
+        %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
+        / The button used to copy the text
+        %button{:onclick => "myFunction()"}
+          .fa.fa-copy
+        :javascript
+          function myFunction() {
+            var copyText = document.getElementById("myInput");
+            copyText.select(); 
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+            document.execCommand("copy");
+          }
+      .col-md-4
+        .float-right
+          = link_to t('sidebar.public_page'), booking_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
 .table-responsive
   %table#table1
     %thead

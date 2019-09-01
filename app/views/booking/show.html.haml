@@ -83,20 +83,20 @@
               = link_to "tel:#{location.phone_number}", class: "button" do
                 #{number_to_phone(location.phone_number)}
           - if location.phone_number.present?
+            /.row
+            /= link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
+            /  .fab.fa-whatsapp
+            /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=&source=&data=", :target => "_blank"} 
+            /  .fab.fa-whatsapp
+            /  WhatsApp
             .row
-            .form-inline
-              = link_to "viber://chat?number=#{location.phone_number}", class: "button" do
-                .fab.fa-viber
-                Viber
-            /%a{:href => "https://api.whatsapp.com/send?phone={#{location.phone_number}}", :target => "_blank"} WhatsApp
-            /%a{:href => "https://api.whatsapp.com/send?phone=+48888023488", :target => "_blank"} WhatsApp
-            /%a{:href => "whatsapp://send?text=Hello World!&phone=+48888023488", :target => "_blank"} WhatsApp
-          /- if location.phone_number.present?
-          /  .row
-          /  .form-inline
-          /    /= link_to "https://api.whatsapp.com/send?phone=+48888023488", class: "button" do
-          /    = link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
-          /      .fab.fa-whatsapp
+            = link_to "viber://chat?number=#{location.phone_number}", class: "button" do
+              .fab.fa-viber
+              Viber
+            /.row
+            /= link_to "tg://resolve?domain=yarotheslav", class: "button" do
+            /  .fab.fa-telegram
+            /  Telegram
           - if location.address.present?
             .row
             .form-inline
