@@ -5,7 +5,7 @@
       .fa.fa-globe-africa
       %b= t('sidebar.online_booking')
     .float-right
-      / The text field
+      / COPY TO CLIPBOARD WITH JAVASCRIPT
       %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
       / The button used to copy the text
       %button{:onclick => "myFunction()"}
