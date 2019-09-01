@@ -30,6 +30,7 @@ class BookingController < ApplicationController
   
   def new_lead
     @lead = Lead.new
+    #tenant find params needed?
     Tenant.set_current_tenant( @tenant )
     @lead = Lead.new(lead_params)
   end

@@ -1,3 +1,7 @@
+- content_for :title do
+  XLPLAN | Online booking
+= provide(:description, 'Управление салоном красоты, ведение клиентов онлайн, программа для СТО и автомоек, онлайн запись в косметологию и бьюти-салоны, финансовая статистика')
+= provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
 %p
 .jumbotron.bg-dark.text-white.text-center
   %h1 Online booking
@@ -7,10 +11,11 @@
   .card.card-header
     .row
       .col-md-2
-        - if tenant.logo.attached?
-          = image_tag tenant.logo, height: "50px", class: "mx-auto d-inline align-top"
-        - else
-          .fa.fa-image{:style => "font-size:50px"}
+        .text-center
+          - if tenant.logo.attached?
+            = image_tag tenant.logo, height: "100px", class: "mx-auto d-inline align-top"
+          - else
+            .fa.fa-image{:style => "font-size:50px"}
       .col-md-3
         %b= link_to tenant.name, booking_path(tenant)
         - if tenant.website.present?
@@ -34,7 +39,7 @@
               .col-lg-3
                 .form-inline
                   .fa.fa-tag.mr.mr-2
-                  = number_to_currency(service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+                  = number_to_currency(service.client_price_cents, unit: "#{tenant.default_currency.upcase}", format: "%n %u")
               .col-lg-3
                 = link_to booking_path(tenant), class: 'btn btn-success btn-xs btn-block' do 
                   = t('sidebar.online_booking')
