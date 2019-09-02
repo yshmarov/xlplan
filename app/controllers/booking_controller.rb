@@ -9,9 +9,13 @@ class BookingController < ApplicationController
   def show
     #Tenant.set_current_tenant( tenant.id )
     #@tenant = Tenant.find(Tenant.current_tenant_id)
-    @tenant = Tenant.online_booking.find(params[:id])
+    @tenant = Tenant.find(params[:id])
     Tenant.set_current_tenant( @tenant )
-    
+
+    unless @tenant.online_booking
+      redirect_to booking_list_path, alert: 'This page is currently offline.'
+    end
+
     @lead = Lead.new
     #@leads = Lead.all
 
