@@ -9,7 +9,7 @@ class BookingController < ApplicationController
   def show
     #Tenant.set_current_tenant( tenant.id )
     #@tenant = Tenant.find(Tenant.current_tenant_id)
-    @tenant = Tenant.find(params[:id])
+    @tenant = Tenant.online_booking.find(params[:id])
     Tenant.set_current_tenant( @tenant )
     
     @lead = Lead.new

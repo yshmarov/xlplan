@@ -83,6 +83,10 @@
               = link_to "tel:#{location.phone_number}", class: "button" do
                 #{number_to_phone(location.phone_number)}
           - if location.phone_number.present?
+            /https://wa.me/48537628023
+            /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=1_2_3&source=&data=", :target => "_blank"}
+            /  test
+            /https://web.whatsapp.com/send?phone=48888023488&text="HI MY LOVE"&source=&data=
             /.row
             /= link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
             /  .fab.fa-whatsapp
