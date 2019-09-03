@@ -16,23 +16,23 @@
         
           = f.input :name, required: true, class: "form-control"
           
+          = f.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false
+
           /= f.label :default_currency
           /= f.error :default_currency, class: 'text-danger'
           /= f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'
           = f.input :default_currency, collection: [ "usd", "eur", "pln", "uah", "rub"], include_blank: false
-    
-          = f.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false
-          
+
+          = f.input :online_booking
+
           = f.input :industry, collection: Tenant.industries, include_blank: false
 
           = f.input :website
 
-          = f.input :online_booking
-
           ///ACTIVE_STORAGE LOGO
           .text-center
             - if @tenant.logo.attached?
-              = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
+              = image_tag @tenant.logo, height: "50px", class: "mx-auto d-inline align-top rounded"
               /%img.rounded{:alt => "XLPLAN", :src => "#{url_for(@tenant.logo)}", :height => "200px"}/
             - else
               .far.fa-calendar-check{:style => "font-size:60px"}
