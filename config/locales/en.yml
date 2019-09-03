@@ -306,8 +306,9 @@ en:
   header:
     pricing: "Pricing"
     features: "Features"
-    sign_in: "Sign in"
+    sign_in: "Log in"
     sign_up: "Sign up"
+    start: "Start Now"
   footer:
     phone_consult: "Questions? Call us for a free consultation!"
     product: "Product"
