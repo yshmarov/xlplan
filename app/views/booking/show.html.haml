@@ -65,8 +65,8 @@
                     .fa.fa-tag.mr.mr-2
                     = number_to_currency(service.client_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
                 .col-lg-3
-                  = link_to booking_path(@tenant), class: 'btn btn-success btn-xs btn-block' do 
-                    = t('sidebar.online_booking')
+                  /= link_to booking_path(@tenant), class: 'btn btn-success btn-xs btn-block' do 
+                  /  = t('sidebar.online_booking')
               %small= service.description
         %p
   .col-lg-4
