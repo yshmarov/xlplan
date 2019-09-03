@@ -69,6 +69,5 @@
           /%td= link_to 'Show', lead
           /%td= link_to 'Edit', edit_lead_path(lead)
           %td
-            = link_to '', lead, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
-
+            = link_to '', lead, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(lead).destroy?
 %br

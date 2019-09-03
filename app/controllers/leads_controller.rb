@@ -42,6 +42,7 @@ class LeadsController < ApplicationController
   end
 
   def destroy
+    authorize @lead
     @lead.destroy
     respond_to do |format|
       format.html { redirect_to leads_url, notice: 'Lead was successfully destroyed.' }

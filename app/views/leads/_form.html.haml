@@ -13,7 +13,7 @@
       /= f.association :service, as: :radio_buttons, collection: @services
       = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description
     - if @locations.any?
-      = f.association :location, as: :radio_buttons, collection: @locations
+      = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address
       /= f.association :location, collection: @locations, prompt: "Any location"
     - if @members.any?
       = f.association :member, as: :radio_buttons, collection: @members

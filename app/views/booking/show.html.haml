@@ -111,14 +111,12 @@
       .text-center
         %h4= t('.members_team')
       - @members.each do |member|
-        .card
-          .card-header
-            - if member.avatar.attached?
-              = image_tag member.avatar, width: "40px", class: "mx-auto d-inline align-top rounded"
-            - else
-              .fa.fa-user
-            = member.first_name
         %p
+        - if member.avatar.attached?
+          = image_tag member.avatar, width: "40px", class: "mx-auto d-inline align-top rounded"
+        - else
+          .fa.fa-user
+        = member.first_name
     %p
   /.col-lg-5
   /- set_var 'locale', @tenant.locale

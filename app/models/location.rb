@@ -56,6 +56,10 @@ class Location < ApplicationRecord
       id
     end
   end
+  
+  def name_and_address
+    to_s + " (" + address_line + ")"
+  end
 
   ################TENANT VALIDATION#################
   validate :tenant_plan_quantity_limit
