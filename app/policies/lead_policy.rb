@@ -1,0 +1,2 @@
+class LeadPolicy < ApplicationPolicy
+end

@@ -7,6 +7,12 @@
   %h1 Online booking
   %p Select a company, a service, a time that suits you. So simple! 
 
+  /= f.input :industry, collection: Tenant.industries, include_blank: false
+  /- Tenant.industries.each do |k, v|
+  /  .row
+  /  = k
+  /  = v
+
 - @tenants.each do |tenant|
   .card.card-header
     .row
