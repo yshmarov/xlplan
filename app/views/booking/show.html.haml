@@ -72,7 +72,7 @@
   .col-lg-4
     - if @locations.any?
       .text-center
-        %h4= t('sidebar.locations')
+        %h4= t('.location_contacts')
       - @locations.each do |location|
         .card.card-header
           %b= location.name
@@ -109,7 +109,7 @@
       %p
     - if @members.any?
       .text-center
-        %h4= t('sidebar.members')
+        %h4= t('.members_team')
       - @members.each do |member|
         .card
           .card-header

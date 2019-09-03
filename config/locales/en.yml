@@ -482,6 +482,10 @@ en:
   ######################################################
 
       in_the_cloud2: "No installation or download required"
+  booking:
+    show:
+      location_contacts: "Contacts"
+      members_team: "Team"
   dashboard:
     today:
       today: "Today"
