@@ -14,7 +14,6 @@ function eventCalendar() {
 
     selectable: true,
     selectHelper: true,
-    eventLimit: true,
 
     select: function(start, end) {
       $.getScript('/events/new', function() {

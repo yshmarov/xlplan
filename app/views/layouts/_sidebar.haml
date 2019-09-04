@@ -146,19 +146,19 @@
           = link_to service_categories_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-hand-paper
             = t('sidebar.service_categories')
-          = link_to activity_path, class: "dropdown-item navdrop-link" do 
-            .fa-fw.fa.fa-bell
-            = t('sidebar.activity')
           /.dropdown-divider
-          = link_to start_path, class: "dropdown-item navdrop-link" do 
-            .fa-fw.fa.fa-rocket
-            = t('sidebar.start')
-          = link_to contacts_list_path, class: "dropdown-item navdrop-link" do 
-            .fa-fw.fa.fa-user-plus
-            = t('sidebar.import_contacts')
           = link_to leads_path, class: "dropdown-item navdrop-link" do
             .fa-fw.fa.fa-globe-africa
             #{t('sidebar.online_booking')} 
+          = link_to contacts_list_path, class: "dropdown-item navdrop-link" do 
+            .fa-fw.fa.fa-user-plus
+            = t('sidebar.import_contacts')
+          = link_to activity_path, class: "dropdown-item navdrop-link" do 
+            .fa-fw.fa.fa-bell
+            = t('sidebar.activity')
+          = link_to start_path, class: "dropdown-item navdrop-link" do 
+            .fa-fw.fa.fa-rocket
+            = t('sidebar.start')
       - if current_user.has_role?(:admin)
         %li.nav-item
           = link_to settings_show_path, class: "nav-link" do 

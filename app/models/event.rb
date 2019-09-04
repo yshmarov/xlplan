@@ -52,15 +52,15 @@ class Event < ApplicationRecord
   #-----------------------callbacks-------------------#
   after_create :update_status_color
   after_update :update_status_color
-  after_save :update_status_color
+  #after_save :update_status_color
 
   after_create :update_ends_at_and_client_price_and_due_prices
   after_update :update_ends_at_and_client_price_and_due_prices
-  after_save :update_ends_at_and_client_price_and_due_prices
+  #after_save :update_ends_at_and_client_price_and_due_prices
   after_touch :update_ends_at_and_client_price_and_due_prices
 
   after_update :update_event_due_price
-  after_save :update_event_due_price
+  #after_save :update_event_due_price
   after_touch :update_event_due_price
 
   before_validation do
