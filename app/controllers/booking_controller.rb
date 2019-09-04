@@ -27,9 +27,9 @@ class BookingController < ApplicationController
     @locations = Location.active.online_booking.order(events_count: :desc)
 
     #show service categories that have a service that has online booking
-    @service_categories = ServiceCategory.joins(:services).where(services: {online_booking: true})
+    @service_categories = ServiceCategory.distinct.joins(:services).where(services: {online_booking: true, status: 'active'})
     #used only for the lead form
-    @services = Service.online_booking
+    @services = Service.online_booking.active
   end
   
   def new_lead

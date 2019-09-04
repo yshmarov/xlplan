@@ -2,12 +2,13 @@
 - I18n.locale = @tenant.locale
 
 %p
-= link_to booking_list_path, class: '' do
-  /.fa.fa-step-backward
-  booking
-\/
-= link_to booking_path(@tenant), class: 'text-dark' do
-  = @tenant.name
+%small
+  = link_to booking_list_path, class: '' do
+    /.fa.fa-step-backward
+    booking
+  \/
+  = link_to booking_path(@tenant), class: 'text-dark' do
+    = @tenant.name
 
 / Online Booking Modal
 #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -22,7 +23,7 @@
         %p
         %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
 / End of Online Booking Modal
-%p
+/%p
 
 .jumbotron.bg-dark
   .text-center.text-light
@@ -39,7 +40,6 @@
     / Button trigger Online Booking Modal
     %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
       = t('sidebar.online_booking')
-
 .row
   .col-lg-8
     - if @service_categories.any?
@@ -111,12 +111,13 @@
       .text-center
         %h4= t('.members_team')
       - @members.each do |member|
-        %p
-        - if member.avatar.attached?
-          = image_tag member.avatar, width: "40px", class: "mx-auto d-inline align-top rounded"
-        - else
-          .fa.fa-user
-        = member.first_name
+        .card
+          .card-header
+            - if member.avatar.attached?
+              = image_tag member.avatar, width: "40px", class: "mx-auto d-inline align-top rounded"
+            - else
+              .fa.fa-user
+            = member.first_name
     %p
   /.col-lg-5
   /- set_var 'locale', @tenant.locale
