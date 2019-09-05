@@ -7,6 +7,8 @@
     /.fa.fa-step-backward
     booking
   \/
+  = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
+  \/
   = link_to booking_path(@tenant), class: 'text-dark' do
     = @tenant.name
 
@@ -26,20 +28,24 @@
 /%p
 
 .jumbotron.bg-dark
-  .text-center.text-light
-    - if @tenant.logo.attached?
-      = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
-    - else
-      .fa.fa-image{:style => "font-size:50px"}
-    %h1= @tenant.name
-    .row
-    - if @tenant.website.present?
-      %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
-    %p= @tenant.industry
+  .text-light
+    .text-center
+      - if @tenant.logo.attached?
+        = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
+      - else
+        .fa.fa-image{:style => "font-size:50px"}
+      %h1= @tenant.name
+      .row
+      - if @tenant.website.present?
+        %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+  
+      / Button trigger Online Booking Modal
+      %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+        = t('sidebar.online_booking')
+    - if @tenant.description.present?
+      %p
+      %small= simple_format(@tenant.description)
 
-    / Button trigger Online Booking Modal
-    %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-      = t('sidebar.online_booking')
 .row
   .col-lg-8
     - if @service_categories.any?
@@ -93,10 +99,10 @@
             /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=&source=&data=", :target => "_blank"} 
             /  .fab.fa-whatsapp
             /  WhatsApp
-            .row
-            = link_to "viber://chat?number=#{location.phone_number}", class: "button" do
-              .fab.fa-viber
-              Viber
+            /.row
+            /= link_to "viber://chat?number=#{location.phone_number}", class: "button" do
+            /  .fab.fa-viber
+            /  Viber
             /.row
             /= link_to "tg://resolve?domain=yarotheslav", class: "button" do
             /  .fab.fa-telegram

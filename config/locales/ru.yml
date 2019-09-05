@@ -771,6 +771,7 @@ ru:
         industry: "Сфера деятельности"
         website: "Веб-сайт"
         logo: "Логотип"
+        description: "Публичное описание"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       event:

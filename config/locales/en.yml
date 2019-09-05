@@ -770,6 +770,7 @@ en:
         industy: "Industry"
         website: "Website"
         logo: "Logo"
+        description: "Public description"
         created_at: "Created"
         updated_at: "Updated"
       event:

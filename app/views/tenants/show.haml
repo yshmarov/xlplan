@@ -37,6 +37,9 @@
           = image_tag @tenant.logo, height: "50px", class: "mx-auto d-inline align-top rounded"
           /= image_tag url_for(@tenant.logo)
         /%b= @tenant.logo
+        .row
+        %b= model_class.human_attribute_name(:description) + ':'
+        %small= simple_format(@tenant.description)
         %hr
         %b= model_class.human_attribute_name(:id) + ':'
         %b= @tenant.id

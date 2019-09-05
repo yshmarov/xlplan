@@ -29,6 +29,8 @@
 
           = f.input :website
 
+          = f.input :description, :input_html => {:rows => 5}
+
           ///ACTIVE_STORAGE LOGO
           .text-center
             - if @tenant.logo.attached?
