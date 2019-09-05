@@ -284,6 +284,9 @@ en:
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+    submit:
+      lead:
+        create: "Submit application"
 
   ######################################################
 
