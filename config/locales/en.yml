@@ -379,8 +379,8 @@ en:
     activity:
       ago: 'ago'
     landing_page:
-      hero: "CRM for appointment-based business management"
-      hero_description: "Manage employee working calendars, and keep client visit & payment history in one place!"
+      hero: "- CRM for appointment-based business management"
+      hero_description: "Manage employee working calendars and keep client visit & payment history in one place!"
       try_for_free: "Free 7-day trial"
       ########################################
       how_it_works: "Video about XLPLAN"

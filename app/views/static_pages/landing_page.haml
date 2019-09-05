@@ -3,22 +3,24 @@
 /%title UKR.NET: Всі новини України, останні новини дня в Україні та Світі
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
-%p
-.container
-  .text-center
-    .row
-      .col-lg-5
-        %h1.display-5= t('.hero')
-        %p
-        = t('.hero_description')
-        %p
-        .row
-        %p
-        %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-warning'
-      .col-lg-7
-        = image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
-        /.embed-responsive.embed-responsive-16by9
-        /  %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
+.jumbotron.bg-white
+  .row
+    .col-lg-5.order-1.order-lg-0
+      .display-4
+        %b XLPLAN.com
+      %h1
+        %small= t('.hero')
+      %p
+      %h5
+        .font-weight-light= t('.hero_description')
+      %p
+      .row
+      %p
+      %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-warning'
+    .col-lg-7.order-0.order-lg-1
+      = image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
+      /.embed-responsive.embed-responsive-16by9
+      /  %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
 
 /#hrnotopmargin
 %hr

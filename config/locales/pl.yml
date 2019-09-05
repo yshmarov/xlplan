@@ -259,85 +259,411 @@ pl:
 
   ######################################################
 
-  cancel: 'Anuluj'
-  events_index: "Spotkania"
-  events_close: "Zaznaczyć Spotkania"
-  services: 'Usługi'
-  service: 'Usługa'
-  member: 'Pracownik'
+  cancel: 'Cancel'
+  events_index: "Events"
+  events_close: "Mark Events"
+  events_today: "Events today"
+  events_tomorrow: "Events tomorrow"
+  clients_index: "Clients"
+  clients_debtors: "Debtors"
+  clients_no_gender: "Clients without gender"
+  services: 'Services'
+  service: 'Service'
+  member: 'Employee'
+  by_creating_an_account_you_accept_the: "By creating an account you accept the"
+  click_to_view: "- click to view"
 
   ######################################################
 
   header:
-    pricing: "Cennik"
-    features: "Funkcje"
-    sign_in: "Zaloguj się"
-    sign_up: "Zarejestruj się"
+    pricing: "Pricing"
+    features: "Features"
+    sign_in: "Log in"
+    sign_up: "Sign up"
+    start: "Start Now"
   footer:
-    phone_consult: "Masz pytania? Zadzwoń do nas na bezpłatną konsultację!!"
+    phone_consult: "Questions? Call us for a free consultation!"
     product: "Product"
-    pricing: "Cennik"
-    features: "Funkcje"
-    legal: "Informacje prawne"
-    privacy_policy: "Polityka prywatności"
-    terms_of_service: "Warunki usługi"
-    security: "Bezpieczeństwo"
-    about_us: "O nas"
+    pricing: "Pricing"
+    about: "About us"
+    features: "Features"
+    legal: "Legal"
+    privacy_policy: "Privacy Policy"
+    terms_of_service: "Terms Of Service"
+    security: "Security"
+    about_us: "About us"
   sidebar:
-    search_client: 'Poszuk klienta'
-    new_event: 'Nowe Spotkanie'
-    new_client: 'Nowy Klient'
-    new_payment: 'Nowa Opłata'
-    my_calendar: 'Kalendarz'
-    calendar: 'Kalendarz'
-    close_events: 'Zaznaczyć Spotkania'
-    debtors: 'Dłużnicy'
-    events: 'Spotkania'
-    clients: 'Klienci'
-    members: 'Pracownicy'
-    services: 'Usługi'
-    locations: 'Oddziały'
-    inbound_payments: 'Opłaty'
-    activity: 'Aktywność'
-    settings: 'Ustawienia'
-    tenant: "Moja Firma"
-    service_categories: "Kategorie Usług"
-    stats: 'Statystyki'
-    my_page: 'Moja Strona'
-    profile_settings: 'Ustawienia Strony'
-    account_settings: 'Hasło & Dostęp'
-    logout: 'Wylogować'
+    today: "Today"
+    search_client: 'Search Client'
+    new_event: 'New Event'
+    new_client: 'New Client'
+    new_payment: 'New Payment'
+    new_expence: "New Expence"
+    my_calendar: 'My Calendar'
+    calendar: 'Calendar'
+    close_events: 'Mark Events'
+    debtors: 'Debtors'
+    no_gender: "Clients without gender"
+    events: 'Events'
+    expences: 'Expences'
+    inbound_payments: 'Payments'
+    all_events: 'All events'
+    all_expences: 'All expences'
+    all_inbound_payments: 'All payments'
+    clients: 'Clients'
+    members: 'Employees'
+    services: 'Services'
+    locations: 'Locations'
+    member_expences: 'Employee Expences'
+    activity: 'Activity'
+    more: "More"
+    settings: 'Settings'
+    tenant: "Organisation settings"
+    service_categories: "Service Categories"
+    stats: 'Stats'
+    my_page: 'My Page'
+    profile_settings: 'Profile Settings'
+    account_settings: 'Password & Access'
+    logout: 'Logout'
+    start: 'Getting started'
+    order_system: 'order system'
+    change_plan: 'change plan'
+    user_roles: "User Roles"
+    import_contacts: "Import contacts"
+    online_booking: "Online booking"
+    public_page: "Public page"
 
   ######################################################
 
+  event_mailer:
+    client_event_created:
+      event_created: "Booking confirmation"
+      address: "Address"
+      powered_by: "Powered by"
+    member_event_created:
+      event_created: "Booking confirmation"
+      address: "Address"
+      powered_by: "Powered by"
   static_pages:
     activity:
-      ago: 'temu'
-  static_pages:
+      ago: 'ago'
     landing_page:
-      hero: "Zarządzanie salonem łatwe jak nigdy dotąd"
-      hero_description: "Harmonogram pracowników, lista klientów i płatności - wszystko w jednym miejscu!"
-      try_for_free: "Zacznij korzystać za darmo"
-      designed_for: "Dla kogo został stworzony XLPLAN"
+      hero: "- CRM for appointment-based business management"
+      hero_description: "Manage employee working calendars and keep client visit & payment history in one place!"
+      try_for_free: "Free 7-day trial"
+      ########################################
+      how_it_works: "Video about XLPLAN"
+      features: "More about XLPLAN Features"
+      ########################################
+      designed_for: "Who chooses XLPLAN"
+      #industries
+      beauty_industry: "Beauty industy"
+      hair_beauty_barbershop: "Hair & beauty saloons, Barbershops"
+      spa: "SPA"
+      sauna: "Sauna"
+      solarium: "Solarium"
+      cosmetology: "Cosmetology"
+      tattoo_studio: "Tattoo studio"
+      #industries
+      private_medicine: "Private medicine"
+      stomatology: "Dentists"
+      ophtalmologist: "Ophthalmologist"
+      private_clinic: "Private clinic"
+      psychologist: "Psychologist"
+      veterinary_clinic: "Veterinary clinic"
+      massage: "Massage"
+      #industries
+      professional_services: "Professional services"
+      car_services: "Car service center, car wash, driving school"
+      business_consulting: "Business Consulting"
+      legal_consulting: "Legal Services"
+      field_services: "Field services"
+      cleaning_services: "Cleaning Services"
+      tutors: "Private lessons"
+      other: "Other"
+      ########################################
+      why_do_you_need_it: "What for?"
+
+      control_business: "Control"
+      all_business_data_secure_in_one_place: "Access all your business information in one place"
+      manage_workload: "Manage all business processes"
+      more_professional: "Professional software for modern business"
+
+      save_time: "Save time"
+      automatic_reminders: "Automatic visit reminders for clients"
+      automatic_salary_calculation: "Automatic salary calculation"
+      quick_search: "Instantly find information about customers, appointments and payments"
+      automatic_marketing: "Automated marketing and messaging"
+
+      increase_revenue_and_grow: "Incraese revenue and grow"
+      dont_lose_clients: "Tools for client retention"
+      make_data_drived_descisions: "Make data-driven descisions"
+      growth_of_your_business_is_easier_to_manage: "Growth of your business will be easier to manage"
+      competitive_advantage: "XLPLAN - a competitive_advantage for your business"
+      ########################################
+      small_investment: "Small investment, Big results"
+      pricing: "See our pricing"
+      ########################################
+      technology: "Technology"
+      in_the_cloud: "In the cloud"
+      any_device: "Any device"
+      any_device2: "On your phone or computer. Open in your browser (Chrome, Safari, Mozilla, Opera)"
+      anonimity: "Anonimity"
+      anonimity2: "XLPLAN is not a free service. We do not analyze your data, or share it with 3rd parties"
+      user_roles: "User roles"
+      user_roles2: "Different access rights for business owners, managers and employees"
+      security: "Security"
+      security2: "Your company data is private and encrypted. Only you can see it"
+      export: "Export"
+      export2: "You own your data. Export to PDF and Excel available."
+    pricing:
+      pricing: "Pricing"
+      price: "Price"
+      period: "Period"
+      month: "month"
+      days: "days"
+      small_investment: "Small Investment, Big Results"
+      best_for_you: "Choose the plan that works best for your business."
+      for_individuals: "For individual professionals. Everything you need to manage your schedule, sell services, and streamline everyday tasks."
+      for_small: "For small business. Manage employee schedules. Build relationships with clients and keep them coming back with smart contact lists."
+      for_big: "For bigger companies. Take your business to the next level with advanced marketing tools, automations, and analytics."
+      demo: "demo"
+      bronze: "Bronze"
+      silver: "Silver"
+      gold: "Gold"
+      employees: "Employees"
+      locations: "Locations"
+      unlimited: "Unlimited"
+      month: "month"
+      year: "year"
+      #try_for_free: " 7 days"
+      try_for_free_html: |
+        Try for free </br>
+        7 days
+      free_implementation: "Free implementation"
+      free_support: "Free support"
+      larger_plan: "Need a larger or more customized plan?"
+      #contact_us: "Talk to us about XLPLAN Enterprise"
+      #additional_functions: "Доработка функций под дополнительные потребности Вашего бизнеса"
+      faq: "Frequently asked questions"
+    features:
+      features: "Product features"
+    about:
+      about: "XLPLAN team"
 
   ######################################################
 
+      in_the_cloud2: "No installation or download required"
+  booking:
+    show:
+      location_contacts: "Contacts"
+      members_team: "Team"
+  dashboard:
+    today:
+      today: "Today"
+      next_5_member_birthdays: 'Next 5 employee birthdays'
+      client_birthdays_today: 'Client birthdays today'
+    start:
+      start_steps: "Only 4 steps separate you from the first launch of XLPLAN"
+      start_description: "Providing some basic information will take several minutes and allow you to fully use the capabilities of the system."
+      start: "Getting started"
+
+      edit_my_page: "Add Your contact details"
+      select_currency: "Select default currency"
+
+      new_member: "Invite Employees (not required)"
+      new_location: "Add your Business address"
+      new_service_category: "Add your service categories"
+      new_service: "Add your Services Price list"
+      new_client: "Add a Client (without access to the app)"
+      new_event: "Add an Event"
+      new_payment: "Add a Payment"
+
+      finish: "Great! Now you are ready to start using the software"
+    activity:
+      activity: "Activity"
+      ago: "ago"
+    expences:
+      expence_stats: "Expence stats"
+      per_day: "By day"
+      per_month: "By month"
+      current_month: "Today"
+      expences_per_month: "Expences by month"
+      expence_types: "Expence types"
+    clients:
+      client_stats: 'Client stats'
+      clients_registered_per_month: 'Clients created by month'
+      client_birthdays_per_year: 'Client birthdays per year'
+      status_popularity: 'Status popularity'
+      gender_popularity: 'Gender stats'
+    members:
+      member_stats: "Employee stats"
+      productivity: "Productivity"
+      name: "Name"
+      planned: "Planned"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"
+      jobs: "Jobs"
+      hours_worked: "Hours worked"
+      payments: "Client Payments"
+      expences: "Employee comission"
+      net_income: "Net income"
+      revenue_share: "Revenue share"
+      confirmed_jobs_per_month_quantity: "Confirmed jobs per month, quantity"
+      confirmed_jobs_per_month_client_price: "Confirmed jobs per month, payable by clients"
+      confirmed_jobs_per_month_member_price: "Confirmed jobs per month, payable to employees"
+      payments_per_month: "Payments per month"
+    events:
+      per_day: "By day"
+      per_month: "By month"
+      current_month: "Today"
+      event_stats: 'Event stats'
+      other_stats: "Other stats"
+      confirmed_event_price_per_day: "Price of confirmed events per day"
+      confirmed_event_price_per_month: "Price of confirmed events per month"
+      counters: "Counters"
+      average_confirmed_check: "Average paycheck"
+      planned: "Planned"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"
+      jobs: "Jobs"
+      hours_worked: "Hours worked"
+      payments: "Client Payments"
+      expences: "Employee comission"
+      net_income: "Net income"
+      events_per_month_quantity: 'Events per month'
+      unique_clients_per_month_quantity: 'Unique clients per month'
+      status_popularity: 'Status popularity'
+      location_popularity: 'Location popularity'
+      service_popularity: 'Service popularity'
+      current_month: "Today"
+    payments:
+      per_day: "By day"
+      per_month: "By month"
+      current_month: "Today"
+      payment_stats: 'Payment stats'
+      payments_per_month: 'Payments per month'
+      payments_per_day: 'Payments per day'
+
+  ######################################################
+
+  contacts:
+    index:
+      create_client: "Create Client"
+      import_google_contacts: "Import Google Contacts"
+      add_all: "Add all"
+  inbound_payments:
+    index:
+      title: "Payments"
+    show:
+      title: "Payment"
+    new:
+      title: "Create Payment"
+    edit:
+      title: "Edit Payment"
+    create:
+      success: 'Payment was successfully created.'
+  expences:
+    index:
+      title: "Expences"
+    show:
+      title: "Expence"
+    new:
+      title: "Create Expence"
+    edit:
+      title: "Edit Expence"
+    create:
+      success: 'Expence was successfully created.'
+  locations:
+    index:
+      title: "Locations"
+    new:
+      title: "Create Location"
+    edit:
+      title: "Edit Location"
+    create:
+      success: 'Location was successfully created.'
+  services:
+    index:
+      title: "Services"
+    new:
+      title: "Create Service"
+    edit:
+      title: "Edit Service"
+    create:
+      success: 'Service was successfully created.'
+  service_categories:
+    index:
+      title: "Service Categories"
+    new:
+      title: "Create Category"
+    edit:
+      title: "Edit Category"
+    create:
+      success: 'Category was successfully created.'
+  members:
+    index:
+      title: "Employees"
+      search_member: 'Search employee'
+      has_access: "Has access"
+      no_access_resend_invitation_email: "Invited. Send email reminder"
+      no_access: "No access"
+      invite_user: "Invite user"
+      add_email_to_invite_user: "Add email"
+      terminated: "Not active"
+      delete_access: 'Delete access'
+    new:
+      title: "Create Employee"
+    edit:
+      title: "Edit Employee"
+    create:
+      success: 'Employee was successfully created.'
+    show:
+      access_rights: 'Access rights'
+      delete_access: 'Delete access'
+      edit_roles: 'Edit roles'
+      edit_password: "Edit password"
+      confirmed_at: "Confirmation date"
+  clients:
+    index:
+      title: "Clients"
+    new:
+      title: "Create Client"
+    edit:
+      title: "Edit Client"
+    create:
+      success: 'Client was successfully created.'
+    show:
+      event_quantity_per_month: "Events each month"
+      payment_sum_per_month: "Payments each month"
+      event_statuses: "Attendance"
+      favorite_services: "Favorite services"
   events:
     index:
       planned: "Planned"
       confirmed: "Confirmed"
-      member_cancelled: "Member Cancelled"
+      member_cancelled: "Employee Cancelled"
       client_cancelled: "Client Cancelled"
-      client_not_attended: "Client Not Attended"
+      no_show: "Client No Show"
+      no_show_refunded: "No Show Refund"
     show:
-      client_paid: "Create Payment"
+      #client_paid: "Create Payment"
+      email_client: "Email client"
+      email_members: "Email employee"
       planned: "Planned"
       confirmed: "Confirmed"
-      member_cancelled: "Member Cancelled"
+      member_cancelled: "Employee Cancelled"
       client_cancelled: "Client Cancelled"
-      client_not_attended: "Client Not Attended"
+      no_show: "Client No Show"
+      no_show_refunded: "No Show Refund"
     form:
       add_service: "+ Add Service"
+    index:
+      title: "Events"
+    new:
+      title: "Create Event"
+    edit:
+      title: "Edit Event"
     create:
       success: 'Event was successfully created.'
     update:
@@ -346,89 +672,122 @@ pl:
       success: "Marked Planned"
     mark_confirmed:
       success: "Marked Confirmed"
-    mark_client_not_attended:
-      success: "Marked Client Not Attended"
+    mark_no_show:
+      success: "Marked Client No Show"
     mark_client_cancelled:
       success: "Marked Client Cancelled"
     mark_member_cancelled:
-      success: "Marked Member Cancelled"
+      success: "Marked Employee Cancelled"
+    mark_no_show_refunded:
+      success: "Marked No Show Refund"
   tenants:
     show:
-      getting_started: "Getting started"
       counters: "Counters"
       events: "Events"
       jobs: "Jobs"
       clients: "Clients"
-      members: "Members"
+      members: "Employees"
       services: "Services"
       locations: "Locations"
-      new_member: "Invite members (employees) (not required)"
-      new_location: "Add your Business Locations"
-      new_service: "Add your Services Price list"
-      new_client: "Add a client (Without access to the app)"
-      new_event: "Add an event"
+      inbound_payments: "Payments"
+      comments: "Comments"
+      service_categories: "Service Categories"
+    edit:
+      title: "Edit organisation settings"
+    edit_plan:
+      title: "order system"
 
   ######################################################
 
   activerecord:
     models:
-      tenant: "Ustawienia"
-      event: "Spotkanie"
-      job: "Praca"
-      service: "Usługa"
-      service_category: "Kategoria Usług"
-      location: "Oddzial"
-      member: "Pracownik"
-      client: "Klient"
-      comment: "Komentarz"
-      inbound_payment: "Opłata"
+      tenant: "Organisation settings"
+      event: "Event"
+      job: "Job"
+      service: "Service"
+      service_category: "Category"
+      location: "Location"
+      member: "Employee"
+      client: "Client"
+      comment: "Comment"
+      inbound_payment: "Payment"
+      contact: "Contact"
 
     attributes:
+      contact:
+        email: "email"
+        id: "id"
+        name: "name"
+        first_name: "first_name"
+        last_name: "last_name"
+        address_1: "address_1"
+        address_2: "address_2"
+        city: "city"
+        region: "region"
+        postcode: "postcode"
+        country: "country"
+        phone_number: "phone_number"
+        birthday: "birthday"
+        gender: "gender"
+        relation: "relation"
       tenant:
-        name: "Nazwa Firmy"
-        plan: "Cennik"
-        language: "Język"
-        locale: "Język"
-        default_currency: "Waluta"
+        #phone: "Your phone"
+        #coupon: "Your coupon"
+        id: "ID #"
+        name: "Organisation Name"
+        plan: "Plan"
+        language: "Language"
+        locale: "Language"
+        default_currency: "Currency"
+        industy: "Industry"
+        website: "Website"
+        logo: "Logo"
+        description: "Public description"
+        created_at: "Created"
+        updated_at: "Updated"
       event:
+        client: "Client"
         client_id: "Client"
-        location_id: "Location"
         location: "Location"
+        location_id: "Location"
         starts_at: "Start"
         duration: "Duration"
         ends_at: "End"
         client_price: "Client Price"
         client_price_cents: "Client Price"
-        client_price_to_pay: "Client Due Price"
+        event_due_price: "Client Due Price"
         status: "Status"
         statuses:
           planned: "Planned"
           confirmed: "Confirmed"
-          member_cancelled: "Member Cancelled"
+          member_cancelled: "Employee Cancelled"
           client_cancelled: "Client Cancelled"
-          client_not_attended: "Client Not Attended"
+          no_show: "Client No Show"
+          no_show_refunded: "No Show Refund"
         status_color: "Color"
         notes: "Notes"
+        percent_off: "Скидка, %"
+        amount_off: "Скидка, сумма"
         jobs_count: "Jobs count"
         after: "Starts after.."
         before: "Starts before.."
         service: "Service"
         services: "Services"
         add_service: "+ Add Service"
-        member: "Member"
+        member: "Employee"
         time: "Time"
         created_at: "Created"
         updated_at: "Updated"
       job:
         event_id: "Event"
         service_id: "Service"
-        member_id: "Member"
+        member_id: "Employee"
         service_duration: "Duration"
-        service_member_percent: "Member Percent"
+        service_member_percent: "Employee Percent"
         client_price: "Client Price"
         client_due_price: "Client Due Price"
-        member_price: "Member Price"
-        member_due_price: "Member Due Price"
+        member_price: "Employee Price"
+        member_due_price: "Employee Due Price"
         created_at: "Created"
         updated_at: "Updated"
         #event attributes
@@ -445,23 +804,31 @@ pl:
         duration: "Duration"
         client_price: "Client Price"
         client_price_cents: "Client Price"
-        member_price: "Member Price"
-        member_price_cents: "Member Price"
-        member_percent: "Member Percent"
+        member_price: "Employee Price"
+        member_price_cents: "Employee Price"
+        member_percent: "Employee Percent"
         status: "Status"
         jobs_count: "Jobs count"
+        created_at: "Created"
+        updated_at: "Updated"
       service_category:
         name: "Category"
+        services_count: "Service quantity"
       location:
         name: "Name"
         contacts: "Contacts"
         phone_number: "Phone"
         email: "Email"
         address: "Address"
+        country: "Country"
+        city: "City"
+        street: "Street"
+        zip: "ZIP"
         balance: "Balance"
+        events_amount_sum: "Total earnings"
         status: "Status"
         events_count: "Event count"
-        members_count: "Members count"
+        members_count: "Employee count"
       member:
         first_name: "First Name"
         last_name: "Last Name"
@@ -470,8 +837,19 @@ pl:
         email: "Email"
         date_of_birth: "Date of birth"
         gender: "Gender"
+        gender_undisclosed: "undisclosed"
+        gender_female: "female"
+        gender_male: "male"
         address: "Address"
+        country: "Country"
+        city: "City"
+        street: "Street"
+        zip: "ZIP"
         status: "Status"
+        jobs_due_price_sum: "Price of all jobs"
+        jobs_due_price_sum_cents: "Price of all jobs"
+        expences_amount_sum: "Payments sum"
+        expences_amount_sum_cents: "Payments sum"
         balance: "Balance"
         location_id: "Location"
         location: "Location"
@@ -480,6 +858,8 @@ pl:
         contacts: "Contacts"
         roles: "Access rights"
         time_zone: "Time Zone"
+        created_at: "Created at"
+        updated_at: "Updated at"
       client:
         first_name: "First Name"
         last_name: "Last Name"
@@ -488,8 +868,11 @@ pl:
         phone_number: "Phone"
         email: "Email"
         date_of_birth: "Date of birth"
-        gender: "Gender"
         address: "Address"
+        country: "Country"
+        city: "City"
+        street: "Street"
+        zip: "ZIP"
         status: "Status"
         balance: "Balance"
         location_id: "Location"
@@ -501,6 +884,17 @@ pl:
         contacts: "Contacts"
         last_event: "Since last event"
         next_event: "To next event"
+        created_at: "Created at"
+        updated_at: "Updated at"
+        gender: "Gender"
+        gender_undisclosed: "undisclosed"
+        gender_female: "female"
+        gender_male: "male"
+        personal_data_consent: "Personal data consent"
+        event_created_notifications: "Event creation notifications"
+        marketing_notifications: "Marketing notifications"
+        jobs_amount_sum: "Job price"
+        payments_amount_sum: "Payment amount"
       inbound_payment:
         id: "Payment ID"
         client: "Client"
@@ -510,3 +904,25 @@ pl:
         payment_method: "Payment Method"
         created_at: "Created"
         event: "Event"
+        after: "Starts after.."
+        before: "Starts before.."
+      expence:
+        id: "Payment ID"
+        amount: "Amount"
+        amount_cents: "Amount"
+        payment_method: "Payment Method"
+        expendable_type: "Purpose of payment"
+        created_at: "Created"
+        updated_at: "Updated"
+      lead:
+        first_name: "First Name"
+        last_name: "Last Name"
+        full_name: "Name"
+        phone_number: "Phone"
+        email: "Email"
+        comment: "Comment"
+        location: "Location"
+        member: "Employee"
+        service: "Service"
+        created_at: "Created"
+        updated_at: "Updated"
