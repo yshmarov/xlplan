@@ -75,11 +75,20 @@ All users
       %tr
         %th id
         %th email
+        %th current_sign_in_at
+        %th last_sign_in_at
+        %th current_sign_in_ip
+        %th last_sign_in_ip
+        %th Tenant
     %tbody
       - User.all.each do |user|
         %tr
           %th= user.id
           %th= user.email
+          %th= user.current_sign_in_at
+          %th= user.last_sign_in_at
+          %th= user.current_sign_in_ip
+          %th= user.last_sign_in_ip
           %th
             - user.tenants.each do |t|
               = t.name

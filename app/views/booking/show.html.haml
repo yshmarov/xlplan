@@ -44,7 +44,10 @@
         = t('sidebar.online_booking')
     - if @tenant.description.present?
       %p
-      %small= simple_format(@tenant.description)
+      .row
+        .col-lg-3
+        .col-lg-4
+          %small= simple_format(@tenant.description)
 
 .row
   .col-lg-8

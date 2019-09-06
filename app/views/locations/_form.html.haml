@@ -31,6 +31,22 @@
     /  .links
     /    = link_to_add_association t('.add_operating_hour'), f, :operating_hours, class: 'btn btn-primary'
 
+    /.table-responsive
+    /  %table.table.table-bordered
+    /    %thead
+    /      %tr
+    /        /%th{:colspan => "3"}
+    /        %th day
+    /        %th start
+    /        %th end
+    /        %th
+    /    %tbody.jobs
+    /      = f.simple_fields_for :operating_hours do |operating_hour|
+    /        = render 'operating_hour_fields', f: operating_hour
+    /  .links
+    /    /= link_to_add_association t('.add_operating_hour'), f, :operating_hours, data: {"association-insertion-node" => "tbody.operating_hours", "association-insertion-method" => "append"}, class: 'btn btn-primary'
+    /    = link_to_add_association t('.add_operating_hour'), f, :operating_hours, class: 'btn btn-primary'
+
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success", title: 'Create', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
