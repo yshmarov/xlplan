@@ -7,6 +7,8 @@
           %h5
             .fa.fa-user-tie
             %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+            .badge.badge-info
+              = @members.count
         .col-md-4
           .input-group
             = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('.search_member'), :autocomplete => :off

@@ -4,6 +4,8 @@
     %h5.float-left
       .fa.fa-map-marker-alt
       %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+      .badge.badge-info
+        = @locations.count
     %h5.float-right
       - if policy(Location).create?
         - if (Tenant.current_tenant.can_create_locations?)

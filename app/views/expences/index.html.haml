@@ -5,6 +5,8 @@
       %h4.float-left
         .fa.fa-dollar-sign
         %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+        .badge.badge-info
+          = @expences.count
       %h4.float-right
         - unless params.has_key?(:q)
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}

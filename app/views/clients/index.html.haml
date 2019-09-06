@@ -9,6 +9,8 @@
             .fa.fa-user
             /%b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             %b= t "#{controller_name}_#{action_name}"
+            .badge.badge-info
+              = @clients.count
         .col-md-4
           .input-group
             .mr-md-2

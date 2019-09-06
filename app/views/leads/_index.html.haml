@@ -6,6 +6,8 @@
         %h5.float-left
           .fa.fa-globe-africa
           %b= t('sidebar.online_booking')
+          .badge.badge-info
+            = @leads.count
       - if Tenant.current_tenant.online_booking
         .col-md-4
           / COPY TO CLIPBOARD WITH JAVASCRIPT

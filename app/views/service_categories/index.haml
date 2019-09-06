@@ -4,6 +4,8 @@
     %h5.float-left
       .fa.fa-hand-paper
       %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+      .badge.badge-info
+        = @service_categories.count
     %h5.float-right
       = link_to t('.new', :default => t("helpers.links.new")), new_service_category_path, class: 'btn btn-sm btn-primary'
 - @service_categories.each do |service_category|
