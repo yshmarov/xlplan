@@ -1,14 +1,15 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
   %a.navbar-brand{:href => "/"}
     /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
-    - unless Tenant.current_tenant.logo.attached?
-      %i.far.fa-calendar-check
-    - else
+    - if Tenant.current_tenant.logo.attached?
       = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
+    - else
+      %i.far.fa-calendar-check
     .badge.badge-default 
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)
       = Tenant.current_tenant.name
+      /= @org_name
     /zubCRM
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
     /%ul.navbar-nav

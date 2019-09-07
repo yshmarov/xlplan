@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
   #after_action :user_activity, if: :user_signed_in?
   before_action :set_time_zone, if: :user_signed_in?
   #around_action :set_time_zone, if: :current_user
+  #before_action  :prep_org_name
 
   private
   #i18n
@@ -60,5 +61,21 @@ class ApplicationController < ActionController::Base
   #def user_activity
   #  current_user.try :touch
   #end
+
+  #GEM MILIA
+  # optional callback for post-authenticate_tenant! processing
+  def callback_authenticate_tenant
+    @org_name = ( Tenant.current_tenant.nil?  ?
+      "XLPLAN"   :
+      Tenant.current_tenant.name 
+    )
+    # set_environment or whatever else you need for each valid session
+  end
+
+  #   org_name will be passed to layout & view
+  #   this sets the default name for all situations
+  def prep_org_name()
+    @org_name ||= "XLPLAN"
+  end
 
 end
