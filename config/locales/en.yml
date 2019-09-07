@@ -279,6 +279,7 @@ en:
       destroy: "Delete"
       new: "New"
       edit: "Edit"
+      show: "Show"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"
@@ -494,13 +495,8 @@ en:
       members_team: "Team"
   dashboard:
     start:
-      start_steps: "Only 4 steps separate you from the first launch of XLPLAN"
-      start_description: "Providing some basic information will take several minutes and allow you to fully use the capabilities of the system."
-      start: "Getting started"
-
       edit_my_page: "Add Your contact details"
       select_currency: "Select default currency"
-
       new_member: "Invite Employees (not required)"
       new_location: "Add your Business address"
       new_service_category: "Add your service categories"
@@ -508,8 +504,6 @@ en:
       new_client: "Add a Client (without access to the app)"
       new_event: "Add an Event"
       new_payment: "Add a Payment"
-
-      finish: "Great! Now you are ready to start using the software"
     activity:
       activity: "Activity"
       ago: "ago"

@@ -55,4 +55,7 @@
       /    %a.nav-link{:href => "#"} Link
     - else
       %ul.navbar-nav.ml-md-auto.d-md-flex
-        = link_to t('sidebar.calendar'), calendar_path
+        %li.nav-item
+          = link_to calendar_path, class: "nav-link" do 
+            .fa.fa-calendar-check
+            %b= t('sidebar.calendar')

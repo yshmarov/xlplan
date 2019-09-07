@@ -183,11 +183,13 @@
     background-size: cover;
   }
 / Container element
-.jumbotron.parallax.text-center
-  .text-white
-    %h3= t('.small_investment')
-  %p
-  = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
+.container-fluid
+  .jumbotron.parallax.text-center
+    .text-white
+      %h3= t('.small_investment')
+    %p
+    = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
+
 .container.text-center
   %h1.display-4= t('.technology')
   %p
