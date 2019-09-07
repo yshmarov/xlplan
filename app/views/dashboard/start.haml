@@ -4,6 +4,16 @@
   /  = t('.start')
   .card-body
     %h5
+      /CREATE MEMBER
+      - if Tenant.current_tenant.can_create_members?
+        - if Member.count < 2
+          %span.badge.badge-pill.badge-warning -
+          = link_to t('.new_member'), new_member_path
+        - else
+          %span.badge.badge-pill.badge-success +
+          %del
+            = t('.new_member')
+        %hr
       /CREATE LOCATION
       - if Tenant.current_tenant.can_create_locations?
         - unless Location.any?
@@ -41,18 +51,6 @@
         %del
           = t('.new_client')
       %hr
-      /CREATE MEMBER
-      - if Tenant.current_tenant.can_create_members?
-        - if Member.count < 2
-          %span.badge.badge-pill.badge-warning
-            bonus
-          = link_to t('.new_member'), new_member_path
-        - else
-          %span.badge.badge-pill.badge-success
-            bonus
-          %del
-            = t('.new_member')
-        %hr
       /CREATE EVENT
       - unless Event.any?
         %span.badge.badge-pill.badge-danger -
