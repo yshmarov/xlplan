@@ -2,53 +2,54 @@
   XLPLAN | Online booking
 = provide(:description, 'Управление салоном красоты, ведение клиентов онлайн, программа для СТО и автомоек, онлайн запись в косметологию и бьюти-салоны, финансовая статистика')
 = provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
-%p
-.jumbotron.bg-dark.text-white.text-center
-  %h1 Online booking
-  %p Select a company, a service, a time that suits you. So simple! 
-
-  /= f.input :industry, collection: Tenant.industries, include_blank: false
-  /- Tenant.industries.each do |k, v|
-  /  .row
-  /  = k
-  /  = v
-
-- @tenants.each do |tenant|
-  .card.card-header
-    .row
-      .col-md-2
-        .text-center
-          - if tenant.logo.attached?
-            = image_tag tenant.logo, height: "100px", class: "mx-auto d-inline align-top"
-          - else
-            .fa.fa-image{:style => "font-size:50px"}
-      .col-md-3
-        %b= link_to tenant.name, booking_show_path(tenant)
-        - if tenant.website.present?
-          .row
-          .fa.fa-globe-africa
-          = tenant.website
-        .row
-        = tenant.industry
-      .col-md-7
-        - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
-          .card.card-header.bg-white
-            .row
-              .col-lg-6
-                .form-inline
-                  .fa.fa-hand-paper.mr.mr-2
-                  %b= service.name
-                .form-inline
-                  .fa.fa-clock.mr.mr-2
-                  = service.duration
-                  min
-              .col-lg-3
-                .form-inline
-                  .fa.fa-tag.mr.mr-2
-                  = number_to_currency(service.client_price_cents, unit: "#{tenant.default_currency.upcase}", format: "%n %u")
-              .col-lg-3
-                = link_to booking_show_path(tenant), class: 'btn btn-success btn-xs btn-block' do 
-                  = t('sidebar.online_booking')
-            %small= service.description
+.container-fluid
   %p
-%br
+  .jumbotron.bg-dark.text-white.text-center
+    %h1 Online booking
+    %p Select a company, a service, a time that suits you. So simple! 
+  
+    /= f.input :industry, collection: Tenant.industries, include_blank: false
+    /- Tenant.industries.each do |k, v|
+    /  .row
+    /  = k
+    /  = v
+  
+  - @tenants.each do |tenant|
+    .card.card-header
+      .row
+        .col-md-2
+          .text-center
+            - if tenant.logo.attached?
+              = image_tag tenant.logo, height: "100px", class: "mx-auto d-inline align-top"
+            - else
+              .fa.fa-image{:style => "font-size:50px"}
+        .col-md-3
+          %b= link_to tenant.name, booking_show_path(tenant)
+          - if tenant.website.present?
+            .row
+            .fa.fa-globe-africa
+            = tenant.website
+          .row
+          = tenant.industry
+        .col-md-7
+          - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
+            .card.card-header.bg-white
+              .row
+                .col-lg-6
+                  .form-inline
+                    .fa.fa-hand-paper.mr.mr-2
+                    %b= service.name
+                  .form-inline
+                    .fa.fa-clock.mr.mr-2
+                    = service.duration
+                    min
+                .col-lg-3
+                  .form-inline
+                    .fa.fa-tag.mr.mr-2
+                    = number_to_currency(service.client_price_cents, unit: "#{tenant.default_currency.upcase}", format: "%n %u")
+                .col-lg-3
+                  = link_to booking_show_path(tenant), class: 'btn btn-success btn-xs btn-block' do 
+                    = t('sidebar.online_booking')
+              %small= service.description
+    %p
+  %br

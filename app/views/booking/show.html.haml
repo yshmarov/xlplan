@@ -1,138 +1,139 @@
-/custom locale for this page. quick workaround without going to application_controller
-- I18n.locale = @tenant.locale
-/= Time.zone.now
-%p
-%small
-  = link_to booking_path, class: '' do
-    /.fa.fa-step-backward
-    booking
-  \/
-  = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
-  \/
-  = link_to booking_show_path(@tenant), class: 'text-dark' do
-    = @tenant.name
-
-/ Online Booking Modal
-#exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog{:role => "document"}
-    .modal-content
-      .modal-header
-        %h5#exampleModalLabel.modal-title= t('sidebar.online_booking')
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-      .modal-body
-        = render 'leads/form'
-        %p
-        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-/ End of Online Booking Modal
-/%p
-
-.jumbotron.bg-dark
-  .text-light
-    .text-center
-      - if @tenant.logo.attached?
-        = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
-      - else
-        .fa.fa-image{:style => "font-size:50px"}
-      %h1= @tenant.name
-      .row
-      - if @tenant.website.present?
-        %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+.container-fluid
+  /custom locale for this page. quick workaround without going to application_controller
+  - I18n.locale = @tenant.locale
+  /= Time.zone.now
+  %p
+  %small
+    = link_to booking_path, class: '' do
+      /.fa.fa-step-backward
+      booking
+    \/
+    = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
+    \/
+    = link_to booking_show_path(@tenant), class: 'text-dark' do
+      = @tenant.name
   
-      / Button trigger Online Booking Modal
-      %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-        = t('sidebar.online_booking')
-    - if @tenant.description.present?
-      %p
-      .row
-        .col-lg-3
-        .col-lg-4
-          %small= simple_format(@tenant.description)
-
-.row
-  .col-lg-8
-    - if @service_categories.any?
+  / Online Booking Modal
+  #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-header
+          %h5#exampleModalLabel.modal-title= t('sidebar.online_booking')
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+        .modal-body
+          = render 'leads/form'
+          %p
+          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+  / End of Online Booking Modal
+  /%p
+  
+  .jumbotron.bg-dark
+    .text-light
       .text-center
-        %h4= t('sidebar.services')
-      - @service_categories.each do |service_category|
-        .card
-          .card-header
-            = service_category.name
-          - service_category.services.active.online_booking.order(jobs_count: :desc).each do |service| 
-            .card-header.bg-white
-              .row
-                .col-lg-6
-                  .form-inline
-                    .fa.fa-hand-paper.mr.mr-2
-                    %b= service.name
-                  .form-inline
-                    .fa.fa-clock.mr.mr-2
-                    = service.duration
-                    min
-                .col-lg-3
-                  .form-inline
-                    .fa.fa-tag.mr.mr-2
-                    = number_to_currency(service.client_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
-                .col-lg-3
-                  /= link_to booking_path(@tenant), class: 'btn btn-success btn-xs btn-block' do 
-                  /  = t('sidebar.online_booking')
-              %small= service.description
+        - if @tenant.logo.attached?
+          = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
+        - else
+          .fa.fa-image{:style => "font-size:50px"}
+        %h1= @tenant.name
+        .row
+        - if @tenant.website.present?
+          %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+    
+        / Button trigger Online Booking Modal
+        %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
+          = t('sidebar.online_booking')
+      - if @tenant.description.present?
         %p
-  .col-lg-4
-    - if @locations.any?
-      .text-center
-        %h4= t('.location_contacts')
-      - @locations.each do |location|
-        .card.card-header
-          %b= location.name
-          - if location.phone_number.present?
-            .row
-            .form-inline
-              .fa.fa-phone.mr.mr-2
-              = link_to "tel:#{location.phone_number}", class: "button" do
-                #{number_to_phone(location.phone_number)}
-          - if location.phone_number.present?
-            /https://wa.me/48537628023
-            /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=1_2_3&source=&data=", :target => "_blank"}
-            /  test
-            /https://web.whatsapp.com/send?phone=48888023488&text="HI MY LOVE"&source=&data=
-            /.row
-            /= link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
-            /  .fab.fa-whatsapp
-            /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=&source=&data=", :target => "_blank"} 
-            /  .fab.fa-whatsapp
-            /  WhatsApp
-            /.row
-            /= link_to "viber://chat?number=#{location.phone_number}", class: "button" do
-            /  .fab.fa-viber
-            /  Viber
-            /.row
-            /= link_to "tg://resolve?domain=yarotheslav", class: "button" do
-            /  .fab.fa-telegram
-            /  Telegram
-          - if location.address.present?
-            .row
-            .form-inline
-              .fa.fa-map-marker-alt.mr.mr-2
-              = location.address_line
+        .row
+          .col-lg-3
+          .col-lg-4
+            %small= simple_format(@tenant.description)
+  
+  .row
+    .col-lg-8
+      - if @service_categories.any?
+        .text-center
+          %h4= t('sidebar.services')
+        - @service_categories.each do |service_category|
+          .card
+            .card-header
+              = service_category.name
+            - service_category.services.active.online_booking.order(jobs_count: :desc).each do |service| 
+              .card-header.bg-white
+                .row
+                  .col-lg-6
+                    .form-inline
+                      .fa.fa-hand-paper.mr.mr-2
+                      %b= service.name
+                    .form-inline
+                      .fa.fa-clock.mr.mr-2
+                      = service.duration
+                      min
+                  .col-lg-3
+                    .form-inline
+                      .fa.fa-tag.mr.mr-2
+                      = number_to_currency(service.client_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
+                  .col-lg-3
+                    /= link_to booking_path(@tenant), class: 'btn btn-success btn-xs btn-block' do 
+                    /  = t('sidebar.online_booking')
+                %small= service.description
+          %p
+    .col-lg-4
+      - if @locations.any?
+        .text-center
+          %h4= t('.location_contacts')
+        - @locations.each do |location|
+          .card.card-header
+            %b= location.name
+            - if location.phone_number.present?
+              .row
+              .form-inline
+                .fa.fa-phone.mr.mr-2
+                = link_to "tel:#{location.phone_number}", class: "button" do
+                  #{number_to_phone(location.phone_number)}
+            - if location.phone_number.present?
+              /https://wa.me/48537628023
+              /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=1_2_3&source=&data=", :target => "_blank"}
+              /  test
+              /https://web.whatsapp.com/send?phone=48888023488&text="HI MY LOVE"&source=&data=
+              /.row
+              /= link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
+              /  .fab.fa-whatsapp
+              /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=&source=&data=", :target => "_blank"} 
+              /  .fab.fa-whatsapp
+              /  WhatsApp
+              /.row
+              /= link_to "viber://chat?number=#{location.phone_number}", class: "button" do
+              /  .fab.fa-viber
+              /  Viber
+              /.row
+              /= link_to "tg://resolve?domain=yarotheslav", class: "button" do
+              /  .fab.fa-telegram
+              /  Telegram
+            - if location.address.present?
+              .row
+              .form-inline
+                .fa.fa-map-marker-alt.mr.mr-2
+                = location.address_line
+        %p
+      - if @members.any?
+        .text-center
+          %h4= t('.members_team')
+        - @members.each do |member|
+          .card
+            .card-header
+              - if member.avatar.attached?
+                = image_tag member.avatar, width: "40px", class: "mx-auto d-inline align-top rounded"
+              - else
+                .fa.fa-user
+              = member.first_name
       %p
-    - if @members.any?
-      .text-center
-        %h4= t('.members_team')
-      - @members.each do |member|
-        .card
-          .card-header
-            - if member.avatar.attached?
-              = image_tag member.avatar, width: "40px", class: "mx-auto d-inline align-top rounded"
-            - else
-              .fa.fa-user
-            = member.first_name
-    %p
-  /.col-lg-5
-  /- set_var 'locale', @tenant.locale
-  /- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s}}
-  // - set_var 'events', @jobs.map{|e| {id: e.id, title: "XXX", resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: "grey"}}
-  /- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: "BUSY", start: e.starts_at, end: e.ends_at, color: "grey"}}
-  /  #event_calendar
-  /  %p
-/%br
+    /.col-lg-5
+    /- set_var 'locale', @tenant.locale
+    /- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s}}
+    // - set_var 'events', @jobs.map{|e| {id: e.id, title: "XXX", resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: "grey"}}
+    /- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: "BUSY", start: e.starts_at, end: e.ends_at, color: "grey"}}
+    /  #event_calendar
+    /  %p
+  /%br

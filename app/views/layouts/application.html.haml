@@ -40,5 +40,6 @@
       = render 'layouts/header'
       = render 'layouts/messages'
       = yield
-      = rjv_tags
-      = render 'layouts/footer'
+      /= rjv_tags
+      - unless controller_name == 'booking'
+        = render 'layouts/footer'
