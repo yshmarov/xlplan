@@ -24,7 +24,7 @@
             }
         .col-md-4
           .float-right
-            = link_to t('sidebar.public_page'), booking_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
+            = link_to t('sidebar.public_page'), booking_show_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
       - else
         .col-md-8
           .float-right

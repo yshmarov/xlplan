@@ -23,7 +23,7 @@
           - else
             .fa.fa-image{:style => "font-size:50px"}
       .col-md-3
-        %b= link_to tenant.name, booking_path(tenant)
+        %b= link_to tenant.name, booking_show_path(tenant)
         - if tenant.website.present?
           .row
           .fa.fa-globe-africa
@@ -47,7 +47,7 @@
                   .fa.fa-tag.mr.mr-2
                   = number_to_currency(service.client_price_cents, unit: "#{tenant.default_currency.upcase}", format: "%n %u")
               .col-lg-3
-                = link_to booking_path(tenant), class: 'btn btn-success btn-xs btn-block' do 
+                = link_to booking_show_path(tenant), class: 'btn btn-success btn-xs btn-block' do 
                   = t('sidebar.online_booking')
             %small= service.description
   %p

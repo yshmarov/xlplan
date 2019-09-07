@@ -48,15 +48,15 @@ class BookingController < ApplicationController
 
     #WORKS GOOD BUT DOES NOT RENDER ERRORS
     #if @lead.save
-    #  redirect_to booking_path(@lead.tenant), notice: 'Lead was successfully created.'
+    #  redirect_to booking_show_path(@lead.tenant), notice: 'Lead was successfully created.'
     #else
-    #  redirect_to booking_path(@lead.tenant), alert: 'You have missing fields.'
+    #  redirect_to booking_show_path(@lead.tenant), alert: 'You have missing fields.'
     #  #render :new
     #end
 
     respond_to do |format|
       if @lead.save
-        format.html { redirect_to booking_path(@lead.tenant), notice: 'Lead was successfully created.' }
+        format.html { redirect_to booking_show_path(@lead.tenant), notice: 'Lead was successfully created.' }
         format.json { render :show, status: :created, location: @lead }
       else
         @members = Member.active.online_booking.order('created_at ASC')

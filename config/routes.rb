@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   #get 'xl/list', to: 'booking#list'
   #get '/xl/:id', to: 'booking#show'
-  #get 'booking', to: "booking#list"
-  get 'booking/list'
-  get '/booking/:id', to: 'booking#show', as: :booking
+  get 'booking', to: "booking#list"
+  #get 'booking/list'
+  get '/booking/:id', to: 'booking#show', as: :booking_show
   match '/booking/:id' => 'booking#create_lead', via: [:post], as: :create_lead
   #post 'booking/create'
   #, via: [:post], as: :create_lead

@@ -3,13 +3,13 @@
 /= Time.zone.now
 %p
 %small
-  = link_to booking_list_path, class: '' do
+  = link_to booking_path, class: '' do
     /.fa.fa-step-backward
     booking
   \/
   = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
   \/
-  = link_to booking_path(@tenant), class: 'text-dark' do
+  = link_to booking_show_path(@tenant), class: 'text-dark' do
     = @tenant.name
 
 / Online Booking Modal
