@@ -956,5 +956,6 @@ en:
         location: "Location"
         member: "Employee"
         service: "Service"
+        starts_at: "Preferred time"
         created_at: "Created"
         updated_at: "Updated"

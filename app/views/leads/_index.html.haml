@@ -43,6 +43,7 @@
         %th= model_class.human_attribute_name(:location)
         %th= model_class.human_attribute_name(:member)
         %th= model_class.human_attribute_name(:service)
+        %th= model_class.human_attribute_name(:starts_at)
         %th= model_class.human_attribute_name(:created_at)
         /%th= model_class.human_attribute_name(:updated_at)
         /%th Tenant
@@ -64,6 +65,9 @@
             = link_to lead.member, member_path(lead.member) if lead.member.present?
           %td
             = link_to lead.service, service_path(lead.service) if lead.service.present?
+          %td
+            - if lead.starts_at.present?
+              = lead.starts_at.strftime('%d/%m/%Y %H:%M')
           %td= lead.created_at.strftime('%d/%m/%Y %H:%M')
           /%td= lead.updated_at
           /%td= lead.tenant.name

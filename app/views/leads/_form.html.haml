@@ -8,6 +8,7 @@
     = f.input :last_name
     = f.input :phone_number
     = f.input :email
+    /= f.input :starts_at, :minute_step => 15, start_year: Date.today.year
     = f.input :comment
     - if @services.any?
       /= f.association :service, as: :radio_buttons, collection: @services

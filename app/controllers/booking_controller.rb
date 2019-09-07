@@ -21,8 +21,10 @@ class BookingController < ApplicationController
 
     #FOR CALENDAR
     #@jobs = Job.includes(:event, :service, :event => :client)
-    @members = Member.active.online_booking.order('created_at ASC')
     #@events = Event.today.includes(:client, :jobs, :jobs => [:service, :member])
+    
+    #for online booking & calendar
+    @members = Member.active.online_booking.order('created_at ASC')
 
     @locations = Location.active.online_booking.order(events_count: :desc)
 
@@ -69,7 +71,7 @@ class BookingController < ApplicationController
 
   private
     def lead_params
-      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, :location_id, :member_id, :service_id)
+      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, :location_id, :member_id, :service_id, :starts_at)
     end
 
 end

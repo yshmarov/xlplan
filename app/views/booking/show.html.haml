@@ -1,6 +1,6 @@
 /custom locale for this page. quick workaround without going to application_controller
 - I18n.locale = @tenant.locale
-
+/= Time.zone.now
 %p
 %small
   = link_to booking_list_path, class: '' do
