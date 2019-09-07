@@ -960,7 +960,7 @@ ru:
         location: "Филиал"
         member: "Сотрудник"
         service: "Услуга"
-        starts_at: "Желаемов время"
+        starts_at: "Желаемое время"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
         

@@ -49,6 +49,7 @@
           = @tenant.created_at.strftime('%d/%h/%Y')
           (#{distance_of_time_in_words Time.now, @tenant.created_at})
     %p
+  .col-lg-6
     .card
       .card-header
         %b= model_class.human_attribute_name(:plan) + ':'
@@ -143,8 +144,6 @@
             %td 1
             %td 1
             %td= t('static_pages.pricing.unlimited')
-    %p
-  .col-lg-6
     .card
       .card-header
         %h6= t('.counters')

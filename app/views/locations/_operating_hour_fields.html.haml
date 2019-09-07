@@ -9,12 +9,11 @@
 /      = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-danger'
 /  %p
 
-
 %tr.nested-fields
-  %td
-    = f.input :day_of_week, label: false, collection: 1..7, include_blank: false
+  %td= f.input :day_of_week, label: false, collection: 1..7, include_blank: false
   %td
     = f.input :opens, :minute_step => 30, label: false
+    /= f.time_select :opens, {minute_step: 15}
   %td
     = f.input :closes, :minute_step => 30, label: false
   %td
