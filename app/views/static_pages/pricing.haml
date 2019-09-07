@@ -74,6 +74,7 @@
             %hr
             .fa.fa-phone
             #{t('.free_support')}
+    /GOLD WITHOUT DISCOUNT
     .card.mb-4.box-shadow.border-warning
       .card-header.bg-warning
         %h4.my-0.font-weight-normal= t('.gold')
@@ -81,18 +82,12 @@
         %small= t('.for_big')
         %hr
         %h2.card-title.pricing-card-title
-          %s.text-danger
-            $600
-          %b.text-success.ml-3
-            $540
-            %small.text-muted / #{t(".year")}
+          $600
+          %small.text-muted / #{t(".year")}
         %hr
         %h2.card-title.pricing-card-title
           (
-          %s.text-danger
-            $50
-          %b.text-success.ml-3
-            $45
+          $50
           %small.text-muted / #{t(".month")}
           )
         %ul.list-unstyled.mt-3.mb-4
@@ -104,18 +99,6 @@
             .fa.fa-map-marker-alt
             #{t('.locations')}: #{t('.unlimited')}
             %hr
-            /.fa.fa-plus
-            /Automatic reminders (SMS, email, Viber, Telegram, WhatsApp)
-            /IP-telephony/sms
-            /Material expences
-            /Physical Product sales & inventory management
-            /Client portal
-            /Online booking
-            /Phone and email support
-            /Help center access
-            /web-to-lead
-            /viber-whatsapp messaging
-            /coupons & Marketing campaigns
             = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-block btn-warning'
             %hr
             .fa.fa-rocket
@@ -123,6 +106,44 @@
             %hr
             .fa.fa-phone
             #{t('.free_support')}
+    /GOLD WITH DISCOUNT
+    /.card.mb-4.box-shadow.border-warning
+    /  .card-header.bg-warning
+    /    %h4.my-0.font-weight-normal= t('.gold')
+    /  .card-body
+    /    %small= t('.for_big')
+    /    %hr
+    /    %h2.card-title.pricing-card-title
+    /      %s.text-danger
+    /        $600
+    /      %b.text-success.ml-3
+    /        $540
+    /        %small.text-muted / #{t(".year")}
+    /    %hr
+    /    %h2.card-title.pricing-card-title
+    /      (
+    /      %s.text-danger
+    /        $50
+    /      %b.text-success.ml-3
+    /        $45
+    /      %small.text-muted / #{t(".month")}
+    /      )
+    /    %ul.list-unstyled.mt-3.mb-4
+    /      %b
+    /        %hr
+    /        .fa.fa-user-tie
+    /        #{t('.employees')}: #{t('.unlimited')}
+    /        %hr
+    /        .fa.fa-map-marker-alt
+    /        #{t('.locations')}: #{t('.unlimited')}
+    /        %hr
+    /        = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-block btn-warning'
+    /        %hr
+    /        .fa.fa-rocket
+    /        #{t('.free_implementation')}
+    /        %hr
+    /        .fa.fa-phone
+    /        #{t('.free_support')}
 /.text-center
 /  = link_to features_path do
 /    .btn.btn-info

@@ -102,24 +102,35 @@
               15$ / 
               = t('static_pages.pricing.month')
               )
+            /NOT DISCOUNTED GOLD
             %td
-              %s.text-danger
+              %b
                 600$ /
                 = t('static_pages.pricing.year')
-                .row
-                (
-                50$ /
-                = t('static_pages.pricing.month')
-                )
               .row
-              %b.text-success.ml-1.mr-1
-                540$ /
-                = t('static_pages.pricing.year')
-                .row
-                (
-                45$ / 
-                = t('static_pages.pricing.month')
-                )
+              (
+              50$ / 
+              = t('static_pages.pricing.month')
+              )
+            /DISCOUNTED GOLD
+            /%td
+            /  %s.text-danger
+            /    600$ /
+            /    = t('static_pages.pricing.year')
+            /    .row
+            /    (
+            /    50$ /
+            /    = t('static_pages.pricing.month')
+            /    )
+            /  .row
+            /  %b.text-success.ml-1.mr-1
+            /    540$ /
+            /    = t('static_pages.pricing.year')
+            /    .row
+            /    (
+            /    45$ / 
+            /    = t('static_pages.pricing.month')
+            /    )
           %tr
             %td= t('static_pages.pricing.employees')
             %td 5

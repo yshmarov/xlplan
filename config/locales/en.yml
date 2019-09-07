@@ -437,6 +437,7 @@ en:
       ########################################
       technology: "Technology"
       in_the_cloud: "In the cloud"
+      in_the_cloud2: "No installation or download required"
       any_device: "Any device"
       any_device2: "On your phone or computer. Open in your browser (Chrome, Safari, Mozilla, Opera)"
       anonimity: "Anonimity"
@@ -484,7 +485,6 @@ en:
 
   ######################################################
 
-      in_the_cloud2: "No installation or download required"
   booking:
     show:
       location_contacts: "Contacts"
