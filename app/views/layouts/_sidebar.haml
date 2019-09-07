@@ -10,7 +10,6 @@
       = plan_label(Tenant.current_tenant.plan)
       = Tenant.current_tenant.name
     /zubCRM
-    /= Client.bday_today.count
     /= link_to plan_label(Tenant.current_tenant.plan), edit_plan_path, class: 'badge badge-default'
     /%ul.navbar-nav
     /= Time.now.in_time_zone(current_user.time_zone)
