@@ -44,6 +44,7 @@ class Client < ApplicationRecord
   #-----------------------scopes-------------------#
   scope :debtors, -> { where("balance < ?", 0) }
   scope :no_gender, -> { where(gender: "undisclosed") }
+  scope :had_events_but_no_planned_events, -> {joins(:events).where.not('events.starts_at >=?', Time.zone.now).distinct }
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
   monetize :payments_amount_sum, as: :payments_amount_sum_cents

@@ -33,7 +33,6 @@
         .card-header
           .row
             .col-md-4
-            .col-md-4
               = sort_link @ransack_clients, :jobs_amount_sum do
                 .ml.ml-2.fa.fa-calendar-check
                 = model_class.human_attribute_name(:jobs_amount_sum)
@@ -45,15 +44,21 @@
               = sort_link @ransack_clients, :balance do
                 .ml.ml-2.fa.fa-balance-scale
                 = model_class.human_attribute_name(:balance)
-              .row
-              %br= f.submit
             .col-md-4
+              = sort_link @ransack_clients, :events_count do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:events_count)
+              .row
+              = sort_link @ransack_clients, :inbound_payments_count do
+                .ml.ml-2.fa.fa-hand-holding-usd
+                = model_class.human_attribute_name(:inbound_payments_count)
+            .col-md-4
+              %br= f.submit
     - else
       #accordion.collapse.show
         .card-header
           .row
             .col-md-4
-            .col-md-4
               = sort_link @ransack_clients, :jobs_amount_sum do
                 .ml.ml-2.fa.fa-calendar-check
                 = model_class.human_attribute_name(:jobs_amount_sum)
@@ -65,9 +70,16 @@
               = sort_link @ransack_clients, :balance do
                 .ml.ml-2.fa.fa-balance-scale
                 = model_class.human_attribute_name(:balance)
-              .row
-              %br= f.submit
             .col-md-4
+              = sort_link @ransack_clients, :events_count do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:events_count)
+              .row
+              = sort_link @ransack_clients, :inbound_payments_count do
+                .ml.ml-2.fa.fa-hand-holding-usd
+                = model_class.human_attribute_name(:inbound_payments_count)
+            .col-md-4
+              %br= f.submit
 - @clients.each do |client|
   .card
     .card-header.bg-light
