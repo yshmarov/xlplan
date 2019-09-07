@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   end
 
   resources :clients do
-    get :debtors, :no_gender, on: :collection
+    get :debtors, :no_gender, :bday_today, on: :collection
     collection do
       match 'search' => 'clients#search', via: [:get, :post], as: :search
     end
@@ -95,7 +95,6 @@ Rails.application.routes.draw do
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'
   get 'start', to: 'dashboard#start'
-  get 'today', to: 'dashboard#today'
 
   get 'dashboard/clients'
   get 'dashboard/members'

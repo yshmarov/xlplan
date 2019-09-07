@@ -56,6 +56,12 @@ class Member < ApplicationRecord
   #-----------------------enums-------------------#
   enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
+  #next 5 bdays
+  #next_bdays = (Date.today + 0.day).yday
+  #@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
+  #@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC')).first(5)
+  ##@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order(Arel.sql "DATE(date_of_birth)").first(5)
+
   scope :online_booking, -> { where(online_booking: true) }
   #scope :active, -> { where(status: [:active]) }
   #scope :inactive, -> { where(status: [:inactive]) }

@@ -298,6 +298,7 @@ ru:
   events_tomorrow: "Встречи завтра"
   clients_index: "Клиенты"
   clients_debtors: "Клиенты Должники"
+  clients_bday_today: "ДР сегодня"
   clients_no_gender: "Клиенты без пола"
   services: 'Услуги'
   service: 'Услуга'
@@ -325,7 +326,6 @@ ru:
     security: "Безопасность"
     about_us: "Компания"
   sidebar:
-    today: "Сегодня"
     search_client: 'Поиск Клиента'
     new_event: 'Новая Встреча'
     new_client: 'Новый Клиент'
@@ -333,8 +333,11 @@ ru:
     new_expence: "Новая Выплата"
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
+    events_today: 'Встречи сегодня'
+    events_tomorrow: 'Встречи завтра'
     close_events: 'Отметить Встречи'
     debtors: "Должники"
+    bday_today: "ДР сегодня"
     no_gender: "Клиенты без пола"
     events: 'Встречи'
     expences: 'Расходы'
@@ -491,10 +494,6 @@ ru:
       location_contacts: "Контакты"
       members_team: "Сотрудники"
   dashboard:
-    today:
-      today: "Сегодня"
-      next_5_member_birthdays: 'Следующие 5 дней рождений сотрудников'
-      client_birthdays_today: 'Дни рождения клиентов сегодня'
     start:
       start_steps: "Всего 4 шага отделяют вас от первого запуска XLPLAN"
       start_description: "Предоставление некоторой базовой информации займет несколько минут и позволит вам в полной мере использовать возможности системы."

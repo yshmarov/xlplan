@@ -297,7 +297,8 @@ en:
   events_tomorrow: "Events tomorrow"
   clients_index: "Clients"
   clients_debtors: "Debtors"
-  clients_no_gender: "Clients without gender"
+  clients_bday_today: "Bday today"
+  clients_no_gender: "Clients - no gender"
   services: 'Services'
   service: 'Service'
   member: 'Employee'
@@ -324,7 +325,6 @@ en:
     security: "Security"
     about_us: "About us"
   sidebar:
-    today: "Today"
     search_client: 'Search Client'
     new_event: 'New Event'
     new_client: 'New Client'
@@ -332,8 +332,11 @@ en:
     new_expence: "New Expence"
     my_calendar: 'My Calendar'
     calendar: 'Calendar'
+    events_today: 'Events today'
+    events_tomorrow: 'Events tomorrow'
     close_events: 'Mark Events'
     debtors: 'Debtors'
+    bday_today: "Bday today"
     no_gender: "Clients without gender"
     events: 'Events'
     expences: 'Expences'
@@ -490,10 +493,6 @@ en:
       location_contacts: "Contacts"
       members_team: "Team"
   dashboard:
-    today:
-      today: "Today"
-      next_5_member_birthdays: 'Next 5 employee birthdays'
-      client_birthdays_today: 'Client birthdays today'
     start:
       start_steps: "Only 4 steps separate you from the first launch of XLPLAN"
       start_description: "Providing some basic information will take several minutes and allow you to fully use the capabilities of the system."

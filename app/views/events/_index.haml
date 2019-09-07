@@ -40,7 +40,8 @@
           - if event.client.phone_number.present?
             .row
             .fa.fa-phone
-            = link_to event.client.phone_number
+            = link_to "tel:#{event.client.phone_number}", class: "button" do
+              #{number_to_phone(event.client.phone_number)}
           .row
           .fa.fa-map-marker-alt
           = link_to event.location, location_path(event.location)

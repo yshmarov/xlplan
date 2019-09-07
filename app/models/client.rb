@@ -45,6 +45,9 @@ class Client < ApplicationRecord
   scope :debtors, -> { where("balance < ?", 0) }
   scope :no_gender, -> { where(gender: "undisclosed") }
   scope :had_events_but_no_planned_events, -> {joins(:events).where.not('events.starts_at >=?', Time.zone.now).distinct }
+  scope :bday_today, -> { where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday) }
+  #@clients = Client.where("EXTRACT(YEAR FROM date_of_birth) >= ?", 1948).where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC'))
+  #@clients = Client.where("EXTRACT(YEAR FROM date_of_birth) >= ?", Date.today.year - 65).where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC'))
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
   monetize :payments_amount_sum, as: :payments_amount_sum_cents

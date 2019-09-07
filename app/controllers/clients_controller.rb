@@ -27,6 +27,12 @@ class ClientsController < ApplicationController
     #end
   end
 
+  def bday_today
+    @ransack_clients = Client.bday_today.search(params[:clients_search], search_key: :clients_search)
+    @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    render 'index'
+  end
+
   def debtors
     #with negative balance
     @ransack_clients = Client.debtors.search(params[:clients_search], search_key: :clients_search)
