@@ -3,20 +3,21 @@
 /%title UKR.NET: Всі новини України, останні новини дня в Україні та Світі
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
-.jumbotron.bg-white
+
+.jumbotron.bg-primary.text-white
   .row
     .col-lg-5.order-1.order-lg-0
       .display-3
         %b XLPLAN.com
       %h1
         %small= t('.hero')
+      .row
+      %p
+      %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-danger text-white btn-block'
       %p
       %h5
         .font-weight-light= t('.hero_description')
       %p
-      .row
-      %p
-      %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-danger text-white'
     .col-lg-7.order-0.order-lg-1
       = image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
       /.embed-responsive.embed-responsive-16by9
@@ -26,7 +27,7 @@
 
 
 /#hrnotopmargin
-%hr
+/%hr
 .container.text-center
   %h1.display-4= t('.designed_for')
   %p
@@ -187,7 +188,6 @@
     %h3= t('.small_investment')
   %p
   = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
-</div>
 .container.text-center
   %h1.display-4= t('.technology')
   %p
@@ -230,4 +230,3 @@
         %h5.card-title= t('.export')
         %p.card-text
           %small.text-muted= t('.export2')
-= render 'layouts/footer'

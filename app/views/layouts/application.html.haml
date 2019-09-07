@@ -39,6 +39,6 @@
       /further code is not under wrapper, so that wrapper gives only padding-top
       = render 'layouts/header'
       = render 'layouts/messages'
-      .container-fluid
-        = yield
-        = rjv_tags
+      = yield
+      = rjv_tags
+      = render 'layouts/footer'

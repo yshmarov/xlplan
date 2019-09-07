@@ -1,7 +1,8 @@
-%nav.navbar.fixed-top.navbar-expand-lg.navbar-light.bg-light
+%nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-primary
   %a.text-dark.navbar-brand{:href => "/"}
-    %i.far.fa-calendar-check
-    .badge.badge-default XLPLAN
+    .text-white
+      %i.far.fa-calendar-check
+      .badge.badge-default.text-white XLPLAN
     /.text-secondary
     /  .fa-color-indigo
     /    .far.fa-calendar-check
@@ -10,7 +11,7 @@
     /= image_tag "logo.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "xlplan.com logo"
   - unless current_user
     .btn-group.mr-sm-2
-      %a.btn.btn-default.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+      %a.btn.btn-default.text-white.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
         = I18n.locale.upcase
         /= request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/)[0]
         /= params['locale'].present?
@@ -33,18 +34,16 @@
       /  = link_to 'Pricing', pricing_path, class: 'btn btn-warning mr-sm-2'
       %ul.navbar-nav.mr-auto
         %li.nav-item
-          %a.nav-link{:href => "/features"}
+          = link_to features_path, class: "nav-link" do 
             %b= t('header.features')
         %li.nav-item
-          %a.nav-link{:href => "/pricing"}
+          = link_to pricing_path, class: "nav-link" do 
             %b= t('header.pricing')
-        /%li.nav-item
-        /  %a= link_to t("header.sign_up"), new_user_registration_path, class: 'nav-link'
       %ul.nav.navbar-nav.navbar-right
         /%a.btn.btn-light.mr-sm-2{:href => "tel:+48-537-628-023"}
         /  = succeed "+48-537-628-023" do
         /    %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
-        = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-outline-danger mr-sm-2 text-dark'
+        = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-outline-danger mr-sm-2 text-light'
         .mr.mt-1
         = link_to t("header.start"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
       /%ul.navbar-nav.mr-auto.mt-2.mt-lg-0
