@@ -722,6 +722,7 @@ ru:
       services: "Услуги"
       locations: "Филиалы"
       inbound_payments: "Оплаты"
+      expences: "Расходы"
       comments: "Комментарии"
       service_categories: "Категории Услуг"
     edit:

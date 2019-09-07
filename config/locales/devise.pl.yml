@@ -15,7 +15,7 @@ pl:
         last_sign_in_at: Data ostatniego logowania
         last_sign_in_ip: Ostatni adres IP
         locked_at: Data zablokowania
-        password: Hasło
+        password: Nowe Hasło
         password_confirmation: Potwierdzenie hasła
         remember_created_at: Data utworzenia zapamiętania logowania
         remember_me: Zapamiętaj mnie
