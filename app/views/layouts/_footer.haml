@@ -1,7 +1,7 @@
 %footer.bg-dark.text-white
   %hr
   .text-center
-    = link_to t('header.start'), new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
+    = link_to t('header.start'), new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-danger'
     /%hr
     /%h5
     /  = t("footer.phone_consult")
@@ -31,7 +31,7 @@
           © 2018 - #{Time.now.year}
           %a{:href => "http://www.xlplan.com/"} XLPLAN.com
           %p
-          = mail_to 'yshmarov@gmail.com'
+          = mail_to 'support@xlplan.com'
           %p
           %a{:href => "tel:+48-537-628-023"}
             = succeed "+48-537-628-023" do

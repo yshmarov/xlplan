@@ -16,7 +16,7 @@
       %p
       .row
       %p
-      %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-warning'
+      %p= link_to t(".try_for_free"), new_user_registration_path, class: 'btn btn-lg btn-danger text-white'
     .col-lg-7.order-0.order-lg-1
       = image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
       /.embed-responsive.embed-responsive-16by9
@@ -32,9 +32,9 @@
   %p
   .row
     .col-lg-4
-      .card.border-warning
+      .card.border-danger
         .card-body.bg-light
-          %i.fa.fa-hand-holding-heart{:style => "font-size:40px;color:orange"}
+          %i.fa.fa-hand-holding-heart{:style => "font-size:40px;color:red"}
           %p
           %h5.card-title= t('.beauty_industry')
           %hr
@@ -57,9 +57,9 @@
           = t('.sauna')
       %p
     .col-lg-4
-      .card.border-warning
+      .card.border-danger
         .card-body.bg-light
-          %i.fa.fa-hospital{:style => "font-size:40px;color:orange"}
+          %i.fa.fa-hospital{:style => "font-size:40px;color:red"}
           %p
           %h5.card-title= t('.private_medicine')
           %hr
@@ -82,9 +82,9 @@
           = t('.veterinary_clinic')
       %p
     .col-lg-4
-      .card.border-warning
+      .card.border-danger
         .card-body.bg-light
-          %i.fa.fa-user-tie{:style => "font-size:40px;color:orange"}
+          %i.fa.fa-user-tie{:style => "font-size:40px;color:red"}
           %p
           %h5.card-title= t('.professional_services')
           %hr
@@ -108,7 +108,7 @@
           = t('.tutors')
   .text-center
     %br
-    = link_to t(".features"), features_path, class: 'btn btn-lg btn-warning text-dark'
+    = link_to t(".features"), features_path, class: 'btn btn-lg btn-danger text-white'
   %p
 
 /%hr
@@ -118,54 +118,54 @@
 /    %br
 /  .row
 /    .col-lg-4
-/      .card.card-header.border-warning
+/      .card.card-header.border-danger
 /        .text-center
-/          %i.fa.fa-calendar-check{:style => "font-size:40px;color:orange"}
+/          %i.fa.fa-calendar-check{:style => "font-size:40px;color:red"}
 /          %h3= t('.control_business')
 /      %p
-/      %i.fa.fa-calendar-check{:style => "color:orange"}
+/      %i.fa.fa-calendar-check{:style => "color:red"}
 /      = t('.all_business_data_secure_in_one_place')
 /      %p
-/      %i.fa.fa-calendar-check{:style => "color:orange"}
+/      %i.fa.fa-calendar-check{:style => "color:red"}
 /      = t('.online_calendar')
 /      %p
-/      %i.fa.fa-calendar-check{:style => "color:orange"}
+/      %i.fa.fa-calendar-check{:style => "color:red"}
 /      = t('.more_professional')
 /      %p
 /    .col-lg-4
-/      .card.card-header.border-warning
+/      .card.card-header.border-danger
 /        .text-center
-/          %i.fa.fa-history{:style => "font-size:40px;color:orange"}
+/          %i.fa.fa-history{:style => "font-size:40px;color:red"}
 /          %h3= t('.save_time')
 /      %p
-/      %i.fa.fa-history{:style => "color:orange"}
+/      %i.fa.fa-history{:style => "color:red"}
 /      = t('.automatic_reminders')
 /      %p
-/      %i.fa.fa-history{:style => "color:orange"}
+/      %i.fa.fa-history{:style => "color:red"}
 /      = t('.automatic_salary_calculation')
 /      %p
-/      %i.fa.fa-history{:style => "color:orange"}
+/      %i.fa.fa-history{:style => "color:red"}
 /      = t('.quick_search')
 /      %p
-/      %i.fa.fa-history{:style => "color:orange"}
+/      %i.fa.fa-history{:style => "color:red"}
 /      = t('.automatic_marketing')
 /      %p
 /    .col-lg-4
-/      .card.card-header.border-warning
+/      .card.card-header.border-danger
 /        .text-center
-/          %i.fa.fa-chart-line{:style => "font-size:40px;color:orange"}
+/          %i.fa.fa-chart-line{:style => "font-size:40px;color:red"}
 /          %h3= t('.increase_revenue_and_grow')
 /      %p
-/      %i.fa.fa-chart-line{:style => "color:orange"}
+/      %i.fa.fa-chart-line{:style => "color:red"}
 /      = t('.dont_lose_clients')
 /      %p
-/      %i.fa.fa-chart-line{:style => "color:orange"}
+/      %i.fa.fa-chart-line{:style => "color:red"}
 /      = t('.make_data_drived_descisions')
 /      %p
-/      %i.fa.fa-chart-line{:style => "color:orange"}
+/      %i.fa.fa-chart-line{:style => "color:red"}
 /      = t('.growth_of_your_business_is_easier_to_manage')
 /      /%p
-/      /%i.fa.fa-chart-line{:style => "color:orange"}
+/      /%i.fa.fa-chart-line{:style => "color:red"}
 /      /= t('.competitive_advantage')
 /      /%p
 
@@ -186,7 +186,7 @@
   .text-white
     %h3= t('.small_investment')
   %p
-  = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-warning text-dark'
+  = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
 </div>
 .container.text-center
   %h1.display-4= t('.technology')
@@ -194,39 +194,39 @@
   .card-group
     .card
       .card-body.bg-light
-        %i.fa.fa-cloud-upload-alt.fa-3x{:style => "font-size:50px;color:orange;"}
+        %i.fa.fa-cloud-upload-alt.fa-3x{:style => "font-size:50px;color:red;"}
         %h5.card-title= t('.in_the_cloud')
         %p.card-text
           %small.text-muted= t('.in_the_cloud2')
     .card
       .card-body.bg-light
-        %i.fa.fa-mobile-alt.fa-3x{:style => "font-size:50px;color:orange;"}
-        %i.fa.fa-laptop.fa-3x{:style => "font-size:50px;color:orange;"}
+        %i.fa.fa-mobile-alt.fa-3x{:style => "font-size:50px;color:red;"}
+        %i.fa.fa-laptop.fa-3x{:style => "font-size:50px;color:red;"}
         %h5.card-title= t('.any_device')
         %p.card-text
           %small.text-muted= t('.any_device2')
     .card
       .card-body.bg-light
-        %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:orange;"}
+        %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:red;"}
         %h5.card-title= t('.anonimity')
         %p.card-text
           %small.text-muted= t('.anonimity2')
   .card-group
     .card
       .card-body.bg-light
-        %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:orange;"}
+        %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:red;"}
         %h5.card-title= t('.user_roles')
         %p.card-text
           %small.text-muted= t('.user_roles2')
     .card
       .card-body.bg-light
-        %i.fa.fa-shield-alt.fa-3x{:style => "font-size:50px;color:orange;"}
+        %i.fa.fa-shield-alt.fa-3x{:style => "font-size:50px;color:red;"}
         %h5.card-title= t('.security')
         %p.card-text
           %small.text-muted= t('.security2')
     .card
       .card-body.bg-light
-        %i.fa.fa-cloud-download-alt.fa-3x{:style => "font-size:50px;color:orange;"}
+        %i.fa.fa-cloud-download-alt.fa-3x{:style => "font-size:50px;color:red;"}
         %h5.card-title= t('.export')
         %p.card-text
           %small.text-muted= t('.export2')
