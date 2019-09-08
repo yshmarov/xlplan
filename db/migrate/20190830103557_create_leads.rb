@@ -10,6 +10,7 @@ class CreateLeads < ActiveRecord::Migration[5.2]
       t.belongs_to :location, foreign_key: true
       t.belongs_to :service, foreign_key: true
       t.belongs_to :member, foreign_key: true
+      t.datetime :starts_at
 
       t.timestamps
     end

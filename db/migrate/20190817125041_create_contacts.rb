@@ -18,6 +18,7 @@ class CreateContacts < ActiveRecord::Migration[5.2]
       t.string :birthday
       t.string :gender
       t.string :relation
+      t.belongs_to :client, foreign_key: true
 
       t.timestamps
     end
