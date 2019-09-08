@@ -19,23 +19,21 @@
     = render 'layouts/google_analytics'
     /needed on static_pages and on devise registration. does not work well with turbolinks
     /= render 'layouts/chaport'
-  %body
-    - if user_signed_in? && current_user.member.present?
-      /- if current_user
-      /- unless Tenant.current_tenant.nil?
-      #body-human
-        #wrapper
-          = render 'layouts/sidebar'
-          = render 'layouts/messages'
-          - unless current_user.confirmed_at
-            = render 'layouts/not_confirmed'
-          - unless Tenant.current_tenant.onboarding_percent == 100
-            = render 'layouts/getting_started'
-          /- if Tenant.current_tenant.plan = "demo" && (Tenant.current_tenant.created_at+7.days) < Time.now
-          /X demo days left. Order system 
-          = yield
-          = rjv_tags
-    - else
+  - if user_signed_in? && current_user.member.present?
+    %body#body-human
+      #wrapper
+        = render 'layouts/sidebar'
+        = render 'layouts/messages'
+        - unless current_user.confirmed_at
+          = render 'layouts/not_confirmed'
+        - unless Tenant.current_tenant.onboarding_percent == 100
+          = render 'layouts/getting_started'
+        /- if Tenant.current_tenant.plan = "demo" && (Tenant.current_tenant.created_at+7.days) < Time.now
+        /X demo days left. Order system 
+        = yield
+        = rjv_tags
+  - else
+    %body#body-human
       #padding-50
       /further code is not under wrapper, so that wrapper gives only padding-top
       = render 'layouts/header'

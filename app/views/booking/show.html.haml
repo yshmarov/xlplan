@@ -32,7 +32,7 @@
     .text-light
       .text-center
         - if @tenant.logo.attached?
-          = image_tag @tenant.logo, height: "150px", class: "mx-auto d-inline align-top rounded"
+          = image_tag @tenant.logo, width: "200px", class: "mx-auto d-inline align-top rounded"
         - else
           .fa.fa-image{:style => "font-size:50px"}
         %h1= @tenant.name
@@ -49,7 +49,6 @@
           .col-lg-3
           .col-lg-4
             %small= simple_format(@tenant.description)
-  
   .row
     .col-lg-8
       - if @service_categories.any?
@@ -84,38 +83,39 @@
         .text-center
           %h4= t('.location_contacts')
         - @locations.each do |location|
-          .card.card-header
-            %b= location.name
-            - if location.phone_number.present?
-              .row
-              .form-inline
-                .fa.fa-phone.mr.mr-2
-                = link_to "tel:#{location.phone_number}", class: "button" do
-                  #{number_to_phone(location.phone_number)}
-            - if location.phone_number.present?
-              /https://wa.me/48537628023
-              /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=1_2_3&source=&data=", :target => "_blank"}
-              /  test
-              /https://web.whatsapp.com/send?phone=48888023488&text="HI MY LOVE"&source=&data=
-              /.row
-              /= link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
-              /  .fab.fa-whatsapp
-              /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=&source=&data=", :target => "_blank"} 
-              /  .fab.fa-whatsapp
-              /  WhatsApp
-              /.row
-              /= link_to "viber://chat?number=#{location.phone_number}", class: "button" do
-              /  .fab.fa-viber
-              /  Viber
-              /.row
-              /= link_to "tg://resolve?domain=yarotheslav", class: "button" do
-              /  .fab.fa-telegram
-              /  Telegram
-            - if location.address.present?
-              .row
-              .form-inline
-                .fa.fa-map-marker-alt.mr.mr-2
-                = location.address_line
+          .card
+            .card-header.bg-light
+              %b= location.name
+              - if location.phone_number.present?
+                .row
+                .form-inline
+                  .fa.fa-phone.mr.mr-2
+                  = link_to "tel:#{location.phone_number}", class: "button" do
+                    #{number_to_phone(location.phone_number)}
+              - if location.phone_number.present?
+                /https://wa.me/48537628023
+                /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=1_2_3&source=&data=", :target => "_blank"}
+                /  test
+                /https://web.whatsapp.com/send?phone=48888023488&text="HI MY LOVE"&source=&data=
+                /.row
+                /= link_to "https://api.whatsapp.com/send?phone=#{location.phone_number}", class: "button" do
+                /  .fab.fa-whatsapp
+                /%a{:href => "https://api.whatsapp.com/send?phone=48888023488&text=&source=&data=", :target => "_blank"} 
+                /  .fab.fa-whatsapp
+                /  WhatsApp
+                /.row
+                /= link_to "viber://chat?number=#{location.phone_number}", class: "button" do
+                /  .fab.fa-viber
+                /  Viber
+                /.row
+                /= link_to "tg://resolve?domain=yarotheslav", class: "button" do
+                /  .fab.fa-telegram
+                /  Telegram
+              - if location.address.present?
+                .row
+                .form-inline
+                  .fa.fa-map-marker-alt.mr.mr-2
+                  = location.address_line
         %p
       - if @members.any?
         .text-center

@@ -5,145 +5,12 @@
 /%head
 /  %meta{:content => "xlplan pricing", :name => "description"}/
 .jumbotron.bg-primary.text-white.text-center
-  .display-4= t('.pricing')
+  .mx-auto.text-center
+    %h1.display-4.font-weight-bold= t('.pricing')
   %p
   %h5= t('.small_investment')
   %p
   %h5= t('.best_for_you')
-.container
-  .card-deck.mb-3.text-center
-    .card.mb-4.box-shadow.border-danger
-      .card-header.bg-danger
-        %h4.my-0.font-weight-normal= t('.bronze')
-      .card-body
-        %small= t('.for_individuals')
-        %hr
-        %h2.card-title.pricing-card-title
-          €84
-          %small.text-muted / #{t(".year")}
-        %hr
-        %h2.card-title.pricing-card-title
-          (
-          €7
-          %small.text-muted / #{t(".month")}
-          )
-        %ul.list-unstyled.mt-3.mb-4
-          %b
-            %hr
-            .fa.fa-user-tie
-            #{t('.employees')}: 1
-            %hr
-            .fa.fa-map-marker-alt
-            #{t('.locations')}: 1
-            %hr
-            = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-block btn-danger'
-            %hr
-            .fa.fa-rocket
-            #{t('.free_implementation')}
-            %hr
-            .fa.fa-phone
-            #{t('.free_support')}
-    .card.mb-4.box-shadow.border-secondary
-      .card-header.bg-secondary
-        %h4.my-0.font-weight-normal= t('.silver')
-      .card-body
-        %small= t('.for_small')
-        %hr
-        %h2.card-title.pricing-card-title
-          €180
-          %small.text-muted / #{t(".year")}
-        %hr
-        %h2.card-title.pricing-card-title
-          (
-          €15
-          %small.text-muted / #{t(".month")}
-          )
-        %ul.list-unstyled.mt-3.mb-4
-          %b
-            %hr
-            .fa.fa-user-tie
-            #{t('.employees')}: 2-5
-            %hr
-            .fa.fa-map-marker-alt
-            #{t('.locations')}: 1
-            %hr
-            = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-block btn-secondary'
-            %hr
-            .fa.fa-rocket
-            #{t('.free_implementation')}
-            %hr
-            .fa.fa-phone
-            #{t('.free_support')}
-    /GOLD WITHOUT DISCOUNT
-    .card.mb-4.box-shadow.border-warning
-      .card-header.bg-warning
-        %h4.my-0.font-weight-normal= t('.gold')
-      .card-body
-        %small= t('.for_big')
-        %hr
-        %h2.card-title.pricing-card-title
-          €600
-          %small.text-muted / #{t(".year")}
-        %hr
-        %h2.card-title.pricing-card-title
-          (
-          €50
-          %small.text-muted / #{t(".month")}
-          )
-        %ul.list-unstyled.mt-3.mb-4
-          %b
-            %hr
-            .fa.fa-user-tie
-            #{t('.employees')}: #{t('.unlimited')}
-            %hr
-            .fa.fa-map-marker-alt
-            #{t('.locations')}: #{t('.unlimited')}
-            %hr
-            = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-block btn-warning'
-            %hr
-            .fa.fa-rocket
-            #{t('.free_implementation')}
-            %hr
-            .fa.fa-phone
-            #{t('.free_support')}
-    /GOLD WITH DISCOUNT
-    /.card.mb-4.box-shadow.border-warning
-    /  .card-header.bg-warning
-    /    %h4.my-0.font-weight-normal= t('.gold')
-    /  .card-body
-    /    %small= t('.for_big')
-    /    %hr
-    /    %h2.card-title.pricing-card-title
-    /      %s.text-danger
-    /        €600
-    /      %b.text-success.ml-3
-    /        €540
-    /        %small.text-muted / #{t(".year")}
-    /    %hr
-    /    %h2.card-title.pricing-card-title
-    /      (
-    /      %s.text-danger
-    /        €50
-    /      %b.text-success.ml-3
-    /        €45
-    /      %small.text-muted / #{t(".month")}
-    /      )
-    /    %ul.list-unstyled.mt-3.mb-4
-    /      %b
-    /        %hr
-    /        .fa.fa-user-tie
-    /        #{t('.employees')}: #{t('.unlimited')}
-    /        %hr
-    /        .fa.fa-map-marker-alt
-    /        #{t('.locations')}: #{t('.unlimited')}
-    /        %hr
-    /        = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-block btn-warning'
-    /        %hr
-    /        .fa.fa-rocket
-    /        #{t('.free_implementation')}
-    /        %hr
-    /        .fa.fa-phone
-    /        #{t('.free_support')}
 /.text-center
 /  = link_to features_path do
 /    .btn.btn-info
@@ -170,3 +37,95 @@
 /      r
 /  %br
 //We can have a paper contract, if you need it. However it is not required for using the service and paying legaly. In most cases, our clients work with us 
+
+
+/ Cards container
+.container.text-center
+  .row
+    / Card #1, Starter
+    .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
+      .bg-light.pricing-item{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
+        / Indicator of subscription type
+        .pt-4.pb-3{:style => "letter-spacing: 2px"}
+          %h4= t('.bronze')
+        / Price class
+        .card-body
+          %small= t('.for_individuals')
+        .pricing-price.pb-1.text-primary.color-primary-text
+          %h1{:style => "font-weight: 1000; font-size: 3.5em;"}
+            %span{:style => "   font-size: 20px;"}> €
+            7
+            %small.text-muted / #{t(".month")}
+        / Perks of said subscription
+        .pricing-description
+          %ul.list-unstyled.mt-3.mb-4
+            %hr
+            .fa.fa-user-tie
+            #{t('.employees')}: 1
+            %hr
+            .fa.fa-map-marker-alt
+            #{t('.locations')}: 1
+            %hr
+            .fa.fa-rocket
+            #{t('.free_implementation')}
+            %hr
+            .fa.fa-phone
+            #{t('.free_support')}
+        .pricing-button.pb-4
+          = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-primary w-75'
+    / Card #2, Intermediate
+    .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
+      .bg-light.pricing-item{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
+        .pt-4.pb-3{:style => "letter-spacing: 2px"}
+          %h4= t('.silver')
+        .card-body
+          %small= t('.for_small')
+        .pricing-price.pb-1.text-primary.color-primary-text
+          %h1{:style => "font-weight: 1000; font-size: 3.5em;"}
+            %span{:style => "font-size: 20px;"}> €
+            15
+            %small.text-muted / #{t(".month")}
+        .pricing-description
+          %ul.list-unstyled.mt-3.mb-4
+            %hr
+            .fa.fa-user-tie
+            #{t('.employees')}: 2-5
+            %hr
+            .fa.fa-map-marker-alt
+            #{t('.locations')}: 1
+            %hr
+            .fa.fa-rocket
+            #{t('.free_implementation')}
+            %hr
+            .fa.fa-phone
+            #{t('.free_support')}
+        .pricing-button.pb-4
+          = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-primary w-75'
+    / Card #3, Professional
+    .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
+      .bg-light.pricing-item{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
+        .pt-4.pb-3{:style => "letter-spacing: 2px"}
+          %h4= t('.gold')
+        .card-body
+          %small= t('.for_big')
+        .pricing-price.pb-1.text-primary.color-primary-text
+          %h1{:style => "font-weight: 1000; font-size: 3.5em;"}
+            %span{:style => "font-size: 20px;"}> €
+            50
+            %small.text-muted / #{t(".month")}
+        .pricing-description
+          %ul.list-unstyled.mt-3.mb-4
+            %hr
+            .fa.fa-user-tie
+            #{t('.employees')}: #{t('.unlimited')}
+            %hr
+            .fa.fa-map-marker-alt
+            #{t('.locations')}: #{t('.unlimited')}
+            %hr
+            .fa.fa-rocket
+            #{t('.free_implementation')}
+            %hr
+            .fa.fa-phone
+            #{t('.free_support')}
+        .pricing-button.pb-4
+          = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-primary w-75'

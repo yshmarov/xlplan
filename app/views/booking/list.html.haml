@@ -2,25 +2,25 @@
   XLPLAN | Online booking
 = provide(:description, 'Управление салоном красоты, ведение клиентов онлайн, программа для СТО и автомоек, онлайн запись в косметологию и бьюти-салоны, финансовая статистика')
 = provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
+
+.jumbotron.bg-primary.text-white.text-center
+  %h1 Online booking
+  %p Select a company, a service, a time that suits you. So simple! 
+
+  /= f.input :industry, collection: Tenant.industries, include_blank: false
+  /- Tenant.industries.each do |k, v|
+  /  .row
+  /  = k
+  /  = v
+  
 .container-fluid
-  %p
-  .jumbotron.bg-dark.text-white.text-center
-    %h1 Online booking
-    %p Select a company, a service, a time that suits you. So simple! 
-  
-    /= f.input :industry, collection: Tenant.industries, include_blank: false
-    /- Tenant.industries.each do |k, v|
-    /  .row
-    /  = k
-    /  = v
-  
   - @tenants.each do |tenant|
-    .card.card-header
+    .card.card-header.bg-light
       .row
         .col-md-2
           .text-center
             - if tenant.logo.attached?
-              = image_tag tenant.logo, height: "100px", class: "mx-auto d-inline align-top"
+              = image_tag tenant.logo, width: "100px", class: "mx-auto d-inline align-top"
             - else
               .fa.fa-image{:style => "font-size:50px"}
         .col-md-3

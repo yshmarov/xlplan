@@ -136,7 +136,7 @@
               - unless @member == current_user.member
                 .row
                 = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
-      %p
+    %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       %li.nav-item

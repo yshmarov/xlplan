@@ -29,6 +29,15 @@
   background: #f8f0e6;
 }
 
+.headimage {
+  max-width: 100%;
+  padding: 1em;
+}
+
+.headimage > img {
+  width: 100%;
+}
+
 #padding-50 {padding-top: 50px; }
 
 input[type=radio] {
