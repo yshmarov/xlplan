@@ -28,7 +28,7 @@
   / End of Online Booking Modal
   /%p
   
-  .jumbotron.bg-dark
+  .jumbotron#instagram
     .text-light
       .text-center
         - if @tenant.logo.attached?
@@ -38,7 +38,7 @@
         %h1= @tenant.name
         .row
         - if @tenant.website.present?
-          %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+          %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank, class: 'text-white'
     
         / Button trigger Online Booking Modal
         %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}

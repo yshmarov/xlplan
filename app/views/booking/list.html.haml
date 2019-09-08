@@ -13,7 +13,7 @@
   /  = k
   /  = v
   
-.container-fluid
+.container
   - @tenants.each do |tenant|
     .card.card-header.bg-light
       .row
@@ -28,7 +28,7 @@
           - if tenant.website.present?
             .row
             .fa.fa-globe-africa
-            = tenant.website
+            = link_to tenant.website, "http://#{tenant.website}", target: :_blank
           .row
           = tenant.industry
         .col-md-7
