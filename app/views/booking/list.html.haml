@@ -4,8 +4,11 @@
 = provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
 
 .jumbotron.bg-primary.text-white.text-center
-  %h1 Online booking
-  %p Select a company, a service, a time that suits you. So simple! 
+  .mx-auto.text-center
+    .fa.fa-4x.fa-cloud
+    %h1.display-4.font-weight-bold= t('.online_booking')
+  %p
+  %h5= t('.description')
 
   /= f.input :industry, collection: Tenant.industries, include_blank: false
   /- Tenant.industries.each do |k, v|

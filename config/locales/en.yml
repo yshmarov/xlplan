@@ -490,6 +490,9 @@ en:
   ######################################################
 
   booking:
+    list:
+      online_booking: "Online booking"
+      description: "Select a company and a service. So simple!"
     show:
       location_contacts: "Contacts"
       members_team: "Team"
