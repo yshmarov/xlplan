@@ -498,8 +498,8 @@ ru:
       members_team: "Сотрудники"
   dashboard:
     start:
-      edit_my_page: "Внесите свои контактые данные"
-      select_currency: "Внесите данные об организации"
+      select_time_zone: "Заполните свой профиль"
+      select_currency: "Основные настройки организации"
       new_member: "Добавьте дополнительных сотрудников (не обязательно)"
       new_location: "Добавьте Филиал"
       new_service_category: "Добавьте категории ваших услуг"
