@@ -4,24 +4,34 @@ class EventsController < ApplicationController
               :mark_member_cancelled, :mark_client_cancelled, :mark_no_show_refunded,
               :send_email_to_client, :send_email_to_members]
 
+  def index
+    @q = Event.ransack(params[:q])
+    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = events_path
+  end
+
   def close
     @q = Event.close.ransack(params[:q])
     @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = close_events_path
     render 'index'
   end
 
   def today
     @q = Event.today.ransack(params[:q])
     @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = today_events_path
     render 'index'
   end
 
   def tomorrow
     @q = Event.tomorrow.ransack(params[:q])
     @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = tomorrow_events_path
     render 'index'
   end
 
+  ##### BUTTONS TO CHANGE STATUS #####
 	def mark_planned
     authorize @event, :update?
     Event.public_activity_off
@@ -75,29 +85,7 @@ class EventsController < ApplicationController
     @event.create_activity :change_status, parameters: {status: @event.status}
 		redirect_to @event, notice: "Status updated to #{@event.status}"
 	end
-
-  def index
-    @q = Event.ransack(params[:q])
-    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
-
-
-    #format.json { 
-    #  render :plain => {success:true}.to_json, status: 200, content_type: 'application/json'
-    #}
-    #respond_to :json # add this line
-    #respond_to do |format|
-    #  format.html { render 'index' }
-    #  format.json { render json: @events }
-    #end
-    
-    #respond_to do |format|
-    ##  #  format.json
-    #  format.html
-    #  #format.json { render :partial => "events/index.json" }
-    #  #format.json { render json: "events/index.json" }
-    #  format.json { render 'index_as_json.html', content_type: "text/html" }
-    #end
-  end
+  ##### END BUTTONS TO CHANGE STATUS #####
 
   def show
     authorize @event

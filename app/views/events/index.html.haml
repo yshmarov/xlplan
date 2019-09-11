@@ -1,5 +1,5 @@
 - model_class = Event
-= search_form_for @q, url: events_path do |f|
+= search_form_for @q, url: @ransack_path do |f|
   .card
     .card-header
       %h5.float-left
@@ -13,7 +13,7 @@
             .fa.fa-search
             .fa.fa-chevron-down
         - else
-          = link_to "", events_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+          = link_to "", @ransack_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
         - if policy(Event).create?
           = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
     - unless params.has_key?(:q)
