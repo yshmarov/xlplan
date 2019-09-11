@@ -9,27 +9,13 @@ class ClientsController < ApplicationController
   def index
     @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
-  end
-
-  def contacts_callback
-    @contacts = request.env['omnicontacts.contacts']
-    @user = request.env['omnicontacts.user']
-    puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
-    @contacts.each do |contact|
-      puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
-    end
-
-    #@contacts = request.env['omnicontacts.contacts']
-    #@user = request.env['omnicontacts.user']
-    #puts "List of contacts of #{@user[:name]} obtained from #{params[:importer]}:"
-    #@contacts.each do |contact|
-    #  puts "Contact found: name => #{contact[:name]}, email => #{contact[:email]}"
-    #end
+    @ransack_path = clients_path
   end
 
   def bday_today
     @ransack_clients = Client.bday_today.search(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = bday_today_clients_path
     render 'index'
   end
 
@@ -37,6 +23,7 @@ class ClientsController < ApplicationController
     #with negative balance
     @ransack_clients = Client.debtors.search(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = debtors_clients_path
     render 'index'
   end
 
@@ -44,6 +31,7 @@ class ClientsController < ApplicationController
     #gender is undisclosed
     @ransack_clients = Client.no_gender.search(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = no_gender_clients_path
     render 'index'
   end
 

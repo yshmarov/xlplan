@@ -21,22 +21,24 @@
     .col-lg-7.order-0.order-lg-1
       = image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
 
-/%iframe{:frameborder => "0", :height => "1353", :marginheight => "0", :marginwidth => "0", :src => "https://docs.google.com/forms/d/e/1FAIpQLSe-PFqpellGdJEweUC-FgBhg3U1TwC31A7lK0XOh1CAsBzmmg/viewform?embedded=true", :width => "640"} Loading…
-
+/.container
+/  .row
+/    .col-lg-6
+/      /.text-center= t('.video_about')
 /      .embed-responsive.embed-responsive-16by9
 /        %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
-/
-/
-/Video - me 
-/Video - demo
-/
+/    .col-lg-6
+/      /.text-center= t('.how_it_works')
+/      .embed-responsive.embed-responsive-16by9
+/        %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
+
 /Main features
 /Online booking
-/
-/
-/Small investment - big results
-/
-/Technology
+/Электронная запись на приём
+/Онлайн-запись для клиентов
+/Учёт клиентов
+/Автоматический расчёт зарплат
+/Статистика для владельца бизнеса
 
 /#hrnotopmargin
 /%hr

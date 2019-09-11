@@ -24,10 +24,12 @@
             }
         .col-md-4
           .float-right
+            .mr.mt-1
             = link_to t('sidebar.public_page'), booking_show_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
       - else
         .col-md-8
           .float-right
+            .mr.mt-1
             = link_to edit_tenant_path, class: 'btn btn-secondary btn-sm' do 
               .fa.fa-toggle-off
               = t('sidebar.online_booking')

@@ -297,6 +297,7 @@ ru:
   events_today: "Встречи сегодня"
   events_tomorrow: "Встречи завтра"
   clients_index: "Клиенты"
+  clients_search: "Клиенты"
   clients_debtors: "Клиенты Должники"
   clients_bday_today: "ДР сегодня"
   clients_no_gender: "Клиенты без пола"

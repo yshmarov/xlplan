@@ -4,15 +4,16 @@
   /= Time.zone.now
   %p
   %small
-    = link_to booking_path, class: '' do
-      /.fa.fa-step-backward
-      booking
-    \/
-    = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
-    \/
-    = link_to booking_show_path(@tenant), class: 'text-dark' do
-      = @tenant.name
-  
+    .font-weight-light
+      = link_to booking_path, class: '' do
+        /.fa.fa-step-backward
+        booking
+      \/
+      = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
+      \/
+      = link_to booking_show_path(@tenant), class: 'text-dark' do
+        = @tenant.name
+
   / Online Booking Modal
   #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
     .modal-dialog{:role => "document"}

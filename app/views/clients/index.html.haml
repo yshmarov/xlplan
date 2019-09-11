@@ -1,6 +1,6 @@
 - model_class = Client
 /= render 'clients/form'
-= search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
+= search_form_for @ransack_clients, as: :clients_search, url: @ransack_path do |f|
   .card.bg-light
     .card-header
       .row
@@ -25,7 +25,7 @@
                 .fa.fa-search
                 .fa.fa-chevron-down
             - else
-              = link_to '', clients_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+              = link_to '', @ransack_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
             - if policy(Client).create?
               = link_to t('.new', :default => t("helpers.links.new")), new_client_path, class: 'btn btn-sm btn-primary'
     - unless params.has_key?(:clients_search)
