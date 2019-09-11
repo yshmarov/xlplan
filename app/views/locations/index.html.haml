@@ -23,7 +23,7 @@
           .row
           - if location.online_booking?
             .badge.badge-success
-              online_booking
+              = model_class.human_attribute_name(:online_booking)
           /.row
           /- if location.address?
           /  = location.address

@@ -354,7 +354,7 @@ en:
     activity: 'Activity'
     more: "More"
     settings: 'Settings'
-    tenant: "Organisation settings"
+    :: "Organisation settings"
     service_categories: "Service Categories"
     stats: 'Stats'
     my_page: 'My Page'
@@ -772,6 +772,7 @@ en:
         website: "Website"
         logo: "Logo"
         description: "Public description"
+        online_booking: "Онлайн запись"
         created_at: "Created"
         updated_at: "Updated"
       event:
@@ -838,11 +839,14 @@ en:
         member_percent: "Employee Percent"
         status: "Status"
         jobs_count: "Jobs count"
+        online_booking: "Онлайн запись"
         created_at: "Created"
         updated_at: "Updated"
       service_category:
         name: "Category"
         services_count: "Service quantity"
+        created_at: "Created"
+        updated_at: "Updated"
       location:
         name: "Name"
         contacts: "Contacts"
@@ -858,6 +862,9 @@ en:
         status: "Status"
         events_count: "Event count"
         members_count: "Employee count"
+        online_booking: "Онлайн запись"
+        created_at: "Created"
+        updated_at: "Updated"
       member:
         first_name: "First Name"
         last_name: "Last Name"
@@ -887,6 +894,7 @@ en:
         contacts: "Contacts"
         roles: "Access rights"
         time_zone: "Time Zone"
+        online_booking: "Онлайн запись"
         created_at: "Created at"
         updated_at: "Updated at"
       client:

@@ -772,6 +772,7 @@ ru:
         website: "Веб-сайт"
         logo: "Логотип"
         description: "Публичное описание"
+        online_booking: "Онлайн запись"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       event:
@@ -839,11 +840,14 @@ ru:
         member_percent: "Процентная Ставка Сотрудника"
         status: "Статус"
         jobs_count: "Кол. Работ"
+        online_booking: "Онлайн запись"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       service_category:
         name: "Категория"
         services_count: "Кол. Услуг"
+        created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
       location:
         name: "Название"
         contacts: "Контакты"
@@ -859,6 +863,9 @@ ru:
         status: "Статус"
         events_count: "Кол. Встреч"
         members_count: "Кол. Сотрудников"
+        online_booking: "Онлайн запись"
+        created_at: "Дата Создания"
+        updated_at: "Дата Изменения"
       member:
         first_name: "Имя"
         last_name: "Фамилия"
@@ -888,6 +895,7 @@ ru:
         contacts: "Контакты"
         roles: "Права Доступа"
         time_zone: "Часовой Пояс"
+        online_booking: "Онлайн запись"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       client:
