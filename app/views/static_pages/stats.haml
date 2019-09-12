@@ -1,103 +1,105 @@
-%h4
-  Tenants:
-  = Tenant.count
-  Users:
-  = User.count
-  Members:
-  = Member.unscoped.count
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th= sort_link @ransack_tenants, :id, "ID"
-        %th= sort_link @ransack_tenants, :name, "Name"
-        %th= sort_link @ransack_tenants, :plan, "Plan"
-        %th= sort_link @ransack_tenants, :locale, "Locale"
-        %th= sort_link @ransack_tenants, :default_currency, "Currency"
-        %th= sort_link @ransack_tenants, :created_at, "Created"
-
-        %th.bg-warning Client
-        %th.bg-warning Service
-        %th.bg-warning ServiceCategory
-        %th.bg-warning Event
-        %th.bg-warning Job
-        %th.bg-warning Comment
-        %th.bg-warning InboundPayment
-        %th.bg-warning Member
-        %th.bg-warning Location
-        %th.bg-warning Contact
-    %tbody
-      - @tenants.each do |tenant|
-        %tr.bg-info
-          %td= tenant.id
-          %td= tenant.name
-          %td= plan_label(tenant.plan)
-          %td= tenant.locale
-          %td= tenant.default_currency
-          %td
-            = tenant.created_at.strftime("%d/%m/%y")
-            (#{distance_of_time_in_words Time.now, tenant.created_at} ago)
-          %td= Client.unscoped.where(tenant_id: tenant.id).count 
-          %td= Service.unscoped.where(tenant_id: tenant.id).count 
-          %td= ServiceCategory.unscoped.where(tenant_id: tenant.id).count 
-          %td= Event.unscoped.where(tenant_id: tenant.id).count 
-          %td= Job.unscoped.where(tenant_id: tenant.id).count 
-          %td= Comment.unscoped.where(tenant_id: tenant.id).count 
-          %td= InboundPayment.unscoped.where(tenant_id: tenant.id).count 
-          %td= Member.unscoped.where(tenant_id: tenant.id).count 
-          %td= Location.unscoped.where(tenant_id: tenant.id).count 
-          %td= Contact.unscoped.where(tenant_id: tenant.id).count 
-        %thead.bg-light
-          %tr
-            %th memberID
-            %th Name
-            %th userID
-            %th Email
-            %th Confirmed?
-            %th Phone
-        %tbody.bg-light
-          - Member.all.unscoped.where(tenant_id: tenant.id).each do |member|
-            %tr
-              %td= member.id
-              %td= member
-              - if member.user.present?
-                %td= member.user.id
-                %td= member.user.email
-                %td= member.user.confirmed_at.present?
-              %td= member.phone_number
 %p
-.container.table-responsive
-  = will_paginate @tenants, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
-All users
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th id
-        %th email
-        %th current_sign_in_at
-        %th last_sign_in_at
-        %th current_sign_in_ip
-        %th last_sign_in_ip
-        %th Tenant
-    %tbody
-      - User.all.each do |user|
+.container-fluid
+  %h4
+    Tenants:
+    = Tenant.count
+    Users:
+    = User.count
+    Members:
+    = Member.unscoped.count
+  .table-responsive
+    %table#table1
+      %thead
         %tr
-          %th= user.id
-          %th= user.email
-          %th= user.current_sign_in_at
-          %th= user.last_sign_in_at
-          %th= user.current_sign_in_ip
-          %th= user.last_sign_in_ip
-          %th
-            - user.tenants.each do |t|
-              = t.name
-/%br
-/- Tenant.all.each do |t|
-/  %p.bg-danger
-/    = t.id  
-/    = t.name  
-/  - t.users.each do |u|
-/    %p
-/      = u.id  
-/      = u.email  
+          %th= sort_link @ransack_tenants, :id, "ID"
+          %th= sort_link @ransack_tenants, :name, "Name"
+          %th= sort_link @ransack_tenants, :plan, "Plan"
+          %th= sort_link @ransack_tenants, :locale, "Locale"
+          %th= sort_link @ransack_tenants, :default_currency, "Currency"
+          %th= sort_link @ransack_tenants, :created_at, "Created"
+  
+          %th.bg-warning Client
+          %th.bg-warning Service
+          %th.bg-warning ServiceCategory
+          %th.bg-warning Event
+          %th.bg-warning Job
+          %th.bg-warning Comment
+          %th.bg-warning InboundPayment
+          %th.bg-warning Member
+          %th.bg-warning Location
+          %th.bg-warning Contact
+      %tbody
+        - @tenants.each do |tenant|
+          %tr.bg-info
+            %td= tenant.id
+            %td= tenant.name
+            %td= plan_label(tenant.plan)
+            %td= tenant.locale
+            %td= tenant.default_currency
+            %td
+              = tenant.created_at.strftime("%d/%m/%y")
+              (#{distance_of_time_in_words Time.now, tenant.created_at} ago)
+            %td= Client.unscoped.where(tenant_id: tenant.id).count 
+            %td= Service.unscoped.where(tenant_id: tenant.id).count 
+            %td= ServiceCategory.unscoped.where(tenant_id: tenant.id).count 
+            %td= Event.unscoped.where(tenant_id: tenant.id).count 
+            %td= Job.unscoped.where(tenant_id: tenant.id).count 
+            %td= Comment.unscoped.where(tenant_id: tenant.id).count 
+            %td= InboundPayment.unscoped.where(tenant_id: tenant.id).count 
+            %td= Member.unscoped.where(tenant_id: tenant.id).count 
+            %td= Location.unscoped.where(tenant_id: tenant.id).count 
+            %td= Contact.unscoped.where(tenant_id: tenant.id).count 
+          %thead.bg-light
+            %tr
+              %th memberID
+              %th Name
+              %th userID
+              %th Email
+              %th Confirmed?
+              %th Phone
+          %tbody.bg-light
+            - Member.all.unscoped.where(tenant_id: tenant.id).each do |member|
+              %tr
+                %td= member.id
+                %td= member
+                - if member.user.present?
+                  %td= member.user.id
+                  %td= member.user.email
+                  %td= member.user.confirmed_at.present?
+                %td= member.phone_number
+  %p
+  .container.table-responsive
+    = will_paginate @tenants, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  All users
+  .table-responsive
+    %table#table1
+      %thead
+        %tr
+          %th id
+          %th email
+          %th current_sign_in_at
+          %th last_sign_in_at
+          %th current_sign_in_ip
+          %th last_sign_in_ip
+          %th Tenant
+      %tbody
+        - User.all.each do |user|
+          %tr
+            %th= user.id
+            %th= user.email
+            %th= user.current_sign_in_at
+            %th= user.last_sign_in_at
+            %th= user.current_sign_in_ip
+            %th= user.last_sign_in_ip
+            %th
+              - user.tenants.each do |t|
+                = t.name
+  /%br
+  /- Tenant.all.each do |t|
+  /  %p.bg-danger
+  /    = t.id  
+  /    = t.name  
+  /  - t.users.each do |u|
+  /    %p
+  /      = u.id  
+  /      = u.email  
