@@ -21,37 +21,58 @@
     .col-lg-7.order-0.order-lg-1
       = image_tag "https://i.imgur.com/wXm9VP4.png", style: 'height:auto;width:100%;'
 
-/.container
-/  .row
-/    .col-lg-6
-/      /.text-center= t('.video_about')
-/      .embed-responsive.embed-responsive-16by9
-/        %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
-/    .col-lg-6
-/      /.text-center= t('.how_it_works')
-/      .embed-responsive.embed-responsive-16by9
-/        %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
+.container
+  .row
+    .col-lg-6
+      %h1
+        .badge.badge-warning= t('.features')
+      %ol.list-unstyled.mt-4
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1= t('.online_booking_for_clients')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1= t('.simple_and_intuitive_online_calendar')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1= t('.automatic_event_reminders')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1= t('.client_database_with_payments_and_visit_history')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1= t('.automatic_employee_salary_calculation')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1= t('.real_time_stats_and_reports')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1= t('.solo_small_network')
+      = t('.and_more')
 
-/Main features
-/Online booking
-/Электронная запись на приём
-/Онлайн-запись для клиентов
-/Учёт клиентов
-/Автоматический расчёт зарплат
-/Статистика для владельца бизнеса
-
-/#hrnotopmargin
-/%hr
-.container.text-center
-  %h1.display-4= t('.designed_for')
+      %p
+    .col-lg-6
+      .embed-responsive.embed-responsive-16by9
+        %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
+      /%h6
+      /  %small
+      /    .text-center= t('.how_it_works')
+  %p
+    .text-center
+      = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-danger text-white'
+%hr
+.container
+  %h1.text-center
+    .badge.badge-warning= t('.designed_for')
   %p
   .row
-    .col-lg-4
-      .card.border-danger
-        .card-body.bg-light
-          %i.fa.fa-hand-holding-heart{:style => "font-size:40px;color:red"}
-          %p
-          %h5.card-title= t('.beauty_industry')
+    .col-md-4
+      .card
+        .card-body.bg-primary.text-white
+          .text-center
+            %i.fa.fa-hand-holding-heart.text-white{:style => "font-size:40px"}
+            %p
+            %h5.card-title= t('.beauty_industry')
           %hr
           .fa.fa-cut
           = t('.hair_beauty_barbershop')
@@ -71,12 +92,13 @@
           .fa.fa-hot-tub
           = t('.sauna')
       %p
-    .col-lg-4
-      .card.border-danger
-        .card-body.bg-light
-          %i.fa.fa-hospital{:style => "font-size:40px;color:red"}
-          %p
-          %h5.card-title= t('.private_medicine')
+    .col-md-4
+      .card
+        .card-body.bg-primary.text-white
+          .text-center
+            %i.fa.fa-hospital.text-white{:style => "font-size:40px"}
+            %p
+            %h5.card-title= t('.private_medicine')
           %hr
           .fa.fa-user-md
           = t('.private_clinic')
@@ -96,12 +118,13 @@
           .fa.fa-dog
           = t('.veterinary_clinic')
       %p
-    .col-lg-4
-      .card.border-danger
-        .card-body.bg-light
-          %i.fa.fa-user-tie{:style => "font-size:40px;color:red"}
-          %p
-          %h5.card-title= t('.professional_services')
+    .col-md-4
+      .card
+        .card-body.bg-primary.text-white
+          .text-center
+            %i.fa.fa-user-tie.text-white{:style => "font-size:40px"}
+            %p
+            %h5.card-title= t('.professional_services')
           %hr
           .fa.fa-wrench
           .fa.fa-people-carry
@@ -121,9 +144,6 @@
           %p
           .fa.fa-user-graduate
           = t('.tutors')
-  .text-center
-    %br
-    = link_to t(".features"), features_path, class: 'btn btn-lg btn-danger text-white'
   %p
 
 /%hr
@@ -205,7 +225,8 @@
     = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
 
 .container.text-center
-  %h1.display-4= t('.technology')
+  %h1.text-center
+    .badge.badge-warning= t('.technology')
   %p
   .card-group
     .card

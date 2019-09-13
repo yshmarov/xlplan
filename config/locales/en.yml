@@ -388,8 +388,18 @@ en:
       hero_description: "Manage employee working calendars and keep client visit & payment history in one place!"
       try_for_free: "Free 7-day trial"
       ########################################
+      features: "Features"
       how_it_works: "Video about XLPLAN"
-      features: "More about XLPLAN Features"
+      see_all_features: "See all features"
+      ########################################
+      online_booking_for_clients: "Online booking for your clients"
+      simple_and_intuitive_online_calendar: "Simple and intuitive online calendar"
+      automatic_event_reminders: "Automatic visit reminders for your clients"
+      client_database_with_payments_and_visit_history: "Client database with payment and visit history"
+      automatic_employee_salary_calculation: "Employees, access rights, salary calculation"
+      real_time_stats_and_reports: "Real time stats and reports"
+      solo_small_network: "For individual professionals, small business and chains"
+      and_more: "and more..."
       ########################################
       designed_for: "Who chooses XLPLAN"
       #industries
@@ -410,7 +420,7 @@ en:
       massage: "Massage"
       #industries
       professional_services: "Professional services"
-      car_services: "Car service center, car wash, driving school"
+      car_services: "Car service center, car wash"
       business_consulting: "Business Consulting"
       legal_consulting: "Legal Services"
       field_services: "Field services"

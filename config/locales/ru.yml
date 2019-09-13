@@ -388,8 +388,18 @@ ru:
       hero_description: "Управляйте записями на приём, ведите учёт клиентов и продаж, статистика бизнеса - всё в одном месте!"
       try_for_free: "Попробовать 7 дней бесплатно"
       ########################################
+      features: "Возможности"
       how_it_works: "Видео-обзор"
-      features: "Возможности программы"
+      see_all_features: "Посмотреть все функции"
+      ########################################
+      online_booking_for_clients: "Форма онлайн-записи для ваших клиентов"
+      simple_and_intuitive_online_calendar: "Наглядный электронный календарь записей"
+      automatic_event_reminders: "Автоматические напоминания клиенту о предстоящем визите"
+      client_database_with_payments_and_visit_history: "База клиентов с историей посещений и оплат"
+      automatic_employee_salary_calculation: "Сотрудники, права доступа, автоматический рассчёт ЗП"
+      real_time_stats_and_reports: "Подробная статистика по всем показателям"
+      solo_small_network: "Для индивидуальных специалистов, салонов и сетевого бизнеса"
+      and_more: "и много другого"
       ########################################
       designed_for: "Для кого создан XLPLAN"
       #industries
@@ -410,7 +420,7 @@ ru:
       massage: "Массажный салон"
       #industries
       professional_services: "Профессиональные услуги"
-      car_services: "Автосервис, автомойка, шиномонтаж, школа вождения"
+      car_services: "Автосервис, автомойка, шиномонтаж"
       business_consulting: "Бизнес консультации"
       legal_consulting: "Юридическая компания"
       field_services: "Выездные услуги"
