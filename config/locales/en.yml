@@ -389,7 +389,7 @@ en:
       try_for_free: "Free 7-day trial"
       ########################################
       features: "Features"
-      how_it_works: "Video about XLPLAN"
+      how_it_works: "How it works"
       see_all_features: "See all features"
       ########################################
       online_booking_for_clients: "Online booking for your clients"
@@ -428,24 +428,24 @@ en:
       tutors: "Private lessons"
       other: "Other"
       ########################################
-      why_do_you_need_it: "What for?"
+      why_do_you_need_it: "Why do You need XLPLAN?"
 
       control_business: "Control"
-      all_business_data_secure_in_one_place: "Access all your business information in one place"
-      manage_workload: "Manage all business processes"
-      more_professional: "Professional software for modern business"
+      all_business_data_secure_in_one_place: "Access all your business information in one place."
+      manage_workload: "Manage all business processes."
+      more_professional: "Professional software for modern business."
 
       save_time: "Save time"
-      automatic_reminders: "Automatic visit reminders for clients"
-      automatic_salary_calculation: "Automatic salary calculation"
-      quick_search: "Instantly find information about customers, appointments and payments"
-      automatic_marketing: "Automated marketing and messaging"
+      automatic_reminders: "Automatic visit reminders for clients."
+      automatic_salary_calculation: "Automatic salary calculation."
+      quick_search: "Instantly find information about customers, appointments and payments."
+      automatic_marketing: "Automated marketing and messaging."
 
       increase_revenue_and_grow: "Incraese revenue and grow"
-      dont_lose_clients: "Tools for client retention"
-      make_data_drived_descisions: "Make data-driven descisions"
-      growth_of_your_business_is_easier_to_manage: "Growth of your business will be easier to manage"
-      competitive_advantage: "XLPLAN - a competitive_advantage for your business"
+      dont_lose_clients: "Tools for client retention."
+      make_data_drived_descisions: "Make data-driven descisions with automatic business analytics."
+      growth_of_your_business_is_easier_to_manage: "Manage the growth of your business."
+      competitive_advantage: "XLPLAN - a competitive_advantage for your business."
       ########################################
       small_investment: "Small investment, Big results"
       pricing: "See our pricing"

@@ -54,14 +54,14 @@
     .col-lg-6
       .embed-responsive.embed-responsive-16by9
         %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
-      /%h6
-      /  %small
-      /    .text-center= t('.how_it_works')
+      %h6
+        %small
+          .text-center= t('.how_it_works')
   %p
     .text-center
       = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-danger text-white'
 %hr
-.container
+.container.mt-4
   %h1.text-center
     .badge.badge-warning= t('.designed_for')
   %p
@@ -146,64 +146,47 @@
           = t('.tutors')
   %p
 
-/%hr
-/.container-fluid
-/  .text-center
-/    %h1.display-4= t('.why_do_you_need_it')
-/    %br
-/  .row
-/    .col-lg-4
-/      .card.card-header.border-danger
-/        .text-center
-/          %i.fa.fa-calendar-check{:style => "font-size:40px;color:red"}
-/          %h3= t('.control_business')
-/      %p
-/      %i.fa.fa-calendar-check{:style => "color:red"}
-/      = t('.all_business_data_secure_in_one_place')
-/      %p
-/      %i.fa.fa-calendar-check{:style => "color:red"}
-/      = t('.online_calendar')
-/      %p
-/      %i.fa.fa-calendar-check{:style => "color:red"}
-/      = t('.more_professional')
-/      %p
-/    .col-lg-4
-/      .card.card-header.border-danger
-/        .text-center
-/          %i.fa.fa-history{:style => "font-size:40px;color:red"}
-/          %h3= t('.save_time')
-/      %p
-/      %i.fa.fa-history{:style => "color:red"}
-/      = t('.automatic_reminders')
-/      %p
-/      %i.fa.fa-history{:style => "color:red"}
-/      = t('.automatic_salary_calculation')
-/      %p
-/      %i.fa.fa-history{:style => "color:red"}
-/      = t('.quick_search')
-/      %p
-/      %i.fa.fa-history{:style => "color:red"}
-/      = t('.automatic_marketing')
-/      %p
-/    .col-lg-4
-/      .card.card-header.border-danger
-/        .text-center
-/          %i.fa.fa-chart-line{:style => "font-size:40px;color:red"}
-/          %h3= t('.increase_revenue_and_grow')
-/      %p
-/      %i.fa.fa-chart-line{:style => "color:red"}
-/      = t('.dont_lose_clients')
-/      %p
-/      %i.fa.fa-chart-line{:style => "color:red"}
-/      = t('.make_data_drived_descisions')
-/      %p
-/      %i.fa.fa-chart-line{:style => "color:red"}
-/      = t('.growth_of_your_business_is_easier_to_manage')
-/      /%p
-/      /%i.fa.fa-chart-line{:style => "color:red"}
-/      /= t('.competitive_advantage')
-/      /%p
+%hr
 
+.container-fluid
+  %h1.text-center
+    .badge.badge-warning= t('.why_do_you_need_it')
+  .row.text-center.mt-4
+    .col-lg-4
+      .card.shadow
+        .card-body
+          .py-3.text-center
+            %h1
+              .badge.badge-danger 1
+          .card-body
+            %h4.card-title= t('.control_business')
+            %p.card-text
+              = t('.all_business_data_secure_in_one_place')
+              = t('.more_professional')
+    .col-lg-4
+      .card.shadow
+        .card-body
+          .py-3.text-center
+            %h1
+              .badge.badge-danger 2
+          .card-body
+            %h4.card-title= t('.save_time')
+            %p.card-text
+              = t('.quick_search')
+              = t('.automatic_marketing')
+    .col-lg-4
+      .card.shadow
+        .card-body
+          .py-3.text-center
+            %h1
+              .badge.badge-danger 3
+          .card-body
+            %h4.card-title= t('.increase_revenue_and_grow')
+            %p.card-text
+              = t('.dont_lose_clients')
+              = t('.make_data_drived_descisions')
+              = t('.growth_of_your_business_is_easier_to_manage')
+%p
 :css
   .parallax { 
     /* The image used */
@@ -231,39 +214,39 @@
   .card-group
     .card
       .card-body.bg-light
-        %i.fa.fa-cloud-upload-alt.fa-3x{:style => "font-size:50px;color:red;"}
-        %h5.card-title= t('.in_the_cloud')
-        %p.card-text
-          %small.text-muted= t('.in_the_cloud2')
-    .card
-      .card-body.bg-light
-        %i.fa.fa-mobile-alt.fa-3x{:style => "font-size:50px;color:red;"}
-        %i.fa.fa-laptop.fa-3x{:style => "font-size:50px;color:red;"}
-        %h5.card-title= t('.any_device')
-        %p.card-text
-          %small.text-muted= t('.any_device2')
-    .card
-      .card-body.bg-light
-        %i.fa.fa-user-secret.fa-3x{:style => "font-size:50px;color:red;"}
-        %h5.card-title= t('.anonimity')
-        %p.card-text
-          %small.text-muted= t('.anonimity2')
-  .card-group
-    .card
-      .card-body.bg-light
-        %i.fa.fa-lock.fa-3x{:style => "font-size:50px;color:red;"}
-        %h5.card-title= t('.user_roles')
-        %p.card-text
-          %small.text-muted= t('.user_roles2')
-    .card
-      .card-body.bg-light
-        %i.fa.fa-shield-alt.fa-3x{:style => "font-size:50px;color:red;"}
+        %i.fa.fa-shield-alt.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.security')
         %p.card-text
           %small.text-muted= t('.security2')
     .card
       .card-body.bg-light
-        %i.fa.fa-cloud-download-alt.fa-3x{:style => "font-size:50px;color:red;"}
+        %i.fa.fa-user-secret.text-primary.fa-3x{:style => "font-size:50px;"}
+        %h5.card-title= t('.anonimity')
+        %p.card-text
+          %small.text-muted= t('.anonimity2')
+    .card
+      .card-body.bg-light
+        %i.fa.fa-lock.text-primary.fa-3x{:style => "font-size:50px;"}
+        %h5.card-title= t('.user_roles')
+        %p.card-text
+          %small.text-muted= t('.user_roles2')
+  .card-group
+    .card
+      .card-body.bg-light
+        %i.fa.fa-cloud-upload-alt.text-primary.fa-3x{:style => "font-size:50px;"}
+        %h5.card-title= t('.in_the_cloud')
+        %p.card-text
+          %small.text-muted= t('.in_the_cloud2')
+    .card
+      .card-body.bg-light
+        %i.fa.fa-mobile-alt.text-primary.fa-3x{:style => "font-size:50px;"}
+        %i.fa.fa-laptop.text-primary.fa-3x{:style => "font-size:50px;"}
+        %h5.card-title= t('.any_device')
+        %p.card-text
+          %small.text-muted= t('.any_device2')
+    .card
+      .card-body.bg-light
+        %i.fa.fa-cloud-download-alt.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.export')
         %p.card-text
           %small.text-muted= t('.export2')
