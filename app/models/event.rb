@@ -39,7 +39,7 @@ class Event < ApplicationRecord
   scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned, :no_show_refunded]) }
   #-----------------------gem rolify-------------------#
   resourcify
-  after_create :add_user_ownership
+  after_create :add_user_ownership #for CRUD policies
   after_update :add_user_ownership
   #after_destroy :destroy_user_ownership
   #remove_role 
@@ -48,17 +48,16 @@ class Event < ApplicationRecord
       user.add_role(:owner, self) unless user.has_role?(:owner, self)
     end
   end
-  ################
-  def to_s
-    #"#{service} for #{client} at #{starts_at}"
-    if client.present? && location.present?
-      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
-    else
-      id
+
+  after_destroy :remove_user_ownership
+  def remove_user_ownership
+    users.distinct.each do |user|
+      if user.has_role?(:owner, self)
+        user.remove_role(:owner, self) 
+      end
     end
   end
   #-----------------------callbacks-------------------#
-  after_create :update_status_color
   after_update :update_status_color
   #after_save :update_status_color
 
@@ -85,6 +84,19 @@ class Event < ApplicationRecord
   #validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
   #validates_date :starts_at, :on_or_after => lambda { Date.current }
   #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
+
+  ################
+
+  def to_s
+    #"#{service} for #{client} at #{starts_at}"
+    if client.present? && location.present?
+      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
+    else
+      id
+    end
+  end
+
+  ################
 
   def update_client_price
     update_column :client_price, (jobs.map(&:client_price).sum)

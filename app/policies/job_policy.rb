@@ -18,20 +18,23 @@ class JobPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin || @record.event.planned? && manager || @record.event.planned? && @record.member_id == @user.member.id
+    admin || @record.event.planned? && manager || @record.event.planned? && @user.has_role?(:owner, @record.event)
+    #admin || @record.event.planned? && manager || @record.event.planned? && @record.member_id == @user.member.id
     #@record.event.planned? && admin_or_manager_or_owner
     #admin_or_manager_or_owner
   end
 
   def update?
-    admin || @record.event.planned? && manager || @record.event.planned? && @record.member_id == @user.member.id
+    admin || @record.event.planned? && manager || @record.event.planned? && @user.has_role?(:owner, @record.event)
+    #admin || @record.event.planned? && manager || @record.event.planned? && @record.member_id == @user.member.id
     #@record.event.planned? && admin_or_manager_or_owner
     #admin_or_manager_or_owner
     #@user.has_role?(:owner, @record)
   end
 
   def destroy?
-    admin || @record.event.planned? && admin_or_manager_or_owner
+    admin || @record.event.planned? && manager || @record.event.planned? && @user.has_role?(:owner, @record.event)
+    #admin || @record.event.planned? && admin_or_manager_or_owner
     #admin_or_manager_or_owner
   end
 
