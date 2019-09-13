@@ -8,8 +8,6 @@ class Event < ApplicationRecord
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :to_s, use: :slugged
-  #-----------------------gem rolify-------------------#
-  resourcify
   #-----------------------relationships-------------------#
   #has_many_attached :images
   has_many_attached :files
@@ -39,7 +37,18 @@ class Event < ApplicationRecord
   scope :is_confirmed, -> { where(status: [:confirmed, :no_show_refunded]) }
   scope :is_cancelled, -> { where(status: [:no_show, :member_cancelled, :client_cancelled]) }
   scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned, :no_show_refunded]) }
-
+  #-----------------------gem rolify-------------------#
+  resourcify
+  after_create :add_user_ownership
+  after_update :add_user_ownership
+  #after_destroy :destroy_user_ownership
+  #remove_role 
+  def add_user_ownership
+    users.distinct.each do |user|
+      user.add_role(:owner, self) unless user.has_role?(:owner, self)
+    end
+  end
+  ################
   def to_s
     #"#{service} for #{client} at #{starts_at}"
     if client.present? && location.present?
@@ -48,7 +57,6 @@ class Event < ApplicationRecord
       id
     end
   end
-
   #-----------------------callbacks-------------------#
   after_create :update_status_color
   after_update :update_status_color

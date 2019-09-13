@@ -1,8 +1,6 @@
 class Job < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
-  #-----------------------gem rolify-------------------#
-  resourcify
   #-----------------------relationships-------------------#
   #counter_cache for job_count
   #touch to calculate balance
@@ -25,19 +23,6 @@ class Job < ApplicationRecord
   after_create :update_service_details do event.update_client_price end
   after_save :update_service_details do event.update_client_price end
   after_update :update_service_details do event.update_client_price end
-
-  #-----------------------rolify ownership-------------------#
-  after_create :add_user_ownership
-  after_update :add_user_ownership
-  #after_destroy :destroy_user_ownership
-  #remove_role 
-  def add_user_ownership
-    if self.member.user.present?
-      user = member.user
-      user.add_role(:owner, self) unless user.has_role?(:owner, self)
-      user.add_role(:owner, self.event) unless user.has_role?(:owner, self.event)
-    end
-  end
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
