@@ -2,28 +2,6 @@
   XLPLAN | Features
 = provide(:description, 'XLPLAN features. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, features, salon, management software, crm, erp, employee calendar, calendar')
-/- if I18n.locale == :en
-/  en
-/- if I18n.locale == :ru
-/  ru
-/%hr
-/.container
-/  .row
-/    .col-lg-5
-/      .text-center
-/        %h1.display-4 Online calendar
-/      .card.card-body.bg-light
-/        Still using a paper diary in #{Time.now.year}?
-/        %p
-/        XLPLAN is a professional tool for a serious business.
-/        %p
-/        Now you can have all employee calendars in one place.
-/      %p
-/      .text-center
-/        = link_to 'Start using now >>', new_user_registration_path, class: 'btn btn-lg btn-outline-warning text-dark'
-/    .col-lg-7
-/      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-
 
 /Календарь
 /Удобное расписание
@@ -77,30 +55,6 @@
 /Приложение для мастера
 /Онлайн запись
 
-/%hr
-/.container
-/  .text-center
-/    %h1.display-4= t('.core_functions')
-/  .row
-/    .col-lg-2
-/      %h4 Employee
-/      Online Calendars
-/      Salary Calculation
-/      Appointment history
-/      Salary history
-/      Access
-/      Roles
-/    .col-lg-2
-/      %h4 Client
-/      Appointment history
-/      Payment history
-/      Automatic reminders
-/      Automatic Marketing
-/    .col-lg-2
-/      %h4 Location
-/    .col-lg-2
-/      
-/    .col-lg-2
 
 .jumbotron.bg-primary.text-white.text-center
   .mx-auto.text-center
@@ -110,108 +64,137 @@
   One integrated system to effectively manage and grow your salon. 
   It is fast to learn, and simple to use.
 %p
-.row
-  .col-lg-5
-    = image_tag "https://i.imgur.com/35bJwqE.png", style: 'height:auto;width:70%;'
-  .col-lg-7
-    .text-center
-      %h4 Detailed customer records and appointment history
-    .jumbotron.bg-white
-      XLPLAN is the knowledgebase about your clients. 
-      In one place, you’ll find all the information you need to provide first-rate customer service. 
-      %p
-      %li Electronic, personalised client records
-      %li Complete history of appointments and payments
-      %li Advanced client data protection
-      %li Unlimited clients
-%hr
-.row
-  .col-lg-5
-    .text-center
-      %h4 Simple and intuitive appointment book
-    .jumbotron.bg-white
-      Manage the workload of all employees and increase productivity.
-      Wherever you are and whatever device you’re using – your appointment book is with you.
-      %p
-      %li All employee calendars in one place
-      %li No more booking errors
-      %li Manage employee workload
-      %li Instant scheduling and editing of appointments
-      %li Remote access to the calendar (for employees and managers)
-  .col-lg-7
-    = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-%hr
-.row
-  .col-lg-7
-    = image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
-  .col-lg-5
-    .text-center
-      %h4 Efficient employee management
-    .jumbotron.bg-white
-      With XLPLAN, it’ll be a piece of cake to fulfill the duties of an ideal manager. 
-      You will quickly plan your work, and easily make nessesary payments.
-      %p
-      %li Automatic calculation of commissions
-      %li Salary history
-      %li Work schedules
-      %li Detailed work reports
-      %li Organisation of work and assignment of tasks
-%hr
-.row
-  .col-lg-5
-    .text-center
-      %h4 Precise real-time statistics and reports
-    .jumbotron.bg-white
-      Having all information at hand is easier than you think. 
-      With one click, you get a full picture of the salon’s financial situation or customer satisfaction levels. 
-      Keep all numbers under control.
-      %p
-      %li Employee performance reports
-      %li Detailed financial report
-      %li Real-time cash reports
-      %li Appointment statistics and popularity of services
-      %li Customer rebooking rate report
-      %li Work time analysis
-  .col-lg-7
-    = image_tag "https://i.imgur.com/xqDvUIj.png", style: 'height:auto;width:100%;'
 
-    /SMS reminders and communication
-    /Thanks to Versum, your clients won’t forget about you. Sending them personalised messages will make them more engaged. Automatic appointment notifications will reduce the number of no-shows by up to 70%!
-    /%li SMS and email communication
-    /%li Single and bulk messaging marketing campaigns
-    /%li Automated messages, eg. birthday wishes
-    /%li Targeting the right audience
-    /%li Ready-made message templates
+.container
+  .row
+    .col-lg-5
+      .text-center
+        %h1.display-4 Online calendar
+      .card.card-body.bg-light
+        Still using a paper diary in #{Time.now.year}?
+        %p
+        XLPLAN is a professional tool for a serious business.
+        %p
+        Now you can have all employee calendars in one place.
+      %p
+      .text-center
+        = link_to 'Start using now >>', new_user_registration_path, class: 'btn btn-lg btn-outline-warning text-dark'
+    .col-lg-7
+      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
 
-/%hr
-/.row
-/  .col-lg-7
-/    /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-/  .col-lg-5
-/    .text-center
-/      %h4 Event reminders
-/    .card.card-body.bg-light
-/      %li Increase attendance rate
-/      %li Send automatic reminders via email / SMS / Messenger/ Whatsapp / Telegram / Viber
-/%hr
-/.row
-/  .col-lg-5
-/    .text-center
-/      %h4 Automatic marketing
-/    .card.card-body.bg-light
-/      %li Notify about promotion & special events via Viber, Whatsapp, email, SMS!
-/  .col-lg-7
-/    /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-/%hr
-/.row
-/  .col-lg-7
-/    /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-/  .col-lg-5
-/    %h2 Loyalty program
-/    %li Increase retention rate
-/%hr
-/.row
-/  .col-lg-5
-/    %h2 Online reservation
-/  .col-lg-7
-/    /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+%hr
+
+.container-fluid
+  .row
+    .col-lg-5
+      = image_tag "https://i.imgur.com/35bJwqE.png", style: 'height:auto;width:70%;'
+    .col-lg-7
+      .text-center
+        %h3
+          .badge.badge-warning
+            Detailed customer records and appointment history
+      .jumbotron.bg-white
+        XLPLAN is the knowledgebase about your clients. 
+        In one place, you’ll find all the information you need to provide first-rate customer service. 
+        %p
+        %li Electronic, personalised client records
+        %li Complete history of appointments and payments
+        %li Advanced client data protection
+        %li Unlimited clients
+  %hr
+  .row
+    .col-lg-5
+      .text-center
+        %h3
+          .badge.badge-warning
+            Simple and intuitive appointment book
+      .jumbotron.bg-white
+        Manage the workload of all employees and increase productivity.
+        Wherever you are and whatever device you’re using – your appointment book is with you.
+        %p
+        %li All employee calendars in one place
+        %li No more booking errors
+        %li Manage employee workload
+        %li Instant scheduling and editing of appointments
+        %li Remote access to the calendar (for employees and managers)
+    .col-lg-7
+      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      = image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
+    .col-lg-5
+      .text-center
+        %h3
+          .badge.badge-warning
+            Efficient employee management
+      .jumbotron.bg-white
+        With XLPLAN, it’ll be a piece of cake to fulfill the duties of an ideal manager. 
+        You will quickly plan your work, and easily make nessesary payments.
+        %p
+        %li Automatic calculation of commissions
+        %li Salary history
+        %li Work schedules
+        %li Detailed work reports
+        %li Organisation of work and assignment of tasks
+  %hr
+  .row
+    .col-lg-5
+      .text-center
+        %h3
+          .badge.badge-warning
+            Precise real-time statistics and reports
+      .jumbotron.bg-white
+        Having all information at hand is easier than you think. 
+        With one click, you get a full picture of the salon’s financial situation or customer satisfaction levels. 
+        Keep all numbers under control.
+        %p
+        %li Employee performance reports
+        %li Detailed financial report
+        %li Real-time cash reports
+        %li Appointment statistics and popularity of services
+        %li Customer rebooking rate report
+        %li Work time analysis
+    .col-lg-7
+      = image_tag "https://i.imgur.com/xqDvUIj.png", style: 'height:auto;width:100%;'
+  
+      /SMS reminders and communication
+      /Thanks to Versum, your clients won’t forget about you. Sending them personalised messages will make them more engaged. Automatic appointment notifications will reduce the number of no-shows by up to 70%!
+      /%li SMS and email communication
+      /%li Single and bulk messaging marketing campaigns
+      /%li Automated messages, eg. birthday wishes
+      /%li Targeting the right audience
+      /%li Ready-made message templates
+  
+  %hr
+  .row
+    .col-lg-7
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+    .col-lg-5
+      .text-center
+        %h4 Event reminders
+      .card.card-body.bg-light
+        %li Increase attendance rate
+        %li Send automatic reminders via email / SMS / Messenger/ Whatsapp / Telegram / Viber
+  %hr
+  .row
+    .col-lg-5
+      .text-center
+        %h4 Automatic marketing
+      .card.card-body.bg-light
+        %li Notify about promotion & special events via Viber, Whatsapp, email, SMS!
+    .col-lg-7
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+    .col-lg-5
+      %h2 Loyalty program
+      %li Increase retention rate
+  %hr
+  .row
+    .col-lg-5
+      %h2 Online reservation
+    .col-lg-7
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'

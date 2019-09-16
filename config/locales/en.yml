@@ -389,7 +389,7 @@ en:
       try_for_free: "Free 7-day trial"
       ########################################
       features: "Features"
-      how_it_works: "How it works"
+      how_it_works: "how it works"
       see_all_features: "See all features"
       ########################################
       online_booking_for_clients: "Online booking for your clients"
@@ -494,7 +494,7 @@ en:
       #additional_functions: "Доработка функций под дополнительные потребности Вашего бизнеса"
       faq: "Frequently asked questions"
     features:
-      features: "Product features"
+      features: "Features"
     about:
       about: "XLPLAN team"
 
