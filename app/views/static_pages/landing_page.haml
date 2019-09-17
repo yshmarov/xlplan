@@ -25,7 +25,7 @@
   .row
     .col-lg-6
       %h1
-        .badge.badge-warning= t('.features')
+        %b.bg-warning.rounded.text-center= t('.features')
       %ol.list-unstyled.mt-4
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
@@ -63,7 +63,7 @@
 %hr
 .container.mt-4
   %h1.text-center
-    .badge.badge-warning= t('.designed_for')
+    %b.bg-warning.rounded.text-center= t('.designed_for')
   %p
   .row
     .col-md-4
@@ -150,7 +150,7 @@
 
 .container-fluid
   %h1.text-center
-    .badge.badge-warning= t('.why_do_you_need_it')
+    %b.bg-warning.rounded.text-center= t('.why_do_you_need_it')
   .row.text-center.mt-4
     .col-lg-4
       .card.shadow
@@ -162,7 +162,10 @@
             %h4.card-title= t('.control_business')
             %p.card-text
               = t('.all_business_data_secure_in_one_place')
-              = t('.more_professional')
+              .row
+              = t('.online_calendar')
+              /.row
+              /= t('.more_professional')
     .col-lg-4
       .card.shadow
         .card-body
@@ -173,7 +176,8 @@
             %h4.card-title= t('.save_time')
             %p.card-text
               = t('.quick_search')
-              = t('.automatic_marketing')
+              .row
+              = t('.automation')
     .col-lg-4
       .card.shadow
         .card-body
@@ -184,8 +188,10 @@
             %h4.card-title= t('.increase_revenue_and_grow')
             %p.card-text
               = t('.dont_lose_clients')
+              .row
               = t('.make_data_drived_descisions')
-              = t('.growth_of_your_business_is_easier_to_manage')
+              /.row
+              /= t('.growth_of_your_business_is_easier_to_manage')
 %p
 :css
   .parallax { 
@@ -209,7 +215,7 @@
 
 .container.text-center
   %h1.text-center
-    .badge.badge-warning= t('.technology')
+    %b.bg-warning.rounded.text-center= t('.technology')
   %p
   .card-group
     .card
