@@ -315,6 +315,7 @@ ru:
     sign_in: "Войти"
     sign_up: "Регистрация"
     start: "Начать Сейчас"
+    apply: "Оставить заявку"
   footer:
     phone_consult: "Получите консультацию и закажите пробную версию программы по телефону"
     product: "О Продукте"
@@ -393,7 +394,7 @@ ru:
       see_all_features: "Посмотреть все функции"
       ########################################
       online_booking_for_clients: "Форма онлайн-записи для ваших клиентов"
-      simple_and_intuitive_online_calendar: "Наглядный электронный календарь записей"
+      simple_and_intuitive_online_calendar: "Наглядный электронный календарь для вас и команды"
       automatic_event_reminders: "Автоматические напоминания клиенту о предстоящем визите"
       client_database_with_payments_and_visit_history: "База клиентов с историей посещений и оплат"
       automatic_employee_salary_calculation: "Сотрудники, права доступа, автоматический рассчёт ЗП"

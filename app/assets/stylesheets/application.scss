@@ -25,6 +25,8 @@
   @import 'scheduler.min';
   @import 'scroll_bar';
 
+.fc-agendaDay-view .fc-today { background: white !important; }
+
 .gradient-purple {
   background: linear-gradient(to left, #6610f2 , #2a4054);
 }
