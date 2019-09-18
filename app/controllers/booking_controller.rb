@@ -4,6 +4,8 @@ class BookingController < ApplicationController
 
   def list
     @tenants = Tenant.online_booking.order(created_at: :desc)
+    #@q = Tenant.ransack(params[:q])
+    #@tenants = @q.result.online_booking.order(created_at: :desc)
   end
 
   def show
