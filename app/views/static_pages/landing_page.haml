@@ -24,30 +24,37 @@
 .container
   .row
     .col-lg-6
-      %h1
+      %h2
         %b.bg-warning.rounded.text-center= t('.features')
       %ol.list-unstyled.mt-4
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1= t('.online_booking_for_clients')
+          %span.pl-2.pt-1
+            = t('.online_booking_for_clients')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1= t('.simple_and_intuitive_online_calendar')
+          %span.pl-2.pt-1
+            = t('.simple_and_intuitive_online_calendar')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1= t('.automatic_event_reminders')
+          %span.pl-2.pt-1
+            = t('.automatic_event_reminders')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1= t('.client_database_with_payments_and_visit_history')
+          %span.pl-2.pt-1
+            = t('.client_database_with_payments_and_visit_history')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1= t('.automatic_employee_salary_calculation')
+          %span.pl-2.pt-1
+            = t('.automatic_employee_salary_calculation')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1= t('.real_time_stats_and_reports')
+          %span.pl-2.pt-1
+            = t('.real_time_stats_and_reports')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1= t('.solo_small_network')
+          %span.pl-2.pt-1
+            = t('.solo_small_network')
       %small= t('.and_more')
 
       %p
@@ -62,7 +69,7 @@
       = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-danger text-white'
 %hr
 .container.mt-4
-  %h1.text-center
+  %h2.text-center
     %b.bg-warning.rounded.text-center= t('.designed_for')
   %p
   .row
@@ -149,7 +156,7 @@
 %hr
 
 .container-fluid
-  %h1.text-center
+  %h2.text-center
     %b.bg-warning.rounded.text-center= t('.why_do_you_need_it')
   .row.text-center.mt-4
     .col-lg-4
@@ -214,7 +221,7 @@
     = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
 
 .container.text-center
-  %h1.text-center
+  %h2.text-center
     %b.bg-warning.rounded.text-center= t('.technology')
   %p
   .card-group

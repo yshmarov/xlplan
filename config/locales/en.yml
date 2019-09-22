@@ -498,6 +498,27 @@ en:
       faq: "Frequently asked questions"
     features:
       features: "Features"
+      one_system_to_manage_everything: "One integrated system to effectively manage and grow your salon."
+      fast_to_learn_simple_to_use: "Fast to learn, simple to use."
+
+      clients: "Client database"
+      all_in_one: "All customer information is collected in a single database with convenient search."
+      unlimited_clients: "Unlimited clients."
+      appointment_history: "Appointment history."
+      payment_history: "Payment journal. Clients can depositing funds into an account, do prepayments."
+      client_stats: "Personal statistics. Frequency of orders and customer preferences."
+      import_contacts: "Automatically import contacts from your phone and other applications."
+      personal_data_protection: "GDPR-compliant client data protection"
+
+      calendar: "Online Calendar"
+      why_online_calendar: "Replace paper diaries with a visual electronic calendar."
+      remote_access: "Remote access. Wherever you are and whatever device you’re using – your appointment book is with you."
+      control_change_data_and_cancellation: "Full control of rescheduling and cancellation. No more booking errors."
+      calendar_for_all_employees: "Schedule and workload management for all employees. "
+      easy_to_use: "Instant scheduling and editing of appointments"
+      send_invites_to_clients_and_employees: "Increase Attendance: reminders to customers and employees"
+      export_to_google_calendar: "Sync with other calendars"
+
     about:
       about: "XLPLAN team"
 

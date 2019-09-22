@@ -7,10 +7,11 @@
 .jumbotron.bg-primary.text-white.text-center
   .mx-auto.text-center
     %h1.display-4.font-weight-bold= t('.pricing')
-  %p
-  %h5= t('.small_investment')
-  %p
-  %h5= t('.best_for_you')
+  .mt-5
+  %h6
+    = t('.small_investment')
+    %p
+    = t('.best_for_you')
 /.text-center
 /  = link_to features_path do
 /    .btn.btn-info
@@ -44,7 +45,7 @@
   .row
     / Card #1, Starter
     .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
-      .bg-light.pricing-item{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
+      .bg-light{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
         / Indicator of subscription type
         .pt-4.pb-3{:style => "letter-spacing: 2px"}
           %h4= t('.bronze')
@@ -75,7 +76,7 @@
         /  = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-primary w-75'
     / Card #2, Intermediate
     .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
-      .bg-light.pricing-item{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
+      .bg-light{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
         .pt-4.pb-3{:style => "letter-spacing: 2px"}
           %h4= t('.silver')
         .card-body
@@ -103,7 +104,7 @@
         /  = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-primary w-75'
     / Card #3, Professional
     .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
-      .bg-light.pricing-item{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
+      .bg-light{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
         .pt-4.pb-3{:style => "letter-spacing: 2px"}
           %h4= t('.gold')
         .card-body

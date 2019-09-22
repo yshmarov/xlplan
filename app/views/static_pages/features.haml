@@ -2,21 +2,217 @@
   XLPLAN | Features
 = provide(:description, 'XLPLAN features. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, features, salon, management software, crm, erp, employee calendar, calendar')
+.jumbotron.bg-primary.text-white.text-center
+  .mx-auto.text-center
+    %h1.display-4.font-weight-bold= t('.features')
+  .mt-5
+  %h6
+    = t('.one_system_to_manage_everything') 
+    %p
+    = t('.fast_to_learn_simple_to_use')
+%p
+.container
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.clients')
+      %small= t('.all_in_one')
+      %ol.list-unstyled.mt-4
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.unlimited_clients')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.appointment_history')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.payment_history')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.client_stats')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.import_contacts')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.personal_data_protection')
+    .col-lg-5
+      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.calendar')
+      %small= t('.why_online_calendar')
+      %ol.list-unstyled.mt-4
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.remote_access')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.easy_to_use')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.control_change_data_and_cancellation')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.calendar_for_all_employees')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.send_invites_to_clients_and_employees')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.export_to_google_calendar')
+    .col-lg-5
+      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.online_booking')
+      .card.card-body.bg-light
+        Still using a paper diary in #{Time.now.year}?
+        %p
+        XLPLAN is a professional tool for a serious business.
+        %p
+        Now you can have all employee calendars in one place.
+      %p
+      .text-center
+        = link_to 'Start using now >>', new_user_registration_path, class: 'btn btn-lg btn-outline-warning text-dark'
 
-/Календарь
-/Удобное расписание
-/Создание визита в пару кликов
-/Полный контроль переноса и отмены визитов
-/Настройка своих статусов и наглядная визуализация текущего состояния визита
-/Вывод специалистов по рабочим местам
-/
-/Клиенты
-/Удобный учет и работа с данными клиентов
-/Наглядная история визитов
-/Автоматические статусы клиентов
-/Автоматическая сегментация клиентов по признакам
-/Регистрация входящих обращений и анализ эффективности их обработки
-/
+      /Онлайн-запись для клиентов
+      /Ваши клиенты могут самостоятельно записываться на приём в удобное для них время, даже в нерабочие часы, а СМС уведомление напомнит о запланированном визите.
+      /Не теряйте клиентов и уменьшайте нагрузку на администраторов!
+      /Онлайн-запись на приём работает через веб-сайт, а также социальные сети Facebook, Вконтакте и Instagram.
+    .col-lg-5
+      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.employees')
+
+      /Автоматический расчёт зарплат
+      /Больше не ломайте голову над тем, как рассчитать зарплату сотрудников: просто задайте фиксированный оклад и процентную ставку от проданных товаров и услуг, а Аппоинтер автоматически посчитает заработную плату для каждого работника по заданным правилам.
+
+      With XLPLAN, it’ll be a piece of cake to fulfill the duties of an ideal manager. 
+      You will quickly plan your work, and easily make nessesary payments.
+      %p
+      %li Automatic calculation of commissions
+      %li Salary history
+      %li Work schedules
+      %li Detailed work reports
+      %li Organisation of work and assignment of tasks
+      /Разграничение доступа сотрудников к разным документам, данным и отчетам
+      /Планирование графика работы сотрудников
+      /Контроль фактически отработанного времени
+      /Автоматический расчет заработной платы по различным схемам
+      /Просмотр всех действий сотрудников в системе в виде ленты активности
+    .col-lg-5
+      = image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.stats')
+      = t('by_day_month_week')
+      /Статистика для владельца бизнеса
+      /
+      /Подробная статистика, дающая полную картину о работе предприятия:
+      /
+      /Прибыль компании;
+      /Количество записей на приём по любым периодам, с возможностью сравнения аналогичных периодов по месяцам и годам;
+      /Загруженность специалистов и залов, с возможностью сравнения по периодам;
+      /Рентабельность залов и работников;
+      /Популярные услуги и товары.
+      Precise real-time statistics and reports
+      Having all information at hand is easier than you think. 
+      With one click, you get a full picture of the salon’s financial situation or customer satisfaction levels. 
+      Keep all numbers under control.
+      %p
+      %li Employee performance reports
+      %li Detailed financial report
+      %li Real-time cash reports
+      %li Appointment statistics and popularity of services
+      %li Customer rebooking rate report
+      %li Work time analysis
+      /SMS reminders and communication
+      /Thanks to Versum, your clients won’t forget about you. Sending them personalised messages will make them more engaged. Automatic appointment notifications will reduce the number of no-shows by up to 70%!
+      /%li SMS and email communication
+      /%li Single and bulk messaging marketing campaigns
+      /%li Automated messages, eg. birthday wishes
+      /%li Targeting the right audience
+      /%li Ready-made message templates
+      /%h4 Event reminders
+      /%li Increase attendance rate
+      /%li Send automatic reminders via email / SMS / Messenger/ Whatsapp / Telegram / Viber
+    .col-lg-5
+      = image_tag "https://i.imgur.com/xqDvUIj.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.process_automation')
+      %ol.list-unstyled.mt-4
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.remind_clients_about_visits')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.send_promotions')
+            Notify about promotion & special events via Viber, Whatsapp, email, SMS!
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.automatic_salary')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.automatic_stats')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.automatic_client_segmentation')
+            /Автоматические статусы клиентов
+            /Автоматическая сегментация клиентов по признакам
+    .col-lg-5
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.loyalty_program')
+      Clients can get points for purchases
+    .col-lg-5
+      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+  %hr
+  .row
+    .col-lg-7
+      %h2
+        %b.bg-warning.rounded= t('.other')
+      %li Increase retention rate
+      /Лояльность клиентов
+      /Создание sms акций
+      /Гибкие настройки скидок
+      /Система депозитов и бонусов
+      /Создание и реализация сертификатов и абонементов
+      /Автоматические отзывы после визита
+    .col-lg-5
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
 /Финансы
 /Финансовая история всех платежей
 /Простой учет всех расходов и доходов
@@ -35,20 +231,6 @@
 /Оценка рентабельности оказываемых услуг
 /Учет расходов по статьям, учет внереализационных доходов
 /
-/Лояльность клиентов
-/Создание sms акций
-/Гибкие настройки скидок
-/Система депозитов и бонусов
-/Создание и реализация сертификатов и абонементов
-/Автоматические отзывы после визита
-/
-/Управление персоналом
-/Разграничение доступа сотрудников к разным документам, данным и отчетам
-/Планирование графика работы сотрудников
-/Контроль фактически отработанного времени
-/Автоматический расчет заработной платы по различным схемам
-/Просмотр всех действий сотрудников в системе в виде ленты активности
-/
 /Другие приложения
 /Интеграция с Viber
 /Интеграция с Telegram
@@ -56,145 +238,11 @@
 /Онлайн запись
 
 
-.jumbotron.bg-primary.text-white.text-center
-  .mx-auto.text-center
-    %h1.display-4.font-weight-bold= t('.features')
-  %p
-  %h5 Discover the benefits of XLPLAN
-  One integrated system to effectively manage and grow your salon. 
-  It is fast to learn, and simple to use.
-%p
+/have full control over your business today.
+/easy access to the past and vision into the future.
+/increase loyalty, attendance.
+/manage your employees.
 
-.container
-  .row
-    .col-lg-5
-      .text-center
-        %h1.display-4 Online calendar
-      .card.card-body.bg-light
-        Still using a paper diary in #{Time.now.year}?
-        %p
-        XLPLAN is a professional tool for a serious business.
-        %p
-        Now you can have all employee calendars in one place.
-      %p
-      .text-center
-        = link_to 'Start using now >>', new_user_registration_path, class: 'btn btn-lg btn-outline-warning text-dark'
-    .col-lg-7
-      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-
-%hr
-
-.container-fluid
-  .row
-    .col-lg-5
-      = image_tag "https://i.imgur.com/35bJwqE.png", style: 'height:auto;width:70%;'
-    .col-lg-7
-      .text-center
-        %h3
-          .badge.badge-warning
-            Detailed customer records and appointment history
-      .jumbotron.bg-white
-        XLPLAN is the knowledgebase about your clients. 
-        In one place, you’ll find all the information you need to provide first-rate customer service. 
-        %p
-        %li Electronic, personalised client records
-        %li Complete history of appointments and payments
-        %li Advanced client data protection
-        %li Unlimited clients
-  %hr
-  .row
-    .col-lg-5
-      .text-center
-        %h3
-          .badge.badge-warning
-            Simple and intuitive appointment book
-      .jumbotron.bg-white
-        Manage the workload of all employees and increase productivity.
-        Wherever you are and whatever device you’re using – your appointment book is with you.
-        %p
-        %li All employee calendars in one place
-        %li No more booking errors
-        %li Manage employee workload
-        %li Instant scheduling and editing of appointments
-        %li Remote access to the calendar (for employees and managers)
-    .col-lg-7
-      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-  %hr
-  .row
-    .col-lg-7
-      = image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
-    .col-lg-5
-      .text-center
-        %h3
-          .badge.badge-warning
-            Efficient employee management
-      .jumbotron.bg-white
-        With XLPLAN, it’ll be a piece of cake to fulfill the duties of an ideal manager. 
-        You will quickly plan your work, and easily make nessesary payments.
-        %p
-        %li Automatic calculation of commissions
-        %li Salary history
-        %li Work schedules
-        %li Detailed work reports
-        %li Organisation of work and assignment of tasks
-  %hr
-  .row
-    .col-lg-5
-      .text-center
-        %h3
-          .badge.badge-warning
-            Precise real-time statistics and reports
-      .jumbotron.bg-white
-        Having all information at hand is easier than you think. 
-        With one click, you get a full picture of the salon’s financial situation or customer satisfaction levels. 
-        Keep all numbers under control.
-        %p
-        %li Employee performance reports
-        %li Detailed financial report
-        %li Real-time cash reports
-        %li Appointment statistics and popularity of services
-        %li Customer rebooking rate report
-        %li Work time analysis
-    .col-lg-7
-      = image_tag "https://i.imgur.com/xqDvUIj.png", style: 'height:auto;width:100%;'
-  
-      /SMS reminders and communication
-      /Thanks to Versum, your clients won’t forget about you. Sending them personalised messages will make them more engaged. Automatic appointment notifications will reduce the number of no-shows by up to 70%!
-      /%li SMS and email communication
-      /%li Single and bulk messaging marketing campaigns
-      /%li Automated messages, eg. birthday wishes
-      /%li Targeting the right audience
-      /%li Ready-made message templates
-  
-  %hr
-  .row
-    .col-lg-7
-      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-    .col-lg-5
-      .text-center
-        %h4 Event reminders
-      .card.card-body.bg-light
-        %li Increase attendance rate
-        %li Send automatic reminders via email / SMS / Messenger/ Whatsapp / Telegram / Viber
-  %hr
-  .row
-    .col-lg-5
-      .text-center
-        %h4 Automatic marketing
-      .card.card-body.bg-light
-        %li Notify about promotion & special events via Viber, Whatsapp, email, SMS!
-    .col-lg-7
-      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-  %hr
-  .row
-    .col-lg-7
-      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-    .col-lg-5
-      %h2 Loyalty program
-      %li Increase retention rate
-  %hr
-  .row
-    .col-lg-5
-      %h2 Online reservation
-    .col-lg-7
-      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+/BRING CLIENTS BACK - LIST OF CLIENTS THAT HAVE NOT VISITED FOR A LONG TIME
+/INCREASE ATTENDANCE - SEND REMINDERS
+/KNOW YOUR CLIENT - AUTOMATIC CATEGORISATION
