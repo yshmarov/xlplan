@@ -8,6 +8,9 @@ class StaticPagesController < ApplicationController
   end
   
   def apply
+    if current_user
+      redirect_to calendar_path
+    end
   end
   
   def features
@@ -39,6 +42,8 @@ class StaticPagesController < ApplicationController
       redirect_to calendar_path
     end
   end
+
+  before_action :authenticate, only: :stats
   
   def stats
     if current_user
@@ -47,8 +52,6 @@ class StaticPagesController < ApplicationController
     @ransack_tenants = Tenant.all.unscoped.search(params[:tenants_search], search_key: :tenants_search)
     @tenants = @ransack_tenants.result.paginate(:page => params[:page], :per_page => 50).order("created_at DESC")
   end
-
-  before_action :authenticate, only: :stats
 
   protected
   

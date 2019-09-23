@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
-  #get 'xl/list', to: 'booking#list'
-  #get '/xl/:id', to: 'booking#show'
   get 'booking', to: "booking#list"
-  #get 'booking/list'
   get '/booking/:id', to: 'booking#show', as: :booking_show
   match '/booking/:id' => 'booking#create_lead', via: [:post], as: :create_lead
-  #post 'booking/create'
-  #, via: [:post], as: :create_lead
 
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
@@ -14,7 +9,6 @@ Rails.application.routes.draw do
   get 'apply', to: 'static_pages#apply'
   get 'features', to: 'static_pages#features'
   get 'pricing', to: 'static_pages#pricing'
-  get 'about', to: 'static_pages#about'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
   get 'security', to: 'static_pages#security'
