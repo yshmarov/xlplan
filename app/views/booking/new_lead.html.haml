@@ -1,18 +1,20 @@
+/- I18n.locale = @tenant.locale
 %p
-- model_class = Lead
-.row
-  .col-lg-3
-  .col-lg-6
-    .card
-      .card-body
-        %h5
-          .fa.fa-globe-africa
-          = t('sidebar.online_booking') + ':'
-          /=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
-          .badge.badge-default
-            = @tenant.name
-        %hr
-        = render 'leads/form'
-        %p
-        = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(@tenant), :class => 'btn btn-danger'
+.container
+  - model_class = Lead
+  .row
+    .col-lg-3
+    .col-lg-6
+      .card
+        .card-body
+          %h5
+            .fa.fa-globe-africa
+            = t('sidebar.online_booking') + ':'
+            /=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+            .badge.badge-default
+              = @tenant.name
+          %hr
+          = render 'leads/form'
+          %p
+          = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(@tenant), :class => 'btn btn-danger'
 %p
