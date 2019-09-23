@@ -55,8 +55,7 @@
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
           %span.pl-2.pt-1
             = t('.solo_small_network')
-      %small= t('.and_more')
-
+      = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-danger text-white'
       %p
     .col-lg-6
       .embed-responsive.embed-responsive-16by9
@@ -64,9 +63,6 @@
       %h6
         %small
           .text-center= t('.how_it_works')
-  %p
-    .text-center
-      = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-danger text-white'
 %hr
 .container.mt-4
   %h2.text-center
@@ -216,7 +212,9 @@
 .container-fluid
   .jumbotron.parallax.text-center
     .text-white
-      %h3= t('.small_investment')
+      %h3
+        .badge.badge-warning
+          = t('.small_investment')
     %p
     = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
 

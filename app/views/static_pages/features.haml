@@ -33,6 +33,10 @@
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
           %span.pl-2.pt-1
+            = t('.loyalty_program')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
             = t('.client_stats')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
@@ -43,7 +47,7 @@
           %span.pl-2.pt-1
             = t('.personal_data_protection')
     .col-lg-5
-      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
   %hr
   .row
     .col-lg-7
@@ -82,82 +86,65 @@
     .col-lg-7
       %h2
         %b.bg-warning.rounded= t('.online_booking')
-      .card.card-body.bg-light
-        Still using a paper diary in #{Time.now.year}?
-        %p
-        XLPLAN is a professional tool for a serious business.
-        %p
-        Now you can have all employee calendars in one place.
-      %p
-      .text-center
-        = link_to 'Start using now >>', new_user_registration_path, class: 'btn btn-lg btn-outline-warning text-dark'
-
-      /Онлайн-запись для клиентов
-      /Ваши клиенты могут самостоятельно записываться на приём в удобное для них время, даже в нерабочие часы, а СМС уведомление напомнит о запланированном визите.
-      /Не теряйте клиентов и уменьшайте нагрузку на администраторов!
-      /Онлайн-запись на приём работает через веб-сайт, а также социальные сети Facebook, Вконтакте и Instagram.
+      = t('.online_booking_description')
+      %ol.list-unstyled.mt-4
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.online_booking_social')
     .col-lg-5
-      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
+      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
   %hr
   .row
     .col-lg-7
       %h2
         %b.bg-warning.rounded= t('.employees')
-
-      /Автоматический расчёт зарплат
-      /Больше не ломайте голову над тем, как рассчитать зарплату сотрудников: просто задайте фиксированный оклад и процентную ставку от проданных товаров и услуг, а Аппоинтер автоматически посчитает заработную плату для каждого работника по заданным правилам.
-
-      With XLPLAN, it’ll be a piece of cake to fulfill the duties of an ideal manager. 
-      You will quickly plan your work, and easily make nessesary payments.
-      %p
-      %li Automatic calculation of commissions
-      %li Salary history
-      %li Work schedules
-      %li Detailed work reports
-      %li Organisation of work and assignment of tasks
-      /Разграничение доступа сотрудников к разным документам, данным и отчетам
-      /Планирование графика работы сотрудников
-      /Контроль фактически отработанного времени
-      /Автоматический расчет заработной платы по различным схемам
-      /Просмотр всех действий сотрудников в системе в виде ленты активности
+      %ol.list-unstyled.mt-4
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.salary_calc')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.work_schedules')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.work_reports')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.user_access_rights')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.activity_history')
     .col-lg-5
-      = image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
+      /= image_tag "https://i.imgur.com/4ExSRFH.png", style: 'height:auto;width:100%;'
   %hr
   .row
     .col-lg-7
       %h2
         %b.bg-warning.rounded= t('.stats')
-      = t('by_day_month_week')
-      /Статистика для владельца бизнеса
-      /
-      /Подробная статистика, дающая полную картину о работе предприятия:
-      /
-      /Прибыль компании;
-      /Количество записей на приём по любым периодам, с возможностью сравнения аналогичных периодов по месяцам и годам;
-      /Загруженность специалистов и залов, с возможностью сравнения по периодам;
-      /Рентабельность залов и работников;
-      /Популярные услуги и товары.
-      Precise real-time statistics and reports
-      Having all information at hand is easier than you think. 
-      With one click, you get a full picture of the salon’s financial situation or customer satisfaction levels. 
-      Keep all numbers under control.
-      %p
-      %li Employee performance reports
-      %li Detailed financial report
-      %li Real-time cash reports
-      %li Appointment statistics and popularity of services
-      %li Customer rebooking rate report
-      %li Work time analysis
-      /SMS reminders and communication
-      /Thanks to Versum, your clients won’t forget about you. Sending them personalised messages will make them more engaged. Automatic appointment notifications will reduce the number of no-shows by up to 70%!
-      /%li SMS and email communication
-      /%li Single and bulk messaging marketing campaigns
-      /%li Automated messages, eg. birthday wishes
-      /%li Targeting the right audience
-      /%li Ready-made message templates
-      /%h4 Event reminders
-      /%li Increase attendance rate
-      /%li Send automatic reminders via email / SMS / Messenger/ Whatsapp / Telegram / Viber
+      %small= t('.precise_stats')
+      %ol.list-unstyled.mt-4
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.employee_stats')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.finance_stats')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.service_stats')
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.client_stats')
     .col-lg-5
       = image_tag "https://i.imgur.com/xqDvUIj.png", style: 'height:auto;width:100%;'
   %hr
@@ -173,11 +160,6 @@
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
           %span.pl-2.pt-1
-            = t('.send_promotions')
-            Notify about promotion & special events via Viber, Whatsapp, email, SMS!
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
             = t('.automatic_salary')
         %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
@@ -187,62 +169,10 @@
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
           %span.pl-2.pt-1
             = t('.automatic_client_segmentation')
-            /Автоматические статусы клиентов
-            /Автоматическая сегментация клиентов по признакам
+        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
+          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
+          %span.pl-2.pt-1
+            = t('.smart_reminders')
     .col-lg-5
       /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-  %hr
-  .row
-    .col-lg-7
-      %h2
-        %b.bg-warning.rounded= t('.loyalty_program')
-      Clients can get points for purchases
-    .col-lg-5
-      = image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-  %hr
-  .row
-    .col-lg-7
-      %h2
-        %b.bg-warning.rounded= t('.other')
-      %li Increase retention rate
-      /Лояльность клиентов
-      /Создание sms акций
-      /Гибкие настройки скидок
-      /Система депозитов и бонусов
-      /Создание и реализация сертификатов и абонементов
-      /Автоматические отзывы после визита
-    .col-lg-5
-      /= image_tag "https://i.imgur.com/BnGHfIf.png", style: 'height:auto;width:100%;'
-/Финансы
-/Финансовая история всех платежей
-/Простой учет всех расходов и доходов
-/Возможность внесения денежных средств в виде предоплаты
-/Гибкое распределение расходов по категориям
-/
-/SMS оповещения
-/Автоматическое оповещение при создании или отмене визита
-/Напоминания о визитах
-/Возможность отправки сообщения в карточке клиента и визита
-/История отправленных оповещений по клиенту
-/
-/Аналитика
-/Финансовый анализ деятельности
-/Эффективность работы персонала
-/Оценка рентабельности оказываемых услуг
-/Учет расходов по статьям, учет внереализационных доходов
-/
-/Другие приложения
-/Интеграция с Viber
-/Интеграция с Telegram
-/Приложение для мастера
-/Онлайн запись
-
-
-/have full control over your business today.
-/easy access to the past and vision into the future.
-/increase loyalty, attendance.
-/manage your employees.
-
-/BRING CLIENTS BACK - LIST OF CLIENTS THAT HAVE NOT VISITED FOR A LONG TIME
-/INCREASE ATTENDANCE - SEND REMINDERS
-/KNOW YOUR CLIENT - AUTOMATIC CATEGORISATION
+  %b= t('.other')

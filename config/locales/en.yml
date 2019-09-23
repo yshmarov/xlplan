@@ -506,6 +506,7 @@ en:
       unlimited_clients: "Unlimited clients."
       appointment_history: "Appointment history."
       payment_history: "Payment journal. Clients can depositing funds into an account, do prepayments."
+      loyalty_program: "Loyalty program"
       client_stats: "Personal statistics. Frequency of orders and customer preferences."
       import_contacts: "Automatically import contacts from your phone and other applications."
       personal_data_protection: "GDPR-compliant client data protection"
@@ -519,6 +520,32 @@ en:
       send_invites_to_clients_and_employees: "Increase Attendance: reminders to customers and employees"
       export_to_google_calendar: "Sync with other calendars"
 
+      online_booking: "Online booking for clients"
+      online_booking_description: "Your clients can make an appointment on their own at any time, even during non-working hours, and an SMS notification will remind you and them of the planned visit."
+      online_booking_social: "Works with your Facebook or Instagram."
+
+      employees: "Управление персоналом"
+      salary_calc: "Automatic calculation of commissions"
+      work_schedules: "Work schedules, workload management"
+      work_reports: "Detailed work & productivity reports"
+      user_access_rights: "Differentiation of employee access to different data and reports."
+      activity_history: "Easily view all actions of employees in the system."
+
+      stats: "Analytics"
+      precise_stats: "Over 20 reports. Detailed statistics that will give you a complete picture of the business"
+      employee_stats: "Employee performance reports & work time analysis"
+      finance_stats: "Detailed financial reports. All payments and expences in one place"
+      service_stats: "Appointment statistics and popularity of services"
+      client_stats: "How many new clients have you received and what is the percentage of lost clients"
+
+      process_automation: "Process automation"
+      remind_clients_about_visits: "Appointment reminders. Automatic notification when creating or canceling an appointment"
+      automatic_salary: "Automatic salary calculation"
+      automatic_stats: "Automatic business analytics"
+      automatic_client_segmentation: "Automatic customer segmentation"
+      smart_reminders: "Smart reminders"
+
+      other: "and more"
     about:
       about: "XLPLAN team"
 
