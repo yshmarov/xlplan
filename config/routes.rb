@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'booking', to: "booking#list"
+  get 'booking', to: "booking#index"
   get '/booking/:id', to: 'booking#show', as: :booking_show
   match '/booking/:id' => 'booking#create_lead', via: [:post], as: :create_lead
 

@@ -26,15 +26,15 @@
               = image_tag tenant.logo, width: "100px", class: "mx-auto d-inline align-top"
             - else
               .fa.fa-image{:style => "font-size:50px"}
-        .col-md-3
+        .col-md-4
           %b= link_to tenant.name, booking_show_path(tenant)
-          - if tenant.website.present?
-            .row
-            .fa.fa-globe-africa
-            = link_to tenant.website, "http://#{tenant.website}", target: :_blank
+          /- if tenant.website.present?
+          /  .row
+          /  .fa.fa-globe-africa
+          /  = link_to tenant.website, "http://#{tenant.website}", target: :_blank
           .row
-          = tenant.industry
-        .col-md-7
+          %small= tenant.industry
+        .col-md-6
           - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
             .card.card-header.bg-white
               .row
@@ -46,12 +46,11 @@
                     .fa.fa-clock.mr.mr-2
                     = service.duration
                     min
-                .col-lg-3
                   .form-inline
                     .fa.fa-tag.mr.mr-2
                     = number_to_currency(service.client_price_cents, unit: "#{tenant.default_currency.upcase}", format: "%n %u")
-                .col-lg-3
-                  = link_to booking_show_path(tenant), class: 'btn btn-success btn-xs btn-block' do 
+                .col-lg-6.text-right
+                  = link_to booking_show_path(tenant), class: 'btn btn-success btn-xs' do 
                     = t('sidebar.online_booking')
               %small= service.description
     %p

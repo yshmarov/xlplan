@@ -2,7 +2,7 @@ class BookingController < ApplicationController
   skip_before_action :authenticate_tenant!
   #skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing, :privacy_policy, :terms_of_service, :security, :stats, :about ]
 
-  def list
+  def index
     @tenants = Tenant.online_booking.order(created_at: :desc)
     #@q = Tenant.ransack(params[:q])
     #@tenants = @q.result.online_booking.order(created_at: :desc)
@@ -15,7 +15,7 @@ class BookingController < ApplicationController
     Tenant.set_current_tenant( @tenant )
 
     unless @tenant.online_booking
-      redirect_to booking_list_path, alert: 'This page is currently offline.'
+      redirect_to booking_index_path, alert: 'This page is currently offline.'
     end
 
     @lead = Lead.new
