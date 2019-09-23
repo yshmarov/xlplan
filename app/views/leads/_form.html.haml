@@ -12,7 +12,9 @@
     = f.input :comment
     - if @services.any?
       /= f.association :service, as: :radio_buttons, collection: @services
-      = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description
+      /= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description
+      = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
+      /, input_html: {value: @lead.service_id || params[:service_id]}
     - if @locations.any?
       = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address
       /= f.association :location, collection: @locations, prompt: "Any location"

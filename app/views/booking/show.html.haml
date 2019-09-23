@@ -14,22 +14,6 @@
       = link_to booking_show_path(@tenant), class: 'text-dark' do
         = @tenant.name
 
-  / Online Booking Modal
-  #exampleModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
-    .modal-dialog{:role => "document"}
-      .modal-content
-        .modal-header
-          %h5#exampleModalLabel.modal-title= t('sidebar.online_booking')
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-        .modal-body
-          = render 'leads/form'
-          %p
-          %button.btn.btn-danger{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.cancel"))
-
-  / End of Online Booking Modal
-  /%p
-  
   .jumbotron.gradient-purple
     .text-light
       .text-center
@@ -42,9 +26,7 @@
         - if @tenant.website.present?
           %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank, class: 'text-white'
     
-        / Button trigger Online Booking Modal
-        %button.btn.btn-success{"data-target" => "#exampleModal", "data-toggle" => "modal", :type => "button"}
-          = t('sidebar.online_booking')
+        = link_to t('sidebar.online_booking'), new_lead_path(@tenant), class: 'btn btn-success'
       - if @tenant.description.present?
         %p
         .row
@@ -71,13 +53,12 @@
                       .fa.fa-clock.mr.mr-2
                       = service.duration
                       min
-                  .col-lg-3
                     .form-inline
                       .fa.fa-tag.mr.mr-2
                       = number_to_currency(service.client_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
-                  .col-lg-3
-                    /= link_to booking_path(@tenant), class: 'btn btn-success btn-xs btn-block' do 
-                    /  = t('sidebar.online_booking')
+                  .col-lg-6.text-right
+                    = link_to new_lead_path(@tenant, service_id: service.id), class: 'btn btn-success btn-xs' do 
+                      = t('sidebar.online_booking')
                 %small= service.description
           %p
     .col-lg-4
