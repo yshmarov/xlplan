@@ -25,7 +25,8 @@
         .modal-body
           = render 'leads/form'
           %p
-          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
+          %button.btn.btn-danger{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.cancel"))
+
   / End of Online Booking Modal
   /%p
   

@@ -38,9 +38,14 @@ class BookingController < ApplicationController
   
   def new_lead
     @lead = Lead.new
-    #tenant find params needed?
+    @tenant = Tenant.find(params[:id])
     Tenant.set_current_tenant( @tenant )
-    @lead = Lead.new(lead_params)
+    #@lead = Lead.new(lead_params)
+
+    #for form
+    @members = Member.active.online_booking.order('created_at ASC')
+    @locations = Location.active.online_booking.order(events_count: :desc)
+    @services = Service.online_booking.active
   end
 
   def create_lead
