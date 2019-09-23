@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
   #pages before logging in
+  get 'apply', to: 'static_pages#apply'
   get 'features', to: 'static_pages#features'
   get 'pricing', to: 'static_pages#pricing'
   get 'about', to: 'static_pages#about'

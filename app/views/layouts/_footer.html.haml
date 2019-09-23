@@ -1,14 +1,9 @@
-%p
 %footer.bg-dark.text-white
-  /.bg-primary
-  /  %hr
-  /  .text-center
-  /    = link_to t('header.sign_up'), new_user_registration_path(plan: 'demo'), class: 'btn btn-lg btn-warning'
-  /    %hr
-  /    %h5
-  /      = t("footer.phone_consult")
-  /    %a{:href => "tel:+48-537-628-023"} +48-537-628-023
-  /  %hr
+  .bg-dark
+    %hr
+    .text-center
+      = link_to t("static_pages.landing_page.apply_for_a_demo"), apply_path, class: 'btn btn-lg btn-danger'
+    %hr
   .container.text-center.text-md-left
     .row
       .col-md-4.mx-auto
@@ -17,8 +12,6 @@
           = link_to t("footer.features"), features_path
           %p
           = link_to t("footer.pricing"), pricing_path
-          /%p
-          /= link_to t("footer.about"), about_path
       .col-md-4.mx-auto
         %h5.text-uppercase.mt-3.mb-4= t("footer.legal")
         %ul.list-unstyled

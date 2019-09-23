@@ -25,13 +25,11 @@
           %a= link_to 'Polski', root_path(locale: 'pl'), class: "dropdown-item"
         - if I18n.locale != :ru
           %a= link_to 'Русский', root_path(locale: 'ru'), class: "dropdown-item"
-  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+  %button.navbar-toggler{"aria-controls" => "navCol", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navCol", "data-toggle" => "collapse", :type => "button"}
     %span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
+  #navCol.collapse.navbar-collapse
     - unless current_user
       %ul.navbar-nav.ml-md-auto.d-md-flex
-      /  = link_to 'Features', features_path, class: 'btn btn-warning mr-sm-2'
-      /  = link_to 'Pricing', pricing_path, class: 'btn btn-warning mr-sm-2'
       %ul.navbar-nav.mr-auto
         %li.nav-item
           = link_to features_path, class: "nav-link" do 
@@ -40,22 +38,12 @@
           = link_to pricing_path, class: "nav-link" do 
             %b= t('header.pricing')
       %ul.nav.navbar-nav.navbar-right
-        /%a.btn.btn-light.mr-sm-2{:href => "tel:+48-537-628-023"}
-        /  = succeed "+48-537-628-023" do
-        /    %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
         = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-outline-danger mr-sm-2 text-light'
-        .mr.mt-1
-        /= link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
-        = link_to t("header.start"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
         /.mr.mt-1
-        /= link_to t("header.apply"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
-      /%ul.navbar-nav.mr-auto.mt-2.mt-lg-0
-      /  %li.nav-item.active
-      /    %a.nav-link{:href => "#"}
-      /      Home
-      /      %span.sr-only (current)
-      /  %li.nav-item
-      /    %a.nav-link{:href => "#"} Link
+        /= link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
+        /= link_to t("header.start"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
+        .mr.mt-1
+        = link_to t("header.apply_demo"), apply_path, class: 'btn btn-danger mr-sm-2'
     - else
       %ul.navbar-nav.ml-md-auto.d-md-flex
         %li.nav-item
