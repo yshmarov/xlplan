@@ -994,6 +994,17 @@ en:
         jobs_amount_sum: "Job price"
         payments_amount_sum: "Payment amount"
         lead_source: "Lead source"
+        lead_sources:
+          direct: "direct"
+          online_booking: "online_booking"
+          referral: "referral"
+          website: "website"
+          instagram: "instagram"
+          facebook: "facebook"
+          viber: "viber"
+          telegram: "telegram"
+          whatsapp: "whatsapp"
+          other: "other"
       inbound_payment:
         id: "Payment ID"
         client: "Client"

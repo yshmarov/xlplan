@@ -50,7 +50,7 @@
         = @client.address_line
         .row
         %b= model_class.human_attribute_name(:lead_source) + ':'
-        = @client.lead_source.to_s.humanize
+        = I18n.t(@client.lead_source, scope: [:activerecord, :attributes, :client, :lead_sources])
         .row
         .fa.fa-clock
         %b= model_class.human_attribute_name(:created_at) + ':'

@@ -994,6 +994,17 @@ ru:
         jobs_amount_sum: "Цена Работ"
         payments_amount_sum: "Сумма Оплат"
         lead_source: "Источник"
+        lead_sources:
+          direct: "напрямую"
+          online_booking: "онлайн запись"
+          referral: "по рекомендации"
+          website: "через сайт"
+          instagram: "instagram"
+          facebook: "facebook"
+          viber: "viber"
+          telegram: "telegram"
+          whatsapp: "whatsapp"
+          other: "другое"
         #genders:
         #  undisclosed: "Не выбран"
         #  male: "Мужской"
