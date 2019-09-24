@@ -13,4 +13,8 @@ class Lead < ApplicationRecord
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged
+  #-----------------------gem public_activity-------------------#
+  include PublicActivity::Model
+  #tracked owner: Proc.new{ |controller, model| controller.current_user }
+  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
 end
