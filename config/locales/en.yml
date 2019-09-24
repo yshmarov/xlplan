@@ -584,6 +584,7 @@ en:
       client_birthdays_per_year: 'Client birthdays per year'
       status_popularity: 'Status popularity'
       gender_popularity: 'Gender stats'
+      lead_source_popularity: 'Lead source popularity'
     members:
       member_stats: "Employee stats"
       productivity: "Productivity"

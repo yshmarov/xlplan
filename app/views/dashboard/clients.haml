@@ -35,3 +35,11 @@
       .card-body
         = pie_chart Client.group(:gender).count, download: true
     %p
+  .col-lg-6
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.lead_source_popularity')
+      .card-body
+        = pie_chart Client.group(:lead_source).count, download: true
+    %p

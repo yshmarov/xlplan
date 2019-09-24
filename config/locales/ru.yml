@@ -583,6 +583,7 @@ ru:
       client_birthdays_per_year: 'Дни рождения клиентов по годам'
       status_popularity: 'Популярность статусов'
       gender_popularity: 'Популярность полов'
+      lead_source_popularity: 'Источники клиентов'
     members:
       member_stats: "Статистика Сотрудников"
       productivity: "Продуктивность"
