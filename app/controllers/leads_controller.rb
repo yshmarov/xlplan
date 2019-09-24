@@ -52,7 +52,7 @@ class LeadsController < ApplicationController
 
   private
     def set_lead
-      @lead = Lead.find(params[:id])
+      @lead = Lead.friendly.find(params[:id])
     end
 
     def lead_params
