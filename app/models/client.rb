@@ -62,7 +62,7 @@ class Client < ApplicationRecord
     )
   end
   #-----------------------lead_source options--------------------------------#
-  SOURCES = [:direct, :online_booking, :referral, :website, :instagram, :facebook, :viber, :telegram, :whatsapp]
+  SOURCES = [:direct, :online_booking, :referral, :website, :instagram, :facebook, :viber, :telegram, :whatsapp, :other]
   def self.lead_sources
     SOURCES.map {|source| [source.to_s.humanize, source]}
   end

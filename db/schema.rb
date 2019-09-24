@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_084910) do
     t.boolean "personal_data_consent", default: true
     t.boolean "event_created_notifications", default: true
     t.boolean "marketing_notifications", default: true
-    t.string "lead_source"
+    t.string "lead_source", default: "direct"
     t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end
