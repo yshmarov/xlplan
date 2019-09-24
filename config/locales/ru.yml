@@ -992,6 +992,7 @@ ru:
         marketing_notifications: "Согласие на маркетинговые рассылки"
         jobs_amount_sum: "Цена Работ"
         payments_amount_sum: "Сумма Оплат"
+        lead_source: "Источник"
         #genders:
         #  undisclosed: "Не выбран"
         #  male: "Мужской"

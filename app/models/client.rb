@@ -61,6 +61,11 @@ class Client < ApplicationRecord
       parent.table[:last_name]
     )
   end
+  #-----------------------lead_source options--------------------------------#
+  SOURCES = [:direct, :online_booking, :referral, :website, :instagram, :facebook, :viber, :telegram, :whatsapp]
+  def self.lead_sources
+    SOURCES.map {|source| [source.to_s.humanize, source]}
+  end
   #-----------------------last and next event-------------------#
   def next_event
     events.where("starts_at >= ?", Time.zone.now).order("starts_at ASC").pluck(:starts_at).first

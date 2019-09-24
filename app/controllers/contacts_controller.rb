@@ -51,6 +51,7 @@ class ContactsController < ApplicationController
   	  end
   	  @client.email = @contact.email
   	  @client.phone_number = @contact.phone_number
+  	  @client.lead_source = "import"
   	  @client.save
 		@contact.update_attribute(:client_id, @client.id)
 		redirect_to contacts_list_path, notice: "Client created"
@@ -78,6 +79,7 @@ class ContactsController < ApplicationController
       #client.country = contact.country
       client.email = contact.email
       client.phone_number = contact.phone_number
+  	  client.lead_source = "import"
       #client.birthday = contact.birthday
       #client.gender = contact.gender
       #client.relation = contact.relation

@@ -992,6 +992,7 @@ en:
         marketing_notifications: "Marketing notifications"
         jobs_amount_sum: "Job price"
         payments_amount_sum: "Payment amount"
+        lead_source: "Lead source"
       inbound_payment:
         id: "Payment ID"
         client: "Client"
