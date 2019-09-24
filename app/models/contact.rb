@@ -7,4 +7,8 @@ class Contact < ApplicationRecord
   validates_uniqueness_of :import_id, scope: :tenant_id
   #-----------------------relationships-------------------#
   belongs_to :client, inverse_of: :contact, optional: true
+  #-----------------------gem public_activity-------------------#
+  #include PublicActivity::Model
+  #tracked owner: Proc.new{ |controller, model| controller.current_user }
+  #tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
 end

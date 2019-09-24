@@ -1,3 +1,4 @@
+heroku run rake db:migrate
 Lead.find_each(&:save)
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -d xplan_development latest.dump
 #######################################################
