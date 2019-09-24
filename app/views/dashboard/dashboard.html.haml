@@ -18,19 +18,19 @@
       #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
     = link_to today_events_path, class: "btn btn-outline-secondary btn-block" do
       .fa-fw.fa.fa-calendar-check
-      #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-danger'} 
+      #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
     = link_to tomorrow_events_path, class: "btn btn-outline-secondary btn-block" do
       .fa-fw.fa.fa-calendar-check
-      #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-danger'} 
+      #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
     
     %b= t('sidebar.clients')
     
-    = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.fa.fa-birthday-cake
-      #{t('sidebar.bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-danger'} 
     = link_to debtors_clients_path, class: "btn btn-outline-secondary btn-block" do
       .fa-fw.fa.fa-user
       #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
+    = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
+      .fa-fw.fa.fa-birthday-cake
+      #{t('sidebar.bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-info'} 
     = link_to no_gender_clients_path, class: "btn btn-outline-secondary btn-block" do
       .fa-fw.fa.fa-user
-      #{t('sidebar.no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-danger'} 
+      #{t('sidebar.no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-info'} 
