@@ -1004,6 +1004,7 @@ ru:
           viber: "viber"
           telegram: "telegram"
           whatsapp: "whatsapp"
+          import: "импорт контактов"
           other: "другое"
         #genders:
         #  undisclosed: "Не выбран"

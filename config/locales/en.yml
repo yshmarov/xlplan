@@ -1004,6 +1004,7 @@ en:
           viber: "viber"
           telegram: "telegram"
           whatsapp: "whatsapp"
+          import: "contact import"
           other: "other"
       inbound_payment:
         id: "Payment ID"
