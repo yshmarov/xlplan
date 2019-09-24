@@ -24,15 +24,21 @@
           - if location.online_booking?
             .badge.badge-success
               = model_class.human_attribute_name(:online_booking)
-          /.row
-          /- if location.address?
-          /  = location.address
           .row
           - if location.phone_number.present?
             .row
             .fa.fa-phone
             = link_to "tel:#{location.phone_number}", class: "button" do
               #{number_to_phone(location.phone_number)}
+            .row
+            .fab.fa-telegram-plane
+            = location.telegram
+            .row
+            .fab.fa-viber
+            = location.viber
+            .row
+            .fab.fa-whatsapp
+            = location.whatsapp
           - if location.email.present?
             .row
             .fa.fa-envelope

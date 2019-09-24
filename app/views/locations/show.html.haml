@@ -1,5 +1,5 @@
-- set_var 'locale', Tenant.current_tenant.locale
-- set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
+/- set_var 'locale', Tenant.current_tenant.locale
+/- set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
 /- set_var 'events', @jobs.map{|e| {title: e.event.client.full_name.to_s + " (" + e.service.name.to_s+")", start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - model_class = Location
 .row
@@ -20,6 +20,15 @@
           #{number_to_phone(@location.phone_number)}
         /%a{:href => "viber://chat?number=#{@location.phone_number}"}
         /  Viber
+        .row
+        .fab.fa-telegram-plane
+        = @location.telegram
+        .row
+        .fab.fa-viber
+        = @location.viber
+        .row
+        .fab.fa-whatsapp
+        = @location.whatsapp
         .row
         %b= model_class.human_attribute_name(:email) + ':'
         %a{:href => "mailto:#{@location.email}"}= @location.email
@@ -46,13 +55,14 @@
         /%b= model_class.human_attribute_name(:events_count) + ':'
         /= @location.events_count
     %p
-  .col-lg-8
-    %ul#myTab.nav.nav-tabs{:role => "tablist"}
-      %li.nav-item
-        %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
-          .fa.fa-calendar-alt
-          = t('sidebar.calendar')
-    #myTabContent.tab-content
-      #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-        %br
-        #event_calendar
+/  .col-lg-8
+/    %ul#myTab.nav.nav-tabs{:role => "tablist"}
+/      %li.nav-item
+/        %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+/          .fa.fa-calendar-alt
+/          = t('sidebar.calendar')
+/    #myTabContent.tab-content
+/      #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
+/        %br
+/        #event_calendar
+/

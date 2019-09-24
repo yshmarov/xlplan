@@ -9,7 +9,7 @@ class LocationsController < ApplicationController
   def show
     authorize @location
     #@events = @location.events
-    @events = @location.events.includes(:client, :jobs, :jobs => [:service, :member]).order("starts_at DESC")
+    #@events = @location.events.includes(:client, :jobs, :jobs => [:service, :member]).order("starts_at DESC")
   end
 
   def new
@@ -67,6 +67,7 @@ class LocationsController < ApplicationController
 
     def location_params
       params.require(:location).permit(:name, :phone_number, :email, :status, :online_booking,
+          :viber, :whatsapp, :telegram,
           address: [:country, :city, :street, :zip],
           operating_hours_attributes: [:id, :day_of_week, :closes, :opens, :valid_from, :valid_through, :_destroy])
     end

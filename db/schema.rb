@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_172819) do
+ActiveRecord::Schema.define(version: 2019_09_24_232935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,6 +246,9 @@ ActiveRecord::Schema.define(version: 2019_09_24_172819) do
     t.string "slug"
     t.integer "events_amount_sum", default: 0, null: false
     t.boolean "online_booking", default: false
+    t.string "viber", limit: 40
+    t.string "telegram", limit: 40
+    t.string "whatsapp", limit: 40
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
   end
