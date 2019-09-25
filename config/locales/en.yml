@@ -300,7 +300,9 @@ en:
   clients_search: "Clients"
   clients_debtors: "Debtors"
   clients_bday_today: "Bday today"
-  clients_no_gender: "Clients - no gender"
+  clients_no_gender: "Clients/no gender"
+  clients_no_events: "Clients/no events"
+  clients_no_future_events: "Active clients without future events"
   services: 'Services'
   service: 'Service'
   member: 'Employee'
@@ -875,6 +877,7 @@ en:
         event_id: "Event"
         service_id: "Service"
         member_id: "Employee"
+        member: "Employee"
         service_duration: "Duration"
         service_member_percent: "Employee Percent"
         client_price: "Client Price"

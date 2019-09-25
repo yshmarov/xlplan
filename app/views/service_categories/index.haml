@@ -15,7 +15,12 @@
         .col-sm-6
           %b= service_category.name
         .col-sm-3
-          = link_to "<i class='fa fa-hand-paper'></i> #{service_category.services_count}".html_safe, services_path(q: {service_category_id_eq: service_category.id}), class: "nav-link"
+          = link_to services_path(q: {service_category_id_eq: service_category.id}) do
+            .fa.fa-hand-paper
+            = service_category.services_count
+          .row
+          .fa.fa-user-tie
+          = service_category.skills.count
         .col-sm-3
           = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
           - unless service_category.services.any?

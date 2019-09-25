@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   end
 
   resources :clients do
-    get :debtors, :no_gender, :bday_today, on: :collection
+    get :debtors, :no_gender, :bday_today, :no_events, on: :collection
     collection do
       match 'search' => 'clients#search', via: [:get, :post], as: :search
     end

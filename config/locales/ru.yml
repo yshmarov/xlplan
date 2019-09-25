@@ -301,6 +301,8 @@ ru:
   clients_debtors: "Клиенты Должники"
   clients_bday_today: "ДР сегодня"
   clients_no_gender: "Клиенты без пола"
+  clients_no_events: "Клиенты без встреч"
+  clients_no_future_events: "Активные клиенты без предстоящих встреч"
   services: 'Услуги'
   service: 'Услуга'
   member: 'Сотрудник'
@@ -875,6 +877,7 @@ ru:
         event_id: "Встреча"
         service_id: "Услуга"
         member_id: "Сотрудник"
+        member: "Сотрудник"
         service_duration: "Длительность"
         service_member_percent: "Процентная Ставка Сотрудника"
         client_price: "Цена Клиента"

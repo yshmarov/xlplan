@@ -35,6 +35,22 @@ class ClientsController < ApplicationController
     render 'index'
   end
 
+  def no_events
+    #gender is undisclosed
+    @ransack_clients = Client.no_events.search(params[:clients_search], search_key: :clients_search)
+    @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @ransack_path = no_events_clients_path
+    render 'index'
+  end
+
+  #def no_future_events
+  #  #gender is undisclosed
+  #  @ransack_clients = Client.no_future_events.search(params[:clients_search], search_key: :clients_search)
+  #  @clients = @ransack_clients.result.paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+  #  @ransack_path = no_future_events_clients_path
+  #  render 'index'
+  #end
+
   def show
     authorize @client
     @events = @client.events.includes(:jobs, :jobs => [:service, :member]).order("starts_at DESC")

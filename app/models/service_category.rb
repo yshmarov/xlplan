@@ -7,7 +7,7 @@ class ServiceCategory < ApplicationRecord
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
   #-----------------------relationships-------------------#
   has_many :services, dependent: :restrict_with_error
-  has_many :skills
+  has_many :skills, dependent: :restrict_with_error
   has_many :members, through: :skills
   has_many :jobs, through: :services
   #-----------------------validation-------------------#

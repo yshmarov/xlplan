@@ -49,7 +49,7 @@ class ServiceCategoriesController < ApplicationController
     authorize @service_category
     @service_category.destroy
     if @service_category.errors.present?
-      redirect_to service_categories_url, alert: 'Service Category has associated jobs. Can not delete.'
+      redirect_to service_categories_url, alert: 'Service Category has associated services or skills. Can not delete.'
     else
       redirect_to service_categories_url, notice: 'Service Category was successfully destroyed.'
     end

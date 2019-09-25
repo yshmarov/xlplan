@@ -27,10 +27,13 @@
     
     = link_to debtors_clients_path, class: "btn btn-outline-secondary btn-block" do
       .fa-fw.fa.fa-user
-      #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
+      #{t('clients_debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
     = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
       .fa-fw.fa.fa-birthday-cake
-      #{t('sidebar.bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-info'} 
+      #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-info'} 
     = link_to no_gender_clients_path, class: "btn btn-outline-secondary btn-block" do
       .fa-fw.fa.fa-user
-      #{t('sidebar.no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-info'} 
+      #{t('clients_no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-info'} 
+    = link_to no_events_clients_path, class: "btn btn-outline-secondary btn-block" do
+      .fa-fw.fa.fa-user
+      #{t('clients_no_events')} #{content_tag :span, Client.no_events.count, class: 'badge badge-info'} 
