@@ -49,18 +49,6 @@
           = @tenant.created_at.strftime('%d/%h/%Y')
           (#{distance_of_time_in_words Time.now, @tenant.created_at})
     %p
-    %ul.list-group
-      %li.list-group-item
-        %i.fa.fa-user-tie
-        %b= t('.members')
-        %span.badge.badge-success
-          = Member.count
-      %li.list-group-item
-        %i.fa.fa-map-marker-alt
-        %b= t('.locations')
-        %span.badge.badge-success
-          = Location.count
-    %p
   .col-lg-7
     .card
       .card-header
@@ -179,4 +167,58 @@
     /        document.execCommand("copy");
     /      }
     /%p
-%p
+    .card
+      .card-header
+        %h6= t('.counters')
+    %ul.list-group
+      %li.list-group-item
+        %i.fa.fa-user-tie
+        %b= t('.members')
+        %span.badge.badge-success
+          = Member.count
+      %li.list-group-item
+        %i.fa.fa-map-marker-alt
+        %b= t('.locations')
+        %span.badge.badge-success
+          = Location.count
+      %li.list-group-item
+        %i.fa.fa-user
+        %b= t('.clients')
+        %span.badge.badge-secondary
+          = Client.count
+      %li.list-group-item
+        %i.fa.fa-hand-holding-usd
+        %b= t('.inbound_payments')
+        %span.badge.badge-secondary
+          = InboundPayment.count
+      %li.list-group-item
+        %i.fa.fa-calendar-alt
+        %b= t('.events')
+        %span.badge.badge-secondary
+          = Event.count
+      %li.list-group-item
+        %i.fa.fa-calendar
+        %b= t('.jobs')
+        %span.badge.badge-secondary
+          = Job.count
+      %li.list-group-item
+        %i.fa.fa-hand-paper
+        %b= t('.services')
+        %span.badge.badge-secondary
+          = Service.count
+      %li.list-group-item
+        %i.fa.fa-hand-paper
+        %b= t('.service_categories')
+        %span.badge.badge-secondary
+          = ServiceCategory.count
+      %li.list-group-item
+        %i.fa.fa-map-marker-alt
+        %b= t('.comments')
+        %span.badge.badge-secondary
+          = Comment.count
+      /%li.list-group-item
+      /  %i.fa.fa-user-plus
+      /  %b= t('sidebar.import_contacts')
+      /  %span.badge.badge-secondary
+      /    = Contact.count
+
