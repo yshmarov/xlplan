@@ -34,33 +34,6 @@
           .col-lg-4
             %small= simple_format(@tenant.description)
   .row
-    .col-lg-8
-      - if @service_categories.any?
-        .text-center
-          %h4= t('sidebar.services')
-        - @service_categories.each do |service_category|
-          .card
-            .card-header
-              = service_category.name
-            - service_category.services.active.online_booking.order(jobs_count: :desc).each do |service| 
-              .card-header.bg-white
-                .row
-                  .col-lg-6
-                    .form-inline
-                      .fa.fa-hand-paper.mr.mr-2
-                      %b= service.name
-                    .form-inline
-                      .fa.fa-clock.mr.mr-2
-                      = service.duration
-                      min
-                    .form-inline
-                      .fa.fa-tag.mr.mr-2
-                      = number_to_currency(service.client_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
-                  .col-lg-6.text-right
-                    = link_to new_lead_path(@tenant, service_id: service.id), class: 'btn btn-success btn-xs' do 
-                      = t('sidebar.online_booking')
-                %small= service.description
-          %p
     .col-lg-4
       - if @locations.any?
         .text-center
@@ -109,6 +82,33 @@
                 .fa.fa-user
               = member.first_name
       %p
+    .col-lg-8
+      - if @service_categories.any?
+        .text-center
+          %h4= t('sidebar.services')
+        - @service_categories.each do |service_category|
+          .card
+            .card-header
+              = service_category.name
+            - service_category.services.active.online_booking.order(jobs_count: :desc).each do |service| 
+              .card-header.bg-white
+                .row
+                  .col-lg-6
+                    .form-inline
+                      .fa.fa-hand-paper.mr.mr-2
+                      %b= service.name
+                    .form-inline
+                      .fa.fa-clock.mr.mr-2
+                      = service.duration
+                      min
+                    .form-inline
+                      .fa.fa-tag.mr.mr-2
+                      = number_to_currency(service.client_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
+                  .col-lg-6.text-right
+                    = link_to new_lead_path(@tenant, service_id: service.id), class: 'btn btn-success btn-xs' do 
+                      = t('sidebar.online_booking')
+                %small= service.description
+          %p
     /.col-lg-5
     /- set_var 'locale', @tenant.locale
     /- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s}}
