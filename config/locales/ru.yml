@@ -641,6 +641,7 @@ ru:
       create_client: "Создать Клиента"
       import_google_contacts: "Импорт Контактов Google "
       add_all: "Добавить всех"
+      connect_with_client: "Добавить к существующему клиенту"
   inbound_payments:
     index:
       title: "Оплаты"

@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   get 'contacts/add_all'
   get "/contacts/:provider/contact_callback" => "contacts#index"
   get "/contacts/failure" => "contacts#failure"
-  resources :contacts, except: [:index, :show, :destroy, :create, :new, :edit, :update] do
+  resources :contacts, except: [:index, :destroy, :create, :new, :edit, :update] do
     member do
       patch :create_client_from_contact, :fill_missing_client_data
     end

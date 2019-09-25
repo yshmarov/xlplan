@@ -642,6 +642,7 @@ en:
       create_client: "Create Client"
       import_google_contacts: "Import Google Contacts"
       add_all: "Add all"
+      connect_with_client: "Add to existing client"
   inbound_payments:
     index:
       title: "Payments"

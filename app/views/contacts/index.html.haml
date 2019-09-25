@@ -20,8 +20,7 @@
       %thead
         %tr
           %th
-            /create contact
-          /%th fill missing client data
+          /%th
           /%th import_id
           %th= model_class.human_attribute_name(:name)
           /%th first_name
@@ -50,7 +49,8 @@
                   /Client exists
             /%td
             /  - unless contact.client.present?
-            /    connect with client
+            /    = link_to t('.connect_with_client'), contact_path(contact)
+                
             /    = select_tag :product,  options_for_select(@clients , params[:client]), id: "different_option_value_html", onchange: "this.form.submit();", include_blank: "Client?"
             /    /.row
             /    /= select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})

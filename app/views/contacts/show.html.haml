@@ -1,0 +1,10 @@
+.card
+  .card-header
+    = @contact.id
+    = @contact.name
+    = @contact.phone_number
+    = @contact.email
+
+
+%p
+= link_to t('.back', :default => t("helpers.links.back")), contacts_list_path, :class => 'btn btn-secondary'
