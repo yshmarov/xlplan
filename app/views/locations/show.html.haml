@@ -14,46 +14,55 @@
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
         = @location.name
-        .row
-        %b= model_class.human_attribute_name(:phone_number) + ':'
-        = link_to "tel:#{@location.phone_number}", class: "button" do
-          #{number_to_phone(@location.phone_number)}
-        /%a{:href => "viber://chat?number=#{@location.phone_number}"}
-        /  Viber
-        .row
-        .fab.fa-telegram-plane
-        = @location.telegram
-        .row
-        .fab.fa-viber
-        = @location.viber
-        .row
-        .fab.fa-whatsapp
-        = @location.whatsapp
-        .row
-        %b= model_class.human_attribute_name(:email) + ':'
-        %a{:href => "mailto:#{@location.email}"}= @location.email
-        .row
-        %b= model_class.human_attribute_name(:address) + ':'
-        = @location.address_line
-        .row
-        %b= model_class.human_attribute_name(:status) + ':'
+
         = status_label(@location.status)
-        .row
-        %b= model_class.human_attribute_name(:online_booking) + ':'
-        = @location.online_booking
+        - if @location.online_booking?
+          .badge.badge-success
+            = model_class.human_attribute_name(:online_booking)
+        - if @location.address.present?
+          .row.mt-1
+          .form-inline
+            .fa.fa-map-marker-alt.mr.mr-2
+            = @location.address_line
+        - if @location.phone_number.present?
+          .row.mt-1
+          .form-inline
+            = link_to "tel:#{@location.phone_number}", class: "btn btn-outline-secondary btn-block" do
+              .fa.fa-phone.mr.mr-2
+              #{number_to_phone(@location.phone_number)}
+        - if @location.whatsapp.present?
+          .row.mt-1
+          /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
+          = link_to "https://wa.me/#{@location.whatsapp}", class: "btn btn-outline-success btn-block", :target => "_blank" do
+            .fab.fa-whatsapp
+            WhatsApp
+        - if @location.viber.present?
+          .row.mt-1
+          = link_to "viber://chat?number=#{@location.viber}", class: "btn btn-outline-secondary btn-block" do
+            .fab.fa-viber
+            Viber
+        - if @location.telegram.present?
+          .row.mt-1
+          = link_to "tg://resolve?domain=#{@location.telegram}", class: "btn btn-outline-info btn-block" do
+            .fab.fa-telegram-plane
+            Telegram
+        - if @location.email.present?
+          .row.mt-1
+          = link_to "mailto:#{@location.email}", class: "btn btn-outline-secondary btn-block" do
+            .fa.fa-envelope
+            = @location.email
         %hr
-        .fa.fa-calendar-check
-        %b= model_class.human_attribute_name(:events_amount_sum) + ':'
-        = number_to_currency(@location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        (#{@location.events_count})
-        /.row
-        /.fa.fa-balance-scale
-        /%b= model_class.human_attribute_name(:balance) + ':'
-        /= number_to_currency(@location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        /.row
-        /.fa.fa-calendar
-        /%b= model_class.human_attribute_name(:events_count) + ':'
-        /= @location.events_count
+        /ADMIN - stats
+        - if current_user.has_role?(:admin)
+          .fa.fa-calendar-check
+          = number_to_currency(@location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          (#{@location.events_count})
+          .row
+          /.fa.fa-balance-scale
+          .fas.fa-cash-register
+          = number_to_currency(@location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          /.row
+          /.fa.fa-hand-holding-usd
     %p
 /  .col-lg-8
 /    %ul#myTab.nav.nav-tabs{:role => "tablist"}

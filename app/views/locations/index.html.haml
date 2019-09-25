@@ -20,32 +20,41 @@
           .fa.fa-map-marker-alt
           = link_to location.name, location_path(location) if policy(location).show?
           = status_label(location.status)
-          .row
           - if location.online_booking?
             .badge.badge-success
               = model_class.human_attribute_name(:online_booking)
-          .row
-          - if location.phone_number.present?
-            .row
-            .fa.fa-phone
-            = link_to "tel:#{location.phone_number}", class: "button" do
-              #{number_to_phone(location.phone_number)}
-            .row
-            .fab.fa-telegram-plane
-            = location.telegram
-            .row
-            .fab.fa-viber
-            = location.viber
-            .row
-            .fab.fa-whatsapp
-            = location.whatsapp
-          - if location.email.present?
-            .row
-            .fa.fa-envelope
-            %a{:href => "mailto:#{location.email}"}= location.email
           - if location.address.present?
-            .row
-            = location.address_line
+            .row.mt-1
+            .form-inline
+              .fa.fa-map-marker-alt.mr.mr-2
+              = location.address_line
+          - if location.phone_number.present?
+            .row.mt-1
+            .form-inline
+              = link_to "tel:#{location.phone_number}", class: "btn btn-outline-secondary btn-block" do
+                .fa.fa-phone.mr.mr-2
+                #{number_to_phone(location.phone_number)}
+          - if location.whatsapp.present?
+            .row.mt-1
+            /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
+            = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-outline-success btn-block", :target => "_blank" do
+              .fab.fa-whatsapp
+              WhatsApp
+          - if location.viber.present?
+            .row.mt-1
+            = link_to "viber://chat?number=#{location.viber}", class: "btn btn-outline-secondary btn-block" do
+              .fab.fa-viber
+              Viber
+          - if location.telegram.present?
+            .row.mt-1
+            = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-outline-info btn-block" do
+              .fab.fa-telegram-plane
+              Telegram
+          - if location.email.present?
+            .row.mt-1
+            = link_to "mailto:#{location.email}", class: "btn btn-outline-secondary btn-block" do
+              .fa.fa-envelope
+              = location.email
         .col-sm-2
           = link_to "<i class='fa fa-user-tie'></i> #{location.members_count}".html_safe, members_path(members_search: {location_id_eq: location.id}), class: "nav-link"
 

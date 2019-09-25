@@ -42,6 +42,11 @@
           .card
             .card-header.bg-light
               %b= location.name
+              - if location.address.present?
+                .row.mt-1
+                .form-inline
+                  .fa.fa-map-marker-alt.mr.mr-2
+                  = location.address_line
               - if location.phone_number.present?
                 .row.mt-1
                 .form-inline
@@ -51,7 +56,7 @@
               - if location.whatsapp.present?
                 .row.mt-1
                 /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-outline-secondary btn-block", :target => "_blank" do
+                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-outline-success btn-block", :target => "_blank" do
                   .fab.fa-whatsapp
                   WhatsApp
               - if location.viber.present?
@@ -61,14 +66,14 @@
                   Viber
               - if location.telegram.present?
                 .row.mt-1
-                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-outline-secondary btn-block" do
+                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-outline-info btn-block" do
                   .fab.fa-telegram-plane
                   Telegram
-              - if location.address.present?
+              - if location.email.present?
                 .row.mt-1
-                .form-inline
-                  .fa.fa-map-marker-alt.mr.mr-2
-                  = location.address_line
+                = link_to "mailto:#{location.email}", class: "btn btn-outline-secondary btn-block" do
+                  .fa.fa-envelope
+                  = location.email
         %p
       - if @members.any?
         .text-center

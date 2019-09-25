@@ -5,10 +5,10 @@
 
   .form-inputs
     = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
-    = f.input :phone_number
-    = f.input :viber
-    = f.input :whatsapp
-    = f.input :telegram
+    = f.input :phone_number, hint: 'Country code & phone number: +380505532699'
+    = f.input :viber, hint: 'Country code & phone: +380505532699'
+    = f.input :whatsapp, hint: 'Country code & phone: 380505532699'
+    = f.input :telegram, hint: 'Nickname: yarotheslav'
     = f.input :email
     /= f.input :address
     / #### ADDRESS FIELD STARTS HERE ####
