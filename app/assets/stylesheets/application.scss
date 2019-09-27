@@ -110,8 +110,12 @@ input[type=radio] {
 }
 
 .btn-purple {
-    background-color:#6610f2;
-    color:white;
+    color: #fff;
+    background-color: #6610f2;
+}
+.btn-purple:hover, .btn-purple:focus, .btn-purple:active, .btn-purple.active, .open>.dropdown-toggle.btn-purple {
+    color: #fff;
+    background-color: #340087;
 }
 
 .navbar .navbar-nav .dropdown-menu {
