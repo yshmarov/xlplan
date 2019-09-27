@@ -50,28 +50,28 @@
               - if location.phone_number.present?
                 .row.mt-1
                 .form-inline
-                  = link_to "tel:#{location.phone_number}", class: "btn btn-outline-secondary btn-block" do
+                  = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-block" do
                     .fa.fa-phone.mr.mr-2
                     #{number_to_phone(location.phone_number)}
               - if location.whatsapp.present?
                 .row.mt-1
                 /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-outline-success btn-block", :target => "_blank" do
+                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-block", :target => "_blank" do
                   .fab.fa-whatsapp
                   WhatsApp
               - if location.viber.present?
                 .row.mt-1
-                = link_to "viber://chat?number=#{location.viber}", class: "btn btn-outline-secondary btn-block" do
+                = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-block" do
                   .fab.fa-viber
                   Viber
               - if location.telegram.present?
                 .row.mt-1
-                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-outline-info btn-block" do
+                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-block" do
                   .fab.fa-telegram-plane
                   Telegram
               - if location.email.present?
                 .row.mt-1
-                = link_to "mailto:#{location.email}", class: "btn btn-outline-secondary btn-block" do
+                = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-block" do
                   .fa.fa-envelope
                   = location.email
         %p
