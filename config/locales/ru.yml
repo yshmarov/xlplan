@@ -1046,3 +1046,4 @@ ru:
         starts_at: "Желаемое время"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
+        conditions_consent: "Согласен с правилами пользования"

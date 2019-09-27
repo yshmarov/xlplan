@@ -20,6 +20,7 @@
       /= f.association :location, collection: @locations, prompt: "Any location"
     - if @members.any?
       = f.association :member, as: :radio_buttons, collection: @members
+    = f.input :conditions_consent
   %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'

@@ -1043,3 +1043,4 @@ en:
         starts_at: "Preferred time"
         created_at: "Created"
         updated_at: "Updated"
+        conditions_consent: "I agree to the terms and conditions"

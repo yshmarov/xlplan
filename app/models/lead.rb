@@ -10,6 +10,7 @@ class Lead < ApplicationRecord
   validates :comment, length: { maximum: 500 }
   validates :first_name, :last_name, length: { maximum: 144 }
   validates :first_name, :last_name, :phone_number, presence: true
+  validates :conditions_consent, presence: true
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged
