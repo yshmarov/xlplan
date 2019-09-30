@@ -1,25 +1,26 @@
-%p
-.row
-  .col-lg-3
-  .col-lg-6
-    .card.card-default
-      .card-header
-        %h5= t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions')
-      .card-body
-        = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, role: "form" }) do |f|
-          .form-group
-            = f.label :email
-            = f.email_field :email, autofocus: true, class: "form-control"
-          = f.submit t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions'), class: "btn btn-primary"
-        %hr
-        = render "devise/shared/links"
-
-/%h2 Resend confirmation instructions
-/= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-/  = f.error_notification
-/  = f.full_error :confirmation_token
-/  .form-inputs
-/    = f.input :email, required: true, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), input_html: { autocomplete: "email" }                                                    |
-/  .form-actions
-/    = f.button :submit, "Resend confirmation instructions"
-/= render "devise/shared/links"
+.container
+  %p
+  .row
+    .col-lg-3
+    .col-lg-6
+      .card.card-default
+        .card-header
+          %h5= t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions')
+        .card-body
+          = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, role: "form" }) do |f|
+            .form-group
+              = f.label :email
+              = f.email_field :email, autofocus: true, class: "form-control"
+            = f.submit t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions'), class: "btn btn-primary"
+          %hr
+          = render "devise/shared/links"
+  
+  /%h2 Resend confirmation instructions
+  /= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+  /  = f.error_notification
+  /  = f.full_error :confirmation_token
+  /  .form-inputs
+  /    = f.input :email, required: true, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), input_html: { autocomplete: "email" }                                                    |
+  /  .form-actions
+  /    = f.button :submit, "Resend confirmation instructions"
+  /= render "devise/shared/links"

@@ -1,43 +1,44 @@
-%p
-.row
-  .col-lg-3
-  .col-lg-6
-    .card.card-default
-      .card-header
-        %h5= t('.sign_up', :default => "Sign up")
-      .card-body
-        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-          = f.error_notification
-          /= devise_error_messages!
-          = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
-          = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" }
-          = f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" }
+.container
+  %p
+  .row
+    .col-lg-3
+    .col-lg-6
+      .card.card-default
+        .card-header
+          %h5= t('.sign_up', :default => "Sign up")
+        .card-body
+          = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = f.error_notification
+            /= devise_error_messages!
+            = f.input :email, required: true, autofocus: true, input_html: { autocomplete: "email" }
+            = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: "new-password" }
+            = f.input :password_confirmation, required: true, input_html: { autocomplete: "new-password" }
+            %hr
+            = simple_fields_for(:tenant) do |w|
+              = w.error_notification
+              = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
+              /= w.error :name
+              - if I18n.locale == :ru
+                = w.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+              - elsif I18n.locale == :pl
+                = w.input :locale, collection: [['Polski', 'pl'], ['English', 'en'], ['Русский', 'ru']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+              - else I18n.locale == :en
+                = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
+            - if ::Milia.use_coupon
+              - @coupon ||= {}
+              = label_tag( 'coupon', 'Coupon code', :class => "label" )
+              = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
+            - if ::Milia.use_recaptcha
+              = recaptcha_tags
+            %hr
+            = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary btn-block"
+            %small
+              .row
+              = t('by_creating_an_account_you_accept_the')
+              = link_to t("footer.terms_of_service"), terms_of_service_path
+              .row
+              = link_to t("footer.privacy_policy"), privacy_policy_path
+              = t('click_to_view')
           %hr
-          = simple_fields_for(:tenant) do |w|
-            = w.error_notification
-            = w.input :name, label: "#{t('activerecord.attributes.tenant.name')}", input_html: { autocomplete: "organization" }
-            /= w.error :name
-            - if I18n.locale == :ru
-              = w.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
-            - elsif I18n.locale == :pl
-              = w.input :locale, collection: [['Polski', 'pl'], ['English', 'en'], ['Русский', 'ru']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
-            - else I18n.locale == :en
-              = w.input :locale, collection: [['English', 'en'], ['Русский', 'ru'], ['Polski', 'pl']], include_blank: false, label: "#{t('activerecord.attributes.tenant.locale')}"
-          - if ::Milia.use_coupon
-            - @coupon ||= {}
-            = label_tag( 'coupon', 'Coupon code', :class => "label" )
-            = text_field_tag( "coupon[coupon]", @coupon['coupon'].to_s, :size => 8, :class => "text_field" )
-          - if ::Milia.use_recaptcha
-            = recaptcha_tags
-          %hr
-          = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-primary btn-block"
-          %small
-            .row
-            = t('by_creating_an_account_you_accept_the')
-            = link_to t("footer.terms_of_service"), terms_of_service_path
-            .row
-            = link_to t("footer.privacy_policy"), privacy_policy_path
-            = t('click_to_view')
-        %hr
-        = render "devise/shared/links"
-%br
+          = render "devise/shared/links"
+  %br
