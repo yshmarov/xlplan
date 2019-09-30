@@ -39,7 +39,8 @@
       /further code is not under wrapper, so that wrapper gives only padding-top
       = render 'layouts/header'
       = render 'layouts/messages'
-      = yield
+      .container
+        = yield
       /= rjv_tags
       - unless controller_name == 'booking'
         = render 'layouts/footer'
