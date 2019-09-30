@@ -26,10 +26,7 @@ class Client < ApplicationRecord
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   validates :gender, inclusion: %w(male female undisclosed)
-  #email has to be present with below validation
-  #validates :email, uniqueness: { case_sensitive: false }
-  #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
-  #validates :email, format: { with: VALID_EMAIL_REGEX }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   #-----------------------serialization-------------------#
   #serialize :address, Hash
   serialize :address

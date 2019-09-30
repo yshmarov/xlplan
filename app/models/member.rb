@@ -32,6 +32,7 @@ class Member < ApplicationRecord
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   validates :gender, inclusion: %w(male female undisclosed)
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   #-----------------------serialization-------------------#
   serialize :address
   def address_line
