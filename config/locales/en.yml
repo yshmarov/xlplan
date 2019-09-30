@@ -554,7 +554,7 @@ en:
   ######################################################
 
   booking:
-    list:
+    index:
       online_booking: "Online booking"
       description: "Select a company and a service. So simple!"
     show:
