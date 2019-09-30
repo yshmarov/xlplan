@@ -214,10 +214,8 @@
 / Container element
 .container-fluid
   .jumbotron.parallax.text-center
-    .text-white
-      %h3
-        .badge.badge-warning
-          = t('.small_investment')
+    %h2.text-center
+      %b.bg-warning.rounded.text-center= t('.small_investment')
     %p
     = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
 
