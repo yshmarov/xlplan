@@ -15,7 +15,14 @@
   /  .row
   /  = k
   /  = v
-  
+  - if params.has_key?(:q)
+    %hr
+    = t('.category') + ':'
+    /= @q.industry_cont
+    = I18n.t(@q.industry_cont, scope: [:static_pages, :landing_page])
+    = link_to booking_path, class: 'btn btn-sm btn-light' do
+      .fa.fa-redo
+
 .container
   - @tenants.each do |tenant|
     .card.card-header.bg-light
@@ -33,7 +40,9 @@
           /  .fa.fa-globe-africa
           /  = link_to tenant.website, "http://#{tenant.website}", target: :_blank
           .row
-          %small= tenant.industry
+          /%small= tenant.industry
+          %small= link_to I18n.t(tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: tenant.industry})
+
         .col-md-6
           - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
             .card.card-header.bg-white

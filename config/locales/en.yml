@@ -557,6 +557,7 @@ en:
     index:
       online_booking: "Online booking"
       description: "Select a company and a service. So simple!"
+      category: "Category"
     show:
       location_contacts: "Contacts"
       members_team: "Team"

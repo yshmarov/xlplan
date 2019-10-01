@@ -16,7 +16,8 @@
           = link_to booking_show_path(@tenant), class: 'text-dark' do
             = @tenant.name
           \/
-          .fa.fa-calendar-plus
+          = link_to new_lead_path(@tenant), class: 'text-dark' do 
+            .fa.fa-calendar-plus
       .card
         .card-body
           %h5

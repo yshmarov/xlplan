@@ -556,6 +556,7 @@ ru:
     index:
       online_booking: "Онлайн запись"
       description: "Выберите заведение и услугу. так просто!"
+      category: "Категория"
     show:
       location_contacts: "Контакты"
       members_team: "Сотрудники"

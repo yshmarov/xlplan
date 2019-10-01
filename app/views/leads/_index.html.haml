@@ -72,8 +72,10 @@
               = lead.starts_at.strftime('%d/%m/%Y %H:%M')
           %td= lead.created_at.strftime('%d/%m/%Y %H:%M')
           /%td= lead.updated_at
-          %td= lead.ip_address
-          %td= lead.referer
+          %td
+            %small= lead.ip_address
+          %td
+            %small= lead.referer
           /%td= link_to 'Show', lead
           /%td= link_to 'Edit', edit_lead_path(lead)
           %td
