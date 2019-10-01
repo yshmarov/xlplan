@@ -3,9 +3,9 @@ class BookingController < ApplicationController
   #skip_before_action :authenticate_tenant!, :only => [ :landing_page, :features, :pricing, :privacy_policy, :terms_of_service, :security, :stats, :about ]
 
   def index
-    @tenants = Tenant.online_booking.order(created_at: :desc)
-    #@q = Tenant.ransack(params[:q])
-    #@tenants = @q.result.online_booking.order(created_at: :desc)
+    #@tenants = Tenant.online_booking.order(created_at: :desc)
+    @q = Tenant.ransack(params[:q])
+    @tenants = @q.result.online_booking.order(created_at: :desc)
   end
 
   def show

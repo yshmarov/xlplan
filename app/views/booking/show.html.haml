@@ -9,7 +9,7 @@
         /.fa.fa-step-backward
         booking
       \/
-      = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
+      = link_to I18n.t(@tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: @tenant.industry})
       \/
       = link_to booking_show_path(@tenant), class: 'text-dark' do
         = @tenant.name
