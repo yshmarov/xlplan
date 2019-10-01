@@ -66,17 +66,17 @@
         = link_to new_event_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-plus
           .fa-color-1.fa-fw.fa.fa-calendar
-          = t('sidebar.new_event')
+          %b= t('sidebar.new_event')
       %li.nav-item
         = link_to new_client_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-plus
-          .fa-color-1.fa-fw.fa.fa-user
-          = t('sidebar.new_client')
+          .fa-color-1.fa-fw.far.fa-address-book
+          %b= t('sidebar.new_client')
       %li.nav-item
         = link_to new_inbound_payment_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-plus
           .fa-color-1.fa-fw.fa.fa-hand-holding-usd
-          = t('sidebar.new_payment')
+          %b= t('sidebar.new_payment')
       /LINKS WITH COUNTERS
       - if Tenant.current_tenant.online_booking
         %li
@@ -91,12 +91,12 @@
       - if Client.debtors.count > 0
         %li
           = link_to debtors_clients_path, class: "nav-link" do
-            .fa-color-1.fa-fw.fa.fa-user
+            .fa-color-1.fa-fw.far.fa-address-book
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
       /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-user
+          .fa-color-1.fa-fw.far.fa-address-book
           = t('sidebar.clients')
       %li.nav-item
         = link_to members_path, class: "nav-link" do 
@@ -116,7 +116,7 @@
           #{t('sidebar.more')}
         .dropdown-menu{"aria-labelledby" => "navbarDropdown3"}
           = link_to events_path, class: "dropdown-item navdrop-link" do 
-            .fa-fw.fa.fa-calendar
+            .fa-fw.fa.fa-calendar-alt
             = t('sidebar.all_events')
           = link_to inbound_payments_path, class: "dropdown-item navdrop-link" do 
             .fa-fw.fa.fa-hand-holding-usd
@@ -163,7 +163,7 @@
               = t('sidebar.expences')
             = link_to dashboard_events_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
-              .fa-fw.fa.fa-calendar
+              .fa-fw.fa.fa-calendar-alt
               = t('sidebar.events')
             = link_to dashboard_clients_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line

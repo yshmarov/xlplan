@@ -6,7 +6,7 @@
       .row
         .col-md-4
           %h5
-            .fa.fa-user
+            .far.fa-address-book
             /%b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             %b= t "#{controller_name}_#{action_name}"
             .badge.badge-info
@@ -91,7 +91,7 @@
             .fa.fa-male
           - else
             .fa.fa-question
-          /.fa.fa-user
+          /.far.fa-address-book
           = link_to client.full_name, client_path(client) if policy(client).show?
           - if client.phone_number.present?
             .row
