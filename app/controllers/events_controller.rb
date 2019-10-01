@@ -6,27 +6,27 @@ class EventsController < ApplicationController
 
   def index
     @q = Event.ransack(params[:q])
-    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
     @ransack_path = events_path
   end
 
   def close
     @q = Event.close.ransack(params[:q])
-    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
     @ransack_path = close_events_path
     render 'index'
   end
 
   def today
     @q = Event.today.ransack(params[:q])
-    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
     @ransack_path = today_events_path
     render 'index'
   end
 
   def tomorrow
     @q = Event.tomorrow.ransack(params[:q])
-    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], :per_page => 15).order("created_at DESC")
+    @events = @q.result.includes(:location, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
     @ransack_path = tomorrow_events_path
     render 'index'
   end

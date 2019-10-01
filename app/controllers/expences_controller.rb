@@ -3,7 +3,7 @@ class ExpencesController < ApplicationController
 
   def index
     @q = Expence.ransack(params[:q])
-    @expences = @q.result.includes(:expendable).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+    @expences = @q.result.includes(:expendable).paginate(:page => params[:page], per_page: 15).order('created_at DESC')
   end
 
   def show

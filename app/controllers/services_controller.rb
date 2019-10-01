@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
 
   def index
     @q = Service.ransack(params[:q])
-    @services = @q.result.includes(:service_category).paginate(:page => params[:page], :per_page => 20).order("service_category_id DESC")
+    @services = @q.result.includes(:service_category).paginate(:page => params[:page], per_page: 30).order("service_category_id DESC")
   end
 
   def show

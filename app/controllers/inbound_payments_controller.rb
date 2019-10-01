@@ -3,7 +3,7 @@ class InboundPaymentsController < ApplicationController
 
   def index
     @q = InboundPayment.ransack(params[:q])
-    @inbound_payments = @q.result.includes(:client).paginate(:page => params[:page], :per_page => 20).order('created_at DESC')
+    @inbound_payments = @q.result.includes(:client).paginate(:page => params[:page], per_page: 15).order('created_at DESC')
   end
 
   def show
