@@ -9,6 +9,10 @@ class LeadsController < ApplicationController
   end
 
   def edit
+    #for form
+    @members = Member.active.online_booking.order('created_at ASC')
+    @locations = Location.active.online_booking.order(events_count: :desc)
+    @services = Service.online_booking.active
   end
 
   def update
