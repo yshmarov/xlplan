@@ -1048,3 +1048,4 @@ ru:
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
         conditions_consent: "Согласен с правилами пользования"
+        coupon: "Промокод"
