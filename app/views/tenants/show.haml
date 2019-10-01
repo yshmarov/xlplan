@@ -29,7 +29,7 @@
         = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
         .row
         %b= model_class.human_attribute_name(:website) + ':'
-        = @tenant.website
+        = link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
         .row
         %b= model_class.human_attribute_name(:logo) + ':'
         .row
@@ -183,42 +183,47 @@
           = Location.count
       %li.list-group-item
         %i.far.fa-address-book
-        %b= t('.clients')
-        %span.badge.badge-secondary
+        %b= t('sidebar.clients')
+        %span.badge.badge-info
           = Client.count
+      %li.list-group-item
+        %i.fa.fa-globe-africa
+        %b= t('sidebar.online_booking')
+        %span.badge.badge-info
+          = Lead.count
       %li.list-group-item
         %i.fa.fa-hand-holding-usd
         %b= t('.inbound_payments')
-        %span.badge.badge-secondary
+        %span.badge.badge-info
           = InboundPayment.count
       %li.list-group-item
         %i.fa.fa-calendar-alt
         %b= t('.events')
-        %span.badge.badge-secondary
+        %span.badge.badge-info
           = Event.count
       %li.list-group-item
         %i.fa.fa-calendar-check
         %b= t('.jobs')
-        %span.badge.badge-secondary
+        %span.badge.badge-info
           = Job.count
       %li.list-group-item
         %i.fa.fa-hand-paper
         %b= t('.services')
-        %span.badge.badge-secondary
+        %span.badge.badge-info
           = Service.count
       %li.list-group-item
         %i.fa.fa-hand-paper
         %b= t('.service_categories')
-        %span.badge.badge-secondary
+        %span.badge.badge-info
           = ServiceCategory.count
       %li.list-group-item
         %i.fa.fa-map-marker-alt
         %b= t('.comments')
-        %span.badge.badge-secondary
+        %span.badge.badge-info
           = Comment.count
       /%li.list-group-item
       /  %i.fa.fa-user-plus
       /  %b= t('sidebar.import_contacts')
-      /  %span.badge.badge-secondary
+      /  %span.badge.badge-info
       /    = Contact.count
 
