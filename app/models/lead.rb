@@ -19,4 +19,9 @@ class Lead < ApplicationRecord
   include PublicActivity::Model
   #tracked owner: Proc.new{ |controller, model| controller.current_user }
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
+  #-----------------------capitalize coupon before_save-------------------#
+  before_save do 
+    self.coupon.upcase!
+  end
+
 end

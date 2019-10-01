@@ -49,6 +49,7 @@
         /%th= model_class.human_attribute_name(:updated_at)
         /%th IP-address
         /%th Source
+        %th= model_class.human_attribute_name(:coupon)
         /%th
         /%th
         %th
@@ -80,6 +81,7 @@
           /  %small= lead.ip_address
           /%td
           /  %small= lead.referer
+          %td= lead.coupon
           /%td= link_to 'Show', lead
           /%td
           /  = link_to '', edit_lead_path(lead), class: "btn btn-warning fa fa-edit btn-sm"  if policy(lead).edit?
