@@ -38,7 +38,6 @@
     %thead
       %tr
         %th= model_class.human_attribute_name(:first_name)
-        %th= model_class.human_attribute_name(:last_name)
         %th= model_class.human_attribute_name(:phone_number)
         %th= model_class.human_attribute_name(:email)
         %th= model_class.human_attribute_name(:comment)
@@ -56,10 +55,15 @@
     %tbody
       - @leads.each do |lead|
         %tr
-          %td= lead.first_name
-          %td= lead.last_name
-          %td= lead.phone_number
-          %td= lead.email
+          %td= lead.full_name
+          %td
+            /.fa.fa-phone
+            = link_to "tel:#{lead.phone_number}", class: "button" do
+              #{number_to_phone(lead.phone_number)}
+          %td
+            - if lead.email.present? 
+              /.fa.fa-envelope
+              %a{:href => "mailto:#{lead.email}"}= lead.email
           %td= lead.comment
           %td
             = link_to lead.location, location_path(lead.location) if lead.location.present?

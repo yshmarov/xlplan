@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :leads
+  resources :leads do
+    member do
+      patch :create_client_from_lead
+    end
+  end
 
   #edit tenant info
   match '/settings/show' => 'tenants#show', via: :get

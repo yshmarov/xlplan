@@ -63,7 +63,7 @@ class Client < ApplicationRecord
   SOURCES = [:direct, :online_booking, :referral, :website, :instagram, :facebook, :viber, :telegram, :whatsapp, :import, :other]
   def self.lead_sources
     #SOURCES.map {|source| [source.to_s.humanize, source]}
-    SOURCES.map {|source| [I18n.t(source, scope: [:activerecord, :attributes, :client, :lead_sources]), source]}
+    SOURCES.map {|source| [I18n.t(source, scope: [:activerecord, :attributes, :client, :lead_sources]).capitalize, source]}
   end
   #-----------------------last and next event-------------------#
   def next_event

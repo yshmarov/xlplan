@@ -15,6 +15,20 @@ class LeadsController < ApplicationController
     @services = Service.online_booking.active
   end
 
+	def create_client_from_lead
+    #SELECT A lead AND CONVERT HIM INTO A CLIENT
+	  @lead = lead.find(params[:id])
+	  @client = Client.new
+  	  @client.first_name = @lead.first_name
+  	  @client.last_name = @lead.last_name
+  	  @client.email = @lead.email
+  	  @client.phone_number = @lead.phone_number
+  	  @client.lead_source = "online_booking"
+  	  @client.save
+		@lead.update_attribute(:client_id, @client.id)
+		redirect_to leads_list_path, notice: "Client created"
+	end
+
   def update
     respond_to do |format|
       if @lead.update(lead_params)
