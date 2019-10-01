@@ -8,25 +8,7 @@ class LeadsController < ApplicationController
   def show
   end
 
-  def new
-    @lead = Lead.new
-  end
-
   def edit
-  end
-
-  def create
-    @lead = Lead.new(lead_params)
-
-    respond_to do |format|
-      if @lead.save
-        format.html { redirect_to @lead, notice: 'Lead was successfully created.' }
-        format.json { render :show, status: :created, location: @lead }
-      else
-        format.html { render :new }
-        format.json { render json: @lead.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   def update
