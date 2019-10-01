@@ -81,7 +81,8 @@
           /%td
           /  %small= lead.referer
           /%td= link_to 'Show', lead
-          /%td= link_to 'Edit', edit_lead_path(lead)
+          /%td
+          /  = link_to '', edit_lead_path(lead), class: "btn btn-warning fa fa-edit btn-sm"  if policy(lead).edit?
           %td
             = link_to '', lead, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(lead).destroy?
 %br
