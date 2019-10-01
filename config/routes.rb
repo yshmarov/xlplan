@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'booking', to: "booking#index"
   get '/booking/:id', to: 'booking#show', as: :booking_show
-  match '/booking/:id' => 'booking#create_lead', via: [:post], as: :create_lead
-  get '/booking/:id/new', to: 'booking#new_lead', as: :new_lead
+  match '/booking/:id' => 'booking#create_booking', via: [:post], as: :create_booking
+  get '/booking/:id/new', to: 'booking#new_booking', as: :new_booking
 
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'

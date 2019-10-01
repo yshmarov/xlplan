@@ -26,7 +26,7 @@
         - if @tenant.website.present?
           %p= link_to @tenant.website, "http://#{@tenant.website}", target: :_blank, class: 'text-white'
     
-        = link_to t('sidebar.online_booking'), new_lead_path(@tenant), class: 'btn btn-success'
+        = link_to t('sidebar.online_booking'), new_booking_path(@tenant), class: 'btn btn-success'
       - if @tenant.description.present?
         %p
         .row
@@ -110,7 +110,7 @@
                       .fa.fa-tag.mr.mr-2
                       = number_to_currency(service.client_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
                   .col-lg-6.text-right
-                    = link_to new_lead_path(@tenant, service_id: service.id), class: 'btn btn-success btn-xs' do 
+                    = link_to new_booking_path(@tenant, service_id: service.id), class: 'btn btn-success btn-xs' do 
                       = t('sidebar.online_booking')
                 %small= service.description
           %p
