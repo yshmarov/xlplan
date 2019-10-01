@@ -48,8 +48,8 @@
         %th= model_class.human_attribute_name(:starts_at)
         %th= model_class.human_attribute_name(:created_at)
         /%th= model_class.human_attribute_name(:updated_at)
-        /%th Tenant
-        /%th Tenant ID
+        %th IP-address
+        %th Source
         /%th
         /%th
         %th
@@ -72,8 +72,8 @@
               = lead.starts_at.strftime('%d/%m/%Y %H:%M')
           %td= lead.created_at.strftime('%d/%m/%Y %H:%M')
           /%td= lead.updated_at
-          /%td= lead.tenant.name
-          /%td= lead.tenant.id
+          %td= lead.ip_address
+          %td= lead.referer
           /%td= link_to 'Show', lead
           /%td= link_to 'Edit', edit_lead_path(lead)
           %td

@@ -52,6 +52,9 @@ class BookingController < ApplicationController
     @tenant = Tenant.find(params[:id])
     Tenant.set_current_tenant( @tenant )
     @lead = Lead.new(lead_params)
+    
+    @lead.ip_address = request.remote_ip
+    @lead.referer = request.referer
 
     #WORKS GOOD BUT DOES NOT RENDER ERRORS
     #if @lead.save
