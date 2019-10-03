@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :booking_wizard
+
   resources :leads do
     member do
       patch :create_client_from_lead

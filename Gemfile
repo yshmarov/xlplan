@@ -109,4 +109,5 @@ gem 'wkhtmltopdf-binary'                                                        
 gem "aws-sdk-s3"                                                                #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
 #end
 #gem "mini_magic"
-gem "icalendar"                                                                 #Send calendar events to other calendar apps
+gem "icalendar"                                                                 #Send calendar events to other calendar appsgem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards
+gem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards

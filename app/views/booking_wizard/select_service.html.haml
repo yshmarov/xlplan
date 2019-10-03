@@ -1,0 +1,16 @@
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h5
+          .far.fa-address-book
+          Select service
+        %hr
+
+        = render layout: 'form' do |f|
+          = f.input :email
+        
+        %hr
+        = link_to 'Skip', next_wizard_path, class: 'btn btn-secondary'
+        = link_to 'Any service', wizard_path(:select_location), class: 'btn btn-primary'

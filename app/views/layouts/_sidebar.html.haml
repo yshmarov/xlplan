@@ -11,6 +11,7 @@
       = Tenant.current_tenant.name
       /= @org_name
     /zubCRM
+    = link_to 'WIZARD', booking_wizard_path(:select_service)
     /= request.referer
     /= request.user_agent
     /= request.remote_ip
