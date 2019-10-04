@@ -4,13 +4,16 @@
     .card
       .card-body
         %h5
-          .far.fa-address-book
+          .far.fa-hand-paper
+          1/4
           Select service
         %hr
 
         = render layout: 'form' do |f|
-          = f.input :email
+          - if @services.any?
+            = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
         
         %hr
+        = link_to 'Cancel', leads_path, class: 'btn btn-secondary'
         = link_to 'Skip', next_wizard_path, class: 'btn btn-secondary'
         = link_to 'Any service', wizard_path(:select_location), class: 'btn btn-primary'

@@ -5,11 +5,18 @@
       .card-body
         %h5
           .far.fa-address-book
+          4/4
           Input your contact details
         %hr
 
         = render layout: 'form' do |f|
+          = f.input :first_name, autofocus: true
+          = f.input :last_name
+          = f.input :phone_number, hint: 'Country code & phone number: +380505532699'
           = f.input :email
+          = f.input :comment
+          = f.input :coupon
+          = f.input :conditions_consent
         
         %hr
         = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'
@@ -17,8 +24,8 @@
 
 %h1 Add personal_data
 
-= simple_form_for @user, url: wizard_path, method: :put do |f|
-  = f.input :time_zone
+= simple_form_for @lead, url: wizard_path, method: :put do |f|
+  = f.input :first_name
   = f.submit 'Next', class: 'btn btn-primary'
 
 %hr

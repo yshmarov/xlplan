@@ -5,11 +5,13 @@
       .card-body
         %h5
           .far.fa-address-book
+          2/4
           Select location
         %hr
 
         = render layout: 'form' do |f|
-          = f.input :email
+          - if @locations.any?
+            = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address
         
         %hr
         = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'

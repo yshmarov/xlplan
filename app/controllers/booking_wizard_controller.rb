@@ -1,20 +1,38 @@
 class BookingWizardController < ApplicationController
   include Wicked::Wizard
 
-  #automatically skip step if no online_booking Members/ Locations/ Services? - no. just "any Member/Location/Service button will be visible"
   steps :select_service, :select_location, :select_member, :personal_data
-  #steps :personal_data, :select_service
 
   def show
     #@user = current_user
     @lead = Lead.new
+    @services = Service.online_booking.active
+    @locations = Location.active.online_booking.order(events_count: :desc)
+    @members = Member.active.online_booking.order('created_at ASC')
+
+    case step
+    when :select_service
+      skip_step unless @services.any?
+    when :select_location
+      skip_step unless @locations.any?
+    when :select_member
+      skip_step unless @members.any?
+    end
     render_wizard
   end
 
   def update
-    @user = current_user
-    @user.update_attributes(params[:user])
-    render_wizard @user
+    #@user = current_user
+    #@lead.save
+    @lead = Lead.new
+    #@lead.attributes = params[:lead]
+    #@lead.update_attributes(params[:lead])
+
+    @members = Member.active.online_booking.order('created_at ASC')
+    @locations = Location.active.online_booking.order(events_count: :desc)
+    @services = Service.online_booking.active
+
+    render_wizard @lead
   end
 
   def finish_wizard_path

@@ -5,11 +5,13 @@
       .card-body
         %h5
           .far.fa-address-book
+          3/4
           Select member
         %hr
 
         = render layout: 'form' do |f|
-          = f.input :email
+          - if @members.any?
+            = f.association :member, as: :radio_buttons, collection: @members
         
         %hr
         = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'
