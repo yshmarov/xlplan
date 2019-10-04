@@ -6,16 +6,16 @@ class BookingWizardController < ApplicationController
   def show
     #@user = current_user
     @lead = Lead.new
-    @services = Service.online_booking.active
-    @locations = Location.active.online_booking.order(events_count: :desc)
-    @members = Member.active.online_booking.order('created_at ASC')
 
     case step
     when :select_service
+      @services = Service.online_booking.active
       skip_step unless @services.any?
     when :select_location
+      @locations = Location.active.online_booking.order(events_count: :desc)
       skip_step unless @locations.any?
     when :select_member
+      @members = Member.active.online_booking.order('created_at ASC')
       skip_step unless @members.any?
     end
     render_wizard
@@ -35,10 +35,16 @@ class BookingWizardController < ApplicationController
     render_wizard @lead
   end
 
+  def create
+    @lead = Lead.create
+    redirect_to wizard_path(steps.first, lead_id: @lead.id)
+  end
+
   def finish_wizard_path
     leads_path
     #lead_path(current_user)
   end
+
 #
 #
 #  def update

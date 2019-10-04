@@ -1,3 +1,7 @@
+- if Rails.env.development?
+  = link_to 'WIZARD', booking_wizard_path(:select_service), class: 'btn btn-danger btn-block btn-sm'
+  %p
+
 - model_class = Lead
 .card
   .card-header
