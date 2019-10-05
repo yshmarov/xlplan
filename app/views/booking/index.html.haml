@@ -15,13 +15,15 @@
   - Tenant.industries.each do |key, value|
     /= k
     = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-white'
-  - if params.has_key?(:q)
-    %hr
-    = t('.category') + ':'
+
+- if params.has_key?(:q)
+  .text-center
+    /= t('.category') + ':'
     /= @q.industry_cont
-    = I18n.t(@q.industry_cont, scope: [:static_pages, :landing_page])
-    = link_to booking_path, class: 'btn btn-sm btn-light' do
-      .fa.fa-redo
+    %h3
+      = I18n.t(@q.industry_cont, scope: [:static_pages, :landing_page])
+      = link_to booking_path, class: 'btn btn-sm btn-secondary' do
+        .fa.fa-redo
 
 .container
   - @tenants.each do |tenant|
