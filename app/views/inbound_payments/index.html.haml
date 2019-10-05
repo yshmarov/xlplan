@@ -30,6 +30,10 @@
               .row
               = model_class.human_attribute_name(:client_id)
               = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+              .row
+              = sort_link @q, :amount do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:amount)
             .col-md-4
               .row
               = f.submit
@@ -47,6 +51,10 @@
               .row
               = model_class.human_attribute_name(:client_id)
               = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+              .row
+              = sort_link @q, :amount do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:amount)
             .col-md-4
               .row
               = f.submit
