@@ -633,6 +633,8 @@ en:
     payments:
       per_day: "By day"
       per_month: "By month"
+      quantity: "Quantity"
+      amount: "Amount"
       current_month: "Today"
       payment_stats: 'Payment stats'
       payments_per_month: 'Payments per month'

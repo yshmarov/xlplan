@@ -26,6 +26,12 @@
           .card-header
             .fa.fa-chart-line
             = t('.payments_per_day')
+        .card
+          .card-header
+            %b= t('.quantity') + ":"
+            = @inbound_payments.count
+            %b= t('.amount') + ":"
+            = @inbound_payments.sum("amount/100")
         %table.table.table-sm.table-bordered
           %tbody
             - @inbound_payments.group_by_day(:created_at).sum("amount/100").each do |k, v|
@@ -52,7 +58,7 @@
             = t('.payments_per_month')
         %table.table.table-sm.table-bordered
           %tbody
-            - @inbound_payments.group_by_month(:created_at).sum("amount/100").each do |k, v|
+            - InboundPayment.group_by_month(:created_at).sum("amount/100").each do |k, v|
               %tr
                 %td= k.strftime('%m/%Y')
                 %td= v

@@ -632,6 +632,8 @@ ru:
     payments:
       per_day: "По дням"
       per_month: "По месяцам"
+      quantity: "Количество"
+      amount: "Сумма"
       current_month: "Сегодня"
       payment_stats: 'Статистика Оплат'
       payments_per_month: 'Сумма оплат в месяц'
