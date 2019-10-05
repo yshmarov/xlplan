@@ -9,12 +9,12 @@
     %h1.display-4.font-weight-bold= t('.online_booking')
   %p
   %h5= t('.description')
-
+  
+  %hr
   /= f.input :industry, collection: Tenant.industries, include_blank: false
-  /- Tenant.industries.each do |k, v|
-  /  .row
-  /  = k
-  /  = v
+  - Tenant.industries.each do |key, value|
+    /= k
+    = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-white'
   - if params.has_key?(:q)
     %hr
     = t('.category') + ':'
