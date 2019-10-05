@@ -53,6 +53,8 @@
                 .ml.ml-2.fa.fa-hand-holding-usd
                 = model_class.human_attribute_name(:inbound_payments_count)
             .col-md-4
+              = f.search_field :phone_number_cont, class: 'form-control', placeholder: t('activerecord.attributes.client.phone_number'), :autocomplete => :off
+              .row
               %br= f.submit
     - else
       #accordion.collapse.show
@@ -79,6 +81,8 @@
                 .ml.ml-2.fa.fa-hand-holding-usd
                 = model_class.human_attribute_name(:inbound_payments_count)
             .col-md-4
+              = f.search_field :phone_number_cont, class: 'form-control', placeholder: t('activerecord.attributes.client.phone_number'), :autocomplete => :off
+              .row
               %br= f.submit
 - @clients.each do |client|
   .card

@@ -11,7 +11,8 @@
     = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
     /= f.input :amount_cents, input_html: { autocomplete: 'off' }
 
-    = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS, :include_blank => false
+    = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS, :include_blank => false, as: :radio_buttons
+
   %hr
   .form-actions
     = f.button :submit, class: "btn btn-success"

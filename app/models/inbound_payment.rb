@@ -13,7 +13,7 @@ class InboundPayment < ApplicationRecord
   monetize :amount, as: :amount_cents
   validates :client, :amount, :amount_cents, :payment_method, presence: true
 
-  PAYMENT_METHODS = [:cash, :tip, :bank_transfer, :credit_card, :subscription_card, :certificate] 
+  PAYMENT_METHODS = [:cash, :bank_transfer, :credit_card] 
 
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -28,5 +28,5 @@ class InboundPayment < ApplicationRecord
   def to_s
     slug
   end
-  
+
 end
