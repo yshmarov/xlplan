@@ -46,7 +46,7 @@
             = t('.payments_per_day')
           .card-body
             /= bar_chart charts_payments_per_day_path
-            = bar_chart @inbound_payments.group_by_day(:created_at).sum("amount/100")
+            = line_chart @inbound_payments.group_by_day(:created_at).sum("amount/100")
             /= bar_chart InboundPayment.group_by_day(:created_at, format: "%B %Y").sum("amount/100")
   #first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
     %p
@@ -69,5 +69,5 @@
             .fa.fa-chart-line
             = t('.payments_per_month')
           .card-body
-            = bar_chart charts_payments_per_month_path
+            = line_chart charts_payments_per_month_path
 %br
