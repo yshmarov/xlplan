@@ -1029,6 +1029,10 @@ ru:
         event: "Встреча"
         after: "Начало после.."
         before: "Начало до.."
+        payment_methods:
+          cash: "Наличные"
+          credit_card: "Карта"
+          bank_transfer: "Банковский перевод"
       expence:
         id: "Код Расхода"
         amount: "Сумма"

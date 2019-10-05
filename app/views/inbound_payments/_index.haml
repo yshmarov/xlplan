@@ -18,8 +18,8 @@
           .row
           .fa.fa-hand-holding-usd
           = number_to_currency(inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          .badge.badge-secondary.text-white
-            = inbound_payment.payment_method
+          .badge.badge-secondary
+            = I18n.t(inbound_payment.payment_method, scope: [:activerecord, :attributes, :inbound_payment, :payment_methods])
           .row
           - if inbound_payment.payable.present?
             - if inbound_payment.payable_type == "Event"

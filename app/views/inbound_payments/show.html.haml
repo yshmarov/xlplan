@@ -24,7 +24,8 @@
             = number_to_currency(@inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             %br
             %b= model_class.human_attribute_name(:payment_method) + ':'
-            = @inbound_payment.payment_method
+            .badge.badge-secondary
+              = I18n.t(@inbound_payment.payment_method, scope: [:activerecord, :attributes, :inbound_payment, :payment_methods])
             - if @inbound_payment.payable.present?
               - if @inbound_payment.payable_type == "Event"
                 %br

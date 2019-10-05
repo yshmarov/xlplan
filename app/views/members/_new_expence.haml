@@ -15,8 +15,8 @@
         .modal-body
           = f.input :expendable_id, input_html: {value: @member.id}, as: :hidden
           = f.input :expendable_type, input_html: {value: "Member"}, as: :hidden
-          = f.input :amount_cents, input_html: { autocomplete: 'off' }
-          = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS, :include_blank => false
+          = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
+          = f.input :payment_method, collection: Expence.payment_methods, include_blank: false, as: :radio_buttons
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
           = f.button :submit, class: "btn btn-success"

@@ -1025,6 +1025,10 @@ en:
         event: "Event"
         after: "Starts after.."
         before: "Starts before.."
+        payment_methods:
+          cash: "cash"
+          credit_card: "credit_card"
+          bank_transfer: "bank_transfer"
       expence:
         id: "Payment ID"
         amount: "Amount"
