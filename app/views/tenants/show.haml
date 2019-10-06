@@ -29,7 +29,8 @@
         = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
         .row
         %b= model_class.human_attribute_name(:website) + ':'
-        = link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+        - if @tenant.website.present?
+          = link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
         .row
         %b= model_class.human_attribute_name(:logo) + ':'
         .row

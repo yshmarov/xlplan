@@ -15,5 +15,6 @@
         
         %hr
         = link_to 'Cancel', leads_path, class: 'btn btn-secondary'
-        = link_to 'Skip', next_wizard_path, class: 'btn btn-secondary'
-        = link_to 'Any service', wizard_path(:select_location), class: 'btn btn-primary'
+        .float-right
+          = link_to 'Skip', next_wizard_path, class: 'btn btn-secondary'
+          = link_to 'Any service', wizard_path(:select_location), class: 'btn btn-primary'
