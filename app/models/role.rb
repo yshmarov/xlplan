@@ -24,7 +24,7 @@ class Role < ApplicationRecord
   #validates :name, inclusion: { in: ["admin", "manager", "specialist", "viewer"] }, uniqueness: true
 
   validates :name, presence: true
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, scope: :tenant_id
   #validates :name, presence: true, uniqueness: true, length: {:in => 2..30}
   #validates :name, inclusion: { in: ["admin", "manager", "specialist", "viewer"] }, uniqueness: true
 
