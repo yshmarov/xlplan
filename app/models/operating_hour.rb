@@ -1,4 +1,7 @@
 class OperatingHour < ActiveRecord::Base
+  #-----------------------gem milia-------------------#
+  acts_as_tenant
+
   belongs_to :location
 
   #def day_of_week
