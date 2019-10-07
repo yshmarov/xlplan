@@ -5,7 +5,7 @@ class Service < ApplicationRecord
   belongs_to :service_category, counter_cache: true
   has_many :jobs, dependent: :restrict_with_error
   has_many :events, through: :jobs
-  has_many :leads
+  has_many :leads, dependent: :restrict_with_error
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }

@@ -14,7 +14,7 @@ class Location < ApplicationRecord
   has_many :members, dependent: :restrict_with_error
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
-  has_many :leads
+  has_many :leads, dependent: :restrict_with_error
   has_many :operating_hours, inverse_of: :location, dependent: :destroy
   accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
