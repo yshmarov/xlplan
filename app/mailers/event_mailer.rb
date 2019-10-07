@@ -17,7 +17,7 @@ class EventMailer < ApplicationMailer
                     Powered by XLPLAN https://www.xlplan.com"
 
     #@organiser = @event.members.distinct.pluck(:email)
-    @organiser = "mailto:#{@event.members.first.pluck(:email)}"
+    @organiser = "mailto:#{@event.users.pluck(:email)}"
     #@attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
     #@attendee = %w(mailto: #{@event.client.email})
 
