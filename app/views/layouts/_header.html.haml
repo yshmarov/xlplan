@@ -12,7 +12,8 @@
   - unless current_user
     .btn-group.mr-sm-2
       %a.btn.btn-default.text-white.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-        = I18n.locale.upcase
+        .badge.badge-secondary
+          = I18n.locale.upcase
         /= request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/)[0]
         /= params['locale'].present?
         /= session['locale'].present?

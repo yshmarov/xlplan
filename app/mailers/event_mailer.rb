@@ -6,8 +6,7 @@ class EventMailer < ApplicationMailer
 
     event_start = @event.starts_at.strftime("%Y%m%dT%H%M%S%Z")
     event_end = @event.ends_at.strftime("%Y%m%dT%H%M%S%Z")
-    @location = "#{@event.location.name},
-                 #{@event.location.address_line}""
+    @location = "#{@event.location.name}, #{@event.location.address_line}"
 
     @summary = "#{@event.services.pluck(:name).join(', ')} (#{Tenant.current_tenant.name})"
     @description = "#{@event.services.pluck(:name).join(', ')}.
@@ -18,7 +17,7 @@ class EventMailer < ApplicationMailer
                     Powered by XLPLAN https://www.xlplan.com"
 
     #@organiser = @event.members.distinct.pluck(:email)
-    #@organiser = "mailto:organizer@example.com"
+    @organiser = "mailto:#{@event.members.first.pluck(:email)}"
     #@attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
     #@attendee = %w(mailto: #{@event.client.email})
 
@@ -30,8 +29,8 @@ class EventMailer < ApplicationMailer
     e.summary = @summary   
     e.description = @description
 
-    #e.organizer = @organiser
-    #e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: 'Organizer sales')
+    e.organizer = @organiser
+    e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: 'Office Manager')
     #e.attendee  = @attendee   
 
     ical.add_event(e)    
