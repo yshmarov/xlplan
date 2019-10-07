@@ -16,7 +16,7 @@ class OperatingHour < ActiveRecord::Base
   #end
 
   validates_presence_of :day_of_week, :closes, :opens, :location_id
-  validates_inclusion_of :day_of_week, :in => 1..7
+  validates_inclusion_of :day_of_week, :in => 0..6
   validate :opens_before_closes 
   validate :valid_from_before_valid_through 
 
