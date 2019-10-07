@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_065952) do
+ActiveRecord::Schema.define(version: 2019_10_06_152933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -228,6 +228,7 @@ ActiveRecord::Schema.define(version: 2019_10_06_065952) do
     t.string "referer"
     t.string "ip_address"
     t.string "coupon", limit: 144
+    t.string "status"
     t.index ["location_id"], name: "index_leads_on_location_id"
     t.index ["member_id"], name: "index_leads_on_member_id"
     t.index ["service_id"], name: "index_leads_on_service_id"

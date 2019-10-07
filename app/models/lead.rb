@@ -7,11 +7,15 @@ class Lead < ApplicationRecord
   belongs_to :member
   belongs_to :location
   #-----------------------validation-------------------#
+  #validates :first_name, :last_name, :phone_number, presence: true
+  validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true, if: :active?
   validates :comment, length: { maximum: 500 }
   validates :first_name, :last_name, length: { maximum: 144 }
-  validates :first_name, :last_name, :phone_number, presence: true
-  validates :conditions_consent, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
+
+  def active?
+    status == 'active'
+  end
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged
@@ -21,7 +25,7 @@ class Lead < ApplicationRecord
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
   #-----------------------capitalize coupon before_save-------------------#
   before_save do 
-    self.coupon.upcase!
+    self.coupon.upcase! if self.coupon.present?
   end
 
 end

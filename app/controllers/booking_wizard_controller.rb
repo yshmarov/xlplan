@@ -4,8 +4,8 @@ class BookingWizardController < ApplicationController
   steps :select_service, :select_location, :select_member, :personal_data
 
   def show
-    #@user = current_user
     @lead = Lead.new
+    #@lead = Lead.find(params[:lead_id])
 
     case step
     when :select_service
@@ -22,15 +22,13 @@ class BookingWizardController < ApplicationController
   end
 
   def update
-    #@user = current_user
-    #@lead.save
-    @lead = Lead.new
-    #@lead.attributes = params[:lead]
-    #@lead.update_attributes(params[:lead])
+    @lead = Lead.find(params[:lead_id])
+    params[:lead][:status] = 'active' if step == steps.last
+    @lead.update_attributes(params[:lead])
 
-    @members = Member.active.online_booking.order('created_at ASC')
-    @locations = Location.active.online_booking.order(events_count: :desc)
-    @services = Service.online_booking.active
+    #@members = Member.active.online_booking.order('created_at ASC')
+    #@locations = Location.active.online_booking.order(events_count: :desc)
+    #@services = Service.online_booking.active
 
     render_wizard @lead
   end
