@@ -14,6 +14,8 @@
   /= f.input :industry, collection: Tenant.industries, include_blank: false
   - Tenant.industries.each do |key, value|
     /= k
+    /- if @q.industry_cont.to_s == value.to_s
+    /  .fa.fa-flag
     = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-white'
 
 - if params.has_key?(:q)

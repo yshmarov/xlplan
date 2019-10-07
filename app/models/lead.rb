@@ -7,8 +7,8 @@ class Lead < ApplicationRecord
   belongs_to :member
   belongs_to :location
   #-----------------------validation-------------------#
-  #validates :first_name, :last_name, :phone_number, presence: true
-  validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true, if: :active?
+  validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true
+  #validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true, if: :active?
   validates :comment, length: { maximum: 500 }
   validates :first_name, :last_name, length: { maximum: 144 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true

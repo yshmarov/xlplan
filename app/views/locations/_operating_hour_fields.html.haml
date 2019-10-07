@@ -1,5 +1,14 @@
 %tr.nested-fields
-  %td= f.input :day_of_week, label: false, collection: 0..6, include_blank: false
+  %td
+    /- Date::DAYNAMES.each do |day|
+    /  = f.input :day_of_week, input_html: { value: day }
+    /  = day
+
+    /= f.input :day_of_week, label: false, collection: 0..6, include_blank: false
+
+    /= f.input :day_of_week, :collection => Date::DAYNAMES.each_with_index.to_a, include_blank: false, label: false
+
+    /= f.input :day_of_week, collection: Date::DAYNAMES.each_with_index.map {|source, index| [source.capitalize, index]}, include_blank: false, label: false
   %td
     = f.input :opens, :minute_step => 30, label: false
     /= f.time_select :opens, {minute_step: 15}

@@ -18,8 +18,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     - if Rails.env.production?
       = render 'layouts/google_analytics'
-    /= render 'layouts/chaport'
     /needed on static_pages and on devise registration. does not work well with turbolinks
+    /= render 'layouts/chaport'
   - if user_signed_in? && current_user.member.present?
     %body#body-human
       #wrapper
