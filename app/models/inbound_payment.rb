@@ -8,7 +8,7 @@ class InboundPayment < ApplicationRecord
   #-----------------------validation-------------------#
   #validates :amount, :payment_method, presence: true
   validates :client, :amount, :amount_cents, :payment_method, presence: true
-  validates :amount, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
+  validates :amount, :amount_cents, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------gem money-------------------#
