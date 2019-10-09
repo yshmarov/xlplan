@@ -6,6 +6,7 @@ class Lead < ApplicationRecord
   belongs_to :service
   belongs_to :member
   belongs_to :location
+  belongs_to :client
   #-----------------------validation-------------------#
   validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true
   #validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true, if: :active?

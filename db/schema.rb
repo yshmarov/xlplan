@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_152933) do
+ActiveRecord::Schema.define(version: 2019_10_08_213658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,6 +229,8 @@ ActiveRecord::Schema.define(version: 2019_10_06_152933) do
     t.string "ip_address"
     t.string "coupon", limit: 144
     t.string "status"
+    t.bigint "client_id"
+    t.index ["client_id"], name: "index_leads_on_client_id"
     t.index ["location_id"], name: "index_leads_on_location_id"
     t.index ["member_id"], name: "index_leads_on_member_id"
     t.index ["service_id"], name: "index_leads_on_service_id"
@@ -440,6 +442,7 @@ ActiveRecord::Schema.define(version: 2019_10_06_152933) do
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
   add_foreign_key "jobs", "tenants"
+  add_foreign_key "leads", "clients"
   add_foreign_key "leads", "locations"
   add_foreign_key "leads", "members"
   add_foreign_key "leads", "services"

@@ -13,6 +13,7 @@ class Client < ApplicationRecord
   friendly_id :full_name, use: :slugged
   #-----------------------relationships-------------------#
   has_one_attached :avatar
+  has_many :leads, dependent: :restrict_with_error
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
   has_many :services, through: :jobs
