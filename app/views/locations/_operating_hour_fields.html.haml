@@ -6,24 +6,15 @@
 
     /= f.input :day_of_week, label: false, collection: 0..6, include_blank: false
 
-    /= f.input :day_of_week, :collection => Date::DAYNAMES.each_with_index.to_a, include_blank: false, label: false
+    = f.input :day_of_week, :collection => Date::ABBR_DAYNAMES.each_with_index.to_a, include_blank: false, label: false
 
     /= f.input :day_of_week, collection: Date::DAYNAMES.each_with_index.map {|source, index| [source.capitalize, index]}, include_blank: false, label: false
   %td
-    = f.input :opens, :minute_step => 30, label: false
+    = f.input :opens, :minute_step => 30, label: false, as: :time, default: Time.parse('9:00')
+    /= f.input :opens, :minute_step => 30, label: false
     /= f.time_select :opens, {minute_step: 15}
   %td
-    = f.input :closes, :minute_step => 30, label: false
+    = f.input :closes, :minute_step => 30, label: false, as: :time, default: Time.parse('18:00')
+    /= f.input :closes, :minute_step => 30, label: false
   %td
     = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-secondary'
-
-/%tr.nested-fields
-/  %td
-/    /= f.input :day_of_week, collection: Date::DAYNAMES.each_with_index.map {|source, index| [source.capitalize, index]}, include_blank: false, label: false
-/    = f.input :day_of_week, label: false, collection: 0..6, include_blank: false
-/  %td
-/    = f.input :opens, :minute_step => 30, label: false, as: :time, default: Time.parse('9:00')
-/  %td
-/    = f.input :closes, :minute_step => 30, label: false, as: :time, default: Time.parse('18:00')
-/  %td
-/    = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-secondary'

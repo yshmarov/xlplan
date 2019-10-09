@@ -7,22 +7,23 @@
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
 
-.jumbotron.bg-primary.text-white
-  .row
-    .col-lg-5.order-1.order-lg-0
-      .display-3
-        %b XLPLAN
-      %h1
-        %small= t('.hero')
-      .row
-      %p
-      %p= link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-danger text-white btn-block'
-      %p
-      %h5
-        .font-weight-light= t('.hero_description')
-      %p
-    .col-lg-7.order-0.order-lg-1
-      = image_tag "https://i.imgur.com/TWpk1pv.png", style: 'height:auto;width:100%;'
+.jumbotron.jumbotron-fluid.bg-primary.text-white
+  .container-fluid
+    .row
+      .col-lg-5.order-1.order-lg-0
+        .display-3
+          %b XLPLAN
+        %h1
+          %small= t('.hero')
+        .row
+        %p
+        %p= link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-danger text-white btn-block'
+        %p
+        %h5
+          .font-weight-light= t('.hero_description')
+        %p
+      .col-lg-7.order-0.order-lg-1
+        = image_tag "https://i.imgur.com/TWpk1pv.png", style: 'height:auto;width:100%;'
 
 .container
   .row

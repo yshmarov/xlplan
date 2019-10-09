@@ -51,6 +51,15 @@
           = link_to "mailto:#{@location.email}", class: "btn btn-secondary btn-block" do
             .fa.fa-envelope
             = @location.email
+        - if @location.operating_hours.any?
+          %hr
+          - @location.operating_hours.each do |operating_hour|
+            .row
+            = Date::ABBR_DAYNAMES[operating_hour.day_of_week]
+            .float-right
+              = operating_hour.opens.strftime("%H:%M")
+              \-
+              = operating_hour.closes.strftime("%H:%M")
         %hr
         /ADMIN - stats
         - if current_user.has_role?(:admin)

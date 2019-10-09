@@ -15,7 +15,8 @@ class OperatingHour < ActiveRecord::Base
   #  write_attribute(:day_of_week, day) if day.present?
   #end
 
-  validates_presence_of :day_of_week, :closes, :opens, :location_id
+  validates_uniqueness_of :day_of_week, scope: [:location_id, :tenant_id] #this way 1 day of week can be used 1 time for 1 location
+  validates_presence_of :day_of_week, :closes, :opens, :location
   validates_inclusion_of :day_of_week, :in => 0..6
   validate :opens_before_closes 
   validate :valid_from_before_valid_through 
