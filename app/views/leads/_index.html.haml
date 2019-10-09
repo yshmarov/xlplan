@@ -60,11 +60,11 @@
       - @leads.each do |lead|
         %tr
           %td
-            = lead.full_name
-            /- if lead.client.present?
-            /  = link_to lead.client.full_name, client_path(lead.client)
-            /- else 
-            /  create client
+            - unless lead.client.present?
+              = lead.full_name
+              = button_to t('contacts.index.create_client'), create_client_from_lead_lead_path(lead.id), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
+            - else lead.client.present?
+              = link_to lead.client.full_name, client_path(lead.client)
           %td
             /.fa.fa-phone
             = link_to "tel:#{lead.phone_number}", class: "button" do

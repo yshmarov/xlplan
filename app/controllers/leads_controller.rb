@@ -17,7 +17,7 @@ class LeadsController < ApplicationController
 
 	def create_client_from_lead
     #SELECT A lead AND CONVERT HIM INTO A CLIENT
-	  @lead = lead.find(params[:id])
+	  @lead = Lead.find(params[:id])
 	  @client = Client.new
   	  @client.first_name = @lead.first_name
   	  @client.last_name = @lead.last_name
@@ -26,7 +26,7 @@ class LeadsController < ApplicationController
   	  @client.lead_source = "online_booking"
   	  @client.save
 		@lead.update_attribute(:client_id, @client.id)
-		redirect_to leads_list_path, notice: "Client created"
+		redirect_to leads_path, notice: "Client created"
 	end
 
   def update
