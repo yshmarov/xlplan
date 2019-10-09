@@ -1,4 +1,6 @@
 module ApplicationHelper
+	include Pagy::Frontend
+
 	def plan_label(plan)
 		plan_span_generator(plan)
 	end

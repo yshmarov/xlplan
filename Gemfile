@@ -81,6 +81,7 @@ gem 'groupdate'                                                                 
 #design
 gem 'will_paginate'                                                             #PAGINATION
 gem 'will_paginate-bootstrap4'                                                  #STYLE FOR PAGINATION
+gem 'pagy'
 gem 'ransack'                                                                   #SEARCH
 
 #gem 'validates_timeliness', '~> 5.0.0.alpha3'

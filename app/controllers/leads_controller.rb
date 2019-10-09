@@ -1,8 +1,10 @@
 class LeadsController < ApplicationController
   before_action :set_lead, only: [:show, :edit, :update, :destroy]
+  include Pagy::Backend
 
   def index
-    @leads = Lead.all.order('created_at DESC')
+    #@leads = Lead.all.order('created_at DESC')
+    @pagy, @leads = pagy(Lead.all.order('created_at DESC'))
   end
 
   def show
