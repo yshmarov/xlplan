@@ -641,7 +641,9 @@ ru:
     lead_stats:
       lead_stats: 'Статистика Онлайн Записи'
       created_per_month: 'Кол создано в месяц'
-      
+      service_popularity: 'Популярность услуг'
+      member_popularity: "Популярность сотрудников"
+      location_popularity: 'Популярность филиалов'
 
   ######################################################
 

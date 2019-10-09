@@ -642,6 +642,9 @@ en:
     lead_stats:
       lead_stats: 'Online Booking stats'
       created_per_month: 'Created by month'
+      service_popularity: "Service popularity"
+      member_popularity: "Member popularity"
+      location_popularity: "Location popularity"
 
   ######################################################
 

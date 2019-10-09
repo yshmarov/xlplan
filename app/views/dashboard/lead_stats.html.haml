@@ -7,5 +7,30 @@
         .fa.fa-chart-line
         = t('.created_per_month')
       .card-body
-        = line_chart Lead.group_by_day(:created_at).count, download: true
+        = line_chart @leads.group_by_day(:created_at).count, download: true
+    %p
+.row
+  .col-lg-4
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.service_popularity')
+      .card-body
+        = pie_chart @leads.joins(:service).group(:'services.name').count, download: true
+    %p
+  .col-lg-4
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.member_popularity')
+      .card-body
+        = pie_chart @leads.joins(:member).group(:'members.last_name').count, download: true
+    %p
+  .col-lg-4
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.location_popularity')
+      .card-body
+        = pie_chart @leads.joins(:location).group(:'locations.name').count, download: true
     %p
