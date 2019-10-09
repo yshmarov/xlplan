@@ -574,21 +574,21 @@ ru:
     activity:
       activity: "Активность"
       ago: "назад"
-    expences:
+    expence_stats:
       expence_stats: "Статистика Расходов"
       per_day: "По дням"
       per_month: "По месяцам"
       current_month: "Сегодня"
       expences_per_month: "Расходов по месяцам"
       expence_types: "Статьи расходов"
-    clients:
+    client_stats:
       client_stats: 'Статистика Клиентов'
-      clients_registered_per_month: 'Кол клиентов создано в месяц'
+      created_per_month: 'Кол создано в месяц'
       client_birthdays_per_year: 'Дни рождения клиентов по годам'
       status_popularity: 'Популярность статусов'
       gender_popularity: 'Популярность полов'
       lead_source_popularity: 'Источники клиентов'
-    members:
+    member_stats:
       member_stats: "Статистика Сотрудников"
       productivity: "Продуктивность"
       name: "Имя"
@@ -605,7 +605,7 @@ ru:
       confirmed_jobs_per_month_client_price: "Подтвержденные работ в месяц, к оплате от клиентов"
       confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
       payments_per_month: "Выплаты по месяцам"
-    events:
+    event_stats:
       per_day: "По дням"
       per_month: "По месяцам"
       current_month: "Сегодня"
@@ -629,15 +629,19 @@ ru:
       location_popularity: 'Популярность филиалов'
       service_popularity: 'Популярность услуг'
       current_month: "Сегодня"
-    payments:
+    payment_stats:
+      payment_stats: 'Статистика Оплат'
       per_day: "По дням"
       per_month: "По месяцам"
       quantity: "Количество"
       amount: "Сумма"
       current_month: "Сегодня"
-      payment_stats: 'Статистика Оплат'
       payments_per_month: 'Сумма оплат в месяц'
       payments_per_day: 'Сумма оплат в день'
+    lead_stats:
+      lead_stats: 'Статистика Онлайн Записи'
+      created_per_month: 'Кол создано в месяц'
+      
 
   ######################################################
 

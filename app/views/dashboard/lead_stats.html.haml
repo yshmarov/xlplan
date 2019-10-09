@@ -1,0 +1,11 @@
+.text-center
+  %h5= t('.lead_stats')
+.row
+  .col-lg-12
+    .card
+      .card-header
+        .fa.fa-chart-line
+        = t('.created_per_month')
+      .card-body
+        = line_chart Lead.group_by_day(:created_at).count, download: true
+    %p

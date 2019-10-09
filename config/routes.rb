@@ -98,11 +98,12 @@ Rails.application.routes.draw do
   get 'start', to: 'dashboard#start'
   get 'dashboard', to: 'dashboard#dashboard'
 
-  get 'dashboard/clients'
-  get 'dashboard/members'
-  get 'dashboard/events'
-  get 'dashboard/payments'
-  get 'dashboard/expences'
+  get 'dashboard/client_stats'
+  get 'dashboard/member_stats'
+  get 'dashboard/event_stats'
+  get 'dashboard/payment_stats'
+  get 'dashboard/expence_stats'
+  get 'dashboard/lead_stats'
 
   #get 'charts/monthly_events'
   namespace :charts do

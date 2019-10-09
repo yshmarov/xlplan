@@ -1,39 +1,42 @@
 .row
-  .col-md-4
-    .text-center
-      %h5
-        .fa.fa-tachometer-alt
-        = t('sidebar.dashboard')
-    
-    %b= t('sidebar.online_booking')
-    
-    = link_to leads_path, class: "btn btn-outline-secondary btn-block " do
-      .fa-fw.fa.fa-globe-africa
-      #{t('sidebar.online_booking')} #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
-    
-    %b= t('sidebar.events')
-    
-    = link_to close_events_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.fa.fa-calendar-check
-      #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
-    = link_to today_events_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.fa.fa-calendar-check
-      #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
-    = link_to tomorrow_events_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.fa.fa-calendar-check
-      #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
-    
-    %b= t('sidebar.clients')
-    
-    = link_to debtors_clients_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.far.fa-address-book
-      #{t('clients_debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
-    = link_to no_gender_clients_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.far.fa-address-book
-      #{t('clients_no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-info'} 
-    = link_to no_events_clients_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.far.fa-address-book
-      #{t('clients_no_events')} #{content_tag :span, Client.no_events.count, class: 'badge badge-info'} 
-    = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
-      .fa-fw.fa.fa-birthday-cake
-      #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-info'} 
+  .col-lg-4
+    .card
+      .card-header
+        .text-center
+          %h5
+            .fa.fa-tachometer-alt
+            = t('sidebar.dashboard')
+        
+      .card-header
+        %b= t('sidebar.online_booking')
+        
+        = link_to leads_path, class: "btn btn-outline-secondary btn-block " do
+          .fa-fw.fa.fa-globe-africa
+          #{t('sidebar.online_booking')} #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
+        
+        %b= t('sidebar.events')
+        
+        = link_to close_events_path, class: "btn btn-outline-secondary btn-block" do
+          .fa-fw.fa.fa-calendar-check
+          #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
+        = link_to today_events_path, class: "btn btn-outline-secondary btn-block" do
+          .fa-fw.fa.fa-calendar-check
+          #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
+        = link_to tomorrow_events_path, class: "btn btn-outline-secondary btn-block" do
+          .fa-fw.fa.fa-calendar-check
+          #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
+        
+        %b= t('sidebar.clients')
+        
+        = link_to debtors_clients_path, class: "btn btn-outline-secondary btn-block" do
+          .fa-fw.far.fa-address-book
+          #{t('clients_debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
+        = link_to no_gender_clients_path, class: "btn btn-outline-secondary btn-block" do
+          .fa-fw.far.fa-address-book
+          #{t('clients_no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-info'} 
+        = link_to no_events_clients_path, class: "btn btn-outline-secondary btn-block" do
+          .fa-fw.far.fa-address-book
+          #{t('clients_no_events')} #{content_tag :span, Client.no_events.count, class: 'badge badge-info'} 
+        = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
+          .fa-fw.fa.fa-birthday-cake
+          #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-info'} 

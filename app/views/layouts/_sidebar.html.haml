@@ -148,26 +148,30 @@
             #{t('sidebar.stats')}
             .badge.badge-dark admin
           .dropdown-menu{"aria-labelledby" => "navbarDropdown2"}
-            = link_to dashboard_payments_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_payment_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-hand-holding-usd
               = t('sidebar.inbound_payments')
-            = link_to dashboard_expences_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_expence_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-dollar-sign
               = t('sidebar.expences')
-            = link_to dashboard_events_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_event_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-calendar-alt
               = t('sidebar.events')
-            = link_to dashboard_clients_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_client_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-user
               = t('sidebar.clients')
-            = link_to dashboard_members_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_member_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-user-tie
               = t('sidebar.members')
+            = link_to dashboard_lead_stats_path, class: "dropdown-item navdrop-link" do 
+              .fa-fw.fa.fa-chart-line
+              .fa-fw.fa.fa-globe-africa
+              = t('sidebar.online_booking')
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}

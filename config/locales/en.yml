@@ -575,21 +575,21 @@ en:
     activity:
       activity: "Activity"
       ago: "ago"
-    expences:
+    expence_stats:
       expence_stats: "Expence stats"
       per_day: "By day"
       per_month: "By month"
       current_month: "Today"
       expences_per_month: "Expences by month"
       expence_types: "Expence types"
-    clients:
+    client_stats:
       client_stats: 'Client stats'
-      clients_registered_per_month: 'Clients created by month'
+      created_per_month: 'Created by month'
       client_birthdays_per_year: 'Client birthdays per year'
       status_popularity: 'Status popularity'
       gender_popularity: 'Gender stats'
       lead_source_popularity: 'Lead source popularity'
-    members:
+    member_stats:
       member_stats: "Employee stats"
       productivity: "Productivity"
       name: "Name"
@@ -606,7 +606,7 @@ en:
       confirmed_jobs_per_month_client_price: "Confirmed jobs per month, payable by clients"
       confirmed_jobs_per_month_member_price: "Confirmed jobs per month, payable to employees"
       payments_per_month: "Payments per month"
-    events:
+    event_stats:
       per_day: "By day"
       per_month: "By month"
       current_month: "Today"
@@ -630,15 +630,18 @@ en:
       location_popularity: 'Location popularity'
       service_popularity: 'Service popularity'
       current_month: "Today"
-    payments:
+    payment_stats:
+      payment_stats: 'Payment stats'
       per_day: "By day"
       per_month: "By month"
       quantity: "Quantity"
       amount: "Amount"
       current_month: "Today"
-      payment_stats: 'Payment stats'
       payments_per_month: 'Payments per month'
       payments_per_day: 'Payments per day'
+    lead_stats:
+      lead_stats: 'Online Booking stats'
+      created_per_month: 'Created by month'
 
   ######################################################
 

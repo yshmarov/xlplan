@@ -82,6 +82,11 @@
               - else
                 .fa.fa-user
               = member.first_name
+              .row
+              - member.skills.each do |skill|
+                .badge.badge-secondary
+                  = skill.service_category
+
       %p
     .col-lg-8
       - if @service_categories.any?

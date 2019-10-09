@@ -25,14 +25,14 @@ class DashboardController < ApplicationController
   #  @jobs = Job.where(member_id: current_user.member.id).includes(:event, :service, :member, :event => :client)
   #end
 
-  def clients
+  def client_stats
     if current_user.has_role?(:admin)
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end
   end
 
-  def members
+  def member_stats
     if current_user.has_role?(:admin)
       #performance vs others
       @members = Member.all
@@ -62,7 +62,7 @@ class DashboardController < ApplicationController
     end
   end
 
-  def expences
+  def expence_stats
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
         @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
@@ -76,7 +76,7 @@ class DashboardController < ApplicationController
     end
   end
 
-  def events
+  def event_stats
     if current_user.has_role?(:admin)
       #average paycheck
       @average_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).average(:client_due_price).to_i/100
@@ -92,7 +92,7 @@ class DashboardController < ApplicationController
     end
   end
   
-  def payments
+  def payment_stats
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
         #@start_date = ("2019" + "-" + "5" + "-" + Date.today.day.to_s).to_datetime.beginning_of_month         #test version - works
@@ -107,4 +107,21 @@ class DashboardController < ApplicationController
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end
   end
+
+  def lead_stats
+    if current_user.has_role?(:admin)
+      if params.has_key?(:select)
+        #@start_date = ("2019" + "-" + "5" + "-" + Date.today.day.to_s).to_datetime.beginning_of_month         #test version - works
+        #@start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month #Date.today.day produces invalid_date error on 31st day of the month
+        @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
+        @end_date = @start_date.end_of_month
+        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",@start_date, @end_date)
+      else
+        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
+      end
+    else
+      redirect_to root_path, alert: 'You are not authorized to view the page.'
+    end
+  end
+
 end
