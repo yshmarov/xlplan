@@ -6,5 +6,5 @@
     - else
       = f.association :member, collection: Member.active_or_id(f.object.member_id)
     .text-right
-      = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-danger'
+      = link_to_remove_association "", f, class: 'btn fa fa-trash btn-sm btn-danger'
   %p

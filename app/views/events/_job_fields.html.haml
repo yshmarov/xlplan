@@ -11,7 +11,7 @@
 /    /= f.select :member_id, Member.all.map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize', style: 'width: 300px'
 /    = f.select :member_id, Member.active_or_id(f.object.member_id).map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize', style: 'width: 300px'
 /  %td
-/    = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-secondary'
+/    = link_to_remove_association "", f, class: 'btn fa fa-trash btn-sm btn-secondary'
 
 
 .nested-fields
@@ -33,5 +33,5 @@
     /, :value => current_user.category_country.name, :selected => current_user.category_country_id
     /= f.select :member_id, Member.active_or_id(f.object.member_id).map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
     .text-right
-      = link_to_remove_association "", f, class: 'btn fa fa-trash btn-xs btn-danger'
+      = link_to_remove_association "", f, class: 'btn fa fa-trash btn-sm btn-danger'
   %p
