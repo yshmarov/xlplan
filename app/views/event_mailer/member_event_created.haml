@@ -8,6 +8,9 @@
     - model_class = Job
     /%b= @event.services.pluck(:name).join(', ')
 
+    = @event.client.full_name
+    = @event.client.phone_number
+
     - @event.jobs.each do |job|
       %p
         = model_class.human_attribute_name(:service_id) + ':'

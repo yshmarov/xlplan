@@ -141,7 +141,7 @@ class EventsController < ApplicationController
       EventMailer.member_event_created(@event).deliver_now
       Event.public_activity_on
     end
-		redirect_to @event, notice: "Email invitation sent to #{@event.members.pluck(:email)}"
+		redirect_to @event, notice: "Email invitation sent to #{@event.users.pluck(:email)}"
   end
 
   def create

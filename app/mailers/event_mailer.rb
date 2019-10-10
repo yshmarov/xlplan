@@ -1,5 +1,6 @@
 class EventMailer < ApplicationMailer
   #default to: -> { Admin.pluck(:email) }, from: 'notification@example.com'
+  #/rails/mailers/event_mailer/member_event_created
 
   def client_event_created(event)
     @event = event
@@ -42,6 +43,41 @@ class EventMailer < ApplicationMailer
 
   def member_event_created(event)
     @event = event
+
+    event_start = @event.starts_at.strftime("%Y%m%dT%H%M%S%Z")
+    event_end = @event.ends_at.strftime("%Y%m%dT%H%M%S%Z")
+    @location = "#{@event.location.name}, #{@event.location.address_line}"
+
+    @summary = "#{@event.services.pluck(:name).join(', ')} (#{Tenant.current_tenant.name})"
+    @description = "#{@event.services.pluck(:name).join(', ')}.
+                    #{@event.client.full_name},
+                    #{@event.client.phone_number},
+                    #{Tenant.current_tenant.name},
+                    #{@event.location.name},
+                    #{@event.location.phone_number},
+                    #{@event.location.address_line}. 
+                    Powered by XLPLAN.com"
+
+    #@organiser = @event.members.distinct.pluck(:email)
+    @organiser = "mailto:#{@event.users.pluck(:email)}"
+    #@attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
+    #@attendee = %w(mailto: #{@event.client.email})
+
+    ical = Icalendar::Calendar.new
+    e = Icalendar::Event.new    
+    e.dtstart = Icalendar::Values::DateTime.new event_start
+    e.dtend   = Icalendar::Values::DateTime.new event_end
+    e.location = @location      
+    e.summary = @summary   
+    e.description = @description
+
+    e.organizer = @organiser
+    e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: 'Office Manager')
+    #e.attendee  = @attendee   
+
+    ical.add_event(e)    
+    ical.append_custom_property('METHOD', 'REQUEST')
+    mail.attachments['booking.ics'] = { :mime_type => 'text/calendar', content: ical.to_ical }
     mail(to: @event.users.distinct.pluck(:email), subject: 'Booking created in XLPLAN.com')
   end
 

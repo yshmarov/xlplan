@@ -1,7 +1,10 @@
 = t('.event_created')
 
 - model_class = Job
-- model_class = Job
+
+= @event.client.full_name
+= @event.client.phone_number
+
 - @event.jobs.each do |job|
   
   = model_class.human_attribute_name(:service_id) + ':'
