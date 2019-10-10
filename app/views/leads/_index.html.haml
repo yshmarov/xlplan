@@ -1,40 +1,55 @@
 - model_class = Lead
+
+- if Tenant.current_tenant.online_booking
+  = t('sidebar.public_page')
+  / COPY TO CLIPBOARD WITH JAVASCRIPT
+  %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
+  / The button used to copy the text
+  %button{:onclick => "myFunction()"}
+    .fa.fa-copy
+  :javascript
+    function myFunction() {
+      var copyText = document.getElementById("myInput");
+      copyText.select(); 
+      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+      document.execCommand("copy");
+    }
+%p
+  .row
+  = t('sidebar.online_booking')
+  / COPY TO CLIPBOARD WITH JAVASCRIPT
+  %input#myInput2{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}/new"}
+  / The button used to copy the text
+  %button{:onclick => "myFunction2()"}
+    .fa.fa-copy
+  :javascript
+    function myFunction2() {
+      var copyText = document.getElementById("myInput2");
+      copyText.select(); 
+      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+      document.execCommand("copy");
+    }
+%p
+
 .card
   .card-header
-    .row
-      .col-md-4
-        %h5.float-left
-          .fa.fa-globe-africa
-          %b= t('sidebar.online_booking')
-          .badge.badge-info
-            = @leads.count
-      - if Tenant.current_tenant.online_booking
-        .col-md-4
-          / COPY TO CLIPBOARD WITH JAVASCRIPT
-          %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
-          / The button used to copy the text
-          %button{:onclick => "myFunction()"}
-            .fa.fa-copy
-          :javascript
-            function myFunction() {
-              var copyText = document.getElementById("myInput");
-              copyText.select(); 
-              copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-              document.execCommand("copy");
-            }
-        .col-md-4
-          .float-right
-            .mr.mt-1
-            = link_to t('sidebar.public_page'), booking_show_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
-            - if Rails.env.development?
-              = link_to 'WIZARD', booking_wizard_path(:select_service), class: 'btn btn-danger btn-sm'
-      - else
-        .col-md-8
-          .float-right
-            .mr.mt-1
-            = link_to edit_tenant_path, class: 'btn btn-secondary btn-sm' do 
-              .fa.fa-toggle-off
-              = t('sidebar.online_booking')
+    %h5.float-left
+      .fa.fa-globe-africa
+      %b= t('sidebar.online_booking')
+      .badge.badge-info
+        = @leads.count
+    - if Tenant.current_tenant.online_booking
+      .float-right
+        .mr.mt-1
+        = link_to t('sidebar.public_page'), booking_show_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
+        - if Rails.env.development?
+          = link_to 'WIZARD', booking_wizard_path(:select_service), class: 'btn btn-danger btn-sm'
+    - else
+      .float-right
+        .mr.mt-1
+        = link_to edit_tenant_path, class: 'btn btn-secondary btn-sm' do 
+          .fa.fa-toggle-off
+          = t('sidebar.online_booking')
 
 .table-responsive
   %table#table1
