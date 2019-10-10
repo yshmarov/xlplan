@@ -62,7 +62,7 @@ function eventCalendar() {
         center: 'title',
         right: 'agendaDay,agendaWeek,month'
     },
-    titleFormat: 'D/MMM/YY',
+    titleFormat: 'ddd D MMM',
     eventBackgroundColor: 'purple',
     weekNumbers: true,
     defaultView: 'agendaDay',
