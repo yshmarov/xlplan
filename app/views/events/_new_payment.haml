@@ -15,9 +15,8 @@
           = f.input :client_id, input_html: {value: @event.client.id}, as: :hidden
           = f.input :payable_id, input_html: {value: @event.id}, as: :hidden
           = f.input :payable_type, input_html: {value: 'Event'}, as: :hidden
-          /= f.input :amount_cents, input_html: { autocomplete: 'off' }
           = f.input :amount_cents, input_html: { value: @event.event_due_price_cents }
-          = f.input :payment_method, collection: InboundPayment::PAYMENT_METHODS, :include_blank => false
+          = f.input :payment_method, collection: InboundPayment.payment_methods, include_blank: false, as: :radio_buttons
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
           = f.button :submit, class: "btn btn-success"
