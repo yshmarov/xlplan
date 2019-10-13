@@ -19,14 +19,18 @@
           = link_to new_booking_path(@tenant), class: 'text-dark' do 
             .fa.fa-calendar-plus
       .card
-        .card-body
+        .card-header
           %h5
-            .fa.fa-globe-africa
-            = t('sidebar.online_booking') + ':'
-            /=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
-            .badge.badge-default
-              = @tenant.name
-          %hr
+            .float-left
+              - if @tenant.logo.attached?
+                = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
+              - else
+                .fa.fa-globe-africa
+              .badge.badge-default
+                = @tenant.name
+            .float-right
+              = t('sidebar.online_booking')
+        .card-body
           = render 'leads/form'
           %p
           = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(@tenant), :class => 'btn btn-danger'
