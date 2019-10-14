@@ -54,7 +54,12 @@ class ContactsController < ApplicationController
   	  @client.lead_source = "import"
   	  @client.save
 		@contact.update_attribute(:client_id, @client.id)
-		redirect_to contacts_list_path, notice: "Client created"
+
+    if @client.save
+      redirect_to contacts_list_path, notice: 'Client was successfully created.'
+    else
+      redirect_to contacts_list_path, alert: 'Error.'
+    end
 	end
 
   def add_all

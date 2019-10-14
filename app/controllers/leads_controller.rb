@@ -28,7 +28,12 @@ class LeadsController < ApplicationController
   	  @client.lead_source = "online_booking"
   	  @client.save
 		@lead.update_attribute(:client_id, @client.id)
-		redirect_to leads_path, notice: "Client created"
+
+    if @client.save
+      redirect_to leads_path, notice: 'Client was successfully created.'
+    else
+      redirect_to leads_path, alert: 'Error.'
+    end
 	end
 
   def update
