@@ -11,6 +11,7 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.string :description, :limit => 500
       t.string :instagram, :limit => 40
       t.string :time_zone, default: "UTC"
+      t.boolean :online_booking, default: false
       #t.string :logo, :limit => 500 #use active_storage instead
       #t.string :default_working_hours
 

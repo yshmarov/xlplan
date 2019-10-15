@@ -9,6 +9,7 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.date :date_of_birth
       t.string :gender, default: "undisclosed"
       t.text :address
+      t.string :lead_source, default: "direct"
 
       t.string :personal_data_consent, :boolean, default: true
       t.string :event_created_notifications, :boolean, default: true
