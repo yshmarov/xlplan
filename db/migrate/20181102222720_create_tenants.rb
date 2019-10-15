@@ -9,8 +9,9 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.string :industry, :limit => 144, default: "other", null: false
       t.string :website, :limit => 500
       t.string :description, :limit => 500
+      t.string :instagram, :limit => 40
+      t.string :time_zone, default: "UTC"
       #t.string :logo, :limit => 500 #use active_storage instead
-      #t.string :default_time_zone, null: false
       #t.string :default_working_hours
 
       t.timestamps

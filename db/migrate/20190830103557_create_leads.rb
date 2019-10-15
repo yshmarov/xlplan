@@ -10,7 +10,13 @@ class CreateLeads < ActiveRecord::Migration[5.2]
       t.belongs_to :location, foreign_key: true
       t.belongs_to :service, foreign_key: true
       t.belongs_to :member, foreign_key: true
+      t.belongs_to :client, foreign_key: true, index: true
       t.datetime :starts_at
+      t.string :coupon, :limit => 144
+      t.string :status
+      t.boolean :conditions_consent
+      t.string :referer
+      t.string :ip_address
 
       t.timestamps
     end
