@@ -61,6 +61,8 @@ class ClientsController < ApplicationController
     @comments = @commentable.comments
     @comment = Comment.new
 
+    @leads = @client.leads
+
     @event = Event.new
     authorize @event
     @event.jobs.build

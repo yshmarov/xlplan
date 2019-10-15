@@ -52,7 +52,11 @@ class LeadsController < ApplicationController
     authorize @lead
     @lead.destroy
     respond_to do |format|
-      format.html { redirect_to leads_url, notice: 'Lead was successfully destroyed.' }
+      if @lead.client.present?
+        format.html { redirect_to @lead.client, notice: 'Lead was successfully destroyed.' }
+      else
+        format.html { redirect_to leads_url, notice: 'Lead was successfully destroyed.' }
+      end
       format.json { head :no_content }
     end
   end

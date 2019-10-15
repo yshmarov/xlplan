@@ -125,6 +125,10 @@
         %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
           .fa.fa-chart-line
           = t("sidebar.stats")
+      %li.nav-item
+        %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
+          .fa.fa-globe-africa
+          = t("sidebar.online_booking")
     #myTabContent.tab-content
       /#zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
       /  %br
@@ -153,3 +157,5 @@
             .text-center 
               = t('.favorite_services')
             = pie_chart @client.services.group('name').count, download: true
+      #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
+        = render 'leads/index'
