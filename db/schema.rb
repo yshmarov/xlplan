@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_13_180848) do
+ActiveRecord::Schema.define(version: 2019_10_16_001517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 2019_10_13_180848) do
     t.index ["tenant_id"], name: "index_activities_on_tenant_id"
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
+  end
+
+  create_table "client_tags", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "client_id"
+    t.bigint "tag_id"
+    t.index ["client_id"], name: "index_client_tags_on_client_id"
+    t.index ["tag_id"], name: "index_client_tags_on_tag_id"
+    t.index ["tenant_id"], name: "index_client_tags_on_tenant_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -364,6 +373,14 @@ ActiveRecord::Schema.define(version: 2019_10_13_180848) do
     t.index ["tenant_id"], name: "index_skills_on_tenant_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.string "name", limit: 40
+    t.integer "client_tags_count", default: 0, null: false
+    t.index ["name"], name: "index_tags_on_name"
+    t.index ["tenant_id"], name: "index_tags_on_tenant_id"
+  end
+
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
@@ -429,6 +446,9 @@ ActiveRecord::Schema.define(version: 2019_10_13_180848) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "tenants"
+  add_foreign_key "client_tags", "clients"
+  add_foreign_key "client_tags", "tags"
+  add_foreign_key "client_tags", "tenants"
   add_foreign_key "clients", "tenants"
   add_foreign_key "comments", "tenants"
   add_foreign_key "comments", "users"
@@ -461,6 +481,7 @@ ActiveRecord::Schema.define(version: 2019_10_13_180848) do
   add_foreign_key "skills", "members"
   add_foreign_key "skills", "service_categories"
   add_foreign_key "skills", "tenants"
+  add_foreign_key "tags", "tenants"
   add_foreign_key "tenants", "tenants"
   add_foreign_key "users_roles", "tenants"
 end
