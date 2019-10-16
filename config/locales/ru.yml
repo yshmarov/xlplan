@@ -1020,6 +1020,12 @@ ru:
           whatsapp: "whatsapp"
           import: "импорт контактов"
           other: "другое"
+        tag: "Категории"
+        tags:
+          contact_required: "Нужен контакт"
+          lost_client: "Утерян"
+          blacklist: "Чёрный список"
+          VIP: "VIP"
         #genders:
         #  undisclosed: "Не выбран"
         #  male: "Мужской"

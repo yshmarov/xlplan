@@ -1020,6 +1020,12 @@ en:
           whatsapp: "whatsapp"
           import: "contact import"
           other: "other"
+        tag: "Tags"
+        tags:
+          contact_required: "Contact required"
+          lost_client: "Lost client"
+          blacklist: "Blacklist"
+          VIP: "VIP"
       inbound_payment:
         id: "Payment ID"
         client: "Client"

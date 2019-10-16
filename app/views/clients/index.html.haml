@@ -110,6 +110,12 @@
             .row
             .fa.fa-birthday-cake
             = client.date_of_birth
+          - if client.client_tags.any?
+            .row
+            - client.client_tags.each do |client_tag|
+              .badge.badge-info
+                /= client_tag.tag
+                = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
         .col-md-4
           .fa.fa-calendar-check
           = number_to_currency(client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")

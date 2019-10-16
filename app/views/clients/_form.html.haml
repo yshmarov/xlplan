@@ -45,8 +45,9 @@
   = f.input :lead_source, collection: Client.lead_sources, include_blank: false
   /= f.input :lead_source, collection: @sources
 
-  = f.label :tags
+  = f.label :tag
   = f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
+  /I18n.t(:name, scope: [:activerecord, :attributes, :event, :statuses])
 
   %hr
   = f.input :personal_data_consent

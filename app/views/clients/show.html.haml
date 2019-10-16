@@ -77,6 +77,13 @@
         %b= model_class.human_attribute_name(:next_event) + ':'
         - if @client.next_event.present?
           = distance_of_time_in_words(Time.now, @client.next_event) 
+
+        - if @client.client_tags.any?
+          .row
+          - @client.client_tags.each do |client_tag|
+            .badge.badge-info
+              /= client_tag.tag
+              = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
         /%br
         /%b Status:
         /= status_label(@client.status)
