@@ -1,3 +1,10 @@
+Tenant.find_each do |tenant|
+  Tenant.set_current_tenant(tenant)
+  Tag.create!(name: "contact_required")
+  Tag.create!(name: "lost_client")
+  Tag.create!(name: "blacklist")
+  Tag.create!(name: "VIP")
+end
 heroku run rake db:migrate
 Lead.find_each(&:save)
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -d xplan_development latest.dump

@@ -1026,6 +1026,7 @@ ru:
           lost_client: "Утерян"
           blacklist: "Чёрный список"
           VIP: "VIP"
+          regular_customer: "Постоянный клиент"
         #genders:
         #  undisclosed: "Не выбран"
         #  male: "Мужской"

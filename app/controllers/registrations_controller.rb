@@ -34,10 +34,10 @@ def create
         Tag.create!(name: "lost_client")
         Tag.create!(name: "blacklist")
         Tag.create!(name: "VIP")
+        Tag.create!(name: "regular_customer")
         #Tag.create!(name: "over_3_visits")
         #Tag.create!(name: "no_visits")
-        #Tag.create!(name: "regular_customer")
-        #Location.create!(name: @tenant.name)
+        Location.create!(name: @tenant.name)
 
         if resource.errors.empty?   #  SUCCESS!
 

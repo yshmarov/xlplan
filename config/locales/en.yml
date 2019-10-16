@@ -1026,6 +1026,7 @@ en:
           lost_client: "Lost client"
           blacklist: "Blacklist"
           VIP: "VIP"
+          regular_customer: "Regular customer"
       inbound_payment:
         id: "Payment ID"
         client: "Client"
