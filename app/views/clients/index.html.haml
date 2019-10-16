@@ -9,6 +9,10 @@
             .far.fa-address-book
             /%b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             %b= t "#{controller_name}_#{action_name}"
+            - if @ransack_clients.client_tags_tag_name_cont.present?
+              .badge.badge-info
+                = I18n.t(@ransack_clients.client_tags_tag_name_cont, scope: [:activerecord, :attributes, :client, :tags])
+
             .badge.badge-info
               = @clients.count
         .col-md-4
@@ -113,9 +117,9 @@
           - if client.client_tags.any?
             .row
             - client.client_tags.each do |client_tag|
-              .badge.badge-info
-                /= client_tag.tag
-                = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
+              = link_to clients_path(clients_search: {client_tags_tag_name_cont: client_tag.tag.name}) do 
+                .badge.badge-info
+                  = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
         .col-md-4
           .fa.fa-calendar-check
           = number_to_currency(client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")

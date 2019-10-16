@@ -40,3 +40,9 @@
         = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
           .fa-fw.fa.fa-birthday-cake
           #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-warning'} 
+        ////link to ransack search query
+        - Tag.all.each do |tag|
+          = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}) do 
+            .badge.badge-info
+              = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
+              = tag.client_tags_count
