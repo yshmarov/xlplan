@@ -42,6 +42,7 @@
           #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-warning'} 
         ////link to ransack search query
         - Tag.all.each do |tag|
+          .row
           = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}) do 
             .badge.badge-info
               = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
