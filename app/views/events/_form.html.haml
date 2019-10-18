@@ -47,8 +47,8 @@
     /  .links
     /    = link_to_add_association t('.add_service'), f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
     %hr
-    = f.input :percent_off
-    = f.input :amount_off
+    = f.input :add_percent
+    = f.input :add_amount
     = f.input :notes, :input_html => {:rows => 5}
     = f.file_field :files, multiple: true
     - if @event.files.any?

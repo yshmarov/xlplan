@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   has_many :inbound_payments, as: :payable
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
-  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, :amount_off, :percent_off, presence: true
+  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, :add_amount, :add_percent, presence: true
   validates :notes, length: { maximum: 3000 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
@@ -106,7 +106,7 @@ class Event < ApplicationRecord
     if id?
       if confirmed? || no_show_refunded?
         #update_column :event_due_price, (client_price)
-        update_column :event_due_price, (client_price + client_price*percent_off/100 + amount_off*100)
+        update_column :event_due_price, (client_price + client_price*add_percent/100 + add_amount*100)
       else
         update_column :event_due_price, (0)
       end
