@@ -759,7 +759,7 @@ en:
       no_show: "Client No Show"
       no_show_refunded: "No Show Refund"
     form:
-      add_service: "+ Add Service"
+      add_service: "+ Add one more service"
     index:
       title: "Events"
     new:
@@ -870,14 +870,14 @@ en:
           no_show_refunded: "No Show Refund"
         status_color: "Color"
         notes: "Notes"
-        percent_off: "Скидка, %"
-        amount_off: "Скидка, сумма"
+        percent_off: "Additional %"
+        amount_off: "Additional amount"
         jobs_count: "Jobs count"
         after: "Starts after.."
         before: "Starts before.."
         service: "Service"
         services: "Services"
-        add_service: "+ Add Service"
+        add_service: "+ Add one more service"
         member: "Employee"
         time: "Time"
         created_at: "Created"

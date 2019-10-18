@@ -758,7 +758,7 @@ ru:
       no_show: "Клиент Не Явился"
       no_show_refunded: "Оплачиваемая Неявка"
     form:
-      add_service: "+ Добавить Услугу"
+      add_service: "+ Добавить ещё услугу"
     index:
       title: "Встречи"
     new:
@@ -869,14 +869,14 @@ ru:
           no_show_refunded: "Оплачиваемая Неявка"
         status_color: "Цвет"
         notes: "Заметки"
-        percent_off: "Скидка, %"
-        amount_off: "Скидка, сумма"
+        percent_off: "Наценка, %"
+        amount_off: "Наценка, сумма"
         jobs_count: "Кол. Работ"
         after: "Начало после.."
         before: "Начало до.."
         service: "Услуга"
         services: "Услуги"
-        add_service: "+ Добавить Услугу"
+        add_service: "+ Добавить ещё услугу"
         member: "Сотрудник"
         time: "Время"
         created_at: "Дата Создания"
