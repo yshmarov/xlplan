@@ -2,7 +2,8 @@
   .bg-light.font-weight-light.font-italic
     = comment.created_at.to_s(:long)
     \/
-    = link_to comment.user, user_path(comment.user)
+    - if comment.user.present?
+      = link_to comment.user, user_path(comment.user)
     .float-right
       = link_to "", [@commentable, comment], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm", title: 'Delete', 'data-toggle' => 'tooltip', 'data-placement' => 'top' if policy(comment).destroy?
 

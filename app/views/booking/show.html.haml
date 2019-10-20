@@ -51,33 +51,24 @@
                 .form-inline
                   .fa.fa-map-marker-alt.mr.mr-2
                   = location.address_line
+              .row
+    
               - if location.phone_number.present?
-                .row.mt-1
-                .form-inline
-                  = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm btn-block" do
-                    .fa.fa-phone.mr.mr-2
-                    #{number_to_phone(location.phone_number)}
+                = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm" do
+                  .fa.fa-phone
               - if location.whatsapp.present?
-                .row.mt-1
                 /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm btn-block", :target => "_blank" do
+                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm mr-1", :target => "_blank" do
                   .fab.fa-whatsapp
-                  WhatsApp
               - if location.viber.present?
-                .row.mt-1
-                = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm btn-block" do
+                = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm mr-1" do
                   .fab.fa-viber
-                  Viber
               - if location.telegram.present?
-                .row.mt-1
-                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm btn-block" do
+                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm mr-1" do
                   .fab.fa-telegram-plane
-                  Telegram
               - if location.email.present?
-                .row.mt-1
-                = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm btn-block" do
+                = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm mr-1" do
                   .fa.fa-envelope
-                  = location.email
         %p
       - if @members.any?
         .text-center

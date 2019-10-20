@@ -30,8 +30,17 @@ GOOD: Use the ActiveRelation#pluck method to pull the required fields directly f
 Tenant.pluck(:name)
 #=> ["Eloquent Ruby", "Sapiens", "Agile Web Development With Rails"]
 #######################################################
+Client.all.each do |client| client.update_attributes!(lead_source: "import") end
 heroku run rails c
+Tenant.set_current_tenant(2)
+Tenant.set_current_tenant(48)
+Client.public_activity_off
+Comment.public_activity_off
+Client.public_activity_on
+Comment.public_activity_on
+Event.public_activity_on
 Tenant.set_current_tenant(13)
+Tenant.set_current_tenant(2)
 PublicActivity.enabled = false
 InboundPayment.count
 InboundPayment.all.map(&:amount).sum
