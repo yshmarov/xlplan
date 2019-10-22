@@ -18,6 +18,7 @@ class Service < ApplicationRecord
   validates :name, length: { in: 1..144 }
   validates :description, length: { in: 0..144 }
   validates :name, :service_category_id, :service_category, :duration, :client_price, :client_price_cents, :member_percent, :member_price, presence: true
+  validates :duration, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100000,  only_integer: true }
   validates :member_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100,  only_integer: true }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }

@@ -38,6 +38,7 @@ Tenant.set_current_tenant(48)
 Client.public_activity_off
 Comment.public_activity_off
 Client.public_activity_on
+Member.public_activity_off
 Comment.public_activity_on
 Event.public_activity_off
 Tenant.set_current_tenant(13)
