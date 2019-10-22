@@ -81,10 +81,13 @@
         .row
         %b= model_class.human_attribute_name(:lead_source) + ':'
         = I18n.t(@client.lead_source, scope: [:activerecord, :attributes, :client, :lead_sources])
-        .row
-        .fa.fa-clock
-        %b= model_class.human_attribute_name(:created_at) + ':'
-        #{l(@client.created_at, format: "%a")} #{l(@client.created_at, format: "%d/%b/%Y %H:%M")}
+        - if @client.client_tags.any?
+          .row
+          - @client.client_tags.each do |client_tag|
+            .badge.badge-info
+              /= client_tag.tag
+              = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
+
         %hr
         .fa.fa-calendar-check
         %b= model_class.human_attribute_name(:jobs_amount_sum) + ':'
@@ -100,23 +103,24 @@
         %b= model_class.human_attribute_name(:balance) + ':'
         = number_to_currency(@client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .row
+        .fa.fa-arrow-left
         %b= model_class.human_attribute_name(:last_event) + ':'
         - if @client.last_event.present?
           = distance_of_time_in_words(Time.now, @client.last_event)
         .row
+        .fa.fa-arrow-right
         %b= model_class.human_attribute_name(:next_event) + ':'
         - if @client.next_event.present?
           = distance_of_time_in_words(Time.now, @client.next_event) 
+        .row
+        .fa.fa-dollar-sign
+        %b= model_class.human_attribute_name(:average_confirmed_check) + ':'
+        = @client.average_confirmed_check
+        .row
+        .fa.fa-clock
+        %b= model_class.human_attribute_name(:created_at) + ':'
+        #{l(@client.created_at, format: "%a")} #{l(@client.created_at, format: "%d/%b/%Y %H:%M")}
 
-        - if @client.client_tags.any?
-          .row
-          - @client.client_tags.each do |client_tag|
-            .badge.badge-info
-              /= client_tag.tag
-              = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
-        /%br
-        /%b Status:
-        /= status_label(@client.status)
         %hr
         %b= model_class.human_attribute_name(:comments) + ':'
         = @client.comments_count
@@ -159,13 +163,14 @@
           = t("sidebar.inbound_payments") + ':'
           = @client.inbound_payments.count
       %li.nav-item
+        %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
+          .fa.fa-globe-africa
+          = t("sidebar.online_booking") + ':'
+          = @client.leads.count
+      %li.nav-item
         %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
           .fa.fa-chart-line
           = t("sidebar.stats")
-      %li.nav-item
-        %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
-          .fa.fa-globe-africa
-          = t("sidebar.online_booking")
     #myTabContent.tab-content
       /#zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
       /  %br
@@ -176,6 +181,8 @@
         = render 'events/index'
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
         = render 'inbound_payments/index'
+      #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
+        = render 'leads/index'
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
         .card
           .card-body
@@ -194,5 +201,3 @@
             .text-center 
               = t('.favorite_services')
             = pie_chart @client.services.group('name').count, download: true
-      #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
-        = render 'leads/index'

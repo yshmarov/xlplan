@@ -1031,6 +1031,7 @@ ru:
         #  undisclosed: "Не выбран"
         #  male: "Мужской"
         #  female: "Женский"
+        average_confirmed_check: "Средний чек"
       inbound_payment:
         id: "Код Оплаты"
         client: "Клиент"

@@ -72,6 +72,11 @@ class Client < ApplicationRecord
   def last_event
     events.where("starts_at <= ?", Time.zone.now).order("starts_at DESC").pluck(:starts_at).first
   end
+  def average_confirmed_check
+    if events_count != 0
+      jobs_amount_sum/events_count/100.to_d
+    end
+  end
   #-----------------------callbacks details-------------------#
   #private
   #protected

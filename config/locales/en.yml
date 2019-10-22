@@ -1027,6 +1027,7 @@ en:
           blacklist: "Blacklist"
           VIP: "VIP"
           regular_customer: "Regular customer"
+        average_confirmed_check: "Average paycheck"
       inbound_payment:
         id: "Payment ID"
         client: "Client"
