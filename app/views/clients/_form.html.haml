@@ -46,8 +46,8 @@
   /= f.input :lead_source, collection: @sources
 
   = f.label :tag
-  = f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
-  /I18n.t(:name, scope: [:activerecord, :attributes, :event, :statuses])
+  /= f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
+  = f.select :tag_ids, Tag.all.collect {|p| [ I18n.t(p.name, scope: [:activerecord, :attributes, :client, :tags]), p.id ] }, {}, { multiple: true, class: "selectize" }
 
   %hr
   = f.input :personal_data_consent

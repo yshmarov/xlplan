@@ -7,7 +7,7 @@ Rails.application.configure do
       :exception_recipients => %w{yshmarov@gmail.com}
     }
 
-  config.action_mailer.default_url_options = { :host => 'xlplan.herokuapp.com', :protocol => 'https' }
+  config.action_mailer.default_url_options = { :host => 'xlplan.com', :protocol => 'https' }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
