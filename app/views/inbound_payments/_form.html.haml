@@ -4,9 +4,12 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.label :client
-    = f.error :client, class: 'text-danger'
-    = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+    - unless @client.present?
+      = f.label :client
+      = f.error :client, class: 'text-danger'
+      = f.select :client_id, Client.all.map{|c| [c.full_name, c.id]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+    - else
+      = f.input :client_id, input_html: {value: @client.id}, as: :hidden
 
     = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
 
