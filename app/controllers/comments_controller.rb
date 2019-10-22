@@ -18,7 +18,8 @@ class CommentsController < ApplicationController
       @comment.create_activity :create, parameters: {content: @comment.content}
       redirect_to @commentable, notice: "Comment created."
     else
-      render :new
+      redirect_to @commentable, alert: "Comment can't be empty."
+      #render :new
     end
   end
 
