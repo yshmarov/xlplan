@@ -407,12 +407,12 @@ ru:
       designed_for: "Для кого создан XLPLAN"
       #industries
       beauty_industry: "Индустрия красоты"
-      hair_beauty_barbershop: "Салон красоты и макияжа, парикмахерская, барбершоп"
+      cosmetology: "Косметология"
+      tattoo_studio: "Тату студия"
+      hair_beauty_barbershop: "Салон красоты"
       spa: "СПА-салон"
       sauna: "Сауна"
       solarium: "Солярий"
-      cosmetology: "Косметология"
-      tattoo_studio: "Тату студия"
       #industries
       private_medicine: "Частная медицина"
       stomatology: "Стоматология"
@@ -420,7 +420,7 @@ ru:
       private_clinic: "Частная клиника"
       psychologist: "Кабинет психолога"
       veterinary_clinic: "Ветеринарная клиника"
-      massage: "Массажный салон"
+      massage: "Массажный кабинет"
       #industries
       professional_services: "Профессиональные услуги"
       car_services: "Автосервис, автомойка, шиномонтаж"

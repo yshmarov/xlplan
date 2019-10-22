@@ -8,6 +8,7 @@ end
 heroku run rake db:migrate
 Lead.find_each(&:save)
 pg_restore --verbose --clean --no-acl --no-owner -h localhost -d xplan_development latest.dump
+YOUR_PASSWORD
 #######################################################
 #console commands to update counters, if needed
 #Client.find_each { |client| Client.reset_counters(client.id, :jobs_count) }
@@ -38,7 +39,7 @@ Client.public_activity_off
 Comment.public_activity_off
 Client.public_activity_on
 Comment.public_activity_on
-Event.public_activity_on
+Event.public_activity_off
 Tenant.set_current_tenant(13)
 Tenant.set_current_tenant(2)
 PublicActivity.enabled = false

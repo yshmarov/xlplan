@@ -21,7 +21,7 @@
           = image_tag @tenant.logo, width: "200px", class: "mx-auto d-inline align-top rounded"
         - else
           .fa.fa-image{:style => "font-size:50px"}
-        %h2= @tenant.name
+        %h3= @tenant.name
 
         .row
         - if @tenant.instagram.present?
@@ -35,8 +35,12 @@
             = @tenant.website
         %p
         = link_to t('sidebar.online_booking'), new_booking_path(@tenant), class: 'btn btn-lg btn-success'
-  - if @tenant.description.present?
-    %small= simple_format(@tenant.description)
+        %p
+        .row
+          .col-lg-4
+          .col-lg-4
+            - if @tenant.description.present?
+              %small= simple_format(@tenant.description)
   .row
     .col-lg-4
       - if @locations.any?
