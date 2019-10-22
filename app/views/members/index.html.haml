@@ -36,7 +36,7 @@
           /- if member.id == current_user.member.id
           /  .fa.fa-user
           = link_to member.full_name, member_path(member) if policy(member).show?
-          = status_label(member.status)
+          = active_label(member.active)
           - if member.online_booking?
             .badge.badge-success
               = model_class.human_attribute_name(:online_booking)

@@ -13,7 +13,21 @@ module ApplicationHelper
 		status_span_generator(status)
 	end
 
+	def active_label(active)
+		active_span_generator(active)
+	end
+
 	private
+		def active_span_generator(active)
+			case active
+				#Other models
+				when true
+					content_tag(:span, "active", class: 'badge badge-success')
+				when false
+					content_tag(:span, "inactive", class: 'badge badge-danger')
+			end
+		end
+
 		def plan_span_generator(plan)
 			case plan
 				#Other models
@@ -45,11 +59,6 @@ module ApplicationHelper
 	  #I18n.t(event.status, scope: [:activerecord, :attributes, :event, :statuses])
 		def status_span_generator(status)
 			case status
-				#Other models
-				when 'active'
-					content_tag(:span, status.titleize, class: 'badge badge-success')
-				when 'inactive'
-					content_tag(:span, status.titleize, class: 'badge badge-secondary')
 				#Event
 				when 'planned' 
 					content_tag(:span, I18n.t(status, scope: [:activerecord, :attributes, :event, :statuses]), class: 'badge badge-primary')

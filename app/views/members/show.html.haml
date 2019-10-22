@@ -71,7 +71,7 @@
         = @member.time_zone
         .row
         %b= model_class.human_attribute_name(:status) + ':'
-        = status_label(@member.status)
+        = active_label(@member.active)
         %hr
         %b
           .fa.fa-hand-paper

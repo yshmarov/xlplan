@@ -17,21 +17,19 @@ class Service < ApplicationRecord
   validates_uniqueness_of :name, scope: :tenant_id
   validates :name, length: { in: 1..144 }
   validates :description, length: { in: 0..144 }
-  validates :name, :service_category_id, :service_category, :duration, :client_price, :client_price_cents, :member_percent, :member_price, :status, presence: true
+  validates :name, :service_category_id, :service_category, :duration, :client_price, :client_price_cents, :member_percent, :member_price, presence: true
   validates :member_percent, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100,  only_integer: true }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------money gem-------------------#
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents
-  #-----------------------enums-------------------#
-  enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }
-  #scope :active, -> { where(status: [:active]) }
-  #scope :inactive, -> { where(status: [:inactive]) }
   def self.active_or_id(record_id)
-    where('id = ? OR (status=1)', record_id)    
+    where('id = ? OR (active=true)', record_id)    
   end
   #-----------------------callbacks-------------------#
   after_create :update_member_price

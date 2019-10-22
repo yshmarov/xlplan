@@ -19,7 +19,7 @@ class Location < ApplicationRecord
   accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
-  validates :name, :balance, :status, presence: true
+  validates :name, :balance, presence: true
   validates :name, length: { maximum: 50 }
   validates :phone_number, length: { maximum: 144 }
   validates :email, length: { maximum: 144 }
@@ -33,17 +33,15 @@ class Location < ApplicationRecord
       [address[:country], address[:city], address[:street], address[:zip]].join(', ')
     end
   end
-  #-----------------------enums-------------------#
-  enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
   #def open?  #for operating_hours
   #  operating_hours.where("? BETWEEN opens AND closes", Time.zone.now).any?
   #end
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }
-  #scope :active, -> { where(status: [:active]) }
-  #scope :inactive, -> { where(status: [:inactive]) }
   def self.active_or_id(record_id)
-    where('id = ? OR (status=1)', record_id)    
+    where('id = ? OR (active=true)', record_id)    
   end
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents

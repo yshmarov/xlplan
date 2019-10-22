@@ -14,8 +14,8 @@
       .card-body
         %b= model_class.human_attribute_name(:name) + ':'
         = @location.name
-
-        = status_label(@location.status)
+        .row
+        = active_label(@location.active)
         - if @location.online_booking?
           .badge.badge-success
             = model_class.human_attribute_name(:online_booking)

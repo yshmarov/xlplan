@@ -19,7 +19,7 @@
         .col-sm-4
           .fa.fa-map-marker-alt
           = link_to location.name, location_path(location) if policy(location).show?
-          = status_label(location.status)
+          = active_label(location.active)
           - if location.online_booking?
             .badge.badge-success
               = model_class.human_attribute_name(:online_booking)
@@ -75,7 +75,7 @@
   /        %th= model_class.human_attribute_name(:name)
   /        %th= model_class.human_attribute_name(:contacts)
   /        %th= model_class.human_attribute_name(:address)
-  /        %th= model_class.human_attribute_name(:status)
+  /        %th= model_class.human_attribute_name(:active)
   /        %th= model_class.human_attribute_name(:members_count)
   /        %th= model_class.human_attribute_name(:events_count)
   /        %th
@@ -90,7 +90,7 @@
   /              \/
   /            %a{:href => "mailto:#{location.email}"}= location.email
   /          %td= location.address
-  /          %td= status_label(location.status)
+  /          %td= location.active
   /          %td= location.members_count
   /          %td= location.events_count
   /          %td

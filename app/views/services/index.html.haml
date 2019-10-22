@@ -59,7 +59,7 @@
           %td
             = link_to service.name, service_path(service)
             .row
-            = status_label(service.status)
+            = active_label(service.active)
             .row
             - if service.online_booking?
               .badge.badge-success

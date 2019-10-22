@@ -29,7 +29,7 @@
       = f.input :client_price_cents, input_html: { autocomplete: 'off' }
       = f.input :member_percent
   
-    = f.input :status, :as => :radio_buttons, :collection => Service.statuses.keys.to_a, label:false
+    = f.input :active
 
     = f.input :online_booking
 

@@ -26,9 +26,8 @@ class Member < ApplicationRecord
   validates :user_id, uniqueness: true, allow_blank: true
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { maximum: 144 }
-  validates :status, presence: true
   validates :email, :phone_number, length: { maximum: 255 }
-  validates :first_name, :last_name, :status, presence: true
+  validates :first_name, :last_name, presence: true
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   validates :gender, inclusion: %w(male female undisclosed)
@@ -54,8 +53,6 @@ class Member < ApplicationRecord
       user.update_attributes!(time_zone: self.time_zone)
     end
   end
-  #-----------------------enums-------------------#
-  enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
   #next 5 bdays
   #next_bdays = (Date.today + 0.day).yday
@@ -63,11 +60,11 @@ class Member < ApplicationRecord
   #@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC')).first(5)
   ##@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order(Arel.sql "DATE(date_of_birth)").first(5)
 
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }
-  #scope :active, -> { where(status: [:active]) }
-  #scope :inactive, -> { where(status: [:inactive]) }
   def self.active_or_id(record_id)
-    where('id = ? OR (status=1)', record_id)    
+    where('id = ? OR (active=true)', record_id)    
   end
   #####STATS#####
   def planned_work_hours

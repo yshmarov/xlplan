@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_22_083259) do
+ActiveRecord::Schema.define(version: 2019_10_22_083558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -253,7 +253,6 @@ ActiveRecord::Schema.define(version: 2019_10_22_083259) do
     t.string "email", limit: 144
     t.string "address", limit: 255
     t.integer "balance", default: 0, null: false
-    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "events_count", default: 0, null: false
@@ -264,6 +263,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_083259) do
     t.string "viber", limit: 40
     t.string "telegram", limit: 40
     t.string "whatsapp", limit: 40
+    t.boolean "active", default: true
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
   end
@@ -278,7 +278,6 @@ ActiveRecord::Schema.define(version: 2019_10_22_083259) do
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
     t.text "address"
-    t.integer "status", default: 1, null: false
     t.integer "balance", default: 0, null: false
     t.bigint "location_id"
     t.datetime "created_at", null: false
@@ -290,6 +289,7 @@ ActiveRecord::Schema.define(version: 2019_10_22_083259) do
     t.integer "expences_amount_sum", default: 0, null: false
     t.integer "expences_count", default: 0, null: false
     t.boolean "online_booking", default: false
+    t.boolean "active", default: true
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
@@ -340,12 +340,12 @@ ActiveRecord::Schema.define(version: 2019_10_22_083259) do
     t.integer "client_price", default: 0, null: false
     t.integer "member_percent", default: 0, null: false
     t.integer "member_price", default: 0, null: false
-    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
     t.string "slug"
     t.boolean "online_booking", default: false
+    t.boolean "active", default: true
     t.index ["name"], name: "index_services_on_name", unique: true
     t.index ["service_category_id"], name: "index_services_on_service_category_id"
     t.index ["slug"], name: "index_services_on_slug", unique: true

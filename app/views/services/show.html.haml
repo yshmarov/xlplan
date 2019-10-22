@@ -32,8 +32,8 @@
         %b= model_class.human_attribute_name(:member_price) + ':'
         = number_to_currency(@service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
-        %b= model_class.human_attribute_name(:status) + ':'
-        = status_label(@service.status)
+        %b= model_class.human_attribute_name(:active) + ':'
+        = active_label(@service.active)
         %br
         %b= model_class.human_attribute_name(:online_booking) + ':'
         = @service.online_booking
