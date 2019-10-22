@@ -25,7 +25,6 @@ class Client < ApplicationRecord
   #-----------------------validation-------------------#
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { maximum: 144 }
-  validates :status, presence: true
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   validates :gender, inclusion: %w(male female undisclosed)
@@ -39,8 +38,6 @@ class Client < ApplicationRecord
       [address[:country], address[:city], address[:street], address[:zip]].join(', ')
     end
   end
-  #-----------------------enums-------------------#
-  enum status: { inactive: 0, active: 1 }
   #-----------------------scopes-------------------#
   scope :debtors, -> { where("balance < ?", 0) }
   scope :no_gender, -> { where(gender: "undisclosed") }
