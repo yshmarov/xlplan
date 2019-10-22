@@ -23,14 +23,6 @@
     .card
       .card-header
         .fa.fa-chart-line
-        = t('.status_popularity')
-      .card-body
-        = pie_chart Client.group(:status).count, download: true
-    %p
-  .col-lg-6
-    .card
-      .card-header
-        .fa.fa-chart-line
         = t('.gender_popularity')
       .card-body
         = pie_chart Client.group(:gender).count, download: true
