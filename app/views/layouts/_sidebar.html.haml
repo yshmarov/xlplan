@@ -1,14 +1,10 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
   %a.navbar-brand{:href => "/"}
     /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
-    - if Tenant.current_tenant.logo.attached?
-      = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
-    - else
-      %i.far.fa-calendar-check
+    %i.far.fa-calendar-check
     .badge.badge-default 
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)
-      = Tenant.current_tenant.name
       /= @org_name
     /zubCRM
     /= request.referer
@@ -26,6 +22,10 @@
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
+    .badge.badge-default.text-white
+      - if Tenant.current_tenant.logo.attached?
+        = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
+      = Tenant.current_tenant.name
     - if Tenant.current_tenant.plan == "demo"
       .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
     %ul.navbar-nav.ml-md-auto.d-md-flex

@@ -44,10 +44,12 @@
           /  .fa.fa-globe-africa
           /  = link_to tenant.website, "http://#{tenant.website}", target: :_blank
           .row
-          /%small= tenant.industry
-          %small= link_to I18n.t(tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: tenant.industry})
-          /.row
+          %small= I18n.t(tenant.industry, scope: [:static_pages, :landing_page])
+          /%small= link_to I18n.t(tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: tenant.industry})
+          .row
+          .fa.fa-map-marker-alt
           /= tenant.locations.count
+          = Location.unscoped.active.online_booking.where(tenant_id: tenant.id).count
 
         .col-md-6
           - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
