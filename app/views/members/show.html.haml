@@ -140,14 +140,15 @@
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
-      %li.nav-item
-        %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
-          .fa.fa-calendar-alt
-          = t('sidebar.calendar')
-      /%li.nav-item
-      /  %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
-      /    Planned events:
-      /    = @events.count
+      - if @member.active
+        %li.nav-item
+          %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+            .fa.fa-calendar-alt
+            = t('sidebar.calendar')
+        /%li.nav-item
+        /  %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
+        /    Planned events:
+        /    = @events.count
       %li.nav-item
         %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
           = t('sidebar.member_expences')
@@ -160,11 +161,12 @@
           .fa.fa-chart-line
           = t('sidebar.stats')
     #myTabContent.tab-content
-      #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-        %p
-        #event_calendar
-      /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
-      /  = render 'events/index'
+      - if @member.active
+        #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
+          %p
+          #event_calendar
+        /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
+        /  = render 'events/index'
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
         - if policy(@member).show_money?
           %p
