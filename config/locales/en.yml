@@ -917,6 +917,8 @@ en:
         online_booking: "Online booking"
         created_at: "Created"
         updated_at: "Updated"
+        production_cost: "Production cost"
+        production_cost_cents: "Production cost"
       service_category:
         name: "Category"
         services_count: "Service quantity"

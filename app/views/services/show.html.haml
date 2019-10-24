@@ -32,6 +32,9 @@
         %b= model_class.human_attribute_name(:member_price) + ':'
         = number_to_currency(@service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         %br
+        %b= model_class.human_attribute_name(:production_cost) + ':'
+        = number_to_currency(@service.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %br
         %b= model_class.human_attribute_name(:active) + ':'
         = active_label(@service.active)
         %br
