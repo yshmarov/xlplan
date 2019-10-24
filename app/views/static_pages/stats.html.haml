@@ -57,6 +57,7 @@
               %th Email
               %th Confirmed?
               %th Phone
+              %th TimeZone
           %tbody.bg-light
             - Member.all.unscoped.where(tenant_id: tenant.id).each do |member|
               %tr
@@ -67,6 +68,7 @@
                   %td= member.user.email
                   %td= member.user.confirmed_at.present?
                 %td= member.phone_number
+                %td= member.time_zone
   %p
   .container.table-responsive
     = will_paginate @tenants, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
