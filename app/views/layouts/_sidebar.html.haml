@@ -25,6 +25,7 @@
     .badge.badge-default.text-white
       - if Tenant.current_tenant.logo.attached?
         = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
+    .badge.badge-default.text-white
       = Tenant.current_tenant.name
     - if Tenant.current_tenant.plan == "demo"
       .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'

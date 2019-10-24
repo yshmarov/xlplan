@@ -62,7 +62,7 @@ class InboundPaymentsController < ApplicationController
       redirect_to @inbound_payment.payable, notice: 'Inbound payment was successfully destroyed.'
     else
       respond_to do |format|
-        format.html { redirect_to inbound_payments_url, notice: 'Inbound payment was successfully destroyed.' }
+        format.html { redirect_to @inbound_payment.client, notice: 'Inbound payment was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

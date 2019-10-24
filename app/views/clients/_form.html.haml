@@ -34,9 +34,9 @@
     .fields
       = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|
         = f.label :country
-        = a.text_field :country, id: :country, input_html: { autocomplete: 'nope' }, class: 'form-control'
+        = a.text_field :country, id: :country, class: 'form-control'
         = f.label :city
-        = a.text_field :city, id: :city, input_html: { autocomplete: 'nope' }, class: 'form-control'
+        = a.text_field :city, id: :city, class: 'form-control'
         = f.label :street
         = a.text_field :street, id: :street, input_html: { autocomplete: 'nope' }, class: 'form-control'
         = f.label :zip

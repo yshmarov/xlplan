@@ -10,6 +10,11 @@ class ContactsController < ApplicationController
       contact1.name = contact[:name]
       contact1.first_name = contact[:first_name]
       contact1.last_name = contact[:last_name]
+      #if contact[:last_name].present?
+      #  contact1.last_name = contact[:last_name]
+      #else
+      #  contact1.last_name = contact[:family_name]
+      #end
       contact1.address_1 = contact[:address_1]
       contact1.address_2 = contact[:address_2]
       contact1.city = contact[:city]
