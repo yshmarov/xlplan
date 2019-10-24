@@ -10,6 +10,8 @@ class DashboardController < ApplicationController
   end
 
   def calendar
+    #if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+    
     @jobs = Job.includes(:event, :service, :event => :client)
     #@jobs = Job.includes(:event, :service, :member, :event => :client)
     #if user.has_role(:admin) || user.has_role(:manager)
@@ -17,6 +19,7 @@ class DashboardController < ApplicationController
     #else
     #  @members = current_user.member
     #end
+    
     @members = Member.active.order('created_at ASC')
     #@events = Event.includes(:client, :jobs, :jobs => [:service, :member])
   end

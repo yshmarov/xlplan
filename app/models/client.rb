@@ -57,6 +57,7 @@ class Client < ApplicationRecord
         parent.table[:first_name], Arel::Nodes.build_quoted(' ')
       ),
       parent.table[:last_name]
+      #parent.table[:phone_number]
     )
   end
   #-----------------------lead_source options--------------------------------#
