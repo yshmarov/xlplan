@@ -58,7 +58,7 @@ function eventCalendar() {
     // design
     themeSystem: 'bootstrap4',
     header: {
-        left: 'prev,next, today',
+        left: 'prev,today,next',
         center: 'title',
         right: 'agendaDay,agendaWeek,month'
     },
