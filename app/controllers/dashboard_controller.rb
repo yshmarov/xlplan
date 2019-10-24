@@ -10,17 +10,17 @@ class DashboardController < ApplicationController
   end
 
   def calendar
-    #if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+    if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+      @members = Member.active.order('created_at ASC')
+      @jobs = Job.includes(:event, :service, :event => :client)
+    else
+      #@members = current_user.member #not activerecord
+      #@jobs = @members.jobs.includes(:event, :service, :event => :client) #not activerecord
+      @members = Member.where(user_id: current_user.id)
+      @jobs = Job.joins(:member).where(members: {user_id: current_user.id}).includes(:event, :service, :event => :client)
+    end
     
-    @jobs = Job.includes(:event, :service, :event => :client)
     #@jobs = Job.includes(:event, :service, :member, :event => :client)
-    #if user.has_role(:admin) || user.has_role(:manager)
-    #  @members = Member.active
-    #else
-    #  @members = current_user.member
-    #end
-    
-    @members = Member.active.order('created_at ASC')
     #@events = Event.includes(:client, :jobs, :jobs => [:service, :member])
   end
 
