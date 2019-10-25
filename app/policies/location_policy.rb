@@ -10,19 +10,19 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def create?
-    admin
+    admin_or_manager
   end
 
   def new?
-    admin
+    admin_or_manager
   end
 
   def edit?
-    admin
+    admin_or_manager
   end
 
   def update?
-    admin
+    admin_or_manager
   end
 
   def destroy?
