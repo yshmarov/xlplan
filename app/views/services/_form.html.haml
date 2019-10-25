@@ -12,15 +12,18 @@
 
     = f.input :description, input_html: { autocomplete: 'off' }
 
-    - if f.object.new_record?
-      = f.input :duration, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
-      = f.input :client_price_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
-      = f.input :member_percent, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
-    - else
-      = f.input :duration
-      = f.input :client_price_cents, input_html: { autocomplete: 'off' }
-      = f.input :member_percent
+    /- if f.object.new_record?
+    /  = f.input :duration, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
+    /  = f.input :client_price_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
+    /  = f.input :member_percent, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
+    /- else
+    /  = f.input :duration
+    /  = f.input :client_price_cents, input_html: { autocomplete: 'off' }
+    /  = f.input :member_percent
     
+    = f.input :duration
+    = f.input :client_price_cents, input_html: { autocomplete: 'off' }
+    = f.input :member_percent
     = f.input :production_cost_cents
   
     = f.input :active

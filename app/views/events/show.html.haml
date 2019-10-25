@@ -1,4 +1,5 @@
 - model_class = Event
+/= @event.sms_text
 .row
   .container
     .card{:style => "border-color:#{@event.status_color};"}
@@ -11,8 +12,11 @@
           = link_to "", event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
           = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).update?
           = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
-          - if @event.client.phone_number.present?
-            = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-purple fab fa-viber btn-sm"
+          /- if @event.client.phone_number.present?
+          /  /= link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-purple fab fa-viber btn-sm"
+          /  = link_to "https://api.whatsapp.com/send?phone=48537628023&text=#{@event.sms_text}&source=&data=", class: "btn btn-success fab fa-whatsapp btn-sm", :target => "_blank" do
+          /    /.fa.fa-user
+          /    /.fab.fa-whatsapp
         - if @event.client.email.present? && @event.client.event_created_notifications?
           .float-right.mr.mr-1
             = button_to send_email_to_client_event_path(@event), method: :patch, class: 'btn btn-success btn-sm fa' do 
@@ -57,7 +61,7 @@
         .row
         .fa.fa-clock
         %b= model_class.human_attribute_name(:time) + ':'
-        #{l(@event.starts_at, format: "%A")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
+        #{l(@event.starts_at, format: "%A %d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
         %p
         = render 'jobs/index'
         %b= model_class.human_attribute_name(:client_price_cents) + ':'

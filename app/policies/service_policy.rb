@@ -26,6 +26,6 @@ class ServicePolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.jobs.none? && admin
+    @record.jobs.none? && admin_or_manager
   end
 end

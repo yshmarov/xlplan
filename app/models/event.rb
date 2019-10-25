@@ -95,6 +95,15 @@ class Event < ApplicationRecord
       id
     end
   end
+  
+  def sms_text
+    services = self.services.pluck(:name).join(', ')
+    time = self.starts_at.strftime("%A %d/%b/%Y %H:%M").to_s
+    location = self.location.to_s
+    phone = self.location.phone_number.to_s
+    address = self.location.address_line.to_s
+    services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
+  end
 
   ################
 
