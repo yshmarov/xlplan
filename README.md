@@ -34,7 +34,7 @@ Tenant.pluck(:name)
 Client.all.each do |client| client.update_attributes!(lead_source: "import") end
 heroku run rails c
 Tenant.set_current_tenant(2)
-Tenant.set_current_tenant(49)
+Tenant.set_current_tenant(48)
 Client.public_activity_off
 Comment.public_activity_off
 Client.public_activity_on
