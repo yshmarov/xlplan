@@ -115,7 +115,8 @@ class Event < ApplicationRecord
     if id?
       if confirmed? || no_show_refunded?
         #update_column :event_due_price, (client_price)
-        update_column :event_due_price, (client_price + client_price*add_percent/100 + add_amount*100)
+        #update_column :event_due_price, (client_price + client_price*add_percent/100 + add_amount*100)
+        update_column :event_due_price, (client_price + add_amount*100)
       else
         update_column :event_due_price, (0)
       end

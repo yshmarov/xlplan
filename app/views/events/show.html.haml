@@ -66,9 +66,9 @@
         = render 'jobs/index'
         %b= model_class.human_attribute_name(:client_price_cents) + ':'
         = number_to_currency(@event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        .row
-        %b= model_class.human_attribute_name(:add_percent) + ':'
-        = @event.add_percent
+        /.row
+        /%b= model_class.human_attribute_name(:add_percent) + ':'
+        /= @event.add_percent
         .row
         %b= model_class.human_attribute_name(:add_amount) + ':'
         = number_to_currency(@event.add_amount, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
