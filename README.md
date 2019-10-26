@@ -1,5 +1,7 @@
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)
+  Member.public_activity_off
+  Member.all.each do |member| member.update_attributes(time_zone: "Kyiv") end
   Tag.create!(name: "contact_required")
   Tag.create!(name: "lost_client")
   Tag.create!(name: "blacklist")

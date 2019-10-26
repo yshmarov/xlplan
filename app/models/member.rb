@@ -44,6 +44,9 @@ class Member < ApplicationRecord
   monetize :expences_amount_sum, as: :expences_amount_sum_cents
   monetize :balance, as: :balance_cents
   #-----------------------callbacks-------------------#
+  after_create do
+    self.update_attributes!(time_zone: Tenant.current_tenant.time_zone)
+  end
   after_touch :update_balance
   after_update :update_user_time_zone
   after_save :update_user_time_zone

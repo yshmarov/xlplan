@@ -848,6 +848,7 @@ ru:
         online_booking: "Онлайн запись"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
+        time_zone: "Часовой Пояс"
       event:
         client: "Клиент"
         client_id: "Клиент"

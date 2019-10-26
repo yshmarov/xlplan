@@ -849,6 +849,7 @@ en:
         online_booking: "Online booking"
         created_at: "Created"
         updated_at: "Updated"
+        time_zone: "Time Zone"
       event:
         client: "Client"
         client_id: "Client"

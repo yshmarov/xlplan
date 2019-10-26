@@ -17,6 +17,9 @@
         .row
         %b= model_class.human_attribute_name(:default_currency) + ':'
         = @tenant.default_currency.upcase
+        .row
+        %b= model_class.human_attribute_name(:time_zone) + ':'
+        = @tenant.time_zone
         %hr
         %b= model_class.human_attribute_name(:online_booking) + ':'
         - if @tenant.online_booking?
