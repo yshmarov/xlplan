@@ -31,9 +31,12 @@
         .card-header
           .row
             .col-md-4
-              = f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
+              = f.label :name
+              = f.text_field :name_cont, class: "form-control", autofocus: true, :autocomplete => :off
+              /= f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
             .col-md-4
-              = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
+              = f.label :service_category_id
+              = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control"
             .col-md-4
               = f.submit
 .table-responsive-xl
@@ -70,8 +73,7 @@
             = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
             = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
           %td
-            .badge.badge-secondary
-              = service.service_category
+            = link_to service.service_category, services_path(q: {service_category_id_eq: service.service_category_id})
           %td
             %small
               = service.description

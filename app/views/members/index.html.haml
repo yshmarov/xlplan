@@ -64,8 +64,8 @@
             %small
               /= member.skills.collect{|r| r.service_category}.to_sentence
               - member.skills.each do |skill|
-                .badge.badge-secondary
-                  = skill.service_category
+                .badge.badge-secondary.text-white
+                  = link_to skill.service_category, members_path(members_search: {skills_service_category_id_eq: skill.service_category.id}), class: 'text-white'
         /ADMIN - stats
         .col-md-2
           - if policy(member).show_money?

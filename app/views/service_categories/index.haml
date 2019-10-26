@@ -19,8 +19,9 @@
             .fa.fa-hand-paper
             = service_category.services_count
           .row
-          .fa.fa-user-tie
-          = service_category.skills.count
+          = link_to members_path(members_search: {skills_service_category_id_eq: service_category.id}) do
+            .fa.fa-user-tie
+            = service_category.skills.count
         .col-sm-3
           = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
           - unless service_category.services.any?
