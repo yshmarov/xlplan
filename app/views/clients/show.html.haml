@@ -56,8 +56,9 @@
         %b= model_class.human_attribute_name(:phone_number) + ':'
         = link_to "tel:#{@client.phone_number}", class: "button" do
           #{number_to_phone(@client.phone_number)}
-        = link_to "viber://chat?number=#{@client.phone_number}", class: "button" do
-          .fab.fa-viber
+        - if @client.phone_number.present?
+          = link_to "viber://chat?number=#{@client.phone_number}", class: "button" do
+            .fab.fa-viber
         .row
         %b= model_class.human_attribute_name(:email) + ':'
         %a{:href => "mailto:#{@client.email}"}= @client.email

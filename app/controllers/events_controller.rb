@@ -131,7 +131,7 @@ class EventsController < ApplicationController
       EventMailer.client_event_created(@event).deliver_now
       Event.public_activity_on
     end
-		redirect_to @event, notice: "Email invitation sent to #{@event.client}"
+		redirect_to @event, notice: "Email invitation sent to #{@event.client.email}"
   end
   
   def send_email_to_members

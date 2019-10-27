@@ -18,6 +18,10 @@ module Personable
   def username
     self.email.split(/@/).first
   end
+  
+  def phone_number_only_digits
+    self.phone_number.tr('^0-9', '')  
+  end
 
   def user_online
     if user.present? && user.online?

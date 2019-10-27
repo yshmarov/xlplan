@@ -102,7 +102,8 @@ class Event < ApplicationRecord
     location = self.location.to_s
     phone = self.location.phone_number.to_s
     address = self.location.address_line.to_s
-    services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
+    services + " " + time + " " + location + " " + phone + " " + address 
+    #services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
   end
 
   ################
