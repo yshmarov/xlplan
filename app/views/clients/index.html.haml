@@ -93,7 +93,7 @@
             .fa.fa-question
           /.far.fa-address-book
           = link_to client.full_name, client_path(client) if policy(client).show?
-          - if client.phone_number.present?
+          - if client.phone_number.present? && policy(client).show_phone?
             .row
             .fa.fa-phone
             = link_to "tel:#{client.phone_number}", class: "button" do
