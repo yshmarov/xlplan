@@ -6,7 +6,6 @@
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)
       /= @org_name
-    /zubCRM
     /= request.referer
     /= request.user_agent
     /= request.remote_ip
@@ -26,9 +25,12 @@
     /  - if Tenant.current_tenant.logo.attached?
     /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     .badge.badge-default.text-white
-      = Tenant.current_tenant.name
+      = link_to Tenant.current_tenant.name, calendar_path, class: 'text-white'
     - if Tenant.current_tenant.plan == "demo"
-      .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-shopping-cart'></i> #{t('sidebar.order_system')}".html_safe, edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1'
+      .nav-item
+        = link_to edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1' do
+          .fa.fa-shopping-cart
+          = t('sidebar.order_system')
     %ul.navbar-nav.ml-md-auto.d-md-flex
       = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
         .input-group
