@@ -13,8 +13,13 @@
     - if @services.any?
       /= f.association :service, as: :radio_buttons, collection: @services
       /= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description
-      = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
+      /////= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
       /, input_html: {value: @lead.service_id || params[:service_id]}
+
+      = f.label :service
+      = f.error :service_id, class: 'text-danger'
+      = f.select :service_id, @services.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+
     - if @locations.any?
       = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address
       /= f.association :location, collection: @locations, prompt: "Any location"

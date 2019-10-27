@@ -1,3 +1,7 @@
+- content_for :title do
+  = @tenant.name
+  = t('sidebar.online_booking')
+
 - I18n.locale = @tenant.locale
 %p
 .container

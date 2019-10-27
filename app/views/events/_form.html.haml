@@ -49,7 +49,7 @@
     /        = render 'job_fields', f: f
     /  .links
     /    = link_to_add_association t('.add_service'), f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
-    /%hr
+    %br
     /= f.input :add_percent
     = f.input :add_amount
     = f.input :notes, :input_html => {:rows => 5}
