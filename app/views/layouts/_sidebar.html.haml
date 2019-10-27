@@ -51,7 +51,7 @@
       /CALENDAR
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-calendar-alt'></i> #{t('sidebar.calendar')}".html_safe, calendar_path, class: "nav-link"
       /DASHBOARD
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-tachometer-alt'></i> #{t('sidebar.dashboard')}".html_safe, dashboard_path, class: "nav-link"
+      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-heartbeat'></i> #{t('sidebar.dashboard')}".html_safe, dashboard_path, class: "nav-link"
       /SEARCH CLIENT IN SIDEBAR
       /.input-group
       /  = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|

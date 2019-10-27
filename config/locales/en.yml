@@ -370,7 +370,7 @@ en:
     import_contacts: "Import contacts"
     online_booking: "Online booking"
     public_page: "Public page"
-    dashboard: "Dashboard"
+    dashboard: "Pulse"
 
   ######################################################
 
@@ -562,6 +562,8 @@ en:
       location_contacts: "Contacts"
       members_team: "Team"
   dashboard:
+    dashboard:
+      today: "Created today"
     start:
       select_time_zone: "Fill in your profile"
       select_currency: "Organisation settings"

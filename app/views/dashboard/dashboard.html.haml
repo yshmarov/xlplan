@@ -1,13 +1,12 @@
 .row
-  .col-lg-4
+  .col-md-6
     .card
       .card-header
         .text-center
           %h5
-            .fa.fa-tachometer-alt
+            .fa.fa-heartbeat
             = t('sidebar.dashboard')
-        
-      .card-header
+      .card-body
         %b= t('sidebar.online_booking')
         
         = link_to leads_path, class: "btn btn-outline-secondary btn-block " do
@@ -42,8 +41,32 @@
           #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-warning'} 
         ////link to ransack search query
         - Tag.all.each do |tag|
-          .row
-          = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}) do 
-            .badge.badge-info
-              = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
+          .mt-1
+          = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}), class: 'btn btn-outline-info btn-block' do 
+            = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
+            .badge.badge-secondary
               = tag.client_tags_count
+  .col-md-6
+    .card
+      .card-header
+        .text-center
+          %h5
+            /.far.fa-plus-square
+            = I18n.localize Date.today, format: :short
+            = t('.today') + ':'
+      .card-body
+        = link_to events_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-purple btn-block' do
+          .fa.fa-calendar-check
+          %b= t('tenants.show.events')
+          %span.badge.badge-light
+            = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+        = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-purple btn-block' do
+          %i.fa.fa-address-book
+          %b= t('tenants.show.clients')
+          %span.badge.badge-light
+            = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+        = link_to inbound_payments_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-purple btn-block' do
+          %i.fa.fa-hand-holding-usd
+          %b= t('tenants.show.inbound_payments')
+          %span.badge.badge-light
+            = InboundPayment.where("created_at >= ?", Time.zone.now.beginning_of_day).count

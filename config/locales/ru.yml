@@ -370,7 +370,7 @@ ru:
     import_contacts: "Импорт контактов"
     online_booking: "Онлайн запись"
     public_page: "Публичная страница"
-    dashboard: "Главная"
+    dashboard: "Пульс"
 
   ######################################################
 
@@ -561,6 +561,8 @@ ru:
       location_contacts: "Контакты"
       members_team: "Сотрудники"
   dashboard:
+    dashboard:
+      today: "Сегодня создано"
     start:
       select_time_zone: "Заполните свой профиль"
       select_currency: "Основные настройки организации"
