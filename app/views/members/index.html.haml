@@ -3,19 +3,19 @@
   .card.bg-light
     .card-header
       .row
-        .col-md-4
+        .col-lg-4
           %h5
             .fa.fa-user-tie
             %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             .badge.badge-info
               = @members.count
-        .col-md-4
+        .col-lg-4
           .input-group
-            = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('.search_member'), :autocomplete => :off
+            = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('.search_member'), :autocomplete => :off
             %span.input-group-append
-              %button.btn.btn-secondary{:type => "submit"}
+              %button.btn.btn-secondary.btn-sm{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
-        .col-md-4
+        .col-lg-4
           .mr.mt-1.float-right
             - if params.has_key?(:members_search)
               = link_to '', members_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
@@ -30,6 +30,13 @@
       .row
         /contacts
         .col-md-3
+          - if member.gender == "female"
+            .fa.fa-female
+          - elsif member.gender == "male"
+            .fa.fa-male
+          - else
+            .fa.fa-question
+
           /- if member.user_online.present?
           /  %i.fa.fa-fire{:style => "color:red;"}
           /  /%i.far.fa-circle{:style => "color:green;"}

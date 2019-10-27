@@ -4,7 +4,7 @@
   .card.bg-light
     .card-header
       .row
-        .col-md-4
+        .col-lg-4
           %h5
             .far.fa-address-book
             /%b=t '.title', :default => model_class.model_name.human.pluralize.titleize
@@ -15,14 +15,14 @@
 
             .badge.badge-info
               = @clients.count
-        .col-md-4
+        .col-lg-4
           .input-group
             .mr-md-2
-            = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
+            = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
             %span.input-group-append
-              %button.btn.btn-secondary{:type => "submit"}
+              %button.btn.btn-secondary.btn-sm{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
-        .col-md-4
+        .col-lg-4
           .mr.mt-1.float-right
             - unless params.has_key?(:clients_search)
               %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
@@ -56,10 +56,6 @@
               = sort_link @ransack_clients, :inbound_payments_count do
                 .ml.ml-2.fa.fa-hand-holding-usd
                 = model_class.human_attribute_name(:inbound_payments_count)
-            .col-md-4
-              = f.search_field :phone_number_cont, class: 'form-control', placeholder: t('activerecord.attributes.client.phone_number'), :autocomplete => :off
-              .row
-              %br= f.submit
     - else
       #accordion.collapse.show
         .card-header
@@ -84,10 +80,6 @@
               = sort_link @ransack_clients, :inbound_payments_count do
                 .ml.ml-2.fa.fa-hand-holding-usd
                 = model_class.human_attribute_name(:inbound_payments_count)
-            .col-md-4
-              = f.search_field :phone_number_cont, class: 'form-control', placeholder: t('activerecord.attributes.client.phone_number'), :autocomplete => :off
-              .row
-              %br= f.submit
 - @clients.each do |client|
   .card
     .card-header.bg-light

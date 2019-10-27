@@ -2,43 +2,28 @@
 = search_form_for @q, url: services_path do |f|
   .card
     .card-header
-      %h5.float-left
-        .fa.fa-hand-paper
-        %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-        .badge.badge-info
-          = @services.count
-      %h5.float-right
-        - unless params.has_key?(:q)
-          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-            .fa.fa-search
-            .fa.fa-chevron-down
-        - else
-          = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-        - if policy(Service).create?
-          = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
-    - unless params.has_key?(:q)
-      #accordion.collapse
-        .card-header
-          .row
-            .col-md-4
-              = f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
-            .col-md-4
-              = f.select :service_category_name_cont, options_from_collection_for_select(ServiceCategory.all, :name, :name, @q.service_category_name_cont), { :include_blank => true }, :class => "form-control"
-            .col-md-4
-              = f.submit
-    - else
-      #accordion.collapse.show
-        .card-header
-          .row
-            .col-md-4
-              = f.label :name
-              = f.text_field :name_cont, class: "form-control", autofocus: true, :autocomplete => :off
-              /= f.text_field :name_cont, class: "form-control", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
-            .col-md-4
-              = f.label :service_category_id
-              = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control"
-            .col-md-4
-              = f.submit
+      .row
+        .col-lg-3
+          %h5
+            .fa.fa-hand-paper
+            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+            .badge.badge-info
+              = @services.count
+        .col-lg-6
+          .input-group
+            .mr-md-2
+            = f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
+            = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm"
+            %span.input-group-append
+              %button.btn.btn-secondary.btn-sm{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
+        .col-lg-3
+          .mt-1
+          .float-right
+            - if params.has_key?(:q)
+              = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            - if policy(Service).create?
+              = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
 .table-responsive-xl
   %table#table1
     %thead
@@ -46,7 +31,9 @@
         %th= sort_link @q, :name, :name
         %th
         %th= sort_link @q, :service_category_name, :service_category_name
-        %th= model_class.human_attribute_name(:description)
+        /%th= model_class.human_attribute_name(:description)
+        %th= sort_link @q, :description, :description
+
         %th= sort_link @q, :duration, :duration
         %th= sort_link @q, :client_price, :client_price
         %th= sort_link @q, :member_percent, :member_percent

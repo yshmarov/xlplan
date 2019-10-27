@@ -22,9 +22,9 @@
           .row
             .col-md-4
               = model_class.human_attribute_name(:client_id)
-              = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+              = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
               = model_class.human_attribute_name(:member)
-              = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+              = f.select :jobs_member_last_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
             .col-md-4
               #input-daterange
                 = f.hidden_field :starts_at_gteq
@@ -49,9 +49,9 @@
           .row
             .col-md-4
               = model_class.human_attribute_name(:client_id)
-              = f.select :client_full_name_cont, Client.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+              = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
               = model_class.human_attribute_name(:member)
-              = f.select :jobs_member_full_name_cont, Member.all.map{|c| [c.full_name, c.full_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+              = f.select :jobs_member_last_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
             .col-md-4
               #input-daterange
                 = f.hidden_field :starts_at_gteq
