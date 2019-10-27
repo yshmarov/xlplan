@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_165619) do
+ActiveRecord::Schema.define(version: 2019_10_27_211114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 2019_10_23_165619) do
     t.index ["tenant_id"], name: "index_activities_on_tenant_id"
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
+  end
+
+  create_table "cashouts", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.integer "amount", default: 0, null: false
+    t.bigint "member_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_cashouts_on_location_id"
+    t.index ["member_id"], name: "index_cashouts_on_member_id"
   end
 
   create_table "client_tags", force: :cascade do |t|
@@ -446,6 +456,8 @@ ActiveRecord::Schema.define(version: 2019_10_23_165619) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "tenants"
+  add_foreign_key "cashouts", "locations"
+  add_foreign_key "cashouts", "members"
   add_foreign_key "client_tags", "clients"
   add_foreign_key "client_tags", "tags"
   add_foreign_key "client_tags", "tenants"
