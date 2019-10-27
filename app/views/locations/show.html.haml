@@ -55,7 +55,7 @@
               = operating_hour.closes.strftime("%H:%M")
         %hr
         /ADMIN - stats
-        - if current_user.has_role?(:admin) || current_user.has_role?(:manager)
+        - if policy(@location).show_money?
           .fa.fa-calendar-check
           = number_to_currency(@location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@location.events_count})

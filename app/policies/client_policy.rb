@@ -5,6 +5,10 @@ class ClientPolicy < ApplicationPolicy
     end
   end
 
+  def show_phone?
+    admin_or_manager
+  end
+
   def show?
     any_member
   end

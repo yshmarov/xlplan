@@ -5,6 +5,10 @@ class LocationPolicy < ApplicationPolicy
     end
   end
 
+  def show_money?
+    admin_or_manager
+  end
+
   def show?
     any_member
   end
