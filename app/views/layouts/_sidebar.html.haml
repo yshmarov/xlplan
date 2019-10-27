@@ -22,9 +22,9 @@
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
-    .badge.badge-default.text-white
-      - if Tenant.current_tenant.logo.attached?
-        = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
+    /.badge.badge-default.text-white
+    /  - if Tenant.current_tenant.logo.attached?
+    /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     .badge.badge-default.text-white
       = Tenant.current_tenant.name
     - if Tenant.current_tenant.plan == "demo"
@@ -32,7 +32,7 @@
     %ul.navbar-nav.ml-md-auto.d-md-flex
       = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
         .input-group
-          = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
+          = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
           %span.input-group-append
             %button.btn.btn-primary{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}

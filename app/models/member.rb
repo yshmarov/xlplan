@@ -162,15 +162,6 @@ class Member < ApplicationRecord
     end
     return new_member
   end
-  #-----------------------Ransack first_name or last_name-------------------#
-  ransacker :full_name do |parent|
-    Arel::Nodes::InfixOperation.new('||',
-      Arel::Nodes::InfixOperation.new('||',
-        parent.table[:first_name], Arel::Nodes.build_quoted(' ')
-      ),
-      parent.table[:last_name]
-    )
-  end
 
   #protected
   def update_first_member_email
