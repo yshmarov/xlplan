@@ -173,6 +173,10 @@
         %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
           .fa.fa-chart-line
           = t("sidebar.stats")
+      %li.nav-item
+        %a#activity-tab.nav-link{"aria-controls" => "activity", "aria-selected" => "false", "data-toggle" => "tab", :href => "#activity", :role => "tab"}
+          .fa.fa-bell
+          = t("sidebar.activity")
     #myTabContent.tab-content
       /#zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
       /  %br
@@ -203,3 +207,5 @@
             .text-center 
               = t('.favorite_services')
             = pie_chart @client.services.group('name').count, download: true
+      #activity.tab-pane.fade{"aria-labelledby" => "activity-tab", :role => "tabpanel"}
+        = render 'dashboard/activity'

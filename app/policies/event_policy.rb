@@ -18,11 +18,11 @@ class EventPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin || manager || @record.planned? && @user.has_role?(:owner, @record)
+    admin || manager || @user.has_role?(:owner, @record)
   end
 
   def update?
-    admin || manager || @record.planned? && @user.has_role?(:owner, @record)
+    admin || manager || @user.has_role?(:owner, @record)
   end
 
   def destroy?
