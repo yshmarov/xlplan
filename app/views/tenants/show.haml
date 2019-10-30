@@ -63,7 +63,7 @@
         %b= model_class.human_attribute_name(:plan) + ':'
         = plan_label(@tenant.plan)
         .float-right
-          = link_to edit_plan_path, class: 'btn btn-sm btn-danger mb-1 mt-1' do 
+          = link_to edit_plan_path, class: 'btn btn-sm btn-danger' do 
             .fa.fa-shopping-cart
             - if Tenant.current_tenant.plan == "demo"
               = t('sidebar.order_system')
