@@ -4,11 +4,11 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :name, autofocus: true, input_html: { autocomplete: 'off' }
-    = f.input :phone_number, hint: 'Country code & phone number: +380505532699'
-    = f.input :viber, hint: 'Country code & phone: +380505532699'
-    = f.input :whatsapp, hint: 'Country code & phone: 380505532699'
-    = f.input :telegram, hint: 'Nickname: yarotheslav'
+    = f.input :name, input_html: { autocomplete: 'off' }
+    = f.input :phone_number, hint: 'Country code & phone number: +XXXXXXXXXXXX'
+    = f.input :viber, hint: 'Country code & phone: +XXXXXXXXXXXX'
+    = f.input :whatsapp, hint: 'Country code & phone: XXXXXXXXXXXX'
+    = f.input :telegram, hint: 'Nickname: georgewashington'
     = f.input :email
     /= f.input :address
     / #### ADDRESS FIELD STARTS HERE ####

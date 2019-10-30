@@ -9,7 +9,6 @@
   %small
     .font-weight-light
       = link_to booking_path, class: '' do
-        /.fa.fa-step-backward
         booking
       \/
       = link_to I18n.t(@tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: @tenant.industry})
@@ -17,34 +16,32 @@
       = link_to booking_show_path(@tenant), class: 'text-dark' do
         = @tenant.name
 
-  .jumbotron.gradient-purple
+  .card.card-body.gradient-purple
     .text-light
-      .text-center
-        - if @tenant.logo.attached?
-          = image_tag @tenant.logo, width: "200px", class: "mx-auto d-inline align-top rounded"
-        - else
-          .fa.fa-image{:style => "font-size:50px"}
-        %p
-        %h3= @tenant.name
-
-        .row
-        - if @tenant.instagram.present?
-          = link_to "http://www.instagram.com/#{@tenant.instagram}", target: :_blank, class: 'text-white' do 
-            .fab.fa-instagram
-            = @tenant.instagram
-        .row
-        - if @tenant.website.present?
-          = link_to "http://#{@tenant.website}", target: :_blank, class: 'text-white' do
-            .fa.fa-globe-africa
-            = @tenant.website
-        %p
-        = link_to t('sidebar.online_booking'), new_booking_path(@tenant), class: 'btn btn btn-success'
-        %p
-        .row
-          .col-lg-4
-          .col-lg-4
-            - if @tenant.description.present?
-              %small= simple_format(@tenant.description)
+      .row
+        .col-md-4
+          .text-center
+            - unless @tenant.logo.attached?
+              = image_tag @tenant.logo, width: "200px", class: "mx-auto d-inline align-top rounded"
+            - else
+              .fa.fa-image{:style => "font-size:50px"}
+        .col-md-6
+          %h3= @tenant.name
+          %hr
+          - if @tenant.instagram.present?
+            = link_to "http://www.instagram.com/#{@tenant.instagram}", target: :_blank, class: 'text-white' do 
+              .fab.fa-instagram
+              = @tenant.instagram
+          %p
+          - if @tenant.website.present?
+            = link_to "http://#{@tenant.website}", target: :_blank, class: 'text-white' do
+              .fa.fa-globe-africa
+              = @tenant.website
+          %hr
+          - if @tenant.description.present?
+            %small= simple_format(@tenant.description)
+          %p
+          = link_to t('sidebar.online_booking'), new_booking_path(@tenant), class: 'btn btn btn-success'
   .row
     .col-lg-4
       - if @locations.any?

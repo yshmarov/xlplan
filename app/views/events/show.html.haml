@@ -1,13 +1,10 @@
 - model_class = Event
-/= @event.sms_text
 .row
   .container
     .card{:style => "border-color:#{@event.status_color};"}
       .card-header{:style => "border-color:#{@event.status_color};"}
         .fa.fa-calendar
         =t '.title', :default => model_class.model_name.human.titleize
-        /below works the same
-        /= model_class.model_name.human.titleize
         .float-right
           = link_to "", event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
           = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).update?
@@ -48,7 +45,9 @@
                 = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
               - unless @event.status == 'no_show_refunded'
                 = button_to t('.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
-        /%hr
+        - else
+          = status_label(@event.status)
+          .row
         .far.fa-address-book
         %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @event.client, client_path(@event.client)

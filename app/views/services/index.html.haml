@@ -12,7 +12,7 @@
         .col-lg-6
           .input-group
             .mr-md-2
-            = f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", autofocus: true, :autocomplete => :off
+            = f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
             = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm"
             %span.input-group-append
               %button.btn.btn-secondary.btn-sm{:type => "submit"}
@@ -40,9 +40,9 @@
         %th= sort_link @q, :member_price, :member_price
         /%th= sort_link @q, :created_at, :created_at
         /%th= sort_link @q, :updated_at, :updated_at
-        %th= sort_link @q, :production_cost, :production_cost
-        /ADMIN - stats
         - if current_user.has_role?(:admin)
+          %th= sort_link @q, :production_cost, :production_cost
+          /ADMIN - stats
           %th= sort_link @q, :jobs_count, model_class.human_attribute_name(:jobs_count)
     %tbody
       - @services.each do |service|
@@ -74,9 +74,9 @@
           %td= number_to_currency(service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           /%td= service.created_at
           /%td= service.updated_at
-          %td= number_to_currency(service.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          /ADMIN - stats
           - if current_user.has_role?(:admin)
+            %td= number_to_currency(service.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            /ADMIN - stats
             %td
               .fa.fa-calendar-check
               = service.jobs_count
