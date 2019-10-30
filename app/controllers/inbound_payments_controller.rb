@@ -30,6 +30,7 @@ class InboundPaymentsController < ApplicationController
 
   def new
     @inbound_payment = InboundPayment.new
+    @clients = Client.all
     authorize @inbound_payment
   end
 
@@ -49,6 +50,7 @@ class InboundPaymentsController < ApplicationController
           format.json { render :show, status: :created, location: @inbound_payment }
         end
       else
+        @clients = Client.all
         format.html { render :new }
         format.json { render json: @inbound_payment.errors, status: :unprocessable_entity }
       end

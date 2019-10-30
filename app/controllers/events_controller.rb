@@ -116,6 +116,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @clients = Client.all
     authorize @event
     @event.jobs.build
   end
@@ -172,6 +173,7 @@ class EventsController < ApplicationController
         #EventMailer.with(event: @event, member: @user.member).welcome_email.deliver_later
         #EventMailer.with(user: @user).welcome_email.deliver_later
       else
+        @clients = Client.all
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
