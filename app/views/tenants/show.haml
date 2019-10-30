@@ -156,23 +156,23 @@
             %td
               1
             %td= t('static_pages.pricing.unlimited')
-    /referral code
-    /.card
-    /  .card-header
-    /    = Tenant.current_tenant.id
-    /    = Tenant.current_tenant.created_at
-    /    %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
-    /    / The button used to copy the text
-    /    %button{:onclick => "myFunction()"}
-    /      .fa.fa-copy
-    /    :javascript
-    /      function myFunction() {
-    /        var copyText = document.getElementById("myInput");
-    /        copyText.select(); 
-    /        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-    /        document.execCommand("copy");
-    /      }
-    /%p
+    .card
+      .card-header
+        %b
+          PROMOCODE:
+          /XL#{Tenant.current_tenant.id}
+        %input#myInput{:readonly => "readonly", :type => "text", :value => "XL#{Tenant.current_tenant.id}"}
+        / The button used to copy the text
+        %button{:onclick => "myFunction()"}
+          .fa.fa-copy
+        :javascript
+          function myFunction() {
+            var copyText = document.getElementById("myInput");
+            copyText.select(); 
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+            document.execCommand("copy");
+          }
+    %p
     .card
       .card-header
         %h6= t('.counters')
