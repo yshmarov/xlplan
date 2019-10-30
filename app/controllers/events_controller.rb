@@ -123,6 +123,7 @@ class EventsController < ApplicationController
 
   def edit
     authorize @event
+    @clients = Client.all
   end
 
   def send_email_to_client
