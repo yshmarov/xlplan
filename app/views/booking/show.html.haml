@@ -21,7 +21,7 @@
       .row
         .col-md-4
           .text-center
-            - unless @tenant.logo.attached?
+            - if @tenant.logo.attached?
               = image_tag @tenant.logo, width: "200px", class: "mx-auto d-inline align-top rounded"
             - else
               .fa.fa-image{:style => "font-size:50px"}

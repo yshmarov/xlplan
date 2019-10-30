@@ -127,11 +127,7 @@ class Member < ApplicationRecord
   validate :tenant_plan_quantity_limit
   def tenant_plan_quantity_limit
     if self.new_record?
-      if tenant.plan == 'demo'
-        if tenant.members.count > 5
-          errors.add(:base, "Demo plan cannot have more than 5 employees. Upgrade your plan")
-        end
-      elsif tenant.plan == 'bronze'
+      if tenant.plan == 'bronze'
         if tenant.members.count > 0
           errors.add(:base, "Bronze cannot have more than 1 employee. Upgrade your plan")
         end

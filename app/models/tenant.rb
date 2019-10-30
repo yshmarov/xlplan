@@ -46,11 +46,11 @@ class Tenant < ApplicationRecord
 
   ###plan limits###
   def can_create_locations?
-    (plan == 'demo' && locations.count < 5) || (plan == 'bronze' && locations.count < 1) || (plan == 'silver' && locations.count < 1) || (plan == 'gold')
+    (plan == 'bronze' && locations.count < 1) || (plan == 'silver' && locations.count < 1) || (plan == 'gold') || (plan == 'demo')
   end
 
   def can_create_members?
-    (plan == 'demo' && members.count < 5) || (plan == 'bronze' && members.count < 1) || (plan == 'silver' && members.count < 5) || (plan == 'gold')
+    (plan == 'bronze' && members.count < 1) || (plan == 'silver' && members.count < 5) || (plan == 'gold') || (plan == 'demo')
   end
 
   ###milia###
