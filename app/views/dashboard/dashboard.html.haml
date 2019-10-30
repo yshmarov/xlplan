@@ -55,18 +55,18 @@
             = I18n.localize Date.today, format: :short
             = t('.today') + ':'
       .card-body
-        = link_to events_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-purple btn-block' do
+        = link_to events_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
           .fa.fa-calendar-check
-          %b= t('tenants.show.events')
-          %span.badge.badge-light
+          = t('tenants.show.events')
+          %span.badge.badge-secondary
             = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-        = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-purple btn-block' do
+        = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
           %i.fa.fa-address-book
-          %b= t('tenants.show.clients')
-          %span.badge.badge-light
+          = t('tenants.show.clients')
+          %span.badge.badge-secondary
             = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-        = link_to inbound_payments_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-purple btn-block' do
+        = link_to inbound_payments_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
           %i.fa.fa-hand-holding-usd
-          %b= t('tenants.show.inbound_payments')
-          %span.badge.badge-light
+          = t('tenants.show.inbound_payments')
+          %span.badge.badge-secondary
             = InboundPayment.where("created_at >= ?", Time.zone.now.beginning_of_day).count

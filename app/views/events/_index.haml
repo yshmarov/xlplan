@@ -38,6 +38,14 @@
           .fa.fa-user
           = link_to event.client.full_name, client_path(event.client)
           .row
+          - if event.client.phone_number.present? && policy(Client).show_phone?
+            .row
+            .fa.fa-phone
+            = link_to "tel:#{event.client.phone_number}", class: "button" do
+              #{number_to_phone(event.client.phone_number)}
+            = link_to "viber://chat?number=#{event.client.phone_number}", class: "button" do
+              .fab.fa-viber
+          %hr
           .fa.fa-map-marker-alt
           = link_to event.location, location_path(event.location)
           .row
