@@ -48,7 +48,7 @@ class Service < ApplicationRecord
   end
 
   def full_name_with_price
-    name.to_s+'/'+service_category.to_s+'('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min('+description.to_s+')'
+    name.to_s+'/'+service_category.to_s+'('+client_price_cents.to_i.to_s+' '+Tenant.current_tenant.default_currency.to_s+')'+','+duration.to_s+'min'
   end
 
   def name_price_duration_description
