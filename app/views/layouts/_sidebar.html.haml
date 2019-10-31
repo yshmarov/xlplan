@@ -76,11 +76,12 @@
           .fa-color-1.fa-fw.fa.fa-hand-holding-usd
           %b= t('sidebar.new_payment')
       /LINKS WITH COUNTERS
-      - if Tenant.current_tenant.online_booking
-        %li
-          = link_to leads_path, class: "nav-link" do
-            .fa-color-1.fa-fw.fa.fa-globe-africa
-            #{t('sidebar.online_booking')} #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
+      %li
+        = link_to leads_path, class: "nav-link" do
+          .fa-color-1.fa-fw.fa.fa-globe-africa
+          #{t('sidebar.online_booking')} 
+          - if Lead.has_no_client.count > 0
+            #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
