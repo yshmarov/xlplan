@@ -41,5 +41,7 @@
       = render 'layouts/header'
       = render 'layouts/messages'
       = yield
+      /rjv_tags for booking/ new_lead SELECTIZE
+      = rjv_tags
       - unless controller_name == 'booking'
         = render 'layouts/footer'
