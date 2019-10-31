@@ -12,17 +12,17 @@
           .fa.fa-calendar-check
           = t('tenants.show.events')
           %span.badge.badge-secondary
-            = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+            = @events_today
         = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
           %i.fa.fa-address-book
           = t('tenants.show.clients')
           %span.badge.badge-secondary
-            = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+            = @clients_today
         = link_to inbound_payments_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
           %i.fa.fa-hand-holding-usd
           = t('tenants.show.inbound_payments')
           %span.badge.badge-secondary
-            = InboundPayment.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+            = @payments_today
     %p
   .col-md-6
     .card

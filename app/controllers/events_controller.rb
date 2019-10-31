@@ -150,13 +150,10 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     authorize @event
     respond_to do |format|
-      Event.public_activity_off
       if @event.save
-        Event.public_activity_on
-        @event.create_activity :create, parameters: {status: @event.status}
         format.html { redirect_to @event, notice: t('.success') }
         format.json { render :show, status: :created, location: @event }
-        
+
         #if @event.client.email.present? && @event.client.event_created_notifications?
         #  EventMailer.client_event_created(@event).deliver_now
         #end
