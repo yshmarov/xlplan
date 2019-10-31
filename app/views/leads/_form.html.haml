@@ -18,7 +18,7 @@
 
       = f.label :service
       = f.error :service_id, class: 'text-danger'
-      = f.select :service_id, @services.map{|c| [c.full_name_with_price, c.id]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+      = f.select :service_id, @services.map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'
 
     - if @locations.any?
       = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address
