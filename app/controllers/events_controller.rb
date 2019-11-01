@@ -206,7 +206,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:tenant_id, :client_id, :location_id, :starts_at, :duration, :ends_at,
+      params.require(:event).permit(:client_id, :location_id, :starts_at, :duration, :ends_at,
           :client_price, :client_price_cents, :status, :status_color, :notes,
           :add_percent, :add_amount,
           files: [],

@@ -16,10 +16,12 @@
       
         = a.key
         - if a.trackable
-          - unless a.trackable_type == 'Comment'
-            = link_to a.trackable, a.trackable
-          - else
+          - if a.trackable_type == 'Comment'
             = link_to a.trackable.commentable, a.trackable.commentable
+          - elsif a.trackable_type == 'Job'
+            = link_to a.trackable.to_s, a.trackable.event
+          - else
+            = link_to a.trackable, a.trackable
           - if a.parameters.present?
             /= a.parameters.empty?
             - unless a.parameters == "{}"

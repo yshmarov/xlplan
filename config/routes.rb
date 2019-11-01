@@ -88,9 +88,6 @@ Rails.application.routes.draw do
     end
   end
 
-  #for public_activity
-  resources :jobs, only: :show
-
   resources :inbound_payments, except: [:edit, :update]
   resources :expences
 
