@@ -28,6 +28,7 @@
           %th.bg-warning Member
           %th.bg-warning Location
           %th.bg-warning Contact
+          %th.bg-warning Lead
           %th.bg-danger Today new events
           %th.bg-danger Today new clients
       %tbody
@@ -51,6 +52,7 @@
             %td= Member.unscoped.where(tenant_id: tenant.id).count 
             %td= Location.unscoped.where(tenant_id: tenant.id).count 
             %td= Contact.unscoped.where(tenant_id: tenant.id).count 
+            %td= Lead.unscoped.where(tenant_id: tenant.id).count 
             %td.bg-danger
               = Event.unscoped.where(tenant_id: tenant.id).where("created_at >= ?", Time.zone.now.beginning_of_day).count
             %td.bg-danger
