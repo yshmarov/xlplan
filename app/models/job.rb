@@ -6,7 +6,7 @@ class Job < ApplicationRecord
   #touch to calculate balance
   belongs_to :member, touch: true, counter_cache: true
   belongs_to :service, counter_cache: true
-  #touch to calculate duration and total_client_price
+  #touch to calculate duration and total_client_price????
   belongs_to :event, touch: true, counter_cache: true
   #-----------------------validation-------------------#
   validates :event, :service_id, :member,
@@ -16,13 +16,9 @@ class Job < ApplicationRecord
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------callbacks-------------------#
   after_touch :update_due_prices
-  after_create :update_service_details
   after_save :update_service_details
-  after_update :update_service_details
 
-  after_create :update_service_details do event.update_client_price end
   after_save :update_service_details do event.update_client_price end
-  after_update :update_service_details do event.update_client_price end
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -38,7 +34,6 @@ class Job < ApplicationRecord
   #def full_name
   #  "#{created_at} #{service} for #{event.client} at #{event.starts_at} by #{member}"
   #end
-
   #-----------------------gem money-------------------#
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents
@@ -51,7 +46,7 @@ class Job < ApplicationRecord
 
   def update_due_prices
     if id?
-      if event.status == 'confirmed' || event.status == 'no_show_refunded'
+      if event.confirmed? || event.no_show_refunded?
         update_column :client_due_price, (client_price)
         update_column :member_due_price, (member_price)
       else

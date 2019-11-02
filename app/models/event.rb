@@ -8,19 +8,25 @@ class Event < ApplicationRecord
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :to_s, use: :slugged
+  def to_s
+    if client.present? && location.present?
+      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
+    else
+      id
+    end
+  end
   #-----------------------relationships-------------------#
-  #has_many_attached :images
   has_many_attached :files
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :location, touch: true, counter_cache: true
   has_many :jobs, inverse_of: :event, dependent: :destroy
+  has_many :services, through: :jobs
   has_many :members, through: :jobs
   has_many :users, through: :members  #for event_mailer send_email_to_members
-  has_many :services, through: :jobs
   has_many :inbound_payments, as: :payable
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
-  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, :add_amount, :add_percent, presence: true
+  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
   validates :notes, length: { maximum: 3000 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
@@ -37,20 +43,30 @@ class Event < ApplicationRecord
   scope :is_confirmed, -> { where(status: [:confirmed, :no_show_refunded]) }
   scope :is_cancelled, -> { where(status: [:no_show, :member_cancelled, :client_cancelled]) }
   scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned, :no_show_refunded]) }
+  #-----------------------gem money-------------------#
+  monetize :client_price, as: :client_price_cents
+  monetize :event_due_price, as: :event_due_price_cents
+  #-----------------------description for mailing-------------------#
+  def sms_text
+    services = self.services.pluck(:name).join(', ')
+    time = self.starts_at.strftime("%A %d/%b/%Y %H:%M").to_s
+    location = self.location.to_s
+    phone = self.location.phone_number.to_s
+    address = self.location.address_line.to_s
+    services + " " + time + " " + location + " " + phone + " " + address 
+    #services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
+  end
   #-----------------------gem rolify-------------------#
   resourcify
-  after_create :add_user_ownership #for CRUD policies
-  after_update :add_user_ownership
-  #after_destroy :destroy_user_ownership
-  #remove_role 
-  def add_user_ownership
+  after_save do
     users.distinct.each do |user|
-      user.add_role(:owner, self) unless user.has_role?(:owner, self)
+      unless user.has_role?(:owner, self)
+        user.add_role(:owner, self)
+      end
     end
   end
 
-  after_destroy :remove_user_ownership
-  def remove_user_ownership
+  after_destroy do
     users.distinct.each do |user|
       if user.has_role?(:owner, self)
         user.remove_role(:owner, self) 
@@ -58,12 +74,34 @@ class Event < ApplicationRecord
     end
   end
   #-----------------------callbacks-------------------#
-  after_update :update_status_color
-  #after_save :update_status_color
+  #update_status_color
+  after_update do
+    if planned?
+      update_column :status_color, ('blue')
+    elsif confirmed? || no_show_refunded?
+      update_column :status_color, ('green')
+    else
+      update_column :status_color, ('red')
+    end
+  end
 
-  after_create :update_ends_at_and_client_price_and_due_prices
-  after_update :update_ends_at_and_client_price_and_due_prices
-  #after_save :update_ends_at_and_client_price_and_due_prices
+  #EVENT DURATION. Default is not set in database = good because this way I can always change default duration?
+  before_validation do
+    self.ends_at = starts_at + 30*60
+  end
+  #update_duration
+  after_save do
+    if jobs.any?
+      update_column :duration, (jobs.map(&:service_duration).sum)
+      update_column :ends_at, (starts_at + duration*60)
+    else
+      update_column :ends_at, (starts_at + 30*60) #event without jobs is 30 min by default
+    end
+  end
+
+  ################
+
+  after_save :update_ends_at_and_client_price_and_due_prices
   after_touch :update_ends_at_and_client_price_and_due_prices
 
   after_update :update_event_due_price
@@ -74,37 +112,7 @@ class Event < ApplicationRecord
     self.ends_at = starts_at + 30*60
   end
 
-  after_create :touch_associations
   after_save :touch_associations
-
-  #-----------------------gem money-------------------#
-  monetize :client_price, as: :client_price_cents
-  monetize :event_due_price, as: :event_due_price_cents
-  ############GEM VALIDATES_TIMELINESS############
-  #validates_date :starts_at, :on => :create, :on_or_after => :today # See Restriction Shorthand.
-  #validates_date :starts_at, :on_or_after => lambda { Date.current }
-  #validates :starts_at, :timeliness => {:on_or_after => lambda { Date.current }, :type => :date}
-
-  ################
-
-  def to_s
-    #"#{service} for #{client} at #{starts_at}"
-    if client.present? && location.present?
-      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
-    else
-      id
-    end
-  end
-  
-  def sms_text
-    services = self.services.pluck(:name).join(', ')
-    time = self.starts_at.strftime("%A %d/%b/%Y %H:%M").to_s
-    location = self.location.to_s
-    phone = self.location.phone_number.to_s
-    address = self.location.address_line.to_s
-    services + " " + time + " " + location + " " + phone + " " + address 
-    #services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
-  end
 
   ################
 
@@ -125,20 +133,6 @@ class Event < ApplicationRecord
   end
 
   protected
-
-  def update_status_color
-    if status == 'planned'
-      update_column :status_color, ('blue')
-    elsif status == 'confirmed'
-      update_column :status_color, ('green')
-    elsif status == 'member_cancelled' || status == 'client_cancelled' || status == 'no_show'
-      update_column :status_color, ('red')
-    elsif status == 'no_show_refunded'
-      update_column :status_color, ('green')
-    else
-      update_column :status_color, ('black')
-    end
-  end
 
   def touch_associations
     client.update_balance

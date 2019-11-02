@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :cashouts
   get 'booking', to: "booking#index"
   get '/booking/:id', to: 'booking#show', as: :booking_show
   match '/booking/:id' => 'booking#create_booking', via: [:post], as: :create_booking
@@ -90,6 +89,7 @@ Rails.application.routes.draw do
 
   resources :inbound_payments, except: [:edit, :update]
   resources :expences
+  resources :cashouts
 
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'

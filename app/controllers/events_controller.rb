@@ -180,6 +180,7 @@ class EventsController < ApplicationController
 
   def update
     authorize @event
+    @clients = Client.all
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: t('.success') }
