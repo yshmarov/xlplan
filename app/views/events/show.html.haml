@@ -68,7 +68,7 @@
         %b= model_class.human_attribute_name(:time) + ':'
         #{l(@event.starts_at, format: "%A %d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
         %p
-        = render 'jobs/index'
+        = render 'events/jobs_index'
         %b= model_class.human_attribute_name(:client_price_cents) + ':'
         = number_to_currency(@event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         /.row
