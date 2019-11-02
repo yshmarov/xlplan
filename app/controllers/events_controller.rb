@@ -211,6 +211,7 @@ class EventsController < ApplicationController
           :client_price, :client_price_cents, :status, :status_color, :notes,
           :add_percent, :add_amount,
           files: [],
-          jobs_attributes: [:id, :service_id, :member_id, :_destroy])
+          jobs_attributes: [:id, :service_id, :member_id, :_destroy,
+            :add_amount, :add_amount_cents, :production_cost, :production_cost_cents])
     end
 end

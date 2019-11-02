@@ -905,6 +905,9 @@ en:
         location_id: "Location"
         location: "Location"
         status: "Status"
+        add_amount: "Additional amount"
+        production_cost: "Production cost"
+        production_cost_cents: "Production cost"
       service:
         name: "Name"
         service_category_id: "Category"

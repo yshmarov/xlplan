@@ -8,6 +8,9 @@
         %th= model_class.human_attribute_name(:service_id)
         %th= model_class.human_attribute_name(:member_id)
         %th= model_class.human_attribute_name(:client_price)
+        %th= model_class.human_attribute_name(:add_amount)
+        %th= model_class.human_attribute_name(:production_cost)
+        %th= model_class.human_attribute_name(:service_member_percent)
         %th= model_class.human_attribute_name(:member_price)
     %tbody
       - @jobs.each_with_index do |job, index|
@@ -16,4 +19,7 @@
           %td= link_to job.service.full_name, service_path(job.service)
           %td= link_to job.member, member_path(job.member)
           %td= number_to_currency(job.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %td= number_to_currency(job.add_amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %td= number_to_currency(job.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %td= number_to_percentage(job.service_member_percent, precision: 0)
           %td= number_to_currency(job.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")

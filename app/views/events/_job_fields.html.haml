@@ -32,6 +32,10 @@
       = f.association :member, collection: Member.active_or_id(f.object.member_id)
     /, :value => current_user.category_country.name, :selected => current_user.category_country_id
     /= f.select :member_id, Member.active_or_id(f.object.member_id).map{|c| [c.full_name, c.id]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+
+    = f.input :add_amount_cents
+    = f.input :production_cost_cents
+
     .text-right
       = link_to_remove_association "", f, class: 'btn fa fa-trash btn-sm btn-danger'
   %p

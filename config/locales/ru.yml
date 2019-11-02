@@ -905,6 +905,9 @@ ru:
         location_id: "Филиал"
         location: "Филиал"
         status: "Статус"
+        add_amount: "Наценка, сумма"
+        production_cost: "Расходы"
+        production_cost_cents: "Расходы"
       service:
         name: "Название"
         service_category_id: "Категория"

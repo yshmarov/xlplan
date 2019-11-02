@@ -39,6 +39,8 @@ class Job < ApplicationRecord
   monetize :member_price, as: :member_price_cents
   monetize :client_due_price, as: :client_due_price_cents
   monetize :member_due_price, as: :member_due_price_cents
+  monetize :add_amount, as: :add_amount_cents
+  monetize :production_cost, as: :production_cost_cents
 
   def to_s
     if slug.present?; slug; else id; end
