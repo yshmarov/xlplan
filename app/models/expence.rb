@@ -2,9 +2,7 @@ class Expence < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------relationships-------------------#
-  belongs_to :tenant
   belongs_to :expendable, polymorphic: true, touch: true, counter_cache: true
-
   #-----------------------validation-------------------#
   #validates :client, :amount, :amount_cents, :payment_method, presence: true
   validates :amount, :payment_method, presence: true

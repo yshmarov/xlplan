@@ -182,5 +182,4 @@ class Member < ApplicationRecord
     update_column :expences_amount_sum, (expences.map(&:amount).sum)
     update_column :balance, (jobs_due_price_sum - expences_amount_sum)
   end
-
 end

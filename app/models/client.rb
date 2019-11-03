@@ -72,7 +72,6 @@ class Client < ApplicationRecord
   #private
   #protected
   def update_balance
-    #update_column :balance, (inbound_payments.map(&:amount).sum-jobs.map(&:client_due_price).sum)
     update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
     update_column :jobs_amount_sum, (events.map(&:event_due_price).sum)
     update_column :balance, (payments_amount_sum - jobs_amount_sum)

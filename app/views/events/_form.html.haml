@@ -28,7 +28,7 @@
     /= f.label :location_id
     /= f.error :location, class: 'text-danger'
     /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
-    = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false
+    = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false, as: :radio_buttons
 
     /%h3 Jobs:
     .jobs
@@ -50,8 +50,7 @@
     /  .links
     /    = link_to_add_association t('.add_service'), f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
     %br
-    /= f.input :add_percent
-    = f.input :add_amount
+    = f.input :add_amount, disabled: true
     = f.input :notes, :input_html => {:rows => 5}
     = f.file_field :files, multiple: true
     - if @event.files.any?

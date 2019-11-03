@@ -46,7 +46,7 @@ class InboundPaymentsController < ApplicationController
         if @inbound_payment.payable_id.present?
           format.html { redirect_to @inbound_payment.payable, notice: 'Inbound payment was successfully created.' }
         else
-          format.html { redirect_to @inbound_payment, notice: 'Inbound payment was successfully created.' }
+          format.html { redirect_to @inbound_payment.client, notice: 'Inbound payment was successfully created.' }
           format.json { render :show, status: :created, location: @inbound_payment }
         end
       else

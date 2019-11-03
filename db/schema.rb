@@ -270,7 +270,7 @@ ActiveRecord::Schema.define(version: 2019_11_03_113819) do
     t.integer "events_count", default: 0, null: false
     t.integer "members_count", default: 0, null: false
     t.string "slug"
-    t.integer "payments_amount_sum", default: 0, null: false
+    t.integer "events_amount_sum", default: 0, null: false
     t.boolean "online_booking", default: false
     t.string "viber", limit: 40
     t.string "telegram", limit: 40

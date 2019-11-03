@@ -2,26 +2,13 @@ class Job < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------relationships-------------------#
-  #counter_cache for job_count
-  #touch to calculate balance
-  belongs_to :member, touch: true, counter_cache: true
+  belongs_to :member, counter_cache: true
   belongs_to :service, counter_cache: true
-  #touch to calculate duration and total_client_price????
-  belongs_to :event, touch: true, counter_cache: true
+  belongs_to :event, counter_cache: true
   #-----------------------validation-------------------#
-  #service_duration
-  #service_member_percent
-  #service_client_price
-  #client_price
-  #member_price
-  #client_due_price
-  #member_due_price
-  #add_amount
-  #production_cost
   validates :event, :service_id, :member,
             :service_duration, :service_member_percent, :service_client_price,
-            :client_price, :member_price,
-            :client_due_price, :member_due_price, 
+            :client_price, :member_price, :client_due_price, :member_due_price,
             :add_amount, :production_cost, presence: true
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
@@ -55,9 +42,6 @@ class Job < ApplicationRecord
   monetize :add_amount, as: :add_amount_cents
   monetize :production_cost, as: :production_cost_cents
   #-----------------------callbacks-------------------#
-  #after_touch :update_due_prices
-  #after_save :update_service_details do event.update_client_price end
-
   after_save do
   	#save_service_details. not only after_create because a service can be changed in a Job. But than price is also changed! 
   	#So should be like "if same service_id - don't run this. Or make service_id uneditable in a Job?"

@@ -17,8 +17,8 @@ class Event < ApplicationRecord
   end
   #-----------------------relationships-------------------#
   has_many_attached :files
-  belongs_to :client, touch: true, counter_cache: true
-  belongs_to :location, touch: true, counter_cache: true
+  belongs_to :client, counter_cache: true
+  belongs_to :location, counter_cache: true, touch: true
   has_many :jobs, inverse_of: :event, dependent: :destroy
   has_many :services, through: :jobs
   has_many :members, through: :jobs
@@ -99,7 +99,10 @@ class Event < ApplicationRecord
     end
   end
 
-  ################
+  after_save do
+    update_column :event_price, (jobs.map(&:client_price).sum)
+  end
+
   after_update do
     if id?
 	    if jobs.any?
@@ -108,7 +111,7 @@ class Event < ApplicationRecord
         members.each do |member| member.update_jobs_balance end
 				#event_due_price is used to calculate client.balance
       	if confirmed? || no_show_refunded?
-	        update_column :event_due_price, (jobs.map(&:client_due_price).sum)
+	        update_column :event_due_price, (event_price)
 		    else
 	        update_column :event_due_price, (0)
 		    end
@@ -116,9 +119,4 @@ class Event < ApplicationRecord
 	    end
     end
   end
-
-  ################
-  #def update_event_price
-  #  update_column :event_price, (jobs.map(&:client_price).sum)
-  #end
 end
