@@ -47,11 +47,18 @@ class Member < ApplicationRecord
   after_create do
     self.update_attributes!(time_zone: Tenant.current_tenant.time_zone)
   end
+
   after_touch :update_balance
-  after_update :update_user_time_zone
-  after_save :update_user_time_zone
-  after_create :update_first_member_email
-  def update_user_time_zone
+
+  after_create do
+    #update_first_member_email
+    if self.user.present?
+      update_column :email, (user.email)
+    end
+  end
+
+  after_save do
+    #update_user_time_zone
     if user.present?
       user.update_attributes!(time_zone: self.time_zone)
     end
@@ -142,9 +149,8 @@ class Member < ApplicationRecord
   ################MILIA MEMBER#################
   DEFAULT_ADMIN = {
     last_name:  "Admin",
-    first_name: "Super"
+    first_name: "Admin"
   }
-  #business owner - also a good name
 
   def self.create_new_member(user, params)
     # add any other initialization for a new member
@@ -160,15 +166,21 @@ class Member < ApplicationRecord
   end
 
   #protected
-  def update_first_member_email
-    if self.user.present?
-      update_column :email, (user.email)
-    end
-  end
   
   def update_balance
     update_column :jobs_due_price_sum, (jobs.map(&:member_due_price).sum)
     update_column :expences_amount_sum, (expences.map(&:amount).sum)
     update_column :balance, (jobs_due_price_sum - expences_amount_sum)
   end
+
+  def update_jobs_balance
+    update_column :jobs_due_price_sum, (jobs.map(&:member_due_price).sum)
+    update_column :balance, (jobs_due_price_sum - expences_amount_sum)
+  end
+
+  def update_expences_balance
+    update_column :expences_amount_sum, (expences.map(&:amount).sum)
+    update_column :balance, (jobs_due_price_sum - expences_amount_sum)
+  end
+
 end

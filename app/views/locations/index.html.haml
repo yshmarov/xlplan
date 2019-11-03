@@ -55,7 +55,7 @@
         - if policy(location).show_money?
           .col-sm-4
             .fa.fa-calendar-check
-            = number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            = number_to_currency(location.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             (#{location.events_count})
             .row
             /.fa.fa-balance-scale

@@ -10,26 +10,26 @@
                 %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                   = status_label(event.status)
                 .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
-                  - unless event.status == 'planned'
+                  - unless event.planned?
                     = button_to t('events.show.planned'), mark_planned_event_path(event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2 btn-block'
-                  - unless event.status == 'confirmed'
+                  - unless event.confirmed?
                     = button_to t('events.show.confirmed'), mark_confirmed_event_path(event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2 btn-block'
-                  - unless event.status == 'no_show'
+                  - unless event.no_show?
                     = button_to t('events.show.no_show'), mark_no_show_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
-                  - unless event.status == 'member_cancelled'
+                  - unless event.member_cancelled?
                     = button_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
-                  - unless event.status == 'client_cancelled'
+                  - unless event.client_cancelled?
                     = button_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2 btn-block'
-                  - unless event.status == 'no_show_refunded'
+                  - unless event.no_show_refunded?
                     = button_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2 btn-block'
             - else
               .badge.badge-sm.badge-default
                 = status_label(event.status)
             .row
             - if event.planned?
-              = number_to_currency(event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+              %b= number_to_currency(event.event_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             - else
-              = number_to_currency(event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+              %b= number_to_currency(event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
             = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
             = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?

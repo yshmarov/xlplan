@@ -98,7 +98,7 @@ class EventsController < ApplicationController
     #@inbound_payment.payable_id = @event.id
     #@inbound_payment.payable_type = "Event"
     #@payment.client_id = @event.client.id
-    #@payment.amount = @event.client_price
+    #@payment.amount = @event.event_price
     respond_to do |format|
         format.html
         format.pdf do
@@ -207,9 +207,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:client_id, :location_id, :starts_at, :duration, :ends_at,
-          :client_price, :client_price_cents, :status, :status_color, :notes,
-          :add_percent, :add_amount,
+      params.require(:event).permit(:client_id, :location_id, :starts_at, :notes, :add_amount,
           files: [],
           jobs_attributes: [:id, :service_id, :member_id, :_destroy,
             :add_amount, :add_amount_cents, :production_cost, :production_cost_cents])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_02_000952) do
+ActiveRecord::Schema.define(version: 2019_11_03_113819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_000952) do
     t.datetime "starts_at"
     t.integer "duration", default: 0, null: false
     t.datetime "ends_at"
-    t.integer "client_price", default: 0, null: false
+    t.integer "event_price", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.string "status_color", default: "blue"
     t.text "notes"
@@ -155,7 +155,6 @@ ActiveRecord::Schema.define(version: 2019_11_02_000952) do
     t.integer "jobs_count", default: 0, null: false
     t.string "slug"
     t.integer "event_due_price", default: 0, null: false
-    t.integer "add_percent", default: 0, null: false
     t.integer "add_amount", default: 0, null: false
     t.index ["client_id"], name: "index_events_on_client_id"
     t.index ["location_id"], name: "index_events_on_location_id"
@@ -223,6 +222,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_000952) do
     t.string "slug"
     t.integer "add_amount", default: 0, null: false
     t.integer "production_cost", default: 0, null: false
+    t.integer "service_client_price", default: 0, null: false
     t.index ["event_id"], name: "index_jobs_on_event_id"
     t.index ["member_id"], name: "index_jobs_on_member_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
@@ -270,7 +270,7 @@ ActiveRecord::Schema.define(version: 2019_11_02_000952) do
     t.integer "events_count", default: 0, null: false
     t.integer "members_count", default: 0, null: false
     t.string "slug"
-    t.integer "events_amount_sum", default: 0, null: false
+    t.integer "payments_amount_sum", default: 0, null: false
     t.boolean "online_booking", default: false
     t.string "viber", limit: 40
     t.string "telegram", limit: 40

@@ -26,7 +26,7 @@ class Event < ApplicationRecord
   has_many :inbound_payments, as: :payable
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
-  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :client_price, presence: true
+  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :event_price, presence: true
   validates :notes, length: { maximum: 3000 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
@@ -44,7 +44,7 @@ class Event < ApplicationRecord
   scope :is_cancelled, -> { where(status: [:no_show, :member_cancelled, :client_cancelled]) }
   scope :is_confirmed_or_planned, -> { where(status: [:confirmed, :planned, :no_show_refunded]) }
   #-----------------------gem money-------------------#
-  monetize :client_price, as: :client_price_cents
+  monetize :event_price, as: :event_price_cents
   monetize :event_due_price, as: :event_due_price_cents
   #-----------------------description for mailing-------------------#
   def sms_text
@@ -74,7 +74,7 @@ class Event < ApplicationRecord
     end
   end
   #-----------------------callbacks-------------------#
-  #update_status_color
+  #update_status_color OK
   after_update do
     if planned?
       update_column :status_color, ('blue')
@@ -89,7 +89,7 @@ class Event < ApplicationRecord
   before_validation do
     self.ends_at = starts_at + 30*60
   end
-  #update_duration
+  #update_duration OK
   after_save do
     if jobs.any?
       update_column :duration, (jobs.map(&:service_duration).sum)
@@ -100,58 +100,25 @@ class Event < ApplicationRecord
   end
 
   ################
-
-  after_save :update_ends_at_and_client_price_and_due_prices
-  after_touch :update_ends_at_and_client_price_and_due_prices
-
-  after_update :update_event_due_price
-  #after_save :update_event_due_price
-  after_touch :update_event_due_price
-
-  before_validation do
-    self.ends_at = starts_at + 30*60
+  after_update do
+    if id?
+	    if jobs.any?
+	    	#event_due_price & member_due_price for member.balance
+				jobs.each do |job| job.update_due_prices end
+        members.each do |member| member.update_jobs_balance end
+				#event_due_price is used to calculate client.balance
+      	if confirmed? || no_show_refunded?
+	        update_column :event_due_price, (jobs.map(&:client_due_price).sum)
+		    else
+	        update_column :event_due_price, (0)
+		    end
+        client.update_balance
+	    end
+    end
   end
-
-  after_save :touch_associations
 
   ################
-
-  def update_client_price
-    update_column :client_price, (jobs.map(&:client_price).sum)
-  end
-
-  def update_event_due_price
-    if id?
-      if confirmed? || no_show_refunded?
-        #update_column :event_due_price, (client_price)
-        #update_column :event_due_price, (client_price + client_price*add_percent/100 + add_amount*100)
-        update_column :event_due_price, (client_price + add_amount*100)
-      else
-        update_column :event_due_price, (0)
-      end
-    end
-  end
-
-  protected
-
-  def touch_associations
-    client.update_balance
-    location.update_balance
-    members.each do |member| member.update_balance end
-  end
-
-  def update_ends_at_and_client_price_and_due_prices
-    if jobs.any?
-      update_column :duration, (jobs.map(&:service_duration).sum)
-      update_column :ends_at, (starts_at + duration*60)
-      update_column :client_price, (jobs.map(&:client_price).sum)
-      ######if I try as <unless new record>
-      jobs.each do |job| job.update_due_prices end
-      #job.update_due_prices
-      #job.all.update_due_prices
-    else
-      update_column :ends_at, (starts_at + 0)
-    end
-  end
-
+  #def update_event_price
+  #  update_column :event_price, (jobs.map(&:client_price).sum)
+  #end
 end

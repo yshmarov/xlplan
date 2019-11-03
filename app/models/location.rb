@@ -45,7 +45,7 @@ class Location < ApplicationRecord
   end
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
-  monetize :events_amount_sum, as: :events_amount_sum_cents
+  monetize :payments_amount_sum, as: :payments_amount_sum_cents
 
   def to_s
     if name.present?
@@ -79,8 +79,8 @@ class Location < ApplicationRecord
   #protected
 
   def update_balance
-    update_column :events_amount_sum, (events.map(&:event_due_price).sum)
-    update_column :balance, (events_amount_sum)
+    update_column :payments_amount_sum, (events.map(&:event_due_price).sum)
+    update_column :balance, (payments_amount_sum)
   end
 
 end

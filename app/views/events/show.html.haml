@@ -32,17 +32,17 @@
             %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = status_label(@event.status)
             .dropdown-menu.transparent{"aria-labelledby" => "dropdownMenuLink"}
-              - unless @event.status == 'planned'
+              - unless @event.planned?
                 = button_to t('.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
-              - unless @event.status == 'confirmed'
+              - unless @event.confirmed?
                 = button_to t('.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
-              - unless @event.status == 'no_show'
+              - unless @event.no_show?
                 = button_to t('.no_show'), mark_no_show_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.status == 'member_cancelled'
+              - unless @event.member_cancelled?
                 = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.status == 'client_cancelled'
+              - unless @event.client_cancelled?
                 = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.status == 'no_show_refunded'
+              - unless @event.no_show_refunded?
                 = button_to t('.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
         - else
           = status_label(@event.status)
@@ -69,11 +69,8 @@
         #{l(@event.starts_at, format: "%A %d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
         %p
         = render 'events/jobs_index'
-        %b= model_class.human_attribute_name(:client_price_cents) + ':'
-        = number_to_currency(@event.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        /.row
-        /%b= model_class.human_attribute_name(:add_percent) + ':'
-        /= @event.add_percent
+        %b= model_class.human_attribute_name(:event_price_cents) + ':'
+        %b= number_to_currency(@event.event_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .row
         %b= model_class.human_attribute_name(:add_amount) + ':'
         = number_to_currency(@event.add_amount, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")

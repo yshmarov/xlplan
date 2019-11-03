@@ -18,7 +18,7 @@
           %td= index +1
           %td= link_to job.service.full_name, service_path(job.service)
           %td= link_to job.member, member_path(job.member)
-          %td= number_to_currency(job.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %td= number_to_currency(job.service_client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_currency(job.add_amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_currency(job.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td= number_to_percentage(job.service_member_percent, precision: 0)
