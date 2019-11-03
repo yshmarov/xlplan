@@ -1,3 +1,11 @@
+Client.public_activity_off
+Member.public_activity_off
+Job.public_activity_off
+Event.public_activity_off
+Event.all.each { |x| x.save(validate: false) }
+Event.all.each { |x| x.save }
+Job.all.each { |x| x.save }
+
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)
   Member.public_activity_off

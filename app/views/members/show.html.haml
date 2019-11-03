@@ -21,22 +21,6 @@
             = image_tag @member.avatar, width: "200px", class: "mx-auto d-inline align-top rounded"
             .row
             %small= link_to 'Remove Avatar', delete_avatar_member_path(@member.avatar.id), method: :delete, data: { confirm: 'Are you sure?' } 
-          /%img.rounded{:alt => "#{@member.full_name}", :src => "#{url_for(@member.avatar)}", :width => "200px"}/
-          /= @member.avatar.attached?
-          /= @member.avatar.id
-          /= image_tag @member.avatar, size: "150", class: "rounded-circle"
-          /= link_to image_tag(@member.avatar), upload
-          /, :width => "30%", class: "rounded-circle"
-          /= image_tag @member.avatar, :width => "30%", class: "rounded-circle"
-          /= image_tag @member.avatar, :width => "30%", :height => "auto", class: "rounded-circle"
-  
-          /= image_tag @member.avatar, :height => "30%", class: "rounded-circle"
-          /%img.rounded-circle{:alt => "Yaroslav Shmarov", :src => "https://i.imgur.com/oQNA52Q.jpg", :width => "30%"}/
-          /= rails_blob_path(@member.avatar, disposition: "attachment")
-          /= link_to "download", rails_blob_path(@member.avatar, disposition: "attachment")
-        /- else
-        /  s
-        /.far.fa-user
         .row
         %b= model_class.human_attribute_name(:full_name) + ':'
         = @member.full_name

@@ -111,7 +111,7 @@ class Event < ApplicationRecord
         members.each do |member| member.update_jobs_balance end
 				#event_due_price is used to calculate client.balance
       	if confirmed? || no_show_refunded?
-	        update_column :event_due_price, (event_price)
+	        update_column :event_due_price, (jobs.map(&:client_price).sum)
 		    else
 	        update_column :event_due_price, (0)
 		    end

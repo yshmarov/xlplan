@@ -117,6 +117,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @clients = Client.all
+    @services = Service.includes(:service_category)
     authorize @event
     @event.jobs.build
   end
@@ -124,6 +125,7 @@ class EventsController < ApplicationController
   def edit
     authorize @event
     @clients = Client.all
+    @services = Service.includes(:service_category)
   end
 
   def send_email_to_client
@@ -172,6 +174,7 @@ class EventsController < ApplicationController
         #EventMailer.with(user: @user).welcome_email.deliver_later
       else
         @clients = Client.all
+        @services = Service.includes(:service_category)
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -181,6 +184,7 @@ class EventsController < ApplicationController
   def update
     authorize @event
     @clients = Client.all
+    @services = Service.includes(:service_category)
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: t('.success') }
