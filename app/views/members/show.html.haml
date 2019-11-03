@@ -156,7 +156,7 @@
           (#{@member.expences.count})
       /%li.nav-item
       /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
-      /    Earnings/month
+      /    Earnings
       %li.nav-item
         %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
           .fa.fa-chart-line
@@ -174,7 +174,7 @@
           = render 'expences/index'
       /#third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
       /  - if policy(@member).show_money?
-      /    = bar_chart @member.jobs.joins(:event).where(events: {status: [:confirmed]}).group_by_month('events.starts_at').sum('member_due_price/100'), download: true, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
+      /    = render 'events/jobs_index'
       #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
         - if policy(@member).show_money?
           %p
