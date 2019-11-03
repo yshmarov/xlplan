@@ -81,26 +81,26 @@
       .card-header
         = t('.confirmed_jobs_per_month_quantity')
       .card-body
-        = line_chart charts_members_jobs_per_member_per_month_quantity_path, download: true
+        = line_chart charts_members_jobs_per_member_per_month_quantity_path
     %p
   .col-12
     .card
       .card-header
         = t('.confirmed_jobs_per_month_client_price')
       .card-body
-        = line_chart charts_members_confirmed_client_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
+        = line_chart charts_members_confirmed_client_price_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
     %p
   .col-12
     .card
       .card-header
         = t('.confirmed_jobs_per_month_member_price')
       .card-body
-        = line_chart charts_members_confirmed_earnings_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
+        = line_chart charts_members_confirmed_earnings_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
   /  %p
   /.col-12
   /  .card
   /    .card-header
   /      = t('.expences_per_month_amount')
   /    .card-body
-  /      = line_chart charts_members_expences_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
+  /      = line_chart charts_members_expences_per_month_path, prefix: "#{Tenant.current_tenant.default_currency.upcase} "
 %p

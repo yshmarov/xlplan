@@ -103,7 +103,8 @@
               = t('.has_access')
             - else
               .row
-              = t('.no_access_resend_invitation_email')
+              /= t('.no_access_resend_invitation_email')
+              = t('.no_access')
             - unless member == current_user.member
               - if member.user.present?
                 .row

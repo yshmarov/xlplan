@@ -64,6 +64,7 @@ class ClientsController < ApplicationController
     @leads = @client.leads
 
     @event = Event.new
+    @services = Service.includes(:service_category)
     authorize @event
     @event.jobs.build
 
