@@ -34,8 +34,6 @@ class Service < ApplicationRecord
     where('id = ? OR (active=true)', record_id)    
   end
   #-----------------------callbacks-------------------#
-  after_create :update_member_price
-  after_update :update_member_price
   after_save :update_member_price
   
   def to_s
@@ -69,5 +67,4 @@ class Service < ApplicationRecord
   def update_member_price
     update_column :member_price, (client_price*member_percent/100)
   end
-
 end

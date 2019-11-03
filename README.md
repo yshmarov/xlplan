@@ -6,6 +6,9 @@ Event.all.each { |x| x.save(validate: false) }
 Event.all.each { |x| x.save }
 Job.all.each { |x| x.save }
 
+Job.all.each do |x| x.save_service_details end
+Job.all.each do |x| x.calculate_prices end
+
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)
   Member.public_activity_off

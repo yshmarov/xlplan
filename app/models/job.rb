@@ -42,7 +42,8 @@ class Job < ApplicationRecord
   monetize :add_amount, as: :add_amount_cents
   monetize :production_cost, as: :production_cost_cents
   #-----------------------callbacks-------------------#
-  after_save do
+  after_save :save_service_details
+  def save_service_details
   	#save_service_details. not only after_create because a service can be changed in a Job. But than price is also changed! 
   	#So should be like "if same service_id - don't run this. Or make service_id uneditable in a Job?"
     update_column :service_duration, (service.duration) #for calculating event duration OK
@@ -50,8 +51,8 @@ class Job < ApplicationRecord
     update_column :service_member_percent, (service.member_percent) #member price calculation OK
   end
 
-  after_save do
-  	#calculate_prices. OK
+  after_save :calculate_prices
+  def calculate_prices
     update_column :client_price, (service_client_price + add_amount)
     update_column :member_price, ( (client_price - production_cost) * service_member_percent / 100 )
   end

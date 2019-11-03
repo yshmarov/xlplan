@@ -99,11 +99,13 @@ class Event < ApplicationRecord
     end
   end
 
-  after_save do
+  after_save :update_event_price
+  def update_event_price
     update_column :event_price, (jobs.map(&:client_price).sum)
   end
 
-  after_update do
+  after_update :update_other_prices
+  def update_other_prices
     if id?
 	    if jobs.any?
 	    	#event_due_price & member_due_price for member.balance
