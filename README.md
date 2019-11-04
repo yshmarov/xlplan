@@ -1,13 +1,20 @@
 Client.public_activity_off
 Member.public_activity_off
-Job.public_activity_off
-Event.public_activity_off
 Event.all.each { |x| x.save(validate: false) }
 Event.all.each { |x| x.save }
 Job.all.each { |x| x.save }
 
-Job.all.each do |x| x.save_service_details end
-Job.all.each do |x| x.calculate_prices end
+Tenant.find_each do |tenant|
+  Tenant.set_current_tenant(49)
+  Job.public_activity_off
+  Event.public_activity_off
+  Job.all.each do |x| x.save_service_details end
+  Job.all.each do |x| x.calculate_prices end
+  Event.all.each do |x| x.update_event_price end
+  Event.all.each do |x| x.update_other_prices end
+end
+
+PublicActivity::Activity.where("created_at >= ?", Time.zone.now.beginning_of_day).count
 
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)

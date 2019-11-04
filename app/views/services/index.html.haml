@@ -40,10 +40,6 @@
         %th= sort_link @q, :member_price, :member_price
         /%th= sort_link @q, :created_at, :created_at
         /%th= sort_link @q, :updated_at, :updated_at
-        - if current_user.has_role?(:admin)
-          %th= sort_link @q, :production_cost, :production_cost
-          /ADMIN - stats
-          /%th= sort_link @q, :jobs_count, model_class.human_attribute_name(:jobs_count)
     %tbody
       - @services.each do |service|
         %tr
@@ -74,12 +70,6 @@
           %td= number_to_currency(service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           /%td= service.created_at
           /%td= service.updated_at
-          - if current_user.has_role?(:admin)
-            %td= number_to_currency(service.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            /ADMIN - stats
-            /%td
-            /  .fa.fa-calendar-check
-            /  = service.jobs_count
 .container.table-responsive
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br
