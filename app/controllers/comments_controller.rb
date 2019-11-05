@@ -27,7 +27,6 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     authorize @comment
     #@comment.destroy
-
     if @comment.destroy
       redirect_to @commentable, notice: "Comment deleted."
     end
@@ -45,5 +44,4 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:content, :user_id)
     #params.require(:comment).permit(:content)
   end
-
 end

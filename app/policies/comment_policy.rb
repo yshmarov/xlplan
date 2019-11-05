@@ -6,11 +6,10 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin_or_owner
+    admin_or_manager || owner
   end
 
-  def admin_or_owner
+  def owner
     @record.user_id == @user.id || @user.has_role?(:admin)
   end
-
 end

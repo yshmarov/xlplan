@@ -32,7 +32,7 @@
               %b= number_to_currency(event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
             = link_to '', event, class: "btn btn-primary fa fa-eye btn-sm" if policy(event).show?
-            = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).update?
+            = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).edit?
             = link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
         .col-lg-4
           .fa.fa-user
