@@ -13,7 +13,7 @@
       /= simple_form_for [@expendable, @expence] do |f|
       = simple_form_for @expence do |f|
         .modal-body
-          = f.input :expendable_id, input_html: {value: @member.id}, as: :hidden
+          = f.input :expendable_id, input_html: {value: @expendable.id}, as: :hidden
           = f.input :expendable_type, input_html: {value: "Member"}, as: :hidden
           = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
           = f.input :payment_method, collection: Expence.payment_methods, include_blank: false, as: :radio_buttons

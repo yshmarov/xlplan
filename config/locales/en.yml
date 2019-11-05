@@ -723,6 +723,7 @@ en:
     create:
       success: 'Employee was successfully created.'
     show:
+      planned_events: "Planned"
       access_rights: 'Access rights'
       delete_access: 'Delete access'
       edit_roles: 'Edit roles'
@@ -979,6 +980,7 @@ en:
         online_booking: "Online booking"
         created_at: "Created at"
         updated_at: "Updated at"
+        status: "Status"
       client:
         first_name: "First Name"
         last_name: "Last Name"

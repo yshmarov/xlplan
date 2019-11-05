@@ -722,6 +722,7 @@ ru:
     create:
       success: 'Сотрудник успешно создан.'
     show: 
+      planned_events: "Запланированные"
       access_rights: 'Права доступа'
       delete_access: 'Удалить доступ'
       edit_roles: 'Изменить права доступа'
@@ -979,6 +980,7 @@ ru:
         online_booking: "Онлайн запись"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
+        status: "Статус"
       client:
         first_name: "Имя"
         last_name: "Фамилия"

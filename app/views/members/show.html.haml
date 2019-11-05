@@ -1,6 +1,3 @@
-- set_var 'locale', Tenant.current_tenant.locale
-/- set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
-- set_var 'events', @jobs.map{|e| {title: e.event.client.full_name.to_s + " (" + e.service.name.to_s+")", start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - model_class = Member
 .row
   .col-lg-4
@@ -9,11 +6,11 @@
         .fa.fa-user-tie
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
-          = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm" if policy(@member).update?
+          = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm" if policy(@member).edit?
           = link_to '', @member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@member).destroy?
-      - if current_user.has_role?(:admin)
-        .card-header
-          /.text-center #also pulls the modal content
+      .card-header
+        /.text-center #also pulls the modal content
+        - if policy(Member).create?
           = render 'members/new_expence'
       .card-body
         - if @member.avatar.attached?
@@ -33,7 +30,8 @@
             .fab.fa-viber
         .row
         %b= model_class.human_attribute_name(:email) + ':'
-        %a{:href => "mailto:#{@member.email}"}= @member.email
+        - if @member.email.present?
+          = link_to @member.email, "mailto:#{@member.email}"
         .row
         %b= model_class.human_attribute_name(:date_of_birth) + ':'
         - if @member.date_of_birth.present?
@@ -47,7 +45,6 @@
           .fa.fa-male
         - else
           .fa.fa-question
-        /= @member.gender
         .row
         %b= model_class.human_attribute_name(:address) + ':'
         = @member.address_line
@@ -66,9 +63,6 @@
             - @member.skills.each do |skill|
               .badge.badge-secondary
                 = skill.service_category
-        /- @member.skills.each do |skill|
-        /  = skill.service_category
-        /= @member.skills.map{|p| p.service_category}.join(", ")
         .row
         .fa.fa-map-marker-alt
         = model_class.human_attribute_name(:location_id) + ':'
@@ -123,44 +117,33 @@
                 .row
                 = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
     %p
-  .col-lg-8
-    %ul#myTab.nav.nav-tabs{:role => "tablist"}
-      - if @member.active
-        %li.nav-item
-          %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
-            .fa.fa-calendar-alt
-            = t('sidebar.calendar')
+  - if policy(@member).show_money?
+    .col-lg-8
+      %ul#myTab.nav.nav-tabs{:role => "tablist"}
         /%li.nav-item
-        /  %a#first-tab.nav-link{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
-        /    Planned events:
+        /  %a#first-tab.nav-link.show.active{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
+        /    = t('.planned_events') + ":"
         /    = @events.count
-      %li.nav-item
-        %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
-          = t('sidebar.member_expences')
-          (#{@member.expences.count})
-      /%li.nav-item
-      /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
-      /    = model_class.human_attribute_name(:jobs_due_price_sum)
-      %li.nav-item
-        %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
-          .fa.fa-chart-line
-          = t('sidebar.stats')
-    #myTabContent.tab-content
-      - if @member.active
-        #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-          %p
-          #event_calendar
-        /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
+        /%li.nav-item
+        /  %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
+        /    = model_class.human_attribute_name(:jobs_due_price_sum) + ":"
+        /    = @member.jobs_count
+        %li.nav-item
+          %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
+            = t('sidebar.member_expences') + ":"
+            = @member.expences_count
+        %li.nav-item
+          %a#fourth-tab.nav-link.show.active{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
+            .fa.fa-chart-line
+            = t('sidebar.stats')
+      #myTabContent.tab-content
+        /#first.tab-pane.fade.show.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}
         /  = render 'events/index'
-      #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
-        - if policy(@member).show_money?
-          %p
-          = render 'expences/index'
-      #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
-        /- if policy(@member).show_money?
+        /#second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
         /  = render 'events/jobs_index'
-      #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
-        - if policy(@member).show_money?
+        #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
+          = render 'expences/index'
+        #fourth.tab-pane.show.active{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
           %p
           .row
             .col-12
@@ -191,4 +174,3 @@
                   = t('dashboard.members.payments_per_month')
                 .card-body
                   = line_chart @expences.group_by_month(:created_at).sum('amount / 100')
-          %p
