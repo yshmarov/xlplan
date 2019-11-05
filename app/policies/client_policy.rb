@@ -7,7 +7,6 @@ class ClientPolicy < ApplicationPolicy
 
   def show_phone?
     admin_or_manager
-    #manager
   end
 
   def show?
@@ -23,13 +22,11 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin_or_manager
-    #admin_or_manager_or_specialist
+    admin_or_manager_or_specialist
   end
 
   def update?
-    admin_or_manager
-    #admin_or_manager_or_specialist
+    admin_or_manager_or_specialist
   end
 
   def destroy?

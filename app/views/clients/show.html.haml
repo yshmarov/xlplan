@@ -52,8 +52,8 @@
         .row
         %b= model_class.human_attribute_name(:full_name) + ':'
         = @client.full_name
-        .row
         - if policy(@client).show_phone?
+          .row
           %b= model_class.human_attribute_name(:phone_number) + ':'
           = link_to "tel:#{@client.phone_number}", class: "button" do
             #{number_to_phone(@client.phone_number)}
