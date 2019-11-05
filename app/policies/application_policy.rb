@@ -27,7 +27,11 @@ class ApplicationPolicy
     @user.has_role?(:admin)
   end
 
-  def any_member
+  def specialist
+    @user.has_role?(:specialist)
+  end
+
+  def admin_or_manager_or_specialist
     @user.has_role?(:admin) || @user.has_role?(:manager) || @user.has_role?(:specialist)
   end
 

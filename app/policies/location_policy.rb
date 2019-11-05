@@ -10,7 +10,7 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def show?
-    any_member
+    admin_or_manager_or_specialist
   end
 
   def create?

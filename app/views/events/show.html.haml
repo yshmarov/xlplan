@@ -7,7 +7,7 @@
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-          = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).update?
+          = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).edit?
           = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
         - if @event.client.phone_number.present?
           .float-right.mr.mr-1
@@ -27,23 +27,24 @@
               .fa.fa-user-tie
               /= t '.email_members'
       .card-body
-        - if policy(@event).update?
+        - if policy(@event).edit?
           .dropdown.show
             %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = status_label(@event.status)
             .dropdown-menu.transparent{"aria-labelledby" => "dropdownMenuLink"}
-              - unless @event.planned?
-                = button_to t('.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
-              - unless @event.confirmed?
-                = button_to t('.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
-              - unless @event.no_show?
-                = button_to t('.no_show'), mark_no_show_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.member_cancelled?
-                = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.client_cancelled?
-                = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.no_show_refunded?
-                = button_to t('.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+              .btn-group-vertical
+                - unless @event.planned?
+                  = button_to t('.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
+                - unless @event.confirmed?
+                  = button_to t('.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+                - unless @event.no_show?
+                  = button_to t('.no_show'), mark_no_show_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+                - unless @event.member_cancelled?
+                  = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+                - unless @event.client_cancelled?
+                  = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+                - unless @event.no_show_refunded?
+                  = button_to t('.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
         - else
           = status_label(@event.status)
           .row

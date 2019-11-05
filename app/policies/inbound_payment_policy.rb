@@ -6,15 +6,15 @@ class InboundPaymentPolicy < ApplicationPolicy
   end
 
   def show?
-    any_member
+    admin_or_manager_or_specialist
   end
 
   def create?
-    any_member
+    admin_or_manager_or_specialist
   end
 
   def new?
-    any_member
+    admin_or_manager_or_specialist
   end
 
   def edit?

@@ -1,5 +1,5 @@
 class ExpencesController < ApplicationController
-  before_action :set_expence, only: [:show, :edit, :update, :destroy]
+  before_action :set_expence, only: [:show, :destroy]
 
   def index
     @q = Expence.ransack(params[:q])
@@ -27,9 +27,6 @@ class ExpencesController < ApplicationController
     @expence = Expence.new
   end
 
-  def edit
-  end
-
   def create
     @expence = Expence.new(expence_params)
     respond_to do |format|
@@ -38,18 +35,6 @@ class ExpencesController < ApplicationController
         format.json { render :show, status: :created, location: @expence }
       else
         format.html { render :new }
-        format.json { render json: @expence.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @expence.update(expence_params)
-        format.html { redirect_to @expence, notice: 'Expence was successfully updated.' }
-        format.json { render :show, status: :ok, location: @expence }
-      else
-        format.html { render :edit }
         format.json { render json: @expence.errors, status: :unprocessable_entity }
       end
     end

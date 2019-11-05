@@ -140,7 +140,7 @@
           (#{@member.expences.count})
       /%li.nav-item
       /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
-      /    Earnings
+      /    = model_class.human_attribute_name(:jobs_due_price_sum)
       %li.nav-item
         %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
           .fa.fa-chart-line
@@ -156,9 +156,9 @@
         - if policy(@member).show_money?
           %p
           = render 'expences/index'
-      /#third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
-      /  - if policy(@member).show_money?
-      /    = render 'events/jobs_index'
+      #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
+        /- if policy(@member).show_money?
+        /  = render 'events/jobs_index'
       #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
         - if policy(@member).show_money?
           %p

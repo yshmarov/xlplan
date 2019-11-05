@@ -9,7 +9,7 @@ class Event < ApplicationRecord
   extend FriendlyId
   friendly_id :to_s, use: :slugged
   def to_s
-    if client.present? && location.present?
+    if client_id.present? && location_id.present?
       client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
     else
       id
@@ -55,23 +55,6 @@ class Event < ApplicationRecord
     address = self.location.address_line.to_s
     services + " " + time + " " + location + " " + phone + " " + address 
     #services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
-  end
-  #-----------------------gem rolify-------------------#
-  resourcify
-  after_save do
-    users.distinct.each do |user|
-      unless user.has_role?(:owner, self)
-        user.add_role(:owner, self)
-      end
-    end
-  end
-
-  after_destroy do
-    users.distinct.each do |user|
-      if user.has_role?(:owner, self)
-        user.remove_role(:owner, self) 
-      end
-    end
   end
   #-----------------------callbacks-------------------#
   #update_status_color OK

@@ -5,7 +5,7 @@ Event.all.each { |x| x.save }
 Job.all.each { |x| x.save }
 
 Tenant.find_each do |tenant|
-  Tenant.set_current_tenant(49)
+  Tenant.set_current_tenant(13)
   Job.public_activity_off
   Event.public_activity_off
   Job.all.each do |x| x.save_service_details end
