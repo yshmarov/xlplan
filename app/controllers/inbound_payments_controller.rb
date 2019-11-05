@@ -34,10 +34,6 @@ class InboundPaymentsController < ApplicationController
     authorize @inbound_payment
   end
 
-  def edit
-    authorize @inbound_payment
-  end
-
   def create
     @inbound_payment = InboundPayment.new(inbound_payment_params)
     authorize @inbound_payment

@@ -7,7 +7,6 @@
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to "", expence_path(@expence, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-          = link_to '', edit_expence_path(@expence), class: 'btn btn-warning fa fa-edit btn-sm' if policy(@expence).update?
           = link_to '', @expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@expence).destroy?
       .card-body
         %b= model_class.human_attribute_name(:id) + ':'
@@ -28,6 +27,5 @@
         %b= model_class.human_attribute_name(:payment_method) + ':'
         .badge.badge-secondary
           = I18n.t(@expence.payment_method, scope: [:activerecord, :attributes, :inbound_payment, :payment_methods])
-
 %br
 =  render 'dashboard/activity'

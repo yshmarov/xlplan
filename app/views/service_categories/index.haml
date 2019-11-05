@@ -24,5 +24,4 @@
             = service_category.skills.count
         .col-sm-3
           = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
-          - unless service_category.services.any?
-            = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?
+          = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?

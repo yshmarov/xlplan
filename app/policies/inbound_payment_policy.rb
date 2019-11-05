@@ -17,14 +17,6 @@ class InboundPaymentPolicy < ApplicationPolicy
     admin_or_manager_or_specialist
   end
 
-  def edit?
-    superadmin
-  end
-
-  def update?
-    superadmin
-  end
-
   def destroy?
     admin_or_manager
   end

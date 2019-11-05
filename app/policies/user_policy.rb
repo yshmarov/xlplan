@@ -5,15 +5,15 @@ class UserPolicy < ApplicationPolicy
     end
   end
 
-  def edit?
-    admin
-  end
-
   def new?
-    admin
+    admin_or_manager
   end
 
   def create?
+    admin_or_manager
+  end
+
+  def edit?
     admin
   end
 

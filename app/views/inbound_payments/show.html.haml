@@ -10,7 +10,6 @@
             =t '.title', :default => model_class.model_name.human.titleize
             .float-right
               = link_to "", inbound_payment_path(@inbound_payment, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-              = link_to '', edit_inbound_payment_path(@inbound_payment), class: 'btn btn-warning fa fa-edit btn-sm' if policy(@inbound_payment).update?
               = link_to '', @inbound_payment, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@inbound_payment).destroy?
           .card-body
             %b= model_class.human_attribute_name(:id) + ':'

@@ -6,13 +6,6 @@ class ExpencePolicy < ApplicationPolicy
   end
 
   def show?
-    #if @user.has_role?(:admin)
-    #
-    #elsif @user.has_role?(:manager)
-    #  
-    #elsif @user.has_role?(:specialist)
-    #  
-    #end
     admin_or_manager_or_specialist
   end
 
@@ -25,6 +18,6 @@ class ExpencePolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin
+    admin_or_manager
   end
 end

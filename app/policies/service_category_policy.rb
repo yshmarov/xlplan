@@ -22,6 +22,6 @@ class ServiceCategoryPolicy < ApplicationPolicy
   end
 
   def destroy?
-    admin_or_manager
+    @record.members.none? && @record.services.none? && admin_or_manager
   end
 end
