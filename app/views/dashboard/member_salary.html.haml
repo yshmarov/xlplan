@@ -2,30 +2,38 @@
   %h5= t('.member_salary')
 %hr
 = form_tag dashboard_member_salary_path, method: :get do
-  - if params.has_key?(:select)
-    /= @member.full_name
-    /= params[:member]
-    = select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}, params[:member]), { onchange: 'this.form.submit()' }
-    = select_month(@start_date, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
-    = select_year(@start_date, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'})
-
-    = link_to '', dashboard_member_salary_path, class: "btn btn-sm btn-secondary fa fa-redo"
-    %hr
-    Jobs count:
-    %b= @jobs.count
-    .row
-    Planned salary:
-    %b= number_to_currency(@planned_salary, format: "%n")
-    .row
-    Confirmed salary:
-    %b= number_to_currency(@confirmed_salary, format: "%n")
-    .row
-    Cancelled salary:
-    %b= number_to_currency(@cancelled_salary, format: "%n")
-
-  - else
+  - unless params.has_key?(:select)
     = select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}), { prompt: 'MEMBER?', onchange: 'this.form.submit()' }
     = select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
     = select_year(Date.today, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'})
-%hr
-= render 'events/jobs_index'
+  - else
+    = select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}, params[:member]), { onchange: 'this.form.submit()' }
+    = select_month(@start_date, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
+    = select_year(@start_date, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'})
+    = link_to '', dashboard_member_salary_path, class: "btn btn-sm btn-secondary fa fa-redo"
+    %p
+    .table-responsive
+      %table#table1
+        - @member_select.each do |member|
+          %thead
+            %tr
+              %th= link_to member.full_name, member_path(member)
+              %th= t('.jobs')
+              %th= t('.hours_worked')
+              %th= t('.payments')
+              %th= t('.expences')
+          %thead
+            %tr
+              %th= t('.confirmed')
+              %th= @confirmed_job_q
+              %th= @confirmed_hours_worked.round(0)
+              %th= @total_confirmed_earnings
+              %th= @total_confirmed_expences
+          %thead
+            %tr
+              %th= t('.cancelled')
+              %th= @lost_job_q
+              %th= @lost_hours_worked.round(0)
+              %th= @total_lost_earnings
+              %th= @total_lost_expences
+    = render 'events/jobs_index'

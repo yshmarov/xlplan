@@ -69,66 +69,11 @@ class Member < ApplicationRecord
   #@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order('EXTRACT (DOY FROM date_of_birth) ASC').first(5)
   #@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC')).first(5)
   ##@members = Member.where("EXTRACT(DOY FROM date_of_birth) >= ?", next_bdays).order(Arel.sql "DATE(date_of_birth)").first(5)
-
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }
   def self.active_or_id(record_id)
     where('id = ? OR (active=true)', record_id)    
-  end
-  #####STATS#####
-  def planned_work_hours
-    jobs.joins(:event).where(events: {status: 'planned'}).map(&:service_duration).sum/60.to_d
-  end
-  def confirmed_work_hours
-    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:service_duration).sum/60.to_d
-  end
-  def cancelled_work_hours
-    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:service_duration).sum/60.to_d
-  end
-  #####
-  def planned_salary
-    jobs.joins(:event).where(events: {status: 'planned'}).map(&:member_price).sum
-  end
-  def confirmed_salary
-    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:member_due_price).sum
-  end
-  def cancelled_salary
-    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:member_due_price).sum
-  end
-  #####
-  def planned_revenue
-    jobs.joins(:event).where(events: {status: 'planned'}).map(&:client_price).sum
-  end
-  def confirmed_revenue
-    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:client_due_price).sum
-  end
-  def cancelled_revenue
-    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:client_price).sum
-  end
-  #####
-  def planned_jobs_count
-    jobs.joins(:event).where(events: {status: 'planned'}).count
-  end
-  def confirmed_jobs_count
-    jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).count
-  end
-  def cancelled_jobs_count
-    jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).count
-  end
-  #####
-  def share_of_revenue
-    def total_revenue
-      Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:client_due_price).sum.to_d
-    end
-    (confirmed_revenue.to_d / total_revenue)*100
-  end
-  #####
-  def average_service_price
-    confirmed_revenue/confirmed_jobs_count/100.to_d
-  end
-  def cost_per_hour
-    confirmed_revenue/confirmed_work_hours/100.to_d
   end
   ################TENANT VALIDATION#################
   validate :tenant_plan_quantity_limit

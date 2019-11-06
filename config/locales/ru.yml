@@ -592,21 +592,17 @@ ru:
       lead_source_popularity: 'Источники клиентов'
     member_stats:
       member_stats: "Статистика Сотрудников"
-      productivity: "Продуктивность"
-      name: "Имя"
-      planned: "Запланированные"
-      confirmed: "Состоявшиеся"
-      cancelled: "Отмененные"
+      confirmed_jobs_per_month_quantity: "Подтвержденные работ в месяц, количество"
+      confirmed_jobs_per_month_client_price: "Подтвержденные работ в месяц, к оплате от клиентов"
+      confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
+    member_salary:
+      member_salary: "Выработка Сотрудников"
       jobs: "Работ"
       hours_worked: "Часов"
       payments: "Цена встреч"
       expences: "Расходы ЗП"
-      net_income: "Доход"
-      revenue_share: "Доля Дохода"
-      confirmed_jobs_per_month_quantity: "Подтвержденные работ в месяц, количество"
-      confirmed_jobs_per_month_client_price: "Подтвержденные работ в месяц, к оплате от клиентов"
-      confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
-      payments_per_month: "Выплаты по месяцам"
+      confirmed: "Состоявшиеся"
+      cancelled: "Отмененные"
     event_stats:
       per_day: "По дням"
       per_month: "По месяцам"

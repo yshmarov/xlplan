@@ -593,21 +593,17 @@ en:
       lead_source_popularity: 'Lead source popularity'
     member_stats:
       member_stats: "Employee stats"
-      productivity: "Productivity"
-      name: "Name"
-      planned: "Planned"
-      confirmed: "Confirmed"
-      cancelled: "Cancelled"
+      confirmed_jobs_per_month_quantity: "Confirmed jobs per month, quantity"
+      confirmed_jobs_per_month_client_price: "Confirmed jobs per month, payable by clients"
+      confirmed_jobs_per_month_member_price: "Confirmed jobs per month, payable to employees"
+    member_salary:
+      member_salary: "Employee salary"
       jobs: "Jobs"
       hours_worked: "Hours worked"
       payments: "Client Payments"
       expences: "Employee comission"
-      net_income: "Net income"
-      revenue_share: "Revenue share"
-      confirmed_jobs_per_month_quantity: "Confirmed jobs per month, quantity"
-      confirmed_jobs_per_month_client_price: "Confirmed jobs per month, payable by clients"
-      confirmed_jobs_per_month_member_price: "Confirmed jobs per month, payable to employees"
-      payments_per_month: "Payments per month"
+      confirmed: "Confirmed"
+      cancelled: "Cancelled"
     event_stats:
       per_day: "By day"
       per_month: "By month"

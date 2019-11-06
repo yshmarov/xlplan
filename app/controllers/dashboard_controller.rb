@@ -41,29 +41,7 @@ class DashboardController < ApplicationController
 
   def member_stats
     if current_user.has_role?(:admin)
-      #performance vs others
       @members = Member.all
-
-      #company confirmed earning
-      @confirmed_hours_worked = (Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:service_duration).sum)/60.to_d
-      @confirmed_job_q = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).count
-      @total_confirmed_earnings = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:client_due_price_cents).sum
-      @total_confirmed_expences = Job.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:member_due_price_cents).sum
-      @total_confirmed_net_income = @total_confirmed_earnings - @total_confirmed_expences
-  
-      #company planned earnings
-      @planned_hours_worked = (Job.joins(:event).where(events: {status: 'planned'}).map(&:service_duration).sum)/60.to_d
-      @planned_job_q = Job.joins(:event).where(events: {status: 'planned'}).count
-      @total_planned_earnings = Job.joins(:event).where(events: {status: 'planned'}).map(&:client_price_cents).sum
-      @total_planned_expences = Job.joins(:event).where(events: {status: 'planned'}).map(&:member_price_cents).sum
-      @total_planned_net_income = @total_planned_earnings - @total_planned_expences
-  
-      #company loss stats
-      @lost_hours_worked = (Job.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:service_duration).sum)/60.to_d
-      @lost_job_q = Job.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).count
-      @total_lost_earnings = Job.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:client_price_cents).sum
-      @total_lost_expences = Job.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:member_price_cents).sum
-      @total_net_losses = @total_lost_earnings - @total_lost_expences
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end
@@ -71,25 +49,29 @@ class DashboardController < ApplicationController
 
   def member_salary
     if current_user.has_role?(:admin)
-      @members = Member.all
+      @members = Member.all #for select
       if params.has_key?(:select)
         @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
         @end_date = @start_date.end_of_month
         @member = params[:member]
-        #WORKS but must be event starts_at, not job created_at
-        #@jobs = Job.where("created_at BETWEEN ? AND ?",@start_date, @end_date).where(member_id: @member)
-        #WORKS CORRECTLY!
+
         @jobs = Job.joins(:event, :service, :service => :service_category, :event => :client).where(events: {:starts_at => @start_date..@end_date}).where(member_id: @member)
         #did not try this
         #@jobs = Job.where('starts_at BETWEEN ? AND ?', @selected_date.beginning_of_day, @selected_date.end_of_day)
         
-        @planned_salary = @jobs.joins(:event).where(events: {status: 'planned'}).map(&:member_price).sum/100
-        @confirmed_salary = @jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:member_price).sum/100
-        @cancelled_salary = @jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:member_price).sum/100
+        @member_select = Member.where(id: @member) #for productivity
+        
+        #confirmed
+        @confirmed_job_q = @jobs.where(events: {status: ['confirmed', 'no_show_refunded']}).count
+        @confirmed_hours_worked = (@jobs.where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:service_duration).sum)/60.to_d
+        @total_confirmed_earnings = @jobs.where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:client_due_price_cents).sum
+        @total_confirmed_expences = @jobs.where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:member_due_price_cents).sum
+        #cancelled
+        @lost_job_q = @jobs.where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).count
+        @lost_hours_worked = (@jobs.where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:service_duration).sum)/60.to_d
+        @total_lost_earnings = @jobs.where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:client_price_cents).sum
+        @total_lost_expences = @jobs.where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:member_price_cents).sum
       else
-        #WORKS but must be event starts_at, not job created_at
-        #@jobs = Job.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month).where(member_id: 0)
-        #WORKS CORRECTLY!
         @jobs = Job.joins(:event, :service, :service => :service_category, :event => :client).where(events: {:starts_at => Time.now.beginning_of_month..Time.now.end_of_month}).where(member_id: 0)
       end
     else
