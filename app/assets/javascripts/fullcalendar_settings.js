@@ -17,6 +17,7 @@ function eventCalendar() {
     selectHelper: true,
     
     resourceAreaWidth: '100px',
+    resourceLabelText: "#",
     
     select: function(start, end) {
       $.getScript('/events/new', function() {
