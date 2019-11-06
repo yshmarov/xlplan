@@ -71,18 +71,22 @@ class DashboardController < ApplicationController
 
   def member_salary
     if current_user.has_role?(:admin)
+      @members = Member.all
       if params.has_key?(:select)
         @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
         @end_date = @start_date.end_of_month
-        #@member = Member.first
         @member = params[:member]
-        @jobs = Job.where("created_at BETWEEN ? AND ?",@start_date, @end_date).where(member_id: @member)
-        #@jobs = Job.joins(:event).where(events: {"starts_at BETWEEN ? AND ?", @start_date, @end_date}).where(member_id: @member)
-        @members = Member.all
+        #WORKS but must be event starts_at, not job created_at
+        #@jobs = Job.where("created_at BETWEEN ? AND ?",@start_date, @end_date).where(member_id: @member)
+        #WORKS CORRECTLY!
+        @jobs = Job.joins(:event, :service, :service => :service_category).where(events: {:starts_at => @start_date..@end_date}).where(member_id: @member)
+        #did not try this
+        #@jobs = Job.where('starts_at BETWEEN ? AND ?', @selected_date.beginning_of_day, @selected_date.end_of_day)
       else
-        #@jobs = Job.joins(:event).where(events: {"starts_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month}).where(member_id: @member)
-        @jobs = Job.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month).where(member_id: 0)
-        @members = Member.all
+        #WORKS but must be event starts_at, not job created_at
+        #@jobs = Job.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month).where(member_id: 0)
+        #WORKS CORRECTLY!
+        @jobs = Job.joins(:event, :service, :service => :service_category).where(events: {:starts_at => Time.now.beginning_of_month..Time.now.end_of_month}).where(member_id: 0)
       end
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'

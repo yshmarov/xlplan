@@ -5,6 +5,7 @@
       %tr
         %th
           .fa.fa-hand-paper
+        /%th
         %th= model_class.human_attribute_name(:service_id)
         %th= model_class.human_attribute_name(:member_id)
         %th= model_class.human_attribute_name(:service_duration)
@@ -17,6 +18,7 @@
       - @jobs.each_with_index do |job, index|
         %tr
           %td= index +1
+          /%td= job.event.starts_at
           %td= link_to job.service.name_and_caregory, service_path(job.service)
           %td= link_to job.member, member_path(job.member)
           %td= job.service_duration
