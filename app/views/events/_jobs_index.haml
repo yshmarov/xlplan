@@ -6,9 +6,9 @@
         %th
           .fa.fa-hand-paper
         - if action_name == 'member_salary'
-          %th.bg-warning= model_class.human_attribute_name(:event_id)
-          %th.bg-warning= model_class.human_attribute_name(:client_id)
-          %th.bg-warning= model_class.human_attribute_name(:status)
+          %th.bg-light= model_class.human_attribute_name(:event_id)
+          %th.bg-light= model_class.human_attribute_name(:client_id)
+          %th.bg-light= model_class.human_attribute_name(:status)
         %th= model_class.human_attribute_name(:service_id)
         %th= model_class.human_attribute_name(:member_id)
         %th= model_class.human_attribute_name(:service_duration)
@@ -22,9 +22,9 @@
         %tr
           %td= index +1
           - if action_name == 'member_salary'
-            %td.bg-warning= link_to l(job.event.starts_at, format: "%a %d/%b/%Y %H:%M"), event_path(job.event)
-            %td.bg-warning= link_to job.event.client.full_name, client_path(job.event.client)
-            %td.bg-warning= status_label(job.event.status)
+            %td.bg-light= link_to l(job.event.starts_at, format: "%a %d/%b/%Y %H:%M"), event_path(job.event)
+            %td.bg-light= link_to job.event.client.full_name, client_path(job.event.client)
+            %td.bg-light= status_label(job.event.status)
           %td= link_to job.service.name_and_caregory, service_path(job.service)
           %td= link_to job.member, member_path(job.member)
           %td= job.service_duration
