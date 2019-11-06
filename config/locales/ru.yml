@@ -596,7 +596,7 @@ ru:
       confirmed_jobs_per_month_client_price: "Подтвержденные работ в месяц, к оплате от клиентов"
       confirmed_jobs_per_month_member_price: "Подтвержденные работ в месяц, к оплате сотруднику"
     member_salary:
-      member_salary: "Выработка Сотрудников"
+      member_salary: "Зарплата"
       jobs: "Работ"
       hours_worked: "Часов"
       payments: "Цена встреч"
