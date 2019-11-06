@@ -69,7 +69,7 @@ function eventCalendar() {
     titleFormat: 'ddd D MMM',
     eventBackgroundColor: 'purple',
     weekNumbers: true,
-    defaultView: 'agendaDay',
+    defaultView: app.vars.defaultcalendarview,
     nowIndicator: true,
     scrollTime: TimeNow,
     allDaySlot: false,

@@ -13,17 +13,13 @@ class DashboardController < ApplicationController
   end
 
   def calendar
-    if current_user.has_role?(:admin) || current_user.has_role?(:manager)
-      #@members = Member.active.includes(:location).order('created_at ASC')
-      @members = Member.active.order('created_at ASC')
-      @jobs = Job.includes(:event, :service, :event => :client)
+    @members = Member.active.order('created_at ASC')
+    @jobs = Job.includes(:event, :service, :event => :client)
+    if @members.size > 1
+      @defaultcalendarview = 'timelineDay'
     else
-      #@members = current_user.member #not activerecord
-      #@jobs = @members.jobs.includes(:event, :service, :event => :client) #not activerecord
-      @members = Member.where(user_id: current_user.id)
-      @jobs = Job.joins(:member).where(members: {user_id: current_user.id}).includes(:event, :service, :event => :client)
+      @defaultcalendarview = 'agendaDay'
     end
-    
     #@jobs = Job.includes(:event, :service, :member, :event => :client)
     #@events = Event.includes(:client, :jobs, :jobs => [:service, :member])
   end
