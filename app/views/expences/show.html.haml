@@ -1,31 +1,34 @@
 - model_class = Expence
 .row
-  .container
-    .card
-      .card-header
-        .fa.fa-dollar-sign
-        =t '.title', :default => model_class.model_name.human.titleize
-        .float-right
-          = link_to "", expence_path(@expence, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-          = link_to '', @expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@expence).destroy?
-      .card-body
-        %b= model_class.human_attribute_name(:id) + ':'
-        = @expence.slug
-        %br
-        %b Expendable type:
-        = @expence.expendable_type
-        = link_to @expence.expendable, @expence.expendable
-        /%b= model_class.human_attribute_name(:expendable) + ':'
-        /= link_to @expence.client, client_path(@expence.client)
-        /.row
-        /%b Expendable:
-        /= @expence.expendable_id
-        %br
-        %b= model_class.human_attribute_name(:amount) + ':'
-        = number_to_currency(@expence.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %br
-        %b= model_class.human_attribute_name(:payment_method) + ':'
-        .badge.badge-secondary
-          = I18n.t(@expence.payment_method, scope: [:activerecord, :attributes, :inbound_payment, :payment_methods])
-%br
-=  render 'dashboard/activity'
+  .col-md-3
+  .col-md-6
+    .row
+      .container
+        .card
+          .card-header
+            .fa.fa-dollar-sign
+            =t '.title', :default => model_class.model_name.human.titleize
+            .float-right
+              = link_to "", expence_path(@expence, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
+              = link_to '', @expence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@expence).destroy?
+          .card-body
+            %b= model_class.human_attribute_name(:id) + ':'
+            = @expence.slug
+            %br
+            %b Expendable type:
+            = @expence.expendable_type
+            = link_to @expence.expendable, @expence.expendable
+            /%b= model_class.human_attribute_name(:expendable) + ':'
+            /= link_to @expence.client, client_path(@expence.client)
+            /.row
+            /%b Expendable:
+            /= @expence.expendable_id
+            %br
+            %b= model_class.human_attribute_name(:amount) + ':'
+            = number_to_currency(@expence.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            %br
+            %b= model_class.human_attribute_name(:payment_method) + ':'
+            .badge.badge-secondary
+              = I18n.t(@expence.payment_method, scope: [:activerecord, :attributes, :inbound_payment, :payment_methods])
+    %p
+    =  render 'dashboard/activity'

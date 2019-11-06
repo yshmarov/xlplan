@@ -11,7 +11,8 @@ function eventCalendar() {
     // events: '/events.json',
     resources: app.vars.resources,
     locale: app.vars.locale,
-
+    //resourceGroupField: 'location',
+    longPressDelay: 10,
     selectable: true,
     selectHelper: true,
     
@@ -60,7 +61,10 @@ function eventCalendar() {
     header: {
         left: 'prev,today,next',
         center: 'title',
-        right: 'agendaDay,agendaWeek,month'
+        right: 'timelineDay,agendaDay,agendaWeek,month'
+    },
+    buttonText: {
+      timelineDay:     '≡'
     },
     titleFormat: 'ddd D MMM',
     eventBackgroundColor: 'purple',
@@ -74,8 +78,8 @@ function eventCalendar() {
     // The day that each week begins
     firstDay: 1,
 
-    minTime: "06:00:00",
-    maxTime: "22:00:00",
+    minTime: "07:00:00",
+    maxTime: "23:00:00",
 
     businessHours: [ // specify an array instead
       {
