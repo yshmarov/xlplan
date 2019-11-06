@@ -24,16 +24,16 @@
             .fa.fa-calendar-plus
       .card
         .card-header
-          %h5
-            .float-left
+          .text-center
+            %h5
               - if @tenant.logo.attached?
                 = image_tag @tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
               - else
                 .fa.fa-globe-africa
-              .badge.badge-default
-                = @tenant.name
-            .float-right
-              = t('sidebar.online_booking')
+              %p
+              %b= @tenant.name
+              %hr
+              = t('sidebar.online_booking').downcase
         .card-body
           = render 'leads/form'
           %p
