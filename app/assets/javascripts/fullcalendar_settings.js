@@ -16,6 +16,8 @@ function eventCalendar() {
     selectable: true,
     selectHelper: true,
     
+    resourceAreaWidth: '100px',
+    
     select: function(start, end) {
       $.getScript('/events/new', function() {
         //initialize selectize
