@@ -50,7 +50,7 @@
           = link_to event.location, location_path(event.location)
           .row
           .fa.fa-clock
-          #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
+          #{l(event.starts_at, format: "%a %d/%b/%Y %H:%M")} - #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
         .col-lg-5
           .table-responsive
             - event.jobs.each do |job|

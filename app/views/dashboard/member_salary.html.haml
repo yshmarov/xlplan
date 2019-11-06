@@ -4,31 +4,27 @@
 = form_tag dashboard_member_salary_path, method: :get do
   - if params.has_key?(:select)
     /= @member.full_name
-    = params[:member]
-    /= select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}), { prompt: 'MEMBER?', selected: @member.first, onchange: 'this.form.submit()' }
-
-    /= select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}), { prompt: 'MEMBER?', selected: params[:member], onchange: 'this.form.submit()' }
-    = select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}, params[:member]), { prompt: 'MEMBER?', onchange: 'this.form.submit()' }
-
+    /= params[:member]
+    = select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}, params[:member]), { onchange: 'this.form.submit()' }
     = select_month(@start_date, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
     = select_year(@start_date, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'})
-    = link_to '', dashboard_member_salary_path, class: "btn btn-sm btn-secondary fa fa-redo"
 
+    = link_to '', dashboard_member_salary_path, class: "btn btn-sm btn-secondary fa fa-redo"
     %hr
     Jobs count:
-    = @jobs.count
-    %br
-    Price:
-    = number_to_currency(@jobs.map(&:member_due_price).sum/100, format: "%n")
-  - else
-    /no ransack
-    /= select_tag(:member, options_for_select)
-    /= select_tag :member, options_for_select(Member.all), { prompt: '--select member--', selected: params[profile: [:gender]] }
-    /= collection_select :member ,  :member.to_s, @members, :id, :full_name, prompt: true
-    = select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}), { prompt: 'MEMBER?', onchange: 'this.form.submit()' }
+    %b= @jobs.count
+    .row
+    Planned salary:
+    %b= number_to_currency(@planned_salary, format: "%n")
+    .row
+    Confirmed salary:
+    %b= number_to_currency(@confirmed_salary, format: "%n")
+    .row
+    Cancelled salary:
+    %b= number_to_currency(@cancelled_salary, format: "%n")
 
-    /= select :jobs_member_last_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}
-    /= select(object, method, choices = nil, options = {}, html_options = {}, &block) public
+  - else
+    = select_tag :member, options_for_select(@members.map{|c| [c.full_name, c.id]}), { prompt: 'MEMBER?', onchange: 'this.form.submit()' }
     = select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
     = select_year(Date.today, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'})
 %hr

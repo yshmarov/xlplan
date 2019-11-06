@@ -79,14 +79,18 @@ class DashboardController < ApplicationController
         #WORKS but must be event starts_at, not job created_at
         #@jobs = Job.where("created_at BETWEEN ? AND ?",@start_date, @end_date).where(member_id: @member)
         #WORKS CORRECTLY!
-        @jobs = Job.joins(:event, :service, :service => :service_category).where(events: {:starts_at => @start_date..@end_date}).where(member_id: @member)
+        @jobs = Job.joins(:event, :service, :service => :service_category, :event => :client).where(events: {:starts_at => @start_date..@end_date}).where(member_id: @member)
         #did not try this
         #@jobs = Job.where('starts_at BETWEEN ? AND ?', @selected_date.beginning_of_day, @selected_date.end_of_day)
+        
+        @planned_salary = @jobs.joins(:event).where(events: {status: 'planned'}).map(&:member_price).sum/100
+        @confirmed_salary = @jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).map(&:member_price).sum/100
+        @cancelled_salary = @jobs.joins(:event).where(events: {status: ['client_cancelled', 'member_cancelled', 'no_show']}).map(&:member_price).sum/100
       else
         #WORKS but must be event starts_at, not job created_at
         #@jobs = Job.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month).where(member_id: 0)
         #WORKS CORRECTLY!
-        @jobs = Job.joins(:event, :service, :service => :service_category).where(events: {:starts_at => Time.now.beginning_of_month..Time.now.end_of_month}).where(member_id: 0)
+        @jobs = Job.joins(:event, :service, :service => :service_category, :event => :client).where(events: {:starts_at => Time.now.beginning_of_month..Time.now.end_of_month}).where(member_id: 0)
       end
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
@@ -126,8 +130,6 @@ class DashboardController < ApplicationController
   def payment_stats
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
-        #@start_date = ("2019" + "-" + "5" + "-" + Date.today.day.to_s).to_datetime.beginning_of_month         #test version - works
-        #@start_date = (params[:select][:year]+"-" + params[:select][:month]+"-"+Date.today.day.to_s).to_datetime.beginning_of_month #Date.today.day produces invalid_date error on 31st day of the month
         @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
         @end_date = @start_date.end_of_month
         @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",@start_date, @end_date)

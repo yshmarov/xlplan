@@ -1,10 +1,3 @@
-    user = User.find_by_id(params[:id])
-    assigned_role = user.role_name
-    organisation = Organisation.find(current_user.organisation)
-
-    # byebug
-
-
 Client.public_activity_off
 Member.public_activity_off
 Event.all.each { |x| x.save(validate: false) }
