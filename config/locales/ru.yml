@@ -358,7 +358,7 @@ ru:
     settings: "Настройки"
     tenant: "Настройки организации"
     service_categories: "Категории услуг"
-    stats: 'Статистика'
+    stats: 'Отчёты'
     my_page: 'Мой Кабинет'
     profile_settings: 'Настройки Профиля'
     account_settings: 'Пароль и Доступ'

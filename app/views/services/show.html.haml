@@ -1,46 +1,49 @@
 - model_class = Service
 .row
-  .container
-    .card
-      .card-header
-        .fa.fa-hand-paper
-        =t '.title', :default => model_class.model_name.human.titleize
-        .float-right
-          = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm" if policy(@service).edit?
-          = link_to '', @service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@service).destroy?
-      .card-body
-        .row
-        %b= model_class.human_attribute_name(:name) + ':'
-        = @service.name
-        %br
-        %b= model_class.human_attribute_name(:service_category_id) + ':'
-        = @service.service_category
-        %br
-        %b= model_class.human_attribute_name(:description) + ':'
-        = @service.description
-        %br
-        %b= model_class.human_attribute_name(:duration) + ':'
-        = @service.duration
-        /= distance_of_time_in_words(@service.duration*60)
-        %br
-        %b= model_class.human_attribute_name(:client_price) + ':'
-        = number_to_currency(@service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %br
-        %b= model_class.human_attribute_name(:member_percent) + ':'
-        = number_to_percentage(@service.member_percent, precision: 0)
-        %br
-        %b= model_class.human_attribute_name(:member_price) + ':'
-        = number_to_currency(@service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        /%br
-        /%b= model_class.human_attribute_name(:production_cost) + ':'
-        /= number_to_currency(@service.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        %br
-        %b= model_class.human_attribute_name(:active) + ':'
-        = active_label(@service.active)
-        %br
-        %b= model_class.human_attribute_name(:online_booking) + ':'
-        = @service.online_booking
-    %p
-    = link_to t('.back', :default => t("helpers.links.back")), services_path, :class => 'btn btn-secondary'
-%br
-=  render 'dashboard/activity'
+  .col-md-3
+  .col-md-6
+    .row
+      .container
+        .card
+          .card-header
+            .fa.fa-hand-paper
+            =t '.title', :default => model_class.model_name.human.titleize
+            .float-right
+              = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm" if policy(@service).edit?
+              = link_to '', @service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@service).destroy?
+          .card-body
+            .row
+            %b= model_class.human_attribute_name(:name) + ':'
+            = @service.name
+            %br
+            %b= model_class.human_attribute_name(:service_category_id) + ':'
+            = @service.service_category
+            %br
+            %b= model_class.human_attribute_name(:description) + ':'
+            = @service.description
+            %br
+            %b= model_class.human_attribute_name(:duration) + ':'
+            = @service.duration
+            /= distance_of_time_in_words(@service.duration*60)
+            %br
+            %b= model_class.human_attribute_name(:client_price) + ':'
+            = number_to_currency(@service.client_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            %br
+            %b= model_class.human_attribute_name(:member_percent) + ':'
+            = number_to_percentage(@service.member_percent, precision: 0)
+            %br
+            %b= model_class.human_attribute_name(:member_price) + ':'
+            = number_to_currency(@service.member_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            /%br
+            /%b= model_class.human_attribute_name(:production_cost) + ':'
+            /= number_to_currency(@service.production_cost_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+            %br
+            %b= model_class.human_attribute_name(:active) + ':'
+            = active_label(@service.active)
+            %br
+            %b= model_class.human_attribute_name(:online_booking) + ':'
+            = @service.online_booking
+        %p
+        = link_to t('.back', :default => t("helpers.links.back")), services_path, :class => 'btn btn-secondary'
+    %br
+    =  render 'dashboard/activity'

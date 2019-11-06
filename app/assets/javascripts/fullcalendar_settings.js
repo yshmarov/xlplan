@@ -12,7 +12,7 @@ function eventCalendar() {
     resources: app.vars.resources,
     locale: app.vars.locale,
     //resourceGroupField: 'location',
-    longPressDelay: 10,
+    longPressDelay: 300,
     selectable: true,
     selectHelper: true,
     

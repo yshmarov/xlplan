@@ -7,6 +7,7 @@
           .fa.fa-hand-paper
         %th= model_class.human_attribute_name(:service_id)
         %th= model_class.human_attribute_name(:member_id)
+        %th= model_class.human_attribute_name(:service_duration)
         %th= model_class.human_attribute_name(:client_price)
         %th= model_class.human_attribute_name(:add_amount)
         %th= model_class.human_attribute_name(:production_cost)
@@ -16,9 +17,11 @@
       - @jobs.each_with_index do |job, index|
         %tr
           %td= index +1
-          %td= link_to job.service.full_name, service_path(job.service)
+          %td= link_to job.service.name_and_caregory, service_path(job.service)
           %td= link_to job.member, member_path(job.member)
-          %td= job.service_client_price_cents
+          %td= job.service_duration
+          %td
+            %b= job.service_client_price_cents
           %td= job.add_amount_cents
           %td= job.production_cost_cents
           %td= number_to_percentage(job.service_member_percent, precision: 0)

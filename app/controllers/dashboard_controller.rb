@@ -69,6 +69,26 @@ class DashboardController < ApplicationController
     end
   end
 
+  def member_salary
+    if current_user.has_role?(:admin)
+      if params.has_key?(:select)
+        @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
+        @end_date = @start_date.end_of_month
+        #@member = Member.first
+        @member = params[:member]
+        @jobs = Job.where("created_at BETWEEN ? AND ?",@start_date, @end_date).where(member_id: @member)
+        #@jobs = Job.joins(:event).where(events: {"starts_at BETWEEN ? AND ?", @start_date, @end_date}).where(member_id: @member)
+        @members = Member.all
+      else
+        #@jobs = Job.joins(:event).where(events: {"starts_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month}).where(member_id: @member)
+        @jobs = Job.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month).where(member_id: 0)
+        @members = Member.all
+      end
+    else
+      redirect_to root_path, alert: 'You are not authorized to view the page.'
+    end
+  end
+
   def expence_stats
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
@@ -122,5 +142,4 @@ class DashboardController < ApplicationController
       redirect_to root_path, alert: 'You are not authorized to view the page.'
     end
   end
-
 end

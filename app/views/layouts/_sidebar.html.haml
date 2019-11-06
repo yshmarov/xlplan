@@ -173,6 +173,10 @@
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-user-tie
               = t('sidebar.members')
+            = link_to dashboard_member_salary_path, class: "dropdown-item navdrop-link" do 
+              .fa-fw.fa.fa-dollar-sign
+              .fa-fw.fa.fa-user-tie
+              = t('sidebar.members')
             = link_to dashboard_lead_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-globe-africa
