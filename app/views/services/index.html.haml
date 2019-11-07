@@ -35,7 +35,7 @@
         %th= sort_link @q, :member_percent, :member_percent
         /%th= sort_link @q, :member_price, :member_price
         /%th= sort_link @q, :created_at, :created_at
-        /%th= sort_link @q, :updated_at, :updated_at
+        %th= sort_link @q, :updated_at, :updated_at
         %th= sort_link @q, :description, :description
         %th
     %tbody
@@ -59,7 +59,7 @@
           %td= number_to_percentage(service.member_percent, precision: 0)
           /%td= service.member_price_cents
           /%td= service.created_at
-          /%td= service.updated_at
+          %td= service.updated_at
           %td
             %small
               = service.description

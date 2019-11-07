@@ -922,8 +922,9 @@ ru:
         production_cost: "Себестоимость"
         production_cost_cents: "Себестоимость"
       service_category:
-        name: "Категория"
+        name: "Название"
         services_count: "Кол. Услуг"
+        members_count: "Кол. Сотрудников"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
       location:

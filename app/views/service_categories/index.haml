@@ -8,20 +8,29 @@
         = @service_categories.count
     %h5.float-right
       = link_to t('.new', :default => t("helpers.links.new")), new_service_category_path, class: 'btn btn-sm btn-primary'
-- @service_categories.each do |service_category|
-  .card
-    .card-header.bg-light
-      .row
-        .col-sm-6
-          %b= service_category.name
-        .col-sm-3
-          = link_to services_path(q: {service_category_id_eq: service_category.id}) do
-            .fa.fa-hand-paper
-            = service_category.services_count
-          .row
-          = link_to members_path(members_search: {skills_service_category_id_eq: service_category.id}) do
-            .fa.fa-user-tie
-            = service_category.skills.count
-        .col-sm-3
-          = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
-          = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?
+.table-responsive-xl
+  %table#table1
+    %thead
+      %tr
+        %th
+          = model_class.human_attribute_name(:name)
+        %th
+          .fa.fa-hand-paper
+          = model_class.human_attribute_name(:services_count)
+        %th
+          .fa.fa-user-tie
+          = model_class.human_attribute_name(:members_count)
+        %th
+    %tbody
+      - @service_categories.each do |service_category|
+        %tr
+          %td= link_to service_category.name, service_category_path(service_category)
+          %td
+            = link_to services_path(q: {service_category_id_eq: service_category.id}) do
+              = service_category.services_count
+          %td
+            = link_to members_path(members_search: {skills_service_category_id_eq: service_category.id}) do
+              = service_category.skills.count
+          %td
+            = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
+            = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?

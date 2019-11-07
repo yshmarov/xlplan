@@ -1,5 +1,5 @@
 class ServiceCategoriesController < ApplicationController
-  before_action :set_service_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_service_category, only: [:edit, :update, :destroy]
 
   def index
     @service_categories = ServiceCategory.all.order('updated_at DESC')

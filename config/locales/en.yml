@@ -922,8 +922,9 @@ en:
         production_cost: "Production cost"
         production_cost_cents: "Production cost"
       service_category:
-        name: "Category"
+        name: "Name"
         services_count: "Service quantity"
+        members_count: "Member quantity"
         created_at: "Created"
         updated_at: "Updated"
       location:
