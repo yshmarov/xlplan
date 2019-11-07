@@ -48,7 +48,7 @@ class Member < ApplicationRecord
     self.update_attributes!(time_zone: Tenant.current_tenant.time_zone)
   end
 
-  after_touch :update_balance
+  after_touch :update_expences_balance
 
   after_create do
     #update_first_member_email
@@ -111,12 +111,6 @@ class Member < ApplicationRecord
   end
 
   #protected
-  
-  def update_balance
-    update_column :jobs_due_price_sum, (jobs.map(&:member_due_price).sum)
-    update_column :expences_amount_sum, (expences.map(&:amount).sum)
-    update_column :balance, (jobs_due_price_sum - expences_amount_sum)
-  end
 
   def update_jobs_balance
     update_column :jobs_due_price_sum, (jobs.map(&:member_due_price).sum)
