@@ -18,7 +18,7 @@ class EventPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin_or_manager || @record.planned? && specialist
+    @record.planned? && admin_or_manager_or_specialist
     #admin || @record.event.planned? && manager || @record.event.planned? && @user.has_role?(:owner, @record.event)
     #admin || @record.event.planned? && manager || @record.event.planned? && @record.member_id == @user.member.id
     #@record.event.planned? && admin_or_manager_or_owner
@@ -28,10 +28,10 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    admin_or_manager || @record.planned? && specialist
+    @record.planned? && admin_or_manager_or_specialist
   end
 
   def destroy?
-    admin_or_manager || @record.planned? && specialist
+    @record.planned? && admin_or_manager_or_specialist || admin_or_manager
   end
 end
