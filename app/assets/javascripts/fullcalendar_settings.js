@@ -3,7 +3,7 @@ var TimeNow  = moment().format("HH") + ":00:00";
 
 function eventCalendar() {
   return $('#event_calendar').fullCalendar({ 
-    schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+    schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
     // 100% height
     height: "auto",
     // render data
