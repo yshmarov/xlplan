@@ -67,32 +67,63 @@
           = link_to '', location, class: "btn btn-primary fa fa-eye btn-sm" if policy(location).show?
           = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm"  if policy(location).edit?
           = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(location).destroy?
-
   /.table-responsive
   /  %table#table1
   /    %thead
   /      %tr
   /        %th= model_class.human_attribute_name(:name)
   /        %th= model_class.human_attribute_name(:contacts)
-  /        %th= model_class.human_attribute_name(:address)
+  /        %th
+  /          .fa.fa-map-marker-alt
+  /          = model_class.human_attribute_name(:address)
   /        %th= model_class.human_attribute_name(:active)
-  /        %th= model_class.human_attribute_name(:members_count)
-  /        %th= model_class.human_attribute_name(:events_count)
+  /        %th= model_class.human_attribute_name(:online_booking)
+  /        %th
+  /          .fa.fa-user-tie
+  /          = model_class.human_attribute_name(:members_count)
+  /        %th
+  /          .fa.fa-calendar-check
+  /          = model_class.human_attribute_name(:events_count)
+  /        %th
+  /          .fa.fa-calendar-check
+  /          = model_class.human_attribute_name(:events_amount_sum)
+  /        %th
+  /          .fas.fa-cash-register
+  /          = model_class.human_attribute_name(:balance)
   /        %th
   /    %tbody
   /      - @locations.each do |location|
   /        %tr
   /          %td= link_to location.name, location_path(location) if policy(location).show?
   /          %td
-  /            = link_to "tel:#{location.phone_number}", class: "button" do
-  /              #{number_to_phone(location.phone_number)}
-  /            - if location.phone_number.present? && location.phone_number.present?
-  /              \/
-  /            %a{:href => "mailto:#{location.email}"}= location.email
-  /          %td= location.address
-  /          %td= location.active
-  /          %td= location.members_count
+  /            - if location.phone_number.present?
+  /              = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm mr-1" do
+  /                .fa.fa-phone
+  /            - if location.whatsapp.present?
+  /              /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
+  /              = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm mr-1", :target => "_blank" do
+  /                .fab.fa-whatsapp
+  /            - if location.viber.present?
+  /              = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm mr-1" do
+  /                .fab.fa-viber
+  /            - if location.telegram.present?
+  /              = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm mr-1" do
+  /                .fab.fa-telegram-plane
+  /            - if location.email.present?
+  /              = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm mr-1" do
+  /                .fa.fa-envelope
+  /          %td= location.address_line
+  /          %td= active_label(location.active)
+  /          %td
+  /            - if location.online_booking?
+  /              .badge.badge-success
+  /                = model_class.human_attribute_name(:online_booking)
+  /          %td= link_to location.members_count, members_path(members_search: {location_id_eq: location.id})
   /          %td= location.events_count
+  /          /ADMIN - stats
+  /          - if policy(location).show_money?
+  /            %th= number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+  /            %th= number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
   /          %td
   /            = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
   /            = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?

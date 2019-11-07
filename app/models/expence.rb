@@ -31,5 +31,4 @@ class Expence < ApplicationRecord
   def to_s
     slug
   end
-  
 end
