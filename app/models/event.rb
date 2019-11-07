@@ -100,7 +100,7 @@ class Event < ApplicationRecord
 		    else
 	        update_column :event_due_price, (0)
 		    end
-        client.update_balance
+        client.update_events_balance
 	    end
     end
   end

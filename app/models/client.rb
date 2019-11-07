@@ -3,7 +3,7 @@ class Client < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------callbacks-------------------#
-  after_touch :update_balance
+  after_touch :update_payments_balance
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -71,9 +71,14 @@ class Client < ApplicationRecord
   #-----------------------callbacks details-------------------#
   #private
   #protected
-  def update_balance
-    update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
+
+  def update_events_balance
     update_column :jobs_amount_sum, (events.map(&:event_due_price).sum)
+    update_column :balance, (payments_amount_sum - jobs_amount_sum)
+  end
+
+  def update_payments_balance
+    update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
     update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end
 end

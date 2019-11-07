@@ -2,7 +2,6 @@ class InboundPayment < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------relationships-------------------#
-  belongs_to :tenant
   belongs_to :client, touch: true, counter_cache: true
   belongs_to :payable, polymorphic: true
   #-----------------------validation-------------------#
@@ -33,5 +32,4 @@ class InboundPayment < ApplicationRecord
   def to_s
     slug
   end
-
 end
