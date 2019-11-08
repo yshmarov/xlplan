@@ -12,8 +12,8 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.text :address
       t.string :time_zone, default: "UTC"
 
+      t.boolean :active, default: false
       t.boolean :online_booking, default: false
-      t.integer :status, default: 1, null: false
       t.integer :balance, default: 0, null: false
       t.integer :expences_amount_sum, default: 0, null: false
       t.integer :jobs_due_price_sum, default: 0, null: false

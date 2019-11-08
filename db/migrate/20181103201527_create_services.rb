@@ -14,8 +14,8 @@ class CreateServices < ActiveRecord::Migration[5.2]
       #t.integer :repeat_reminder, default: 0, null: false
       t.integer :jobs_count, :integer, default: 0, null: false
 
-      t.integer :status, default: 1, null: false
       t.boolean :online_booking, default: false
+      t.boolean :active, default: false
 
       t.timestamps
     end
