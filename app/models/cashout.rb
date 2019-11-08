@@ -30,8 +30,4 @@ class Cashout < ApplicationRecord
   #def self.latest_cash_collection
   #  order('created_at desc').first
   #end
-
-  def created_at_correct
-    created_at.strftime('%d/%m/%Y %H:%M')
-  end
 end

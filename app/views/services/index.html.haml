@@ -59,7 +59,7 @@
           %td= number_to_percentage(service.member_percent, precision: 0)
           /%td= service.member_price_cents
           /%td= service.created_at
-          %td= service.updated_at
+          %td= service.updated_at.strftime('%d/%m/%Y %H:%M')
           %td
             %small
               = service.description
