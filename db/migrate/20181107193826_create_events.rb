@@ -9,7 +9,6 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :duration, default: 0, null: false
       t.datetime :ends_at
 
-      t.integer :percent_off, default: 0, null: false
       t.integer :amount_off, default: 0, null: false
 
       t.integer :client_price, default: 0, null: false
