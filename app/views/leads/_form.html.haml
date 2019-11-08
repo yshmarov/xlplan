@@ -5,6 +5,7 @@
 
   .form-inputs
     = f.input :first_name, autofocus: true
+    = f.error :first_name
     = f.input :last_name
     = f.input :phone_number, hint: 'Country code & phone number: +380505532699'
     = f.input :email
@@ -27,6 +28,8 @@
       = f.association :member, as: :radio_buttons, collection: @members
     = f.input :coupon
     = f.input :conditions_consent
+    = recaptcha_tags
+
   %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'

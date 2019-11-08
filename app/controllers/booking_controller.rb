@@ -63,9 +63,9 @@ class BookingController < ApplicationController
     #  redirect_to booking_show_path(@lead.tenant), alert: 'You have missing fields.'
     #  #render :new
     #end
-
     respond_to do |format|
-      if @lead.save
+      #if @lead.save
+      if verify_recaptcha(model: @lead) && @lead.save
         format.html { redirect_to booking_show_path(@lead.tenant), notice: 'Lead was successfully created.' }
         format.json { render :show, status: :created, location: @lead }
       else
@@ -73,15 +73,13 @@ class BookingController < ApplicationController
         @locations = Location.active.online_booking.order(events_count: :desc)
         @services = Service.online_booking
         format.html { render :new_booking }
-        format.json { render json: @lead.tenant.errors, status: :unprocessable_entity }
+        format.json { render json: @lead.errors, status: :unprocessable_entity }
       end
     end
-
   end
 
   private
     def lead_params
       params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, :location_id, :member_id, :service_id, :starts_at, :coupon, :conditions_consent)
     end
-
 end

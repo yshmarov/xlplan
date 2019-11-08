@@ -115,9 +115,10 @@ $(document).on('turbolinks:before-cache', clearCalendar)
 
 $(window).resize(function() {
   if(app.vars.memberquantity > 1){
-  if(window.innerWidth < 800){
-    $('#event_calendar').fullCalendar('changeView', 'timelineDay');
-  } else {
-    $('#event_calendar').fullCalendar('changeView', 'agendaDay');
-  }}
+    if(window.innerWidth < 800){
+      $('#event_calendar').fullCalendar('changeView', 'timelineDay');
+    } else {
+      $('#event_calendar').fullCalendar('changeView', 'agendaDay');
+    }
+  }
 });
