@@ -11,7 +11,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
 
       t.integer :amount_off, default: 0, null: false
 
-      t.integer :client_price, default: 0, null: false
+      t.integer :event_price, default: 0, null: false
       t.integer :event_due_price, default: 0, null: false
 
       t.integer :status, default: 0, null: false

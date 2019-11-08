@@ -8,11 +8,15 @@ class CreateJobs < ActiveRecord::Migration[5.2]
 
       t.integer :service_duration, default: 0, null: false
       t.integer :service_member_percent, default: 0, null: false
+      t.integer :service_client_price, default: 0, null: false
 
       t.integer :client_price, default: 0, null: false
       t.integer :client_due_price, default: 0, null: false
       t.integer :member_price, default: 0, null: false
       t.integer :member_due_price, default: 0, null: false
+
+      t.integer :add_amount, default: 0, null: false
+      t.integer :production_cost, default: 0, null: false
 
       t.timestamps
     end
