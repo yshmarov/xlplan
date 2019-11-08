@@ -83,5 +83,4 @@ class Location < ApplicationRecord
     update_column :events_amount_sum, (events.map(&:event_due_price).sum)
     update_column :balance, (events_amount_sum)
   end
-
 end

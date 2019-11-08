@@ -16,10 +16,6 @@
         %td= cashout.location
         %td= cashout.amount
         %td= cashout.member
-        %td= link_to 'Show', cashout
-        %td= link_to 'Edit', edit_cashout_path(cashout)
         %td= link_to 'Destroy', cashout, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
-
-= link_to 'New Cashout', new_cashout_path
