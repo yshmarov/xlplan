@@ -72,7 +72,7 @@ function eventCalendar() {
     titleFormat: 'ddd D MMM',
     eventBackgroundColor: 'purple',
     weekNumbers: true,
-    defaultView: app.vars.defaultcalendarview,
+    defaultView: 'agendaDay',
     nowIndicator: true,
     scrollTime: TimeNow,
     allDaySlot: false,
@@ -112,3 +112,12 @@ function clearCalendar() {
 
 $(document).on('turbolinks:load', eventCalendar);
 $(document).on('turbolinks:before-cache', clearCalendar)
+
+$(window).resize(function() {
+  if(app.vars.memberquantity > 1){
+  if(window.innerWidth < 800){
+    $('#event_calendar').fullCalendar('changeView', 'timelineDay');
+  } else {
+    $('#event_calendar').fullCalendar('changeView', 'agendaDay');
+  }}
+});
