@@ -1,13 +1,16 @@
 class Cashout < ApplicationRecord
-  default_scope { order(created_at: :desc) }
-
+  #-----------------------gem milia-------------------#
+  acts_as_tenant
+  #-----------------------relationships-------------------#
   belongs_to :location, touch: true
   belongs_to :member
-
-  monetize :amount, as: :amount_cents
-
+  #-----------------------validation-------------------#
   validates :amount, :office_id, :member_id, :amount_cents, presence: :true
   validates :amount_cents, :numericality => {:greater_than => -1000000, :less_than => 1000000}
+  #-----------------------gem money-------------------#
+  monetize :amount, as: :amount_cents
+
+  default_scope { order(created_at: :desc) }
 
   #def self.latest_cash_collection
   #  order('created_at desc').first
