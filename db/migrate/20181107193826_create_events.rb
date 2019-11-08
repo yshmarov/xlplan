@@ -9,7 +9,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :duration, default: 0, null: false
       t.datetime :ends_at
 
-      t.integer :amount_off, default: 0, null: false
+      t.integer :add_amount, default: 0, null: false
 
       t.integer :event_price, default: 0, null: false
       t.integer :event_due_price, default: 0, null: false
