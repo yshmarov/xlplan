@@ -19,7 +19,7 @@ function eventCalendar() {
     resourceAreaWidth: '100px',
     resourceLabelText: "#",
     
-    select: function(start, end) {
+    select: function(start) {
       $.getScript('/events/new', function() {
         //initialize selectize
         if ($('.selectize')){
@@ -27,7 +27,7 @@ function eventCalendar() {
                 sortField: 'text'
             });
         };
-
+        
         //initialize datetimepicker
         $('#datetimepicker').datetimepicker({
           locale: app.vars.locale,
@@ -39,12 +39,6 @@ function eventCalendar() {
           allowInputToggle: true,
           format : 'DD/MM/YYYY HH:mm'
           });
-
-        //select start and end time - not working
-        $('.starter').val(moment(start).format("MM/DD/YYYY HH:mm"))
-        datetimepicker();
-        $('.start_hidden').val(moment(start).format('YYYY-MM-DD HH:mm'));
-        $('.end_hidden').val(moment(end).format('YYYY-MM-DD HH:mm'));
       });
 
       $('#event_calendar').fullCalendar('unselect');
