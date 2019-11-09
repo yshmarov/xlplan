@@ -46,15 +46,14 @@ class BookingController < ApplicationController
     @members = Member.active.online_booking.order('created_at ASC')
     @locations = Location.active.online_booking.order(events_count: :desc)
     @services = Service.online_booking.active
+    @ip_address = request.remote_ip
+    @referer = request.referer
   end
 
   def create_booking
     @tenant = Tenant.find(params[:id])
     Tenant.set_current_tenant( @tenant )
     @lead = Lead.new(lead_params)
-    
-    @lead.ip_address = request.remote_ip
-    @lead.referer = request.referer
 
     #WORKS GOOD BUT DOES NOT RENDER ERRORS
     #if @lead.save
@@ -80,6 +79,7 @@ class BookingController < ApplicationController
 
   private
     def lead_params
-      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, :location_id, :member_id, :service_id, :starts_at, :coupon, :conditions_consent)
+      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment,
+                :location_id, :member_id, :service_id, :starts_at, :coupon, :conditions_consent)
     end
 end

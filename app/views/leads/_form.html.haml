@@ -30,6 +30,7 @@
     = f.input :conditions_consent
     = recaptcha_tags
 
-  %hr
+    = f.input :ip_address, input_html: {value: @ip_address}, as: :hidden
+    = f.input :referer, input_html: {value: @referer}, as: :hidden
   .form-actions
-    = f.button :submit, class: 'btn btn-success'
+    = f.button :submit, class: 'btn btn-success btn-block btn-lg'

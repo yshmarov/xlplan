@@ -44,7 +44,7 @@
             = t('.confirmed_event_price_per_day')
           .card-body
             /= bar_chart charts_events_per_day_path
-            = line_chart @events.is_confirmed.group_by_day(:starts_at).sum("client_price/100")
+            = line_chart @events.is_confirmed.group_by_day(:starts_at).sum("event_price/100")
   #first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
     %p
     .row
@@ -72,7 +72,7 @@
             .fa.fa-chart-line
             = t('.confirmed_event_price_per_month')
           .card-body
-            = column_chart Event.is_confirmed.group_by_month(:starts_at).sum("client_price/100")
+            = column_chart Event.is_confirmed.group_by_month(:starts_at).sum("event_price/100")
   #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
     %p
     .row

@@ -4,6 +4,7 @@
 
 - I18n.locale = @tenant.locale
 %p
+
 .container
   - model_class = Lead
   .row
@@ -37,5 +38,5 @@
         .card-body
           = render 'leads/form'
           %p
-          = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(@tenant), :class => 'btn btn-danger'
+          = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(@tenant), :class => 'btn btn-danger btn-block btn-sm'
 %p
