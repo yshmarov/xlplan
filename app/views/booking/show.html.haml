@@ -51,29 +51,35 @@
           .card
             .card-header.bg-light
               %b= location.name
+              %p
+              .btn-group-vertical
+                - if location.phone_number.present?
+                  = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm" do
+                    .fa.fa-phone
+                    = location.phone_number
+                - if location.whatsapp.present?
+                  /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
+                  = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm", :target => "_blank" do
+                    .fab.fa-whatsapp
+                    = location.whatsapp
+                - if location.viber.present?
+                  = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm" do
+                    .fab.fa-viber
+                    = location.viber
+                - if location.telegram.present?
+                  = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm" do
+                    .fab.fa-telegram-plane
+                    = location.telegram
+                - if location.email.present?
+                  = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm" do
+                    .fa.fa-envelope
+                    = location.email
               - if location.address.present?
-                .row.mt-1
+                %p
                 .form-inline
                   .fa.fa-map-marker-alt.mr.mr-2
-                  = location.address_line
-              .row
-    
-              - if location.phone_number.present?
-                = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm mr-1" do
-                  .fa.fa-phone
-              - if location.whatsapp.present?
-                /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm mr-1", :target => "_blank" do
-                  .fab.fa-whatsapp
-              - if location.viber.present?
-                = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm mr-1" do
-                  .fab.fa-viber
-              - if location.telegram.present?
-                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm mr-1" do
-                  .fab.fa-telegram-plane
-              - if location.email.present?
-                = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm mr-1" do
-                  .fa.fa-envelope
+                  %small= location.address_line
+
         %p
       - if @members.any?
         .text-center

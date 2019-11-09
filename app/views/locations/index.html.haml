@@ -12,118 +12,61 @@
           = link_to t('.new', :default => t("helpers.links.new")), new_location_path, class: 'btn btn-sm btn-primary'
         - else
           = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, edit_plan_path, class: "btn btn-sm btn-danger"
-- @locations.each do |location|
-  .card
-    .card-header.bg-light
-      .row
-        .col-sm-4
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:name)
+        %th= model_class.human_attribute_name(:contacts)
+        %th
           .fa.fa-map-marker-alt
-          = link_to location.name, location_path(location) if policy(location).show?
-          = active_label(location.active)
-          - if location.online_booking?
-            .badge.badge-success
-              = model_class.human_attribute_name(:online_booking)
-          - if location.address.present?
-            .form-inline
-              .fa.fa-map-marker-alt.mr.mr-2
-              = location.address_line
-          /.row
-          /#{number_to_phone(location.phone_number)}
-          /= location.email
-          .row
-
-          - if location.phone_number.present?
-            = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm mr-1" do
-              .fa.fa-phone
-          - if location.whatsapp.present?
-            /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-            = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm mr-1", :target => "_blank" do
-              .fab.fa-whatsapp
-          - if location.viber.present?
-            = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm mr-1" do
-              .fab.fa-viber
-          - if location.telegram.present?
-            = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm mr-1" do
-              .fab.fa-telegram-plane
-          - if location.email.present?
-            = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm mr-1" do
-              .fa.fa-envelope
-        .col-sm-2
-          = link_to "<i class='fa fa-user-tie'></i> #{location.members_count}".html_safe, members_path(members_search: {location_id_eq: location.id}), class: "nav-link"
-
-        /ADMIN - stats
-        - if policy(location).show_money?
-          .col-sm-4
-            .fa.fa-calendar-check
-            = number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            (#{location.events_count})
-            .row
-            /.fa.fa-balance-scale
-            .fas.fa-cash-register
-            = number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            /.row
-            /.fa.fa-hand-holding-usd
-        .col-sm-2
-          = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm"  if policy(location).edit?
-          = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(location).destroy?
-  /.table-responsive
-  /  %table#table1
-  /    %thead
-  /      %tr
-  /        %th= model_class.human_attribute_name(:name)
-  /        %th= model_class.human_attribute_name(:contacts)
-  /        %th
-  /          .fa.fa-map-marker-alt
-  /          = model_class.human_attribute_name(:address)
-  /        %th= model_class.human_attribute_name(:active)
-  /        %th= model_class.human_attribute_name(:online_booking)
-  /        %th
-  /          .fa.fa-user-tie
-  /          = model_class.human_attribute_name(:members_count)
-  /        %th
-  /          .fa.fa-calendar-check
-  /          = model_class.human_attribute_name(:events_count)
-  /        %th
-  /          .fa.fa-calendar-check
-  /          = model_class.human_attribute_name(:events_amount_sum)
-  /        %th
-  /          .fas.fa-cash-register
-  /          = model_class.human_attribute_name(:balance)
-  /        %th
-  /    %tbody
-  /      - @locations.each do |location|
-  /        %tr
-  /          %td= link_to location.name, location_path(location) if policy(location).show?
-  /          %td
-  /            - if location.phone_number.present?
-  /              = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm mr-1" do
-  /                .fa.fa-phone
-  /            - if location.whatsapp.present?
-  /              /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-  /              = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm mr-1", :target => "_blank" do
-  /                .fab.fa-whatsapp
-  /            - if location.viber.present?
-  /              = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm mr-1" do
-  /                .fab.fa-viber
-  /            - if location.telegram.present?
-  /              = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm mr-1" do
-  /                .fab.fa-telegram-plane
-  /            - if location.email.present?
-  /              = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm mr-1" do
-  /                .fa.fa-envelope
-  /          %td= location.address_line
-  /          %td= active_label(location.active)
-  /          %td
-  /            - if location.online_booking?
-  /              .badge.badge-success
-  /                = model_class.human_attribute_name(:online_booking)
-  /          %td= link_to location.members_count, members_path(members_search: {location_id_eq: location.id})
-  /          %td= location.events_count
-  /          /ADMIN - stats
-  /          - if policy(location).show_money?
-  /            %th= number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-  /            %th= number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-  /          %td
-  /            = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
-  /            = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
+          = model_class.human_attribute_name(:address)
+        /%th
+        /  .fa.fa-calendar-check
+        /  = model_class.human_attribute_name(:events_amount_sum)
+        /%th
+        /  .fas.fa-cash-register
+        /  = model_class.human_attribute_name(:balance)
+        %th
+    %tbody
+      - @locations.each do |location|
+        %tr
+          %td
+            = link_to location.name, location_path(location) if policy(location).show?
+            = active_label(location.active)
+            - if location.online_booking?
+              .badge.badge-success
+                = model_class.human_attribute_name(:online_booking)
+          %td
+            .btn-group-vertical
+              - if location.phone_number.present?
+                = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm" do
+                  .fa.fa-phone
+                  = location.phone_number
+              - if location.whatsapp.present?
+                /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
+                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm", :target => "_blank" do
+                  .fab.fa-whatsapp
+                  = location.whatsapp
+              - if location.viber.present?
+                = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm" do
+                  .fab.fa-viber
+                  = location.viber
+              - if location.telegram.present?
+                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm" do
+                  .fab.fa-telegram-plane
+                  = location.telegram
+              - if location.email.present?
+                = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm" do
+                  .fa.fa-envelope
+                  = location.email
+          %td
+            %small= location.address_line
+          //ADMIN - stats
+          /- if policy(location).show_money?
+          /  %th= number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          /  %th= number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %td
+            = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
+            = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
 %br
