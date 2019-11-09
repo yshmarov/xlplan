@@ -371,6 +371,7 @@ en:
     online_booking: "Online booking"
     public_page: "Public page"
     dashboard: "Pulse"
+    categories: "Categories"
 
   ######################################################
 
@@ -563,7 +564,7 @@ en:
       members_team: "Team"
   dashboard:
     dashboard:
-      today: "Created today"
+      created: "new"
     start:
       select_time_zone: "Fill in your profile"
       select_currency: "Organisation settings"
