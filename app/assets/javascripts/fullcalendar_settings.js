@@ -11,11 +11,11 @@ function eventCalendar() {
     // events: '/events.json',
     resources: app.vars.resources,
     locale: app.vars.locale,
-    //resourceGroupField: 'location',
     longPressDelay: 300,
     selectable: true,
     selectHelper: true,
     
+    resourceGroupField: 'location',
     resourceAreaWidth: '100px',
     resourceLabelText: "#",
     
