@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   #before_action :set_time_zone, if: :user_signed_in?
   around_action :set_time_zone, if: :current_user
 
-  #before_action  :prep_org_name
+  before_action  :prep_org_name
 
   private
   #i18n

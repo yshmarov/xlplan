@@ -24,7 +24,8 @@
     /  - if Tenant.current_tenant.logo.attached?
     /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     .badge.badge-default.text-white
-      = link_to Tenant.current_tenant.name, calendar_path, class: 'text-white'
+      = link_to @org_name, calendar_path, class: 'text-white'
+      /= link_to Tenant.current_tenant.name, calendar_path, class: 'text-white'
     /- if Tenant.current_tenant.plan == "demo"
     /  - if current_user.has_role?(:admin)
     /    .nav-item
@@ -145,7 +146,6 @@
           = link_to settings_show_path, class: "nav-link" do 
             .fa-color-1.fa-fw.fa.fa-cog
             = t('sidebar.settings')
-            /%small= Tenant.current_tenant.name
             .badge.badge-dark admin
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
