@@ -1,0 +1,22 @@
+/ ONE MEMBER
+- set_var 'memberquantity', @memberquantity
+- set_var 'locale', Tenant.current_tenant.locale
+- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+- set_var 'resources', @members.where(id: @member.id).map{|z| {id: z.id, title: z.short_name.to_s}}
+.row
+  .col-lg-9
+    #remote_container
+    #event_calendar
+    %p
+  .col-lg-3
+    #datepicker
+    = link_to @org_name, calendar_path
+    .row
+    - @members.each do |member|
+      .row
+      - unless @member.id == member.id
+        %small= link_to member.full_name, calendar_member_path(member)
+      - else
+        %b
+          = link_to member.full_name, calendar_member_path(member)
+/%br

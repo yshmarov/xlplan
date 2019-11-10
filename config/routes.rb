@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :members do
     member do
       delete :delete_avatar
+      get :calendar
     end
   end
 

@@ -1,14 +1,19 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :calendar]
 
   def index
     @ransack_members = Member.ransack(params[:members_search], search_key: :members_search)
     @members = @ransack_members.result.includes(:user, :skills).paginate(:page => params[:page], per_page: 15)
   end
+  
+  def calendar
+    @jobs = @member.jobs.includes(:event, :service, :event => [:client, :location])
+    @members = Member.active.order('created_at ASC')
+    @memberquantity = 1
+  end
 
   def show
     authorize @member
-    #@events = @member.events.planned.includes(:client, :jobs, :jobs => [:service, :member]).order("starts_at ASC")
     @jobs = @member.jobs
     #@jobs = @member.jobs.includes(:service)
     #@member.includes(:user)

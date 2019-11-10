@@ -1,21 +1,20 @@
-/- set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
-/- set_var 'jobs', Job.all.map{|e| {title: e.event.client.full_name.to_s + "/" + e.service.name.to_s + " (" + e.member.full_name.to_s + " )", start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
-/- set_var 'jobs', @jobs.map{|e| {title: e.event.client.full_name.to_s + "/" + e.service.name.to_s + " (" + e.member.full_name.to_s + " )", start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
-/- set_var 'resources', Member.where(id: @member.id).map{|z| {id: z.id, title: z.last_name.to_s}}
+/ ALL MEMBERS
 /- set_var 'events', @jobs.map{|e| {title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 /- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
-
-/BELOW WORKS OK
-- set_var 'locale', Tenant.current_tenant.locale
-- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
-- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - set_var 'memberquantity', @memberquantity
-
+- set_var 'locale', Tenant.current_tenant.locale
+- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
 .row
-  .col-lg-12
+  .col-lg-9
     #remote_container
     #event_calendar
     %p
   .col-lg-3
     #datepicker
+    %b= link_to @org_name, calendar_path
+    .row
+    - @members.each do |member|
+      .row
+      %small= link_to member.full_name, calendar_member_path(member)
 /%br

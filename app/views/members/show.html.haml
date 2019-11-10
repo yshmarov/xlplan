@@ -12,6 +12,9 @@
         /.text-center #also pulls the modal content
         - if policy(Member).create?
           = render 'members/new_expence'
+        = link_to calendar_member_path(@member), class: 'btn btn-primary btn-sm' do
+          .fa.fa-calendar-check
+          = t('sidebar.calendar')
       .card-body
         - if @member.avatar.attached?
           .text-center
