@@ -15,14 +15,9 @@ class DashboardController < ApplicationController
   def calendar
     @members = Member.active.order('created_at ASC')
     @jobs = Job.includes(:event, :service, :event => [:client, :location])
-    #@jobs = Job.includes(:event, :service, :member, :event => :client)
-    #@events = Event.includes(:client, :jobs, :jobs => [:service, :member])
     @memberquantity = @members.size
+    #@jobs = Job.includes(:event, :service, :member, :event => :client)
   end
-
-  #def my_calendar
-  #  @jobs = Job.where(member_id: current_user.member.id).includes(:event, :service, :member, :event => :client)
-  #end
 
   def client_stats
     if current_user.has_role?(:admin)

@@ -7,14 +7,14 @@ class MembersController < ApplicationController
   end
   
   def calendar
-    @jobs = @member.jobs.includes(:event, :service, :event => [:client, :location])
     @members = Member.active.order('created_at ASC')
+    @jobs = @member.jobs.includes(:event, :service, :event => [:client, :location])
     @memberquantity = 1
   end
 
   def show
     authorize @member
-    @jobs = @member.jobs
+    @jobs = @member.jobs #for stats/charts
     #@jobs = @member.jobs.includes(:service)
     #@member.includes(:user)
     #for polymorphic show
