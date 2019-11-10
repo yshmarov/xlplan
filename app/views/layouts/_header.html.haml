@@ -1,4 +1,4 @@
-%nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-primary
+%nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
   %a.text-dark.navbar-brand{:href => "/"}
     .text-white
       %i.far.fa-calendar-check
@@ -32,13 +32,13 @@
       %ul.navbar-nav.ml-md-auto.d-md-flex
       %ul.navbar-nav.mr-auto
         %li.nav-item
-          = link_to features_path, class: "nav-link" do 
+          = link_to features_path, class: "nav-link text-light" do 
             %b= t('header.features')
         %li.nav-item
-          = link_to pricing_path, class: "nav-link" do 
+          = link_to pricing_path, class: "nav-link text-light" do 
             %b= t('header.pricing')
       %ul.nav.navbar-nav.navbar-right
-        = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-outline-danger mr-sm-2 text-light'
+        = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-success mr-sm-2 text-light'
         /.mr.mt-1
         /= link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
         /= link_to t("header.start"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'

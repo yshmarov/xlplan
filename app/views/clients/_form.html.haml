@@ -49,7 +49,6 @@
   /= f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
   = f.select :tag_ids, Tag.all.collect {|p| [ I18n.t(p.name, scope: [:activerecord, :attributes, :client, :tags]), p.id ] }, {}, { multiple: true, class: "selectize" }
 
-  %hr
   = f.input :personal_data_consent
   = f.input :event_created_notifications
   = f.input :marketing_notifications

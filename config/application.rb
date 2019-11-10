@@ -32,7 +32,6 @@ module Xlplan
      
     # Set default locale to something other than :en
     I18n.default_locale = :en
-    #I18n.default_locale = Tenant.current_tenant.locale
 
     config.time_zone = 'UTC'
     #config.action_mailer.default_url_options = { host: 'example.com' }

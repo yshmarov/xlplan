@@ -7,24 +7,26 @@
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
 
-.jumbotron.jumbotron-fluid.bg-primary.text-white
-  .container-fluid
-    .row
-      .col-lg-5.order-1.order-lg-0
-        .display-3
-          %b XLPLAN
-        %h1
-          %small= t('.hero')
-        .row
-        %p
-        %p= link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-danger text-white btn-block'
-        %p
-        %h5
-          .font-weight-light= t('.hero_description')
-        %p
-      .col-lg-7.order-0.order-lg-1
-        = image_tag "https://i.imgur.com/TWpk1pv.png", style: 'height:auto;width:100%;'
-
+%br
+.container-fluid
+  .row
+    .col-lg-5.order-1.order-lg-0
+      .display-3
+        %b XLPLAN
+      %h1
+        %small= t('.hero')
+      .row
+      %p
+      %p= link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-lg btn-success btn-block'
+      %p
+      %p= link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-danger btn-block'
+      %p
+      %h5
+        .font-weight-light= t('.hero_description')
+      %p
+    .col-lg-7.order-0.order-lg-1
+      = image_tag "https://i.imgur.com/TWpk1pv.png", style: 'height:auto;width:100%;'
+%hr
 .container
   .row
     .col-lg-6
@@ -110,8 +112,8 @@
           .fa.fa-user-md
           = t('.private_clinic')
           %p
-          .fa.fa-tooth
-          = t('.stomatology')
+          .fa.fa-sign-language
+          = t('.massage')
           %p
           .fa.fa-eye
           = t('.ophtalmologist')
@@ -119,8 +121,8 @@
           .fa.fa-notes-medical
           = t('.psychologist')
           %p
-          .fa.fa-sign-language
-          = t('.massage')
+          .fa.fa-tooth
+          = t('.stomatology')
           %p
           .fa.fa-dog
           = t('.veterinary_clinic')
