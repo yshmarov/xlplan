@@ -68,10 +68,18 @@ function eventCalendar() {
     weekNumbers: true,
     //defaultView: 'timelineDay',
     //defaultView: $(window).width() < 765 ? 'agendaWeek':'month',
-    defaultView: (function () { 
-      if ($(window).width() <= 1080) { return defaultView = 'timelineDay'; } 
+
+    // if small window & 1 member = agendaDay
+    // if small window & more members = timelineDay
+    // if big window & 1 member = agendaDay
+    // if big window & more members = agendaDay
+    defaultView: (function () 
+    { 
+      if ($(window).width() <= 1080 && app.vars.memberquantity > 1) 
+          { return defaultView = 'timelineDay'; } 
       else { return defaultView = 'agendaDay'; } 
-      })(),
+    }
+    )(),
     nowIndicator: true,
     scrollTime: TimeNow,
     allDaySlot: false,
@@ -113,9 +121,11 @@ $(document).on('turbolinks:load', eventCalendar);
 $(document).on('turbolinks:before-cache', clearCalendar)
 
 $(window).resize(function() {
+  if(app.vars.memberquantity > 1){
     if(window.innerWidth < 1080){
       $('#event_calendar').fullCalendar('changeView', 'timelineDay');
     } else {
       $('#event_calendar').fullCalendar('changeView', 'agendaDay');
     }
+  }
 });
