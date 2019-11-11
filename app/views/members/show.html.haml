@@ -152,7 +152,7 @@
             .col-12
               .card
                 .card-header
-                  = t('dashboard.members.confirmed_jobs_per_month_quantity')
+                  = t('dashboard.member_stats.confirmed_jobs_per_month_quantity')
                 .card-body
                   = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').count
               %p
@@ -160,20 +160,20 @@
             .col-12
               .card
                 .card-header
-                  = t('dashboard.members.confirmed_jobs_per_month_client_price')
+                  = t('dashboard.member_stats.confirmed_jobs_per_month_client_price')
                 .card-body
                   = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').sum('client_due_price / 100')
               %p
             .col-12
               .card
                 .card-header
-                  = t('dashboard.members.confirmed_jobs_per_month_member_price')
+                  = t('dashboard.member_stats.confirmed_jobs_per_month_member_price')
                 .card-body
                   = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').sum('member_due_price / 100')
               %p
             .col-12
               .card
                 .card-header
-                  = t('dashboard.members.payments_per_month')
+                  = t('dashboard.member_stats.payments_per_month')
                 .card-body
                   = line_chart @expences.group_by_month(:created_at).sum('amount / 100')

@@ -597,6 +597,7 @@ en:
       confirmed_jobs_per_month_quantity: "Confirmed jobs per month, quantity"
       confirmed_jobs_per_month_client_price: "Confirmed jobs per month, payable by clients"
       confirmed_jobs_per_month_member_price: "Confirmed jobs per month, payable to employees"
+      payments_per_month: 'Payments'
     member_salary:
       member_salary: "Salary"
       jobs: "Jobs"

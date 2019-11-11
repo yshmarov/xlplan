@@ -6,7 +6,7 @@
       .row
         .col-lg-4
           %h5
-            .far.fa-address-book
+            .fa.fa-users
             /%b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             %b= t "#{controller_name}_#{action_name}"
             - if @ransack_clients.client_tags_tag_name_cont.present?
@@ -91,7 +91,7 @@
             .fa.fa-male
           - else
             .fa.fa-question
-          /.far.fa-address-book
+          /.fa.fa-users
           = link_to client.full_name, client_path(client) if policy(client).show?
           - if client.phone_number.present? && policy(client).show_phone?
             .row

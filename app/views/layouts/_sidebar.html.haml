@@ -69,7 +69,7 @@
       %li.nav-item
         = link_to new_client_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-plus
-          .fa-color-1.fa-fw.far.fa-address-book
+          .fa-color-1.fa-fw.fa.fa-users
           %b= t('sidebar.new_client')
       %li.nav-item
         = link_to new_inbound_payment_path, class: "nav-link" do 
@@ -92,12 +92,12 @@
       - if Client.debtors.count > 0
         %li
           = link_to debtors_clients_path, class: "nav-link" do
-            .fa-color-1.fa-fw.far.fa-address-book
+            .fa-color-1.fa-fw.fa.fa-users
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
       /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.far.fa-address-book
+          .fa-color-1.fa-fw.fa.fa-users
           = t('sidebar.clients')
       %li.nav-item
         = link_to members_path, class: "nav-link" do 
@@ -171,7 +171,7 @@
               = t('sidebar.events')
             = link_to dashboard_client_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line
-              .fa-fw.far.fa-address-book
+              .fa-fw.fa.fa-users
               = t('sidebar.clients')
             = link_to dashboard_member_stats_path, class: "dropdown-item navdrop-link" do 
               .fa-fw.fa.fa-chart-line

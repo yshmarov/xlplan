@@ -72,7 +72,9 @@ Tenant.set_current_tenant(2)
 PublicActivity.enabled = false
 InboundPayment.count
 InboundPayment.all.map(&:amount).sum
-Tenant.current_tenant.update_attributes!(plan: "bronze")
+
+Tenant.set_current_tenant(37)
+Tenant.current_tenant.update_attributes!(plan: "demo")
 Event.count
 User.find(1)
 PublicActivity::Activity.order("created_at DESC").limit(10)
