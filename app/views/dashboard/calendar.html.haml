@@ -17,4 +17,7 @@
     .row
     - @members.each do |member|
       .row
-      %small= link_to member.short_name, calendar_member_path(member)
+      - if @member.present? && @member.id == member.id
+        %b= link_to member.short_name, calendar_member_path(member)
+      - else
+        %small= link_to member.short_name, calendar_member_path(member)
