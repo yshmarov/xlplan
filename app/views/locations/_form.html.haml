@@ -42,14 +42,11 @@
     /  .links
     /    = link_to_add_association t('.add_operating_hour'), f, :operating_hours, data: {"association-insertion-node" => "tbody.operating_hours", "association-insertion-method" => "append"}, class: 'btn btn-primary'
 
-    .table-responsive
-      %table
-        %tbody.workplaces
-          = f.simple_fields_for :workplaces do |workplace|
-            = render 'workplace_fields', f: workplace
-      .links
-        = link_to_add_association t('.add_workplace'), f, :workplaces, data: {"association-insertion-node" => "tbody.workplaces", "association-insertion-method" => "append"}, class: 'btn btn-primary'
-        /= link_to_add_association t('.add_service'), f, :jobs, class: 'btn btn-primary', :partial => 'events/job_fields'
+    .workplaces
+      = f.simple_fields_for :workplaces do |workplace|
+        = render 'workplace_fields', f: workplace
+    .links
+      = link_to_add_association t('.add_workplace'), f, :workplaces, class: 'btn btn-primary', :partial => 'locations/workplace_fields'
 
   %hr
   .form-actions
