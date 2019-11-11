@@ -338,7 +338,7 @@ ru:
     calendar: 'Календарь'
     events_today: 'Встречи сегодня'
     events_tomorrow: 'Встречи завтра'
-    close_events: 'Отметить Встречи'
+    close_events: 'Отметить!'
     debtors: "Должники"
     bday_today: "ДР сегодня"
     no_gender: "Клиенты без пола"
