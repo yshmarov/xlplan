@@ -5,14 +5,7 @@
 = simple_form_for @event do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
   .form-inputs
-    /= f.input_field :starts_at, input_html: { class: "starter" }
-    /= f.input_field :starts_at, value: Date.today, class: 'form-control input-sm start_hidden'
-    /= f.input_field :ends_at, as: :hidden, value: Date.today, class: 'form-control input-sm end_hidden'
-
-    /= f.input :starts_at, :minute_step => 15, start_year: Date.today.year
-    /= f.text_field :published_at, data: { :date_format => 'YYYY/MM/DD hh:mm' }, :class => 'form-control datetimepicker', placeholder: 'YYYY/MM/DD hh:mm:ss'
     = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
     .row
     /.fa.fa-user

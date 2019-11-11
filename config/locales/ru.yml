@@ -902,8 +902,8 @@ ru:
         location_id: "Филиал"
         location: "Филиал"
         status: "Статус"
-        add_amount: "Наценка, сумма"
-        add_amount_cents: "Наценка, сумма"
+        add_amount: "Наценка"
+        add_amount_cents: "Наценка"
         production_cost: "Расходы"
         production_cost_cents: "Расходы"
       service:

@@ -902,8 +902,8 @@ en:
         location_id: "Location"
         location: "Location"
         status: "Status"
-        add_amount: "Additional amount"
-        add_amount_cents: "Additional amount"
+        add_amount: "Add. amount"
+        add_amount_cents: "Add. amount"
         production_cost: "Production cost"
         production_cost_cents: "Production cost"
       service:

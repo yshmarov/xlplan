@@ -13,12 +13,12 @@
           .float-right.mr.mr-1
             = link_to "https://api.whatsapp.com/send?phone=#{@event.client.phone_number_only_digits}&text=#{@event.sms_text}&source=&data=", class: "btn btn-success btn-sm fa", :target => "_blank" do
               .fab.fa-whatsapp
-              .far.fa-address-book
+              .fa.fa-users
         - if @event.client.email.present? && @event.client.event_created_notifications?
           .float-right.mr.mr-1
             = button_to send_email_to_client_event_path(@event), method: :patch, class: 'btn btn-success btn-sm fa' do 
               .far.fa-envelope
-              .far.fa-address-book
+              .fa.fa-users
               /= t '.email_client'
         - if @event.users.distinct.pluck(:email).present?
           .float-right.mr.mr-1
@@ -47,7 +47,7 @@
         - else
           = status_label(@event.status)
           .row
-        .far.fa-address-book
+        .fa.fa-users
         %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @event.client, client_path(@event.client)
 
