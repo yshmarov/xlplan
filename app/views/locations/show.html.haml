@@ -66,6 +66,6 @@
         = @location.workplaces.count
         - @location.workplaces.each do |workplace|
           .row
-          = workplace.name
+          = link_to workplace.name, workplace_path(workplace)
     %p
   .col-lg-8

@@ -11,4 +11,7 @@ class Workplace < ApplicationRecord
     #name
     name + "/" + location.name
   end
+  def short_name
+    to_s
+  end
 end

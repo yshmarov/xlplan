@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   resources :services
 
   resources :locations
+  resources :workplaces, only: :show
 
   resources :events do
     resources :inbound_payments, except: [:edit, :update]
