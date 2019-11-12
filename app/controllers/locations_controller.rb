@@ -13,6 +13,7 @@ class LocationsController < ApplicationController
   def new
     @location = Location.new
     authorize @location
+    @location.workplaces.build
     #7.times { @location.operating_hours.build}
   end
 

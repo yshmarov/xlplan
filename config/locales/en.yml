@@ -681,10 +681,15 @@ en:
       title: "Locations"
     new:
       title: "Create Location"
+    form:
+      add_workplace: "Add workplace"
+      workplace: "Workplace"
     edit:
       title: "Edit Location"
     create:
       success: 'Location was successfully created.'
+    show:
+      workplace: "Workplace"
   services:
     index:
       title: "Services"

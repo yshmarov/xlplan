@@ -1,7 +1,7 @@
 .nested-fields
   .row
     .col-9
-      = f.input :name, label: false
+      = f.input :name, label: false, placeholder: t("locations.form.workplace")
     .col-3
       = link_to_remove_association f, class: 'btn btn-danger' do 
         .fa.fa-trash

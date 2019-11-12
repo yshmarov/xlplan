@@ -680,10 +680,15 @@ ru:
       title: "Филиалы"
     new:
       title: "Создать Филиал"
+    form:
+      add_workplace: "Добавить рабочее место"
+      workplace: "Рабочее место"
     edit:
       title: "Изменить Филиал"
     create:
       success: 'Филиал успешно создан.'
+    show:
+      workplaces: "Рабочие места"
   services:
     index:
       title: "Услуги"
