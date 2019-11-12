@@ -1,6 +1,6 @@
 - model_class = Location
 .row
-  .col-lg-3
+  .col-lg-4
     .card
       .card-header
         .fa.fa-map-marker-alt
@@ -61,5 +61,11 @@
         /  = number_to_currency(@location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         /  /.row
         /  /.fa.fa-hand-holding-usd
+      .card-header
+        = t('.workplaces') + ":"
+        = @location.workplaces.count
+        - @location.workplaces.each do |workplace|
+          .row
+          = workplace.to_s
     %p
-  .col-lg-9
+  .col-lg-8

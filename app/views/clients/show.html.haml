@@ -1,5 +1,3 @@
-- set_var 'locale', Tenant.current_tenant.locale
-- set_var 'events', @events.map{|e| {title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
 - model_class = Client
 .row
   .col-lg-4
@@ -152,8 +150,6 @@
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
       /%li.nav-item
       /  %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
-      /    .fa.fa-calendar-alt
-      /    = t('sidebar.calendar')
       %li.nav-item
         %a#first-tab.nav-link.active{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
           .fa.fa-caret-down
@@ -179,8 +175,6 @@
           = t("sidebar.activity")
     #myTabContent.tab-content
       /#zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-      /  %br
-      /  #event_calendar
       /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
       /  = render 'events/index'
       #first.tab-pane.fade.show.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}

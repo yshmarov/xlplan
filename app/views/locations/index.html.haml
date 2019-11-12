@@ -21,6 +21,7 @@
         %th
           .fa.fa-map-marker-alt
           = model_class.human_attribute_name(:address)
+        %th= model_class.human_attribute_name(:workplaces)
         /%th
         /  .fa.fa-calendar-check
         /  = model_class.human_attribute_name(:events_amount_sum)
@@ -62,6 +63,11 @@
                   = location.email
           %td
             %small= location.address_line
+          %td
+            - location.workplaces.each do |workplace|
+              .row
+              = workplace.to_s
+
           //ADMIN - stats
           /- if policy(location).show_money?
           /  %th= number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")

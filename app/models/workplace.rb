@@ -6,7 +6,9 @@ class Workplace < ApplicationRecord
   #-----------------------validation-------------------#
   validates :name, presence: true
   validates :name, length: { maximum: 20 }
+  validates_uniqueness_of :name, scope: :location_id
   def to_s
-    name
+    #name
+    name + "/" + location.name
   end
 end
