@@ -23,12 +23,15 @@
     - else
       %small= link_to @org_name, calendar_path
     .row
+    %small= t('sidebar.members') + ":"
     - @members.each do |member|
       .row
       - if @member.present? && @member.id == member.id
         %b= link_to member.short_name, calendar_member_path(member)
       - else
         %small= link_to member.short_name, calendar_member_path(member)
+    .row
+    %small= t('locations.show.workplaces') + ":"
     - @workplaces.each do |workplace|
       .row
       - if @workplace.present? && @workplace.id == workplace.id
