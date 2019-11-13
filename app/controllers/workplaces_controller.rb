@@ -1,6 +1,6 @@
 class WorkplacesController < ApplicationController
   def show
-    @workplace = Workplace.find(params[:id])
+    @workplace = Workplace.friendly.find(params[:id])
     @members = Member.active.order('created_at ASC')
     #@jobs = @member.events
     @jobs = @workplace.jobs.includes(:event, :service, :member, :event => [:client])
