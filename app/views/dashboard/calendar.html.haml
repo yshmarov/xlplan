@@ -1,8 +1,16 @@
 / ALL MEMBERS
 - set_var 'memberquantity', @memberquantity
 - set_var 'locale', Tenant.current_tenant.locale
-- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
-- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
+
+- if controller_name == 'dashboard'
+  - set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
+  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+- elsif controller_name == 'workplaces'
+  - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
+  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+- elsif controller_name == 'members'
+  - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
+  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 .row
   .col-lg-9
     #remote_container
@@ -10,10 +18,10 @@
     %p
   .col-lg-3
     #datepicker
-    - if controller_name == 'members'
-      = link_to @org_name, calendar_path
-    - else
+    - if controller_name == 'dashboard'
       %b= link_to @org_name, calendar_path
+    - else
+      %small= link_to @org_name, calendar_path
     .row
     - @members.each do |member|
       .row

@@ -5,6 +5,6 @@ class WorkplacesController < ApplicationController
     #@jobs = @member.events
     @jobs = @member.jobs.includes(:event, :service, :event => [:client, :workplace])
     @memberquantity = 1
-    render 'members/calendar'
+    render 'dashboard/calendar'
   end
 end
