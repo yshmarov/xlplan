@@ -4,6 +4,7 @@ class Workplace < ApplicationRecord
   #-----------------------relationships-------------------#
   belongs_to :location
   has_many :events, dependent: :restrict_with_error
+  has_many :jobs, through: :events
   #-----------------------validation-------------------#
   validates :name, presence: true
   validates :name, length: { maximum: 20 }

@@ -90,7 +90,7 @@
             .fa.fa-chart-line
             = t('.location_popularity')
           .card-body
-            = pie_chart Event.joins(:location).group(:'locations.name').count, download: true
+            = pie_chart Event.joins(:workplace).group(:'workplaces.name').count, download: true
         %p
       .col-lg-6
         .card

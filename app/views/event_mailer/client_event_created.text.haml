@@ -8,9 +8,9 @@
 
 = t('.address')
 = Tenant.current_tenant.name
-= @event.location
-= @event.location.phone_number
-= @event.location.address_line
+= @event.workplace.location
+= @event.workplace.location.phone_number
+= @event.workplace.location.address_line
 
 #{t('.powered_by')} XLPLAN
 https://www.xlplan.com

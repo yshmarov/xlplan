@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_184455) do
+ActiveRecord::Schema.define(version: 2019_11_13_164632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 2019_11_12_184455) do
   create_table "events", force: :cascade do |t|
     t.bigint "tenant_id"
     t.bigint "client_id"
-    t.bigint "location_id"
     t.datetime "starts_at"
     t.integer "duration", default: 0, null: false
     t.datetime "ends_at"
@@ -162,7 +161,6 @@ ActiveRecord::Schema.define(version: 2019_11_12_184455) do
     t.integer "add_amount", default: 0, null: false
     t.bigint "workplace_id"
     t.index ["client_id"], name: "index_events_on_client_id"
-    t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
     t.index ["tenant_id"], name: "index_events_on_tenant_id"
     t.index ["workplace_id"], name: "index_events_on_workplace_id"
@@ -486,7 +484,6 @@ ActiveRecord::Schema.define(version: 2019_11_12_184455) do
   add_foreign_key "contacts", "clients"
   add_foreign_key "contacts", "tenants"
   add_foreign_key "events", "clients"
-  add_foreign_key "events", "locations"
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "workplaces"
   add_foreign_key "expences", "tenants"

@@ -61,8 +61,8 @@
             .fab.fa-viber
         .row
         .fa.fa-map-marker-alt
-        %b= model_class.human_attribute_name(:location_id) + ':'
-        = link_to @event.location, location_path(@event.location)
+        %b= model_class.human_attribute_name(:workplace) + ':'
+        = link_to @event.workplace, workplace_path(@event.workplace)
         .row
         .fa.fa-clock
         %b= model_class.human_attribute_name(:time) + ':'

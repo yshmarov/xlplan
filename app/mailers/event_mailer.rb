@@ -7,14 +7,14 @@ class EventMailer < ApplicationMailer
 
     event_start = @event.starts_at.strftime("%Y%m%dT%H%M%S%Z")
     event_end = @event.ends_at.strftime("%Y%m%dT%H%M%S%Z")
-    @location = "#{@event.location.name}, #{@event.location.address_line}"
+    @location = "#{@event.workplace.location.name}, #{@event.workplace.location.address_line}"
 
     @summary = "#{@event.services.pluck(:name).join(', ')} (#{Tenant.current_tenant.name})"
     @description = "#{@event.services.pluck(:name).join(', ')}.
                     #{Tenant.current_tenant.name},
-                    #{@event.location.name},
-                    #{@event.location.phone_number},
-                    #{@event.location.address_line}. 
+                    #{@event.workplace.location.name},
+                    #{@event.workplace.location.phone_number},
+                    #{@event.workplace.location.address_line}. 
                     Powered by XLPLAN https://www.xlplan.com"
 
     #@organiser = @event.members.distinct.pluck(:email)
@@ -46,16 +46,16 @@ class EventMailer < ApplicationMailer
 
     event_start = @event.starts_at.strftime("%Y%m%dT%H%M%S%Z")
     event_end = @event.ends_at.strftime("%Y%m%dT%H%M%S%Z")
-    @location = "#{@event.location.name}, #{@event.location.address_line}"
+    @location = "#{@event.workplace.location.name}, #{@event.workplace.location.address_line}"
 
     @summary = "#{@event.services.pluck(:name).join(', ')} (#{Tenant.current_tenant.name})"
     @description = "#{@event.services.pluck(:name).join(', ')}.
                     #{@event.client.full_name},
                     #{@event.client.phone_number},
                     #{Tenant.current_tenant.name},
-                    #{@event.location.name},
-                    #{@event.location.phone_number},
-                    #{@event.location.address_line}. 
+                    #{@event.workplace.location.name},
+                    #{@event.workplace.location.phone_number},
+                    #{@event.workplace.location.address_line}. 
                     Powered by XLPLAN.com"
 
     #@organiser = @event.members.distinct.pluck(:email)

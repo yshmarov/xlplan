@@ -9,8 +9,8 @@ class Event < ApplicationRecord
   extend FriendlyId
   friendly_id :to_s, use: :slugged
   def to_s
-    if client_id.present? && location_id.present?
-      client.full_name.to_s + "/" + location.to_s + "/" + starts_at.to_s
+    if client_id.present? && workplace_id.present?
+      client.full_name.to_s + "/" + workplace.to_s + "/" + starts_at.to_s
     else
       id
     end
@@ -18,7 +18,6 @@ class Event < ApplicationRecord
   #-----------------------relationships-------------------#
   has_many_attached :files
   belongs_to :client, counter_cache: true
-  belongs_to :location, counter_cache: true, touch: true
   belongs_to :workplace
   has_many :jobs, inverse_of: :event, dependent: :destroy
   has_many :services, through: :jobs
@@ -27,7 +26,7 @@ class Event < ApplicationRecord
   has_many :inbound_payments, as: :payable
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
-  validates :client, :location, :starts_at, :duration, :ends_at, :status, :status_color, :event_price, presence: true
+  validates :client, :workplace, :starts_at, :duration, :ends_at, :status, :status_color, :event_price, presence: true
   validates :notes, length: { maximum: 3000 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
@@ -51,9 +50,9 @@ class Event < ApplicationRecord
   def sms_text
     services = self.services.pluck(:name).join(', ')
     time = self.starts_at.strftime("%A %d/%b/%Y %H:%M").to_s
-    location = self.location.to_s
-    phone = self.location.phone_number.to_s
-    address = self.location.address_line.to_s
+    location = self.workplace.location.to_s
+    phone = self.workplace.location.phone_number.to_s
+    address = self.workplace.location.address_line.to_s
     services + " " + time + " " + location + " " + phone + " " + address 
     #services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
   end

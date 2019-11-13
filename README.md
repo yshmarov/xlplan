@@ -1,3 +1,14 @@
+Location.public_activity_off
+Location.all.each do |location|
+  location.workplaces.create(name: "room1")
+end
+
+workplace = Workplace.first.id
+Event.public_activity_off
+Event.all.each do |event|
+  event.update_attributes!(workplace_id: workplace)
+end
+
 Client.public_activity_off
 Member.public_activity_off
 Event.all.each { |x| x.save(validate: false) }

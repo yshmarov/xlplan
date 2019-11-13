@@ -8,7 +8,7 @@ class MembersController < ApplicationController
   
   def calendar
     @members = Member.active.order('created_at ASC')
-    @jobs = @member.jobs.includes(:event, :service, :event => [:client, :location])
+    @jobs = @member.jobs.includes(:event, :service, :event => [:client, :workplace])
     @memberquantity = 1
   end
 

@@ -26,8 +26,8 @@
       = t('.address') + ":"
       %b= Tenant.current_tenant.name
       %b
-        = @event.location
-        = @event.location.phone_number
+        = @event.workplace.location
+        = @event.workplace.location.phone_number
         = @event.location.address_line
 
     /%p= link_to "This event", @event

@@ -2,7 +2,7 @@ class Location < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------callbacks-------------------#
-  after_touch :update_balance
+  #after_touch :update_balance
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -12,11 +12,11 @@ class Location < ApplicationRecord
   friendly_id :to_s, use: :slugged
   #-----------------------relationships-------------------#
   has_many :members, dependent: :restrict_with_error
-  has_many :events, dependent: :restrict_with_error
-  has_many :jobs, through: :events
+  has_many :workplaces, inverse_of: :location, dependent: :destroy
+  #has_many :events, through: :workplaces
+  #has_many :jobs, through: :events
   has_many :leads, dependent: :restrict_with_error
   has_many :operating_hours, inverse_of: :location, dependent: :destroy
-  has_many :workplaces, inverse_of: :location, dependent: :destroy
   accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :workplaces, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
@@ -80,9 +80,9 @@ class Location < ApplicationRecord
 
   #protected
 
-  def update_balance
-    #update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
-    update_column :events_amount_sum, (events.map(&:event_due_price).sum)
-    update_column :balance, (events_amount_sum)
-  end
+  #def update_balance
+  #  #update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
+  #  update_column :events_amount_sum, (events.map(&:event_due_price).sum)
+  #  update_column :balance, (events_amount_sum)
+  #end
 end
