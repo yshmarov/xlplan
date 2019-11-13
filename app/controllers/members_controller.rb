@@ -10,6 +10,7 @@ class MembersController < ApplicationController
     @members = Member.active.order('created_at ASC')
     @jobs = @member.jobs.includes(:event, :service, :event => [:client, :workplace])
     @memberquantity = 1
+    @workplaces = Workplace.all
     render 'dashboard/calendar'
   end
 

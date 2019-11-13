@@ -1,10 +1,11 @@
 class WorkplacesController < ApplicationController
   def show
-    @member = Workplace.find(params[:id])
+    @workplace = Workplace.find(params[:id])
     @members = Member.active.order('created_at ASC')
     #@jobs = @member.events
-    @jobs = @member.jobs.includes(:event, :service, :event => [:client, :workplace])
+    @jobs = @workplace.jobs.includes(:event, :service, :member, :event => [:client])
     @memberquantity = 1
+    @workplaces = Workplace.all
     render 'dashboard/calendar'
   end
 end

@@ -6,7 +6,7 @@
   - set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'workplaces'
-  - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
+  - set_var 'resources', [id: @workplace.id, title: @workplace.short_name.to_s]
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'members'
   - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
@@ -29,3 +29,9 @@
         %b= link_to member.short_name, calendar_member_path(member)
       - else
         %small= link_to member.short_name, calendar_member_path(member)
+    - @workplaces.each do |workplace|
+      .row
+      - if @workplace.present? && @workplace.id == workplace.id
+        %b= link_to workplace.short_name, workplace_path(workplace)
+      - else
+        %small= link_to workplace.short_name, workplace_path(workplace)
