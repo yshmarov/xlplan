@@ -3,13 +3,15 @@ class Workplace < ApplicationRecord
   acts_as_tenant
   #-----------------------relationships-------------------#
   belongs_to :location
+  has_many :events, dependent: :restrict_with_error
   #-----------------------validation-------------------#
   validates :name, presence: true
   validates :name, length: { maximum: 20 }
   validates_uniqueness_of :name, scope: :location_id
   def to_s
     #name
-    name + "/" + location.name
+    #name + "/" + location.name
+    location.name + "/" + name
   end
   def short_name
     to_s

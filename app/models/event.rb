@@ -19,6 +19,7 @@ class Event < ApplicationRecord
   has_many_attached :files
   belongs_to :client, counter_cache: true
   belongs_to :location, counter_cache: true, touch: true
+  belongs_to :workplace
   has_many :jobs, inverse_of: :event, dependent: :destroy
   has_many :services, through: :jobs
   has_many :members, through: :jobs

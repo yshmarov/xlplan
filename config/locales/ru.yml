@@ -887,6 +887,8 @@ ru:
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
         files: "Документы"
+        workplace: "Рабочее место"
+        workplace_id: "Рабочее место"
       job:
         event_id: "Встреча"
         service_id: "Услуга"
@@ -952,6 +954,7 @@ ru:
         online_booking: "Онлайн запись"
         created_at: "Дата Создания"
         updated_at: "Дата Изменения"
+        workplaces: "Рабочие места"
       member:
         first_name: "Имя"
         last_name: "Фамилия"

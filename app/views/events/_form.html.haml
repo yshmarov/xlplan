@@ -22,6 +22,9 @@
     /= f.error :location, class: 'text-danger'
     /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
     = f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false, as: :radio_buttons
+    /= f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false, as: :radio_buttons, checked: Location.first.id
+    = f.association :workplace, as: :radio_buttons, collection: Workplace.order(:location_id), label_method: :short_name
+    /= f.association :workplace, as: :radio_buttons, collection: Workplace.order(:location_id), label_method: :short_name, checked: Workplace.first.id
 
     /%h3 Jobs:
     .jobs

@@ -689,7 +689,7 @@ en:
     create:
       success: 'Location was successfully created.'
     show:
-      workplace: "Workplace"
+      workplaces: "Workplaces"
   services:
     index:
       title: "Services"
@@ -887,6 +887,9 @@ en:
         time: "Time"
         created_at: "Created"
         updated_at: "Updated"
+        files: "Attachments"
+        workplace: "Workplace"
+        workplace_id: "Workplace"
       job:
         event_id: "Event"
         service_id: "Service"
@@ -952,6 +955,7 @@ en:
         online_booking: "Online booking"
         created_at: "Created"
         updated_at: "Updated"
+        workplaces: "Workplaces"
       member:
         first_name: "First Name"
         last_name: "Last Name"
