@@ -1,13 +1,20 @@
-Location.public_activity_off
-Location.all.each do |location|
-  location.workplaces.create(name: "room1")
+heroku run rake db:migrate
+
+Tenant.find_each do |tenant|
+  Tenant.set_current_tenant(1)
+  Event.all.where(workplace_id: nil).count
+  Location.public_activity_off
+  Location.all.each do |location|
+    location.workplaces.create(name: "room1")
+  end
+  
+  workplace = Workplace.first.id
+  Event.public_activity_off
+  Event.all.where(workplace_id: nil).each do |event|
+    event.update_attributes!(workplace_id: workplace)
+  end
 end
 
-workplace = Workplace.first.id
-Event.public_activity_off
-Event.all.each do |event|
-  event.update_attributes!(workplace_id: workplace)
-end
 
 Client.public_activity_off
 Member.public_activity_off
@@ -15,10 +22,7 @@ Event.all.each { |x| x.save(validate: false) }
 Event.all.each { |x| x.save }
 Job.all.each { |x| x.save }
 
-Tenant.find_each do |tenant|
-  Tenant.set_current_tenant(tenant)
   User.all.each do |user| user.remove_role :owner, Event end
-end
   Job.public_activity_off
   Event.public_activity_off
   Job.all.each do |x| x.save_service_details end

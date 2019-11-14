@@ -10,7 +10,7 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def show?
-    admin_or_manager_or_specialist
+    admin_or_manager
   end
 
   def create?
@@ -31,6 +31,10 @@ class LocationPolicy < ApplicationPolicy
 
   def destroy?
     #@record.events.none? && @record.members.none? && admin
-    @record.members.none? && admin
+    @record.events.none? && admin
+    #@record.events.none?
+    #@record.workplaces.none?
+    #@record.members.none? && admin
+    #admin
   end
 end

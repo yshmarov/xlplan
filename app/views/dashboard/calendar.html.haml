@@ -1,4 +1,3 @@
-/ ALL MEMBERS
 - set_var 'memberquantity', @memberquantity
 - set_var 'locale', Tenant.current_tenant.locale
 
@@ -19,11 +18,10 @@
   .col-lg-3
     #datepicker
     - if controller_name == 'dashboard'
-      %b= link_to @org_name, calendar_path
+      %b= link_to t('sidebar.members'), calendar_path
     - else
-      %small= link_to @org_name, calendar_path
+      %small= link_to t('sidebar.members'), calendar_path
     .row
-    %small= t('sidebar.members') + ":"
     - @members.each do |member|
       .row
       - if @member.present? && @member.id == member.id
