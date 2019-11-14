@@ -1,13 +1,16 @@
 - set_var 'memberquantity', @memberquantity
 - set_var 'locale', Tenant.current_tenant.locale
 
-- if controller_name == 'dashboard'
+- if controller_name == 'dashboard' && action_name == 'calendar'
   - set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
-- elsif controller_name == 'workplaces'
+- if controller_name == 'workplaces' && action_name == 'index'
+  - set_var 'resources', @workplaces.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
+  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+- elsif controller_name == 'workplaces' && action_name == 'show'
   - set_var 'resources', [id: @workplace.id, title: @workplace.short_name.to_s]
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
-- elsif controller_name == 'members'
+- elsif controller_name == 'members' && action_name == 'calendar'
   - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 .row
@@ -29,7 +32,10 @@
       - else
         %small= link_to member.short_name, calendar_member_path(member)
     .row
-    %small= t('locations.show.workplaces') + ":"
+    - if controller_name == 'workplaces' && action_name == 'index'
+      %b= link_to t('locations.show.workplaces'), workplaces_path
+    - else
+      %small= link_to t('locations.show.workplaces'), workplaces_path
     - @workplaces.each do |workplace|
       .row
       - if @workplace.present? && @workplace.id == workplace.id
