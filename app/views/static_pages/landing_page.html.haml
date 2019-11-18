@@ -76,10 +76,10 @@
   %p
   .row
     .col-md-4
-      .card
-        .card-body.bg-primary.text-white
+      .card.shadow-lg.p-3.mb-5.bg-white.rounded
+        .card-body
           .text-center
-            %i.fa.fa-hand-holding-heart.text-white{:style => "font-size:40px"}
+            %i.fa.fa-hand-holding-heart{:style => "font-size:40px"}
             %p
             %h5.card-title= t('.beauty_industry')
           %hr
@@ -102,10 +102,10 @@
           = t('.sauna')
       %p
     .col-md-4
-      .card
-        .card-body.bg-primary.text-white
+      .card.shadow-lg.p-3.mb-5.bg-white.rounded
+        .card-body
           .text-center
-            %i.fa.fa-hospital.text-white{:style => "font-size:40px"}
+            %i.fa.fa-hospital{:style => "font-size:40px"}
             %p
             %h5.card-title= t('.private_medicine')
           %hr
@@ -128,10 +128,10 @@
           = t('.veterinary_clinic')
       %p
     .col-md-4
-      .card
-        .card-body.bg-primary.text-white
+      .card.shadow-lg.p-3.mb-5.bg-white.rounded
+        .card-body
           .text-center
-            %i.fa.fa-user-tie.text-white{:style => "font-size:40px"}
+            %i.fa.fa-user-tie{:style => "font-size:40px"}
             %p
             %h5.card-title= t('.professional_services')
           %hr
@@ -162,7 +162,7 @@
     %b.bg-warning.rounded.text-center= t('.why_do_you_need_it')
   .row.text-center.mt-4
     .col-lg-4
-      .card.shadow
+      .card.shadow-lg.p-3.mb-5.bg-white.rounded
         .card-body
           .py-3.text-center
             %h1
@@ -176,7 +176,7 @@
               /.row
               /= t('.more_professional')
     .col-lg-4
-      .card.shadow
+      .card.shadow-lg.p-3.mb-5.bg-white.rounded
         .card-body
           .py-3.text-center
             %h1
@@ -188,7 +188,7 @@
               .row
               = t('.automation')
     .col-lg-4
-      .card.shadow
+      .card.shadow-lg.p-3.mb-5.bg-white.rounded
         .card-body
           .py-3.text-center
             %h1
@@ -228,39 +228,39 @@
   %p
   .card-group
     .card
-      .card-body.bg-light
+      .card-body
         %i.fa.fa-shield-alt.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.security')
         %p.card-text
           %small.text-muted= t('.security2')
     .card
-      .card-body.bg-light
+      .card-body
         %i.fa.fa-user-secret.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.anonimity')
         %p.card-text
           %small.text-muted= t('.anonimity2')
     .card
-      .card-body.bg-light
+      .card-body
         %i.fa.fa-lock.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.user_roles')
         %p.card-text
           %small.text-muted= t('.user_roles2')
   .card-group
     .card
-      .card-body.bg-light
+      .card-body
         %i.fa.fa-cloud-upload-alt.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.in_the_cloud')
         %p.card-text
           %small.text-muted= t('.in_the_cloud2')
     .card
-      .card-body.bg-light
+      .card-body
         %i.fa.fa-mobile-alt.text-primary.fa-3x{:style => "font-size:50px;"}
         %i.fa.fa-laptop.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.any_device')
         %p.card-text
           %small.text-muted= t('.any_device2')
     .card
-      .card-body.bg-light
+      .card-body
         %i.fa.fa-cloud-download-alt.text-primary.fa-3x{:style => "font-size:50px;"}
         %h5.card-title= t('.export')
         %p.card-text

@@ -87,6 +87,11 @@ class Event < ApplicationRecord
     update_column :event_price, (jobs.map(&:client_price).sum)
   end
 
+  after_destroy :update_client_balance
+  def update_client_balance
+    client.update_events_balance
+  end
+
   after_update :update_other_prices
   def update_other_prices
     if id?
