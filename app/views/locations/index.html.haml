@@ -18,9 +18,6 @@
       %tr
         %th= model_class.human_attribute_name(:name)
         %th= model_class.human_attribute_name(:contacts)
-        %th
-          .fa.fa-map-marker-alt
-          = model_class.human_attribute_name(:address)
         %th= model_class.human_attribute_name(:workplaces)
         /%th
         /  .fa.fa-calendar-check
@@ -61,12 +58,16 @@
                 = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm" do
                   .fa.fa-envelope
                   = location.email
-          %td
+            .row
+            .fa.fa-map-marker-alt
             %small= location.address_line
           %td
             - location.workplaces.each do |workplace|
               .row
               = link_to workplace.name, workplace_path(workplace)
+              /= workplace.events_count
+              - if workplace.events_count.zero?
+                = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
           //ADMIN - stats
           /- if policy(location).show_money?
           /  %th= number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
