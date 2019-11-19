@@ -19,6 +19,7 @@ class Location < ApplicationRecord
   has_many :operating_hours, inverse_of: :location, dependent: :destroy
   accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :workplaces, reject_if: :all_blank, allow_destroy: true
+  #, :reject_if => proc { |attributes| attributes['events_count'].zero? }
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
   validates :name, :balance, presence: true
