@@ -36,7 +36,7 @@ class BookingController < ApplicationController
     @services = Service.online_booking.active
   end
   
-  def new_booking
+  def new
     @lead = Lead.new
     @tenant = Tenant.find(params[:id])
     Tenant.set_current_tenant( @tenant )
@@ -71,7 +71,7 @@ class BookingController < ApplicationController
         @members = Member.active.online_booking.order('created_at ASC')
         @locations = Location.active.online_booking
         @services = Service.online_booking
-        format.html { render :new_booking }
+        format.html { render :new }
         format.json { render json: @lead.errors, status: :unprocessable_entity }
       end
     end
