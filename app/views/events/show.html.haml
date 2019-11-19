@@ -32,18 +32,19 @@
             %a#dropdownMenuLink.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
               = status_label(@event.status)
             .dropdown-menu.transparent{"aria-labelledby" => "dropdownMenuLink"}
-              - unless @event.planned?
-                = button_to t('.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary mr-sm-2'
-              - unless @event.confirmed?
-                = button_to t('.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
-              - unless @event.no_show?
-                = button_to t('.no_show'), mark_no_show_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.member_cancelled?
-                = button_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.client_cancelled?
-                = button_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
-              - unless @event.no_show_refunded?
-                = button_to t('.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
+              .btn-group-vertical
+                - unless @event.planned?
+                  = link_to t('.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary'
+                - unless @event.confirmed?
+                  = link_to t('.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success'
+                - unless @event.no_show?
+                  = link_to t('.no_show'), mark_no_show_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+                - unless @event.member_cancelled?
+                  = link_to t('.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+                - unless @event.client_cancelled?
+                  = link_to t('.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2'
+                - unless @event.no_show_refunded?
+                  = link_to t('.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2'
         - else
           = status_label(@event.status)
           .row
