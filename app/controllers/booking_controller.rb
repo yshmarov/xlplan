@@ -28,7 +28,7 @@ class BookingController < ApplicationController
     #for online booking & calendar
     @members = Member.active.online_booking.order('created_at ASC')
 
-    @locations = Location.active.online_booking.order(events_count: :desc)
+    @locations = Location.active.online_booking
 
     #show service categories that have a service that has online booking
     @service_categories = ServiceCategory.distinct.joins(:services).where(services: {online_booking: true, active: true})
@@ -44,7 +44,7 @@ class BookingController < ApplicationController
 
     #for form
     @members = Member.active.online_booking.order('created_at ASC')
-    @locations = Location.active.online_booking.order(events_count: :desc)
+    @locations = Location.active.online_booking
     @services = Service.online_booking.active
     @ip_address = request.remote_ip
     @referer = request.referer
@@ -69,7 +69,7 @@ class BookingController < ApplicationController
         format.json { render :show, status: :created, location: @lead }
       else
         @members = Member.active.online_booking.order('created_at ASC')
-        @locations = Location.active.online_booking.order(events_count: :desc)
+        @locations = Location.active.online_booking
         @services = Service.online_booking
         format.html { render :new_booking }
         format.json { render json: @lead.errors, status: :unprocessable_entity }

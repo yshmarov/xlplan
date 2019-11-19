@@ -54,7 +54,6 @@
         /- if policy(@location).show_money?
         /  .fa.fa-calendar-check
         /  = number_to_currency(@location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        /  (#{@location.events_count})
         /  .row
         /  /.fa.fa-balance-scale
         /  .fas.fa-cash-register
@@ -67,5 +66,8 @@
         - @location.workplaces.each do |workplace|
           .row
           = link_to workplace.name, workplace_path(workplace)
+          .float-right
+            .fa.fa-calendar-check
+            = workplace.events_count
     %p
   .col-lg-8
