@@ -31,6 +31,7 @@
           %th.bg-warning Lead
           %th.bg-danger Today new events
           %th.bg-danger Today new clients
+          %th.bg-danger Today activities
       %tbody
         - @tenants.each do |tenant|
           %tr.bg-info
@@ -57,7 +58,8 @@
               = Event.unscoped.where(tenant_id: tenant.id).where("created_at >= ?", Time.zone.now.beginning_of_day).count
             %td.bg-danger
               = Client.unscoped.where(tenant_id: tenant.id).where("created_at >= ?", Time.zone.now.beginning_of_day).count
-
+            %td.bg-danger
+              = PublicActivity::Activity.unscoped.where(tenant_id: tenant.id).where("created_at >= ?", Time.zone.now.beginning_of_day).count
           %thead.bg-light
             %tr
               %th memberID
@@ -76,6 +78,10 @@
                   %td= member.user.id
                   %td= member.user.email
                   %td= member.user.confirmed_at.present?
+                - else
+                  %td
+                  %td
+                  %td
                 %td= member.phone_number
                 %td= member.time_zone
   %p

@@ -12,7 +12,7 @@ class BookingWizardController < ApplicationController
       @services = Service.online_booking.active
       skip_step unless @services.any?
     when :select_location
-      @locations = Location.active.online_booking.order(events_count: :desc)
+      @locations = Location.active.online_booking
       skip_step unless @locations.any?
     when :select_member
       @members = Member.active.online_booking.order('created_at ASC')
@@ -27,7 +27,7 @@ class BookingWizardController < ApplicationController
     @lead.update_attributes(params[:lead])
 
     #@members = Member.active.online_booking.order('created_at ASC')
-    #@locations = Location.active.online_booking.order(events_count: :desc)
+    #@locations = Location.active.online_booking
     #@services = Service.online_booking.active
 
     render_wizard @lead
