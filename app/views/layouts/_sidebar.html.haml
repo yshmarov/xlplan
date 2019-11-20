@@ -46,13 +46,13 @@
           .fa-color-1.fa.fa-calendar-alt
           #{t('sidebar.calendar')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown3"}
-          = link_to calendar_member_path(id: current_user.member.id), class: "dropdown-item navdrop-link" do
+          = link_to calendar_member_path(id: current_user.member.id), class: "dropdown-item" do
             .fa-fw.fa.fa-calendar-alt
             = current_user.member.short_name
-          = link_to calendar_path, class: "dropdown-item navdrop-link" do
+          = link_to calendar_path, class: "dropdown-item" do
             .fa-fw.fa.fa-calendar-alt
             = t('sidebar.members')
-          = link_to workplaces_path, class: "dropdown-item navdrop-link" do
+          = link_to workplaces_path, class: "dropdown-item" do
             .fa-fw.fa.fa-calendar-alt
             = t('locations.show.workplaces')
       /DASHBOARD
@@ -120,29 +120,29 @@
           .fa-color-1.fa.fa-chevron-circle-down
           #{t('sidebar.more')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown7"}
-          = link_to events_path, class: "dropdown-item navdrop-link" do 
+          = link_to events_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-calendar-alt
             = t('sidebar.all_events')
-          = link_to inbound_payments_path, class: "dropdown-item navdrop-link" do 
+          = link_to inbound_payments_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-hand-holding-usd
             = t('sidebar.all_inbound_payments')
-          = link_to expences_path, class: "dropdown-item navdrop-link" do 
+          = link_to expences_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-dollar-sign
             = t('sidebar.all_expences')
-          = link_to service_categories_path, class: "dropdown-item navdrop-link" do 
+          = link_to service_categories_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-hand-paper
             = t('sidebar.service_categories')
           /.dropdown-divider
-          = link_to leads_path, class: "dropdown-item navdrop-link" do
+          = link_to leads_path, class: "dropdown-item" do
             .fa-fw.fa.fa-globe-africa
             #{t('sidebar.online_booking')} 
-          = link_to contacts_list_path, class: "dropdown-item navdrop-link" do 
+          = link_to contacts_list_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-user-plus
             = t('sidebar.import_contacts')
-          = link_to activity_path, class: "dropdown-item navdrop-link" do 
+          = link_to activity_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-bell
             = t('sidebar.activity')
-          = link_to start_path, class: "dropdown-item navdrop-link" do 
+          = link_to start_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-rocket
             = t('sidebar.start')
       - if current_user.has_role?(:admin)
@@ -157,31 +157,31 @@
             #{t('sidebar.stats')}
             .badge.badge-dark admin
           .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown2"}
-            = link_to dashboard_member_salary_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_member_salary_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-dollar-sign
               .fa-fw.fa.fa-user-tie
               = t('dashboard.member_salary.member_salary')
-            = link_to dashboard_payment_stats_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_payment_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-hand-holding-usd
               = t('sidebar.inbound_payments')
-            = link_to dashboard_expence_stats_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_expence_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-dollar-sign
               = t('sidebar.expences')
-            = link_to dashboard_event_stats_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_event_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-calendar-alt
               = t('sidebar.events')
-            = link_to dashboard_client_stats_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_client_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-users
               = t('sidebar.clients')
-            = link_to dashboard_member_stats_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_member_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-user-tie
               = t('sidebar.members')
-            = link_to dashboard_lead_stats_path, class: "dropdown-item navdrop-link" do 
+            = link_to dashboard_lead_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-globe-africa
               = t('sidebar.online_booking')
