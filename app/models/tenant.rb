@@ -27,7 +27,7 @@ class Tenant < ApplicationRecord
   validates :description, length: { maximum: 500 }
   validates :plan, length: { maximum: 10 } #in schema it is 40, but 10 is better
   validates :industry, length: { maximum: 144 }
-  validates :plan, inclusion: %w(demo bronze silver gold)
+  validates :plan, inclusion: %w(demo bronze silver gold blocked)
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
   #-----------------------scopes-------------------#
