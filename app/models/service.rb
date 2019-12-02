@@ -12,7 +12,7 @@ class Service < ApplicationRecord
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
-  friendly_id :full_name, use: :slugged
+  friendly_id :name, use: :slugged
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
   validates :name, length: { in: 1..144 }
