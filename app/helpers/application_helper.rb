@@ -39,6 +39,8 @@ module ApplicationHelper
 					content_tag(:span, plan.titleize, class: 'badge badge-secondary')
 				when 'gold'
 					content_tag(:span, plan.titleize, class: 'badge badge-warning')
+				when 'blocked'
+					content_tag(:span, plan.titleize, class: 'badge badge-primary')
 			end
 		end
 

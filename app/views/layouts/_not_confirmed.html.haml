@@ -4,7 +4,7 @@
     .row
   .clearfix
     .fa.fa-clock
-    #{((current_user.created_at + 60.minutes - Time.now)/60).to_i} min
+    #{((current_user.created_at + 5.minutes - Time.now)/60).to_i} min
     %b
       Email:
       #{@current_user.email}

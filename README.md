@@ -1,5 +1,7 @@
 heroku run rake db:migrate
 
+Tenant.find(1).update_attributes(plan: "blocked")
+
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(1)
   Event.all.where(workplace_id: nil).count
