@@ -18,7 +18,7 @@ class Client < ApplicationRecord
   has_many :jobs, through: :events
   has_many :services, through: :jobs
   has_many :comments, as: :commentable
-  has_many :inbound_payments, dependent: :restrict_with_error
+  has_many :transactions, dependent: :restrict_with_error
   has_one :contact, inverse_of: :client, dependent: :nullify
   has_many :client_tags, inverse_of: :client, dependent: :destroy
   has_many :tags, through: :client_tags
@@ -78,7 +78,7 @@ class Client < ApplicationRecord
   end
 
   def update_payments_balance
-    update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
+    update_column :payments_amount_sum, (transactions.map(&:amount).sum)
     update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end
 end

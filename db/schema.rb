@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_175833) do
+ActiveRecord::Schema.define(version: 2019_12_06_183223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_175833) do
     t.integer "balance", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
     t.integer "integer", default: 0, null: false
-    t.integer "inbound_payments_count", default: 0, null: false
+    t.integer "transactions_count", default: 0, null: false
     t.integer "events_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -180,23 +180,6 @@ ActiveRecord::Schema.define(version: 2019_12_06_175833) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-  end
-
-  create_table "inbound_payments", force: :cascade do |t|
-    t.bigint "tenant_id"
-    t.bigint "client_id"
-    t.integer "amount", default: 0, null: false
-    t.string "payment_method", default: "cash", null: false
-    t.integer "payable_id"
-    t.string "payable_type"
-    t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_inbound_payments_on_client_id"
-    t.index ["payable_id"], name: "index_inbound_payments_on_payable_id"
-    t.index ["payable_type"], name: "index_inbound_payments_on_payable_type"
-    t.index ["slug"], name: "index_inbound_payments_on_slug", unique: true
-    t.index ["tenant_id"], name: "index_inbound_payments_on_tenant_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -417,6 +400,23 @@ ActiveRecord::Schema.define(version: 2019_12_06_175833) do
     t.index ["tenant_id", "user_id"], name: "index_tenants_users_on_tenant_id_and_user_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "client_id"
+    t.integer "amount", default: 0, null: false
+    t.string "payment_method", default: "cash", null: false
+    t.integer "payable_id"
+    t.string "payable_type"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_transactions_on_client_id"
+    t.index ["payable_id"], name: "index_transactions_on_payable_id"
+    t.index ["payable_type"], name: "index_transactions_on_payable_type"
+    t.index ["slug"], name: "index_transactions_on_slug", unique: true
+    t.index ["tenant_id"], name: "index_transactions_on_tenant_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "time_zone", default: "UTC"
     t.string "email", default: "", null: false
@@ -480,8 +480,6 @@ ActiveRecord::Schema.define(version: 2019_12_06_175833) do
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "workplaces"
   add_foreign_key "expences", "tenants"
-  add_foreign_key "inbound_payments", "clients"
-  add_foreign_key "inbound_payments", "tenants"
   add_foreign_key "jobs", "events"
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
@@ -505,6 +503,8 @@ ActiveRecord::Schema.define(version: 2019_12_06_175833) do
   add_foreign_key "skills", "tenants"
   add_foreign_key "tags", "tenants"
   add_foreign_key "tenants", "tenants"
+  add_foreign_key "transactions", "clients"
+  add_foreign_key "transactions", "tenants"
   add_foreign_key "users_roles", "tenants"
   add_foreign_key "workplaces", "locations"
   add_foreign_key "workplaces", "tenants"

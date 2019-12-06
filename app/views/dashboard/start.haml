@@ -71,9 +71,9 @@
           = t('.new_event')
       %hr
       /CREATE PAYMENT
-      - unless InboundPayment.any?
+      - unless Transaction.any?
         %span.badge.badge-pill.badge-danger -
-        = link_to t('.new_payment'), new_inbound_payment_path
+        = link_to t('.new_payment'), new_transaction_path
       - else
         %span.badge.badge-pill.badge-success +
         %del

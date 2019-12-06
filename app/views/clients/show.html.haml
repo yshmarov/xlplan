@@ -40,7 +40,7 @@
                 %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
                   %span{"aria-hidden" => "true"} ×
               .modal-body
-                = render 'inbound_payments/form'
+                = render 'transactions/form'
                 %p
                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.back"))
       .card-body
@@ -97,7 +97,7 @@
         .fa.fa-hand-holding-usd
         %b= model_class.human_attribute_name(:payments_amount_sum) + ':'
         = number_to_currency(@client.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        (#{@client.inbound_payments_count})
+        (#{@client.transactions_count})
         .row
         .fa.fa-balance-scale
         %b= model_class.human_attribute_name(:balance) + ':'
@@ -158,8 +158,8 @@
       %li.nav-item
         %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
           .fa.fa-caret-down
-          = t("sidebar.inbound_payments") + ':'
-          = @client.inbound_payments.count
+          = t("sidebar.transactions") + ':'
+          = @client.transactions.count
       %li.nav-item
         %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
           .fa.fa-globe-africa
@@ -180,7 +180,7 @@
       #first.tab-pane.fade.show.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}
         = render 'events/index'
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
-        = render 'inbound_payments/index'
+        = render 'transactions/index'
       #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
         = render 'leads/index'
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
@@ -192,7 +192,7 @@
             %hr
             .text-center 
               = t('.payment_sum_per_month')
-            = column_chart @client.inbound_payments.group_by_month(:created_at).sum('amount/100'), prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
+            = column_chart @client.transactions.group_by_month(:created_at).sum('amount/100'), prefix: "#{Tenant.current_tenant.default_currency.upcase} ", download: true
             %hr
             .text-center 
               = t('.event_statuses')

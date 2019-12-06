@@ -1,21 +1,21 @@
-- model_class = InboundPayment
-= search_form_for @q, url: inbound_payments_path do |f|
+- model_class = Transaction
+= search_form_for @q, url: transactions_path do |f|
   .card
     .card-header
       %h5.float-left
         .fa.fa-hand-holding-usd
         %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
         .badge.badge-info
-          = @inbound_payments.count
+          = @transactions.count
       %h5.float-right
         - unless params.has_key?(:q)
           %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
             .fa.fa-search
             .fa.fa-chevron-down
         - else
-          = link_to "", inbound_payments_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-        - if policy(InboundPayment).create?
-          = link_to t('.new', :default => t("helpers.links.new")), new_inbound_payment_path, class: 'btn btn-sm btn-primary'
+          = link_to "", transactions_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+        - if policy(Transaction).create?
+          = link_to t('.new', :default => t("helpers.links.new")), new_transaction_path, class: 'btn btn-sm btn-primary'
     - unless params.has_key?(:q)
       #accordion.collapse
         .card-header
@@ -58,8 +58,8 @@
             .col-md-4
               .row
               = f.submit
-= render 'inbound_payments/index'
+= render 'transactions/index'
 %p
 .container.table-responsive
-  = will_paginate @inbound_payments, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  = will_paginate @transactions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

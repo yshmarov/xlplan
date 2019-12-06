@@ -344,10 +344,10 @@ ru:
     no_gender: "Клиенты без пола"
     events: 'Встречи'
     expences: 'Расходы'
-    inbound_payments: 'Оплаты'
+    transactions: 'Оплаты'
     all_events: 'Все встречи'
     all_expences: 'Все расходы'
-    all_inbound_payments: 'Все оплаты'
+    all_transactions: 'Все оплаты'
     clients: 'Клиенты'
     members: 'Сотрудники'
     services: 'Услуги'
@@ -653,7 +653,7 @@ ru:
       import_google_contacts: "Импорт Контактов Google "
       add_all: "Добавить всех"
       connect_with_client: "Добавить к существующему клиенту"
-  inbound_payments:
+  transactions:
     index:
       title: "Оплаты"
     show:
@@ -796,7 +796,7 @@ ru:
       members: "Сотрудники"
       services: "Услуги"
       locations: "Филиалы"
-      inbound_payments: "Оплаты"
+      transactions: "Оплаты"
       expences: "Расходы"
       comments: "Комментарии"
       service_categories: "Категории Услуг"
@@ -818,7 +818,7 @@ ru:
       member: "Сотрудник"
       client: "Клиент"
       comment: "Комментарий"
-      inbound_payment: "Оплата"
+      transaction: "Оплата"
       contact: "Контакт"
 
     attributes:
@@ -1005,7 +1005,7 @@ ru:
         location_id: "Филиал"
         location: "Филиал"
         events_count: "Кол. Встреч"
-        inbound_payments_count: "Кол. Оплат"
+        transactions_count: "Кол. Оплат"
         comments_count: "Кол. Комментариев"
         comments: "Комментарии"
         contacts: "Контакты"
@@ -1047,7 +1047,7 @@ ru:
         #  male: "Мужской"
         #  female: "Женский"
         average_confirmed_check: "Средний чек"
-      inbound_payment:
+      transaction:
         id: "Код Оплаты"
         client: "Клиент"
         client_id: "Клиент"

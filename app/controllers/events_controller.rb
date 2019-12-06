@@ -91,12 +91,12 @@ class EventsController < ApplicationController
     authorize @event
     @jobs = @event.jobs
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Event", trackable_id: @event).all
-    @inbound_payments = @event.inbound_payments
-    @inbound_payment = InboundPayment.new
-    authorize @inbound_payment
+    @transactions = @event.transactions
+    @transaction = Transaction.new
+    authorize @transaction
     #@payable = @event
-    #@inbound_payment.payable_id = @event.id
-    #@inbound_payment.payable_type = "Event"
+    #@transaction.payable_id = @event.id
+    #@transaction.payable_type = "Event"
     #@payment.client_id = @event.client.id
     #@payment.amount = @event.event_price
     respond_to do |format|

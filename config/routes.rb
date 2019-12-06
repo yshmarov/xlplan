@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   resources :workplaces, only: [:show, :index, :destroy]
 
   resources :events do
-    resources :inbound_payments, except: [:edit, :update]
+    resources :transactions, except: [:edit, :update]
     get :close, :today, :tomorrow, on: :collection
   	member do
   		patch :mark_planned
@@ -89,7 +89,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :inbound_payments, except: [:edit, :update]
+  resources :transactions, except: [:edit, :update]
   resources :expences
 
   get 'calendar', to: 'dashboard#calendar'

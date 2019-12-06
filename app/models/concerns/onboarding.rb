@@ -16,10 +16,10 @@ module Onboarding
     def has_events?
       Event.any?
     end
-    def has_inbound_payments?
-      InboundPayment.any?
+    def has_transactions?
+      Transaction.any?
     end
-    steps = [:has_locations?, :has_service_categories?, :has_services?, :has_clients?, :has_events?, :has_inbound_payments?]
+    steps = [:has_locations?, :has_service_categories?, :has_services?, :has_clients?, :has_events?, :has_transactions?]
     complete = steps.select{ |step| send(step) }
     percent = complete.length / steps.length.to_f * 100
     percent.round

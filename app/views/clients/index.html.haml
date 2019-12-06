@@ -53,9 +53,9 @@
                 .ml.ml-2.fa.fa-calendar-check
                 = model_class.human_attribute_name(:events_count)
               .row
-              = sort_link @ransack_clients, :inbound_payments_count do
+              = sort_link @ransack_clients, :transactions_count do
                 .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:inbound_payments_count)
+                = model_class.human_attribute_name(:transactions_count)
     - else
       #accordion.collapse.show
         .card-header
@@ -77,9 +77,9 @@
                 .ml.ml-2.fa.fa-calendar-check
                 = model_class.human_attribute_name(:events_count)
               .row
-              = sort_link @ransack_clients, :inbound_payments_count do
+              = sort_link @ransack_clients, :transactions_count do
                 .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:inbound_payments_count)
+                = model_class.human_attribute_name(:transactions_count)
 - @clients.each do |client|
   .card
     .card-header.bg-light
@@ -121,7 +121,7 @@
           .row
           .fa.fa-hand-holding-usd
           = number_to_currency(client.payments_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          (#{client.inbound_payments_count})
+          (#{client.transactions_count})
           .row
           .fa.fa-balance-scale
           = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")

@@ -1,4 +1,4 @@
-- model_class = InboundPayment
+- model_class = Transaction
 .row
   .container
     .card
@@ -6,21 +6,21 @@
         =t '.title', :default => model_class.model_name.human.titleize
       .card-body
         %b= model_class.human_attribute_name(:id) + ':'
-        = @inbound_payment.slug
+        = @transaction.slug
         .row
         %b= model_class.human_attribute_name(:client_id) + ':'
-        = @inbound_payment.client
+        = @transaction.client
         .row
         %b= model_class.human_attribute_name(:amount) + ':'
-        = number_to_currency(@inbound_payment.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        = number_to_currency(@transaction.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .row
         %b= model_class.human_attribute_name(:payment_method) + ':'
-        = @inbound_payment.payment_method
-        - if @inbound_payment.payable.present?
-          - if @inbound_payment.payable_type == "Event"
+        = @transaction.payment_method
+        - if @transaction.payable.present?
+          - if @transaction.payable_type == "Event"
             .row
             %b= model_class.human_attribute_name(:event) + ':'
-            = link_to @inbound_payment.payable, event_path(@inbound_payment.payable)
+            = link_to @transaction.payable, event_path(@transaction.payable)
         %br
         - @activities.each do |a|
           %b= model_class.human_attribute_name(:created_at) + ':'

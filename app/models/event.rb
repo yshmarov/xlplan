@@ -23,7 +23,7 @@ class Event < ApplicationRecord
   has_many :services, through: :jobs
   has_many :members, through: :jobs
   has_many :users, through: :members  #for event_mailer send_email_to_members
-  has_many :inbound_payments, as: :payable
+  has_many :transactions, as: :payable
   accepts_nested_attributes_for :jobs, reject_if: :all_blank, allow_destroy: true
   #-----------------------validation-------------------#
   validates :client, :workplace, :starts_at, :duration, :ends_at, :status, :status_color, :event_price, presence: true

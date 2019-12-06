@@ -56,12 +56,12 @@
   .container
     .card
       .card-header
-        = t("sidebar.inbound_payments") + ':'
-        = @client.inbound_payments.count
-      - @inbound_payments.each do |inbound_payment|
+        = t("sidebar.transactions") + ':'
+        = @client.transactions.count
+      - @transactions.each do |transaction|
         .card.card-header
-          = inbound_payment.client
-          = inbound_payment.amount_cents
-          = inbound_payment.payment_method
-          #{l(inbound_payment.created_at, format: "%a")} #{l(inbound_payment.created_at, format: "%d/%b/%Y %H:%M")}
+          = transaction.client
+          = transaction.amount_cents
+          = transaction.payment_method
+          #{l(transaction.created_at, format: "%a")} #{l(transaction.created_at, format: "%d/%b/%Y %H:%M")}
 

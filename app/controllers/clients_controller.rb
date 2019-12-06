@@ -55,7 +55,7 @@ class ClientsController < ApplicationController
     authorize @client
     @events = @client.events.includes(:jobs, :jobs => [:service, :member]).order("starts_at DESC")
     #@events = @client.events.order("starts_at DESC")
-    @inbound_payments = @client.inbound_payments.order("created_at DESC")
+    @transactions = @client.transactions.order("created_at DESC")
 
     @commentable = @client
     @comments = @commentable.comments
@@ -68,8 +68,8 @@ class ClientsController < ApplicationController
     authorize @event
     @event.jobs.build
 
-    @inbound_payment = InboundPayment.new
-    authorize @inbound_payment
+    @transaction = Transaction.new
+    authorize @transaction
 
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Client", trackable_id: @client).all
 

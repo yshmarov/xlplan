@@ -1,4 +1,4 @@
-class InboundPayment < ApplicationRecord
+class Transaction < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------relationships-------------------#
@@ -15,7 +15,7 @@ class InboundPayment < ApplicationRecord
   #-----------------------payment_method options--------------------------------#
   PAYMENT_METHODS = [:cash, :credit_card, :bank_transfer] 
   def self.payment_methods
-    PAYMENT_METHODS.map {|payment_method| [I18n.t(payment_method, scope: [:activerecord, :attributes, :inbound_payment, :payment_methods]).capitalize, payment_method]}
+    PAYMENT_METHODS.map {|payment_method| [I18n.t(payment_method, scope: [:activerecord, :attributes, :transaction, :payment_methods]).capitalize, payment_method]}
   end
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model

@@ -76,7 +76,7 @@
           .fa-color-1.fa-fw.fa.fa-users
           %b= t('sidebar.new_client')
       %li.nav-item
-        = link_to new_inbound_payment_path, class: "nav-link" do 
+        = link_to new_transaction_path, class: "nav-link" do 
           .fa-color-1.fa-fw.fa.fa-plus
           .fa-color-1.fa-fw.fa.fa-hand-holding-usd
           %b= t('sidebar.new_payment')
@@ -123,9 +123,9 @@
           = link_to events_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-calendar-alt
             = t('sidebar.all_events')
-          = link_to inbound_payments_path, class: "dropdown-item" do 
+          = link_to transactions_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-hand-holding-usd
-            = t('sidebar.all_inbound_payments')
+            = t('sidebar.all_transactions')
           = link_to expences_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-dollar-sign
             = t('sidebar.all_expences')
@@ -164,7 +164,7 @@
             = link_to dashboard_payment_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-hand-holding-usd
-              = t('sidebar.inbound_payments')
+              = t('sidebar.transactions')
             = link_to dashboard_expence_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-dollar-sign
@@ -204,4 +204,4 @@
       /  .fa-color-1.fa.fa-chart-line
       /  #{t('sidebar.stats')}
       /%ul#stats.sub-menu.collapse
-      /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-hand-holding-usd'></i> #{t('sidebar.inbound_payments')}".html_safe, dashboard_payments_path, class: "nav-link"
+      /  .nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-hand-holding-usd'></i> #{t('sidebar.transactions')}".html_safe, dashboard_payments_path, class: "nav-link"

@@ -344,10 +344,10 @@ en:
     no_gender: "Clients without gender"
     events: 'Events'
     expences: 'Expences'
-    inbound_payments: 'Payments'
+    transactions: 'Payments'
     all_events: 'All events'
     all_expences: 'All expences'
-    all_inbound_payments: 'All payments'
+    all_transactions: 'All payments'
     clients: 'Clients'
     members: 'Employees'
     services: 'Services'
@@ -654,7 +654,7 @@ en:
       import_google_contacts: "Import Google Contacts"
       add_all: "Add all"
       connect_with_client: "Add to existing client"
-  inbound_payments:
+  transactions:
     index:
       title: "Payments"
     show:
@@ -797,7 +797,7 @@ en:
       members: "Employees"
       services: "Services"
       locations: "Locations"
-      inbound_payments: "Payments"
+      transactions: "Payments"
       expences: "Expences"
       comments: "Comments"
       service_categories: "Service Categories"
@@ -819,7 +819,7 @@ en:
       member: "Employee"
       client: "Client"
       comment: "Comment"
-      inbound_payment: "Payment"
+      transaction: "Payment"
       contact: "Contact"
 
     attributes:
@@ -1006,7 +1006,7 @@ en:
         location_id: "Location"
         location: "Location"
         events_count: "Events count"
-        inbound_payments_count: "Payments count"
+        transactions_count: "Payments count"
         comments_count: "Comments count"
         comments: "Comments"
         contacts: "Contacts"
@@ -1044,7 +1044,7 @@ en:
           VIP: "VIP"
           regular_customer: "Regular customer"
         average_confirmed_check: "Average paycheck"
-      inbound_payment:
+      transaction:
         id: "Payment ID"
         client: "Client"
         client_id: "Client"

@@ -20,11 +20,11 @@ class ChartsController < ApplicationController
   end
 
   def payments_per_day
-    render json: InboundPayment.group_by_day(:created_at).sum("amount/100")
+    render json: Transaction.group_by_day(:created_at).sum("amount/100")
   end
 
   def payments_per_month
-    render json: InboundPayment.group_by_month(:created_at).sum("amount/100")
+    render json: Transaction.group_by_month(:created_at).sum("amount/100")
   end
 
   def events_per_day

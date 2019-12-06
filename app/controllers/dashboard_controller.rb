@@ -101,9 +101,9 @@ class DashboardController < ApplicationController
       if params.has_key?(:select)
         @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month
         @end_date = @start_date.end_of_month
-        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?",@start_date, @end_date)
+        @transactions = Transaction.where("created_at BETWEEN ? AND ?",@start_date, @end_date)
       else
-        @inbound_payments = InboundPayment.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
+        @transactions = Transaction.where("created_at BETWEEN ? AND ?", Time.now.beginning_of_month, Time.now.end_of_month)
       end
     else
       redirect_to root_path, alert: 'You are not authorized to view the page.'
