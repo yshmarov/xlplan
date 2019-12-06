@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_183223) do
+ActiveRecord::Schema.define(version: 2019_12_06_185106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,8 +245,8 @@ ActiveRecord::Schema.define(version: 2019_12_06_183223) do
     t.string "viber", limit: 40
     t.string "telegram", limit: 40
     t.string "whatsapp", limit: 40
-    t.boolean "online_booking", default: false
-    t.boolean "active", default: false
+    t.boolean "online_booking", default: true
+    t.boolean "active", default: true
     t.integer "locations", default: 0, null: false
     t.integer "integer", default: 0, null: false
     t.integer "members_count", default: 0, null: false
@@ -268,8 +268,8 @@ ActiveRecord::Schema.define(version: 2019_12_06_183223) do
     t.string "gender", default: "undisclosed"
     t.text "address"
     t.string "time_zone", default: "UTC"
-    t.boolean "active", default: false
-    t.boolean "online_booking", default: false
+    t.boolean "active", default: true
+    t.boolean "online_booking", default: true
     t.integer "balance", default: 0, null: false
     t.integer "expences_amount_sum", default: 0, null: false
     t.integer "jobs_due_price_sum", default: 0, null: false
@@ -333,8 +333,8 @@ ActiveRecord::Schema.define(version: 2019_12_06_183223) do
     t.integer "member_price", default: 0, null: false
     t.integer "jobs_count", default: 0, null: false
     t.integer "integer", default: 0, null: false
-    t.boolean "online_booking", default: false
-    t.boolean "active", default: false
+    t.boolean "online_booking", default: true
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
