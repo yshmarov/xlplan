@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
   def dashboard
     @events_today = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
     @clients_today = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-    @payments_today = InboundPayment.where("created_at >= ?", Time.zone.now.beginning_of_day).count
+    @payments_today = Transaction.where("created_at >= ?", Time.zone.now.beginning_of_day).count
   end
 
   def start

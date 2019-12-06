@@ -24,7 +24,7 @@
           %th.bg-warning Event
           %th.bg-warning Job
           %th.bg-warning Comment
-          %th.bg-warning InboundPayment
+          %th.bg-warning Transaction
           %th.bg-warning Member
           %th.bg-warning Location
           %th.bg-warning Contact
@@ -49,7 +49,7 @@
             %td= Event.unscoped.where(tenant_id: tenant.id).count 
             %td= Job.unscoped.where(tenant_id: tenant.id).count 
             %td= Comment.unscoped.where(tenant_id: tenant.id).count 
-            %td= InboundPayment.unscoped.where(tenant_id: tenant.id).count 
+            %td= Transaction.unscoped.where(tenant_id: tenant.id).count 
             %td= Member.unscoped.where(tenant_id: tenant.id).count 
             %td= Location.unscoped.where(tenant_id: tenant.id).count 
             %td= Contact.unscoped.where(tenant_id: tenant.id).count 

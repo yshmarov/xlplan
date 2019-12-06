@@ -16,9 +16,9 @@
           = t('tenants.show.clients')
           %span.badge.badge-secondary
             = @clients_today
-        = link_to inbound_payments_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
+        = link_to transactions_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
           %i.fa.fa-hand-holding-usd
-          = t('tenants.show.inbound_payments')
+          = t('tenants.show.transactions')
           %span.badge.badge-secondary
             = @payments_today
   .card
