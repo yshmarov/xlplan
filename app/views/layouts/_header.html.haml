@@ -40,10 +40,10 @@
       %ul.nav.navbar-nav.navbar-right
         = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-success mr-sm-2 text-light'
         /.mr.mt-1
-        /= link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
-        /= link_to t("header.start"), new_user_registration_path, class: 'btn btn-danger mr-sm-2'
+        /= link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-warning mr-sm-2'
+        /= link_to t("header.start"), new_user_registration_path, class: 'btn btn-warning mr-sm-2'
         .mr.mt-1
-        = link_to t("header.apply_demo"), new_booking_path(2), class: 'btn btn-danger mr-sm-2'
+        = link_to t("header.apply_demo"), new_booking_path(2), class: 'btn btn-warning mr-sm-2'
     - else
       %ul.navbar-nav.ml-md-auto.d-md-flex
         %li.nav-item

@@ -11,15 +11,15 @@
 .container-fluid
   .row
     .col-lg-5.order-1.order-lg-0
-      .display-3
+      .display-4
         %b XLPLAN
       %h1
         %small= t('.hero')
       .row
       %p
-      %p= link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-lg btn-success btn-block'
+      %p= link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-lg btn-success'
       %p
-      %p= link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-danger btn-block'
+      %p= link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-warning'
       %p
       %h5
         .font-weight-light= t('.hero_description')
@@ -61,7 +61,7 @@
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
           %span.pl-2.pt-1
             = t('.solo_small_network')
-      = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-danger text-white'
+      = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-warning text-dark'
       %p
     .col-lg-6
       .embed-responsive.embed-responsive-16by9
@@ -166,7 +166,7 @@
         .card-body
           .py-3.text-center
             %h1
-              .badge.badge-danger 1
+              .badge.badge-warning 1
           .card-body
             %h4.card-title= t('.control_business')
             %p.card-text
@@ -180,7 +180,7 @@
         .card-body
           .py-3.text-center
             %h1
-              .badge.badge-danger 2
+              .badge.badge-warning 2
           .card-body
             %h4.card-title= t('.save_time')
             %p.card-text
@@ -192,7 +192,7 @@
         .card-body
           .py-3.text-center
             %h1
-              .badge.badge-danger 3
+              .badge.badge-warning 3
           .card-body
             %h4.card-title= t('.increase_revenue_and_grow')
             %p.card-text
@@ -220,7 +220,7 @@
     %h2.text-center
       %b.bg-warning.rounded.text-center= t('.small_investment')
     %p
-    = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-danger text-white'
+    = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-warning text-dark'
 
 .container.text-center
   %h2.text-center
