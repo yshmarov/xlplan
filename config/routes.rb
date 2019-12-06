@@ -91,7 +91,6 @@ Rails.application.routes.draw do
 
   resources :inbound_payments, except: [:edit, :update]
   resources :expences
-  resources :cashouts
 
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'
