@@ -11,7 +11,7 @@ class Tenant < ApplicationRecord
   has_many :clients, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :events, dependent: :destroy
-  has_many :inbound_payments, dependent: :destroy
+  has_many :transactions, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :locations, dependent: :destroy
   has_many :members, dependent: :destroy
