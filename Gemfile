@@ -101,8 +101,8 @@ gem "omnicontacts"                                                              
 
 group :production do
   gem 'exception_notification'                                                    #EMAIL ERRORS FOR PRODUCTION
-  gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
 end
+gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
 
 gem "recaptcha"                                                                 #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
 
