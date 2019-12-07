@@ -1,6 +1,6 @@
 - content_for :title do
   = @tenant.name
-  = t('sidebar.online_booking')
+  = t('header.apply_demo')
 
 - I18n.locale = @tenant.locale
 %p
@@ -34,7 +34,7 @@
               %p
               %b= @tenant.name
               %hr
-              = t('sidebar.online_booking').downcase
+              = t('header.apply_demo').downcase
         .card-body
           = render 'leads/form'
           %p

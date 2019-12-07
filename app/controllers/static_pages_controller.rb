@@ -19,9 +19,6 @@ class StaticPagesController < ApplicationController
   def terms_of_service
   end
   
-  def security
-  end
-
   before_action :authenticate, only: :stats
   
   def stats

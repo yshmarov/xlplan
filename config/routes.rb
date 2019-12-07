@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'pricing', to: 'static_pages#pricing'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
-  get 'security', to: 'static_pages#security'
   #total stats for the superadmin
   get 'stats', to: 'static_pages#stats'
 
