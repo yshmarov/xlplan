@@ -138,7 +138,7 @@ GEM
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
     execjs (2.7.0)
-    faker (2.8.0)
+    faker (2.8.1)
       i18n (>= 1.6, < 1.8)
     ffi (1.11.3)
     font-awesome-sass (5.11.2)

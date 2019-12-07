@@ -24,9 +24,6 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -95,12 +92,18 @@ gem 'friendly_id'                                                               
 gem 'rails-i18n'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
-gem 'faker'                                                                     #FILL THE DATABASE WITH FAKE DATA
+
+group :development do
+  gem 'faker'                                                                     #FILL THE DATABASE WITH FAKE DATA
+end
 
 gem "omnicontacts"                                                              #IMPORT CONTACTS FROM GOOGLE
 
-gem 'exception_notification'                                                    #EMAIL ERRORS FOR PRODUCTION
-gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
+group :production do
+  gem 'exception_notification'                                                    #EMAIL ERRORS FOR PRODUCTION
+  gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
+end
+
 gem "recaptcha"                                                                 #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
 
 gem 'wicked_pdf'                                                                #GENERATE PDF
