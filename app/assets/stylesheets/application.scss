@@ -138,3 +138,18 @@ input[type=radio] {
 .fc h2 { font-size: 20px; } // fullcalendar title size
 .fc-resource-cell { font-size: 10px; } // fullcalendar resource title size
 .fc-expander-space {display:none} // fullcalendar timelineDay remove unused space
+
+// fullcalendar sticky navigation
+.fc-toolbar.fc-header-toolbar {
+    position: sticky;
+    top: 70px;
+    z-index: 10;
+}
+
+// fullcalendar sticky table header
+.fc-head-container {
+    position: sticky;
+    top: 122px;
+    z-index: 10;
+    background: white;
+}
