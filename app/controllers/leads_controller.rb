@@ -30,6 +30,7 @@ class LeadsController < ApplicationController
 		@lead.update_attribute(:client_id, @client.id)
 
     if @client.save
+      ClientTag.create(client: @client, tag: Tag.find_by(name: "contact_required"))
       redirect_to leads_path, notice: 'Client was successfully created.'
     else
       redirect_to leads_path, alert: 'Error.'
