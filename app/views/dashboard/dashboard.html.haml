@@ -62,7 +62,6 @@
         = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
           %i.fa-fw.fa.fa-birthday-cake
           #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-warning'} 
-        ////link to ransack search query
   .card
     .card-body
       %h5.card-title
@@ -74,3 +73,5 @@
             = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
             .badge.badge-secondary
               = tag.client_tags_count
+        = link_to untagged_clients_path, class: "btn btn-outline-info btn-block" do
+          #{t('clients_untagged')} #{content_tag :span, Client.untagged.count, class: 'badge badge-secondary'} 

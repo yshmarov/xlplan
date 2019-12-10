@@ -19,6 +19,13 @@ class ClientsController < ApplicationController
     render 'index'
   end
 
+  def untagged
+    @ransack_clients = Client.untagged.search(params[:clients_search], search_key: :clients_search)
+    @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+    @ransack_path = untagged_clients_path
+    render 'index'
+  end
+
   def debtors
     #with negative balance
     @ransack_clients = Client.debtors.search(params[:clients_search], search_key: :clients_search)
