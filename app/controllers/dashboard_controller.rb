@@ -42,7 +42,7 @@ class DashboardController < ApplicationController
         @end_date = @start_date.end_of_month
         @member = params[:member]
 
-        @jobs = Job.joins(:event, :service, :service => :service_category, :event => :client).where(events: {:starts_at => @start_date..@end_date}).where(member_id: @member)
+        @jobs = Job.joins(:event, :service, :service => :service_category, :event => :client).where(events: {:starts_at => @start_date..@end_date}).where(member_id: @member).order(starts_at: :asc)
         #did not try this
         #@jobs = Job.where('starts_at BETWEEN ? AND ?', @selected_date.beginning_of_day, @selected_date.end_of_day)
         

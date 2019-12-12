@@ -3,21 +3,19 @@
     .modal-content
       .modal-header
         %h3#myModalLabel
-          Программа Отключена
+          = Tenant.current_tenant.name
+          = plan_label(Tenant.current_tenant.plan)
       .modal-body
         %h3
           Дорогой пользователь, 
           .row
           пробный период пользования программой окончен.
           %p
-          Для дальнейшего пользования нужно купить лицензию.
+          Для дальнейшего пользования нужно приобрести лицензию.
           %p
-          %a{:href => "https://www.xlplan.com/pricing/"} Наши тарифы
-
+          %a{:href => "https://www.xlplan.com/pricing/"} Тарифы
         .py-4
       .modal-footer
-        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} 
-          %h2
-            Свяжитесь с нами
-            = mail_to "support@xlplan.com"
-          /%button.btn.btn-primary Save changes
+        %h2
+          Свяжитесь с нами
+          = mail_to "support@xlplan.com"
