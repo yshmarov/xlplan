@@ -3,7 +3,7 @@
 = provide(:description, 'Управление салоном красоты, ведение клиентов онлайн, программа для СТО и автомоек, онлайн запись в косметологию и бьюти-салоны, финансовая статистика')
 = provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
 
-.jumbotron.bg-primary.text-white.text-center
+.jumbotron.bg-warning.text-dark.text-center
   .mx-auto.text-center
     .fa.fa-4x.fa-cloud
     %h1.display-4.font-weight-bold= t('.online_booking')
@@ -16,7 +16,7 @@
     /= k
     /- if @q.industry_cont.to_s == value.to_s
     /  .fa.fa-flag
-    = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-white'
+    = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-dark'
 
 - if params.has_key?(:q)
   .text-center

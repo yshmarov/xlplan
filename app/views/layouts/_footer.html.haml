@@ -1,8 +1,9 @@
 %footer.bg-dark.text-white
-  .bg-dark
+  .bg-dark.text-center
     %hr
-    .text-center
       = link_to t("static_pages.landing_page.apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-warning'
+    %hr
+      = link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-lg btn-success'
     %hr
   .container.text-center.text-md-left
     .row

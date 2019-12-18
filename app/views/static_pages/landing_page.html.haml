@@ -11,21 +11,25 @@
 .container-fluid
   .row
     .col-lg-5.order-1.order-lg-0
-      .display-4
-        %b XLPLAN
       %h1
+        %b XLPLAN
         %small= t('.hero')
       .row
       %p
-      %p= link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-lg btn-success'
-      %p
-      %p= link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-warning'
+      = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-lg btn-warning'
+      = link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-lg btn-success'
       %p
       %h5
         .font-weight-light= t('.hero_description')
       %p
     .col-lg-7.order-0.order-lg-1
       = image_tag "https://i.imgur.com/TWpk1pv.png", style: 'height:auto;width:100%;'
+
+%hr
+.container
+  .text-center
+    = link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-success'
+
 %hr
 .container
   .row
