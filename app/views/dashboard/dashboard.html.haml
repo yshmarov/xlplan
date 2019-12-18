@@ -75,3 +75,64 @@
               = tag.client_tags_count
         = link_to untagged_clients_path, class: "btn btn-outline-info btn-block" do
           #{t('clients_untagged')} #{content_tag :span, Client.untagged.count, class: 'badge badge-secondary'} 
+
+  .card
+    .card-header
+      %h5= t('tenants.show.counters')
+    .card-footer
+      %i.fa.fa-user-tie
+      %b= t('tenants.show.members')
+      %span.badge.badge-info
+        = Member.count
+    .card-footer
+      %i.fa.fa-map-marker-alt
+      %b= t('tenants.show.locations')
+      %span.badge.badge-info
+        = Location.count
+    .card-footer
+      %i.far.fa-address-book
+      %b= t('sidebar.clients')
+      %span.badge.badge-info
+        = Client.count
+    .card-footer
+      %i.fa.fa-globe-africa
+      %b= t('sidebar.online_booking')
+      %span.badge.badge-info
+        = Lead.count
+    .card-footer
+      %i.fa.fa-hand-holding-usd
+      %b= t('tenants.show.transactions')
+      %span.badge.badge-info
+        = Transaction.count
+    .card-footer
+      %i.fa.fa-calendar-alt
+      %b= t('tenants.show.events')
+      %span.badge.badge-info
+        = Event.count
+    .card-footer
+      %i.fa.fa-calendar-check
+      %b= t('tenants.show.jobs')
+      %span.badge.badge-info
+        = Job.count
+    .card-footer
+      %i.fa.fa-hand-paper
+      %b= t('tenants.show.services')
+      %span.badge.badge-info
+        = Service.count
+    .card-footer
+      %i.fa.fa-hand-paper
+      %b= t('tenants.show.service_categories')
+      %span.badge.badge-info
+        = ServiceCategory.count
+    .card-footer
+      %i.fa.fa-map-marker-alt
+      %b= t('tenants.show.comments')
+      %span.badge.badge-info
+        = Comment.count
+    /.card-footer
+    /  %i.fa.fa-user-plus
+    /  %b= t('sidebar.import_contacts')
+    /  %span.badge.badge-info
+    /    = Contact.count
+
+

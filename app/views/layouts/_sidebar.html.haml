@@ -5,18 +5,6 @@
     .badge.badge-default 
       XLPLAN
       = plan_label(Tenant.current_tenant.plan)
-      /= @org_name
-    /= request.referer
-    /= request.user_agent
-    /= request.remote_ip
-    /= request.env['HTTP_USER_AGENT']
-    /%ul.navbar-nav
-    /= Time.now.in_time_zone(current_user.time_zone)
-    /= Time.now
-    /= Time.current
-    /= Time.zone
-    /= Time.zone.now
-    /= Time.now.in_time_zone
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
@@ -25,7 +13,6 @@
     /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     .badge.badge-default.text-white
       = link_to @org_name, calendar_path, class: 'text-white'
-      /= link_to Tenant.current_tenant.name, calendar_path, class: 'text-white'
     /- if Tenant.current_tenant.plan == "demo"
     /  - if current_user.has_role?(:admin)
     /    .nav-item
@@ -60,9 +47,9 @@
       /SEARCH CLIENT IN SIDEBAR
       /.input-group
       /  = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
-      /    = f.search_field :full_name_cont, class: 'form-control', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
+      /    = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control-sm', style: 'float: left; width: 140px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
       /    %span.input-group-append
-      /      %button.btn.btn-secondary{:type => "submit"}
+      /      %button.btn.btn-primary.btn-sm{:type => "submit"}
       /        %span.fa.fa-search{"aria-hidden" => "true"}
       /CREATE NEW
       %li.nav-item
@@ -132,25 +119,16 @@
           = link_to service_categories_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-hand-paper
             = t('sidebar.service_categories')
-          /.dropdown-divider
-          = link_to leads_path, class: "dropdown-item" do
-            .fa-fw.fa.fa-globe-africa
-            #{t('sidebar.online_booking')} 
-          = link_to contacts_list_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-user-plus
-            = t('sidebar.import_contacts')
           = link_to activity_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-bell
             = t('sidebar.activity')
           = link_to start_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-rocket
             = t('sidebar.start')
+          = link_to contacts_list_path, class: "dropdown-item" do 
+            .fa-fw.fa.fa-user-plus
+            = t('sidebar.import_contacts')
       - if current_user.has_role?(:admin)
-        %li.nav-item
-          = link_to settings_show_path, class: "nav-link" do 
-            .fa-color-1.fa-fw.fa.fa-cog
-            = t('sidebar.settings')
-            .badge.badge-dark admin
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
             .fa-color-1.fa.fa-chart-line
@@ -185,15 +163,16 @@
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-globe-africa
               = t('sidebar.online_booking')
+        %li.nav-item
+          = link_to settings_show_path, class: "nav-link" do 
+            .fa-color-1.fa-fw.fa.fa-cog
+            = t('sidebar.settings')
+            .badge.badge-dark admin
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa-color-1.fa-fw.fa.fa-user
-          /- if user_signed_in? && current_user.member.present?
-          /- if user_signed_in?
           = current_user.member.short_name
-          /- if current_user.has_role?(:admin)
-          /  .badge.badge-dark admin
         .dropdown-menu.dropdown-menu-right#sidebardropdown{"aria-labelledby" => "navbarDropdown"}
           = link_to t('sidebar.my_page'), member_path(current_user.member), class: "dropdown-item"
           = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item"
