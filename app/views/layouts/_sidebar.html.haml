@@ -20,7 +20,7 @@
     /        .fa.fa-shopping-cart
     /        = t('sidebar.order_system')
     %ul.navbar-nav.ml-md-auto.d-md-flex
-      = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
+      = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
         .input-group
           = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
           %span.input-group-append
@@ -46,7 +46,7 @@
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-heartbeat'></i> #{t('sidebar.dashboard')}".html_safe, dashboard_path, class: "nav-link"
       /SEARCH CLIENT IN SIDEBAR
       /.input-group
-      /  = search_form_for @ransack_clients, as: :clients_search, url: search_clients_path, html: { method: :post }  do |f|
+      /  = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
       /    = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control-sm', style: 'float: left; width: 140px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
       /    %span.input-group-append
       /      %button.btn.btn-primary.btn-sm{:type => "submit"}

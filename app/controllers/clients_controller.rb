@@ -1,11 +1,6 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
-  def search
-    index
-    render :index
-  end
-
   def index
     @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
     @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
