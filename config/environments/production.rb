@@ -1,10 +1,10 @@
 Rails.application.configure do
+
   Rails.application.config.middleware.use ExceptionNotification::Rack,
-    :email => {
-      #:deliver_with => :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
-      :email_prefix => "[PREFIX] ",
-      :sender_address => %{"xlplan error" <yshmarov@gmail.com>},
-      :exception_recipients => %w{yshmarov@gmail.com}
+    email: {
+      email_prefix: '[PREFIX] ',
+      sender_address: %{"xlplan error" <yshmarov@gmail.com>},
+      exception_recipients: %w{yshmarov@gmail.com}
     }
 
   config.action_mailer.default_url_options = { :host => 'xlplan.com', :protocol => 'https' }

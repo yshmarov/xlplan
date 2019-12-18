@@ -101,17 +101,16 @@ gem "omnicontacts"                                                              
 
 group :production do
   gem 'exception_notification'                                                    #EMAIL ERRORS FOR PRODUCTION
+  gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
 end
-gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
-
+#group :production do
+gem "aws-sdk-s3"                                                                #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
 gem "recaptcha"                                                                 #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
+#end
 
 gem 'wicked_pdf'                                                                #GENERATE PDF
 gem 'wkhtmltopdf-binary'                                                        #ALSO NEEDED TO GENERATE PDF
 
-#group :production do
-gem "aws-sdk-s3"                                                                #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
-#end
 #gem "mini_magic"
 gem "icalendar"                                                                 #Send calendar events to other calendar appsgem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards
 gem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards
