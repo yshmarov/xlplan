@@ -30,11 +30,12 @@ def create
         #@user.add_role(:manager)
         
         Role.create!(name: "manager") #initially only admin and specialist are created.
+        Tag.create!(name: "potential")
         Tag.create!(name: "contact_required")
+        Tag.create!(name: "regular")
+        Tag.create!(name: "VIP")
         Tag.create!(name: "lost_client")
         Tag.create!(name: "blacklist")
-        Tag.create!(name: "VIP")
-        Tag.create!(name: "regular_customer")
         #Tag.create!(name: "over_3_visits")
         #Tag.create!(name: "no_visits")
         Location.create!(name: @tenant.name)

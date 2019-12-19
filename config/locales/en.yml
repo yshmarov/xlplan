@@ -1038,11 +1038,12 @@ en:
           other: "other"
         tag: "Tags"
         tags:
+          potential: "Potential"
           contact_required: "Contact required"
+          regular: "Regular"
+          VIP: "VIP"
           lost_client: "Lost client"
           blacklist: "Blacklist"
-          VIP: "VIP"
-          regular_customer: "Regular customer"
         average_confirmed_check: "Average paycheck"
       transaction:
         id: "Payment ID"

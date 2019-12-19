@@ -3,20 +3,32 @@ heroku run rake db:migrate
 Tenant.find(1).update_attributes(plan: "blocked")
 
 Tenant.find_each do |tenant|
-  Tenant.set_current_tenant(1)
-  Event.all.where(workplace_id: nil).count
-  Location.public_activity_off
-  Location.all.each do |location|
-    location.workplaces.create(name: "room1")
-  end
-  
-  workplace = Workplace.first.id
-  Event.public_activity_off
-  Event.all.where(workplace_id: nil).each do |event|
-    event.update_attributes!(workplace_id: workplace)
-  end
+  Tenant.set_current_tenant(tenant)
+  Tag.all.where(name: "lost_client").each do |tag| tag.update_attributes(name: "lost") end
 end
 
+  Member.all.each do |member| member.update_attributes(time_zone: "Kyiv") end
+
+  Tag.create!(name: "potential", tenant: tenant)
+
+
+Tenant.find_each do |tenant|
+  Tenant.set_current_tenant(tenant)
+  Animal.update_all alive: true
+end
+
+Tenant.set_current_tenant(1)
+Event.all.where(workplace_id: nil).count
+Location.public_activity_off
+Location.all.each do |location|
+  location.workplaces.create(name: "room1")
+end
+
+workplace = Workplace.first.id
+Event.public_activity_off
+Event.all.where(workplace_id: nil).each do |event|
+  event.update_attributes!(workplace_id: workplace)
+end
 
 Client.public_activity_off
 Member.public_activity_off

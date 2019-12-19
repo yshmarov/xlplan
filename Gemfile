@@ -56,42 +56,42 @@ end
 gem 'haml'                                                                      #HAML
 gem "haml-rails"                                                                #HAML
 gem 'bootstrap'                                                                 #BOOTSTRAP
-gem 'jquery-rails'
+gem 'jquery-rails'                                                              
 gem 'simple_form'                                                               #SIMPLE_FORM
 gem 'font-awesome-sass'                                                         #FONT_AWESOME ICONS FOR DESIGN
-#calendar3
+#calendar                                                                       
 gem 'fullcalendar-rails'                                                        #FULLCALENDAR.IO in Rails
 #gem 'fullcalendar-rails', github: 'EverardB/fullcalendar-rails/tree/fullcalendar-4.2.0'
-#gem 'fullcalendar-rails', github: 'yshmarov/fullcalendar-rails'
-gem 'momentjs-rails'
-gem 'rjv'
-#access6
+#gem 'fullcalendar-rails', github: 'yshmarov/fullcalendar-rails'                
+gem 'momentjs-rails'                                                            
+gem 'rjv'                                                                       
+#authentication & authorization
 gem 'devise'                                                                    #USER AUTHENTICATION
-gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'    
 gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git'             #MULTIPLE COMPANIES IN 1 PROGRAM
-#gem 'milia', github: 'jekuno/milia', branch: 'issue#76'
+#gem 'milia', github: 'jekuno/milia', branch: 'issue#76'                        
 gem "rolify"                                                                    #USER ROLES
 gem "pundit"                                                                    #WHAT CAN USERS WITH DIFFERENT ROLES DO
-#charts2
+#charts
 gem "chartkick"                                                                 #EASY CHARTS FOR RAILS
 gem 'groupdate'                                                                 #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
 #design
 gem 'will_paginate'                                                             #PAGINATION
 gem 'will_paginate-bootstrap4'                                                  #STYLE FOR PAGINATION
-gem 'pagy'
+gem 'pagy'                                                                      #PAGINATION
 gem 'ransack'                                                                   #SEARCH
 
 #gem 'validates_timeliness', '~> 5.0.0.alpha3'
 #gem 'validates_overlap'
 
 gem 'money-rails'                                                               #HANDLING MONEY IN THE DATABASE
-gem "selectize-rails"
-gem "cocoon"
+gem "selectize-rails"                                                           #
+gem "cocoon"                                                                    #
 gem 'public_activity', github: 'chaps-io/public_activity'                       #A SEPARATE TABLE TO SAVE THE HISTORY OF EACH "CRUD" ACTION.
 gem 'friendly_id'                                                               #CUSTOM ID (NOT ALPHABETIC NUMBER)
-gem 'rails-i18n'
-gem 'bootstrap-datepicker-rails'
-gem 'bootstrap4-datetime-picker-rails'
+gem 'rails-i18n'                                                                #
+gem 'bootstrap-datepicker-rails'                                                #
+gem 'bootstrap4-datetime-picker-rails'                                          #
 
 group :development do
   gem 'faker'                                                                     #FILL THE DATABASE WITH FAKE DATA

@@ -15,7 +15,7 @@
             = f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
             = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
             %span.input-group-append
-              %button.btn.btn-secondary.btn-sm{:type => "submit"}
+              %button.btn.btn-primary.btn-sm{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
         .col-lg-3
           .mt-1
