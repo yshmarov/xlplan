@@ -564,6 +564,7 @@ ru:
   dashboard:
     dashboard:
       created: "создано"
+      uncategorized: "Без категории"
     start:
       select_time_zone: "Заполните свой профиль"
       select_currency: "Основные настройки организации"

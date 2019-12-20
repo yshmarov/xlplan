@@ -74,7 +74,7 @@
             .badge.badge-secondary
               = tag.client_tags_count
         = link_to untagged_clients_path, class: "btn btn-outline-info btn-block" do
-          #{t('clients_untagged')} #{content_tag :span, Client.untagged.count, class: 'badge badge-secondary'} 
+          #{t('.uncategorized')} #{content_tag :span, Client.untagged.count, class: 'badge badge-secondary'} 
 
   .card
     .card-header

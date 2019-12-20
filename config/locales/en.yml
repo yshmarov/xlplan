@@ -565,6 +565,7 @@ en:
   dashboard:
     dashboard:
       created: "new"
+      uncategorized: "Uncategorized"
     start:
       select_time_zone: "Fill in your profile"
       select_currency: "Organisation settings"
