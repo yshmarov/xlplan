@@ -330,10 +330,10 @@ en:
     about_us: "About us"
   sidebar:
     search_client: 'Search Client'
-    new_event: 'New Event'
-    new_client: 'New Client'
-    new_payment: 'New Payment'
-    new_expence: "New Expence"
+    new_event: 'Event'
+    new_client: 'Client'
+    new_payment: 'Payment'
+    new_expence: "Expence"
     my_calendar: 'My Calendar'
     calendar: 'Calendar'
     events_today: 'Events today'

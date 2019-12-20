@@ -330,10 +330,10 @@ ru:
     about_us: "Компания"
   sidebar:
     search_client: 'Поиск Клиента'
-    new_event: 'Новая Встреча'
-    new_client: 'Новый Клиент'
-    new_payment: 'Новая Оплата'
-    new_expence: "Новая Выплата"
+    new_event: 'Встреча'
+    new_client: 'Клиент'
+    new_payment: 'Оплата'
+    new_expence: "Выплата"
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
     events_today: 'Встречи сегодня'

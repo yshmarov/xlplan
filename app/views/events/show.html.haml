@@ -3,7 +3,7 @@
   .container
     .card{:style => "border-color:#{@event.status_color};"}
       .card-header{:style => "border-color:#{@event.status_color};"}
-        .fa.fa-calendar
+        .fa.fa-calendar-alt
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
           = link_to '', event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
