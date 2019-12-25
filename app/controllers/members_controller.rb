@@ -17,13 +17,6 @@ class MembersController < ApplicationController
   def show
     authorize @member
     @jobs = @member.jobs #for stats/charts
-    #@jobs = @member.jobs.includes(:service)
-    #@member.includes(:user)
-    #for polymorphic show
-    @expendable = @member
-    @expences = @expendable.expences
-    #for polymorphic new
-    @expence = Expence.new
   end
   
   def edit

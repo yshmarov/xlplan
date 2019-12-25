@@ -30,17 +30,17 @@
       /CALENDAR
       %li.nav-item.dropdown
         %a#navbarDropdown3.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          .fa-color-1.far.fa-calendar-check
+          .fa-color-1.far.fa-calendar-alt
           #{t('sidebar.calendar')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown3"}
           = link_to calendar_member_path(id: current_user.member.id), class: "dropdown-item" do
-            .fa-fw.far.fa-calendar-check
+            .fa-fw.far.fa-calendar-alt
             = current_user.member.short_name
           = link_to calendar_path, class: "dropdown-item" do
-            .fa-fw.far.fa-calendar-check
+            .fa-fw.far.fa-calendar-alt
             = t('sidebar.members')
           = link_to workplaces_path, class: "dropdown-item" do
-            .fa-fw.far.fa-calendar-check
+            .fa-fw.far.fa-calendar-alt
             = t('locations.show.workplaces')
       /DASHBOARD
       %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-heartbeat'></i> #{t('sidebar.dashboard')}".html_safe, dashboard_path, class: "nav-link"
@@ -113,9 +113,6 @@
           = link_to transactions_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-hand-holding-usd
             = t('sidebar.all_transactions')
-          = link_to expences_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-dollar-sign
-            = t('sidebar.all_expences')
           = link_to service_categories_path, class: "dropdown-item" do 
             .fa-fw.fa.fa-hand-paper
             = t('sidebar.service_categories')
@@ -143,10 +140,6 @@
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-hand-holding-usd
               = t('sidebar.transactions')
-            = link_to dashboard_expence_stats_path, class: "dropdown-item" do 
-              .fa-fw.fa.fa-chart-line
-              .fa-fw.fa.fa-dollar-sign
-              = t('sidebar.expences')
             = link_to dashboard_event_stats_path, class: "dropdown-item" do 
               .fa-fw.fa.fa-chart-line
               .fa-fw.fa.fa-calendar-alt

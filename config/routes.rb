@@ -86,7 +86,6 @@ Rails.application.routes.draw do
   end
 
   resources :transactions, except: [:edit, :update]
-  resources :expences
 
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'
@@ -97,7 +96,6 @@ Rails.application.routes.draw do
   get 'dashboard/member_stats'
   get 'dashboard/event_stats'
   get 'dashboard/payment_stats'
-  get 'dashboard/expence_stats'
   get 'dashboard/lead_stats'
   get 'dashboard/member_salary'
 

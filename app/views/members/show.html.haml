@@ -8,13 +8,6 @@
         .float-right
           = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm" if policy(@member).edit?
           = link_to '', @member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@member).destroy?
-      .card-header
-        /.text-center #also pulls the modal content
-        - if policy(Member).create?
-          = render 'members/new_expence'
-        = link_to calendar_member_path(@member), class: 'btn btn-primary btn-sm' do
-          .fa.fa-calendar-check
-          = t('sidebar.calendar')
       .card-body
         - if @member.avatar.attached?
           .text-center
@@ -123,17 +116,14 @@
   - if policy(@member).show_money?
     .col-lg-8
       %ul#myTab.nav.nav-tabs{:role => "tablist"}
+        /%li.nav-item
+        /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
         %li.nav-item
-          %a#third-tab.nav-link.active{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
-            .fa.fa-hand-holding-usd
-            = @member.expences_count
-        %li.nav-item
-          %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
+          %a#fourth-tab.nav-link.active{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
             .fa.fa-chart-line
       #myTabContent.tab-content
-        #third.tab-pane.active{"aria-labelledby" => "third-tab", :role => "tabpanel"}
-          = render 'expences/index'
-        #fourth.tab-pane{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
+        /#third.tab-pane{"aria-labelledby" => "third-tab", :role => "tabpanel"}
+        #fourth.tab-pane.active{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
           %p
           .row
             .col-12
@@ -156,10 +146,3 @@
                   = t('dashboard.member_stats.confirmed_jobs_per_month_member_price')
                 .card-body
                   = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').sum('member_due_price / 100')
-              %p
-            .col-12
-              .card
-                .card-header
-                  = t('dashboard.member_stats.payments_per_month')
-                .card-body
-                  = line_chart @expences.group_by_month(:created_at).sum('amount / 100')

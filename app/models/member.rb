@@ -12,7 +12,6 @@ class Member < ApplicationRecord
   has_many :skills, dependent: :destroy, inverse_of: :member
   has_many :comments
   has_many :service_categories, through: :skills
-  has_many :expences, as: :expendable
   has_many :leads, dependent: :restrict_with_error
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model

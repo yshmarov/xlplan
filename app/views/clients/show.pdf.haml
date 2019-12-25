@@ -34,13 +34,13 @@
           .row
           = event.event_due_price_cents
           .row
-          = event.room.location
-          = event.room.location.phone_number
-          - if event.room.location.address?
-            = event.room.location.address[:country]
-            = event.room.location.address[:city]
-            = event.room.location.address[:street]
-            = event.room.location.address[:zip]
+          = event.workplace.location
+          = event.workplace.location.phone_number
+          - if event.workplace.location.address?
+            = event.workplace.location.address[:country]
+            = event.workplace.location.address[:city]
+            = event.workplace.location.address[:street]
+            = event.workplace.location.address[:zip]
           .row
           #{l(event.starts_at, format: "%a")} #{l(event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(event.ends_at, format: "%H:%M")} (#{event.duration} min)
           .row

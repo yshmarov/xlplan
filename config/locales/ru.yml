@@ -344,7 +344,7 @@ ru:
     no_gender: "Клиенты без пола"
     events: 'Встречи'
     expences: 'Расходы'
-    transactions: 'Оплаты'
+    transactions: 'Транзакции'
     all_events: 'Все встречи'
     all_expences: 'Все расходы'
     all_transactions: 'Все оплаты'

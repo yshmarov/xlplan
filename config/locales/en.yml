@@ -333,7 +333,6 @@ en:
     new_event: 'Event'
     new_client: 'Client'
     new_payment: 'Payment'
-    new_expence: "Expence"
     my_calendar: 'My Calendar'
     calendar: 'Calendar'
     events_today: 'Events today'
@@ -343,11 +342,9 @@ en:
     bday_today: "Bday today"
     no_gender: "Clients without gender"
     events: 'Events'
-    expences: 'Expences'
-    transactions: 'Payments'
+    transactions: 'Transactions'
     all_events: 'All events'
-    all_expences: 'All expences'
-    all_transactions: 'All payments'
+    all_transactions: 'All transactions'
     clients: 'Clients'
     members: 'Employees'
     services: 'Services'
@@ -1061,14 +1058,6 @@ en:
           cash: "cash"
           credit_card: "credit_card"
           bank_transfer: "bank_transfer"
-      expence:
-        id: "Payment ID"
-        amount: "Amount"
-        amount_cents: "Amount"
-        payment_method: "Payment Method"
-        expendable_type: "Purpose of payment"
-        created_at: "Created"
-        updated_at: "Updated"
       lead:
         first_name: "First Name"
         last_name: "Last Name"
