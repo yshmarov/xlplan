@@ -32,31 +32,7 @@
               = link_to '', @ransack_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
             - if policy(Client).create?
               = link_to t('.new', :default => t("helpers.links.new")), new_client_path, class: 'btn btn-sm btn-primary'
-    - unless params.has_key?(:clients_search)
-      #accordion.collapse
-        .card-header
-          .row
-            .col-md-4
-              = sort_link @ransack_clients, :jobs_amount_sum do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:jobs_amount_sum)
-              .row
-              = sort_link @ransack_clients, :payments_amount_sum do
-                .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:payments_amount_sum)
-              .row
-              = sort_link @ransack_clients, :balance do
-                .ml.ml-2.fa.fa-balance-scale
-                = model_class.human_attribute_name(:balance)
-            .col-md-4
-              = sort_link @ransack_clients, :events_count do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:events_count)
-              .row
-              = sort_link @ransack_clients, :transactions_count do
-                .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:transactions_count)
-    - else
+    - if params.has_key?(:clients_search)
       #accordion.collapse.show
         .card-header
           .row
@@ -65,26 +41,52 @@
                 .ml.ml-2.fa.fa-calendar-check
                 = model_class.human_attribute_name(:jobs_amount_sum)
               .row
+              = sort_link @ransack_clients, :events_count do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:events_count)
+              .row
               = sort_link @ransack_clients, :payments_amount_sum do
                 .ml.ml-2.fa.fa-hand-holding-usd
                 = model_class.human_attribute_name(:payments_amount_sum)
+              .row
+              = sort_link @ransack_clients, :transactions_count do
+                .ml.ml-2.fa.fa-hand-holding-usd
+                = model_class.human_attribute_name(:transactions_count)
               .row
               = sort_link @ransack_clients, :balance do
                 .ml.ml-2.fa.fa-balance-scale
                 = model_class.human_attribute_name(:balance)
             .col-md-4
+    - else
+      #accordion.collapse
+        .card-header
+          .row
+            .col-md-4
+              = sort_link @ransack_clients, :jobs_amount_sum do
+                .ml.ml-2.fa.fa-calendar-check
+                = model_class.human_attribute_name(:jobs_amount_sum)
+              .row
               = sort_link @ransack_clients, :events_count do
                 .ml.ml-2.fa.fa-calendar-check
                 = model_class.human_attribute_name(:events_count)
               .row
+              = sort_link @ransack_clients, :payments_amount_sum do
+                .ml.ml-2.fa.fa-hand-holding-usd
+                = model_class.human_attribute_name(:payments_amount_sum)
+              .row
               = sort_link @ransack_clients, :transactions_count do
                 .ml.ml-2.fa.fa-hand-holding-usd
                 = model_class.human_attribute_name(:transactions_count)
+              .row
+              = sort_link @ransack_clients, :balance do
+                .ml.ml-2.fa.fa-balance-scale
+                = model_class.human_attribute_name(:balance)
+            .col-md-4
 - @clients.each do |client|
   .card
     .card-header.bg-light
       .row
-        .col-md-5
+        .col-md-6
           - if client.gender == "female"
             .fa.fa-female
           - elsif client.gender == "male"
@@ -114,7 +116,7 @@
               = link_to clients_path(clients_search: {client_tags_tag_name_cont: client_tag.tag.name}) do 
                 .badge.badge-info
                   = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
-        .col-md-4
+        .col-md-3
           .fa.fa-calendar-check
           = number_to_currency(client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{client.events_count})
@@ -125,10 +127,10 @@
           .row
           .fa.fa-balance-scale
           = number_to_currency(client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        .col-md-1
+          .row
           .fa.fa-comment-alt
           = client.comments.count
-        .col-md-2
+        .col-md-3
           .fa.fa-clock
           #{l(client.created_at, format: "%a")} #{l(client.created_at, format: "%d/%b/%Y %H:%M")}
           .row

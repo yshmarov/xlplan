@@ -47,8 +47,7 @@
             = f.label :zip
             = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
     / #### ADDRESS FIELD ENDS HERE ####
-  = f.input :lead_source, collection: Client.lead_sources, include_blank: false
-  /= f.input :lead_source, collection: @sources
+  = f.input :lead_source, collection: Client.lead_sources, include_blank: false, as: :radio_buttons
 
   = f.label :tag
   /= f.select :tag_ids, Tag.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }

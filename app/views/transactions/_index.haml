@@ -10,7 +10,7 @@
             = link_to "", transaction_path(transaction, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank  if policy(transaction).show?
             = link_to "", transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(transaction).destroy?
         .col-lg-4
-          .fa.fa-address-book
+          .fa.fa-user
           - if transaction.client.present?
             = link_to transaction.client, client_path(transaction.client)
           .row

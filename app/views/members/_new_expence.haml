@@ -1,6 +1,6 @@
 / Button trigger modal EXPENCE
 %button.btn.btn-info.btn-sm.mb.mb-1.mt-1{"data-target" => "#exampleModalCenter", "data-toggle" => "modal", :type => "button"}
-  .fa.fa-dollar-sign
+  .fa.fa-hand-holding-usd
   #{t('sidebar.new_expence')}
 / Modal
 #exampleModalCenter.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalCenterTitle", :role => "dialog", :tabindex => "-1"}
@@ -16,7 +16,7 @@
           = f.input :expendable_id, input_html: {value: @expendable.id}, as: :hidden
           = f.input :expendable_type, input_html: {value: "Member"}, as: :hidden
           = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
-          = f.input :payment_method, collection: Expence.payment_methods, include_blank: false, as: :radio_buttons
+          = f.input :payment_method, collection: Transaction.payment_methods, include_blank: false, as: :radio_buttons
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
           = f.button :submit, class: "btn btn-success"

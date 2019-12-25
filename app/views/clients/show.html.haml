@@ -122,11 +122,6 @@
         #{l(@client.created_at, format: "%a")} #{l(@client.created_at, format: "%d/%b/%Y %H:%M")}
 
         %hr
-        %b= model_class.human_attribute_name(:comments) + ':'
-        = @client.comments_count
-        = render "comments/form"
-        = render "comments/index"
-        %hr
         %small
           %b= model_class.human_attribute_name(:personal_data_consent) + ':'
           - if @client.personal_data_consent
@@ -148,37 +143,34 @@
     %p
   .col-lg-8
     %ul#myTab.nav.nav-tabs{:role => "tablist"}
-      /%li.nav-item
-      /  %a#zero-tab.nav-link.active{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
       %li.nav-item
         %a#first-tab.nav-link.active{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
-          .fa.fa-caret-down
-          = t("sidebar.events") + ':'
+          .fa.fa-calendar
           = @client.events_count
       %li.nav-item
+        %a#zero-tab.nav-link{"aria-controls" => "zero", "aria-selected" => "true", "data-toggle" => "tab", :href => "#zero", :role => "tab"}
+          .fa.fa-comment
+          = @client.comments_count
+      %li.nav-item
         %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
-          .fa.fa-caret-down
-          = t("sidebar.transactions") + ':'
+          .fa.fa-hand-holding-usd
           = @client.transactions.count
       %li.nav-item
         %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
           .fa.fa-globe-africa
-          = t("sidebar.online_booking") + ':'
           = @client.leads.count
       %li.nav-item
         %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
           .fa.fa-chart-line
-          = t("sidebar.stats")
       %li.nav-item
         %a#activity-tab.nav-link{"aria-controls" => "activity", "aria-selected" => "false", "data-toggle" => "tab", :href => "#activity", :role => "tab"}
           .fa.fa-bell
-          = t("sidebar.activity")
     #myTabContent.tab-content
-      /#zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
-      /#first.tab-pane.fade.show{"aria-labelledby" => "first-tab", :role => "tabpanel"}
-      /  = render 'events/index'
-      #first.tab-pane.fade.show.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}
+      #first.tab-pane.fade.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}
         = render 'events/index'
+      #zero.tab-pane.fade{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
+        = render "comments/form"
+        = render "comments/index"
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
         = render 'transactions/index'
       #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}

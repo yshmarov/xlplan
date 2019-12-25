@@ -5,7 +5,7 @@
 
   .form-inputs
     = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
-    = f.input :payment_method, collection: Expence.payment_methods, include_blank: false, as: :radio_buttons
+    = f.input :payment_method, collection: Transaction.payment_methods, include_blank: false, as: :radio_buttons
     = f.input :expendable_type
     = f.input :expendable_id
   %hr

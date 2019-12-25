@@ -20,7 +20,7 @@
           .fa.fa-hand-holding-usd
           = number_to_currency(expence.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           .badge.badge-secondary
-            = I18n.t(expence.payment_method, scope: [:activerecord, :attributes, :inbound_payment, :payment_methods])
+            = I18n.t(expence.payment_method, scope: [:activerecord, :attributes, :transaction, :payment_methods])
         .col-lg-4
           .fa.fa-clock
           = l(expence.created_at, format: "%a %d/%b/%Y %H:%M")

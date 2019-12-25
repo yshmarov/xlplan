@@ -80,7 +80,7 @@
           = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.jobs_count})
           .row
-          .fa.fa-dollar-sign
+          .fa.fa-hand-holding-usd
           %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
           = number_to_currency(@member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.expences_count})
@@ -123,30 +123,17 @@
   - if policy(@member).show_money?
     .col-lg-8
       %ul#myTab.nav.nav-tabs{:role => "tablist"}
-        /%li.nav-item
-        /  %a#first-tab.nav-link.show.active{"aria-controls" => "first", "aria-selected" => "true", "data-toggle" => "tab", :href => "#first", :role => "tab"}
-        /    = t('.planned_events') + ":"
-        /    = @events.count
-        /%li.nav-item
-        /  %a#second-tab.nav-link{"aria-controls" => "second", "aria-selected" => "false", "data-toggle" => "tab", :href => "#second", :role => "tab"}
-        /    = model_class.human_attribute_name(:jobs_due_price_sum) + ":"
-        /    = @member.jobs_count
         %li.nav-item
-          %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
-            = t('sidebar.member_expences') + ":"
+          %a#third-tab.nav-link.active{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
+            .fa.fa-hand-holding-usd
             = @member.expences_count
         %li.nav-item
-          %a#fourth-tab.nav-link.show.active{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
+          %a#fourth-tab.nav-link{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
             .fa.fa-chart-line
-            = t('sidebar.stats')
       #myTabContent.tab-content
-        /#first.tab-pane.fade.show.active{"aria-labelledby" => "first-tab", :role => "tabpanel"}
-        /  = render 'events/index'
-        /#second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
-        /  = render 'events/jobs_index'
-        #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}
+        #third.tab-pane.active{"aria-labelledby" => "third-tab", :role => "tabpanel"}
           = render 'expences/index'
-        #fourth.tab-pane.show.active{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
+        #fourth.tab-pane{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
           %p
           .row
             .col-12
@@ -156,7 +143,6 @@
                 .card-body
                   = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').count
               %p
-            /client_price might be confidential
             .col-12
               .card
                 .card-header

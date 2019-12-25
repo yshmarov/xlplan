@@ -2,11 +2,11 @@
   .modal-dialog.modal-xl
     .modal-content
       .modal-header
-        %h3#myModalLabel
+        %h4#myModalLabel
           = Tenant.current_tenant.name
           = plan_label(Tenant.current_tenant.plan)
       .modal-body
-        %h3
+        %h4
           Дорогой пользователь, 
           .row
           пробный период пользования программой окончен.
@@ -16,6 +16,6 @@
           %a{:href => "https://www.xlplan.com/pricing/"} Тарифы
         .py-4
       .modal-footer
-        %h2
+        %h4
           Свяжитесь с нами
           = mail_to "support@xlplan.com"

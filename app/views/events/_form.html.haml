@@ -8,50 +8,29 @@
   .form-inputs
     = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
     .row
-    /.fa.fa-user
     - unless @client.present?
       = f.label :client
       = f.error :client, class: 'text-danger'
       = f.select :client_id, @clients.map{|c| [c.full_name, c.id]}, {include_blank: true}, class: 'selectize'
-      /= f.input :client_id, input_html: {value: @event.client_id || params[:client_id]}
     - else
       = f.input :client_id, input_html: {value: @client.id}, as: :hidden
 
-    /.fa.fa-map-marker-alt
-    /= f.label :location_id
-    /= f.error :location, class: 'text-danger'
-    /= f.select :location_id, Location.all.map{|c| [c.name, c.id]}, {include_blank: Location.all.length > 1}, class: 'selectize'
-    /= f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false, as: :radio_buttons
     /= f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false, as: :radio_buttons, checked: Location.first.id
     = f.association :workplace, collection: Workplace.order(:location_id), label_method: :short_name
     /= f.association :workplace, as: :radio_buttons, collection: Workplace.order(:location_id), label_method: :short_name, checked: Workplace.first.id
 
-    /%h3 Jobs:
     .jobs
       = f.simple_fields_for :jobs do |job|
         = render 'events/job_fields', f: job
       .links
         = link_to_add_association t('.add_service'), f, :jobs, class: 'btn btn-primary', :partial => 'events/job_fields'
-    /.table-responsive
-    /  %table.table-sm
-    /    %thead
-    /      %tr
-    /        /%th{:colspan => "3"}
-    /        %th= t('service')
-    /        %th= t('member')
-    /        %th
-    /    %tbody.jobs
-    /      = f.simple_fields_for :jobs do |f|
-    /        = render 'job_fields', f: f
-    /  .links
-    /    = link_to_add_association t('.add_service'), f, :jobs, data: {"association-insertion-node" => "tbody.jobs", "association-insertion-method" => "append"}, class: 'btn btn-primary'
     = f.input :notes, :input_html => {:rows => 5}
+
     = f.file_field :files, multiple: true
     - if @event.files.any?
       - @event.files.each do |file|
         .row
         = file.filename
-    /= f.file_field :files, multiple: true, direct_upload: true
     %hr
   .form-actions
     = f.button :submit, class: 'btn btn-success'
