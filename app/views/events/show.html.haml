@@ -72,10 +72,6 @@
         = render 'events/jobs_index'
         %b= model_class.human_attribute_name(:event_price_cents) + ':'
         %b= number_to_currency(@event.event_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        - unless @event.add_amount.zero?
-          .row
-          %b= model_class.human_attribute_name(:add_amount) + ':'
-          = number_to_currency(@event.add_amount, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .row
         %b
           .form-inline

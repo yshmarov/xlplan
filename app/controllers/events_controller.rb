@@ -211,7 +211,7 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:client_id, :workplace_id, :starts_at, :notes, :add_amount,
+      params.require(:event).permit(:client_id, :workplace_id, :starts_at, :notes,
           files: [],
           jobs_attributes: [:id, :service_id, :member_id, :_destroy,
             :add_amount, :add_amount_cents, :production_cost, :production_cost_cents])
