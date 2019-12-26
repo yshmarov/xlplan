@@ -5,7 +5,7 @@
     .card
       .card-body
         %h5
-          .fa.fa-calendar
+          .fa.fa-calendar-alt
           =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
         %hr
         = render 'form'

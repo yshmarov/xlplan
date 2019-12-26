@@ -1,138 +1,15 @@
-.card-columns
-  .card
-    .card-body
-      %h5.card-title
-        .far.fa-plus-square
-        = I18n.localize Date.today, format: :short
-        = t('.created') + ':'
-      %p.card-text
-        = link_to events_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
-          %i.fa.fa-calendar-check
-          = t('tenants.show.events')
-          %span.badge.badge-secondary
-            = @events_today
-        = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
-          %i.fa.fa-address-book
-          = t('tenants.show.clients')
-          %span.badge.badge-secondary
-            = @clients_today
-        = link_to transactions_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
-          %i.fa.fa-hand-holding-usd
-          = t('tenants.show.transactions')
-          %span.badge.badge-secondary
-            = @payments_today
-  .card
-    .card-body
-      %h5.card-title
-        .fa.fa-globe-africa        
-        = t('sidebar.online_booking')
-      %p.card-text
-      = link_to leads_path, class: "btn btn-outline-secondary btn-block " do
-        .fa-fw.fa.fa-globe-africa
-        #{t('sidebar.online_booking')} #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
-  .card
-    .card-body
-      %h5.card-title
-        = t('sidebar.events')
-      %p.card-text
-        = link_to close_events_path, class: "btn btn-outline-secondary btn-block" do
-          %i.fa-fw.fa.fa-calendar-check
-          #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
-        = link_to today_events_path, class: "btn btn-outline-secondary btn-block" do
-          %i.fa-fw.fa.fa-calendar-check
-          #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
-        = link_to tomorrow_events_path, class: "btn btn-outline-secondary btn-block" do
-          %i.fa-fw.fa.fa-calendar-check
-          #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
-      
-  .card
-    .card-body
-      %h5.card-title
-        = t('sidebar.clients')
-      %p.card-text
-        = link_to debtors_clients_path, class: "btn btn-outline-secondary btn-block" do
-          %i.fa-fw.far.fa-address-book
-          #{t('clients_debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
-        = link_to no_gender_clients_path, class: "btn btn-outline-secondary btn-block" do
-          %i.fa-fw.far.fa-address-book
-          #{t('clients_no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-warning'} 
-        = link_to no_events_clients_path, class: "btn btn-outline-secondary btn-block" do
-          %i.fa-fw.far.fa-address-book
-          #{t('clients_no_events')} #{content_tag :span, Client.no_events.count, class: 'badge badge-warning'} 
-        = link_to bday_today_clients_path, class: "btn btn-outline-secondary btn-block" do
-          %i.fa-fw.fa.fa-birthday-cake
-          #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-warning'} 
-  .card
-    .card-body
-      %h5.card-title
-        = t('sidebar.categories')
-      %p.card-text
-        - Tag.all.each do |tag|
-          .mt-1
-          = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}), class: 'btn btn-outline-info btn-block' do 
-            = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
-            .badge.badge-secondary
-              = tag.client_tags_count
-        = link_to untagged_clients_path, class: "btn btn-outline-info btn-block" do
-          #{t('.uncategorized')} #{content_tag :span, Client.untagged.count, class: 'badge badge-secondary'} 
-
-  .card
-    .card-header
-      %h5= t('tenants.show.counters')
-    .card-footer
-      %i.fa.fa-user-tie
-      %b= t('tenants.show.members')
-      %span.badge.badge-info
-        = Member.count
-    .card-footer
-      %i.fa.fa-map-marker-alt
-      %b= t('tenants.show.locations')
-      %span.badge.badge-info
-        = Location.count
-    .card-footer
-      %i.far.fa-address-book
-      %b= t('sidebar.clients')
-      %span.badge.badge-info
-        = Client.count
-    .card-footer
-      %i.fa.fa-globe-africa
-      %b= t('sidebar.online_booking')
-      %span.badge.badge-info
-        = Lead.count
-    .card-footer
-      %i.fa.fa-hand-holding-usd
-      %b= t('tenants.show.transactions')
-      %span.badge.badge-info
-        = Transaction.count
-    .card-footer
-      %i.fa.fa-calendar-alt
-      %b= t('tenants.show.events')
-      %span.badge.badge-info
-        = Event.count
-    .card-footer
-      %i.fa.fa-calendar-check
-      %b= t('tenants.show.jobs')
-      %span.badge.badge-info
-        = Job.count
-    .card-footer
-      %i.fa.fa-hand-paper
-      %b= t('tenants.show.services')
-      %span.badge.badge-info
-        = Service.count
-    .card-footer
-      %i.fa.fa-hand-paper
-      %b= t('tenants.show.service_categories')
-      %span.badge.badge-info
-        = ServiceCategory.count
-    .card-footer
-      %i.fa.fa-map-marker-alt
-      %b= t('tenants.show.comments')
-      %span.badge.badge-info
-        = Comment.count
-    /.card-footer
-    /  %i.fa.fa-user-plus
-    /  %b= t('sidebar.import_contacts')
-    /  %span.badge.badge-info
-    /    = Contact.count
+.far.fa-plus-square
+= I18n.localize Date.today, format: :short
+= t('.created') + ':'
+= link_to events_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
+  %i.fa.fa-calendar-check
+  = t('tenants.show.events')
+  %span.badge.badge-secondary
+    = @events_today
+= link_to transactions_path(q: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'btn btn-outline-info btn-block' do
+  %i.fa.fa-hand-holding-usd
+  = t('tenants.show.transactions')
+  %span.badge.badge-secondary
+    = @payments_today
 
 

@@ -16,7 +16,7 @@
       = f.input :client_id, input_html: {value: @client.id}, as: :hidden
 
     /= f.association :location, collection: f.object.location_id ? Location.active_or_id(f.object.location_id) : Location.active, :include_blank => false, as: :radio_buttons, checked: Location.first.id
-    = f.association :workplace, collection: Workplace.order(:location_id), label_method: :short_name
+    = f.association :workplace, collection: Workplace.order(:location_id), label_method: :short_name, selected: Workplace.first.id
     /= f.association :workplace, as: :radio_buttons, collection: Workplace.order(:location_id), label_method: :short_name, checked: Workplace.first.id
 
     .jobs

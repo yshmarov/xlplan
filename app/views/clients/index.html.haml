@@ -6,7 +6,7 @@
       .row
         .col-lg-4
           %h5
-            .fa.fa-users
+            .far.fa-address-book
             /%b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             %b= t "#{controller_name}_#{action_name}"
             - if @ransack_clients.client_tags_tag_name_cont.present?
@@ -34,54 +34,11 @@
               = link_to t('.new', :default => t("helpers.links.new")), new_client_path, class: 'btn btn-sm btn-primary'
     - if params.has_key?(:clients_search)
       #accordion.collapse.show
-        .card-header
-          .row
-            .col-md-4
-              = sort_link @ransack_clients, :jobs_amount_sum do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:jobs_amount_sum)
-              .row
-              = sort_link @ransack_clients, :events_count do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:events_count)
-              .row
-              = sort_link @ransack_clients, :payments_amount_sum do
-                .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:payments_amount_sum)
-              .row
-              = sort_link @ransack_clients, :transactions_count do
-                .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:transactions_count)
-              .row
-              = sort_link @ransack_clients, :balance do
-                .ml.ml-2.fa.fa-balance-scale
-                = model_class.human_attribute_name(:balance)
-            .col-md-4
+        = render 'clients/search_fields'
     - else
       #accordion.collapse
-        .card-header
-          .row
-            .col-md-4
-              = sort_link @ransack_clients, :jobs_amount_sum do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:jobs_amount_sum)
-              .row
-              = sort_link @ransack_clients, :events_count do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:events_count)
-              .row
-              = sort_link @ransack_clients, :payments_amount_sum do
-                .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:payments_amount_sum)
-              .row
-              = sort_link @ransack_clients, :transactions_count do
-                .ml.ml-2.fa.fa-hand-holding-usd
-                = model_class.human_attribute_name(:transactions_count)
-              .row
-              = sort_link @ransack_clients, :balance do
-                .ml.ml-2.fa.fa-balance-scale
-                = model_class.human_attribute_name(:balance)
-            .col-md-4
+        = render 'clients/search_fields'
+
 - @clients.each do |client|
   .card
     .card-header.bg-light
@@ -93,7 +50,6 @@
             .fa.fa-male
           - else
             .fa.fa-question
-          /.fa.fa-users
           = link_to client.full_name, client_path(client) if policy(client).show?
           - if client.phone_number.present? && policy(client).show_phone?
             .row

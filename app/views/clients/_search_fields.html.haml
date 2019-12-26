@@ -1,0 +1,62 @@
+- model_class = Client
+.card-header
+  .row
+    .col-md-4
+      = sort_link @ransack_clients, :jobs_amount_sum do
+        .ml.ml-2.fa.fa-calendar-check
+        = model_class.human_attribute_name(:jobs_amount_sum)
+      .row
+      = sort_link @ransack_clients, :events_count do
+        .ml.ml-2.fa.fa-calendar-check
+        = model_class.human_attribute_name(:events_count)
+      .row
+      = sort_link @ransack_clients, :payments_amount_sum do
+        .ml.ml-2.fa.fa-hand-holding-usd
+        = model_class.human_attribute_name(:payments_amount_sum)
+      .row
+      = sort_link @ransack_clients, :transactions_count do
+        .ml.ml-2.fa.fa-hand-holding-usd
+        = model_class.human_attribute_name(:transactions_count)
+      .row
+      = sort_link @ransack_clients, :balance do
+        .ml.ml-2.fa.fa-balance-scale
+        = model_class.human_attribute_name(:balance)
+    .col-md-4
+      - Tag.all.each do |tag|
+        = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}) do 
+          .badge.badge-info
+            = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
+            .badge.badge-danger
+              = tag.client_tags_count
+        .row
+      .row
+      .badge.badge-info
+        = link_to untagged_clients_path, class: 'text-white' do
+          = t('clients_uncategorized')
+          .badge.badge-danger
+            = Client.untagged.count
+    .col-md-4
+      .badge.badge-info
+        = link_to debtors_clients_path, class: 'text-white' do
+          %i.fa.fa-hand-holding-usd
+          #{t('clients_debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
+      .row
+      .badge.badge-info
+        = link_to clients_path(clients_search: {created_at_gteq: Time.zone.now.beginning_of_day}), class: 'text-white' do
+          %i.fa.fa-clock
+          #{t('created_today')} #{content_tag :span, Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count, class: 'badge badge-danger'} 
+      .row
+      .badge.badge-info
+        = link_to no_gender_clients_path, class: 'text-white' do
+          %i.fa.fa-question
+          #{t('clients_no_gender')} #{content_tag :span, Client.no_gender.count, class: 'badge badge-danger'} 
+      .row
+      .badge.badge-info
+        = link_to no_events_clients_path, class: 'text-white' do
+          %i.far.fa-calendar-times
+          #{t('clients_no_events')} #{content_tag :span, Client.no_events.count, class: 'badge badge-danger'} 
+      .row
+      .badge.badge-info
+        = link_to bday_today_clients_path, class: 'text-white' do
+          %i.fa.fa-birthday-cake
+          #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-danger'} 

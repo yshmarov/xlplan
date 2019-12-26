@@ -34,16 +34,14 @@
           #{t('sidebar.calendar')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown3"}
           = link_to calendar_member_path(id: current_user.member.id), class: "dropdown-item" do
-            .fa-fw.far.fa-calendar-alt
+            .far.fa-calendar-alt
             = current_user.member.short_name
           = link_to calendar_path, class: "dropdown-item" do
-            .fa-fw.far.fa-calendar-alt
+            .far.fa-calendar-alt
             = t('sidebar.members')
           = link_to workplaces_path, class: "dropdown-item" do
-            .fa-fw.far.fa-calendar-alt
+            .far.fa-calendar-alt
             = t('locations.show.workplaces')
-      /DASHBOARD
-      %li.nav-item= link_to "<i class='fa-color-1 fa-fw fa fa-heartbeat'></i> #{t('sidebar.dashboard')}".html_safe, dashboard_path, class: "nav-link"
       /SEARCH CLIENT IN SIDEBAR
       /.input-group
       /  = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
@@ -54,53 +52,53 @@
       /CREATE NEW
       %li.nav-item
         = link_to new_event_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-plus.text-primary
-          .fa-color-1.fa-fw.fa.fa-calendar
+          .fa-color-1.fa.fa-plus.text-primary
+          .fa-color-1.fa.fa-calendar.fa-fw
           %b= t('sidebar.new_event')
       %li.nav-item
         = link_to new_client_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-plus.text-primary
-          .fa-color-1.fa-fw.fa.fa-user
+          .fa-color-1.fa.fa-plus.text-primary
+          .fa-color-1.far.fa-address-book.fa-fw
           %b= t('sidebar.new_client')
       %li.nav-item
         = link_to new_transaction_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-plus.text-primary
-          .fa-color-1.fa-fw.fa.fa-hand-holding-usd
+          .fa-color-1.fa.fa-plus.text-primary
+          .fa-color-1.fa.fa-hand-holding-usd.fa-fw
           %b= t('sidebar.new_payment')
       /LINKS WITH COUNTERS
       - if Tenant.current_tenant.online_booking
         %li
           = link_to leads_path, class: "nav-link" do
-            .fa-color-1.fa-fw.fa.fa-globe-africa
+            .fa-color-1.fa.fa-globe-africa
             #{t('sidebar.online_booking')} 
             - if Lead.has_no_client.count > 0
               #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
-            .fa-color-1.fa-fw.fa.fa-calendar-check
+            .fa-color-1.fa.fa-calendar-check
             #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
       - if Client.debtors.count > 0
         %li
           = link_to debtors_clients_path, class: "nav-link" do
-            .fa-color-1.fa-fw.fa.fa-users
+            .fa-color-1.far.fa-address-book
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
       /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-users
+          .fa-color-1.far.fa-address-book
           = t('sidebar.clients')
       %li.nav-item
         = link_to members_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-user-tie
+          .fa-color-1.fa.fa-users
           = t('sidebar.members')
       %li.nav-item
         = link_to services_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-hand-paper
+          .fa-color-1.fa.fa-hand-paper
           = t('sidebar.services')
       %li.nav-item
         = link_to locations_path, class: "nav-link" do 
-          .fa-color-1.fa-fw.fa.fa-map-marker-alt
+          .fa-color-1.fa.fa-map-marker-alt
           = t('sidebar.locations')
       %li.nav-item.dropdown
         %a#navbarDropdown7.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -108,22 +106,22 @@
           #{t('sidebar.more')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown7"}
           = link_to events_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-calendar-alt
-            = t('sidebar.all_events')
+            .fa.fa-calendar-alt
+            = t('sidebar.events')
           = link_to transactions_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-hand-holding-usd
-            = t('sidebar.all_transactions')
+            .fa.fa-hand-holding-usd
+            = t('sidebar.transactions')
           = link_to service_categories_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-hand-paper
+            .fa.fa-hand-paper
             = t('sidebar.service_categories')
           = link_to activity_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-bell
+            .fa.fa-bell
             = t('sidebar.activity')
           = link_to start_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-rocket
+            .fa.fa-rocket
             = t('sidebar.start')
           = link_to contacts_list_path, class: "dropdown-item" do 
-            .fa-fw.fa.fa-user-plus
+            .fa.fa-user-plus
             = t('sidebar.import_contacts')
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown
@@ -133,38 +131,38 @@
             .badge.badge-dark admin
           .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown2"}
             = link_to dashboard_member_salary_path, class: "dropdown-item" do 
-              .fa-fw.fa.fa-dollar-sign
-              .fa-fw.fa.fa-user-tie
+              .fa.fa-dollar-sign
+              .fa.fa-users
               = t('dashboard.member_salary.member_salary')
-            = link_to dashboard_payment_stats_path, class: "dropdown-item" do 
-              .fa-fw.fa.fa-chart-line
-              .fa-fw.fa.fa-hand-holding-usd
+            = link_to dashboard_transaction_stats_path, class: "dropdown-item" do 
+              .fa.fa-chart-line
+              .fa.fa-hand-holding-usd
               = t('sidebar.transactions')
             = link_to dashboard_event_stats_path, class: "dropdown-item" do 
-              .fa-fw.fa.fa-chart-line
-              .fa-fw.fa.fa-calendar-alt
+              .fa.fa-chart-line
+              .fa.fa-calendar-alt
               = t('sidebar.events')
             = link_to dashboard_client_stats_path, class: "dropdown-item" do 
-              .fa-fw.fa.fa-chart-line
-              .fa-fw.fa.fa-users
+              .fa.fa-chart-line
+              .fa.fa-address-book
               = t('sidebar.clients')
             = link_to dashboard_member_stats_path, class: "dropdown-item" do 
-              .fa-fw.fa.fa-chart-line
-              .fa-fw.fa.fa-user-tie
+              .fa.fa-chart-line
+              .far.fa-users
               = t('sidebar.members')
             = link_to dashboard_lead_stats_path, class: "dropdown-item" do 
-              .fa-fw.fa.fa-chart-line
-              .fa-fw.fa.fa-globe-africa
+              .fa.fa-chart-line
+              .fa.fa-globe-africa
               = t('sidebar.online_booking')
         %li.nav-item
           = link_to settings_show_path, class: "nav-link" do 
-            .fa-color-1.fa-fw.fa.fa-cog
+            .fa-color-1.fa.fa-cog
             = t('sidebar.settings')
             .badge.badge-dark admin
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          .fa-color-1.fa-fw.fa.fa-user
+          .fa-color-1.fa.fa-user
           = current_user.member.short_name
         .dropdown-menu.dropdown-menu-right#sidebardropdown{"aria-labelledby" => "navbarDropdown"}
           = link_to t('sidebar.my_page'), member_path(current_user.member), class: "dropdown-item"

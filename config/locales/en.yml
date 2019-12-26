@@ -303,6 +303,8 @@ en:
   clients_no_gender: "Clients/no gender"
   clients_no_events: "Clients/no events"
   clients_no_future_events: "Active clients without future events"
+  clients_uncategorized: "Uncategorized"
+  created_today: "Created today"
   services: 'Services'
   service: 'Service'
   member: 'Employee'

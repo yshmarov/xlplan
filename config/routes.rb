@@ -1,18 +1,16 @@
 Rails.application.routes.draw do
-  get 'booking', to: "booking#index"
-  get '/booking/:id', to: 'booking#show', as: :booking_show
-  match '/booking/:id' => 'booking#create_booking', via: [:post], as: :create_booking
-  get '/booking/:id/new', to: 'booking#new', as: :new_booking
-
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
-  #pages before logging in
   get 'features', to: 'static_pages#features'
   get 'pricing', to: 'static_pages#pricing'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_service', to: 'static_pages#terms_of_service'
-  #total stats for the superadmin
-  get 'stats', to: 'static_pages#stats'
+  get 'stats', to: 'static_pages#stats' #total stats for the superadmin
+
+  get 'booking', to: "booking#index"
+  get '/booking/:id', to: 'booking#show', as: :booking_show
+  match '/booking/:id' => 'booking#create_booking', via: [:post], as: :create_booking
+  get '/booking/:id/new', to: 'booking#new', as: :new_booking
 
   # *MUST* come *BEFORE* devise's definitions (below)
   as :user do   
@@ -90,12 +88,11 @@ Rails.application.routes.draw do
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'
   get 'start', to: 'dashboard#start'
-  get 'dashboard', to: 'dashboard#dashboard'
 
   get 'dashboard/client_stats'
   get 'dashboard/member_stats'
   get 'dashboard/event_stats'
-  get 'dashboard/payment_stats'
+  get 'dashboard/transaction_stats'
   get 'dashboard/lead_stats'
   get 'dashboard/member_salary'
 

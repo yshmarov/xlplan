@@ -293,9 +293,9 @@ ru:
 
   cancel: 'Отменить'
   events_index: "Встречи"
-  events_close: "Отметить Встречи"
-  events_today: "Встречи сегодня"
-  events_tomorrow: "Встречи завтра"
+  events_close: "Отметить"
+  events_today: "Сегодня"
+  events_tomorrow: "Завтра"
   clients_index: "Клиенты"
   clients_search: "Клиенты"
   clients_debtors: "Клиенты Должники"
@@ -303,6 +303,8 @@ ru:
   clients_no_gender: "Клиенты без пола"
   clients_no_events: "Клиенты без встреч"
   clients_no_future_events: "Активные клиенты без предстоящих встреч"
+  clients_uncategorized: "Без категории"
+  created_today: "Создан сегодня"
   services: 'Услуги'
   service: 'Услуга'
   member: 'Сотрудник'
@@ -336,18 +338,13 @@ ru:
     new_expence: "Выплата"
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
-    events_today: 'Встречи сегодня'
-    events_tomorrow: 'Встречи завтра'
-    close_events: 'Отметить!'
+    events_today: 'Сегодня'
+    events_tomorrow: 'Завтра'
+    close_events: 'Отметить'
     debtors: "Должники"
-    bday_today: "ДР сегодня"
-    no_gender: "Клиенты без пола"
     events: 'Встречи'
     expences: 'Расходы'
     transactions: 'Транзакции'
-    all_events: 'Все встречи'
-    all_expences: 'Все расходы'
-    all_transactions: 'Все оплаты'
     clients: 'Клиенты'
     members: 'Сотрудники'
     services: 'Услуги'
@@ -760,18 +757,18 @@ ru:
       email_members: "Email сотруднику"
       planned: "Запланирован"
       confirmed: "Состоялся"
-      member_cancelled: "Сотрудник Отменил"
-      client_cancelled: "Клиент Отменил"
-      no_show: "Клиент Не Явился"
-      no_show_refunded: "Оплачиваемая Неявка"
+      member_cancelled: "Сотрудник отменил"
+      client_cancelled: "Клиент отменил"
+      no_show: "Клиент не явился"
+      no_show_refunded: "Оплачиваемая неявка"
     form:
       add_service: "+ Добавить ещё услугу"
     index:
       title: "Встречи"
     new:
-      title: "Создать Встречу"
+      title: "Создать встречу"
     edit:
-      title: "Изменить Встречу"
+      title: "Изменить встречу"
     create:
       success: 'Встреча успешно создана.'
     update:
@@ -781,13 +778,13 @@ ru:
     mark_confirmed:
       success: "Состоялся"
     mark_no_show:
-      success: "Клиент Не Явился"
+      success: "Клиент не явился"
     mark_client_cancelled:
-      success: "Клиент Отменил"
+      success: "Клиент отменил"
     mark_member_cancelled:
-      success: "Сотрудник Отменил"
+      success: "Сотрудник отменил"
     mark_no_show_refunded:
-      success: "Оплачиваемая Неявка"
+      success: "Оплачиваемая неявка"
   tenants:
     show:
       counters: "Счётчики"
@@ -871,10 +868,10 @@ ru:
         statuses:
           planned: "Запланирован"
           confirmed: "Состоялся"
-          member_cancelled: "Сотрудник Отменил"
-          client_cancelled: "Клиент Отменил"
-          no_show: "Клиент Не Явился"
-          no_show_refunded: "Оплачиваемая Неявка"
+          member_cancelled: "Сотрудник отменил"
+          client_cancelled: "Клиент отменил"
+          no_show: "Клиент не явился"
+          no_show_refunded: "Оплачиваемая неявка"
         status_color: "Цвет"
         notes: "Заметки"
         jobs_count: "Кол. Работ"

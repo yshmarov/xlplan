@@ -3,12 +3,6 @@ class DashboardController < ApplicationController
     @activities = PublicActivity::Activity.paginate(:page => params[:page], per_page: 50).order("created_at DESC").where(tenant_id: Tenant.current_tenant.id)
   end
 
-  def dashboard
-    @events_today = Event.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-    @clients_today = Client.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-    @payments_today = Transaction.where("created_at >= ?", Time.zone.now.beginning_of_day).count
-  end
-
   def start
   end
 
@@ -82,7 +76,7 @@ class DashboardController < ApplicationController
     end
   end
   
-  def payment_stats
+  def transaction_stats
     if current_user.has_role?(:admin)
       if params.has_key?(:select)
         @start_date = (params[:select][:year] + "-" + params[:select][:month] + "-" + 01.to_s).to_datetime.beginning_of_month

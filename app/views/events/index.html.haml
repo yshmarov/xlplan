@@ -2,48 +2,34 @@
 = search_form_for @q, url: @ransack_path do |f|
   .card
     .card-header
-      %h5.float-left
-        .fa.fa-calendar
-        %b= t "#{controller_name}_#{action_name}"
-        .badge.badge-info
-          = @events.count
-      %h5.float-right
-        - unless params.has_key?(:q)
-          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-            .fa.fa-search
-            .fa.fa-chevron-down
-        - else
-          = link_to "", @ransack_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-        - if policy(Event).create?
-          = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
-    - unless params.has_key?(:q)
-      #accordion.collapse
-        .card-header
-          .row
-            .col-md-4
-              = model_class.human_attribute_name(:client_id)
-              = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-              = model_class.human_attribute_name(:member)
-              = f.select :jobs_member_last_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-            .col-md-4
-              #input-daterange
-                = f.hidden_field :starts_at_gteq
-                = f.hidden_field :starts_at_datelteq
-              /.input-daterange
-              /  = model_class.human_attribute_name(:after)
-              /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-              /  = model_class.human_attribute_name(:before)
-              /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
-            .col-md-4
-              = model_class.human_attribute_name(:status)
-              = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
-              = model_class.human_attribute_name(:service)
-              /without selectize
-              /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
-              = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
-              .row
-              = f.submit
-    - else
+      .row
+        .col-lg-4
+          %h5
+            .fa.fa-calendar-alt
+            %b= t "#{controller_name}_#{action_name}"
+            .badge.badge-info
+              = @events.count
+        .col-lg-4
+          .btn-group.btn-group-sm
+            = link_to events_path, class: "btn btn-outline-secondary" do
+              #{t('sidebar.events')} #{content_tag :span, Event.count, class: 'badge badge-info'} 
+            = link_to close_events_path, class: "btn btn-outline-secondary" do
+              #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
+            = link_to today_events_path, class: "btn btn-outline-secondary" do
+              #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
+            = link_to tomorrow_events_path, class: "btn btn-outline-secondary" do
+              #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
+        .col-lg-4
+          %h5.float-right
+            - unless params.has_key?(:q)
+              %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
+                .fa.fa-search
+                .fa.fa-chevron-down
+            - else
+              = link_to "", @ransack_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            - if policy(Event).create?
+              = link_to t('.new', :default => t("helpers.links.new")), new_event_path, class: 'btn btn-sm btn-primary'
+    - if params.has_key?(:q)
       #accordion.collapse.show
         .card-header
           .row
@@ -70,6 +56,34 @@
               = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
               .row
               = f.submit
+    - else
+      #accordion.collapse
+        .card-header
+          .row
+            .col-md-4
+              = model_class.human_attribute_name(:client_id)
+              = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
+              = model_class.human_attribute_name(:member)
+              = f.select :jobs_member_last_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
+            .col-md-4
+              #input-daterange
+                = f.hidden_field :starts_at_gteq
+                = f.hidden_field :starts_at_datelteq
+              /.input-daterange
+              /  = model_class.human_attribute_name(:after)
+              /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
+              /  = model_class.human_attribute_name(:before)
+              /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+            .col-md-4
+              = model_class.human_attribute_name(:status)
+              = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
+              = model_class.human_attribute_name(:service)
+              /without selectize
+              /= f.search_field :jobs_service_name_cont, autofocus: true, class: "form-control", style: 'float: left; width: 100%; display: block', placeholder: "Service name", :autocomplete => :off
+              = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
+              .row
+              = f.submit
+
 = render 'events/index'
 %p
 .container.table-responsive
