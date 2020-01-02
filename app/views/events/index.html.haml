@@ -3,13 +3,13 @@
   .card
     .card-header
       .row
-        .col-lg-4
+        .col-md-3
           %h5
             .fa.fa-calendar-alt
             %b= t "#{controller_name}_#{action_name}"
             .badge.badge-info
               = @events.count
-        .col-lg-4
+        .col-md-6
           .btn-group.btn-group-sm
             = link_to events_path, class: "btn btn-outline-secondary" do
               #{t('sidebar.events')} #{content_tag :span, Event.count, class: 'badge badge-info'} 
@@ -19,8 +19,8 @@
               #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
             = link_to tomorrow_events_path, class: "btn btn-outline-secondary" do
               #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
-        .col-lg-4
-          %h5.float-right
+        .col-md-3
+          .float-right
             - unless params.has_key?(:q)
               %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
                 .fa.fa-search
@@ -38,15 +38,9 @@
               = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
               = model_class.human_attribute_name(:member)
               = f.select :jobs_member_last_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-            .col-md-4
-              #input-daterange
-                = f.hidden_field :starts_at_gteq
-                = f.hidden_field :starts_at_datelteq
-              /.input-daterange
-              /  = model_class.human_attribute_name(:after)
-              /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-              /  = model_class.human_attribute_name(:before)
-              /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+              Date
+              = f.date_field :starts_at_gteq, class: 'form-control'
+              = f.hidden_field :starts_at_datelteq
             .col-md-4
               = model_class.human_attribute_name(:status)
               = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"
@@ -65,15 +59,9 @@
               = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
               = model_class.human_attribute_name(:member)
               = f.select :jobs_member_last_name_cont, Member.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Member.all.length > 1}, class: 'selectize'
-            .col-md-4
-              #input-daterange
-                = f.hidden_field :starts_at_gteq
-                = f.hidden_field :starts_at_datelteq
-              /.input-daterange
-              /  = model_class.human_attribute_name(:after)
-              /  = f.text_field :starts_at_gteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date >= to", :autocomplete => :off
-              /  = model_class.human_attribute_name(:before)
-              /  = f.text_field :starts_at_datelteq, "data-provide" => 'datepicker', class: "form-control", placeholder: "Date <= to", :autocomplete => :off
+              Date
+              = f.date_field :starts_at_gteq, class: 'form-control'
+              = f.hidden_field :starts_at_datelteq
             .col-md-4
               = model_class.human_attribute_name(:status)
               = f.select :status_eq, Event.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {:include_blank => true}, :class => "form-control"

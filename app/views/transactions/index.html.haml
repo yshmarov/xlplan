@@ -20,44 +20,44 @@
       #accordion.collapse
         .card-header
           .row
-            .col-md-4
-              #input-daterange
-                = f.hidden_field :created_at_gteq
-                = f.hidden_field :created_at_datelteq
-            .col-md-4
+            .col-md-3
+              Date
+              = f.date_field :created_at_gteq, class: 'form-control'
+              = f.hidden_field :created_at_datelteq
+            .col-md-3
               = model_class.human_attribute_name(:id)
               = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block'
-              .row
+            .col-md-3
               = model_class.human_attribute_name(:client_id)
               = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-              .row
-              = sort_link @q, :amount do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:amount)
-            .col-md-4
+            .col-md-3
               .row
               = f.submit
+          %hr
+          = sort_link @q, :amount do
+            .ml.ml-2.fa.fa-calendar-check
+            = model_class.human_attribute_name(:amount)
     - else
       #accordion.collapse.show
         .card-header
           .row
-            .col-md-4
-              #input-daterange
-                = f.hidden_field :created_at_gteq
-                = f.hidden_field :created_at_datelteq
-            .col-md-4
+            .col-md-3
+              Date
+              = f.date_field :created_at_gteq, class: 'form-control'
+              = f.hidden_field :created_at_datelteq
+            .col-md-3
               = model_class.human_attribute_name(:id)
               = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block'
-              .row
+            .col-md-3
               = model_class.human_attribute_name(:client_id)
               = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-              .row
-              = sort_link @q, :amount do
-                .ml.ml-2.fa.fa-calendar-check
-                = model_class.human_attribute_name(:amount)
-            .col-md-4
+            .col-md-3
               .row
               = f.submit
+          %hr
+          = sort_link @q, :amount do
+            .ml.ml-2.fa.fa-calendar-check
+            = model_class.human_attribute_name(:amount)
 = render 'transactions/index'
 %p
 .container.table-responsive

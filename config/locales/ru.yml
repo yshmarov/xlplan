@@ -331,11 +331,10 @@ ru:
     security: "Безопасность"
     about_us: "Компания"
   sidebar:
-    search_client: 'Поиск Клиента'
+    search_client: 'Поиск Клиента' #sidebar & clients/index search field
     new_event: 'Встреча'
     new_client: 'Клиент'
     new_payment: 'Оплата'
-    new_expence: "Выплата"
     my_calendar: 'Мой Календарь'
     calendar: 'Календарь'
     events_today: 'Сегодня'
@@ -343,13 +342,11 @@ ru:
     close_events: 'Отметить'
     debtors: "Должники"
     events: 'Встречи'
-    expences: 'Расходы'
     transactions: 'Транзакции'
     clients: 'Клиенты'
     members: 'Сотрудники'
     services: 'Услуги'
     locations: 'Филиалы'
-    member_expences: 'Выплаты'
     activity: 'Активность'
     more: "Ещё"
     settings: "Настройки"
@@ -575,13 +572,6 @@ ru:
     activity:
       activity: "Активность"
       ago: "назад"
-    expence_stats:
-      expence_stats: "Статистика Расходов"
-      per_day: "По дням"
-      per_month: "По месяцам"
-      current_month: "Сегодня"
-      expences_per_month: "Расходов по месяцам"
-      expence_types: "Статьи расходов"
     client_stats:
       client_stats: 'Статистика Клиентов'
       created_per_month: 'Кол создано в месяц'
@@ -600,7 +590,6 @@ ru:
       jobs: "Работ"
       hours_worked: "Часов"
       payments: "Цена встреч"
-      expences: "Расходы ЗП"
       confirmed: "Состоявшиеся"
       cancelled: "Отмененные"
     event_stats:
@@ -662,17 +651,6 @@ ru:
       title: "Изменить Оплату"
     create:
       success: 'Оплата успешно создана.'
-  expences:
-    index:
-      title: "Расходы"
-    show:
-      title: "Расход"
-    new:
-      title: "Создать Расход"
-    edit:
-      title: "Изменить Расход"
-    create:
-      success: 'Расход успешно создан.'
   locations:
     index:
       title: "Филиалы"
@@ -786,18 +764,6 @@ ru:
     mark_no_show_refunded:
       success: "Оплачиваемая неявка"
   tenants:
-    show:
-      counters: "Счётчики"
-      events: "Встречи"
-      jobs: "Работы"
-      clients: "Клиенты"
-      members: "Сотрудники"
-      services: "Услуги"
-      locations: "Филиалы"
-      transactions: "Оплаты"
-      expences: "Расходы"
-      comments: "Комментарии"
-      service_categories: "Категории Услуг"
     edit:
       title: "Изменить настройки организации"
     edit_plan:
@@ -1061,14 +1027,6 @@ ru:
           cash: "Наличные"
           credit_card: "Карта"
           bank_transfer: "Банковский перевод"
-      expence:
-        id: "Код Расхода"
-        amount: "Сумма"
-        amount_cents: "Сумма"
-        payment_method: "Способ оплаты"
-        expendable_type: "Назначение платежа"
-        created_at: "Дата создания"
-        updated_at: "Дата изменения"
       lead:
         first_name: "Имя"
         last_name: "Фамилия"

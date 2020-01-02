@@ -10,11 +10,11 @@
 #myTabContent.tab-content
   #zero.tab-pane.fade.show.active{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
     %p
-    = form_tag dashboard_payment_stats_path, method: :get do
+    = form_tag dashboard_transaction_stats_path, method: :get do
       - if params.has_key?(:select)
         = select_month(@start_date, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
         = select_year(@start_date, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'})
-        = link_to t('.current_month'), dashboard_payment_stats_path, class: "btn  btn-sm btn-secondary"
+        = link_to t('.current_month'), dashboard_transaction_stats_path, class: "btn  btn-sm btn-secondary"
       - else
         = select_month(Date.today, {use_two_digit_numbers: true, prefix: 'select'},{:field_name => 'month', :id => 'start-month', onchange: 'this.form.submit()'})
         = select_year(Date.today, {:start_year => DateTime.now.year,:end_year => Tenant.current_tenant.created_at.year, prefix: 'select'},{:field_name => 'year', :id => 'start-year', onchange: 'this.form.submit()'})

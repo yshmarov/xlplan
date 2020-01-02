@@ -66,13 +66,6 @@
           .fa-color-1.fa.fa-hand-holding-usd.fa-fw
           %b= t('sidebar.new_payment')
       /LINKS WITH COUNTERS
-      - if Tenant.current_tenant.online_booking
-        %li
-          = link_to leads_path, class: "nav-link" do
-            .fa-color-1.fa.fa-globe-africa
-            #{t('sidebar.online_booking')} 
-            - if Lead.has_no_client.count > 0
-              #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
@@ -83,6 +76,13 @@
           = link_to debtors_clients_path, class: "nav-link" do
             .fa-color-1.far.fa-address-book
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
+      - if Tenant.current_tenant.online_booking
+        %li
+          = link_to leads_path, class: "nav-link" do
+            .fa-color-1.fa.fa-globe-africa
+            #{t('sidebar.online_booking')} 
+            - if Lead.has_no_client.count > 0
+              #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 
@@ -96,10 +96,6 @@
         = link_to services_path, class: "nav-link" do 
           .fa-color-1.fa.fa-hand-paper
           = t('sidebar.services')
-      %li.nav-item
-        = link_to locations_path, class: "nav-link" do 
-          .fa-color-1.fa.fa-map-marker-alt
-          = t('sidebar.locations')
       %li.nav-item.dropdown
         %a#navbarDropdown7.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa-color-1.fa.fa-chevron-circle-down
@@ -111,6 +107,9 @@
           = link_to transactions_path, class: "dropdown-item" do 
             .fa.fa-hand-holding-usd
             = t('sidebar.transactions')
+          = link_to locations_path, class: "dropdown-item" do 
+            .fa.fa-map-marker-alt
+            = t('sidebar.locations')
           = link_to service_categories_path, class: "dropdown-item" do 
             .fa.fa-hand-paper
             = t('sidebar.service_categories')
@@ -148,7 +147,7 @@
               = t('sidebar.clients')
             = link_to dashboard_member_stats_path, class: "dropdown-item" do 
               .fa.fa-chart-line
-              .far.fa-users
+              .fa.fa-users
               = t('sidebar.members')
             = link_to dashboard_lead_stats_path, class: "dropdown-item" do 
               .fa.fa-chart-line
