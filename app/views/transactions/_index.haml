@@ -3,11 +3,18 @@
   %table#table1
     %thead
       %tr
-        %th= sort_link @q, :id, model_class.human_attribute_name(:id)
-        %th= sort_link @q, :client_last_name, model_class.human_attribute_name(:client)
-        %th= sort_link @q, :amount, model_class.human_attribute_name(:amount_cents)
-        %th= sort_link @q, :payment_method, model_class.human_attribute_name(:payment_method)
-        %th= sort_link @q, :created_at, model_class.human_attribute_name(:created_at)
+        - if @q.present?
+          %th= sort_link @q, :id, model_class.human_attribute_name(:id)
+          %th= sort_link @q, :client_last_name, model_class.human_attribute_name(:client)
+          %th= sort_link @q, :amount, model_class.human_attribute_name(:amount_cents)
+          %th= sort_link @q, :payment_method, model_class.human_attribute_name(:payment_method)
+          %th= sort_link @q, :created_at, model_class.human_attribute_name(:created_at)
+        - else
+          %th= model_class.human_attribute_name(:id)
+          %th= model_class.human_attribute_name(:client)
+          %th= model_class.human_attribute_name(:amount_cents)
+          %th= model_class.human_attribute_name(:payment_method)
+          %th= model_class.human_attribute_name(:created_at)
         %th
     %tbody
       - @transactions.each do |transaction|
