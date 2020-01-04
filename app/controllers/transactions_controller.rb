@@ -40,9 +40,9 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       if @transaction.save
         if @transaction.payable_id.present?
-          format.html { redirect_to @transaction.payable, notice: 'Inbound payment was successfully created.' }
+          format.html { redirect_to @transaction.payable, notice: 'Payment was successfully created.' }
         else
-          format.html { redirect_to @transaction.client, notice: 'Inbound payment was successfully created.' }
+          format.html { redirect_to @transaction.client, notice: 'Payment was successfully created.' }
           format.json { render :show, status: :created, location: @transaction }
         end
       else
@@ -57,10 +57,10 @@ class TransactionsController < ApplicationController
     authorize @transaction
     @transaction.destroy
     if @transaction.payable_id.present?
-      redirect_to @transaction.payable, notice: 'Inbound payment was successfully destroyed.'
+      redirect_to @transaction.payable, notice: 'Payment was successfully destroyed.'
     else
       respond_to do |format|
-        format.html { redirect_to @transaction.client, notice: 'Inbound payment was successfully destroyed.' }
+        format.html { redirect_to @transaction.client, notice: 'Payment was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

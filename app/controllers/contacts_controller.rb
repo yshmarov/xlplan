@@ -98,11 +98,7 @@ class ContactsController < ApplicationController
     end
     redirect_to contacts_list_path, notice: 'All clients successfully added'
   end
-  
-  def show
-    @contact = Contact.find(params[:id])
-  end
-  
+
   def fill_missing_client_data #DOES NOT WORK!!!!
     if params.has_key?(:select)
       client = (params[:select][:client].to_s)

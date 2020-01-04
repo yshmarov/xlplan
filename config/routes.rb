@@ -103,8 +103,8 @@ Rails.application.routes.draw do
     get "members_jobs_per_member_per_month_quantity"
     get "members_confirmed_client_price_per_month"
     get "members_confirmed_earnings_per_month"
-    get "payments_per_day"
-    get "payments_per_month"
+    get "transactions_per_day"
+    get "transactions_per_month"
     get "events_per_day"
   end
 end

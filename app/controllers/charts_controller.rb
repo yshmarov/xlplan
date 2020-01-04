@@ -19,11 +19,11 @@ class ChartsController < ApplicationController
     render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).group_by_month('events.starts_at').sum('member_due_price / 100')}}
   end
 
-  def payments_per_day
+  def transactions_per_day
     render json: Transaction.group_by_day(:created_at).sum("amount/100")
   end
 
-  def payments_per_month
+  def transactions_per_month
     render json: Transaction.group_by_month(:created_at).sum("amount/100")
   end
 

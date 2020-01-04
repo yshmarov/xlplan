@@ -616,15 +616,15 @@ ru:
       location_popularity: 'Популярность филиалов'
       service_popularity: 'Популярность услуг'
       current_month: "Сегодня"
-    payment_stats:
-      payment_stats: 'Статистика Оплат'
+    transaction_stats:
+      transaction_stats: 'Статистика Оплат'
       per_day: "По дням"
       per_month: "По месяцам"
       quantity: "Количество"
       amount: "Сумма"
       current_month: "Сегодня"
-      payments_per_month: 'Сумма оплат в месяц'
-      payments_per_day: 'Сумма оплат в день'
+      transactions_per_month: 'Сумма оплат в месяц'
+      transactions_per_day: 'Сумма оплат в день'
     lead_stats:
       lead_stats: 'Статистика Онлайн Записи'
       created_per_month: 'Кол создано в месяц'

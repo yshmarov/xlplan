@@ -53,7 +53,7 @@
       %li.nav-item
         = link_to new_event_path, class: "nav-link" do 
           .fa-color-1.fa.fa-plus.text-primary
-          .fa-color-1.fa.fa-calendar.fa-fw
+          .fa-color-1.far.fa-calendar-check.fa-fw
           %b= t('sidebar.new_event')
       %li.nav-item
         = link_to new_client_path, class: "nav-link" do 
@@ -69,20 +69,19 @@
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
-            .fa-color-1.fa.fa-calendar-check
+            .fa-color-1.far.fa-calendar-check
             #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
       - if Client.debtors.count > 0
         %li
           = link_to debtors_clients_path, class: "nav-link" do
             .fa-color-1.far.fa-address-book
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
-      - if Tenant.current_tenant.online_booking
+      - if Lead.has_no_client.count > 0
         %li
           = link_to leads_path, class: "nav-link" do
             .fa-color-1.fa.fa-globe-africa
             #{t('sidebar.online_booking')} 
-            - if Lead.has_no_client.count > 0
-              #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
+            #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 

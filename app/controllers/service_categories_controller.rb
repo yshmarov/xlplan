@@ -18,13 +18,6 @@ class ServiceCategoriesController < ApplicationController
     @service_category = ServiceCategory.new(service_category_params)
     authorize @service_category
 
-    #############only JSON for service/new#############
-    #if @service_category.save
-    #  render json: @service_category
-    #else
-    #  render json: {errors: @service_category.errors.full_messages}
-    #end
-
     respond_to do |format|
       if @service_category.save
         format.html { redirect_to service_categories_path, notice: 'Service category was successfully created.' }
