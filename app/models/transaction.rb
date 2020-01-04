@@ -13,7 +13,7 @@ class Transaction < ApplicationRecord
   #-----------------------gem money-------------------#
   monetize :amount, as: :amount_cents
   #-----------------------payment_method options--------------------------------#
-  PAYMENT_METHODS = [:cash, :credit_card, :bank_transfer] 
+  PAYMENT_METHODS = [:cash, :credit_card] 
   def self.payment_methods
     PAYMENT_METHODS.map {|payment_method| [I18n.t(payment_method, scope: [:activerecord, :attributes, :transaction, :payment_methods]).capitalize, payment_method]}
   end

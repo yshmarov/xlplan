@@ -22,9 +22,9 @@ module ApplicationHelper
 			case active
 				#Other models
 				when true
-					content_tag(:span, "active", class: 'badge badge-success')
+					content_tag(:span, "yes", class: 'badge badge-success')
 				when false
-					content_tag(:span, "inactive", class: 'badge badge-danger')
+					content_tag(:span, "no", class: 'badge badge-danger')
 			end
 		end
 

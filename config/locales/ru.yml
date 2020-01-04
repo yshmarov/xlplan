@@ -642,13 +642,11 @@ ru:
       connect_with_client: "Добавить к существующему клиенту"
   transactions:
     index:
-      title: "Оплаты"
+      title: "Транзакции"
     show:
-      title: "Оплата"
+      title: "Транзакция"
     new:
       title: "Создать Оплату"
-    edit:
-      title: "Изменить Оплату"
     create:
       success: 'Оплата успешно создана.'
   locations:
@@ -782,7 +780,7 @@ ru:
       member: "Сотрудник"
       client: "Клиент"
       comment: "Комментарий"
-      transaction: "Оплата"
+      transaction: "Транзакция"
       contact: "Контакт"
 
     attributes:
@@ -1011,22 +1009,19 @@ ru:
         #  undisclosed: "Не выбран"
         #  male: "Мужской"
         #  female: "Женский"
-        average_confirmed_check: "Средний чек"
+        average_confirmed_check: "средний чек"
       transaction:
-        id: "Код Оплаты"
-        client: "Клиент"
-        client_id: "Клиент"
-        amount: "Сумма"
-        amount_cents: "Сумма"
-        payment_method: "Способ оплаты"
-        created_at: "Дата создания"
-        event: "Встреча"
-        after: "Начало после.."
-        before: "Начало до.."
+        id: "код транзакции"
+        client: "клиент"
+        client_id: "клиент"
+        amount: "сумма"
+        amount_cents: "сумма"
+        payment_method: "счёт"
+        created_at: "дата создания"
+        event: "встреча"
         payment_methods:
-          cash: "Наличные"
-          credit_card: "Карта"
-          bank_transfer: "Банковский перевод"
+          cash: "наличные"
+          credit_card: "карта"
       lead:
         first_name: "Имя"
         last_name: "Фамилия"

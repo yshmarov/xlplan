@@ -35,20 +35,17 @@
         %th= sort_link @q, :member_percent, :member_percent
         /%th= sort_link @q, :member_price, :member_price
         /%th= sort_link @q, :created_at, :created_at
-        %th= sort_link @q, :updated_at, :updated_at
         %th= sort_link @q, :description, :description
+        %th= sort_link @q, :active, :active
+        %th= sort_link @q, :online_booking, :online_booking
+        %th= sort_link @q, :updated_at, :updated_at
+        %th= sort_link @q, :created_at, :created_at
         %th
     %tbody
       - @services.each do |service|
         %tr
           %td
             = link_to service.name, service_path(service)
-            .row
-            = active_label(service.active)
-            .row
-            - if service.online_booking?
-              .badge.badge-success
-                = model_class.human_attribute_name(:online_booking)
           %td= link_to service.service_category, services_path(q: {service_category_id_eq: service.service_category_id})
           %td
             .fa.fa-clock
@@ -58,11 +55,13 @@
             = service.client_price_cents
           %td= number_to_percentage(service.member_percent, precision: 0)
           /%td= service.member_price_cents
-          /%td= service.created_at
-          %td= service.updated_at.strftime('%d/%m/%Y %H:%M')
           %td
             %small
               = service.description
+          %td= active_label(service.active)
+          %td= active_label(service.online_booking)
+          %td= service.updated_at.strftime('%d/%m/%Y %H:%M')
+          %td= service.created_at.strftime('%d/%m/%Y %H:%M')
           %td
             = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
             = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
