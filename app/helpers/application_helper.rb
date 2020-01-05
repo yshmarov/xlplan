@@ -1,6 +1,17 @@
 module ApplicationHelper
 	include Pagy::Frontend
 
+	def gender_label(gender)
+		case gender
+			when 'undisclosed'
+	      "<i class='fa fa-question'></i>".html_safe
+			when 'male'
+	      "<i class='fa fa-male'></i>".html_safe
+			when 'female'
+	      "<i class='fa fa-female'></i>".html_safe
+		end
+	end
+
 	def plan_label(plan)
 		plan_span_generator(plan)
 	end

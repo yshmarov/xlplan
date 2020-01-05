@@ -35,12 +35,7 @@
           (#{@member.age})
         .row
         %b= model_class.human_attribute_name(:gender) + ':'
-        - if @member.gender == "female"
-          .fa.fa-female
-        - elsif @member.gender == "male"
-          .fa.fa-male
-        - else
-          .fa.fa-question
+        = gender_label(@member.gender)
         .row
         %b= model_class.human_attribute_name(:address) + ':'
         = @member.address_line
@@ -48,7 +43,7 @@
         %b= model_class.human_attribute_name(:time_zone) + ':'
         = @member.time_zone
         .row
-        %b= model_class.human_attribute_name(:status) + ':'
+        %b= model_class.human_attribute_name(:active) + ':'
         = active_label(@member.active)
         %hr
         %b
@@ -65,7 +60,7 @@
         = link_to @member.location, location_path(@member.location) if @member.location.present?
         .row
         %b= model_class.human_attribute_name(:online_booking) + ':'
-        = @member.online_booking
+        = active_label(@member.online_booking)
         - if policy(@member).show_money?
           %hr
           .fa.fa-hand-paper

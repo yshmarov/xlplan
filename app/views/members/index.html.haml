@@ -28,23 +28,13 @@
   .card
     .card-header.bg-light
       .row
-        /contacts
         .col-md-3
-          - if member.gender == "female"
-            .fa.fa-female
-          - elsif member.gender == "male"
-            .fa.fa-male
-          - else
-            .fa.fa-question
-
-          /- if member.user_online.present?
-          /  %i.fa.fa-fire{:style => "color:red;"}
-          /  /%i.far.fa-circle{:style => "color:green;"}
-          /- if member.id == current_user.member.id
-          /  .fa.fa-user
+          = gender_label(member.gender)
           = link_to member.full_name, member_path(member) if policy(member).show?
-          = active_label(member.active)
-          - if member.online_booking?
+          - if member.active?
+            .badge.badge-success
+              = model_class.human_attribute_name(:active)
+          - if member.active?
             .badge.badge-success
               = model_class.human_attribute_name(:online_booking)
           - if member.phone_number.present?

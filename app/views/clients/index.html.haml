@@ -44,12 +44,7 @@
     .card-header.bg-light
       .row
         .col-md-6
-          - if client.gender == "female"
-            .fa.fa-female
-          - elsif client.gender == "male"
-            .fa.fa-male
-          - else
-            .fa.fa-question
+          = gender_label(client.gender)
           = link_to client.full_name, client_path(client) if policy(client).show?
           - if client.phone_number.present? && policy(client).show_phone?
             .row

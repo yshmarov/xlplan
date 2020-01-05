@@ -68,13 +68,7 @@
           (#{@client.age})
         .row
         %b= model_class.human_attribute_name(:gender) + ':'
-        - if @client.gender == "female"
-          .fa.fa-female
-        - elsif @client.gender == "male"
-          .fa.fa-male
-        - else
-          .fa.fa-question
-        /= @client.gender
+        = gender_label(@client.gender)
         .row
         %b= model_class.human_attribute_name(:address) + ':'
         = @client.address_line
