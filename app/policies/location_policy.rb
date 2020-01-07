@@ -5,14 +5,6 @@ class LocationPolicy < ApplicationPolicy
     end
   end
 
-  def show_money?
-    admin_or_manager
-  end
-
-  def show?
-    admin_or_manager
-  end
-
   def create?
     admin_or_manager
   end

@@ -74,6 +74,6 @@ class ApplicationController < ActionController::Base
     #   org_name will be passed to layout & view
     #   this sets the default name for all situations
     def prep_org_name()
-      @org_name ||= "XLPLAN"
+      @org_name ||= "CRM for service business management"
     end
 end

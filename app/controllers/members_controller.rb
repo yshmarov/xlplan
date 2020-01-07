@@ -16,7 +16,6 @@ class MembersController < ApplicationController
 
   def show
     authorize @member
-    @jobs = @member.jobs #for stats/charts
   end
   
   def edit

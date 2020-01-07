@@ -19,12 +19,6 @@
         %th= model_class.human_attribute_name(:name)
         %th= model_class.human_attribute_name(:contacts)
         %th= model_class.human_attribute_name(:workplaces)
-        /%th
-        /  .fa.fa-calendar-check
-        /  = model_class.human_attribute_name(:events_amount_sum)
-        /%th
-        /  .fas.fa-cash-register
-        /  = model_class.human_attribute_name(:balance)
         %th
     %tbody
       - @locations.each do |location|
@@ -71,10 +65,6 @@
                 = workplace.events_count
                 - if workplace.events_count.zero?
                   = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
-          //ADMIN - stats
-          /- if policy(location).show_money?
-          /  %th= number_to_currency(location.events_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          /  %th= number_to_currency(location.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           %td
             = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
             = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?

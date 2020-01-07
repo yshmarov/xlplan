@@ -77,6 +77,7 @@
           %b= model_class.human_attribute_name(:balance) + ':'
           = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
     %p
+  .col-lg-8
     .card
       .card-header
         .fa.fa-lock
@@ -108,36 +109,3 @@
                 .row
                 = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
     %p
-  - if policy(@member).show_money?
-    .col-lg-8
-      %ul#myTab.nav.nav-tabs{:role => "tablist"}
-        /%li.nav-item
-        /  %a#third-tab.nav-link{"aria-controls" => "third", "aria-selected" => "false", "data-toggle" => "tab", :href => "#third", :role => "tab"}
-        %li.nav-item
-          %a#fourth-tab.nav-link.active{"aria-controls" => "fourth", "aria-selected" => "false", "data-toggle" => "tab", :href => "#fourth", :role => "tab"}
-            .fa.fa-chart-line
-      #myTabContent.tab-content
-        /#third.tab-pane{"aria-labelledby" => "third-tab", :role => "tabpanel"}
-        #fourth.tab-pane.active{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
-          %p
-          .row
-            .col-12
-              .card
-                .card-header
-                  = t('dashboard.member_stats.confirmed_jobs_per_month_quantity')
-                .card-body
-                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').count
-              %p
-            .col-12
-              .card
-                .card-header
-                  = t('dashboard.member_stats.confirmed_jobs_per_month_client_price')
-                .card-body
-                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').sum('client_due_price / 100')
-              %p
-            .col-12
-              .card
-                .card-header
-                  = t('dashboard.member_stats.confirmed_jobs_per_month_member_price')
-                .card-body
-                  = line_chart @jobs.joins(:event).where(events: {status: [:confirmed, :no_show_refunded]}).group_by_month('events.starts_at').sum('member_due_price / 100')

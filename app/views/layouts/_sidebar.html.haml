@@ -4,15 +4,14 @@
     %i.far.fa-calendar-check
     .badge.badge-default 
       XLPLAN
-      = plan_label(Tenant.current_tenant.plan)
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
-    /.badge.badge-default.text-white
     /  - if Tenant.current_tenant.logo.attached?
     /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     .badge.badge-default.text-white
       = link_to @org_name, calendar_path, class: 'text-white'
+      = plan_label(Tenant.current_tenant.plan)
     /- if Tenant.current_tenant.plan == "demo"
     /  - if current_user.has_role?(:admin)
     /    .nav-item
@@ -30,7 +29,7 @@
       /CALENDAR
       %li.nav-item.dropdown
         %a#navbarDropdown3.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          .fa-color-1.far.fa-calendar-alt
+          .fa-fw.fa-color-1.far.fa-calendar-alt
           #{t('sidebar.calendar')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown3"}
           = link_to calendar_member_path(id: current_user.member.id), class: "dropdown-item" do
@@ -52,52 +51,52 @@
       /CREATE NEW
       %li.nav-item
         = link_to new_event_path, class: "nav-link" do 
-          .fa-color-1.fa.fa-plus.text-primary
+          .fa-fw.fa-color-1.fa.fa-plus.text-primary
           .fa-color-1.far.fa-calendar-check.fa-fw
           %b= t('sidebar.new_event')
       %li.nav-item
         = link_to new_client_path, class: "nav-link" do 
-          .fa-color-1.fa.fa-plus.text-primary
+          .fa-fw.fa-color-1.fa.fa-plus.text-primary
           .fa-color-1.far.fa-address-book.fa-fw
           %b= t('sidebar.new_client')
       %li.nav-item
         = link_to new_transaction_path, class: "nav-link" do 
-          .fa-color-1.fa.fa-plus.text-primary
+          .fa-fw.fa-color-1.fa.fa-plus.text-primary
           .fa-color-1.fa.fa-hand-holding-usd.fa-fw
           %b= t('sidebar.new_payment')
       /LINKS WITH COUNTERS
       - if Event.close.count > 0
         %li
           = link_to close_events_path, class: "nav-link" do
-            .fa-color-1.far.fa-calendar-check
+            .fa-fw.fa-color-1.far.fa-calendar-check
             #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
       - if Client.debtors.count > 0
         %li
           = link_to debtors_clients_path, class: "nav-link" do
-            .fa-color-1.far.fa-address-book
+            .fa-fw.fa-color-1.far.fa-address-book
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
       - if Lead.has_no_client.count > 0
         %li
           = link_to leads_path, class: "nav-link" do
-            .fa-color-1.fa.fa-globe-africa
+            .fa-fw.fa-color-1.fa.fa-globe-africa
             #{t('sidebar.online_booking')} 
             #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 
-          .fa-color-1.far.fa-address-book
+          .fa-fw.fa-color-1.far.fa-address-book
           = t('sidebar.clients')
       %li.nav-item
         = link_to members_path, class: "nav-link" do 
-          .fa-color-1.fa.fa-users
+          .fa-fw.fa-color-1.fa.fa-users
           = t('sidebar.members')
       %li.nav-item
         = link_to services_path, class: "nav-link" do 
-          .fa-color-1.fa.fa-hand-paper
+          .fa-fw.fa-color-1.fa.fa-hand-paper
           = t('sidebar.services')
       %li.nav-item.dropdown
         %a#navbarDropdown7.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          .fa-color-1.fa.fa-chevron-circle-down
+          .fa-fw.fa-color-1.fa.fa-chevron-circle-down
           #{t('sidebar.more')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown7"}
           = link_to events_path, class: "dropdown-item" do 
@@ -124,7 +123,7 @@
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            .fa-color-1.fa.fa-chart-line
+            .fa-fw.fa-color-1.fa.fa-chart-line
             #{t('sidebar.stats')}
             .badge.badge-dark admin
           .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown2"}
@@ -154,7 +153,7 @@
               = t('sidebar.online_booking')
         %li.nav-item
           = link_to settings_show_path, class: "nav-link" do 
-            .fa-color-1.fa.fa-cog
+            .fa-fw.fa-color-1.fa.fa-cog
             = t('sidebar.settings')
             .badge.badge-dark admin
     %ul.navbar-nav.ml-md-auto.d-md-flex
