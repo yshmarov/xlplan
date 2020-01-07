@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     @members = Member.active.order('created_at ASC')
     @jobs = Job.includes(:service, :member, :event => [:client, :workplace])
     @memberquantity = @members.size
-    @workplaces = Workplace.all
+    @locations = Location.all.includes(:workplaces)
   end
 
   def client_stats

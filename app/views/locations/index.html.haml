@@ -18,17 +18,14 @@
       %tr
         %th= model_class.human_attribute_name(:name)
         %th= model_class.human_attribute_name(:contacts)
+        %th= model_class.human_attribute_name(:active)
+        %th= model_class.human_attribute_name(:online_booking)
         %th= model_class.human_attribute_name(:workplaces)
         %th
     %tbody
       - @locations.each do |location|
         %tr
-          %td
-            = link_to location.name, location_path(location) if policy(location).show?
-            = active_label(location.active)
-            - if location.online_booking?
-              .badge.badge-success
-                = model_class.human_attribute_name(:online_booking)
+          %td= location.name
           %td
             .btn-group-vertical
               - if location.phone_number.present?
@@ -55,10 +52,12 @@
             .row
             .fa.fa-map-marker-alt
             %small= location.address_line
+          %td= active_label(location.active)
+          %td= active_label(location.online_booking)
           %td
             - location.workplaces.each do |workplace|
               .row
-              = link_to workplace.name, workplace_path(workplace)
+              = workplace.name
               /= workplace.events_count
               .float-right
                 .fa.fa-calendar-check

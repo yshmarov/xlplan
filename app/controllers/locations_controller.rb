@@ -7,11 +7,17 @@ class LocationsController < ApplicationController
   end
 
   def show
-    authorize @location
+    @members = Member.active.order('created_at ASC')
+    @jobs = @location.jobs.includes(:service, :member, :event => [:client, :workplace])
+    @memberquantity = 1
+    @workplaces = Workplace.all
+    @locations = Location.all
+    render 'dashboard/calendar'
   end
 
   def new
     @location = Location.new
+    authorize @location
     @location.workplaces.build
     #7.times { @location.operating_hours.build}
   end
@@ -26,7 +32,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to @location, notice: 'Location was successfully created.' }
+        format.html { redirect_to locations_url, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new }
@@ -39,7 +45,7 @@ class LocationsController < ApplicationController
     authorize @location
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to @location, notice: 'Location was successfully updated.' }
+        format.html { redirect_to locations_url, notice: 'Location was successfully updated.' }
         format.json { render :show, status: :ok, location: @location }
       else
         format.html { render :edit }

@@ -27,20 +27,10 @@
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
       /CALENDAR
-      %li.nav-item.dropdown
-        %a#navbarDropdown3.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+      %li.nav-item
+        = link_to calendar_member_path(id: current_user.member.id), class: "nav-link" do 
           .fa-fw.fa-color-1.far.fa-calendar-alt
-          #{t('sidebar.calendar')}
-        .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown3"}
-          = link_to calendar_member_path(id: current_user.member.id), class: "dropdown-item" do
-            .far.fa-calendar-alt
-            = current_user.member.short_name
-          = link_to calendar_path, class: "dropdown-item" do
-            .far.fa-calendar-alt
-            = t('sidebar.members')
-          = link_to workplaces_path, class: "dropdown-item" do
-            .far.fa-calendar-alt
-            = t('locations.show.workplaces')
+          %b= t('sidebar.calendar')
       /SEARCH CLIENT IN SIDEBAR
       /.input-group
       /  = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|

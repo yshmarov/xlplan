@@ -4,15 +4,16 @@
 - if controller_name == 'dashboard' && action_name == 'calendar'
   - set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
-- if controller_name == 'workplaces' && action_name == 'index'
-  - set_var 'resources', @workplaces.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
-  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'workplaces' && action_name == 'show'
   - set_var 'resources', [id: @workplace.id, title: @workplace.short_name.to_s]
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'members' && action_name == 'calendar'
   - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
   - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+- elsif controller_name == 'locations' && action_name == 'show'
+  - set_var 'resources', @location.workplaces.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
+  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+
 .row
   .col-lg-9
     #remote_container
@@ -20,25 +21,31 @@
     %p
   .col-lg-3
     #datepicker
-    - if controller_name == 'dashboard'
-      %b= link_to t('sidebar.members'), calendar_path
-    - else
-      %small= link_to t('sidebar.members'), calendar_path
-    .row
-    - @members.each do |member|
-      .row
-      - if @member.present? && @member.id == member.id
-        %b= link_to member.short_name, calendar_member_path(member)
-      - else
-        %small= link_to member.short_name, calendar_member_path(member)
-    .row
-    - if controller_name == 'workplaces' && action_name == 'index'
-      %b= link_to t('locations.show.workplaces'), workplaces_path
-    - else
-      %small= link_to t('locations.show.workplaces'), workplaces_path
-    - @workplaces.each do |workplace|
-      .row
-      - if @workplace.present? && @workplace.id == workplace.id
-        %b= link_to workplace.short_name, workplace_path(workplace)
-      - else
-        %small= link_to workplace.short_name, workplace_path(workplace)
+    %ul
+      %li
+        - if controller_name == 'dashboard'
+          %b= link_to t('sidebar.members'), calendar_path
+        - else
+          %small= link_to t('sidebar.members'), calendar_path
+      %ul
+        - @members.each do |member|
+          %li
+            - if @member.present? && @member.id == member.id
+              %b= link_to member.short_name, calendar_member_path(member)
+            - else
+              %small= link_to member.short_name, calendar_member_path(member)
+  
+      - @locations.each do |location|
+        %li
+          - if controller_name == 'locations' && @location.id == location.id
+            %b= link_to location.name, location_path(location)
+          - else
+            %small= link_to location.name, location_path(location)
+    
+          %ul
+            - location.workplaces.each do |workplace|
+              %li
+                - if @workplace.present? && @workplace.id == workplace.id
+                  %b= link_to workplace.name, workplace_path(workplace)
+                - else
+                  %small= link_to workplace.name, workplace_path(workplace)
