@@ -30,9 +30,7 @@ class Client < ApplicationRecord
   validates :gender, inclusion: %w(male female undisclosed)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   #-----------------------serialization-------------------#
-  #serialize :address, Hash
   serialize :address
-  #store :address, accessors: [:street_address, :city, :state, :zip], coder: JSON
   def address_line
     if address.present?
       [address[:country], address[:city], address[:street], address[:zip]].join(', ')
@@ -45,8 +43,6 @@ class Client < ApplicationRecord
   scope :no_events, -> { left_outer_joins(:events).where(events: { id: nil }) }
   scope :untagged, -> { left_outer_joins(:client_tags).where(client_tags: { id: nil }) }
   #scope :no_future_events, -> {joins(:events).where.not('events.starts_at >=?', Time.zone.now).distinct }
-  #@clients = Client.where("EXTRACT(YEAR FROM date_of_birth) >= ?", 1948).where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC'))
-  #@clients = Client.where("EXTRACT(YEAR FROM date_of_birth) >= ?", Date.today.year - 65).where("EXTRACT(DOY FROM date_of_birth) = ?", Time.zone.now.yday).order(Arel.sql('EXTRACT (DOY FROM date_of_birth) ASC'))
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
   monetize :payments_amount_sum, as: :payments_amount_sum_cents

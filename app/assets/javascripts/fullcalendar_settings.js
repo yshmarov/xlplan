@@ -68,6 +68,7 @@ function eventCalendar() {
       agendaWeek:     '7',
       month:     '30'
     },
+    slotDuration: '00:30:00', 
     titleFormat: 'ddd D MMM',
     eventBackgroundColor: 'purple',
     weekNumbers: true,
