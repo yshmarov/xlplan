@@ -28,8 +28,8 @@
           #{t('clients_bday_today')} #{content_tag :span, Client.bday_today.count, class: 'badge badge-danger'} 
     .col-md-4
       - Tag.all.each do |tag|
-        = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}) do 
-          .badge.badge-info
+        .badge.badge-info
+          = link_to clients_path(clients_search: {client_tags_tag_name_cont: tag.name}), class: 'text-white' do 
             = I18n.t(tag.name, scope: [:activerecord, :attributes, :client, :tags])
             .badge.badge-danger
               = tag.client_tags_count

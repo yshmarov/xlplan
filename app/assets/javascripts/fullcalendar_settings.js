@@ -58,10 +58,15 @@ function eventCalendar() {
     header: {
         left: 'prev,today,next',
         center: 'title',
-        right: 'timelineDay,agendaDay,agendaWeek,month'
+        right: 'list,timelineDay,agendaDay,agendaWeek,month'
     },
     buttonText: {
-      timelineDay:     '≡'
+      today: '⬤',
+      list:     '1≡',
+      timelineDay:     '1⇉',
+      agendaDay:     '1⇊',
+      agendaWeek:     '7',
+      month:     '30'
     },
     titleFormat: 'ddd D MMM',
     eventBackgroundColor: 'purple',

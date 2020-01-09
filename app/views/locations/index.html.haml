@@ -60,7 +60,7 @@
               = workplace.name
               /= workplace.events_count
               .float-right
-                .fa.fa-calendar-check
+                .far.fa-calendar-alt
                 = workplace.events_count
                 - if workplace.events_count.zero?
                   = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"

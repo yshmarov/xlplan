@@ -42,7 +42,7 @@
             = active_label(@service.active)
             %br
             %b= model_class.human_attribute_name(:online_booking) + ':'
-            = @service.online_booking
+            = active_label(@service.online_booking)
         %p
         = link_to t('.back', :default => t("helpers.links.back")), services_path, :class => 'btn btn-secondary'
     %br

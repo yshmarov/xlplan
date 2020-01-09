@@ -33,8 +33,6 @@
         %th= sort_link @q, :duration, :duration
         %th= sort_link @q, :client_price, :client_price
         %th= sort_link @q, :member_percent, :member_percent
-        /%th= sort_link @q, :member_price, :member_price
-        /%th= sort_link @q, :created_at, :created_at
         %th= sort_link @q, :description, :description
         %th= sort_link @q, :active, :active
         %th= sort_link @q, :online_booking, :online_booking
@@ -44,20 +42,13 @@
     %tbody
       - @services.each do |service|
         %tr
-          %td
-            = link_to service.name, service_path(service)
+          %td= link_to service.name, service_path(service)
           %td= link_to service.service_category, services_path(q: {service_category_id_eq: service.service_category_id})
-          %td
-            .fa.fa-clock
-            = service.duration
-          %td
-            /.fa.fa-tag
-            = service.client_price_cents
+          %td= service.duration
+          %td= service.client_price_cents
           %td= number_to_percentage(service.member_percent, precision: 0)
-          /%td= service.member_price_cents
           %td
-            %small
-              = service.description
+            %small= service.description
           %td= active_label(service.active)
           %td= active_label(service.online_booking)
           %td= service.updated_at.strftime('%d/%m/%Y %H:%M')

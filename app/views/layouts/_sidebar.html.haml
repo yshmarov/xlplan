@@ -10,7 +10,7 @@
     /  - if Tenant.current_tenant.logo.attached?
     /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     .badge.badge-default.text-white
-      = link_to @org_name, calendar_path, class: 'text-white'
+      = link_to @org_name, root_path, class: 'text-white'
       = plan_label(Tenant.current_tenant.plan)
     /- if Tenant.current_tenant.plan == "demo"
     /  - if current_user.has_role?(:admin)
@@ -65,12 +65,6 @@
           = link_to debtors_clients_path, class: "nav-link" do
             .fa-fw.fa-color-1.far.fa-address-book
             #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
-      - if Lead.has_no_client.count > 0
-        %li
-          = link_to leads_path, class: "nav-link" do
-            .fa-fw.fa-color-1.fa.fa-globe-africa
-            #{t('sidebar.online_booking')} 
-            #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       /LINKS
       %li.nav-item
         = link_to clients_path, class: "nav-link" do 
@@ -84,6 +78,12 @@
         = link_to services_path, class: "nav-link" do 
           .fa-fw.fa-color-1.fa.fa-hand-paper
           = t('sidebar.services')
+      %li
+        = link_to leads_path, class: "nav-link" do
+          .fa-fw.fa-color-1.fa.fa-globe-africa
+          #{t('sidebar.online_booking')} 
+          - if Lead.has_no_client.count > 0
+            #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
       %li.nav-item.dropdown
         %a#navbarDropdown7.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa-fw.fa-color-1.fa.fa-chevron-circle-down

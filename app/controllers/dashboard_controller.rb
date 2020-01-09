@@ -11,6 +11,7 @@ class DashboardController < ApplicationController
     @jobs = Job.includes(:service, :member, :event => [:client, :workplace])
     @memberquantity = @members.size
     @locations = Location.all.includes(:workplaces)
+    render 'dashboard/calendar'
   end
 
   def client_stats
