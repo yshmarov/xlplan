@@ -28,16 +28,17 @@
   %table#table1
     %thead
       %tr
-        %th= sort_link @q, :name, :name
-        %th= sort_link @q, :service_category_id, :service_category_name
-        %th= sort_link @q, :duration, :duration
-        %th= sort_link @q, :client_price, :client_price
-        %th= sort_link @q, :member_percent, :member_percent
-        %th= sort_link @q, :description, :description
-        %th= sort_link @q, :active, :active
-        %th= sort_link @q, :online_booking, :online_booking
-        %th= sort_link @q, :updated_at, :updated_at
-        %th= sort_link @q, :created_at, :created_at
+        %th= sort_link @q, :name
+        %th= sort_link @q, :service_category_id
+        %th= sort_link @q, :duration
+        %th= sort_link @q, :client_price
+        %th= sort_link @q, :member_percent
+        %th= sort_link @q, :member_price
+        %th= sort_link @q, :description
+        %th= sort_link @q, :active
+        %th= sort_link @q, :online_booking
+        %th= sort_link @q, :updated_at
+        %th= sort_link @q, :created_at
         %th
     %tbody
       - @services.each do |service|
@@ -47,6 +48,7 @@
           %td= service.duration
           %td= service.client_price_cents
           %td= number_to_percentage(service.member_percent, precision: 0)
+          %td= service.member_price_cents
           %td
             %small= service.description
           %td= active_label(service.active)

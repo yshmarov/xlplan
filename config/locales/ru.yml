@@ -303,7 +303,7 @@ ru:
   clients_no_gender: "Клиенты без пола"
   clients_no_events: "Клиенты без встреч"
   clients_no_future_events: "Активные клиенты без предстоящих встреч"
-  clients_uncategorized: "Без категории"
+  clients_untagged: "Без категории"
   created_today: "Создан сегодня"
   services: 'Услуги'
   service: 'Услуга'
