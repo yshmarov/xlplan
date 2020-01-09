@@ -9,9 +9,6 @@
   .collapse.navbar-collapse.sidebar
     /  - if Tenant.current_tenant.logo.attached?
     /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
-    .badge.badge-default.text-white
-      = link_to @org_name, root_path, class: 'text-white'
-      = plan_label(Tenant.current_tenant.plan)
     /- if Tenant.current_tenant.plan == "demo"
     /  - if current_user.has_role?(:admin)
     /    .nav-item
@@ -26,6 +23,12 @@
             %button.btn.btn-primary.btn-sm{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
+      /TENANT
+      %li.nav-item
+        = link_to root_path, class: 'nav-link' do
+          .ml-1
+            = @org_name
+            = plan_label(Tenant.current_tenant.plan)
       /CALENDAR
       %li.nav-item
         = link_to calendar_member_path(id: current_user.member.id), class: "nav-link" do 
