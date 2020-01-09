@@ -6,9 +6,9 @@ module ApplicationHelper
 			when 'undisclosed'
 	      "<i class='fa fa-question'></i>".html_safe
 			when 'male'
-	      "<i class='fa fa-male'></i>".html_safe
+	      "<i class='fa fa-mars'></i>".html_safe
 			when 'female'
-	      "<i class='fa fa-female'></i>".html_safe
+	      "<i class='fa fa-venus'></i>".html_safe
 		end
 	end
 

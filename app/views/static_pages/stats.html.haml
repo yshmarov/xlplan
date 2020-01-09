@@ -34,7 +34,7 @@
           %th.bg-danger Today activities
       %tbody
         - @tenants.each do |tenant|
-          %tr.bg-info
+          %tr.bg-secondary
             %td= tenant.id
             %td= tenant.name
             %td= plan_label(tenant.plan)

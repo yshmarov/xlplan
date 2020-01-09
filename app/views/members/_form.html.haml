@@ -30,20 +30,24 @@
     / #### ADDRESS FIELD STARTS HERE ####
     .fields
       = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|
-        = f.label :country
-        = a.text_field :country, id: :country, class: 'form-control'
-        = f.label :city
-        = a.text_field :city, id: :city, class: 'form-control'
-        = f.label :street
-        = a.text_field :street, id: :street, input_html: { autocomplete: 'nope' }, class: 'form-control'
-        = f.label :zip
-        = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
+        .row
+          .col-6
+            = f.label :country
+            = a.text_field :country, id: :country, class: 'form-control'
+          .col-6
+            = f.label :city
+            = a.text_field :city, id: :city, class: 'form-control'
+          .col-6
+            = f.label :street
+            = a.text_field :street, id: :street, input_html: { autocomplete: 'nope' }, class: 'form-control'
+          .col-6
+            = f.label :zip
+            = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
     / #### ADDRESS FIELD ENDS HERE ####
 
     /= f.label :time_zone
     /= f.time_zone_select :time_zone, /Europe/, :default => "Kyiv"
     = f.input :time_zone
-    %hr
     = f.label :skills
     = f.select :service_category_ids, ServiceCategory.all.pluck(:name, :id), {}, { multiple: true, class: "selectize" }
 

@@ -24,99 +24,97 @@
                 = link_to t('.new', :default => t("helpers.links.new")), new_member_path, class: 'btn btn-sm btn-primary'
               - else
                 = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, edit_plan_path, class: "btn btn-sm btn-danger"
-- @members.each do |member|
-  .card
-    .card-header.bg-light
-      .row
-        .col-md-3
-          = gender_label(member.gender)
-          = link_to member.full_name, member_path(member) if policy(member).show?
-          - if member.active?
-            .badge.badge-success
-              = model_class.human_attribute_name(:active)
-          - if member.active?
-            .badge.badge-success
-              = model_class.human_attribute_name(:online_booking)
-          - if member.phone_number.present?
-            .row
-            .fa.fa-phone
+.table-responsive
+  %table#table1
+    %thead
+      %tr
+        %th= sort_link @ransack_members, :last_name
+        %th= sort_link @ransack_members, :phone_number
+        %th= sort_link @ransack_members, :email
+        %th= sort_link @ransack_members, :date_of_birth
+        %th= sort_link @ransack_members, :gender
+        %th= sort_link @ransack_members, :address
+        %th= sort_link @ransack_members, :location_id
+        %th= sort_link @ransack_members, :active
+        %th= sort_link @ransack_members, :online_booking
+        %th= model_class.human_attribute_name(:skills)
+        %th
+          /.fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
+        %th= sort_link @ransack_members, :jobs_count
+        %th= sort_link @ransack_members, :jobs_due_price_sum
+        %th= sort_link @ransack_members, :expences_amount_sum
+        %th= sort_link @ransack_members, :balance
+    %tbody
+      - @members.each do |member|
+        %tr
+          %td= link_to member.full_name, member_path(member)
+          %td
             = link_to "tel:#{member.phone_number}", class: "button" do
-              #{number_to_phone(member.phone_number)}
-            = link_to "viber://chat?number=#{member.phone_number}", class: "button" do
-              .fab.fa-viber
-          - if member.email.present?
-            .row
-            .fa.fa-envelope
-            %a{:href => "mailto:#{member.email}"}= member.email
-          .row
-          = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
-          = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(member).destroy?
-        /location & skills
-        .col-md-3
-          - if member.location.present?
-            .fa.fa-map-marker-alt
-            = link_to member.location, location_path(member.location)
-            .row
-          - if member.skills.any?
-            .fa.fa-hand-paper
-            %small
-              /= member.skills.collect{|r| r.service_category}.to_sentence
-              - member.skills.each do |skill|
-                .badge.badge-secondary.text-white
-                  = link_to skill.service_category, members_path(members_search: {skills_service_category_id_eq: skill.service_category.id}), class: 'text-white'
-        /ADMIN - stats
-        .col-md-2
-          - if policy(member).show_money?
-            .fa.fa-hand-paper
-            = number_to_currency(member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            (#{member.jobs_count})
-            .row
-            .fa.fa-dollar-sign
-            = number_to_currency(member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            (#{member.expences_count})
-            .row
-            .fa.fa-balance-scale
-            = number_to_currency(member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        /USER
-        %small.col-md-4
-          /////////////////////user account/////////////////////
-          - if member.user.present?
-            = member.user.email
-            .row
-            /////////////////////user roles/////////////////////
-            /= member.user.roles.where.not("name = 'owner'").collect{|r| r.name}.to_sentence
-            - member.user.roles.where.not("name = 'owner'").each do |r| 
-              = role_label(r.name)
-            - if member.user.confirmed_at?
+              = number_to_phone(member.phone_number)
+            - if member.phone_number.present?
+              = link_to "viber://chat?number=#{member.phone_number}", class: "button" do
+                .fab.fa-viber
+          %td
+            = link_to "mailto:#{member.email}", class: "button" do
+              = member.email
+          %td= member.date_of_birth
+          %td= gender_label(member.gender)
+          %td= member.address_line
+          %td= link_to member.location, location_path(member.location) if member.location.present?
+          %td= active_label(member.active)
+          %td= active_label(member.online_booking)
+          %td
+            - if member.skills.any?
+              %small
+                /= member.skills.collect{|r| r.service_category}.to_sentence
+                - member.skills.each do |skill|
+                  .badge.badge-secondary.text-white
+                    = link_to skill.service_category, members_path(members_search: {skills_service_category_id_eq: skill.service_category.id}), class: 'text-white'
+
+          %td
+            = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
+            = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
+          /  - if policy(member).show_money?
+          %td= member.jobs_count
+          %td= member.jobs_due_price_sum_cents
+          %td= member.expences_amount_sum_cents
+          %td= member.balance_cents
+          %td
+            /////////////////////user account/////////////////////
+            - if member.user.present?
+              = member.user.email
               .row
-              = t('.has_access')
-            - else
-              .row
-              /= t('.no_access_resend_invitation_email')
-              = t('.no_access')
-            - unless member == current_user.member
-              - if member.user.present?
+              /////////////////////user roles/////////////////////
+              /= member.user.roles.where.not("name = 'owner'").collect{|r| r.name}.to_sentence
+              - member.user.roles.where.not("name = 'owner'").each do |r| 
+                = role_label(r.name)
+              - if member.user.confirmed_at?
                 .row
-                = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
-          - else
-            = t('.no_access')
-            - if member.active?
-              - if member.email.present?
-                = t('.invite_user')
-                /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-md-2'
-                /Devise invitable here
-                /- if policy(User).create?
-                /  = simple_form_for(User.new, url: user_invitation_path) do |z|
-                /    = z.input :email, input_html: {value: member.email}, as: :hidden
-                /    = z.input :member_id, input_html: {value: member.id}, as: :hidden
-                /    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
+                = t('.has_access')
               - else
-                = t('.add_email_to_invite_user')
+                .row
+                /= t('.no_access_resend_invitation_email')
+                = t('.no_access')
+              - unless member == current_user.member
+                - if member.user.present?
+                  .row
+                  = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
             - else
-              = t('.terminated')
-%p
-.container.table-responsive
-  = will_paginate @members, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+              = t('.no_access')
+              - if member.active?
+                - if member.email.present?
+                  = t('.invite_user')
+                  /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-md-2'
+                  /Devise invitable here
+                  /- if policy(User).create?
+                  /  = simple_form_for(User.new, url: user_invitation_path) do |z|
+                  /    = z.input :email, input_html: {value: member.email}, as: :hidden
+                  /    = z.input :member_id, input_html: {value: member.id}, as: :hidden
+                  /    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
+                - else
+                  = t('.add_email_to_invite_user')
+              - else
+                = t('.terminated')
 /%br
 /= Tenant.current_tenant.users.count
 /- Tenant.current_tenant.users.each do |user| 
