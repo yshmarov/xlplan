@@ -76,7 +76,8 @@ class Location < ApplicationRecord
 
   #protected
 
-  after_create :add_default_workplace do 
+  after_create :add_default_workplace
+  def add_default_workplace
     self.workplaces.create(name: "1") if self.workplaces.blank?
   end
 end

@@ -12,7 +12,7 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.string :telegram, :limit => 40
       t.string :whatsapp, :limit => 40
       t.boolean :online_booking, default: true
-      t.boolean :active, default: false
+      t.boolean :active, default: true
 
       t.integer :locations, :members_count, :integer, default: 0, null: false
 

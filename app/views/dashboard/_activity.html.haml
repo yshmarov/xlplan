@@ -1,8 +1,7 @@
 .card
   .card-header
-    %h5.float-left
-      .fa.fa-bell
-      %b= t("dashboard.activity.activity")
+    .fa.fa-bell
+    = t("sidebar.activity")
   %ul.list-group.list-group-flush
     - @activities.each do |a|
       %li.list-group-item

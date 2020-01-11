@@ -15,7 +15,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.integer :jobs_count, :integer, default: 0, null: false
 
       t.boolean :online_booking, default: true
-      t.boolean :active, default: false
+      t.boolean :active, default: true
 
       t.timestamps
     end
