@@ -25,7 +25,6 @@ class Service < ApplicationRecord
   #-----------------------money gem-------------------#
   monetize :client_price, as: :client_price_cents
   monetize :member_price, as: :member_price_cents
-  monetize :production_cost, as: :production_cost_cents
   #-----------------------scopes-------------------#
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
