@@ -3,13 +3,11 @@ class CreateEvents < ActiveRecord::Migration[5.2]
     create_table :events do |t|
       t.belongs_to :tenant, index: true, foreign_key: true
       t.references :client, foreign_key: true
-      t.references :location, foreign_key: true
+      t.references :workplace, foreign_key: true
 
       t.datetime :starts_at
       t.integer :duration, default: 0, null: false
       t.datetime :ends_at
-
-      t.integer :add_amount, default: 0, null: false
 
       t.integer :event_price, default: 0, null: false
       t.integer :event_due_price, default: 0, null: false

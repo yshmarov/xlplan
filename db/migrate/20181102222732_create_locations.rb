@@ -11,7 +11,7 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.string :viber, :limit => 40
       t.string :telegram, :limit => 40
       t.string :whatsapp, :limit => 40
-      t.boolean :online_booking, default: false
+      t.boolean :online_booking, default: true
       t.boolean :active, default: false
 
       t.integer :locations, :events_count, :integer, default: 0, null: false
