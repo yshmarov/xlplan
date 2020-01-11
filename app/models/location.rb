@@ -1,8 +1,6 @@
 class Location < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
-  #-----------------------callbacks-------------------#
-  #after_touch :update_balance
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -23,7 +21,7 @@ class Location < ApplicationRecord
   #, :reject_if => proc { |attributes| attributes['events_count'].zero? }
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
-  validates :name, :balance, presence: true
+  validates :name, presence: true
   validates :name, length: { maximum: 50 }
   validates :phone_number, length: { maximum: 144 }
   validates :email, length: { maximum: 144 }
@@ -47,22 +45,6 @@ class Location < ApplicationRecord
   def self.active_or_id(record_id)
     where('id = ? OR (active=true)', record_id)    
   end
-  #-----------------------money gem-------------------#
-  monetize :balance, as: :balance_cents
-  monetize :events_amount_sum, as: :events_amount_sum_cents
-
-  def to_s
-    if name.present?
-      name
-    else
-      id
-    end
-  end
-  
-  def name_and_address
-    to_s + " (" + address_line + ")"
-  end
-
   ################TENANT VALIDATION#################
   validate :tenant_plan_quantity_limit
   def tenant_plan_quantity_limit
@@ -80,15 +62,21 @@ class Location < ApplicationRecord
     end
   end
 
+  def to_s
+    if name.present?
+      name
+    else
+      id
+    end
+  end
+  
+  def name_and_address
+    to_s + " (" + address_line + ")"
+  end
+
   #protected
 
-  #def update_balance
-  #  #update_column :payments_amount_sum, (inbound_payments.map(&:amount).sum)
-  #  update_column :events_amount_sum, (events.map(&:event_due_price).sum)
-  #  update_column :balance, (events_amount_sum)
-  #end
-  after_create :add_default_workplace
-  def add_default_workplace
+  after_create :add_default_workplace do 
     self.workplaces.create(name: "1") if self.workplaces.blank?
   end
 end
