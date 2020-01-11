@@ -6,8 +6,6 @@ class CreateLocations < ActiveRecord::Migration[5.2]
       t.string :phone_number, :limit => 144
       t.string :email, :limit => 144
       t.string :address, :limit => 255
-      t.integer :balance, default: 0, null: false
-      t.integer :events_amount_sum, default: 0, null: false
       t.string :viber, :limit => 40
       t.string :telegram, :limit => 40
       t.string :whatsapp, :limit => 40

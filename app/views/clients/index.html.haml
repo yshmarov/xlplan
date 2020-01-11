@@ -7,12 +7,10 @@
         .col-lg-4
           %h5
             .far.fa-address-book
-            /%b=t '.title', :default => model_class.model_name.human.pluralize.titleize
             %b= t "#{controller_name}_#{action_name}"
             - if @ransack_clients.client_tags_tag_name_cont.present?
               .badge.badge-info
                 = I18n.t(@ransack_clients.client_tags_tag_name_cont, scope: [:activerecord, :attributes, :client, :tags])
-
             .badge.badge-info
               = @clients.count
         .col-lg-4
@@ -40,7 +38,7 @@
         = render 'clients/search_fields'
 .table-responsive
   %table#table1
-    %thead
+    %thead.header-fixed
       %tr
         %th= sort_link @ransack_clients, :last_name
         %th= model_class.human_attribute_name(:contacts)
@@ -53,9 +51,9 @@
         %th= sort_link @ransack_clients, :transactions_count
         %th= sort_link @ransack_clients, :payments_amount_sum
         %th= sort_link @ransack_clients, :balance
-        %th= sort_link @ransack_clients, :created_at
         %th
           .fa.fa-comment-alt
+        %th= sort_link @ransack_clients, :created_at
         %th
           /.fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
@@ -80,15 +78,16 @@
               = client.email
           %td= client.date_of_birth
           %td= gender_label(client.gender)
-          %td= client.address_line
+          %td
+            %small= client.address_line
           %td= client.lead_source
           %td= client.events_count
           %td= client.jobs_amount_sum_cents
           %td= client.transactions_count
           %td= client.payments_amount_sum_cents
           %td= client.balance_cents
-          %td= l(client.created_at, format: "%a %d/%b/%Y %H:%M")
           %td= client.comments.count
+          %td= l(client.created_at, format: "%a %d/%b/%Y %H:%M")
           /with AJAX
           /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
           %td
