@@ -25,6 +25,6 @@
         %td= cash_account.balance_cents
         %td
           .btn-group
-            = link_to 'Edit', edit_cash_account_path(cash_account), class: 'btn btn-warning btn-sm'
-            = link_to 'Destroy', cash_account, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm'
+            = link_to '', edit_cash_account_path(cash_account), class: "btn btn-warning fa fa-edit btn-sm" if policy(cash_account).edit?
+            = link_to '', cash_account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(cash_account).destroy?
 %br

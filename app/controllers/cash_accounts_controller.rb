@@ -7,13 +7,16 @@ class CashAccountsController < ApplicationController
 
   def new
     @cash_account = CashAccount.new
+    authorize @cash_account
   end
 
   def edit
+    authorize @cash_account
   end
 
   def create
     @cash_account = CashAccount.new(cash_account_params)
+    authorize @cash_account
     respond_to do |format|
       if @cash_account.save
         format.html { redirect_to cash_accounts_url, notice: 'Cash account was successfully created.' }
@@ -26,6 +29,7 @@ class CashAccountsController < ApplicationController
   end
 
   def update
+    authorize @cash_account
     respond_to do |format|
       if @cash_account.update(cash_account_params)
         format.html { redirect_to cash_accounts_url, notice: 'Cash account was successfully updated.' }
@@ -38,6 +42,7 @@ class CashAccountsController < ApplicationController
   end
 
   def destroy
+    authorize @cash_account
     @cash_account.destroy
     respond_to do |format|
       format.html { redirect_to cash_accounts_url, notice: 'Cash account was successfully destroyed.' }
