@@ -20,17 +20,20 @@
       #accordion.collapse
         .card-header
           .row
-            .col-md-3
+            .col-md-2
               Date
               = f.date_field :created_at_gteq, class: 'form-control'
               = f.hidden_field :created_at_datelteq
-            .col-md-3
+            .col-md-2
               = model_class.human_attribute_name(:id)
               = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block'
-            .col-md-3
+            .col-md-2
               = model_class.human_attribute_name(:client_id)
               = f.select :client_last_name_cont, Client.all.map{|c| [c.full_name, c.last_name]}, {include_blank: Client.all.length > 1}, class: 'selectize'
-            .col-md-3
+            .col-md-2
+              = model_class.human_attribute_name(:cash_account)
+              = f.select :cash_account_name_cont, CashAccount.all.map{|c| [c.name, c.name]}, {include_blank: CashAccount.all.length > 1}, class: 'selectize'
+            .col-md-2
               .row
               = f.submit
           %hr

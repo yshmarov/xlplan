@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_104649) do
+ActiveRecord::Schema.define(version: 2020_01_12_105609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -397,7 +397,9 @@ ActiveRecord::Schema.define(version: 2020_01_12_104649) do
     t.integer "payable_id"
     t.string "payable_type"
     t.string "slug"
-    t.string "type", limit: 144
+    t.string "category", limit: 144
+    t.bigint "cash_account_id"
+    t.index ["cash_account_id"], name: "index_transactions_on_cash_account_id"
     t.index ["client_id"], name: "index_transactions_on_client_id"
     t.index ["payable_id"], name: "index_transactions_on_payable_id"
     t.index ["payable_type"], name: "index_transactions_on_payable_type"

@@ -1017,12 +1017,22 @@ ru:
         client_id: "клиент"
         amount: "сумма"
         amount_cents: "сумма"
+        category: "категория"
+        cash_account: "счёт"
         payment_method: "счёт"
         created_at: "дата создания"
         event: "встреча"
         payment_methods:
           cash: "наличные"
           credit_card: "карта"
+        categories:
+          client_balance: "клиент - пополнение баланса"
+          client_event: "клиент - оплата за встречу"
+          expence_salary: "расходы - зарплата"
+          expence_rent: "расходы - аренда"
+          expence_other: "расходы - другие"
+          from_acc: "со счёта"
+          to_acc: "на счёт"
       lead:
         first_name: "Имя"
         last_name: "Фамилия"

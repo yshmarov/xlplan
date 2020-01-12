@@ -1,6 +1,8 @@
 class CashAccount < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
+  #-----------------------callbacks-------------------#
+  after_touch :update_balance
   #-----------------------relationships-------------------#
   has_many :transactions
   #-----------------------validation-------------------#
@@ -20,5 +22,9 @@ class CashAccount < ApplicationRecord
 
   def to_s
     name
+  end
+
+  def update_balance
+    update_column :balance, (transactions.map(&:amount).sum)
   end
 end
