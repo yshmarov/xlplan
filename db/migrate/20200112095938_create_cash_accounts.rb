@@ -5,6 +5,7 @@ class CreateCashAccounts < ActiveRecord::Migration[5.2]
       t.string :name, :limit => 144, null: false
       t.boolean :active, default: true
       t.integer :balance, default: 0, null: false
+      t.integer :transactions_count, :integer, default: 0, null: false
       t.string :slug
 
       t.timestamps

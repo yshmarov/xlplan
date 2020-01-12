@@ -47,7 +47,7 @@ class CashAccountsController < ApplicationController
 
   private
     def set_cash_account
-      @cash_account = CashAccount.find(params[:id])
+      @cash_account = CashAccount.friendly.find(params[:id])
     end
 
     def cash_account_params

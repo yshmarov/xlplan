@@ -1,5 +1,13 @@
-%h1 New cash_account
-
-= render 'form'
-
-= link_to 'Back', cash_accounts_path
+- model_class = CashAccount
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h5
+          .fa.fa-hand-holding-usd
+          =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
+        %hr
+        = render 'form'
+        %p
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), cash_accounts_path, :class => 'btn btn-danger'

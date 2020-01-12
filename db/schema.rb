@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 2020_01_12_095938) do
     t.string "name", limit: 144, null: false
     t.boolean "active", default: true
     t.integer "balance", default: 0, null: false
+    t.integer "transactions_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

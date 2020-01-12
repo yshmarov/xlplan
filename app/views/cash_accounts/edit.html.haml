@@ -1,7 +1,13 @@
-%h1 Editing cash_account
-
-= render 'form'
-
-= link_to 'Show', @cash_account
-\|
-= link_to 'Back', cash_accounts_path
+- model_class = CashAccount
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h5
+          .far.fa-address-book
+          =t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize
+        %hr
+        = render 'form'
+        %p
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), cash_accounts_path, :class => 'btn btn-danger'
