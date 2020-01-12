@@ -43,6 +43,14 @@ class Client < ApplicationRecord
   scope :no_events, -> { left_outer_joins(:events).where(events: { id: nil }) }
   scope :untagged, -> { left_outer_joins(:client_tags).where(client_tags: { id: nil }) }
   #scope :no_future_events, -> {joins(:events).where.not('events.starts_at >=?', Time.zone.now).distinct }
+  #-----------------------scope_tag_checks-------------------#
+  def no_gender?
+    self.gender == "undisclosed"
+  end
+  
+  def debtors?
+    self.balance < 0
+  end
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
   monetize :payments_amount_sum, as: :payments_amount_sum_cents

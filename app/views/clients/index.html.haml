@@ -67,9 +67,12 @@
                   .badge.badge-info
                     = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
 
-            - if Client.debtors.where(id: client.id).present?
+            - if client.debtors?
               .badge.badge-danger
-                = t('sidebar.debtors')
+                = t('clients_debtors')
+            - if client.no_gender?
+              .badge.badge-danger
+                = t('clients_no_gender')
           %td
             = link_to "tel:#{client.phone_number}", class: "button" do
               = number_to_phone(client.phone_number)
