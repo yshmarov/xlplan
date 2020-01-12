@@ -39,7 +39,7 @@ def create
         #Tag.create!(name: "over_3_visits")
         #Tag.create!(name: "no_visits")
         Location.create!(name: @tenant.name)
-        Location.first.workplaces.create(name: "1")
+        Location.first.workplaces.create(name: "каб.1")
 
         if resource.errors.empty?   #  SUCCESS!
 

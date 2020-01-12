@@ -32,5 +32,6 @@
             = link_to members_path(members_search: {skills_service_category_id_eq: service_category.id}) do
               = service_category.skills.count
           %td
-            = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
-            = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?
+            .btn-group
+              = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
+              = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?

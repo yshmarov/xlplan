@@ -347,7 +347,7 @@ ru:
     members: 'Сотрудники'
     services: 'Услуги'
     locations: 'Филиалы'
-    activity: 'Активность'
+    activity: 'История'
     more: "Ещё"
     settings: "Настройки"
     tenant: "Настройки организации"
@@ -570,7 +570,7 @@ ru:
       new_event: "Создайте Встречу"
       new_payment: "Внесите Оплату"
     activity:
-      activity: "Активность"
+      activity: "История"
       ago: "назад"
     client_stats:
       client_stats: 'Статистика Клиентов'

@@ -78,6 +78,6 @@ class Location < ApplicationRecord
 
   after_create :add_default_workplace
   def add_default_workplace
-    self.workplaces.create(name: "1") if self.workplaces.blank?
+    self.workplaces.create(name: "каб.1") if self.workplaces.blank?
   end
 end

@@ -76,8 +76,9 @@
           %td= member.expences_amount_sum_cents
           %td= member.balance_cents
           %td
-            = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
-            = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
+            .btn-group
+              = link_to '', edit_member_path(member), class: "btn btn-warning fa fa-edit btn-sm"  if policy(member).edit?
+              = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
           %td
             /////////////////////user account/////////////////////
             - if member.user.present?
