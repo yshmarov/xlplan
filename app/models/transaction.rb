@@ -6,7 +6,7 @@ class Transaction < ApplicationRecord
   belongs_to :payable, polymorphic: true
   belongs_to :cash_account, touch: true, counter_cache: true
   #-----------------------validation-------------------#
-  validates :client, :amount, :amount_cents, :category, :cash_account, presence: true
+  validates :amount, :amount_cents, :category, :cash_account, presence: true
   validates :amount, :amount_cents, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
@@ -31,5 +31,11 @@ class Transaction < ApplicationRecord
 
   def to_s
     slug
+  end
+
+  after_save :update_client_payments_balance
+  after_destroy :update_client_payments_balance
+  def update_client_payments_balance
+    payable.update_payments_balance
   end
 end

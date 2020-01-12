@@ -40,8 +40,8 @@ def create
         #Tag.create!(name: "no_visits")
         Location.create!(name: @tenant.name)
         Location.first.workplaces.create(name: "каб.1")
-        CashAccount.create!(name: "cash")
-        CashAccount.create!(name: "card")
+        CashAccount.create!(name: "Наличные")
+        CashAccount.create!(name: "Безнал")
 
         if resource.errors.empty?   #  SUCCESS!
 

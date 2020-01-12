@@ -18,14 +18,18 @@ end
   Tag.create!(name: "potential", tenant: tenant)
 
 Transaction.all.unscoped.where(cash_account_id: nil).count
+Transaction.all.unscoped.where(payable_type: nil).count
 
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)
   Transaction.public_activity_off
+  Transaction.where(payable_type: nil).each do |x|
+    x.update_attributes!(payable_type: "Client", payable_id: x.client_id)
+  end
+end
   Transaction.where(cash_account_id: nil).each do |x|
     x.update_attributes!(cash_account: CashAccount.find_by(name: "Наличные"))
   end
-end
 
   Animal.update_all alive: true
 

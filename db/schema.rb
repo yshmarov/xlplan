@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_12_113046) do
+ActiveRecord::Schema.define(version: 2020_01_12_201136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -389,7 +389,6 @@ ActiveRecord::Schema.define(version: 2020_01_12_113046) do
 
   create_table "transactions", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.bigint "client_id"
     t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -399,7 +398,6 @@ ActiveRecord::Schema.define(version: 2020_01_12_113046) do
     t.string "category", limit: 144
     t.bigint "cash_account_id"
     t.index ["cash_account_id"], name: "index_transactions_on_cash_account_id"
-    t.index ["client_id"], name: "index_transactions_on_client_id"
     t.index ["payable_id"], name: "index_transactions_on_payable_id"
     t.index ["payable_type"], name: "index_transactions_on_payable_type"
     t.index ["slug"], name: "index_transactions_on_slug", unique: true
@@ -492,7 +490,6 @@ ActiveRecord::Schema.define(version: 2020_01_12_113046) do
   add_foreign_key "skills", "tenants"
   add_foreign_key "tags", "tenants"
   add_foreign_key "tenants", "tenants"
-  add_foreign_key "transactions", "clients"
   add_foreign_key "transactions", "tenants"
   add_foreign_key "users_roles", "tenants"
   add_foreign_key "workplaces", "locations"

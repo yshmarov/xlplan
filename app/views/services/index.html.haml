@@ -41,10 +41,8 @@
       %thead
         %tr
           %th= f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
-          %th
-            = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
-          %th
-            = f.submit
+          %th= f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
+          %th= f.submit
     %tbody
       - @services.each do |service|
         %tr
@@ -58,8 +56,8 @@
             %small= service.description
           %td= active_label(service.active)
           %td= active_label(service.online_booking)
-          %td= service.updated_at.strftime('%d/%m/%Y %H:%M')
-          %td= service.created_at.strftime('%d/%m/%Y %H:%M')
+          %td= l(service.updated_at, format: "%a %d/%b/%Y %H:%M")
+          %td= l(service.created_at, format: "%a %d/%b/%Y %H:%M")
           %td
             .btn-group
               = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?

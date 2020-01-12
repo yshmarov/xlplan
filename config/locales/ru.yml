@@ -1025,6 +1025,8 @@ ru:
         id: "код транзакции"
         client: "клиент"
         client_id: "клиент"
+        payable_type: "Назначение"
+        payable_id: "Счёт"
         amount: "сумма"
         amount_cents: "сумма"
         category: "категория"

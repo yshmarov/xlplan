@@ -3,36 +3,34 @@
   %table#table1
     %thead
       %tr
+        /for nesting in clients/show
         - if @q.present?
           %th= sort_link @q, :id, model_class.human_attribute_name(:id)
           %th= sort_link @q, :amount, model_class.human_attribute_name(:amount_cents)
           %th= sort_link @q, :cash_account_name, model_class.human_attribute_name(:cash_account)
           %th= sort_link @q, :type, model_class.human_attribute_name(:category)
-          %th= sort_link @q, :client_last_name, model_class.human_attribute_name(:client)
+          %th= sort_link @q, :payable_type, model_class.human_attribute_name(:payable_type)
+          %th= sort_link @q, :payable_id, model_class.human_attribute_name(:payable_id)
           %th= sort_link @q, :created_at, model_class.human_attribute_name(:created_at)
         - else
           %th= model_class.human_attribute_name(:id)
           %th= model_class.human_attribute_name(:amount_cents)
           %th= model_class.human_attribute_name(:cash_account)
           %th= model_class.human_attribute_name(:category)
-          %th= model_class.human_attribute_name(:client)
+          %th= model_class.human_attribute_name(:payable_type)
+          %th= model_class.human_attribute_name(:payable_id)
           %th= model_class.human_attribute_name(:created_at)
         %th
     - @transactions.each do |transaction|
       %tbody
         %tr
-          %td= link_to transaction.slug, transaction_path(transaction) if policy(transaction).show?
+          %td= link_to transaction.slug, transaction_path(transaction)
           %td= transaction.amount_cents
           %td= transaction.cash_account
           %td= I18n.t(transaction.category, scope: [:activerecord, :attributes, :transaction, :categories])
+          %td= transaction.payable_type
           %td
-            = link_to transaction.client, client_path(transaction.client)
-            .row
-            - if transaction.payable.present?
-              - if transaction.payable_type == "Event"
-                .fa.fa-calendar
-                %b= model_class.human_attribute_name(:event) + ':'
-                = link_to transaction.payable, event_path(transaction.payable)
+            = link_to transaction.payable, polymorphic_url(transaction.payable) if transaction.payable.present?
           %td= l(transaction.created_at, format: "%a %d/%b/%Y %H:%M")
           %td
             .btn-group

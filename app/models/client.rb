@@ -18,7 +18,7 @@ class Client < ApplicationRecord
   has_many :jobs, through: :events
   has_many :services, through: :jobs
   has_many :comments, as: :commentable
-  has_many :transactions, dependent: :restrict_with_error
+  has_many :transactions, as: :payable, dependent: :restrict_with_error
   has_one :contact, inverse_of: :client, dependent: :nullify
   has_many :client_tags, inverse_of: :client, dependent: :destroy
   has_many :tags, through: :client_tags

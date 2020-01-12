@@ -27,22 +27,22 @@
                 = render 'events/form'
                 %p
                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.back"))
-        / Button trigger modal PAYMENT
-        %button.btn.btn-primary.btn-sm.mb.mb-1.mt-1{"data-target" => "#exampleModalCenterTransaction", "data-toggle" => "modal", :type => "button"}
-          .fa.fa-hand-holding-usd
-          #{t('sidebar.new_payment')}
-        / Modal
-        #exampleModalCenterTransaction.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalCenterTitle", :role => "dialog", :tabindex => "-1"}
-          .modal-dialog.modal-dialog-centered{:role => "document"}
-            .modal-content
-              .modal-header
-                %h5#exampleModalLongTitle.modal-title #{t('sidebar.new_payment')}
-                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-                  %span{"aria-hidden" => "true"} ×
-              .modal-body
-                = render 'transactions/form'
-                %p
-                %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.back"))
+        // Button trigger modal PAYMENT
+        /%button.btn.btn-primary.btn-sm.mb.mb-1.mt-1{"data-target" => "#exampleModalCenterTransaction", "data-toggle" => "modal", :type => "button"}
+        /  .fa.fa-hand-holding-usd
+        /  #{t('sidebar.new_payment')}
+        // Modal
+        /#exampleModalCenterTransaction.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalCenterTitle", :role => "dialog", :tabindex => "-1"}
+        /  .modal-dialog.modal-dialog-centered{:role => "document"}
+        /    .modal-content
+        /      .modal-header
+        /        %h5#exampleModalLongTitle.modal-title #{t('sidebar.new_payment')}
+        /        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        /          %span{"aria-hidden" => "true"} ×
+        /      .modal-body
+        /        = render 'transactions/form'
+        /        %p
+        /        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.back"))
         / Button trigger modal COMMENT
         %button.btn.btn-primary.btn-sm.mb.mb-1.mt-1{"data-target" => "#exampleModalCenterComment", "data-toggle" => "modal", :type => "button"}
           .fa.fa-comment
