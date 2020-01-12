@@ -56,8 +56,9 @@
           %td= service.updated_at.strftime('%d/%m/%Y %H:%M')
           %td= service.created_at.strftime('%d/%m/%Y %H:%M')
           %td
-            = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
-            = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
+            .btn-group
+              = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
+              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
 .container.table-responsive
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

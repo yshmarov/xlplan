@@ -91,8 +91,9 @@
           /with AJAX
           /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
           %td
-            = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
-            = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
+            .btn-group
+              = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
+              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
 %p
 .container.table-responsive
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer

@@ -64,6 +64,7 @@
                 - if workplace.events_count.zero?
                   = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
           %td
-            = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
-            = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
+            .btn-group
+              = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
+              = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
 %br
