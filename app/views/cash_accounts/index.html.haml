@@ -11,20 +11,20 @@
 %table#table1
   %thead
     %tr
+      %th
       %th= model_class.human_attribute_name(:name)
       %th= model_class.human_attribute_name(:active)
       %th= model_class.human_attribute_name(:transactions_count)
       %th= model_class.human_attribute_name(:balance)
-      %th
   %tbody
     - @cash_accounts.each do |cash_account|
       %tr
-        %td= cash_account.name
-        %td= active_label(cash_account.active)
-        %td= cash_account.transactions_count
-        %td= cash_account.balance_cents
         %td
           .btn-group
             = link_to '', edit_cash_account_path(cash_account), class: "btn btn-warning fa fa-edit btn-sm" if policy(cash_account).edit?
             = link_to '', cash_account, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(cash_account).destroy?
+        %td= cash_account.name
+        %td= active_label(cash_account.active)
+        %td= cash_account.transactions_count
+        %td= cash_account.balance_cents
 %br

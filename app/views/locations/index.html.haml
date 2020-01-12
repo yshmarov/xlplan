@@ -16,16 +16,20 @@
   %table#table1
     %thead
       %tr
+        %th
         %th= model_class.human_attribute_name(:name)
         %th= model_class.human_attribute_name(:contacts)
         %th= model_class.human_attribute_name(:address)
         %th= model_class.human_attribute_name(:active)
         %th= model_class.human_attribute_name(:online_booking)
         %th= model_class.human_attribute_name(:workplaces)
-        %th
     %tbody
       - @locations.each do |location|
         %tr
+          %td
+            .btn-group
+              = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
+              = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
           %td= location.name
           %td
             .btn-group-vertical
@@ -63,8 +67,4 @@
                 = workplace.events_count
                 - if workplace.events_count.zero?
                   = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
-          %td
-            .btn-group
-              = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
-              = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
 %br

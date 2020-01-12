@@ -3,7 +3,7 @@ class TransactionsController < ApplicationController
 
   def index
     @q = Transaction.ransack(params[:q])
-    @transactions = @q.result.includes(:client).paginate(:page => params[:page], per_page: 15).order('created_at DESC')
+    @transactions = @q.result.paginate(:page => params[:page], per_page: 15).order('created_at DESC')
   end
 
   def show

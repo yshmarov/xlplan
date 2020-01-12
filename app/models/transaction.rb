@@ -2,11 +2,10 @@ class Transaction < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------relationships-------------------#
-  belongs_to :client, touch: true, counter_cache: true
   belongs_to :payable, polymorphic: true
   belongs_to :cash_account, touch: true, counter_cache: true
   #-----------------------validation-------------------#
-  validates :amount, :amount_cents, :category, :cash_account, presence: true
+  validates :amount, :amount_cents, :category, :cash_account, :payable_id, :payable_type, presence: true
   validates :amount, :amount_cents, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }

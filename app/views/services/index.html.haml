@@ -25,6 +25,7 @@
   %table#table1
     %thead
       %tr
+        %th
         %th= sort_link @q, :name
         %th= sort_link @q, :service_category_id
         %th= sort_link @q, :duration
@@ -36,16 +37,19 @@
         %th= sort_link @q, :online_booking
         %th= sort_link @q, :updated_at
         %th= sort_link @q, :created_at
-        %th
     = search_form_for @q, url: services_path do |f|
       %thead
         %tr
+          %th= f.submit
           %th= f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
           %th= f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
-          %th= f.submit
     %tbody
       - @services.each do |service|
         %tr
+          %td
+            .btn-group
+              = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
+              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
           %td= link_to service.name, service_path(service)
           %td= link_to service.service_category, services_path(q: {service_category_id_eq: service.service_category_id})
           %td= service.duration
@@ -58,10 +62,6 @@
           %td= active_label(service.online_booking)
           %td= l(service.updated_at, format: "%a %d/%b/%Y %H:%M")
           %td= l(service.created_at, format: "%a %d/%b/%Y %H:%M")
-          %td
-            .btn-group
-              = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
-              = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
 .container.table-responsive
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

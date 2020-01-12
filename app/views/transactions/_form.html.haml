@@ -2,21 +2,18 @@
 = simple_form_for(@transaction) do |f|
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
   .form-inputs
     = f.input :payable_type, input_html: {value: "Client"}, as: :hidden
     /= f.input :payable_id, input_html: {value: "Client"}, as: :hidden
 
-    = f.label :client
+    = f.label :payable_type
     = f.error :client, class: 'text-danger'
     = f.select :payable_id, @clients.map{|c| [c.full_name, c.id]}, {include_blank: true}, class: 'selectize'
 
-    = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
-
+    /= f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
+    = f.input :amount_cents, input_html: { autocomplete: 'off' }, placeholder: "0"
     = f.input :category, collection: Transaction.categories, include_blank: false, as: :radio_buttons
-
     = f.association :cash_account, as: :radio_buttons
-
   %hr
   .form-actions
     = f.button :submit
