@@ -4,25 +4,41 @@ Tenant.find(1).update_attributes(plan: "blocked")
 
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)
-  Tag.all.where(name: "lost_client").each do |tag| tag.update_attributes(name: "lost") end
+  Transaction.update_all category: "client_balance"
 end
+
+  CashAccount.public_activity_off
+  CashAccount.create(name: "Наличные")
+  CashAccount.create(name: "Безнал")
+
+  Tag.all.where(name: "lost_client").each do |tag| tag.update_attributes(name: "lost") end
 
   Member.all.each do |member| member.update_attributes(time_zone: "Kyiv") end
 
   Tag.create!(name: "potential", tenant: tenant)
 
+Transaction.all.unscoped.where(cash_account_id: nil).count
 
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)
-  Animal.update_all alive: true
+  Transaction.public_activity_off
+  Transaction.where(cash_account_id: nil).each do |x|
+    x.update_attributes!(cash_account: CashAccount.find_by(name: "Наличные"))
+  end
 end
+
+  Animal.update_all alive: true
 
 Tenant.set_current_tenant(1)
 Event.all.where(workplace_id: nil).count
-Location.public_activity_off
+CashAccount.public_activity_off
 Location.all.each do |location|
   location.workplaces.create(name: "room1")
 end
+
+Tenant.set_current_tenant(7)
+Transaction.public_activity_off
+Transaction.find(57).update_attributes(cash_account: CashAccount.find_by(name: "Безнал"))
 
 workplace = Workplace.first.id
 Event.public_activity_off
