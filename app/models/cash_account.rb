@@ -21,7 +21,11 @@ class CashAccount < ApplicationRecord
   friendly_id :name, use: :slugged
 
   def to_s
-    name
+    name.to_s
+  end
+
+  def full_name
+    name.to_s + " (" + balance_cents.to_s + ")"
   end
 
   def update_balance

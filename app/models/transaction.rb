@@ -12,7 +12,7 @@ class Transaction < ApplicationRecord
   #-----------------------gem money-------------------#
   monetize :amount, as: :amount_cents
   #-----------------------category options--------------------------------#
-  CATEGORIES = [:client_balance, :client_event, :expence_salary, :expence_rent, :expence_other, :from_acc, :to_acc]
+  CATEGORIES = [:client_balance, :expence_salary, :expence_rent, :expence_other, :from_acc, :to_acc]
   def self.categories
     CATEGORIES.map {|category| [I18n.t(category, scope: [:activerecord, :attributes, :transaction, :categories]).capitalize, category]}
   end

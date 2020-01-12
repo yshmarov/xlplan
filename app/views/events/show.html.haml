@@ -5,10 +5,12 @@
       .card-header{:style => "border-color:#{@event.status_color};"}
         .fa.fa-calendar-alt
         =t '.title', :default => model_class.model_name.human.titleize
-        .float-right.btn-group
-          = link_to '', event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-          = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).edit?
-          = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
+        .float-right
+          = render 'events/new_payment'
+          .btn-group
+            = link_to '', event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
+            = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).edit?
+            = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
         - if @event.client.phone_number.present?
           .float-right.mr.mr-1
             = link_to "https://api.whatsapp.com/send?phone=#{@event.client.phone_number_only_digits}&text=#{@event.sms_text}&source=&data=", class: "btn btn-success btn-sm fa", :target => "_blank" do
@@ -89,10 +91,5 @@
           - @event.files.each do |file|
             .row
             = link_to file.filename, rails_blob_path(file, disposition: "file"), target: :_blank
-      .card-header
-        - if @event.transactions.any?
-          = render "transactions/index"
-          %p
-        = render 'events/new_payment'
 %br
 =  render 'dashboard/activity'

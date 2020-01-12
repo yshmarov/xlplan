@@ -12,12 +12,11 @@
           %span{"aria-hidden" => "true"} ×
       = simple_form_for @transaction do |f|
         .modal-body
-          = f.input :client_id, input_html: {value: @event.client.id}, as: :hidden
-          = f.input :payable_id, input_html: {value: @event.id}, as: :hidden
-          = f.input :payable_type, input_html: {value: 'Event'}, as: :hidden
+          = f.input :payable_type, input_html: {value: 'Client'}, as: :hidden
+          = f.input :payable_id, input_html: {value: @event.client.id}, as: :hidden
           = f.input :amount_cents, input_html: { value: @event.event_due_price_cents }
           = f.input :category, collection: Transaction.categories, include_blank: false, as: :radio_buttons
-          = f.association :cash_account, as: :radio_buttons
+          = f.association :cash_account, as: :radio_buttons, label_method: :full_name
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
           = f.button :submit

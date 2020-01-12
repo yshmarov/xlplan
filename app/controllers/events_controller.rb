@@ -91,7 +91,6 @@ class EventsController < ApplicationController
     authorize @event
     @jobs = @event.jobs
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Event", trackable_id: @event).all
-    @transactions = @event.transactions
     @transaction = Transaction.new
     authorize @transaction
     #@payable = @event
