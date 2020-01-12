@@ -43,14 +43,6 @@ class Client < ApplicationRecord
   scope :no_events, -> { left_outer_joins(:events).where(events: { id: nil }) }
   scope :untagged, -> { left_outer_joins(:client_tags).where(client_tags: { id: nil }) }
   #scope :no_future_events, -> {joins(:events).where.not('events.starts_at >=?', Time.zone.now).distinct }
-  #-----------------------scope_tag_checks-------------------#
-  def no_gender?
-    self.gender == "undisclosed"
-  end
-  
-  def debtors?
-    self.balance < 0
-  end
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
   monetize :payments_amount_sum, as: :payments_amount_sum_cents
@@ -60,6 +52,14 @@ class Client < ApplicationRecord
   def self.lead_sources
     #SOURCES.map {|source| [source.to_s.humanize, source]}
     SOURCES.map {|source| [I18n.t(source, scope: [:activerecord, :attributes, :client, :lead_sources]).capitalize, source]}
+  end
+  #-----------------------scope_tag_checks-------------------#
+  def no_gender?
+    self.gender == "undisclosed"
+  end
+  
+  def debtors?
+    self.balance < 0
   end
   #-----------------------last and next event-------------------#
   def next_event
@@ -76,7 +76,6 @@ class Client < ApplicationRecord
   #-----------------------callbacks details-------------------#
   #private
   #protected
-
   def update_events_balance
     update_column :jobs_amount_sum, (events.map(&:event_due_price).sum)
     update_column :balance, (payments_amount_sum - jobs_amount_sum)

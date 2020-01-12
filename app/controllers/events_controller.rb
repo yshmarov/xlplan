@@ -91,25 +91,18 @@ class EventsController < ApplicationController
     authorize @event
     @jobs = @event.jobs
     @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Event", trackable_id: @event).all
-    @transaction = Transaction.new
-    authorize @transaction
-    #@payable = @event
-    #@transaction.payable_id = @event.id
-    #@transaction.payable_type = "Event"
-    #@payment.client_id = @event.client.id
-    #@payment.amount = @event.event_price
     respond_to do |format|
-        format.html
-        format.pdf do
-            render pdf: "Event No. #{@event.slug}",
-            page_size: 'A6',
-            template: "events/show.pdf.haml",
-            layout: "pdf.haml",
-            orientation: "Landscape",
-            lowquality: true,
-            zoom: 1,
-            dpi: 75
-        end
+      format.html
+      format.pdf do
+          render pdf: "Event No. #{@event.slug}",
+          page_size: 'A6',
+          template: "events/show.pdf.haml",
+          layout: "pdf.haml",
+          orientation: "Landscape",
+          lowquality: true,
+          zoom: 1,
+          dpi: 75
+      end
     end
   end
 

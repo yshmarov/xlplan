@@ -27,6 +27,16 @@ Tenant.find_each do |tenant|
     x.update_attributes!(payable_type: "Client", payable_id: x.client_id)
   end
 end
+
+Tenant.find_each do |tenant|
+  Tenant.set_current_tenant(tenant)
+  Transaction.public_activity_off
+  Transaction.where(payable_type: "Event").each do |x|
+    x.update_attributes!(payable_type: "Client", payable_id: x.client_id)
+  end
+end
+
+
   Transaction.where(cash_account_id: nil).each do |x|
     x.update_attributes!(cash_account: CashAccount.find_by(name: "Наличные"))
   end

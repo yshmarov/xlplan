@@ -3,6 +3,7 @@
   %table#table1
     %thead
       %tr
+        %th
         %th= model_class.human_attribute_name(:first_name)
         %th= model_class.human_attribute_name(:phone_number)
         %th= model_class.human_attribute_name(:email)
@@ -18,10 +19,10 @@
         %th= model_class.human_attribute_name(:coupon)
         /%th
         /%th
-        %th
     %tbody
       - @leads.each do |lead|
         %tr
+          %td= link_to '', lead, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(lead).destroy?
           %td
             - unless lead.client.present?
               = lead.full_name
@@ -53,8 +54,3 @@
           /%td
           /  %small= lead.referer
           %td= lead.coupon
-          /%td= link_to 'Show', lead
-          /%td
-          /  = link_to '', edit_lead_path(lead), class: "btn btn-warning fa fa-edit btn-sm"  if policy(lead).edit?
-          %td
-            = link_to '', lead, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(lead).destroy?
