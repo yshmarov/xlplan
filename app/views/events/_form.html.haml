@@ -33,5 +33,5 @@
         = file.filename
     %hr
   .form-actions
-    = f.button :submit, class: 'btn btn-success'
+    = f.button :submit
     /= link_to 'Delete', event, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }, remote: true unless @event.new_record?
