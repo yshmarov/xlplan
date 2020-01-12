@@ -13,6 +13,8 @@
 
     = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
 
+    = f.input :type, collection: Transaction.types, include_blank: false, as: :radio_buttons
+
     = f.input :payment_method, collection: Transaction.payment_methods, include_blank: false, as: :radio_buttons
 
   %hr

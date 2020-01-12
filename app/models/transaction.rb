@@ -6,12 +6,17 @@ class Transaction < ApplicationRecord
   belongs_to :payable, polymorphic: true
   #-----------------------validation-------------------#
   #validates :amount, :payment_method, presence: true
-  validates :client, :amount, :amount_cents, :payment_method, presence: true
+  validates :client, :amount, :amount_cents, :payment_method, :type, presence: true
   validates :amount, :amount_cents, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------gem money-------------------#
   monetize :amount, as: :amount_cents
+  #-----------------------type options--------------------------------#
+  TYPES = [:from_acc, :to_acc, :client_balance, :client_event, :expence_salary, :expence_rent, :expence_other, :withdraw]
+  def self.types
+    TYPES.map {|type| [I18n.t(type, scope: [:activerecord, :attributes, :transaction, :types]).capitalize, type]}
+  end
   #-----------------------payment_method options--------------------------------#
   PAYMENT_METHODS = [:cash, :credit_card] 
   def self.payment_methods

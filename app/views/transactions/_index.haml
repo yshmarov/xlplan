@@ -8,12 +8,14 @@
           %th= sort_link @q, :client_last_name, model_class.human_attribute_name(:client)
           %th= sort_link @q, :amount, model_class.human_attribute_name(:amount_cents)
           %th= sort_link @q, :payment_method, model_class.human_attribute_name(:payment_method)
+          %th= sort_link @q, :type, model_class.human_attribute_name(:type)
           %th= sort_link @q, :created_at, model_class.human_attribute_name(:created_at)
         - else
           %th= model_class.human_attribute_name(:id)
           %th= model_class.human_attribute_name(:client)
           %th= model_class.human_attribute_name(:amount_cents)
           %th= model_class.human_attribute_name(:payment_method)
+          %th= model_class.human_attribute_name(:type)
           %th= model_class.human_attribute_name(:created_at)
         %th
     %tbody
@@ -29,10 +31,8 @@
                 %b= model_class.human_attribute_name(:event) + ':'
                 = link_to transaction.payable, event_path(transaction.payable)
           %td= number_to_currency(transaction.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-          %td
-            .badge.badge-secondary
-              = I18n.t(transaction.payment_method, scope: [:activerecord, :attributes, :transaction, :payment_methods])
-
+          %td= I18n.t(transaction.payment_method, scope: [:activerecord, :attributes, :transaction, :payment_methods])
+          %td= transaction.type
           %td= l(transaction.created_at, format: "%a %d/%b/%Y %H:%M")
           %td
             = link_to "", transaction_path(transaction, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank  if policy(transaction).show?
