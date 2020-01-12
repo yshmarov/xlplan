@@ -66,6 +66,10 @@
                 = link_to clients_path(clients_search: {client_tags_tag_name_cont: client_tag.tag.name}) do 
                   .badge.badge-info
                     = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
+
+            - if Client.debtors.where(id: client.id).present?
+              .badge.badge-danger
+                = t('sidebar.debtors')
           %td
             = link_to "tel:#{client.phone_number}", class: "button" do
               = number_to_phone(client.phone_number)
