@@ -18,7 +18,7 @@
           .float-right.mr.mr-1
             = button_to send_email_to_client_event_path(@event), method: :patch, class: 'btn btn-success btn-sm fa' do 
               .far.fa-envelope
-              .fa.fa-users
+              .far.fa-address-book
               /= t '.email_client'
         - if @event.users.distinct.pluck(:email).present?
           .float-right.mr.mr-1
@@ -48,7 +48,7 @@
         - else
           = status_label(@event.status)
           .row
-        .fa.fa-users
+        .far.fa-address-book
         %b= model_class.human_attribute_name(:client_id) + ':'
         = link_to @event.client, client_path(@event.client)
         .row

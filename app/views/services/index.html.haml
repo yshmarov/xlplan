@@ -1,27 +1,24 @@
 - model_class = Service
-= search_form_for @q, url: services_path do |f|
-  .card
-    .card-header
-      .row
-        .col-lg-3
-          %h5
-            .fa.fa-hand-paper
-            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
-            .badge.badge-info
-              = @services.count
-        .col-lg-6
-          .input-group
-            .mr-md-2
-            = f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
-            = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
-            %span.input-group-append
-              %button.btn.btn-primary.btn-sm{:type => "submit"}
-                %span.fa.fa-search{"aria-hidden" => "true"}
-        .col-lg-3
-          .mt-1
-          .float-right
+.card
+  .card-header
+    .row
+      .col-lg-6
+        %h5
+          .fa.fa-hand-paper
+          %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+          .badge.badge-info
+            = @services.count
+      .col-lg-6
+        .float-right
+          .form-inline
+            /= search_form_for @q, url: services_path do |f|
+            /  %span.input-group-append
+            /    %button.btn.btn-primary.btn-sm{:type => "submit"}
+            /      %span.fa.fa-search{"aria-hidden" => "true"}
+            /  = f.submit
             - if params.has_key?(:q)
               = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
+            .mr-1
             - if policy(Service).create?
               = link_to t('.new', :default => t("helpers.links.new")), new_service_path, class: 'btn btn-sm btn-primary'
 .table-responsive-xl
@@ -40,6 +37,14 @@
         %th= sort_link @q, :updated_at
         %th= sort_link @q, :created_at
         %th
+    = search_form_for @q, url: services_path do |f|
+      %thead
+        %tr
+          %th= f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
+          %th
+            = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
+          %th
+            = f.submit
     %tbody
       - @services.each do |service|
         %tr

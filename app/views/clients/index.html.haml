@@ -55,7 +55,6 @@
           .fa.fa-comment-alt
         %th= sort_link @ransack_clients, :created_at
         %th
-          /.fa.fa-info-circle{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Can delete only if no associated records"}
     %tbody
       - @clients.each do |client|
         %tr

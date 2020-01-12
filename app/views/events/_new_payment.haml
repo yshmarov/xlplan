@@ -1,5 +1,5 @@
 / Button trigger modal PAYMENT
-%button.btn.btn-info.btn-sm{"data-target" => "#exampleModalCenter", "data-toggle" => "modal", :type => "button"}
+%button.btn.btn-primary.btn-sm{"data-target" => "#exampleModalCenter", "data-toggle" => "modal", :type => "button"}
   .fa.fa-hand-holding-usd
   #{t('sidebar.new_payment')}
 / Modal
@@ -16,7 +16,8 @@
           = f.input :payable_id, input_html: {value: @event.id}, as: :hidden
           = f.input :payable_type, input_html: {value: 'Event'}, as: :hidden
           = f.input :amount_cents, input_html: { value: @event.event_due_price_cents }
-          = f.input :payment_method, collection: Transaction.payment_methods, include_blank: false, as: :radio_buttons
+          = f.input :category, collection: Transaction.categories, include_blank: false, as: :radio_buttons
+          = f.association :cash_account, as: :radio_buttons
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
-          = f.button :submit, class: "btn btn-success"
+          = f.button :submit

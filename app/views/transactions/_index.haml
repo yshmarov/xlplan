@@ -18,8 +18,8 @@
           %th= model_class.human_attribute_name(:client)
           %th= model_class.human_attribute_name(:created_at)
         %th
-    %tbody
-      - @transactions.each do |transaction|
+    - @transactions.each do |transaction|
+      %tbody
         %tr
           %td= link_to transaction.slug, transaction_path(transaction) if policy(transaction).show?
           %td= transaction.amount_cents

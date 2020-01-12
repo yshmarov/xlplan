@@ -36,10 +36,6 @@
             .col-md-2
               .row
               = f.submit
-          %hr
-          = sort_link @q, :amount do
-            .ml.ml-2.fa.fa-calendar-check
-            = model_class.human_attribute_name(:amount)
     - else
       #accordion.collapse.show
         .card-header
@@ -57,10 +53,6 @@
             .col-md-3
               .row
               = f.submit
-          %hr
-          = sort_link @q, :amount do
-            .ml.ml-2.fa.fa-calendar-check
-            = model_class.human_attribute_name(:amount)
 = render 'transactions/index'
 %p
 .container.table-responsive
