@@ -11,12 +11,11 @@
 %table#table1
   %thead
     %tr
-      %th Name
-      %th Active
-      %th Transactions_count
-      %th Balance
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:active)
+      %th= model_class.human_attribute_name(:transactions_count)
+      %th= model_class.human_attribute_name(:balance)
       %th
-
   %tbody
     - @cash_accounts.each do |cash_account|
       %tr

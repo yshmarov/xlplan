@@ -11,11 +11,14 @@
         %b= model_class.human_attribute_name(:client_id) + ':'
         = @transaction.client
         .row
+        %b= model_class.human_attribute_name(:cash_account) + ':'
+        = @transaction.cash_account
+        .row
         %b= model_class.human_attribute_name(:amount) + ':'
         = number_to_currency(@transaction.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .row
-        %b= model_class.human_attribute_name(:payment_method) + ':'
-        = @transaction.payment_method
+        %b= model_class.human_attribute_name(:category) + ':'
+        = @transaction.category
         - if @transaction.payable.present?
           - if @transaction.payable_type == "Event"
             .row

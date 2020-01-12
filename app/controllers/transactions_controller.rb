@@ -72,6 +72,9 @@ class TransactionsController < ApplicationController
     end
 
     def transaction_params
-      params.require(:transaction).permit(:tenant_id, :client_id, :amount, :amount_cents, :payment_method, :payable_id, :payable_type, :cash_account_id, :category)
+      params.require(:transaction).permit(:tenant_id, :client_id, :cash_account_id, 
+                      :amount, :amount_cents, 
+                      :payable_id, :payable_type, 
+                      :category)
     end
 end

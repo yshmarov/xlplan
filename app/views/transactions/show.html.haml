@@ -18,13 +18,16 @@
             .fa.fa-user
             %b= model_class.human_attribute_name(:client_id) + ':'
             = link_to @transaction.client, client_path(@transaction.client)
+            .row
+            %b= model_class.human_attribute_name(:cash_account) + ':'
+            = @transaction.cash_account
             %br
             %b= model_class.human_attribute_name(:amount) + ':'
             = number_to_currency(@transaction.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             %br
-            %b= model_class.human_attribute_name(:payment_method) + ':'
+            %b= model_class.human_attribute_name(:category) + ':'
             .badge.badge-secondary
-              = I18n.t(@transaction.payment_method, scope: [:activerecord, :attributes, :transaction, :payment_methods])
+              = I18n.t(@transaction.category, scope: [:activerecord, :attributes, :transaction, :categories])
             - if @transaction.payable.present?
               - if @transaction.payable_type == "Event"
                 %br

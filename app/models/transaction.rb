@@ -6,8 +6,7 @@ class Transaction < ApplicationRecord
   belongs_to :payable, polymorphic: true
   belongs_to :cash_account, touch: true, counter_cache: true
   #-----------------------validation-------------------#
-  #validates :amount, :payment_method, presence: true
-  validates :client, :amount, :amount_cents, :payment_method, :category, :cash_account, presence: true
+  validates :client, :amount, :amount_cents, :category, :cash_account, presence: true
   validates :amount, :amount_cents, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
@@ -17,11 +16,6 @@ class Transaction < ApplicationRecord
   CATEGORIES = [:client_balance, :client_event, :expence_salary, :expence_rent, :expence_other, :from_acc, :to_acc]
   def self.categories
     CATEGORIES.map {|category| [I18n.t(category, scope: [:activerecord, :attributes, :transaction, :categories]).capitalize, category]}
-  end
-  #-----------------------payment_method options--------------------------------#
-  PAYMENT_METHODS = [:cash, :credit_card] 
-  def self.payment_methods
-    PAYMENT_METHODS.map {|payment_method| [I18n.t(payment_method, scope: [:activerecord, :attributes, :transaction, :payment_methods]).capitalize, payment_method]}
   end
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model

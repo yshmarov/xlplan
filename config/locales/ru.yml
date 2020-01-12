@@ -635,6 +635,9 @@ ru:
 
   ######################################################
 
+  cash_accounts:
+    index:
+      title: "Счета"
   contacts:
     index:
       create_client: "Создать Клиента"
@@ -772,17 +775,19 @@ ru:
 
   activerecord:
     models:
-      tenant: "Настройки организации"
-      event: "Встреча"
-      job: "Работа"
-      service: "Услуга"
-      service_category: "Категория"
-      location: "Филиал"
-      member: "Сотрудник"
+      cash_account: "Счёт"
       client: "Клиент"
       comment: "Комментарий"
-      transaction: "Транзакция"
       contact: "Контакт"
+      event: "Встреча"
+      job: "Работа"
+      lead: "Онлайн запись"
+      location: "Филиал"
+      member: "Сотрудник"
+      service_category: "Категория"
+      service: "Услуга"
+      tenant: "Настройки организации"
+      transaction: "Транзакция"
 
     attributes:
       contact:
@@ -1011,6 +1016,11 @@ ru:
         #  male: "Мужской"
         #  female: "Женский"
         average_confirmed_check: "средний чек"
+      cash_account:
+        name: "Название"
+        active: "Активный"
+        transactions_count: "Кол. Оплат"
+        balance: "Баланс"
       transaction:
         id: "код транзакции"
         client: "клиент"
