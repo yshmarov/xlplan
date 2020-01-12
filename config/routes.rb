@@ -84,6 +84,7 @@ Rails.application.routes.draw do
   end
 
   resources :transactions, except: [:edit, :update]
+  resources :cash_accounts, except: [:show]
 
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'

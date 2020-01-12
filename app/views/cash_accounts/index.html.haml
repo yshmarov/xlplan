@@ -1,0 +1,25 @@
+%h1 Listing cash_accounts
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Active
+      %th Balance
+      %th
+      %th
+      %th
+
+  %tbody
+    - @cash_accounts.each do |cash_account|
+      %tr
+        %td= cash_account.name
+        %td= cash_account.active
+        %td= cash_account.balance
+        %td= link_to 'Show', cash_account
+        %td= link_to 'Edit', edit_cash_account_path(cash_account)
+        %td= link_to 'Destroy', cash_account, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Cash account', new_cash_account_path

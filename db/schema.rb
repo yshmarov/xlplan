@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_11_213514) do
+ActiveRecord::Schema.define(version: 2020_01_12_095938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 2020_01_11_213514) do
     t.index ["tenant_id"], name: "index_activities_on_tenant_id"
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
     t.index ["trackable_type", "trackable_id"], name: "index_activities_on_trackable_type_and_trackable_id"
+  end
+
+  create_table "cash_accounts", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.string "name", limit: 144, null: false
+    t.boolean "active", default: true
+    t.integer "balance", default: 0, null: false
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_cash_accounts_on_slug", unique: true
+    t.index ["tenant_id"], name: "index_cash_accounts_on_tenant_id"
   end
 
   create_table "client_tags", force: :cascade do |t|
@@ -441,6 +453,7 @@ ActiveRecord::Schema.define(version: 2020_01_11_213514) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "tenants"
+  add_foreign_key "cash_accounts", "tenants"
   add_foreign_key "client_tags", "clients"
   add_foreign_key "client_tags", "tags"
   add_foreign_key "client_tags", "tenants"
