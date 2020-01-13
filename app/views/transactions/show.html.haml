@@ -12,27 +12,25 @@
               = link_to "", transaction_path(@transaction, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
               = link_to '', @transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@transaction).destroy?
           .card-body
-            %b= model_class.human_attribute_name(:id) + ':'
-            = @transaction.slug
-            %br
-            .fa.fa-user
-            %b= model_class.human_attribute_name(:client_id) + ':'
-            = link_to @transaction.client, client_path(@transaction.client)
+            %b= model_class.human_attribute_name(:id)
+            = link_to @transaction.slug, transaction_path(@transaction)
             .row
-            %b= model_class.human_attribute_name(:cash_account) + ':'
+            %b= model_class.human_attribute_name(:amount_cents)
+            = @transaction.amount_cents
+            .row
+            %b= model_class.human_attribute_name(:cash_account)
             = @transaction.cash_account
-            %br
-            %b= model_class.human_attribute_name(:amount) + ':'
-            = number_to_currency(@transaction.amount_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-            %br
-            %b= model_class.human_attribute_name(:category) + ':'
-            .badge.badge-secondary
-              = I18n.t(@transaction.category, scope: [:activerecord, :attributes, :transaction, :categories])
-            - if @transaction.payable.present?
-              - if @transaction.payable_type == "Event"
-                %br
-                .fa.fa-calendar
-                %b= model_class.human_attribute_name(:event) + ':'
-                = link_to @transaction.payable, event_path(@transaction.payable)
+            .row
+            %b= model_class.human_attribute_name(:category)
+            = I18n.t(@transaction.category, scope: [:activerecord, :attributes, :transaction, :categories])
+            .row
+            %b= model_class.human_attribute_name(:payable_type)
+            = @transaction.payable_type
+            .row
+            %b= model_class.human_attribute_name(:payable_id)
+            = link_to @transaction.payable, polymorphic_url(@transaction.payable) if @transaction.payable.present?
+            .row
+            %b= model_class.human_attribute_name(:created_at)
+            = l(@transaction.created_at, format: "%a %d/%b/%Y %H:%M")
     %p
     =  render 'dashboard/activity'
