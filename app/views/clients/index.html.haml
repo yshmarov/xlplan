@@ -75,14 +75,11 @@
               .badge.badge-danger
                 = t('clients_debtors')
             - if client.no_gender?
-              .badge.badge-danger
+              .badge.badge-warning
                 = t('clients_no_gender')
-            /- if client.next_event.present?
-            /  .badge.badge-success
-            /    Has planned events
-            /- else
-            /  .badge.badge-danger
-            /    No planned events
+            - if client.next_event.present?
+              .badge.badge-success
+                = t('clients_yes_next_event')
           %td
             = link_to "tel:#{client.phone_number}", class: "button" do
               = number_to_phone(client.phone_number)

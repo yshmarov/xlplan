@@ -91,12 +91,22 @@
         .row
         %b= model_class.human_attribute_name(:lead_source) + ':'
         = I18n.t(@client.lead_source, scope: [:activerecord, :attributes, :client, :lead_sources])
+        .row
         - if @client.client_tags.any?
-          .row
           - @client.client_tags.each do |client_tag|
             .badge.badge-info
               /= client_tag.tag
               = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
+
+        - if @client.debtors?
+          .badge.badge-danger
+            = t('clients_debtors')
+        - if @client.no_gender?
+          .badge.badge-warning
+            = t('clients_no_gender')
+        - if @client.next_event.present?
+          .badge.badge-success
+            = t('clients_yes_next_event')
 
         %hr
         .fa.fa-calendar-check
