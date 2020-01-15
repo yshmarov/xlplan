@@ -9,12 +9,16 @@
       = f.input :payable_id, input_html: {value: @client.id}, as: :hidden
     - else
       = f.input :payable_type, input_html: {value: "Client"}, as: :hidden
+      /= f.label :member
+      /= f.label :client
       = f.label :payable_type
-      = f.error :payable_id, class: 'text-danger'
       = f.select :payable_id, @clients.map{|c| [c.full_name, c.id]}, {include_blank: true}, class: 'selectize'
+      = f.error :payable_id, class: 'text-danger'
+      /= f.input :payable_id, collection: @clients, class: 'selectize'
+      /= f.input :payable_id, collection: @clients, input_html: { class: 'selectize' }
 
-    /= f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
-    = f.input :amount_cents, input_html: { autocomplete: 'off' }, placeholder: "0"
+    = f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
+    /= f.input :amount_cents, input_html: { autocomplete: 'off' }, placeholder: "0"
     = f.input :comment
   %hr
   .form-actions

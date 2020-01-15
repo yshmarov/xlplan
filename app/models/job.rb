@@ -51,6 +51,13 @@ class Job < ApplicationRecord
     update_column :service_member_percent, (service.member_percent) #member price calculation OK
   end
 
+  #before_validation do
+  #  #self.add_amount = 0 unless add_amount.present?
+  #  #self.production_cost = 0 unless production_cost.present?
+  #  update_column :add_amount, (0) unless add_amount.present?
+  #  update_column :production_cost, (0) unless production_cost.present?
+  #end
+
   after_save :calculate_prices
   def calculate_prices
     update_column :client_price, (service_client_price + add_amount)

@@ -288,6 +288,16 @@ ru:
     submit:
       lead:
         create: "Подать заявку"
+      transaction:
+        create: "Создать транзакцию"
+      client:
+        create: "Создать клиента"
+      event:
+        create: "Создать встречу"
+      service:
+        create: "Создать услугу"
+      service_category:
+        create: "Создать категорию услуг"
 
   ######################################################
 
@@ -651,9 +661,9 @@ ru:
     show:
       title: "Транзакция"
     new:
-      title: "Создать Оплату"
+      title: "Создать транзакцию"
     create:
-      success: 'Оплата успешно создана.'
+      success: 'Транзакция успешно создана.'
   locations:
     index:
       title: "Филиалы"
@@ -679,13 +689,13 @@ ru:
       success: 'Услуга успешно создана.'
   service_categories:
     index:
-      title: "Категории Услуг"
+      title: "Категории услуг"
     new:
-      title: "Создать Категорию"
+      title: "Создать категорию услуг"
     edit:
-      title: "Изменить Категорию"
+      title: "Изменить категорию услуг"
     create:
-      success: 'Категория успешно создана.'
+      success: 'Категория услуг успешно создана.'
   members:
     index:
       title: "Сотрудники"
@@ -785,7 +795,7 @@ ru:
       lead: "Онлайн запись"
       location: "Филиал"
       member: "Сотрудник"
-      service_category: "Категория"
+      service_category: "Категория услуг"
       service: "Услуга"
       tenant: "Настройки организации"
       transaction: "Транзакция"
@@ -1025,10 +1035,10 @@ ru:
         balance: "баланс"
       transaction:
         id: "код транзакции"
-        client: "клиент"
-        client_id: "клиент"
         payable_type: "назначение"
         payable_id: "счёт"
+        member: "счёт сотрудника"
+        client: "счёт клиента"
         amount: "сумма"
         amount_cents: "сумма"
         comment: "комментарий"
