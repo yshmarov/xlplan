@@ -1,6 +1,7 @@
 heroku run rake db:migrate
 
 Tenant.find(1).update_attributes(plan: "blocked")
+User.find(x).update_attributes(confirmed_at: Time.now)
 
 Tenant.find_each do |tenant|
   Tenant.set_current_tenant(tenant)
