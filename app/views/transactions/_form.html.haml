@@ -3,6 +3,7 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
   .form-inputs
+    = f.association :cash_account, as: :radio_buttons, label_method: :full_name
     - if @client.present?
       = f.input :payable_type, input_html: {value: "Client"}, as: :hidden
       = f.input :payable_id, input_html: {value: @client.id}, as: :hidden
@@ -14,8 +15,7 @@
 
     /= f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
     = f.input :amount_cents, input_html: { autocomplete: 'off' }, placeholder: "0"
-    = f.input :category
-    = f.association :cash_account, as: :radio_buttons, label_method: :full_name
+    = f.input :comment
   %hr
   .form-actions
     = f.button :submit

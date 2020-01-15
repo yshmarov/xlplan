@@ -9,7 +9,7 @@
           %th= sort_link @q, :id, model_class.human_attribute_name(:id)
           %th= sort_link @q, :amount, model_class.human_attribute_name(:amount_cents)
           %th= sort_link @q, :cash_account_name, model_class.human_attribute_name(:cash_account)
-          %th= sort_link @q, :type, model_class.human_attribute_name(:category)
+          %th= sort_link @q, :type, model_class.human_attribute_name(:comment)
           %th= sort_link @q, :payable_type, model_class.human_attribute_name(:payable_type)
           %th= sort_link @q, :payable_id, model_class.human_attribute_name(:payable_id)
           %th= sort_link @q, :created_at, model_class.human_attribute_name(:created_at)
@@ -17,7 +17,7 @@
           %th= model_class.human_attribute_name(:id)
           %th= model_class.human_attribute_name(:amount_cents)
           %th= model_class.human_attribute_name(:cash_account)
-          %th= model_class.human_attribute_name(:category)
+          %th= model_class.human_attribute_name(:comment)
           %th= model_class.human_attribute_name(:payable_type)
           %th= model_class.human_attribute_name(:payable_id)
           %th= model_class.human_attribute_name(:created_at)
@@ -31,7 +31,7 @@
           %td= link_to transaction.slug, transaction_path(transaction)
           %td= transaction.amount_cents
           %td= transaction.cash_account
-          %td= I18n.t(transaction.category, scope: [:activerecord, :attributes, :transaction, :categories])
+          %td= transaction.comment
           %td= transaction.payable_type
           %td
             = link_to transaction.payable, polymorphic_url(transaction.payable) if transaction.payable.present?

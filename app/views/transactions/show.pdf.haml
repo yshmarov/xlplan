@@ -14,8 +14,8 @@
         %b= model_class.human_attribute_name(:cash_account)
         = @transaction.cash_account
         .row
-        %b= model_class.human_attribute_name(:category)
-        = I18n.t(@transaction.category, scope: [:activerecord, :attributes, :transaction, :categories])
+        %b= model_class.human_attribute_name(:comment)
+        = @transaction.comment
         .row
         %b= model_class.human_attribute_name(:payable_type)
         = @transaction.payable_type
