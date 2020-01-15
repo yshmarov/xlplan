@@ -2,7 +2,7 @@ class Transaction < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_tenant
   #-----------------------relationships-------------------#
-  belongs_to :payable, polymorphic: true
+  belongs_to :payable, polymorphic: true, counter_cache: :transactions_count
   belongs_to :cash_account, touch: true, counter_cache: true
   #-----------------------validation-------------------#
   validates :amount, :amount_cents, :cash_account, :payable_id, :payable_type, presence: true
