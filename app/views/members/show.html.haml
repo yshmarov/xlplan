@@ -64,8 +64,8 @@
         - if policy(@member).show_money?
           %hr
           .fa.fa-hand-paper
-          %b= model_class.human_attribute_name(:jobs_due_price_sum) + ':'
-          = number_to_currency(@member.jobs_due_price_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %b= model_class.human_attribute_name(:event_earnings_sum) + ':'
+          = number_to_currency(@member.event_earnings_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.jobs_count})
           .row
           .fa.fa-hand-holding-usd

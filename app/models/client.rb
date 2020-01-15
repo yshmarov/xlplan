@@ -44,12 +44,12 @@ class Client < ApplicationRecord
   monetize :transactions_sum, as: :transactions_sum_cents
   #-----------------------callbacks-------------------#
   def update_events_balance
-    update_column :event_expences_sum, (events.map(&:event_due_price).sum) #expences for events
+    update_column :event_expences_sum, (events.map(&:event_due_price).sum)
     update_column :balance, (transactions_sum - event_expences_sum)
   end
 
   def update_transactions_sum
-    update_column :transactions_sum, (transactions.map(&:amount).sum) #transactions
+    update_column :transactions_sum, (transactions.map(&:amount).sum)
     update_column :balance, (transactions_sum - event_expences_sum)
   end
   #-----------------------scopes-------------------#

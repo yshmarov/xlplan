@@ -39,7 +39,7 @@
         %th= sort_link @ransack_members, :online_booking
         %th= model_class.human_attribute_name(:skills)
         %th= sort_link @ransack_members, :jobs_count
-        %th= sort_link @ransack_members, :jobs_due_price_sum
+        %th= sort_link @ransack_members, :event_earnings_sum
         %th= sort_link @ransack_members, :transactions_sum
         %th= sort_link @ransack_members, :balance
         %th
@@ -75,7 +75,7 @@
                     = link_to skill.service_category, members_path(members_search: {skills_service_category_id_eq: skill.service_category.id}), class: 'text-white'
           /  - if policy(member).show_money?
           %td= member.jobs_count
-          %td= member.jobs_due_price_sum_cents
+          %td= member.event_earnings_sum_cents
           %td= member.transactions_sum_cents
           %td= member.balance_cents
           %td

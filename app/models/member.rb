@@ -40,7 +40,7 @@ class Member < ApplicationRecord
   has_many :service_categories, through: :skills
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
-  monetize :jobs_due_price_sum, as: :jobs_due_price_sum_cents
+  monetize :event_earnings_sum, as: :event_earnings_sum_cents
   monetize :transactions_sum, as: :transactions_sum_cents
   #-----------------------callbacks-------------------#
   after_create do
@@ -60,13 +60,13 @@ class Member < ApplicationRecord
   end
 
   def update_events_balance
-    update_column :jobs_due_price_sum, (jobs.map(&:member_due_price).sum) #earnings for events
-    update_column :balance, (transactions_sum + jobs_due_price_sum)
+    update_column :event_earnings_sum, (jobs.map(&:member_due_price).sum)
+    update_column :balance, (transactions_sum + event_earnings_sum)
   end
 
   def update_transactions_sum
-    update_column :transactions_sum, (transactions.map(&:amount).sum) #transactions
-    update_column :balance, (transactions_sum + jobs_due_price_sum)
+    update_column :transactions_sum, (transactions.map(&:amount).sum)
+    update_column :balance, (transactions_sum + event_earnings_sum)
   end
   #-----------------------scopes-------------------#
   scope :active, -> { where(active: true) }
