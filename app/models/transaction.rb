@@ -27,11 +27,11 @@ class Transaction < ApplicationRecord
     slug
   end
   #-----------------------callbacks-------------------#
-  after_save :update_payable_transaction_balance
-  after_destroy :update_payable_transaction_balance
-  def update_payable_transaction_balance
+  after_save :update_payable_transactions_sum
+  after_destroy :update_payable_transactions_sum
+  def update_payable_transactions_sum
     if payable.present?
-      payable.update_transaction_balance
+      payable.update_transactions_sum
     end
   end
 end

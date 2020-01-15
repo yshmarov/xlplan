@@ -48,7 +48,7 @@ class Client < ApplicationRecord
     update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end
 
-  def update_transaction_balance
+  def update_transactions_sum
     update_column :payments_amount_sum, (transactions.map(&:amount).sum) #transactions
     update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end

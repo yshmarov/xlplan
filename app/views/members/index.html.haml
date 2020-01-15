@@ -40,7 +40,7 @@
         %th= model_class.human_attribute_name(:skills)
         %th= sort_link @ransack_members, :jobs_count
         %th= sort_link @ransack_members, :jobs_due_price_sum
-        %th= sort_link @ransack_members, :expences_amount_sum
+        %th= sort_link @ransack_members, :transactions_sum
         %th= sort_link @ransack_members, :balance
         %th
     %tbody
@@ -76,7 +76,7 @@
           /  - if policy(member).show_money?
           %td= member.jobs_count
           %td= member.jobs_due_price_sum_cents
-          %td= member.expences_amount_sum_cents
+          %td= member.transactions_sum_cents
           %td= member.balance_cents
           %td
             /////////////////////user account/////////////////////

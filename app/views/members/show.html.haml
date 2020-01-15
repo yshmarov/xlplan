@@ -69,8 +69,8 @@
           (#{@member.jobs_count})
           .row
           .fa.fa-hand-holding-usd
-          %b= model_class.human_attribute_name(:expences_amount_sum) + ':'
-          = number_to_currency(@member.expences_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          %b= model_class.human_attribute_name(:transactions_sum) + ':'
+          = number_to_currency(@member.transactions_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.expences_count})
           .row
           .fa.fa-balance-scale

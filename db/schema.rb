@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_090900) do
+ActiveRecord::Schema.define(version: 2020_01_15_093134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -266,7 +266,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_090900) do
     t.string "slug"
     t.string "time_zone", default: "UTC"
     t.integer "jobs_due_price_sum", default: 0, null: false
-    t.integer "expences_amount_sum", default: 0, null: false
+    t.integer "transactions_sum", default: 0, null: false
     t.integer "expences_count", default: 0, null: false
     t.boolean "online_booking", default: true
     t.boolean "active", default: true
