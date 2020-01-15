@@ -48,7 +48,7 @@
         %th= sort_link @ransack_clients, :address
         %th= sort_link @ransack_clients, :lead_source
         %th= sort_link @ransack_clients, :events_count
-        %th= sort_link @ransack_clients, :jobs_amount_sum
+        %th= sort_link @ransack_clients, :event_expences_sum
         %th= sort_link @ransack_clients, :transactions_count
         %th= sort_link @ransack_clients, :transactions_sum
         %th= sort_link @ransack_clients, :balance
@@ -95,7 +95,7 @@
             %small= client.address_line
           %td= client.lead_source
           %td= client.events_count
-          %td= client.jobs_amount_sum_cents
+          %td= client.event_expences_sum_cents
           %td= client.transactions_count
           %td= client.transactions_sum_cents
           %td= client.balance_cents

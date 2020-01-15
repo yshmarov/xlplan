@@ -40,17 +40,17 @@ class Client < ApplicationRecord
   has_many :tags, through: :client_tags
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
-  monetize :jobs_amount_sum, as: :jobs_amount_sum_cents
+  monetize :event_expences_sum, as: :event_expences_sum_cents
   monetize :transactions_sum, as: :transactions_sum_cents
   #-----------------------callbacks-------------------#
   def update_events_balance
-    update_column :jobs_amount_sum, (events.map(&:event_due_price).sum) #expences for events
-    update_column :balance, (transactions_sum - jobs_amount_sum)
+    update_column :event_expences_sum, (events.map(&:event_due_price).sum) #expences for events
+    update_column :balance, (transactions_sum - event_expences_sum)
   end
 
   def update_transactions_sum
     update_column :transactions_sum, (transactions.map(&:amount).sum) #transactions
-    update_column :balance, (transactions_sum - jobs_amount_sum)
+    update_column :balance, (transactions_sum - event_expences_sum)
   end
   #-----------------------scopes-------------------#
   scope :debtors, -> { where("balance < ?", 0) }
@@ -82,7 +82,7 @@ class Client < ApplicationRecord
   end
   def average_confirmed_check
     if events_count != 0
-      jobs_amount_sum/events_count/100.to_d
+      event_expences_sum/events_count/100.to_d
     end
   end
 end

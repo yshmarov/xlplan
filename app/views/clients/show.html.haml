@@ -110,8 +110,8 @@
 
         %hr
         .fa.fa-calendar-check
-        %b= model_class.human_attribute_name(:jobs_amount_sum) + ':'
-        = number_to_currency(@client.jobs_amount_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+        %b= model_class.human_attribute_name(:event_expences_sum) + ':'
+        = number_to_currency(@client.event_expences_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         (#{@client.events_count})
         .row
         .fa.fa-hand-holding-usd

@@ -989,7 +989,7 @@ ru:
         personal_data_consent: "Согласие на обработку персональных данных"
         event_created_notifications: "Согласие на email о предстоящем визите"
         marketing_notifications: "Согласие на маркетинговые рассылки"
-        jobs_amount_sum: "Цена Работ"
+        event_expences_sum: "Цена Работ"
         transactions_sum: "Сумма Оплат"
         lead_source: "Источник"
         lead_sources:
