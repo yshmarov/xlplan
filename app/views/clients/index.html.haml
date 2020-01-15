@@ -50,7 +50,7 @@
         %th= sort_link @ransack_clients, :events_count
         %th= sort_link @ransack_clients, :jobs_amount_sum
         %th= sort_link @ransack_clients, :transactions_count
-        %th= sort_link @ransack_clients, :payments_amount_sum
+        %th= sort_link @ransack_clients, :transactions_sum
         %th= sort_link @ransack_clients, :balance
         %th
           .fa.fa-comment-alt
@@ -97,7 +97,7 @@
           %td= client.events_count
           %td= client.jobs_amount_sum_cents
           %td= client.transactions_count
-          %td= client.payments_amount_sum_cents
+          %td= client.transactions_sum_cents
           %td= client.balance_cents
           %td= client.comments.count
           %td= l(client.created_at, format: "%a %d/%b/%Y %H:%M")

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_093134) do
+ActiveRecord::Schema.define(version: 2020_01_15_093913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_093134) do
     t.integer "transactions_count", default: 0, null: false
     t.integer "events_count", default: 0, null: false
     t.string "slug"
-    t.integer "payments_amount_sum", default: 0, null: false
+    t.integer "transactions_sum", default: 0, null: false
     t.integer "jobs_amount_sum", default: 0, null: false
     t.boolean "personal_data_consent", default: true
     t.boolean "event_created_notifications", default: true

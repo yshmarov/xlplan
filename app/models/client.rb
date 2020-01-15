@@ -41,16 +41,16 @@ class Client < ApplicationRecord
   #-----------------------money gem-------------------#
   monetize :balance, as: :balance_cents
   monetize :jobs_amount_sum, as: :jobs_amount_sum_cents
-  monetize :payments_amount_sum, as: :payments_amount_sum_cents
+  monetize :transactions_sum, as: :transactions_sum_cents
   #-----------------------callbacks-------------------#
   def update_events_balance
     update_column :jobs_amount_sum, (events.map(&:event_due_price).sum) #expences for events
-    update_column :balance, (payments_amount_sum - jobs_amount_sum)
+    update_column :balance, (transactions_sum - jobs_amount_sum)
   end
 
   def update_transactions_sum
-    update_column :payments_amount_sum, (transactions.map(&:amount).sum) #transactions
-    update_column :balance, (payments_amount_sum - jobs_amount_sum)
+    update_column :transactions_sum, (transactions.map(&:amount).sum) #transactions
+    update_column :balance, (transactions_sum - jobs_amount_sum)
   end
   #-----------------------scopes-------------------#
   scope :debtors, -> { where("balance < ?", 0) }
