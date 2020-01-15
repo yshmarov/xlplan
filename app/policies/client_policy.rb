@@ -30,6 +30,6 @@ class ClientPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @record.events.none? && admin_or_manager
+    @record.events.none? && admin_or_manager && @record.leads.none? && @record.transactions.none?
   end
 end

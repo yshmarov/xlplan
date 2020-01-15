@@ -71,7 +71,7 @@ class MembersController < ApplicationController
     authorize @member
     @member.destroy
     if @member.errors.present?
-      redirect_to members_url, alert: 'Member has associated jobs. Can not delete.'
+      redirect_to @member, alert: 'Member has associated jobs. Can not delete.'
     else
       redirect_to members_url, notice: 'Member was successfully destroyed.'
     end

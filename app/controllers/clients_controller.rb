@@ -130,7 +130,7 @@ class ClientsController < ApplicationController
     authorize @client
     @client.destroy
     if @client.errors.present?
-      redirect_to clients_url, alert: 'Client has associated jobs. Can not delete.'
+      redirect_to @client, alert: 'Client has associations. Can not delete.'
     else
       redirect_to clients_url, notice: 'Client was successfully destroyed.'
     end

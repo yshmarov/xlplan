@@ -24,25 +24,6 @@
           %del
             = t('.new_member')
         %hr
-      /CREATE LOCATION
-      - if Tenant.current_tenant.can_create_locations?
-        - unless Location.any?
-          %span.badge.badge-pill.badge-danger -
-          = link_to t('.new_location'), new_location_path
-        - else
-          %span.badge.badge-pill.badge-success +
-          %del
-            = t('.new_location')
-        %hr
-      /CREATE SERVICE CATEGORY
-      - unless ServiceCategory.any?
-        %span.badge.badge-pill.badge-danger -
-        = link_to t('.new_service_category'), new_service_category_path
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.new_service_category')
-      %hr
       /CREATE SERVICE
       - unless Service.any?
         %span.badge.badge-pill.badge-danger -
