@@ -15,8 +15,8 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.string :event_created_notifications, :boolean, default: true
       t.string :marketing_notifications, :boolean, default: true
 
-      t.integer :payments_amount_sum, default: 0, null: false
-      t.integer :jobs_amount_sum, default: 0, null: false
+      t.integer :transactions_sum, default: 0, null: false
+      t.integer :event_expences_sum, default: 0, null: false
       t.integer :balance, default: 0, null: false
 
       t.integer :comments_count, :integer, default: 0, null: false

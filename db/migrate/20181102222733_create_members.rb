@@ -15,9 +15,9 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.boolean :active, default: true
       t.boolean :online_booking, default: true
       t.integer :balance, default: 0, null: false
-      t.integer :expences_amount_sum, default: 0, null: false
-      t.integer :jobs_due_price_sum, default: 0, null: false
-      t.integer :expences_count, :integer, default: 0, null: false
+      t.integer :transactions_sum, default: 0, null: false
+      t.integer :event_earnings_sum, default: 0, null: false
+      t.integer :transactions_count, :integer, default: 0, null: false
       t.integer :jobs_count, :integer, default: 0, null: false
 
       t.belongs_to :location, foreign_key: true
