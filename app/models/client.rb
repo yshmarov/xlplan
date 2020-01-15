@@ -2,8 +2,6 @@ class Client < ApplicationRecord
   include Personable
   #-----------------------gem milia-------------------#
   acts_as_tenant
-  #-----------------------callbacks-------------------#
-  after_touch :update_payments_balance
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -11,17 +9,13 @@ class Client < ApplicationRecord
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged
-  #-----------------------relationships-------------------#
-  has_one_attached :avatar
-  has_many :leads, dependent: :restrict_with_error
-  has_many :events, dependent: :restrict_with_error
-  has_many :jobs, through: :events
-  has_many :services, through: :jobs
-  has_many :comments, as: :commentable
-  has_many :transactions, as: :payable, dependent: :restrict_with_error
-  has_one :contact, inverse_of: :client, dependent: :nullify
-  has_many :client_tags, inverse_of: :client, dependent: :destroy
-  has_many :tags, through: :client_tags
+  #-----------------------serialization-------------------#
+  serialize :address
+  def address_line
+    if address.present?
+      [address[:country], address[:city], address[:street], address[:zip]].join(', ')
+    end
+  end
   #-----------------------validation-------------------#
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { maximum: 144 }
@@ -29,12 +23,34 @@ class Client < ApplicationRecord
   validates :slug, uniqueness: { case_sensitive: false }
   validates :gender, inclusion: %w(male female undisclosed)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
-  #-----------------------serialization-------------------#
-  serialize :address
-  def address_line
-    if address.present?
-      [address[:country], address[:city], address[:street], address[:zip]].join(', ')
-    end
+  validates :email, :phone_number, length: { maximum: 255 }
+
+
+  #-----------------------relationships-------------------#
+  has_one_attached :avatar
+  has_many :transactions, as: :payable, dependent: :restrict_with_error
+  has_many :leads, dependent: :restrict_with_error
+
+  has_many :events, dependent: :restrict_with_error
+  has_many :jobs, through: :events
+  has_many :services, through: :jobs
+  has_many :comments, as: :commentable
+  has_one :contact, inverse_of: :client, dependent: :nullify
+  has_many :client_tags, inverse_of: :client, dependent: :destroy
+  has_many :tags, through: :client_tags
+  #-----------------------money gem-------------------#
+  monetize :balance, as: :balance_cents
+  monetize :jobs_amount_sum, as: :jobs_amount_sum_cents
+  monetize :payments_amount_sum, as: :payments_amount_sum_cents
+  #-----------------------callbacks-------------------#
+  def update_events_balance
+    update_column :jobs_amount_sum, (events.map(&:event_due_price).sum) #expences for events
+    update_column :balance, (payments_amount_sum - jobs_amount_sum)
+  end
+
+  def update_transaction_balance
+    update_column :payments_amount_sum, (transactions.map(&:amount).sum) #transactions
+    update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end
   #-----------------------scopes-------------------#
   scope :debtors, -> { where("balance < ?", 0) }
@@ -43,10 +59,6 @@ class Client < ApplicationRecord
   scope :no_events, -> { left_outer_joins(:events).where(events: { id: nil }) }
   scope :untagged, -> { left_outer_joins(:client_tags).where(client_tags: { id: nil }) }
   #scope :no_future_events, -> {joins(:events).where.not('events.starts_at >=?', Time.zone.now).distinct }
-  #-----------------------money gem-------------------#
-  monetize :balance, as: :balance_cents
-  monetize :payments_amount_sum, as: :payments_amount_sum_cents
-  monetize :jobs_amount_sum, as: :jobs_amount_sum_cents
   #-----------------------lead_source options--------------------------------#
   SOURCES = [:direct, :online_booking, :referral, :website, :instagram, :facebook, :viber, :telegram, :whatsapp, :import, :other]
   def self.lead_sources
@@ -72,17 +84,5 @@ class Client < ApplicationRecord
     if events_count != 0
       jobs_amount_sum/events_count/100.to_d
     end
-  end
-  #-----------------------callbacks details-------------------#
-  #private
-  #protected
-  def update_events_balance
-    update_column :jobs_amount_sum, (events.map(&:event_due_price).sum)
-    update_column :balance, (payments_amount_sum - jobs_amount_sum)
-  end
-
-  def update_payments_balance
-    update_column :payments_amount_sum, (transactions.map(&:amount).sum)
-    update_column :balance, (payments_amount_sum - jobs_amount_sum)
   end
 end

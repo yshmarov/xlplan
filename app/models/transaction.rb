@@ -11,11 +11,6 @@ class Transaction < ApplicationRecord
   validates :slug, uniqueness: { case_sensitive: false }
   #-----------------------gem money-------------------#
   monetize :amount, as: :amount_cents
-  #-----------------------category options--------------------------------#
-  CATEGORIES = [:client_balance, :expence_salary, :expence_rent, :expence_other, :from_acc, :to_acc]
-  def self.categories
-    CATEGORIES.map {|category| [I18n.t(category, scope: [:activerecord, :attributes, :transaction, :categories]).capitalize, category]}
-  end
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   tracked owner: Proc.new{ |controller, model| controller.current_user }
@@ -31,10 +26,12 @@ class Transaction < ApplicationRecord
   def to_s
     slug
   end
-
-  after_save :update_client_payments_balance
-  after_destroy :update_client_payments_balance
-  def update_client_payments_balance
-    payable.update_payments_balance
+  #-----------------------callbacks-------------------#
+  after_save :update_payable_transaction_balance
+  after_destroy :update_payable_transaction_balance
+  def update_payable_transaction_balance
+    if payable.present?
+      payable.update_transaction_balance
+    end
   end
 end

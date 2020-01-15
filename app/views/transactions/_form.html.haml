@@ -14,7 +14,7 @@
 
     /= f.input :amount_cents, input_html: { value: '', autocomplete: 'off' }, placeholder: "0"
     = f.input :amount_cents, input_html: { autocomplete: 'off' }, placeholder: "0"
-    = f.input :category, collection: Transaction.categories, as: :radio_buttons
+    = f.input :category
     = f.association :cash_account, as: :radio_buttons, label_method: :full_name
   %hr
   .form-actions

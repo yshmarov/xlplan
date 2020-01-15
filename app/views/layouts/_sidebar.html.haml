@@ -25,7 +25,7 @@
     %ul.navbar-nav.side-nav
       /TENANT
       %li.nav-item
-        = link_to root_path, class: 'nav-link' do
+        = link_to calendar_member_path(id: current_user.member.id), class: "nav-link" do 
           .ml-1
             = @org_name
             = plan_label(Tenant.current_tenant.plan)
