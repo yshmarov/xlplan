@@ -25,9 +25,6 @@
         = render 'layouts/messages'
         - unless current_user.confirmed_at
           = render 'layouts/not_confirmed'
-        - if Tenant.current_tenant.plan == "demo"
-          - unless Tenant.current_tenant.onboarding_percent == 100
-            = render 'layouts/getting_started'
         /- if Tenant.current_tenant.plan = "demo" && (Tenant.current_tenant.created_at+7.days) < Time.now
         /X demo days left. Order system 
         = yield

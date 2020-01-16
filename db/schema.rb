@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_101258) do
+ActiveRecord::Schema.define(version: 2020_01_16_080340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -315,7 +315,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_101258) do
     t.bigint "tenant_id"
     t.bigint "service_category_id"
     t.string "name", limit: 144, null: false
-    t.string "description", limit: 144
+    t.string "description"
     t.integer "duration", null: false
     t.integer "client_price", default: 0, null: false
     t.integer "member_percent", default: 0, null: false

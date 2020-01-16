@@ -1,6 +1,0 @@
-= link_to start_path, class: "btn btn-sm btn-warning btn-block" do
-  .fa.fa-rocket
-  =t ('sidebar.start')
-  .progress
-    .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{Tenant.current_tenant.onboarding_percent}", :role => "progressbar", :style => "width: #{Tenant.current_tenant.onboarding_percent}%;"} #{Tenant.current_tenant.onboarding_percent}%
-%p

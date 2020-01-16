@@ -6,11 +6,12 @@
       .container
         .card
           .card-header
-            .fa.fa-dollar-sign
+            .fa.fa-exchange-alt
             =t '.title', :default => model_class.model_name.human.titleize
             .float-right
-              = link_to "", transaction_path(@transaction, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-              = link_to '', @transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@transaction).destroy?
+              .btn-group
+                = link_to "", transaction_path(@transaction, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
+                = link_to '', @transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@transaction).destroy?
           .card-body
             %b= model_class.human_attribute_name(:id)
             = link_to @transaction.slug, transaction_path(@transaction)

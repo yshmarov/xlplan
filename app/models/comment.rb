@@ -7,6 +7,6 @@ class Comment < ApplicationRecord
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
 
   belongs_to :user
-  belongs_to :commentable, polymorphic: true, counter_cache: true
+  belongs_to :commentable, polymorphic: true, counter_cache: :comments_count
   validates :content, presence: true
 end

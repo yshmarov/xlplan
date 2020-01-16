@@ -8,7 +8,10 @@ Tenant.find_each do |tenant|
   Transaction.update_all category: "client_balance"
 end
 
-  CashAccount.public_activity_off
+Tenant.set_current_tenant(2)
+Service.public_activity_off
+ServiceCategory.public_activity_off
+
   CashAccount.create(name: "Наличные")
   CashAccount.create(name: "Безнал")
 

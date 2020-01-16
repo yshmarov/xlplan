@@ -24,7 +24,7 @@
         = render 'events/job_fields', f: job
       .links
         = link_to_add_association t('.add_service'), f, :jobs, class: 'btn btn-primary', :partial => 'events/job_fields'
-    = f.input :notes, :input_html => {:rows => 5}
+    = f.input :notes, :input_html => {:rows => 3}
 
     = f.file_field :files, multiple: true
     - if @event.files.any?

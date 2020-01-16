@@ -99,6 +99,12 @@
           %td= client.transactions_sum_cents
           %td= client.balance_cents
           %td= client.comments.count
+          /%td{:style => "word-wrap: break-word;min-width: 100%;max-width: 150px;"}
+          /  - if client.comments.any?
+          /    = client.comments.first.content
+          /    - if client.comments.size > 1
+          /      = link_to "+ #{client.comments.count - 1} comments", client_path(client)          
+          /    /= pluralize(client.comments.count - 1, 'comment')
           %td= l(client.created_at, format: "%a %d/%b/%Y %H:%M")
           /with AJAX
           /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
