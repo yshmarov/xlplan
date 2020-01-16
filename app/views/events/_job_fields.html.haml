@@ -15,7 +15,7 @@
 
 .nested-fields
   .card.border.border-primary.rounded
-    .card-body
+    .card-header
       = f.label :service_id
       = f.error :service_id, class: 'text-danger'
       = f.select :service_id, @services.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'

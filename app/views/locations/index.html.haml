@@ -18,11 +18,10 @@
       %tr
         %th
         %th= model_class.human_attribute_name(:name)
+        %th= model_class.human_attribute_name(:workplaces)
         %th= model_class.human_attribute_name(:contacts)
-        %th= model_class.human_attribute_name(:address)
         %th= model_class.human_attribute_name(:active)
         %th= model_class.human_attribute_name(:online_booking)
-        %th= model_class.human_attribute_name(:workplaces)
     %tbody
       - @locations.each do |location|
         %tr
@@ -32,7 +31,20 @@
               = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
           %td= location.name
           %td
+            - location.workplaces.each do |workplace|
+              .row
+              = workplace.name
+              .float-right
+                .far.fa-calendar-alt
+                = workplace.events_count
+                - if workplace.events_count.zero?
+                  = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
+          %td
             .btn-group-vertical
+              - if location.address[:city].present?
+                .btn.btn-dark.btn-sm
+                  .fa.fa-map-marker-alt.mr.mr-2
+                  %small= location.address_line
               - if location.phone_number.present?
                 = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm" do
                   .fa.fa-phone
@@ -54,17 +66,6 @@
                 = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm" do
                   .fa.fa-envelope
                   = location.email
-          %td
-            %small= location.address_line
           %td= active_label(location.active)
           %td= active_label(location.online_booking)
-          %td
-            - location.workplaces.each do |workplace|
-              .row
-              = workplace.name
-              .float-right
-                .far.fa-calendar-alt
-                = workplace.events_count
-                - if workplace.events_count.zero?
-                  = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
 %br

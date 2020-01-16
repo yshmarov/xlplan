@@ -2,20 +2,25 @@
 .card
   .card-header
     .row
-      .col-lg-6
+      .col-lg-3
         %h5
           .fa.fa-hand-paper
           %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
           .badge.badge-info
             = @services.count
       .col-lg-6
+        = search_form_for @q, url: services_path do |f|
+          .input-group
+            .mr-md-2
+            = f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
+            = f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
+            /= f.submit
+            %span.input-group-append
+              %button.btn.btn-primary.btn-sm{:type => "submit"}
+                %span.fa.fa-search{"aria-hidden" => "true"}
+      .col-lg-3
         .float-right
           .form-inline
-            /= search_form_for @q, url: services_path do |f|
-            /  %span.input-group-append
-            /    %button.btn.btn-primary.btn-sm{:type => "submit"}
-            /      %span.fa.fa-search{"aria-hidden" => "true"}
-            /  = f.submit
             - if params.has_key?(:q)
               = link_to '', services_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
             .mr-1
@@ -37,12 +42,14 @@
         %th= sort_link @q, :online_booking
         %th= sort_link @q, :updated_at
         %th= sort_link @q, :created_at
-    = search_form_for @q, url: services_path do |f|
-      %thead
-        %tr
-          %th= f.submit
-          %th= f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
-          %th= f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
+    /%thead
+    /  = search_form_for @q, url: services_path do |f|
+    /    %tr
+    /      %td= f.submit
+    /      %td= f.text_field :name_cont, class: "form-control-sm", placeholder: "#{model_class.human_attribute_name(:name)}", :autocomplete => :off
+    /      %td= f.select :service_category_id_eq, options_from_collection_for_select(ServiceCategory.all, :id, :name, @q.service_category_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
+    /      %td
+    /        %button.btn.btn-outline-primary{:onclick => "location.href='#'", :type => "button"} Edit
     %tbody
       - @services.each do |service|
         %tr
@@ -51,7 +58,7 @@
               = link_to '', edit_service_path(service), class: "btn btn-warning fa fa-edit btn-sm" if policy(service).edit?
               = link_to '', service, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service).destroy?
           %td= link_to service.name, service_path(service)
-          %td= link_to service.service_category, services_path(q: {service_category_id_eq: service.service_category_id})
+          %td= service.service_category
           %td= service.duration
           %td= service.client_price_cents
           %td= number_to_percentage(service.member_percent, precision: 0)

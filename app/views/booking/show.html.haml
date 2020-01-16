@@ -63,7 +63,6 @@
                     .fa.fa-phone
                     = location.phone_number
                 - if location.whatsapp.present?
-                  /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
                   = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm", :target => "_blank" do
                     .fab.fa-whatsapp
                     = location.whatsapp
