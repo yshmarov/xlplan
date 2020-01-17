@@ -58,12 +58,11 @@ function eventCalendar() {
     header: {
         left: 'prev,today,next',
         center: 'title',
-        right: 'list,timelineDay,agendaDay,agendaWeek,month'
+        right: 'list,agendaDay,agendaWeek,month'
     },
     buttonText: {
       today: '⬤',
-      list:     '1≡',
-      timelineDay:     '1⇉',
+      list:     '1⇉',
       agendaDay:     '1⇊',
       agendaWeek:     '7',
       month:     '30'
@@ -72,20 +71,7 @@ function eventCalendar() {
     titleFormat: 'ddd D MMM',
     eventBackgroundColor: 'purple',
     weekNumbers: true,
-    //defaultView: 'timelineDay',
-    //defaultView: $(window).width() < 765 ? 'agendaWeek':'month',
-
-    // if small window & 1 member = agendaDay
-    // if small window & more members = timelineDay
-    // if big window & 1 member = agendaDay
-    // if big window & more members = agendaDay
-    defaultView: (function () 
-    { 
-      if ($(window).width() <= 1080 && app.vars.memberquantity > 1) 
-          { return defaultView = 'timelineDay'; } 
-      else { return defaultView = 'agendaDay'; } 
-    }
-    )(),
+    defaultView: 'agendaDay',
     nowIndicator: true,
     scrollTime: TimeNow,
     allDaySlot: false,
@@ -125,13 +111,3 @@ function clearCalendar() {
 
 $(document).on('turbolinks:load', eventCalendar);
 $(document).on('turbolinks:before-cache', clearCalendar)
-
-$(window).resize(function() {
-  if(app.vars.memberquantity > 1){
-    if(window.innerWidth < 1080){
-      $('#event_calendar').fullCalendar('changeView', 'timelineDay');
-    } else {
-      $('#event_calendar').fullCalendar('changeView', 'agendaDay');
-    }
-  }
-});
