@@ -8,50 +8,21 @@
         .badge.badge-info
           = @transactions.count
       %h5.float-right
-        - unless params.has_key?(:q)
-          %button.btn.btn-sm.btn-secondary{"data-target" => "#accordion", "data-toggle" => "collapse", :type => "button"}
-            .fa.fa-search
-            .fa.fa-chevron-down
-        - else
+        - if params.has_key?(:q)
           = link_to "", transactions_path, class: "btn btn-secondary fa fa-redo", title: 'Refresh', 'data-toggle' => 'tooltip', 'data-placement' => 'top'
-        - if policy(Transaction).create?
-          = link_to t('.new', :default => t("helpers.links.new")), new_transaction_path, class: 'btn btn-sm btn-primary'
-    - unless params.has_key?(:q)
-      #accordion.collapse
-        .card-header
-          .row
-            .col-md-2
-              Date
-              = f.date_field :created_at_gteq, class: 'form-control'
-              = f.hidden_field :created_at_datelteq
-            .col-md-2
-              = model_class.human_attribute_name(:id)
-              = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block'
-            .col-md-2
-              = model_class.human_attribute_name(:cash_account)
-              = f.select :cash_account_name_cont, CashAccount.all.map{|c| [c.name, c.name]}, {include_blank: CashAccount.all.length > 1}, class: 'selectize'
-            .col-md-2
-              .row
-              = f.submit
-    - else
-      #accordion.collapse.show
-        .card-header
-          .row
-            .col-md-2
-              Date
-              = f.date_field :created_at_gteq, class: 'form-control'
-              = f.hidden_field :created_at_datelteq
-            .col-md-2
-              = model_class.human_attribute_name(:id)
-              = f.text_field :slug_cont, class: "form-control", placeholder: "#", style: 'float: left; width: 100%; display: block'
-            .col-md-2
-              = model_class.human_attribute_name(:cash_account)
-              = f.select :cash_account_name_cont, CashAccount.all.map{|c| [c.name, c.name]}, {include_blank: CashAccount.all.length > 1}, class: 'selectize'
-            .col-md-2
-              .row
-              = f.submit
+        = link_to t('.new', :default => t("helpers.links.new")), new_transaction_path, class: 'btn btn-sm btn-primary'
+    .card-footer
+      .row
+        .col-md-2
+          = f.text_field :slug_cont, class: "form-control", placeholder: model_class.human_attribute_name(:id), style: 'float: left; width: 100%; display: block'
+        .col-md-2
+          = f.select :cash_account_name_cont, CashAccount.all.map{|c| [c.name, c.name]}, {include_blank: CashAccount.all.length > 1}, class: 'selectize'
+        .col-md-2
+          = f.date_field :created_at_gteq, class: 'form-control'
+          = f.hidden_field :created_at_datelteq
+        .col-md-2
+          = f.submit
 = render 'transactions/index'
-%p
 .container.table-responsive
   = will_paginate @transactions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

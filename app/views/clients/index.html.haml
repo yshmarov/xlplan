@@ -108,7 +108,6 @@
           %td= l(client.created_at, format: "%a %d/%b/%Y %H:%M")
           /with AJAX
           /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
-%p
 .container.table-responsive
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

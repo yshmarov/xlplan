@@ -1,10 +1,8 @@
 .nested-fields
-  .card.border.border-primary.rounded
-    .card-header
-      .row
-        .col-9
-          = f.input :name, label: false, placeholder: t("locations.form.workplace")
-        .col-3
-          = link_to_remove_association f, class: 'btn btn-danger' do 
-            .fa.fa-trash
-  %p
+  %li.list-group-item
+    .row
+      .col-9
+        = f.input :name, label: false, placeholder: t("locations.form.workplace")
+      .col-3
+        = link_to_remove_association f, class: 'btn btn-danger' do 
+          .fa.fa-trash

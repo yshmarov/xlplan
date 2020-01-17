@@ -8,11 +8,13 @@
 
     = f.label :workplaces
     .workplaces
-      = f.simple_fields_for :workplaces do |workplace|
-        = render 'workplace_fields', f: workplace
+      %ul.list-group
+        = f.simple_fields_for :workplaces do |workplace|
+          = render 'workplace_fields', f: workplace
     .links
       = link_to_add_association t('.add_workplace'), f, :workplaces, class: 'btn btn-primary', :partial => 'locations/workplace_fields'
 
+    %p
     /= f.input :phone_number, hint: 'Country code & phone number: +XXXXXXXXXXXX'
     /= f.input :viber, hint: 'Country code & phone: +XXXXXXXXXXXX'
     /= f.input :whatsapp, hint: 'Country code & phone: XXXXXXXXXXXX'

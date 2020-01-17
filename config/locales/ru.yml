@@ -743,9 +743,8 @@ ru:
       no_show: "Клиент Не Явился"
       no_show_refunded: "Оплачиваемая Неявка"
     show:
-      #client_paid: "Создать оплату"
-      email_client: "Имейл клиенту"
-      email_members: "Email сотруднику"
+      email_client: "Email клиенту"
+      email_members: "Email сотрудникам"
       planned: "Запланирован"
       confirmed: "Состоялся"
       member_cancelled: "Сотрудник отменил"
