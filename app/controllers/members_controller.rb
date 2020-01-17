@@ -8,9 +8,8 @@ class MembersController < ApplicationController
   
   def calendar
     @members = Member.active.order('created_at ASC')
-    @jobs = @member.jobs.includes(:service, :event => [:client, :workplace])
-    @memberquantity = 1
     @locations = Location.all.includes(:workplaces)
+    @jobs = @member.jobs.includes(:service, :event => [:client, :workplace])
     render 'dashboard/calendar'
   end
 

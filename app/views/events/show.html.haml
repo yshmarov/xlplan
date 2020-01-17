@@ -1,83 +1,81 @@
 - model_class = Event
-.row
-  .container
-    .card{:style => "border-color:#{@event.status_color};"}
-      .card-header{:style => "border-color:#{@event.status_color};"}
-        .fa.fa-calendar-alt
-        =t '.title', :default => model_class.model_name.human.titleize
-        .float-right
-          .btn-group
-            = link_to '', event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-            = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).edit?
-            = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
-      .card-footer
-        - if policy(@event).edit?
-          .dropdown.show
-            %a#dropdownMenuLink.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-              = status_label(@event.status)
-            .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
-              .btn-group-vertical
-                = link_to t('events.show.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary' unless @event.planned?
-                = link_to t('events.show.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success' unless @event.confirmed?
-                = link_to t('events.show.no_show'), mark_no_show_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless @event.no_show?
-                = link_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless @event.member_cancelled?
-                = link_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless @event.client_cancelled?
-                = link_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2' unless @event.no_show_refunded?
-        - else
+.card{:style => "border-color:#{@event.status_color}; border-width: 3px;"}
+  .card-header{:style => "border-color:#{@event.status_color}; border-width: 3px;"}
+    .fa.fa-calendar-alt
+    =t '.title', :default => model_class.model_name.human.titleize
+    .float-right
+      .btn-group
+        = link_to '', event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
+        = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).edit?
+        = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
+  .card-footer
+    - if policy(@event).edit?
+      .dropdown.show
+        %a#dropdownMenuLink.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           = status_label(@event.status)
-      .card-footer
-        .far.fa-address-book
-        %b= model_class.human_attribute_name(:client_id) + ':'
-        = link_to @event.client, client_path(@event.client)
+        .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
+          .btn-group-vertical
+            = link_to t('events.show.planned'), mark_planned_event_path(@event), method: :patch, class: 'btn btn-sm btn-primary' unless @event.planned?
+            = link_to t('events.show.confirmed'), mark_confirmed_event_path(@event), method: :patch, class: 'btn btn-sm btn-success' unless @event.confirmed?
+            = link_to t('events.show.no_show'), mark_no_show_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless @event.no_show?
+            = link_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless @event.member_cancelled?
+            = link_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(@event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless @event.client_cancelled?
+            = link_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(@event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2' unless @event.no_show_refunded?
+    - else
+      = status_label(@event.status)
+    %b= model_class.human_attribute_name(:event_price_cents) + ':'
+    %b= number_to_currency(@event.event_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+    .row
+    %b
+      .form-inline
+        = model_class.human_attribute_name(:event_due_price) + ':'
+        .text-success.mr.ml-1
+          = number_to_currency(@event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+  .card-footer
+    .far.fa-address-book
+    %b= model_class.human_attribute_name(:client_id) + ':'
+    = link_to @event.client, client_path(@event.client)
+    .row
+    - if @event.client.phone_number.present? && policy(Client).show_phone?
+      = button_to "tel:#{@event.client.phone_number}", class: "button" do
+        .fa.fa-phone
+        #{number_to_phone(@event.client.phone_number)}
+      = button_to "viber://chat?number=#{@event.client.phone_number}" do
+        .fab.fa-viber
+        Viber
+      = button_to "https://api.whatsapp.com/send?phone=#{@event.client.phone_number_only_digits}&text=#{@event.sms_text}&source=&data=", :target => "_blank" do
+        .fab.fa-whatsapp
+        Whatsapp
+    - if @event.client.email.present?
+      = button_to send_email_to_client_event_path(@event), method: :patch do 
+        .far.fa-envelope
+        = t '.email_client'
+  .card-footer
+    .fa.fa-clock
+    %b= model_class.human_attribute_name(:time) + ':'
+    #{l(@event.starts_at, format: "%A %d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
+  .card-footer
+    .fa.fa-map-marker-alt
+    %b= model_class.human_attribute_name(:workplace) + ':'
+    = link_to @event.workplace, workplace_path(@event.workplace)
+  .card-footer
+    - if @event.users.distinct.pluck(:email).present?
+      = button_to send_email_to_members_event_path(@event), method: :patch do 
+        .far.fa-envelope
+        .fa.fa-user-tie
+        = t '.email_members'
+    %p
+    = render 'events/jobs_index'
+  - if @event.notes.present?
+    .card-footer
+      %b= model_class.human_attribute_name(:notes) + ':'
+      %small= simple_format(@event.notes)
+  - if @event.files.any?
+    .card-footer
+      .fa.fa-paperclip
+      = model_class.human_attribute_name(:files) + ':'
+      - @event.files.each do |file|
         .row
-        - if @event.client.phone_number.present? && policy(Client).show_phone?
-          = button_to "tel:#{@event.client.phone_number}", class: "button" do
-            .fa.fa-phone
-            #{number_to_phone(@event.client.phone_number)}
-          = button_to "viber://chat?number=#{@event.client.phone_number}" do
-            .fab.fa-viber
-            Viber
-          = button_to "https://api.whatsapp.com/send?phone=#{@event.client.phone_number_only_digits}&text=#{@event.sms_text}&source=&data=", :target => "_blank" do
-            .fab.fa-whatsapp
-            Whatsapp
-        - if @event.client.email.present?
-          = button_to send_email_to_client_event_path(@event), method: :patch do 
-            .far.fa-envelope
-            = t '.email_client'
-      .card-footer
-        .fa.fa-clock
-        %b= model_class.human_attribute_name(:time) + ':'
-        #{l(@event.starts_at, format: "%A %d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
-      .card-footer
-        .fa.fa-map-marker-alt
-        %b= model_class.human_attribute_name(:workplace) + ':'
-        = link_to @event.workplace, workplace_path(@event.workplace)
-      .card-footer
-        - if @event.users.distinct.pluck(:email).present?
-          = button_to send_email_to_members_event_path(@event), method: :patch do 
-            .far.fa-envelope
-            .fa.fa-user-tie
-            = t '.email_members'
-        %p
-        = render 'events/jobs_index'
-        %b= model_class.human_attribute_name(:event_price_cents) + ':'
-        %b= number_to_currency(@event.event_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-        .row
-        %b
-          .form-inline
-            = model_class.human_attribute_name(:event_due_price) + ':'
-            .text-success.mr.ml-1
-              = number_to_currency(@event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
-      - if @event.notes.present?
-        .card-footer
-          %b= model_class.human_attribute_name(:notes) + ':'
-          %small= simple_format(@event.notes)
-      - if @event.files.any?
-        .card-footer
-          .fa.fa-paperclip
-          = model_class.human_attribute_name(:files) + ':'
-          - @event.files.each do |file|
-            .row
-            = link_to file.filename, rails_blob_path(file, disposition: "file"), target: :_blank
+        = link_to file.filename, rails_blob_path(file, disposition: "file"), target: :_blank
 %br
 =  render 'dashboard/activity'

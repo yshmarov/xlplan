@@ -1,6 +1,6 @@
 - @events.each do |event|
-  .card
-    .card-header.bg-light
+  .card{:style => "border-color:#{event.status_color};"}
+    .card-header
       .row
         .col-md-2
           .text-center

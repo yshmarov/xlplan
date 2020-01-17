@@ -1,9 +1,11 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
-  %a.navbar-brand{:href => "/"}
-    /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
-    %i.far.fa-calendar-check
-    .badge.badge-default 
-      XLPLAN
+  /%a.navbar-brand{:href => "/"}
+  %a
+    = link_to calendar_member_path(id: current_user.member.id), class: 'navbar-brand' do
+      /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
+      %i.far.fa-calendar-check
+      .badge.badge-default 
+        XLPLAN
     - if Tenant.current_tenant.plan == "demo"
       - unless Tenant.current_tenant.onboarding_percent == 100
         = link_to start_path, class: "nav-item" do
@@ -23,12 +25,6 @@
             %button.btn.btn-primary.btn-sm{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
-      /TENANT
-      %li.nav-item
-        = link_to calendar_member_path(id: current_user.member.id), class: "nav-link" do 
-          .ml-1
-            = @org_name
-            = plan_label(Tenant.current_tenant.plan)
       /CALENDAR
       %li.nav-item
         = link_to calendar_member_path(id: current_user.member.id), class: "nav-link" do 
