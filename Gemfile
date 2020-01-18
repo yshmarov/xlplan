@@ -108,8 +108,13 @@ gem "aws-sdk-s3"                                                                
 gem "recaptcha"                                                                 #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
 #end
 
-gem 'wicked_pdf'                                                                #GENERATE PDF
-gem 'wkhtmltopdf-binary'                                                        #ALSO NEEDED TO GENERATE PDF
+gem 'wicked_pdf'                                                                #GENERATE PDF FOR ROR
+group :production do
+  gem 'wkhtmltopdf-heroku'                                                      #HTML TO PDF LIBRARY
+end
+group :development do
+  gem 'wkhtmltopdf-binary-edge'                                                 #HTML TO PDF LIBRARY
+end
 
 #gem "mini_magic"
 gem "icalendar"                                                                 #Send calendar events to other calendar appsgem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards
