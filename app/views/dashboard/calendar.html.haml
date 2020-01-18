@@ -1,3 +1,30 @@
+/= Job.all.group(:event_id, :member_id).each {|x| print x, " -- " }
+/@jobs = Job.includes(:service, :member, :event => [:client, :workplace]).group(:event_id, :member_id)
+/@events = Event.includes(:workplace, :client, :jobs => [:service, :member])
+/- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
+/- set_var 'events', @jobs.map{|e| {id: e.id, title: e.client.full_name.to_s + "/" + e.services.pluck(:name).to_s, resourceId: e.members.to_s, start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
+/- Job.all.group(:event_id, :member_id, :tenant_id).select("tenant_id,event_id,member_id,array_agg(id) as services").each do |x|
+/  .row
+/  Event
+/  = x.event.id
+/  Member
+/  = x.member.id
+/  Service
+/  = x.services
+
+// - task_groups = Job.all.group_by { |job| [job.event_id, job.member_id] }
+// - task_groups.each do |(event, member_id), services|
+// .row
+// event
+// = event.starts_at
+// member
+// = member_id
+// jobs
+// = services.pluck(:id).join(', ')
+// = services.pluck(:name).join(', ')
+
+
+
 - set_var 'locale', Tenant.current_tenant.locale
 - if controller_name == 'dashboard' && action_name == 'calendar'
   - set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
