@@ -1,38 +1,36 @@
 - model_class = Transaction
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th
-        /for nesting in clients/show
-        - if @q.present?
-          %th= sort_link @q, :id, model_class.human_attribute_name(:id)
-          %th= sort_link @q, :amount, model_class.human_attribute_name(:amount_cents)
-          %th= sort_link @q, :cash_account_name, model_class.human_attribute_name(:cash_account)
-          %th= sort_link @q, :type, model_class.human_attribute_name(:comment)
-          %th= sort_link @q, :payable_type, model_class.human_attribute_name(:payable_type)
-          %th= sort_link @q, :payable_id, model_class.human_attribute_name(:payable_id)
-          %th= sort_link @q, :created_at, model_class.human_attribute_name(:created_at)
-        - else
-          %th= model_class.human_attribute_name(:id)
-          %th= model_class.human_attribute_name(:amount_cents)
-          %th= model_class.human_attribute_name(:cash_account)
-          %th= model_class.human_attribute_name(:comment)
-          %th= model_class.human_attribute_name(:payable_type)
-          %th= model_class.human_attribute_name(:payable_id)
-          %th= model_class.human_attribute_name(:created_at)
-    - @transactions.each do |transaction|
-      %tbody
-        %tr
-          %td
-            .btn-group
-              = link_to "", transaction_path(transaction, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-              = link_to '', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(transaction).destroy?          
-          %td= link_to transaction.slug, transaction_path(transaction)
-          %td= transaction.amount_cents
-          %td= transaction.cash_account
-          %td= transaction.comment
-          %td= transaction.payable_type
-          %td
-            = link_to transaction.payable, polymorphic_url(transaction.payable) if transaction.payable.present?
-          %td= l(transaction.created_at, format: "%a %d/%b/%Y %H:%M")
+%thead
+  %tr
+    %th
+    /for nesting in clients/show
+    - if @q.present?
+      %th= sort_link @q, :id, model_class.human_attribute_name(:id)
+      %th= sort_link @q, :amount, model_class.human_attribute_name(:amount_cents)
+      %th= sort_link @q, :cash_account_name, model_class.human_attribute_name(:cash_account)
+      %th= sort_link @q, :type, model_class.human_attribute_name(:comment)
+      %th= sort_link @q, :payable_type, model_class.human_attribute_name(:payable_type)
+      %th= sort_link @q, :payable_id, model_class.human_attribute_name(:payable_id)
+      %th= sort_link @q, :created_at, model_class.human_attribute_name(:created_at)
+    - else
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:amount_cents)
+      %th= model_class.human_attribute_name(:cash_account)
+      %th= model_class.human_attribute_name(:comment)
+      %th= model_class.human_attribute_name(:payable_type)
+      %th= model_class.human_attribute_name(:payable_id)
+      %th= model_class.human_attribute_name(:created_at)
+- @transactions.each do |transaction|
+  %tbody
+    %tr
+      %td
+        .btn-group
+          = link_to "", transaction_path(transaction, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
+          = link_to '', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(transaction).destroy?          
+      %td= link_to transaction.slug, transaction_path(transaction)
+      %td= transaction.amount_cents
+      %td= transaction.cash_account
+      %td= transaction.comment
+      %td= transaction.payable_type
+      %td
+        = link_to transaction.payable, polymorphic_url(transaction.payable) if transaction.payable.present?
+      %td= l(transaction.created_at, format: "%a %d/%b/%Y %H:%M")

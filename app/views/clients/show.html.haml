@@ -182,7 +182,8 @@
       #zero.tab-pane.fade{"aria-labelledby" => "zero-tab", :role => "tabpanel"}
         = render "comments/index"
       #second.tab-pane.fade{"aria-labelledby" => "second-tab", :role => "tabpanel"}
-        = render 'transactions/index'
+        %table#table1
+          = render 'transactions/index'
       #fourth.tab-pane.fade{"aria-labelledby" => "fourth-tab", :role => "tabpanel"}
         = render 'leads/index'
       #third.tab-pane.fade{"aria-labelledby" => "third-tab", :role => "tabpanel"}

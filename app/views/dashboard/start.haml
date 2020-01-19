@@ -1,15 +1,7 @@
 .card
   .card-body
     %h5
-      /Personal data & time zone
-      - if current_user.member.first_name == "Super"
-        %span.badge.badge-pill.badge-warning -
-        = link_to t('.select_time_zone'), edit_member_path(current_user.member)
-      - else
-        %span.badge.badge-pill.badge-success +
-        %del
-          = t('.select_time_zone')
-      %hr
+      /General tenant settings
       %span.badge.badge-pill.badge-warning -
       = link_to t('.select_currency'), edit_tenant_path
       %hr
