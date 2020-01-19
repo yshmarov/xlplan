@@ -8,7 +8,6 @@
     end: event.ends_at, 
     url: event_path(event), 
     color: event.status_color}}
-  /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'members' && action_name == 'calendar'
   - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
   - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
@@ -18,27 +17,24 @@
     end: event.ends_at, 
     url: event_path(event), 
     color: event.status_color}}
-  /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'workplaces' && action_name == 'show'
   - set_var 'resources', [id: @workplace.id, title: @workplace.short_name.to_s]
-  - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
-    title: event.client.full_name.to_s + "// " + services.collect{|r| r.service.name}.join(", ").to_s, 
-    resourceId: event.workplace_id.to_s, 
-    start: event.starts_at, 
-    end: event.ends_at, 
-    url: event_path(event), 
-    color: event.status_color}}
-  /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+  - set_var 'events', @events.map{|e| {id: e.id, 
+    title: e.client.full_name.to_s + "/" + e.services.collect{|r| r.name}.join(", ").to_s, 
+    resourceId: e.workplace_id.to_s, 
+    start: e.starts_at, 
+    end: e.ends_at, 
+    url: event_path(e), 
+    color: e.status_color}}
 - elsif controller_name == 'locations' && action_name == 'show'
   - set_var 'resources', @location.workplaces.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
-  - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
-    title: event.client.full_name.to_s + "// " + services.collect{|r| r.service.name}.join(", ").to_s, 
-    resourceId: event.workplace_id.to_s, 
-    start: event.starts_at, 
-    end: event.ends_at, 
-    url: event_path(event), 
-    color: event.status_color}}
-  /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+  - set_var 'events', @events.map{|e| {id: e.id, 
+    title: e.client.full_name.to_s + "/" + e.services.collect{|r| r.name}.join(", ").to_s, 
+    resourceId: e.workplace_id.to_s, 
+    start: e.starts_at, 
+    end: e.ends_at, 
+    url: event_path(e), 
+    color: e.status_color}}
 
 .row
   .col-lg-9
