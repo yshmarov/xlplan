@@ -1,33 +1,7 @@
-/= Job.all.group(:event_id, :member_id).each {|x| print x, " -- " }
-/@jobs = Job.includes(:service, :member, :event => [:client, :workplace]).group(:event_id, :member_id)
-/@events = Event.includes(:workplace, :client, :jobs => [:service, :member])
-/- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: e.client.full_name.to_s + " (" + e.jobs.collect{|r| r.service.name}.join(",").to_s+")", start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
-/- set_var 'events', @jobs.map{|e| {id: e.id, title: e.client.full_name.to_s + "/" + e.services.pluck(:name).to_s, resourceId: e.members.to_s, start: e.starts_at, end: e.ends_at, url: event_path(e), color: e.status_color}}
-/- Job.all.group(:event_id, :member_id, :tenant_id).select("tenant_id,event_id,member_id,array_agg(id) as services").each do |x|
-/  .row
-/  Event
-/  = x.event.id
-/  Member
-/  = x.member.id
-/  Service
-/  = x.services
-
-/- task_groups = @jobs.group_by { |job| [job.event, job.member] }
-/- task_groups.each do |(event, member), services|
-/  .row
-/  event
-/  = event.slug
-/  member
-/  = member.last_name
-/  services
-/  = services.count
-/  = services.collect{|r| r.service.name}
-
 - set_var 'locale', Tenant.current_tenant.locale
 - if controller_name == 'dashboard' && action_name == 'calendar'
   - set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
-  - task_groups = @jobs.group_by { |job| [job.event, job.member] }
-  - set_var 'events', task_groups.map{|(event, member), services| { id: event.id, 
+  - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
     title: event.client.full_name.to_s + "// " + services.collect{|r| r.service.name}.join(", ").to_s, 
     resourceId: member.id.to_s, 
     start: event.starts_at, 
@@ -35,22 +9,36 @@
     url: event_path(event), 
     color: event.status_color}}
   /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
-  /- set_var 'events', @jobs.map{|e| { id: e.id, 
-  /  title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, 
-  /  resourceId: e.member_id.to_s, 
-  /  start: e.event.starts_at, 
-  /  end: e.event.ends_at, 
-  /  url: event_path(e.event), 
-  /  color: e.event.status_color}}
-- elsif controller_name == 'workplaces' && action_name == 'show'
-  - set_var 'resources', [id: @workplace.id, title: @workplace.short_name.to_s]
-  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'members' && action_name == 'calendar'
   - set_var 'resources', [id: @member.id, title: @member.short_name.to_s]
-  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+  - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
+    title: event.client.full_name.to_s + "// " + services.collect{|r| r.service.name}.join(", ").to_s, 
+    resourceId: member.id.to_s, 
+    start: event.starts_at, 
+    end: event.ends_at, 
+    url: event_path(event), 
+    color: event.status_color}}
+  /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+- elsif controller_name == 'workplaces' && action_name == 'show'
+  - set_var 'resources', [id: @workplace.id, title: @workplace.short_name.to_s]
+  - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
+    title: event.client.full_name.to_s + "// " + services.collect{|r| r.service.name}.join(", ").to_s, 
+    resourceId: event.workplace_id.to_s, 
+    start: event.starts_at, 
+    end: event.ends_at, 
+    url: event_path(event), 
+    color: event.status_color}}
+  /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 - elsif controller_name == 'locations' && action_name == 'show'
   - set_var 'resources', @location.workplaces.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
-  - set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
+  - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
+    title: event.client.full_name.to_s + "// " + services.collect{|r| r.service.name}.join(", ").to_s, 
+    resourceId: event.workplace_id.to_s, 
+    start: event.starts_at, 
+    end: event.ends_at, 
+    url: event_path(event), 
+    color: event.status_color}}
+  /- set_var 'events', @jobs.map{|e| {id: e.id, title: e.event.client.full_name.to_s + "/" + e.service.name.to_s, resourceId: e.event.workplace_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: e.event.status_color}}
 
 .row
   .col-lg-9

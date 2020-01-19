@@ -3,7 +3,7 @@ class WorkplacesController < ApplicationController
     @workplace = Workplace.friendly.find(params[:id])
     @members = Member.active.order('created_at ASC')
     @locations = Location.all.includes(:workplaces)
-    @jobs = @workplace.jobs.includes(:service, :member, :event => [:client])
+    @jobs = @workplace.jobs.includes(:service, :member, :event => [:client]).group_by { |job| [job.event, job.member] }
     render 'dashboard/calendar'
   end
 

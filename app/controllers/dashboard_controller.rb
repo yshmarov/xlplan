@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
   def calendar
     @members = Member.active.order('created_at ASC')
     @locations = Location.all.includes(:workplaces)
-    @jobs = Job.includes(:service, :member, :event => [:client, :workplace])
+    @jobs = Job.includes(:service, :member, :event => [:client, :workplace]).group_by { |job| [job.event, job.member] }
     render 'dashboard/calendar'
   end
 
