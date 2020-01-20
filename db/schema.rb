@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_080340) do
+ActiveRecord::Schema.define(version: 2020_01_20_114843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_080340) do
     t.boolean "event_created_notifications", default: true
     t.boolean "marketing_notifications", default: true
     t.string "lead_source", default: "direct"
+    t.string "code"
     t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end

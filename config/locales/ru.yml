@@ -973,6 +973,7 @@ ru:
         full_name: "имя"
         name: "имя"
         phone_number: "тел."
+        code: "Код"
         email: "email"
         date_of_birth: "дата рождения"
         address: "адрес"

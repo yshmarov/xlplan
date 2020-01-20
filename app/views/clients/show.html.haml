@@ -75,6 +75,9 @@
             = link_to "viber://chat?number=#{@client.phone_number}", class: "button" do
               .fab.fa-viber
         .row
+        %b= model_class.human_attribute_name(:code) + ':'
+        = @client.code
+        .row
         %b= model_class.human_attribute_name(:email) + ':'
         %a{:href => "mailto:#{@client.email}"}= @client.email
         .row
