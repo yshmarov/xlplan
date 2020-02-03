@@ -25,6 +25,11 @@
   @import 'scheduler.min';
   @import 'scroll_bar';
 
+/* sidebar %li active link_to */
+.active a{
+    background:  #6610f2 !important;
+}
+
 .fc-agendaDay-view .fc-today { background: white !important; }
 
 .gradient-purple {
@@ -97,7 +102,7 @@ input[type=radio] {
 }
 
 .navbar .side-nav > li > a:hover, .navbar .side-nav > li > a:focus {
-    background-color: #6610f2;
+    background-color: #9355f6;
     color: green;
 }
 

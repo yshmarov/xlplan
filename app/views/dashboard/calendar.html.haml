@@ -44,6 +44,7 @@
   .col-lg-3
     #datepicker
     %ul
+      /%li{class: "#{'active' if current_page?(calendar_path)}"}
       %li
         - if controller_name == 'dashboard'
           %b= link_to t('sidebar.members'), calendar_path
