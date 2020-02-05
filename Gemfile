@@ -107,7 +107,7 @@ group :production do
   gem 'wkhtmltopdf-heroku', '2.12.5.0'                                          #HTML TO PDF LIBRARY
 end
 group :development do
-  gem 'wkhtmltopdf-binary'                                                 #HTML TO PDF LIBRARY
+  gem 'wkhtmltopdf-binary'                                                      #HTML TO PDF LIBRARY
 end
 
 #gem "mini_magic"
