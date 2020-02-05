@@ -30,6 +30,11 @@ li.active a{
     background:  #6610f2 !important;
 }
 
+li.active-underline a{
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .fc-agendaDay-view .fc-today { background: white !important; }
 
 .gradient-purple {

@@ -44,31 +44,16 @@
   .col-lg-3
     #datepicker
     %ul
-      /%li{class: "#{'active' if current_page?(calendar_path)}"}
-      %li
-        - if controller_name == 'dashboard'
-          %b= link_to t('sidebar.members'), calendar_path
-        - else
-          %small= link_to t('sidebar.members'), calendar_path
+      %li{class: "#{'active-underline' if current_page?(calendar_path)}"}
+        = link_to t('sidebar.members'), calendar_path
       %ul
         - @members.each do |member|
-          %li
-            - if @member.present? && @member.id == member.id
-              %b= link_to member.short_name, calendar_member_path(member)
-            - else
-              %small= link_to member.short_name, calendar_member_path(member)
-  
+          %li{class: "#{'active-underline' if current_page?(calendar_member_path(member))}"}
+            = link_to member.short_name, calendar_member_path(member)
       - @locations.each do |location|
-        %li
-          - if controller_name == 'locations' && @location.id == location.id
-            %b= link_to location.name, location_path(location)
-          - else
-            %small= link_to location.name, location_path(location)
-    
-          %ul
-            - location.workplaces.each do |workplace|
-              %li
-                - if @workplace.present? && @workplace.id == workplace.id
-                  %b= link_to workplace.name, workplace_path(workplace)
-                - else
-                  %small= link_to workplace.name, workplace_path(workplace)
+        %li{class: "#{'active-underline' if current_page?(location_path(location))}"}
+          = link_to location.name, location_path(location)
+        %ul
+          - location.workplaces.each do |workplace|
+            %li{class: "#{'active-underline' if current_page?(workplace_path(workplace))}"}
+              = link_to workplace.name, workplace_path(workplace)
