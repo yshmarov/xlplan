@@ -10,6 +10,8 @@
       .col-md-4.mx-auto
         %h5.text-uppercase.mt-3.mb-4= t("footer.product")
         %ul.list-unstyled
+          = link_to t("footer.online_booking"), booking_path
+          %p
           = link_to t("footer.features"), features_path
           %p
           = link_to t("footer.pricing"), pricing_path

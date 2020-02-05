@@ -31,10 +31,13 @@
     - unless current_user
       %ul.navbar-nav.ml-md-auto.d-md-flex
       %ul.navbar-nav.mr-auto
-        %li.nav-item
+        /%li
+        /  = link_to booking_path, class: "nav-link text-light" do 
+        /    %b= t('header.online_booking')
+        %li
           = link_to features_path, class: "nav-link text-light" do 
             %b= t('header.features')
-        %li.nav-item
+        %li
           = link_to pricing_path, class: "nav-link text-light" do 
             %b= t('header.pricing')
       %ul.nav.navbar-nav.navbar-right
