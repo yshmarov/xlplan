@@ -319,7 +319,8 @@ en:
     sign_in: "Log in"
     sign_up: "Sign up"
     start: "Start Now"
-    apply_demo: "Schedule Demo"
+    apply_demo: "Schedule demo"
+    online_booking: 'Booking'
   footer:
     product: "Product"
     pricing: "Pricing"
@@ -475,7 +476,7 @@ en:
       month: "month"
       days: "days"
       small_investment: "Small Investment, Big Results"
-      best_for_you: "Choose the plan that works best for your business:"
+      best_for_you: "Choose the plan that works best for your business"
       for_individuals: "For individual professionals. Everything you need to manage your schedule, sell services, and streamline everyday tasks."
       for_small: "For small business. Manage employee schedules. Build relationships with clients and keep them coming back with smart contact lists."
       for_big: "For bigger companies. Take your business to the next level with advanced marketing tools, automations, and analytics."
@@ -488,7 +489,7 @@ en:
       unlimited: "Unlimited"
       month: "month"
       year: "year"
-      #try_for_free: " 7 days"
+      try_for_free: " Try now"
       try_for_free_html: |
         Try for free </br>
         7 days
@@ -546,17 +547,12 @@ en:
       automatic_stats: "Automatic business analytics"
       automatic_client_segmentation: "Automatic customer segmentation"
       smart_reminders: "Smart reminders"
-
-      other: "and more"
-    about:
-      about: "XLPLAN team"
-
-  ######################################################
+   ######################################################
 
   booking:
     index:
       online_booking: "Online booking"
-      description: "Select a company and a service. So simple!"
+      description: "Discover and book beauty & wellness professionals near you"
       category: "Category"
     show:
       location_contacts: "Contacts"

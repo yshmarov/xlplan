@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'static_pages#terms_of_service'
   get 'stats', to: 'static_pages#stats' #total stats for the superadmin
 
-  get 'booking', to: "booking#index"
+  get 'booking', to: 'booking#index'
   get '/booking/:id', to: 'booking#show', as: :booking_show
   match '/booking/:id' => 'booking#create_booking', via: [:post], as: :create_booking
   get '/booking/:id/new', to: 'booking#new', as: :new_booking
@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, :controllers => { 
-    :registrations => "registrations",
-    :confirmations => "confirmations",
-    :sessions => "milia/sessions", 
-    :passwords => "milia/passwords", 
+    :registrations => 'registrations',
+    :confirmations => 'confirmations',
+    :sessions => 'milia/sessions', 
+    :passwords => 'milia/passwords', 
   }
 
   resources :users, only: [:destroy, :edit, :update]
@@ -49,8 +49,8 @@ Rails.application.routes.draw do
   get 'contacts/index'
   get 'contacts/list'
   get 'contacts/add_all'
-  get "/contacts/:provider/contact_callback" => "contacts#index"
-  get "/contacts/failure" => "contacts#failure"
+  get '/contacts/:provider/contact_callback' => 'contacts#index'
+  get '/contacts/failure' => 'contacts#failure'
   resources :contacts, except: [:index, :destroy, :create, :new, :edit, :update] do
     member do
       patch :create_client_from_contact, :fill_missing_client_data
@@ -99,13 +99,13 @@ Rails.application.routes.draw do
 
   #get 'charts/monthly_events'
   namespace :charts do
-    get "monthly_events"
-    get "finances_client_due_price_per_month"
-    get "members_jobs_per_member_per_month_quantity"
-    get "members_confirmed_client_price_per_month"
-    get "members_confirmed_earnings_per_month"
-    get "transactions_per_day"
-    get "transactions_per_month"
-    get "events_per_day"
+    get 'monthly_events'
+    get 'finances_client_due_price_per_month'
+    get 'members_jobs_per_member_per_month_quantity'
+    get 'members_confirmed_client_price_per_month'
+    get 'members_confirmed_earnings_per_month'
+    get 'transactions_per_day'
+    get 'transactions_per_month'
+    get 'events_per_day'
   end
 end

@@ -2,7 +2,6 @@
   .bg-dark.text-center
     %hr
       = link_to t("static_pages.landing_page.apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-warning'
-    %hr
       = link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-lg btn-success'
     %hr
   .container.text-center.text-md-left
@@ -37,9 +36,6 @@
           .fab.fa-telegram
           .fab.fa-whatsapp
           %p
-          /%a{:href => "tel:+38-050-55-32-699"}
-          /  = succeed "+38-050-55-32-699" do
-          /    %span.fa.fa-phone{:style => "padding-left:10px; padding-right:10px;"}
           %hr.bg-light
           %li.list-inline-item
             = link_to "https://www.instagram.com/xlplan_com/", target: :_blank do

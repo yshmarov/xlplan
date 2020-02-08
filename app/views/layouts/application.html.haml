@@ -31,11 +31,10 @@
         = rjv_tags
   - else
     %body#body-human
-      #padding-50
+      #padding-80
       = render 'layouts/header'
       = render 'layouts/messages'
       = yield
       /rjv_tags for booking/ new_lead SELECTIZE
       = rjv_tags
-      - unless controller_name == 'booking'
-        = render 'layouts/footer'
+      = render 'layouts/footer'

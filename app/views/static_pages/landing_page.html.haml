@@ -6,11 +6,10 @@
 /%title UKR.NET: Всі новини України, останні новини дня в Україні та Світі
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
-
-%br
 .container-fluid
   .row
     .col-lg-5.order-1.order-lg-0
+      .p-3
       %h1
         %b XLPLAN
         %small= t('.hero')
@@ -24,11 +23,6 @@
       %p
     .col-lg-7.order-0.order-lg-1
       = image_tag "https://i.imgur.com/TWpk1pv.png", style: 'height:auto;width:100%;'
-
-%hr
-.container
-  .text-center
-    = link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-success'
 
 %hr
 .container
@@ -157,6 +151,8 @@
           %p
           .fa.fa-car-side
           = t('.car_services')
+  .text-center
+    = link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-success'
   %p
 
 %hr

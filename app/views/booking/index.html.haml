@@ -3,7 +3,6 @@
 = provide(:description, 'Управление салоном красоты, ведение клиентов онлайн, программа для СТО и автомоек, онлайн запись в косметологию и бьюти-салоны, финансовая статистика')
 = provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
 
-%br
 .container
   .row
     .col-lg-2
@@ -11,23 +10,35 @@
         /= k
         .row
         - if @q.industry_cont.to_s == value.to_s
-          .fa.fa-flag
+          .fa.fa-angle-double-right
         = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-dark'
     .col-lg-10
-      .mx-auto.text-center
+      .container.mx-auto.text-center
         .fa.fa-4x.fa-cloud
         %h1.display-4.font-weight-bold= t('.online_booking')
-        %p
-        %h5= t('.description')
+        .p-3
+        %h5
+          = t('.description')
+
+        .p-3
+        .form-inline{:style => "text-align: center;"}
+          = search_form_for @q, url: booking_path do |f|
+            .input-group
+              = f.search_field :name_cont, autocomplete: 'off', placeholder: t('activerecord.attributes.tenant.name'), class: 'form-control-lg'
+              /= f.search_field :services_name_cont, autocomplete: 'off', placeholder: t('sidebar.search_client'), class: 'form-control-lg'
+              %span.input-group-append
+                %button.btn.btn-primary.btn-lg{:type => "submit"}
+                  %span.fa.fa-search{"aria-hidden" => "true"}
+        - if params.has_key?(:q)
+          %p
+          .text-center
+            /= t('.category') + ':'
+            /= @q.industry_cont
+            %h3
+              = I18n.t(@q.industry_cont, scope: [:static_pages, :landing_page])
+              = link_to booking_path, class: 'btn btn-sm btn-secondary' do
+                .fa.fa-redo
   
-      - if params.has_key?(:q)
-        .text-center
-          /= t('.category') + ':'
-          /= @q.industry_cont
-          %h3
-            = I18n.t(@q.industry_cont, scope: [:static_pages, :landing_page])
-            = link_to booking_path, class: 'btn btn-sm btn-secondary' do
-              .fa.fa-redo
 
       %br
       .container
@@ -73,5 +84,3 @@
                         = link_to new_booking_path(tenant, service_id: service.id), class: 'btn btn-success btn-sm' do 
                           = t('sidebar.online_booking')
                     %small= service.description
-          %p
-        %br

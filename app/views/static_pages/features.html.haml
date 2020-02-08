@@ -2,15 +2,16 @@
   XLPLAN | Features
 = provide(:description, 'XLPLAN features. It is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, features, salon, management software, crm, erp, employee calendar, calendar')
-.jumbotron.bg-warning.text-dark.text-center
+.container.text-center
+  .p-3
   .mx-auto.text-center
     %h1.display-4.font-weight-bold= t('.features')
-  .mt-5
+  .p-3
   %h6
     = t('.one_system_to_manage_everything') 
     %p
     = t('.fast_to_learn_simple_to_use')
-%p
+  .p-3
 .container
   .row
     .col-lg-6
@@ -153,4 +154,3 @@
           %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
           %span.pl-2.pt-1
             = t('.smart_reminders')
-  %b= t('.other')

@@ -6,6 +6,7 @@ class BookingController < ApplicationController
     #@tenants = Tenant.online_booking.order(created_at: :desc)
     @q = Tenant.ransack(params[:q])
     @tenants = @q.result.online_booking.order(created_at: :desc)
+    #@tenants = @q.result.includes(:services).online_booking.order(created_at: :desc)
   end
 
   def show

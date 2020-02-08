@@ -331,6 +331,7 @@ ru:
     sign_up: "Регистрация"
     start: "Начать Сейчас"
     apply_demo: "Оставить заявку"
+    online_booking: 'Онлайн запись'
   footer:
     product: "О Продукте"
     pricing: "Тарифы"
@@ -494,7 +495,7 @@ ru:
       unlimited: "Безлимит"
       month: "месяц"
       year: "год"
-      #try_for_free: " 7 дней"
+      try_for_free: " Подключиться"
       try_for_free_html: |
         Попробовать бесплатно</br>
         7 дней
@@ -552,17 +553,12 @@ ru:
       automatic_stats: "Автоматическая статистика и аналитика"
       automatic_client_segmentation: "Автоматическая сегментация клиентов по признакам"
       smart_reminders: "Умные напоминания"
-
-      other: "и многое другое"
-    about:
-      about: "О нас"
-
   ######################################################
 
   booking:
     index:
       online_booking: "Онлайн запись"
-      description: "Выберите заведение и услугу. так просто!"
+      description: "Найдите ближайших к вам профессионалов в сфере красоты и здоровья"
       category: "Категория"
     show:
       location_contacts: "Контакты"

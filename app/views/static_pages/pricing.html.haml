@@ -4,14 +4,16 @@
 = provide(:keywords, 'xlplan, pricing, price, salon, management software, crm, erp, employees calendar, calendar')
 /%head
 /  %meta{:content => "xlplan pricing", :name => "description"}/
-.jumbotron.bg-warning.text-dark.text-center
+.container.text-center
+  .p-3
   .mx-auto.text-center
     %h1.display-4.font-weight-bold= t('.pricing')
-  .mt-5
+  .p-3
   %h6
     = t('.small_investment')
     %p
     = t('.best_for_you')
+  .p-3
 /.text-center
 /  = link_to features_path do
 /    .btn.btn-info
@@ -46,16 +48,15 @@
     / Card #1, Starter
     .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
       .bg-light{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
-        / Indicator of subscription type
         .pt-4.pb-3{:style => "letter-spacing: 2px"}
           %h4= t('.bronze')
         / Price class
         .card-body
           %small= t('.for_individuals')
-        .pricing-price.pb-1.text-success.color-success-text
+        .pb-1.text-success.color-success-text
           %h1{:style => "font-weight: 1000; font-size: 3.5em;"}
-            %span{:style => "   font-size: 20px;"}> €
-            7
+            200
+            %span{:style => "   font-size: 20px;"}> грн.
             %small.text-muted / #{t(".month")}
         / Perks of said subscription
         .pricing-description
@@ -72,8 +73,8 @@
             %hr
             .fa.fa-phone
             #{t('.free_support')}
-        .pricing-button.pb-4
-        /  = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-success w-75'
+        .pb-4
+          = link_to t('.try_for_free'), new_user_registration_path, class: 'btn btn-lg btn-outline-success w-75'
     / Card #2, Intermediate
     .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
       .bg-light{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
@@ -81,10 +82,10 @@
           %h4= t('.silver')
         .card-body
           %small= t('.for_small')
-        .pricing-price.pb-1.text-success.color-success-text
+        .pb-1.text-success.color-success-text
           %h1{:style => "font-weight: 1000; font-size: 3.5em;"}
-            %span{:style => "font-size: 20px;"}> €
-            15
+            400
+            %span{:style => "   font-size: 20px;"}> грн.
             %small.text-muted / #{t(".month")}
         .pricing-description
           %ul.list-unstyled.mt-3.mb-4
@@ -100,8 +101,8 @@
             %hr
             .fa.fa-phone
             #{t('.free_support')}
-        .pricing-button.pb-4
-        /  = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-success w-75'
+        .pb-4
+          = link_to t('.try_for_free'), new_user_registration_path, class: 'btn btn-lg btn-outline-success w-75'
     / Card #3, Professional
     .col-lg-4.col-md-6.col-sm-10.pb-4.d-block.m-auto
       .bg-light{:style => "box-shadow: 0px 0px 30px -7px rgba(0,0,0,0.29);"}
@@ -109,10 +110,10 @@
           %h4= t('.gold')
         .card-body
           %small= t('.for_big')
-        .pricing-price.pb-1.text-success.color-success-text
+        .pb-1.text-success.color-success-text
           %h1{:style => "font-weight: 1000; font-size: 3.5em;"}
-            %span{:style => "font-size: 20px;"}> €
-            50
+            1400
+            %span{:style => "   font-size: 20px;"}> грн.
             %small.text-muted / #{t(".month")}
         .pricing-description
           %ul.list-unstyled.mt-3.mb-4
@@ -128,5 +129,5 @@
             %hr
             .fa.fa-phone
             #{t('.free_support')}
-        .pricing-button.pb-4
-        /  = link_to t('.try_for_free_html'), new_user_registration_path, class: 'btn btn-lg btn-success w-75'
+        .pb-4
+          = link_to t('.try_for_free'), new_user_registration_path, class: 'btn btn-lg btn-outline-success w-75'
