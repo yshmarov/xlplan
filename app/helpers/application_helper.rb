@@ -12,6 +12,15 @@ module ApplicationHelper
 		end
 	end
 
+	def model_icon(model_name)
+		case model_name
+			when 'Location'
+	      "<i class='fa fa-map-marker-alt'></i>".html_safe
+			when 'Service'
+	      "<i class='fa fa-hand-paper'></i>".html_safe
+		end
+	end
+
 	def plan_label(plan)
 		plan_span_generator(plan)
 	end
