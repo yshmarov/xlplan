@@ -38,6 +38,7 @@ class Lead < ApplicationRecord
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
   #-----------------------scopes-------------------#
   scope :has_no_client, -> { where(client_id: nil) }
+  #scope :with_present_titles, ->{where.not(title: [nil,'']) }
   #-----------------------capitalize coupon before_save-------------------#
   before_save do 
     self.coupon.upcase! if self.coupon.present?

@@ -32,9 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :booking_wizard
-
   resources :leads do
+    resources :booking_wizard, controller: 'leads/booking_wizard'
     member do
       patch :create_client_from_lead
     end

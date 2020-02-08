@@ -40,9 +40,6 @@
         %b= model_class.human_attribute_name(:address) + ':'
         = @member.address_line
         .row
-        %b= model_class.human_attribute_name(:time_zone) + ':'
-        = @member.time_zone
-        .row
         %b= model_class.human_attribute_name(:active) + ':'
         = active_label(@member.active)
         %hr
@@ -77,35 +74,37 @@
           %b= model_class.human_attribute_name(:balance) + ':'
           = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
     %p
-  .col-lg-8
-    .card
-      .card-header
-        .fa.fa-lock
-        %b= t('.access_rights')
-      .card-body
-        - if @member.user.present?
+  - if @member.user.present?
+    .col-lg-8
+      .card
+        .card-header
+          .fa.fa-lock
+          %b= t('.access_rights')
+        .card-body
+          %b= model_class.human_attribute_name(:time_zone) + ':'
+          = @member.time_zone
           /= @member.user.time_zone
-          %p
-            %b= model_class.human_attribute_name(:created_at) + ':'
-            = @member.user.created_at.strftime('%d/%b/%Y, %H:%M')
+          .row
+          %b= model_class.human_attribute_name(:created_at) + ':'
+          = @member.user.created_at.strftime('%d/%b/%Y, %H:%M')
+          .row
+          %b= t('.confirmed_at')
+          = @member.user.confirmed_at.strftime('%d/%b/%Y, %H:%M') if @member.user.confirmed_at.present?
+          /.row
+          /%b Invited by:
+          /= @member.user.invitor
+          -  if @member.id == current_user.id
             .row
-            %b= t('.confirmed_at')
-            = @member.user.confirmed_at.strftime('%d/%b/%Y, %H:%M') if @member.user.confirmed_at.present?
-            /.row
-            /%b Invited by:
-            /= @member.user.invitor
-            -  if @member.id == current_user.id
+            = link_to t('.edit_password'), edit_user_registration_path, class: 'btn btn-sm btn-warning'
+          - if @member.user.present?
+            .row
+            %b= model_class.human_attribute_name(:roles) + ':'
+            - @member.user.roles.where.not("name = 'owner'").each do |r| 
+              = role_label(r.name)
+          - if policy(@member.user).destroy? && @member.user.present?
+            .row
+            = link_to t('.edit_roles'), edit_user_path(@member.user), class: 'btn btn-warning btn-sm mb-sm-1 mt-sm-1'
+            - unless @member == current_user.member
               .row
-              = link_to t('.edit_password'), edit_user_registration_path, class: 'btn btn-sm btn-warning'
-            - if @member.user.present?
-              .row
-              %b= model_class.human_attribute_name(:roles) + ':'
-              - @member.user.roles.where.not("name = 'owner'").each do |r| 
-                = role_label(r.name)
-            - if policy(@member.user).destroy? && @member.user.present?
-              .row
-              = link_to t('.edit_roles'), edit_user_path(@member.user), class: 'btn btn-warning btn-sm mb-sm-1 mt-sm-1'
-              - unless @member == current_user.member
-                .row
-                = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
+              = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
     %p

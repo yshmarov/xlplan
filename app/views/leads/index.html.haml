@@ -11,7 +11,7 @@
       .col-md-6
         .float-right
           - if Rails.env.development?
-            = link_to 'WIZARD', booking_wizard_path(:select_location), class: 'btn btn-danger btn-sm'
+            = link_to 'WIZARD', leads_path, method: :post, class: 'btn btn-danger btn-sm'
           .row
           = link_to t('sidebar.public_page'), booking_show_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
           / COPY TO CLIPBOARD WITH JAVASCRIPT

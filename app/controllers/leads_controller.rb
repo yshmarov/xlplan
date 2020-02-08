@@ -17,6 +17,11 @@ class LeadsController < ApplicationController
     @services = Service.online_booking.active
   end
 
+  def create
+    @lead = Lead.create
+    redirect_to lead_booking_wizard_index_path(:select_location, lead_id: @lead.id)
+  end
+
 	def create_client_from_lead
     #SELECT A lead AND CONVERT HIM INTO A CLIENT
 	  @lead = Lead.find(params[:id])
