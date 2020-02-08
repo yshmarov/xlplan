@@ -5,16 +5,18 @@
       .card-body
         %h5
           .far.fa-hand-paper
-          1/4
-          Select service
+          = wizard_steps.index(step) + 1
+          \/
+          = wizard_steps.count
+
+          = step.to_s.humanize
         %hr
 
         = render layout: 'form' do |f|
-          - if @services.any?
-            = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
+          = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
         
         %hr
-        = link_to 'Cancel', leads_path, class: 'btn btn-secondary'
+        = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'
         .float-right
           = link_to 'Skip', next_wizard_path, class: 'btn btn-secondary'
           = link_to 'Any service', next_wizard_path, class: 'btn btn-primary'

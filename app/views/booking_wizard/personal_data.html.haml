@@ -5,8 +5,11 @@
       .card-body
         %h5
           .far.fa-id-card
-          4/4
-          Input your contact details
+          = wizard_steps.index(step) + 1
+          \/
+          = wizard_steps.count
+
+          = step.to_s.humanize
         %hr
 
         = render layout: 'form' do |f|

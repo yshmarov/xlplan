@@ -123,6 +123,12 @@
             #{t('sidebar.stats')}
             .badge.badge-dark admin
           .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown2"}
+            /controller_name == 'dashboard'
+            /.dropdown-item{class: "#{'active' if current_page?(dashboard_member_salary_path)}"}
+            /  = link_to dashboard_member_salary_path, class: "nav-link" do 
+            /    .fa.fa-dollar-sign
+            /    .fa.fa-users
+            /    = t('dashboard.member_salary.member_salary')
             = link_to dashboard_member_salary_path, class: "dropdown-item" do 
               .fa.fa-dollar-sign
               .fa.fa-users

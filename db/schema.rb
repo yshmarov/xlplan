@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_114843) do
+ActiveRecord::Schema.define(version: 2020_02_08_195100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -204,9 +204,9 @@ ActiveRecord::Schema.define(version: 2020_01_20_114843) do
 
   create_table "leads", force: :cascade do |t|
     t.bigint "tenant_id"
-    t.string "first_name", limit: 144, null: false
-    t.string "last_name", limit: 144, null: false
-    t.string "phone_number", limit: 255, null: false
+    t.string "first_name", limit: 144
+    t.string "last_name", limit: 144
+    t.string "phone_number", limit: 255
     t.string "email", limit: 255
     t.text "comment"
     t.bigint "location_id"

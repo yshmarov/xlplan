@@ -8,15 +8,27 @@ class Lead < ApplicationRecord
   belongs_to :location
   belongs_to :client
   #-----------------------validation-------------------#
-  validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true
   #validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true, if: :active?
   validates :comment, length: { maximum: 500 }
   validates :first_name, :last_name, length: { maximum: 144 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
 
-  def active?
-    status == 'active'
-  end
+  #validates :service_id,      presence: true, if: :active_or_service?
+  #validates :location_id,     presence: true, if: :active_or_location?
+  #validates :member_id,  presence: true, if: :active_or_member?
+  #def active?
+  #  status == 'active'
+  #end
+  #def active_or_service?
+  #  status.include?('service_id') || active?
+  #end
+  #def active_or_location?
+  #  status.include?('location_id') || active?
+  #end
+  #def active_or_member?
+  #  status.include?('member_id') || active?
+  #end
+
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged

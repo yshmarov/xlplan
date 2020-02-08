@@ -5,13 +5,15 @@
       .card-body
         %h5
           .fa.fa-user-tie
-          3/4
-          Select member
+          = wizard_steps.index(step) + 1
+          \/
+          = wizard_steps.count
+
+          = step.to_s.humanize
         %hr
 
         = render layout: 'form' do |f|
-          - if @members.any?
-            = f.association :member, as: :radio_buttons, collection: @members
+          = f.association :member, as: :radio_buttons, collection: @members
         
         %hr
         = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'
