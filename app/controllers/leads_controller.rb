@@ -7,7 +7,7 @@ class LeadsController < ApplicationController
   end
 
   def create # start wizard
-    @lead = Lead.create
+    @lead = Lead.create(status: "start")
     redirect_to lead_booking_wizard_index_path(:select_location, lead_id: @lead.id)
   end
 

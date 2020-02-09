@@ -13,22 +13,21 @@ class Lead < ApplicationRecord
   validates :first_name, :last_name, length: { maximum: 144 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
 
-  #validates :service_id,      presence: true, if: :active_or_service?
-  #validates :location_id,     presence: true, if: :active_or_location?
-  #validates :member_id,  presence: true, if: :active_or_member?
-  #def active?
-  #  status == 'active'
-  #end
-  #def active_or_service?
-  #  status.include?('service_id') || active?
-  #end
-  #def active_or_location?
-  #  status.include?('location_id') || active?
-  #end
-  #def active_or_member?
-  #  status.include?('member_id') || active?
-  #end
-
+  validates :location_id,     presence: true, if: :active_or_location?
+  validates :service_id,      presence: true, if: :active_or_service?
+  validates :member_id,  presence: true, if: :active_or_member?
+  def active?
+    status == 'active'
+  end
+  def active_or_service?
+    status.include?('select_service') || active?
+  end
+  def active_or_location?
+    status.include?('select_location') || active?
+  end
+  def active_or_member?
+    status.include?('select_member') || active?
+  end
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged

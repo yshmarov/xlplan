@@ -13,7 +13,8 @@
         %hr
 
         = render layout: 'form' do |f|
-          = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
+          /= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
+          = f.association :service, collection: @services, label_method: :name_price_duration_description
         
         %hr
         = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'

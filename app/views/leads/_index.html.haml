@@ -17,6 +17,7 @@
         /%th IP-address
         /%th Source
         %th= model_class.human_attribute_name(:coupon)
+        %th= model_class.human_attribute_name(:status)
         /%th
         /%th
     %tbody
@@ -57,3 +58,4 @@
           /%td
           /  %small= lead.referer
           %td= lead.coupon
+          %td= lead.status
