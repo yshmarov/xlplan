@@ -85,8 +85,8 @@
         = link_to leads_path, class: "nav-link" do
           .fa-fw.fa-color-1.fa.fa-globe-africa
           #{t('sidebar.online_booking')} 
-          - if Lead.has_no_client.count > 0
-            #{content_tag :span, Lead.count, class: 'badge badge-danger'} 
+          - if Lead.active.has_no_client.count > 0
+            #{content_tag :span, Lead.active.count, class: 'badge badge-danger'} 
       %li.nav-item.dropdown
         %a#navbarDropdown7.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa-fw.fa-color-1.fa.fa-chevron-circle-down

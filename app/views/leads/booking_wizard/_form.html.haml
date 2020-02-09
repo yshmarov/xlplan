@@ -1,12 +1,14 @@
 = simple_form_for @lead, url: lead_booking_wizard_path, method: :put do |f|
-  - if @lead.errors.any?
-    .error_messages
-      %h2
-        = pluralize(@lead.errors.count, "error")
-        prohibited this user from being saved:
-      %ul
-        - @lead.errors.full_messages.each do |msg|
-          %li= msg
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  /- if @lead.errors.any?
+  /  .error_messages
+  /    %h2
+  /      = pluralize(@lead.errors.count, "error")
+  /      prohibited this user from being saved:
+  /    %ul
+  /      - @lead.errors.full_messages.each do |msg|
+  /        %li= msg
   = yield f
   .actions
     /.float-right

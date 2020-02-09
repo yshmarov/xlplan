@@ -3,7 +3,8 @@ class LeadsController < ApplicationController
   include Pagy::Backend
 
   def index
-    @pagy, @leads = pagy(Lead.all.order('created_at DESC'))
+    #@pagy, @leads = pagy(Lead.active.order('created_at DESC'))
+    @pagy, @leads = pagy(Lead.order('created_at DESC'))
   end
 
   def create # start wizard
