@@ -19,20 +19,26 @@ class Lead < ApplicationRecord
   def active?
     status == 'active'
   end
-  def active_or_service?
-    status.include?('select_service') || active?
-  end
   def active_or_location?
-    status.include?('select_location') || active?
+    if Location.active.online_booking.where(tenant_id: tenant_id).any?
+      status.include?('select_location') || active?
+    end
+  end
+  def active_or_service?
+    if Service.active.online_booking.where(tenant_id: tenant_id).any?
+      status.include?('select_service') || active?
+    end
   end
   def active_or_member?
-    status.include?('select_member') || active?
+    if Member.active.online_booking.where(tenant_id: tenant_id).any?
+      status.include?('select_member') || active?
+    end
   end
   def active_or_personal_data?
     status.include?('personal_data') || active?
   end
   
-  def can_create_client?
+  def can_create_client? #lead_to_client
     first_name.present? && last_name.present?
   end
   #-----------------------gem friendly_id-------------------#

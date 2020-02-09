@@ -52,10 +52,6 @@
                   .fa.fa-image{:style => "font-size:50px"}
             .col-md-4
               %b= link_to tenant.name, booking_show_path(tenant)
-              /- if tenant.website.present?
-              /  .row
-              /  .fa.fa-globe-africa
-              /  = link_to tenant.website, "http://#{tenant.website}", target: :_blank
               .row
               %small= I18n.t(tenant.industry, scope: [:static_pages, :landing_page])
               /%small= link_to I18n.t(tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: tenant.industry})
@@ -63,7 +59,8 @@
               .fa.fa-map-marker-alt
               /= tenant.locations.count
               = Location.unscoped.active.online_booking.where(tenant_id: tenant.id).count
-    
+              /= Location.unscoped.active.online_booking.where(tenant_id: tenant.id).pluck(address[:city]).compact
+
             .col-md-6
               - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
                 .card.card-header.bg-white
@@ -83,3 +80,4 @@
                       = link_to new_booking_path(tenant, service_id: service.id), class: 'btn btn-success btn-sm' do 
                         = t('sidebar.online_booking')
                   %small= service.description
+        %p

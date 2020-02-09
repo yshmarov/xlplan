@@ -9,17 +9,21 @@ class Tenant < ApplicationRecord
   has_one_attached :logo
   #has_many :activities, dependent: :destroy
   has_many :clients, dependent: :destroy
+  has_many :client_tags, dependent: :destroy
+  has_many :tags, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :events, dependent: :destroy
   has_many :transactions, dependent: :destroy
   has_many :jobs, dependent: :destroy
-  has_many :locations, dependent: :destroy
+  has_many :events, dependent: :destroy
   has_many :members, dependent: :destroy
-  has_many :service_categories, dependent: :destroy
+  has_many :workplaces, dependent: :destroy
+  has_many :locations, dependent: :destroy
   has_many :services, dependent: :destroy
+  has_many :service_categories, dependent: :destroy
+  has_many :cash_accounts, dependent: :destroy
   has_many :skills, dependent: :destroy
-  has_many :roles, dependent: :destroy
   has_many :leads, dependent: :destroy
+  has_many :roles, dependent: :destroy
   #-----------------------validation-------------------#
   validates_presence_of :name, :plan, :default_currency, :locale, :industry
   validates_uniqueness_of :name

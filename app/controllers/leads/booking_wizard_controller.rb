@@ -8,7 +8,7 @@ class Leads::BookingWizardController < ApplicationController
     case step
     when :select_service
       @favicon = 'Service'
-      @services = Service.online_booking.active
+      @services = Service.active.online_booking
       skip_step unless @services.any?
     when :select_location
       @favicon = 'Location'
