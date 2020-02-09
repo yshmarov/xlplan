@@ -7,17 +7,17 @@
   /= Time.zone.now
 
   /breadcrumbs
-  /%p
-  /%small
-  /  .font-weight-light
-  /    = link_to booking_path, class: '' do
-  /      booking
-  /    \/
-  /    = link_to I18n.t(@tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: @tenant.industry})
-  /    \/
-  /    = link_to booking_show_path(@tenant), class: 'text-dark' do
-  /      = @tenant.name
-
+  %p
+  %small
+    .font-weight-light
+      = link_to booking_path, class: '' do
+        booking
+      \/
+      = link_to I18n.t(@tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: @tenant.industry})
+      \/
+      = link_to booking_show_path(@tenant), class: 'text-dark' do
+        = @tenant.name
+  %p
   .row
     .col-md-4
       .text-center

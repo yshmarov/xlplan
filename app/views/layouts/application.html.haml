@@ -31,9 +31,10 @@
         = rjv_tags
   - else
     %body#body-human
-      #padding-80
+      #padding-top
       = render 'layouts/header'
       = render 'layouts/messages'
+      %p
       = yield
       /rjv_tags for booking/ new_lead SELECTIZE
       = rjv_tags

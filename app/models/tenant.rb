@@ -32,6 +32,7 @@ class Tenant < ApplicationRecord
   validates :locale, length: { maximum: 2 }
   #-----------------------scopes-------------------#
   scope :online_booking, -> { where(online_booking: true) }
+  scope :not_blocked, -> { where.not(plan: 'blocked') }
   #-----------------------onboarding_percent-------------------#
   include Onboarding
 
