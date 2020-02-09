@@ -4,7 +4,7 @@
     .card
       .card-body
         %h5
-          .far.fa-id-card
+          = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count
@@ -23,9 +23,3 @@
         
         %hr
         = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'
-
-/%h1 Add personal_data
-/= simple_form_for @lead, url: wizard_path, method: :put do |f|
-/  = f.input :first_name
-/  = f.submit 'Next', class: 'btn btn-primary'
-/= link_to 'Skip', next_wizard_path

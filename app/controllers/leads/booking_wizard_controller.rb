@@ -7,14 +7,21 @@ class Leads::BookingWizardController < ApplicationController
   def show
     case step
     when :select_service
+      @favicon = 'Service'
       @services = Service.online_booking.active
       skip_step unless @services.any?
     when :select_location
+      @favicon = 'Location'
       @locations = Location.active.online_booking
       skip_step unless @locations.any?
     when :select_member
+      @favicon = 'Member'
       @members = Member.active.online_booking.order('created_at ASC')
       skip_step unless @members.any?
+    when :time
+      @favicon = 'Time'
+    when :personal_data
+      @favicon = 'Client'
     end
     render_wizard
   end
@@ -24,11 +31,18 @@ class Leads::BookingWizardController < ApplicationController
 
     case step
     when :select_service
+      @favicon = 'Service'
       @services = Service.online_booking.active
     when :select_location
+      @favicon = 'Location'
       @locations = Location.active.online_booking
     when :select_member
+      @favicon = 'Member'
       @members = Member.active.online_booking.order('created_at ASC')
+    when :time
+      @favicon = 'Time'
+    when :personal_data
+      @favicon = 'Client'
     end
 
     params[:lead][:status] = step.to_s

@@ -4,7 +4,7 @@
     .card
       .card-body
         %h5
-          .far.fa-hand-paper
+          = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count

@@ -4,7 +4,7 @@
     .card
       .card-body
         %h5
-          .far.fa-clock
+          = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count
@@ -17,7 +17,5 @@
           /= f.input :starts_at
           /= f.input :starts_at, :as => :time, :minute_step => 15
 
-
         %hr
         = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'
-

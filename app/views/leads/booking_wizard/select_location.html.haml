@@ -4,7 +4,7 @@
     .card
       .card-body
         %h5
-          .fa.fa-map-marker-alt
+          = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count

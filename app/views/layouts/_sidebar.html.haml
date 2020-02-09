@@ -79,7 +79,7 @@
           = t('sidebar.members')
       %li{class: "#{'active' if current_page?(services_path)}"}
         = link_to services_path, class: "nav-link" do 
-          .fa-fw.fa-color-1.fa.fa-hand-paper
+          .fa-fw.fa-color-1.far.fa-hand-paper
           = t('sidebar.services')
       %li{class: "#{'active' if current_page?(leads_path)}"}
         = link_to leads_path, class: "nav-link" do
@@ -105,7 +105,7 @@
             .fa.fa-map-marker-alt
             = t('sidebar.locations')
           = link_to service_categories_path, class: "dropdown-item" do 
-            .fa.fa-hand-paper
+            .far.fa-hand-paper
             = t('sidebar.service_categories')
           = link_to activity_path, class: "dropdown-item" do 
             .fa.fa-history

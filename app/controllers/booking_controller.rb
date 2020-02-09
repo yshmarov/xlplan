@@ -30,6 +30,7 @@ class BookingController < ApplicationController
 
   def create
     @lead = Lead.new(lead_params)
+    @lead.status = 'classic_form'
     respond_to do |format|
       #if @lead.save
       if verify_recaptcha(model: @lead) && @lead.save

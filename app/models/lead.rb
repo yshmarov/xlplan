@@ -50,5 +50,4 @@ class Lead < ApplicationRecord
   before_save do 
     self.coupon.upcase! if self.coupon.present?
   end
-
 end

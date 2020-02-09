@@ -17,7 +17,7 @@ module ApplicationHelper
 			when 'Location'
 	      "<i class='fa fa-map-marker-alt'></i>".html_safe
 			when 'Service'
-	      "<i class='fa fa-hand-paper'></i>".html_safe
+	      "<i class='far fa-hand-paper'></i>".html_safe
 			when 'Time'
 	      "<i class='far fa-clock'></i>".html_safe
 			when 'Member'

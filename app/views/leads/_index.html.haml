@@ -27,7 +27,8 @@
             .btn-group
               = link_to '', lead, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(lead).destroy?
               - unless lead.client.present?
-                = link_to t('contacts.index.create_client'), create_client_from_lead_lead_path(lead.id), method: :patch, class: 'btn btn-sm btn-primary'
+                - if lead.can_create_client?
+                  = link_to t('contacts.index.create_client'), create_client_from_lead_lead_path(lead.id), method: :patch, class: 'btn btn-sm btn-primary'
           %td
             - if lead.client.present?
               = link_to lead.client.full_name, client_path(lead.client)
