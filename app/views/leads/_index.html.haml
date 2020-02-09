@@ -52,7 +52,9 @@
           %td
             - if lead.starts_at.present?
               = lead.starts_at.strftime('%d/%m/%Y %H:%M')
-          %td= lead.created_at.strftime('%d/%m/%Y %H:%M')
+          %td
+            /= lead.created_at.strftime('%d/%m/%Y %H:%M')
+            = time_ago_in_words(lead.created_at) + " ago"
           /%td= lead.updated_at
           /%td
           /  %small= lead.ip_address
