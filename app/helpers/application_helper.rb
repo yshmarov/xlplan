@@ -18,6 +18,12 @@ module ApplicationHelper
 	      "<i class='fa fa-map-marker-alt'></i>".html_safe
 			when 'Service'
 	      "<i class='fa fa-hand-paper'></i>".html_safe
+			when 'Time'
+	      "<i class='far fa-clock'></i>".html_safe
+			when 'Member'
+	      "<i class='fa fa-user-tie'></i>".html_safe
+			when 'Client'
+	      "<i class='far fa-id-card'></i>".html_safe
 		end
 	end
 

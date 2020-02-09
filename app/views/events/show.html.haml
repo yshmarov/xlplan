@@ -51,7 +51,7 @@
         .far.fa-envelope
         = t '.email_client'
   .card-footer
-    .fa.fa-clock
+    .far.fa-clock
     %b= model_class.human_attribute_name(:time) + ':'
     #{l(@event.starts_at, format: "%A %d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
   .card-footer

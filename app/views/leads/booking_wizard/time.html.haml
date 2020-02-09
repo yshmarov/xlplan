@@ -1,0 +1,23 @@
+.row
+  .col-lg-3
+  .col-lg-6
+    .card
+      .card-body
+        %h5
+          .far.fa-clock
+          = wizard_steps.index(step) + 1
+          \/
+          = wizard_steps.count
+
+          = step.to_s.humanize
+        %hr
+
+        = render layout: 'form' do |f|
+          = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
+          /= f.input :starts_at
+          /= f.input :starts_at, :as => :time, :minute_step => 15
+
+
+        %hr
+        = link_to 'Back', previous_wizard_path, class: 'btn btn-secondary'
+
