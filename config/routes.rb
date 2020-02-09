@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'booking', to: 'booking#index'
   get '/booking/:id', to: 'booking#show', as: :booking_show
-  match '/booking/:id' => 'booking#create_booking', via: [:post], as: :create_booking
+  match '/booking/:id' => 'booking#create', via: [:post], as: :create
   get '/booking/:id/new', to: 'booking#new', as: :new_booking
 
   # *MUST* come *BEFORE* devise's definitions (below)

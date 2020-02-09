@@ -1,30 +1,17 @@
 class LeadsController < ApplicationController
-  before_action :set_lead, only: [:show, :edit, :update, :destroy]
+  before_action :set_lead, only: [:create_client_from_lead, :destroy]
   include Pagy::Backend
 
   def index
-    #@leads = Lead.all.order('created_at DESC')
     @pagy, @leads = pagy(Lead.all.order('created_at DESC'))
   end
 
-  def show
-  end
-
-  def edit
-    #for form
-    @members = Member.active.online_booking.order('created_at ASC')
-    @locations = Location.active.online_booking.order(events_count: :desc)
-    @services = Service.online_booking.active
-  end
-
-  def create
+  def create # start wizard
     @lead = Lead.create
     redirect_to lead_booking_wizard_index_path(:select_location, lead_id: @lead.id)
   end
 
-	def create_client_from_lead
-    #SELECT A lead AND CONVERT HIM INTO A CLIENT
-	  @lead = Lead.find(params[:id])
+	def create_client_from_lead #new client
 	  @client = Client.new
   	  @client.first_name = @lead.first_name
   	  @client.last_name = @lead.last_name
@@ -33,7 +20,6 @@ class LeadsController < ApplicationController
   	  @client.lead_source = "online_booking"
   	  @client.save
 		@lead.update_attribute(:client_id, @client.id)
-
     if @client.save
       ClientTag.create(client: @client, tag: Tag.find_by(name: "contact_required"))
       redirect_to leads_path, notice: 'Client was successfully created.'
@@ -42,39 +28,18 @@ class LeadsController < ApplicationController
     end
 	end
 
-  def update
-    respond_to do |format|
-      if @lead.update(lead_params)
-        format.html { redirect_to @lead, notice: 'Lead was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lead }
-      else
-        format.html { render :edit }
-        format.json { render json: @lead.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def destroy
     authorize @lead
     @lead.destroy
-    respond_to do |format|
-      if @lead.client.present?
-        format.html { redirect_to @lead.client, notice: 'Lead was successfully destroyed.' }
-      else
-        format.html { redirect_to leads_url, notice: 'Lead was successfully destroyed.' }
-      end
-      format.json { head :no_content }
+    if @lead.client.present?
+      redirect_to @lead.client, notice: 'Lead was successfully destroyed.'
+    else
+      redirect_to leads_url, notice: 'Lead was successfully destroyed.'
     end
   end
 
   private
     def set_lead
       @lead = Lead.friendly.find(params[:id])
-    end
-
-    def lead_params
-      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment,
-              :location_id, :member_id, :service_id,
-              :starts_at, :coupon, :conditions_consent)
     end
 end

@@ -1,6 +1,6 @@
 class BookingController < ApplicationController
   skip_before_action :authenticate_tenant!
-  before_action :set_tenant, only: [:show, :new, :create_booking]
+  before_action :set_tenant, only: [:show, :new, :create]
 
   def index
     @q = Tenant.ransack(params[:q])
@@ -28,7 +28,7 @@ class BookingController < ApplicationController
     @referer = request.referer
   end
 
-  def create_booking
+  def create
     @lead = Lead.new(lead_params)
     respond_to do |format|
       #if @lead.save
