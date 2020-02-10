@@ -38,10 +38,7 @@
         = gender_label(@member.gender)
         .row
         %b= model_class.human_attribute_name(:address) + ':'
-        = @member.country
-        = @member.city
-        = @member.zip
-        = @member.address
+        = @member.address_line
         .row
         %b= model_class.human_attribute_name(:active) + ':'
         = active_label(@member.active)

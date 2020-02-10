@@ -90,10 +90,7 @@
         = gender_label(@client.gender)
         .row
         %b= model_class.human_attribute_name(:address) + ':'
-        = @client.country
-        = @client.city
-        = @client.zip
-        = @client.address
+        = @client.address_line
         .row
         %b= model_class.human_attribute_name(:lead_source) + ':'
         = I18n.t(@client.lead_source, scope: [:activerecord, :attributes, :client, :lead_sources])

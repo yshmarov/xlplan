@@ -28,6 +28,10 @@ module Personable
     end
   end
 
+  def address_line
+    country.to_s + " " + city.to_s + " " + zip.to_s + " " + address.to_s
+  end
+
   def age
     if date_of_birth.present?
       now = Time.now.utc.to_date
