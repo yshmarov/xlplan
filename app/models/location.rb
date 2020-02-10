@@ -57,14 +57,17 @@ class Location < ApplicationRecord
     end
   end
   
+  def address_line
+    country.to_s + " " + city.to_s + " " + zip.to_s + " " + address.to_s
+  end
+  
   def name_and_address
-    to_s + " (" + address_line + ")"
+    name + " (" + address_line.to_s + ")"
   end
 
-  #protected
-
-  after_create :add_default_workplace
-  def add_default_workplace
-    self.workplaces.create(name: "каб.1") if self.workplaces.blank?
-  end
+  protected
+    after_create :add_default_workplace
+    def add_default_workplace
+      self.workplaces.create(name: "каб.1") if self.workplaces.blank?
+    end
 end
