@@ -4,7 +4,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.belongs_to :tenant, index: true, foreign_key: true
       t.belongs_to :service_category, foreign_key: true
       t.string :name, :limit => 144, null: false
-      t.string :description, :limit => 144
+      t.string :description
       t.integer :duration, null: false
 
       t.integer :client_price, default: 0, null: false

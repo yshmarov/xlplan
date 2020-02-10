@@ -8,7 +8,10 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.string :email
       t.date :date_of_birth
       t.string :gender, default: "undisclosed"
-      t.text :address
+      t.string :country
+      t.string :city
+      t.string :zip
+      t.string :address
       t.string :lead_source, default: "direct"
 
       t.string :personal_data_consent, :boolean, default: true

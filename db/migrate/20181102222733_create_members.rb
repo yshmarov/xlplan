@@ -9,7 +9,10 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.string :email, :limit => 255
       t.date :date_of_birth
       t.string :gender, default: "undisclosed"
-      t.text :address
+      t.string :country
+      t.string :city
+      t.string :zip
+      t.string :address
       t.string :time_zone, default: "UTC"
 
       t.boolean :active, default: true
