@@ -30,8 +30,8 @@
               %span.fa.fa-search{"aria-hidden" => "true"}
     %ul.navbar-nav.side-nav
       /CALENDAR
-      %li{class: "#{'active' if current_page?(calendar_member_path(id: current_user.member.id))}"}
-        = link_to calendar_member_path(id: current_user.member.id), class: "nav-link" do 
+      %li{class: "#{'active' if current_page?(calendar_member_path(current_user.member))}"}
+        = link_to calendar_member_path(current_user.member), class: "nav-link" do 
           .fa-fw.fa-color-1.far.fa-calendar-alt
           %b= t('sidebar.calendar')
       /SEARCH CLIENT IN SIDEBAR

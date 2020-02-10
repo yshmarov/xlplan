@@ -6,7 +6,7 @@
       .container
         .card
           .card-header
-            .fa.fa-hand-paper
+            .far.fa-hand-paper
             =t '.title', :default => model_class.model_name.human.titleize
             .float-right.btn-group
               = link_to '', edit_service_path(@service), class: "btn btn-warning fa fa-edit btn-sm" if policy(@service).edit?
