@@ -14,8 +14,6 @@ class Location < ApplicationRecord
   has_many :events, through: :workplaces
   has_many :jobs, through: :events
   has_many :leads, dependent: :nullify
-  has_many :operating_hours, inverse_of: :location, dependent: :destroy
-  accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :workplaces, reject_if: :all_blank, allow_destroy: true
   #, :reject_if => proc { |attributes| attributes['events_count'].zero? }
   #-----------------------validation-------------------#

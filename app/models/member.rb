@@ -26,6 +26,9 @@ class Member < ApplicationRecord
   validates :email, :phone_number, length: { maximum: 255 }
 
   validates :user_id, uniqueness: true, allow_blank: true #presence: true
+
+  has_many :operating_hours, inverse_of: :member, dependent: :destroy
+  accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   #-----------------------relationships-------------------#
   has_one_attached :avatar
   has_many :transactions, as: :payable, dependent: :restrict_with_error

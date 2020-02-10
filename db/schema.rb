@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_08_195100) do
+ActiveRecord::Schema.define(version: 2020_02_10_153846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,6 +166,21 @@ ActiveRecord::Schema.define(version: 2020_02_08_195100) do
     t.index ["workplace_id"], name: "index_events_on_workplace_id"
   end
 
+  create_table "expences", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.integer "amount", default: 0, null: false
+    t.string "payment_method", default: "cash", null: false
+    t.string "expendable_type"
+    t.integer "expendable_id"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expendable_id"], name: "index_expences_on_expendable_id"
+    t.index ["expendable_type"], name: "index_expences_on_expendable_type"
+    t.index ["slug"], name: "index_expences_on_slug", unique: true
+    t.index ["tenant_id"], name: "index_expences_on_tenant_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -236,10 +251,12 @@ ActiveRecord::Schema.define(version: 2020_02_08_195100) do
     t.string "phone_number", limit: 144
     t.string "email", limit: 144
     t.string "address", limit: 255
+    t.integer "balance", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "members_count", default: 0, null: false
     t.string "slug"
+    t.integer "events_amount_sum", default: 0, null: false
     t.boolean "online_booking", default: true
     t.string "viber", limit: 40
     t.string "telegram", limit: 40
@@ -278,14 +295,14 @@ ActiveRecord::Schema.define(version: 2020_02_08_195100) do
   end
 
   create_table "operating_hours", force: :cascade do |t|
-    t.bigint "location_id"
     t.integer "day_of_week"
     t.time "closes"
     t.time "opens"
     t.datetime "valid_from"
     t.datetime "valid_through"
     t.bigint "tenant_id"
-    t.index ["location_id"], name: "index_operating_hours_on_location_id"
+    t.bigint "member_id"
+    t.index ["member_id"], name: "index_operating_hours_on_member_id"
     t.index ["tenant_id"], name: "index_operating_hours_on_tenant_id"
   end
 
@@ -468,6 +485,7 @@ ActiveRecord::Schema.define(version: 2020_02_08_195100) do
   add_foreign_key "events", "clients"
   add_foreign_key "events", "tenants"
   add_foreign_key "events", "workplaces"
+  add_foreign_key "expences", "tenants"
   add_foreign_key "jobs", "events"
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
@@ -481,6 +499,7 @@ ActiveRecord::Schema.define(version: 2020_02_08_195100) do
   add_foreign_key "members", "locations"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
+  add_foreign_key "operating_hours", "members"
   add_foreign_key "operating_hours", "tenants"
   add_foreign_key "roles", "tenants"
   add_foreign_key "service_categories", "tenants"

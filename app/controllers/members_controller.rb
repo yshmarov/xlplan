@@ -34,6 +34,7 @@ class MembersController < ApplicationController
     @user   = User.new
     #authorize @member
     #authorize @user
+    #7.times { @location.operating_hours.build}
   end
 
   def create
@@ -84,7 +85,8 @@ class MembersController < ApplicationController
     def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :address, :time_zone,
       :active, :location_id, :avatar, :online_booking,
-      service_category_ids: [], address: [:country, :city, :street, :zip])
+      service_category_ids: [], address: [:country, :city, :street, :zip],
+      operating_hours_attributes: [:id, :day_of_week, :closes, :opens, :valid_from, :valid_through, :_destroy])
     end
 
     def user_params
