@@ -9,13 +9,6 @@ class Member < ApplicationRecord
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged
-  #-----------------------serialization-------------------#
-  serialize :address
-  def address_line
-    if address.present?
-      [address[:country], address[:city], address[:street], address[:zip]].join(', ')
-    end
-  end
   #-----------------------validation-------------------#
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { maximum: 144 }
@@ -24,9 +17,7 @@ class Member < ApplicationRecord
   validates :gender, inclusion: %w(male female undisclosed)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :email, :phone_number, length: { maximum: 255 }
-
   validates :user_id, uniqueness: true, allow_blank: true #presence: true
-
   has_many :operating_hours, inverse_of: :member, dependent: :destroy
   accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   #-----------------------relationships-------------------#
@@ -72,6 +63,9 @@ class Member < ApplicationRecord
     update_column :balance, (transactions_sum + event_earnings_sum)
   end
   #-----------------------scopes-------------------#
+  #def open?  #for operating_hours
+  #  operating_hours.where("? BETWEEN opens AND closes", Time.zone.now).any?
+  #end
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }

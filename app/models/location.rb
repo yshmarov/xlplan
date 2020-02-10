@@ -25,17 +25,7 @@ class Location < ApplicationRecord
   validates :address, length: { maximum: 255 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
-  #-----------------------serialization-------------------#
-  serialize :address
-  def address_line
-    if address.present?
-      [address[:country], address[:city], address[:street], address[:zip]].join(', ')
-    end
-  end
   #-----------------------scopes-------------------#
-  #def open?  #for operating_hours
-  #  operating_hours.where("? BETWEEN opens AND closes", Time.zone.now).any?
-  #end
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }

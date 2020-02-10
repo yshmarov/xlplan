@@ -17,6 +17,7 @@
     = f.input :phone_number, input_html: { autocomplete: 'nope' }, placeholder: "+38"
     = f.input :email, input_html: { autocomplete: 'nope' }
     = f.input :date_of_birth, start_year: Date.today.year - 65, end_year: Date.today.year - 3, include_blank: true
+    / #### GENDER FIELD STARTS HERE ####
     %p
     = f.label :gender
     = f.error :gender, class: 'text-danger' if f.object.errors.any?
@@ -27,22 +28,12 @@
     = f.label :gender_female
     = f.radio_button :gender, 'male'
     = f.label :gender_male
+    / #### GENDER FIELD ENDS HERE ####
     / #### ADDRESS FIELD STARTS HERE ####
-    .fields
-      = f.fields_for :address, OpenStruct.new(f.object.address || {}) do |a|
-        .row
-          .col-6
-            = f.label :country
-            = a.text_field :country, id: :country, class: 'form-control'
-          .col-6
-            = f.label :city
-            = a.text_field :city, id: :city, class: 'form-control'
-          .col-6
-            = f.label :street
-            = a.text_field :street, id: :street, input_html: { autocomplete: 'nope' }, class: 'form-control'
-          .col-6
-            = f.label :zip
-            = a.text_field :zip, id: :zip, input_html: { autocomplete: 'nope' }, class: 'form-control'
+    = f.input :country, as: :string
+    = f.input :city
+    = f.input :zip
+    = f.input :address
     / #### ADDRESS FIELD ENDS HERE ####
 
     /= f.label :time_zone

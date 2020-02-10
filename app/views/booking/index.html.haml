@@ -59,7 +59,7 @@
               .fa.fa-map-marker-alt
               /= tenant.locations.count
               = Location.unscoped.active.online_booking.where(tenant_id: tenant.id).count
-              /= Location.unscoped.active.online_booking.where(tenant_id: tenant.id).pluck(address[:city]).compact
+              /= Location.unscoped.active.online_booking.where(tenant_id: tenant.id).pluck(:city).compact
 
             .col-md-6
               - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|

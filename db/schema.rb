@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_153846) do
+ActiveRecord::Schema.define(version: 2020_02_10_154601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2020_02_10_153846) do
     t.string "email"
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
-    t.text "address"
     t.integer "balance", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -103,6 +102,10 @@ ActiveRecord::Schema.define(version: 2020_02_10_153846) do
     t.boolean "marketing_notifications", default: true
     t.string "lead_source", default: "direct"
     t.string "code"
+    t.string "country"
+    t.string "city"
+    t.string "zip"
+    t.string "address"
     t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end
@@ -250,7 +253,6 @@ ActiveRecord::Schema.define(version: 2020_02_10_153846) do
     t.string "name", limit: 50, null: false
     t.string "phone_number", limit: 144
     t.string "email", limit: 144
-    t.string "address", limit: 255
     t.integer "balance", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -262,6 +264,10 @@ ActiveRecord::Schema.define(version: 2020_02_10_153846) do
     t.string "telegram", limit: 40
     t.string "whatsapp", limit: 40
     t.boolean "active", default: true
+    t.string "country"
+    t.string "city"
+    t.string "zip"
+    t.string "address"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
   end
@@ -275,7 +281,6 @@ ActiveRecord::Schema.define(version: 2020_02_10_153846) do
     t.string "email", limit: 255
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
-    t.text "address"
     t.integer "balance", default: 0, null: false
     t.bigint "location_id"
     t.datetime "created_at", null: false
@@ -288,6 +293,10 @@ ActiveRecord::Schema.define(version: 2020_02_10_153846) do
     t.integer "transactions_count", default: 0, null: false
     t.boolean "online_booking", default: true
     t.boolean "active", default: true
+    t.string "country"
+    t.string "city"
+    t.string "zip"
+    t.string "address"
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"

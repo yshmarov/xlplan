@@ -54,10 +54,13 @@
                 %b= location.name
               .row
               .btn-group-vertical
-                - if location.address[:city].present?
+                - if location.city.present?
                   .btn.btn-dark.btn-sm
                     .fa.fa-map-marker-alt.mr.mr-2
-                    %small= location.address_line
+                    = location.country
+                    = location.city
+                    = location.zip
+                    = location.address
                 - if location.phone_number.present?
                   = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm" do
                     .fa.fa-phone

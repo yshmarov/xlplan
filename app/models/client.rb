@@ -9,13 +9,6 @@ class Client < ApplicationRecord
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :full_name, use: :slugged
-  #-----------------------serialization-------------------#
-  serialize :address
-  def address_line
-    if address.present?
-      [address[:country], address[:city], address[:street], address[:zip]].join(', ')
-    end
-  end
   #-----------------------validation-------------------#
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { maximum: 144 }
@@ -24,6 +17,7 @@ class Client < ApplicationRecord
   validates :gender, inclusion: %w(male female undisclosed)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :email, :phone_number, length: { maximum: 255 }
+
 
 
   #-----------------------relationships-------------------#

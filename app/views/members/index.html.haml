@@ -63,7 +63,11 @@
               = member.email
           %td= member.date_of_birth
           %td= gender_label(member.gender)
-          %td= member.address_line
+          %td
+            = member.country
+            = member.city
+            = member.zip
+            = member.address
           %td= member.location
           %td= active_label(member.active)
           %td= active_label(member.online_booking)

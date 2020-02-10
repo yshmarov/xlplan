@@ -93,7 +93,10 @@
           %td= client.date_of_birth
           %td= gender_label(client.gender)
           %td
-            %small= client.address_line
+            = client.country
+            = client.city
+            = client.zip
+            = client.address
           %td= client.lead_source
           %td= client.events_count
           %td= client.event_expences_sum_cents
