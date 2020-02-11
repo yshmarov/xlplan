@@ -110,6 +110,9 @@ class EventsController < ApplicationController
     @event = Event.new
     @clients = Client.all
     @services = Service.includes(:service_category)
+    @workplaces = Workplace.order(:location_id)
+    @members = Member.all
+    @service_categories = ServiceCategory.all
     authorize @event
     @event.jobs.build
   end
@@ -167,6 +170,9 @@ class EventsController < ApplicationController
       else
         @clients = Client.all
         @services = Service.includes(:service_category)
+        @workplaces = Workplace.order(:location_id)
+        @members = Member.all
+        @service_categories = ServiceCategory.all
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
