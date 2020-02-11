@@ -37,8 +37,6 @@ class Tenant < ApplicationRecord
   #-----------------------scopes-------------------#
   scope :online_booking, -> { where(online_booking: true) }
   scope :not_blocked, -> { where.not(plan: 'blocked') }
-  #-----------------------onboarding_percent-------------------#
-  include Onboarding
 
   ###select industry###
   INDUSTRIES = [:hair_beauty_barbershop, :cosmetology, :solarium, :tattoo_studio, :spa, :sauna,
