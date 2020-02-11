@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :after_signup_wizard
+
   resources :leads do
     resources :booking_wizard, controller: 'leads/booking_wizard'
     member do

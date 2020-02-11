@@ -2,8 +2,11 @@
   %a.navbar-brand{:href => "/"}
     %i.far.fa-calendar-check
     .badge.badge-default 
-      XLPLAN | #{@org_name}
+      XLPLAN
+      /XLPLAN | #{@org_name}
       = plan_label(Tenant.current_tenant.plan)
+  - if Rails.env.development?
+    = link_to 'after signup', after_signup_wizard_path(:tenant_settings), class: 'btn btn-danger btn-sm'
   /%a
   /  = link_to calendar_member_path(id: current_user.member.id), class: 'navbar-brand' do
   /    /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"

@@ -150,7 +150,8 @@ end   # def create
   def after_sign_up_path_for(resource) # path after creating a tenant
     headers['refresh'] = "0;url=#{root_path}"
     #root_path
-    start_path
+    #start_path
+    after_signup_wizard_path(:tenant_settings)
   end
 
 # ------------------------------------------------------------------------------

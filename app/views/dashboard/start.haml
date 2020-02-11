@@ -1,11 +1,6 @@
 .card
   .card-body
-    %h5
-      /General tenant settings
-      %span.badge.badge-pill.badge-warning -
-      = link_to t('.select_currency'), edit_tenant_path
-      %hr
-      /Currency
+    %h6
       /CREATE MEMBER
       - if Tenant.current_tenant.can_create_members?
         - if Member.count < 2

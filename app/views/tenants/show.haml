@@ -22,11 +22,7 @@
         = @tenant.time_zone
         %hr
         %b= model_class.human_attribute_name(:online_booking) + ':'
-        - if @tenant.online_booking?
-          .far.fa-check-circle
-          /= @tenant.online_booking
-        - else
-          .fa.fa-ban
+        = active_label(@tenant.online_booking)
         .row
         %b= model_class.human_attribute_name(:industry) + ':'
         = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])

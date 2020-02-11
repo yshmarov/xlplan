@@ -14,6 +14,10 @@ module ApplicationHelper
 
 	def model_icon(model_name)
 		case model_name
+			when 'Settings'
+	      "<i class='fa fa-cog'></i>".html_safe
+			when 'User'
+	      "<i class='fa fa-user'></i>".html_safe
 			when 'Location'
 	      "<i class='fa fa-map-marker-alt'></i>".html_safe
 			when 'Service'
