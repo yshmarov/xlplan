@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
   #include StatusHelper
 
   def index
-    @locations = Location.all
+    @locations = Location.includes(:workplaces)
   end
 
   def show

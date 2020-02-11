@@ -16,12 +16,13 @@
 .nested-fields
   .card.border.border-primary.rounded
     .card-header
-      = f.label :service_id
-      = f.error :service_id, class: 'text-danger'
-      = f.select :service_id, @services.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'
+      /standard selectize
+      /= f.label :service_id
+      /= f.error :service_id, class: 'text-danger'
+      /= f.select :service_id, @services.active_or_id(f.object.service_id).map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'
       /MAKE SERVICE ACTIVE OR ID
       /= f.association :service,   as: :check_boxes
-      /= f.input :service_id, collection: ServiceCategory.all, as: :grouped_select, group_method: :services, label_method: :name_price_duration_description, class: 'selectize'
+      = f.input :service_id, collection: ServiceCategory.all, as: :grouped_select, group_method: :services, label_method: :name_price_duration_description, class: 'selectize'
       /= f.label :member
       /= f.error :member, class: 'text-danger'
       /= f.association :member, include_blank: false, as: :radio_buttons, selected: Member.first.id

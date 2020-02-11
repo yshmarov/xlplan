@@ -14,7 +14,7 @@ class Location < ApplicationRecord
   has_many :events, through: :workplaces
   has_many :jobs, through: :events
   has_many :leads, dependent: :nullify
-  accepts_nested_attributes_for :workplaces, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :workplaces, reject_if: proc { |attributes| attributes['name'].blank? }, allow_destroy: :true
   #, :reject_if => proc { |attributes| attributes['events_count'].zero? }
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
