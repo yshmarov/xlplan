@@ -7,6 +7,7 @@ class ServiceCategoriesController < ApplicationController
 
   def new
     @service_category = ServiceCategory.new
+    #@service_categories = ServiceCategory.order(:name)
     authorize @service_category
   end
 
@@ -23,6 +24,7 @@ class ServiceCategoriesController < ApplicationController
         format.html { redirect_to service_categories_path, notice: 'Service category was successfully created.' }
         format.json { render json: @service_category }
       else
+        #@service_categories = ServiceCategory.order(:name)
         format.html { render :new }
         format.json { render json: {errors: @service_category.errors.full_messages} }
       end

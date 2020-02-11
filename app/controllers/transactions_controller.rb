@@ -30,6 +30,7 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
+    @cash_accounts = CashAccount.order('created_at ASC')
     @clients = Client.all
     authorize @transaction
   end
@@ -47,6 +48,7 @@ class TransactionsController < ApplicationController
         end
       else
         @clients = Client.all
+        @cash_accounts = CashAccount.order('created_at ASC')
         format.html { render :new }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
