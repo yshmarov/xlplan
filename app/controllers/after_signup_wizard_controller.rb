@@ -4,6 +4,7 @@ class AfterSignupWizardController < ApplicationController
   steps :tenant_settings, :profile_settings
 
   def show
+    authorize User, :edit?
     case step
     when :tenant_settings
       @favicon = 'Settings'
@@ -16,7 +17,7 @@ class AfterSignupWizardController < ApplicationController
   end
 
   def update
-    #@user = current_user
+    authorize User, :edit?
     case step
     when :tenant_settings
       @favicon = 'Settings'

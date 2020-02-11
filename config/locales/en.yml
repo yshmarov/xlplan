@@ -289,6 +289,22 @@ en:
     submit:
       lead:
         create: "Submit application"
+      transaction:
+        create: "Create payment"
+      client:
+        create: "Create client"
+      event:
+        create: "Create event"
+      service:
+        create: "Create service"
+      service_category:
+        create: "Create service category"
+      member:
+        create: "Create employee"
+      cash_account:
+        create: "Create cash account"
+      location:
+        create: "Create location"
 
   ######################################################
 

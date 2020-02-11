@@ -290,7 +290,7 @@ ru:
       lead:
         create: "Подать заявку"
       transaction:
-        create: "Создать транзакцию"
+        create: "Создать оплату"
       client:
         create: "Создать клиента"
       event:
@@ -299,6 +299,12 @@ ru:
         create: "Создать услугу"
       service_category:
         create: "Создать категорию услуг"
+      member:
+        create: "Создать сотрудника"
+      cash_account:
+        create: "Создать счёт"
+      location:
+        create: "Создать филиал"
 
   ######################################################
 
