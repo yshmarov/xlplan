@@ -5,8 +5,6 @@
       XLPLAN
       /XLPLAN | #{@org_name}
       = plan_label(Tenant.current_tenant.plan)
-  - if Rails.env.development?
-    = link_to 'after signup', after_signup_wizard_path(:tenant_settings), class: 'btn btn-danger btn-sm'
   /%a
   /  = link_to calendar_member_path(id: current_user.member.id), class: 'navbar-brand' do
   /    /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
@@ -109,12 +107,15 @@
           = link_to activity_path, class: "dropdown-item" do 
             .fa.fa-history
             = t('sidebar.activity')
-          = link_to start_path, class: "dropdown-item" do 
-            .fa.fa-rocket
-            = t('sidebar.start')
           = link_to contacts_list_path, class: "dropdown-item" do 
             .fa.fa-user-plus
             = t('sidebar.import_contacts')
+          = link_to after_signup_wizard_path(:tenant_settings), class: 'dropdown-item' do
+            .fa.fa-rocket
+            = t('sidebar.start') + " 1"
+          = link_to start_path, class: "dropdown-item" do 
+            .fa.fa-rocket
+            = t('sidebar.start') + " 2"
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}

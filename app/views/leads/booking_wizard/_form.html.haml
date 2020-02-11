@@ -11,7 +11,7 @@
   /        %li= msg
   = yield f
   /.actions
-  = f.submit "Continue", class: 'btn btn-success'
+  = f.button :submit
 
 /= Location.active.online_booking.where(tenant_id: @lead.tenant_id).any?
 /= @lead.status

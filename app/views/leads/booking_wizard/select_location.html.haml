@@ -17,6 +17,6 @@
           /= f.association :location, collection: @locations, label_method: :name_and_address, include_blank: "any location"
           /= f.collection_radio_buttons(:location, @locations, :id, :name_and_address)
         %hr
-        = link_to 'Cancel', booking_show_path(Tenant.current_tenant), class: 'btn btn-secondary'
+        = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(Tenant.current_tenant), class: 'btn btn-secondary'
         .float-right
-          = link_to 'Skip', next_wizard_path, class: 'btn btn-secondary'
+          = link_to t('.skip', :default => t("helpers.links.skip")), next_wizard_path, class: 'btn btn-secondary'

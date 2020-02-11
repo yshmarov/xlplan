@@ -274,6 +274,7 @@ ru:
     actions: "Действия"
     links:
       back: "Назад"
+      skip: "Пропустить"
       cancel: "Отменить"
       confirm: "Вы уверены?"
       destroy: "Удалить"

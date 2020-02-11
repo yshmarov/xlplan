@@ -25,7 +25,8 @@
           = f.input :website
           = f.input :instagram
           = f.input :description, :input_html => {:rows => 5}
-          = f.submit "Continue", class: 'btn btn-success'
+          = f.button :submit
+
         %hr
         .float-right
-          = link_to 'Skip', next_wizard_path, class: 'btn btn-secondary'
+          = link_to t('.skip', :default => t("helpers.links.skip")), next_wizard_path, class: 'btn btn-secondary'

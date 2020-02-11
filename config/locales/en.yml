@@ -274,6 +274,7 @@ en:
     actions: "Actions"
     links:
       back: "Back"
+      skip: "Skip"
       cancel: "Cancel"
       confirm: "Are you sure?"
       destroy: "Delete"
