@@ -2,7 +2,7 @@ class AfterSignupWizardController < ApplicationController
   include Wicked::Wizard
   before_action :set_progress, only: [:show, :update]
 
-  steps :tenant_settings, :profile_settings
+  steps :tenant_settings, :profile_settings, :location_settings
 
   def show
     authorize User, :edit?
@@ -13,6 +13,9 @@ class AfterSignupWizardController < ApplicationController
     when :profile_settings
       @favicon = 'User'
       @member = current_user.member
+    when :location_settings
+      @favicon = 'Location'
+      @location = Location.order(created_at: :desc).first
     end
     render_wizard
   end
@@ -30,6 +33,11 @@ class AfterSignupWizardController < ApplicationController
       @member = current_user.member
       @member.update_attributes(member_params)
       render_wizard @member
+    when :location_settings
+      @favicon = 'Location'
+      @location = Location.order(created_at: :desc).first
+      @location.update_attributes(location_params)
+      render_wizard @location
     end
   end
 
@@ -55,4 +63,9 @@ class AfterSignupWizardController < ApplicationController
     def member_params
       params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :time_zone, :online_booking)
     end
+
+    def location_params
+      params.require(:location).permit(:name, :online_booking, :country, :city, :zip, :address)
+    end
+
 end
