@@ -39,15 +39,17 @@ def create
         #Tag.create!(name: "over_3_visits")
         #Tag.create!(name: "no_visits")
         Location.create!(name: @tenant.name)
-        Location.first.workplaces.create(name: "каб.1")
-        CashAccount.create!(name: "Наличные")
-        CashAccount.create!(name: "Безнал")
+        Location.first.workplaces.create(name: "Studio-1")
+        CashAccount.create!(name: "Cash")
+        CashAccount.create!(name: "Card")
+        #Member.first.update_all(location_id: Location.first.id)
 
         if resource.errors.empty?   #  SUCCESS!
 
           log_action( "signup user/tenant success", resource )
             # do any needed tenant initial setup
           Tenant.tenant_signup(resource, @tenant, coupon_params)
+
           TenantMailer.tenant_created(@tenant).deliver_now
 
         else  # user creation failed; force tenant rollback
