@@ -121,6 +121,8 @@ class EventsController < ApplicationController
     authorize @event
     @clients = Client.all
     @services = Service.includes(:service_category)
+    @workplaces = Workplace.order(:location_id)
+    @members = Member.all
   end
 
   def send_email_to_client

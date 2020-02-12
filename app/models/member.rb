@@ -72,6 +72,21 @@ class Member < ApplicationRecord
   def self.active_or_id(record_id)
     where('id = ? OR (active=true)', record_id)    
   end
+
+
+  #def available_timeslots
+  #  events & operating_hours
+  #  days: tomorrow + X days
+  #  select by day all timeslots between all event.start and event.end and between member.operating_hours
+  #  timeslot.start
+  #  timeslot.duration
+  #  timeslot.end
+  #  validate overlap?
+  #end
+  #def selection_fits_into_timeslot?
+  #  available_timeslots.where duration =< lead.services.pluck(:duration).sum
+  #end
+
   ################TENANT VALIDATION#################
   validate :tenant_plan_quantity_limit
   def tenant_plan_quantity_limit
