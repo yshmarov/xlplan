@@ -35,21 +35,17 @@
     .far.fa-address-book
     %b= model_class.human_attribute_name(:client_id) + ':'
     = link_to @event.client.full_name_with_code, client_path(@event.client)
-    .row
-    - if @event.client.phone_number.present? && policy(Client).show_phone?
-      = button_to "tel:#{@event.client.phone_number}", class: "button" do
-        .fa.fa-phone
-        #{number_to_phone(@event.client.phone_number)}
-      = button_to "viber://chat?number=#{@event.client.phone_number}" do
-        .fab.fa-viber
-        Viber
-      = button_to "https://api.whatsapp.com/send?phone=#{@event.client.phone_number_only_digits}&text=#{@event.sms_text}&source=&data=", :target => "_blank" do
-        .fab.fa-whatsapp
-        Whatsapp
-    - if @event.client.email.present?
-      = button_to send_email_to_client_event_path(@event), method: :patch do 
-        .far.fa-envelope
-        = t '.email_client'
+    .btn-group
+      - if @event.client.phone_number.present? && policy(Client).show_phone?
+        = link_to "tel:#{@event.client.phone_number}", class: "btn btn-sm btn-outline-secondary" do
+          .fa.fa-phone
+        = link_to "viber://chat?number=#{@event.client.phone_number}", class: "btn btn-sm btn-outline-secondary" do
+          .fab.fa-viber
+        = link_to "https://api.whatsapp.com/send?phone=#{@event.client.phone_number_only_digits}&text=#{@event.sms_text}&source=&data=", :target => "_blank", class: "btn btn-sm btn-outline-secondary" do
+          .fab.fa-whatsapp
+      - if @event.client.email.present?
+        = link_to send_email_to_client_event_path(@event), method: :patch, class: "btn btn-sm btn-outline-secondary" do 
+          .far.fa-envelope
   .card-footer
     .far.fa-clock
     %b= model_class.human_attribute_name(:time) + ':'
@@ -60,7 +56,7 @@
     = link_to @event.workplace, workplace_path(@event.workplace)
   .card-footer
     - if @event.users.distinct.pluck(:email).present?
-      = button_to send_email_to_members_event_path(@event), method: :patch do 
+      = link_to send_email_to_members_event_path(@event), method: :patch, class: "btn btn-sm btn-outline-secondary" do 
         .far.fa-envelope
         .fa.fa-user-tie
         = t '.email_members'
