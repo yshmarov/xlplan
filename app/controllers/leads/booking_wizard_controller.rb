@@ -8,20 +8,25 @@ class Leads::BookingWizardController < ApplicationController
     case step
     when :select_service
       @favicon = 'Service'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @services = Service.active.online_booking
       skip_step unless @services.any?
     when :select_location
       @favicon = 'Location'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @locations = Location.active.online_booking
       skip_step unless @locations.any?
     when :select_member
       @favicon = 'Member'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @members = Member.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})
       skip_step unless @members.any?
     when :time
       @favicon = 'Time'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
     when :personal_data
       @favicon = 'Client'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
     end
     render_wizard
   end
@@ -32,17 +37,22 @@ class Leads::BookingWizardController < ApplicationController
     case step
     when :select_service
       @favicon = 'Service'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @services = Service.online_booking.active
     when :select_location
       @favicon = 'Location'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @locations = Location.active.online_booking
     when :select_member
       @favicon = 'Member'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @members = Member.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})
     when :time
       @favicon = 'Time'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
     when :personal_data
       @favicon = 'Client'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
     end
 
     params[:lead][:status] = step.to_s

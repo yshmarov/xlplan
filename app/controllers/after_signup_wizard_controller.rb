@@ -8,9 +8,11 @@ class AfterSignupWizardController < ApplicationController
     case step
     when :tenant_settings
       @favicon = 'Settings'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @tenant = Tenant.find(Tenant.current_tenant_id)
     when :profile_settings
       @favicon = 'User'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @member = current_user.member
     end
     render_wizard
@@ -21,11 +23,13 @@ class AfterSignupWizardController < ApplicationController
     case step
     when :tenant_settings
       @favicon = 'Settings'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @tenant = Tenant.find(Tenant.current_tenant_id)
       @tenant.update(tenant_params)
       render_wizard @tenant
     when :profile_settings
       @favicon = 'User'
+      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
       @member = current_user.member
       @member.update_attributes(member_params)
       render_wizard @member
