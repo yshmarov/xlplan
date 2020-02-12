@@ -89,7 +89,6 @@ Rails.application.routes.draw do
 
   get 'calendar', to: 'dashboard#calendar'
   get 'activity', to: 'dashboard#activity'
-  get 'start', to: 'dashboard#start'
 
   get 'dashboard/client_stats'
   get 'dashboard/member_stats'

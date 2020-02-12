@@ -112,10 +112,7 @@
             = t('sidebar.import_contacts')
           = link_to after_signup_wizard_path(:tenant_settings), class: 'dropdown-item' do
             .fa.fa-rocket
-            = t('sidebar.start') + " 1"
-          = link_to start_path, class: "dropdown-item" do 
-            .fa.fa-rocket
-            = t('sidebar.start') + " 2"
+            = t('sidebar.start')
       - if current_user.has_role?(:admin)
         %li.nav-item.dropdown
           %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}

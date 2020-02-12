@@ -3,9 +3,6 @@ class DashboardController < ApplicationController
     @activities = PublicActivity::Activity.paginate(:page => params[:page], per_page: 50).order("created_at DESC").where(tenant_id: Tenant.current_tenant.id)
   end
 
-  def start
-  end
-
   def calendar
     @members = Member.active.order('created_at ASC')
     @locations = Location.all.includes(:workplaces)

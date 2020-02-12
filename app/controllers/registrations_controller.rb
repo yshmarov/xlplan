@@ -42,6 +42,10 @@ def create
         Location.first.workplaces.create(name: "Studio-1")
         CashAccount.create!(name: "Cash")
         CashAccount.create!(name: "Card")
+        ServiceCategory.create!(name: "Massage")
+        Service.create!(name: "Massage-head", service_category: ServiceCategory.first, duration: 30, client_price: 10000, member_percent: 50)
+        Service.create!(name: "Massage-body", service_category: ServiceCategory.first, duration: 60, client_price: 20000, member_percent: 50)
+        Client.create!(first_name: "Yaroslav", last_name: "Shmarov", email: "yshmarov@gmail.com", phone_number: "+48537628023")
         #Member.first.update_all(location_id: Location.first.id)
 
         if resource.errors.empty?   #  SUCCESS!

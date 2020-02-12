@@ -42,10 +42,9 @@ class AfterSignupWizardController < ApplicationController
   end
 
   def finish_wizard_path
-    start_path
-    #calendar_member_path(current_user.member)
+    calendar_member_path(current_user.member)
   end
-  
+
   private
     def set_progress
       if wizard_steps.any? && wizard_steps.index(step).present?
@@ -61,11 +60,11 @@ class AfterSignupWizardController < ApplicationController
     end
 
     def member_params
-      params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :time_zone, :online_booking)
+      params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :time_zone)
     end
 
     def location_params
-      params.require(:location).permit(:name, :online_booking, :country, :city, :zip, :address)
+      params.require(:location).permit(:name, :country, :city, :zip, :address)
     end
 
 end
