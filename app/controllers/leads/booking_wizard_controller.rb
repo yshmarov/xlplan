@@ -2,7 +2,7 @@ class Leads::BookingWizardController < ApplicationController
   include Wicked::Wizard
   before_action :set_lead, only: [:show, :update]
 
-  steps :select_location, :select_service, :select_member, :time, :personal_data
+  steps :select_service, :select_location, :select_member, :time, :personal_data
 
   def show
     case step
