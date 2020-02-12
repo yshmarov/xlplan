@@ -109,7 +109,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @clients = Client.all
-    @services = Service.includes(:service_category)
+    #@services = Service.includes(:service_category)
     @workplaces = Workplace.order(:location_id)
     @members = Member.all
     @service_categories = ServiceCategory.all
@@ -120,9 +120,10 @@ class EventsController < ApplicationController
   def edit
     authorize @event
     @clients = Client.all
-    @services = Service.includes(:service_category)
+    #@services = Service.includes(:service_category)
     @workplaces = Workplace.order(:location_id)
     @members = Member.all
+    @service_categories = ServiceCategory.all
   end
 
   def send_email_to_client
@@ -171,7 +172,7 @@ class EventsController < ApplicationController
         #EventMailer.with(user: @user).welcome_email.deliver_later
       else
         @clients = Client.all
-        @services = Service.includes(:service_category)
+        #@services = Service.includes(:service_category)
         @workplaces = Workplace.order(:location_id)
         @members = Member.all
         @service_categories = ServiceCategory.all
@@ -184,7 +185,10 @@ class EventsController < ApplicationController
   def update
     authorize @event
     @clients = Client.all
-    @services = Service.includes(:service_category)
+    #@services = Service.includes(:service_category)
+    @workplaces = Workplace.order(:location_id)
+    @service_categories = ServiceCategory.all
+    @members = Member.all
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to @event, notice: t('.success') }

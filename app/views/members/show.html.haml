@@ -108,3 +108,5 @@
               .row
               = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, @member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm mb-sm-1 mt-sm-1"
     %p
+
+/= @member.available_timeslots
