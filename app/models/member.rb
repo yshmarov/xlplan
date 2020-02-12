@@ -73,16 +73,35 @@ class Member < ApplicationRecord
     where('id = ? OR (active=true)', record_id)    
   end
 
+  #def options_for_time_select
+  #  hour = Array.new
+  #  for $h in 8..21 do
+  #      for $m in ['00', '15', '30', '45'] do
+  #          hour.push [$h.to_s + "h" + $m.to_s, "%02d" % $h + ":" + $m + ":00"]
+  #      end
+  #  end
+  #  hour
+  #end
 
   def available_timeslots
-    events.pluck(:starts_at, :ends_at)
+    events.is_upcoming.pluck(:starts_at, :ends_at)
     #events & operating_hours
     #days: tomorrow + X days
-    #select by day all timeslots between all event.start and event.end and between member.operating_hours
+    #select by day all timeslots 
+      #between member.operating_hours
+      #between all event.start and event.end 
     #timeslot.start
     #timeslot.duration
     #timeslot.end
     #validate overlap?
+
+    #now = DateTime.now
+    #start = DateTime.new(2018, 6, 28, 13, 00, 00)
+    #stop =  DateTime.new(2018, 6, 28, 14, 00, 00)
+    #p (start..stop).cover? now
+    #def closed?
+    #  DateTime.now.between?(DateTime.new(2018, 6, 28, 13, 00, 00), DateTime.new(2018, 6, 28, 14, 00, 00))
+    #end
   end
   #def selection_fits_into_timeslot?
   #  available_timeslots.where duration =< lead.services.pluck(:duration).sum

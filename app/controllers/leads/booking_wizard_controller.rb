@@ -1,7 +1,7 @@
 class Leads::BookingWizardController < ApplicationController
   include Wicked::Wizard
-  before_action :set_lead, only: [:show, :update]
-  before_action :set_progress, only: [:show, :update]
+  before_action :set_lead, only: [:show, :update, :finish_wizard_path]
+  before_action :set_progress, only: [:show, :update, :finish_wizard_path]
 
   steps :select_service, :select_location, :select_member, :time, :personal_data
 
@@ -28,7 +28,7 @@ class Leads::BookingWizardController < ApplicationController
   end
 
   def update
-    @lead = Lead.find(params[:lead_id])
+    @lead = Lead.friendly.find(params[:lead_id])
 
     case step
     when :select_service
@@ -61,11 +61,15 @@ class Leads::BookingWizardController < ApplicationController
 
   private
     def set_progress
-      @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
+      if wizard_steps.any? && wizard_steps.index(step).present?
+        @progress = ((wizard_steps.index(step) + 1).to_d / wizard_steps.count.to_d) * 100
+      else
+        @progress = 0
+      end
     end
     
     def set_lead
-      @lead = Lead.find params[:lead_id]
+      @lead = Lead.friendly.find params[:lead_id]
     end
 
     def lead_params

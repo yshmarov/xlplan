@@ -43,7 +43,11 @@ class Lead < ApplicationRecord
   end
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
-  friendly_id :full_name, use: :slugged
+  friendly_id :generated_slug, use: :slugged
+  def generated_slug
+    require 'securerandom' 
+    @random_slug ||= persisted? ? friendly_id : SecureRandom.hex(8)
+  end
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
   #tracked owner: Proc.new{ |controller, model| controller.current_user }
