@@ -67,6 +67,9 @@ class ClientsController < ApplicationController
 
     @event = Event.new
     @services = Service.includes(:service_category)
+    @workplaces = Workplace.all
+    @members = Member.all
+    @cash_accounts = CashAccount.all
     authorize @event
     @event.jobs.build
 
