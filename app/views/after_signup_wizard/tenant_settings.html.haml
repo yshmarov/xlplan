@@ -19,7 +19,7 @@
           = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
         
           = f.input :name, required: true, class: "form-control"
-          = f.input :locale, collection: [['Русский', 'ru'], ['English', 'en'], ['Polski', 'pl']], include_blank: false
+          = f.input :locale, collection: [['Русский', 'ru'], ['English', 'en']], include_blank: false
           = f.input :default_currency, collection: [ "usd", "eur", "pln", "uah", "rub"], include_blank: false
           = f.input :time_zone
           = f.input :online_booking

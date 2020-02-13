@@ -27,7 +27,7 @@ module Xlplan
     #config.i18n.fallbacks = [I18n.default_locale]
 
     # Whitelist locales available for the application
-    I18n.available_locales = [:en, :ru, :pl]
+    I18n.available_locales = [:en, :ru]
     #I18n.enforce_available_locales = false
      
     # Set default locale to something other than :en
