@@ -47,12 +47,11 @@ Rails.application.routes.draw do
   match '/settings/update' => 'tenants#update', via: [:put, :patch], as: :update_tenant
   match '/plan/edit' => 'tenants#edit_plan', via: :get, as: :edit_plan
 
-  get 'contacts/index'
-  get 'contacts/list'
+  get 'contacts/import'
   get 'contacts/add_all'
-  get '/contacts/:provider/contact_callback' => 'contacts#index'
+  get '/contacts/:provider/contact_callback' => 'contacts#import'
   get '/contacts/failure' => 'contacts#failure'
-  resources :contacts, except: [:index, :destroy, :create, :new, :edit, :update] do
+  resources :contacts, except: [:destroy, :create, :new, :edit, :update] do
     member do
       patch :create_client_from_contact, :fill_missing_client_data
     end

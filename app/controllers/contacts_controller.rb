@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  def index
+  def import
     #IMPORT CONTACTS FROM GOOGLE
     @contacts = request.env['omnicontacts.contacts']
 
@@ -27,17 +27,17 @@ class ContactsController < ApplicationController
       contact1.relation = contact[:relation]
       contact1.save
     end
-    redirect_to contacts_list_path, notice: 'Contacts successfully imported'
+    redirect_to contacts_path, notice: 'Contacts successfully imported'
       #respond_to do |format|
       #  format.html
       #end
   end
 
-  def list
+  def index
     #SHOW ALL CONTACTS
     @contacts = Contact.paginate(:page => params[:page], per_page: 50).order("created_at DESC")
     #@clients = Client.all #for selectize
-    render 'index'
+    #render 'index'
   end
 
 	def create_client_from_contact
@@ -61,9 +61,9 @@ class ContactsController < ApplicationController
 		@contact.update_attribute(:client_id, @client.id)
 
     if @client.save
-      redirect_to contacts_list_path, notice: 'Client was successfully created.'
+      redirect_to contacts_path, notice: 'Client was successfully created.'
     else
-      redirect_to contacts_list_path, alert: 'Error.'
+      redirect_to contacts_path, alert: 'Error.'
     end
 	end
 
@@ -96,7 +96,7 @@ class ContactsController < ApplicationController
       client.save
   		contact.update_attribute(:client_id, client.id)
     end
-    redirect_to contacts_list_path, notice: 'All clients successfully added'
+    redirect_to contacts_path, notice: 'All clients successfully added'
   end
 
   def fill_missing_client_data #DOES NOT WORK!!!!
@@ -112,6 +112,6 @@ class ContactsController < ApplicationController
   		client.update_attribute(:email, @contact.email)
     end
 	  @contact.update_attribute(:client_id, client.id)
-    redirect_to contacts_list_path, notice: 'Missing client data successfully added'
+    redirect_to contacts_path, notice: 'Missing client data successfully added'
   end
 end
