@@ -13,7 +13,7 @@ class Leads::BookingWizardController < ApplicationController
       skip_step unless @services.any?
     when :select_location
       @favicon = 'Location'
-      @locations = Location.active.online_booking
+      @locations = Location.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})
       skip_step unless @locations.any?
     when :select_member
       @favicon = 'Member'
@@ -36,7 +36,7 @@ class Leads::BookingWizardController < ApplicationController
       @services = Service.online_booking.active
     when :select_location
       @favicon = 'Location'
-      @locations = Location.active.online_booking
+      @locations = Location.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})
     when :select_member
       @favicon = 'Member'
       @members = Member.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})

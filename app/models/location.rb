@@ -10,6 +10,7 @@ class Location < ApplicationRecord
   friendly_id :to_s, use: :slugged
   #-----------------------relationships-------------------#
   has_many :members, dependent: :nullify
+  has_many :skills, through: :members
   has_many :workplaces, inverse_of: :location, dependent: :restrict_with_error
   has_many :events, through: :workplaces
   has_many :jobs, through: :events
