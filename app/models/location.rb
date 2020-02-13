@@ -8,6 +8,10 @@ class Location < ApplicationRecord
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :to_s, use: :slugged
+  #-----------------------gem geocoder-------------------#
+  geocoded_by :address_line
+  #after_validation :geocode
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
   #-----------------------relationships-------------------#
   has_many :members, dependent: :nullify
   has_many :skills, through: :members
@@ -57,9 +61,9 @@ class Location < ApplicationRecord
       id
     end
   end
-  
+
   def address_line
-    country.to_s + " " + city.to_s + " " + zip.to_s + " " + address.to_s
+    [country, city, zip, address].compact.join(', ')
   end
   
   def name_and_address

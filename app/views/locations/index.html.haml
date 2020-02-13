@@ -66,6 +66,11 @@
                 = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm" do
                   .fa.fa-envelope
                   = location.email
+            /- unless location.address_line.blank?
+            /  .row
+            /  Coordinates: #{location.latitude} #{location.longitude}
+            /  .row
+            /  = image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=#{location.latitude},#{location.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", class: 'img-fluid img-rounded', alt: "#{location.name} on the map"
           %td= active_label(location.active)
           %td= active_label(location.online_booking)
 %br

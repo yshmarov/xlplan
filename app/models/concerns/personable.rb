@@ -29,7 +29,7 @@ module Personable
   end
 
   def address_line
-    country.to_s + " " + city.to_s + " " + zip.to_s + " " + address.to_s
+    [country, city, zip, address].compact.join(', ')
   end
 
   def age
