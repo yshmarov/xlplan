@@ -23,5 +23,6 @@
           = f.input :coupon
           = f.input :conditions_consent
         
-        %hr
+      .card-footer
         = link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, class: 'btn btn-secondary'
+      = render 'leads/booking_wizard/footer'

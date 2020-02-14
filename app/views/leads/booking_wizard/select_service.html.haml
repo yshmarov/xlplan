@@ -18,7 +18,8 @@
           /= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
           = f.association :service, collection: @services, label_method: :name_price_duration_description
         
-        %hr
+      .card-footer
         = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(Tenant.current_tenant), class: 'btn btn-secondary'
         .float-right
           /= link_to t('.skip', :default => t("helpers.links.skip")), next_wizard_path, class: 'btn btn-secondary'
+      = render 'leads/booking_wizard/footer'

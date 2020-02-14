@@ -1,0 +1,16 @@
+- if @lead.service.present?
+  .card-footer
+    %b= t('activerecord.models.service') + ":"
+    = @lead.service
+- if @lead.location.present?
+  .card-footer
+    %b= t('activerecord.models.location') + ":"
+    = @lead.location
+- if @lead.member.present?
+  .card-footer
+    %b= t('activerecord.models.member') + ":"
+    = @lead.member
+- if @lead.starts_at.present?
+  .card-footer
+    %b= t('activerecord.attributes.event.time') + ":"
+    = @lead.starts_at
