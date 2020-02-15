@@ -3,7 +3,7 @@ class Leads::BookingWizardController < ApplicationController
   before_action :set_lead, only: [:show, :update, :finish_wizard_path]
   before_action :set_progress, only: [:show, :update, :finish_wizard_path]
 
-  steps :select_service, :select_location, :select_member, :time, :personal_data
+  steps :select_service, :select_location, :select_member, :select_time, :personal_data
 
   def show
     case step
@@ -19,7 +19,7 @@ class Leads::BookingWizardController < ApplicationController
       @favicon = 'Member'
       @members = Member.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})
       skip_step unless @members.any?
-    when :time
+    when :select_time
       @favicon = 'Time'
     when :personal_data
       @favicon = 'Client'
@@ -40,7 +40,7 @@ class Leads::BookingWizardController < ApplicationController
     when :select_member
       @favicon = 'Member'
       @members = Member.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})
-    when :time
+    when :select_time
       @favicon = 'Time'
     when :personal_data
       @favicon = 'Client'
