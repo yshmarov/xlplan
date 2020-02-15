@@ -1,16 +1,33 @@
 - if @lead.service.present?
-  .card-footer
-    %b= t('activerecord.models.service') + ":"
+  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:select_service, lead_id: @lead.slug))}"}
+    %b
+      = t('activerecord.models.service') + ":"
     = @lead.service
+    .float-right
+      = link_to lead_booking_wizard_path(:select_service, lead_id: @lead.slug) do
+        .btn.btn-outline-warning.btn-sm
+          .fa.fa-edit
 - if @lead.location.present?
-  .card-footer
+  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:select_location, lead_id: @lead.slug))}"}
     %b= t('activerecord.models.location') + ":"
     = @lead.location
+    .float-right
+      = link_to lead_booking_wizard_path(:select_location, lead_id: @lead.slug) do
+        .btn.btn-outline-warning.btn-sm
+          .fa.fa-edit
 - if @lead.member.present?
-  .card-footer
+  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:select_member, lead_id: @lead.slug))}"}
     %b= t('activerecord.models.member') + ":"
     = @lead.member
+    .float-right
+      = link_to lead_booking_wizard_path(:select_member, lead_id: @lead.slug) do
+        .btn.btn-outline-warning.btn-sm
+          .fa.fa-edit
 - if @lead.starts_at.present?
-  .card-footer
+  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:time, lead_id: @lead.slug))}"}
     %b= t('activerecord.attributes.event.time') + ":"
     = @lead.starts_at
+    .float-right
+      = link_to lead_booking_wizard_path(:time, lead_id: @lead.slug) do
+        .btn.btn-outline-warning.btn-sm
+          .fa.fa-edit
