@@ -17,7 +17,7 @@
 
         = render layout: 'form' do |f|
           /= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
-          = f.association :service, collection: @services, label_method: :name_price_duration_description
+          = f.association :service, collection: @services, label_method: :name_price_duration_description, label: false
         
       .card-footer
         = link_to t('.cancel', :default => t("helpers.links.cancel")), booking_show_path(Tenant.current_tenant), class: 'btn btn-secondary'

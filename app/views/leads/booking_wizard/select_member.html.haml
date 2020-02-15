@@ -16,7 +16,7 @@
         %hr
 
         = render layout: 'form' do |f|
-          = f.association :member, as: :radio_buttons, collection: @members
+          = f.association :member, as: :radio_buttons, collection: @members, label: false
         
       .card-footer
         = link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, class: 'btn btn-secondary'

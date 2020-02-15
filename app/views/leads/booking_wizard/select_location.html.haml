@@ -16,7 +16,7 @@
         %hr
 
         = render layout: 'form' do |f|
-          = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address
+          = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address, label: false
           /= f.association :location, collection: @locations, label_method: :name_and_address, include_blank: "any location"
           /= f.collection_radio_buttons(:location, @locations, :id, :name_and_address)
       .card-footer
