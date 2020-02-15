@@ -11,7 +11,8 @@
           \/
           = wizard_steps.count
 
-          = step.to_s.humanize
+          = I18n.t(step.to_s, scope: [:wicked])
+          /= step.to_s.humanize
         %hr
 
         = render layout: 'form' do |f|

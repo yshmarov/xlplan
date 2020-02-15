@@ -1,34 +1,34 @@
 - if @lead.service.present?
-  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:select_service, lead_id: @lead.slug))}"}
+  .card-footer{class: "#{'bg-info' if current_page?(lead_booking_wizard_path(:select_service, lead_id: @lead.slug))}"}
     = model_icon('Service')
-    %b= t('activerecord.models.service') + ":"
+    %b= t('wicked.select_service') + ":"
     = @lead.service
     .float-right
       = link_to lead_booking_wizard_path(:select_service, lead_id: @lead.slug) do
         .btn.btn-outline-warning.btn-sm
           .fa.fa-edit
 - if @lead.location.present?
-  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:select_location, lead_id: @lead.slug))}"}
+  .card-footer{class: "#{'bg-info' if current_page?(lead_booking_wizard_path(:select_location, lead_id: @lead.slug))}"}
     = model_icon('Location')
-    %b= t('activerecord.models.location') + ":"
+    %b= t('wicked.select_location') + ":"
     = @lead.location
     .float-right
       = link_to lead_booking_wizard_path(:select_location, lead_id: @lead.slug) do
         .btn.btn-outline-warning.btn-sm
           .fa.fa-edit
 - if @lead.member.present?
-  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:select_member, lead_id: @lead.slug))}"}
+  .card-footer{class: "#{'bg-info' if current_page?(lead_booking_wizard_path(:select_member, lead_id: @lead.slug))}"}
     = model_icon('Member')
-    %b= t('activerecord.models.member') + ":"
+    %b= t('wicked.select_member') + ":"
     = @lead.member
     .float-right
       = link_to lead_booking_wizard_path(:select_member, lead_id: @lead.slug) do
         .btn.btn-outline-warning.btn-sm
           .fa.fa-edit
 - if @lead.starts_at.present?
-  .card-footer{class: "#{'bg-secondary' if current_page?(lead_booking_wizard_path(:select_time, lead_id: @lead.slug))}"}
+  .card-footer{class: "#{'bg-info' if current_page?(lead_booking_wizard_path(:select_time, lead_id: @lead.slug))}"}
     = model_icon('Time')
-    %b= t('activerecord.attributes.event.time') + ":"
+    %b= t('wicked.select_time') + ":"
     = @lead.starts_at
     .float-right
       = link_to lead_booking_wizard_path(:select_time, lead_id: @lead.slug) do

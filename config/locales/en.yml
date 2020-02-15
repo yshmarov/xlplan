@@ -307,6 +307,14 @@ en:
         create: "Create location"
 
   ######################################################
+  wicked:
+    select_service: "Select Service"
+    select_location: "Select Location"
+    select_member: "Select Professional"
+    select_time: "Select Time"
+    personal_data: "About You"
+
+  ######################################################
 
   cancel: 'Cancel'
   events_index: "Events"
