@@ -4,27 +4,23 @@
     .card
       .progress
         .progress-bar{style: "width: #{@progress}%"}
-      .card-body
+      .card-header
         %h5
           = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count
-
-          = step.to_s.humanize
-        %hr
-
+          = I18n.t(step.to_s, scope: [:wicked])
+      .card-body
         = simple_form_for @location, url: after_signup_wizard_path, method: :put do |f|
           = f.error_notification
           = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
           = f.input :name, input_html: { autocomplete: 'off' }
           = f.input :country, as: :string
           = f.input :city
           = f.input :zip
           = f.input :address
           = f.button :submit
-
         %hr
         = link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, class: 'btn btn-secondary'
         .float-right

@@ -310,7 +310,7 @@ en:
   wicked:
     select_service: "Service"
     select_location: "Location"
-    select_member: "Professional"
+    select_member: "Employee"
     select_time: "Time"
     personal_data: "About You"
 

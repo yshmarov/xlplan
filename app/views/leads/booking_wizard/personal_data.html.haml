@@ -4,17 +4,14 @@
     .card
       .progress
         .progress-bar{style: "width: #{@progress}%"}
-      .card-body
+      .card-header
         %h5
           = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count
-
           = I18n.t(step.to_s, scope: [:wicked])
-          /= step.to_s.humanize
-        %hr
-
+      .card-body
         = render layout: 'form' do |f|
           = f.input :first_name, autofocus: true
           = f.input :last_name
@@ -23,7 +20,6 @@
           = f.input :comment
           = f.input :coupon
           = f.input :conditions_consent
-        
       .card-footer
         = link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, class: 'btn btn-secondary'
       = render 'leads/booking_wizard/footer'

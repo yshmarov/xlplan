@@ -4,20 +4,17 @@
     .card
       .progress
         .progress-bar{style: "width: #{@progress}%"}
-      .card-body
+      .card-header
         %h5
           = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count
-
-          = step.to_s.humanize
-        %hr
-
+          = I18n.t(step.to_s, scope: [:wicked])
+      .card-body
         = simple_form_for @tenant, url: after_signup_wizard_path, method: :put do |f|
           = f.error_notification
           = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-        
           = f.input :name
           = f.input :subdomain
           = f.input :locale, collection: I18n.available_locales, include_blank: false
@@ -29,7 +26,6 @@
           = f.input :instagram
           = f.input :description, :input_html => {:rows => 5}
           = f.button :submit
-
         %hr
         .float-right
           = link_to t('.skip', :default => t("helpers.links.skip")), next_wizard_path, class: 'btn btn-secondary'

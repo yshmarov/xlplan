@@ -31,7 +31,6 @@ Rails.application.routes.draw do
       get :calendar
     end
   end
-
   resources :after_signup_wizard
 
   resources :leads do
@@ -47,6 +46,7 @@ Rails.application.routes.draw do
   match '/settings/update' => 'tenants#update', via: [:put, :patch], as: :update_tenant
   match '/plan/edit' => 'tenants#edit_plan', via: :get, as: :edit_plan
 
+  #contacts google import
   get 'contacts/import'
   get 'contacts/add_all'
   get '/contacts/:provider/contact_callback' => 'contacts#import'

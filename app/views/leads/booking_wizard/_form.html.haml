@@ -10,9 +10,4 @@
   /      - @lead.errors.full_messages.each do |msg|
   /        %li= msg
   = yield f
-  /.actions
   = f.button :submit
-
-/= Location.active.online_booking.where(tenant_id: @lead.tenant_id).any?
-/= @lead.status
-/= @lead.active_or_location?

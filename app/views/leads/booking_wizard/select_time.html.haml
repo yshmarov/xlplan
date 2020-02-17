@@ -4,24 +4,18 @@
     .card
       .progress
         .progress-bar{style: "width: #{@progress}%"}
-      .card-body
+      .card-header
         %h5
           = model_icon(@favicon)
           = wizard_steps.index(step) + 1
           \/
           = wizard_steps.count
-
           = I18n.t(step.to_s, scope: [:wicked])
-          /= step.to_s.humanize
-        %hr
-
+      .card-body
         = render layout: 'form' do |f|
           = f.text_field :starts_at, id: 'datetimepicker', :value => (f.object.starts_at.blank? ? '' : f.object.starts_at.strftime('%d/%m/%Y %H:%M')), hidden: true
           /= f.input :starts_at
           /= f.input :starts_at, :as => :time, :minute_step => 15
-
       .card-footer
         = link_to t('.back', :default => t("helpers.links.back")), previous_wizard_path, class: 'btn btn-secondary'
-        .float-right
-          /= link_to t('.skip', :default => t("helpers.links.skip")), next_wizard_path, class: 'btn btn-secondary'
       = render 'leads/booking_wizard/footer'
