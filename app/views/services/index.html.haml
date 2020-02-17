@@ -42,6 +42,7 @@
         %th= sort_link @q, :online_booking
         %th= sort_link @q, :updated_at
         %th= sort_link @q, :created_at
+        %th Employees
     /%thead
     /  = search_form_for @q, url: services_path do |f|
     /    %tr
@@ -63,12 +64,12 @@
           %td= service.client_price_cents
           %td= number_to_percentage(service.member_percent, precision: 0)
           %td= service.member_price_cents
-          %td
-            %small= service.description
+          %td= service.description
           %td= active_label(service.active)
           %td= active_label(service.online_booking)
           %td= l(service.updated_at, format: "%a %d/%b/%Y %H:%M")
           %td= l(service.created_at, format: "%a %d/%b/%Y %H:%M")
+          %td= service.members.pluck(:first_name, :last_name).compact.join(' ')
 .container.table-responsive
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

@@ -308,10 +308,10 @@ en:
 
   ######################################################
   wicked:
-    select_service: "Select Service"
-    select_location: "Select Location"
-    select_member: "Select Professional"
-    select_time: "Select Time"
+    select_service: "Service"
+    select_location: "Location"
+    select_member: "Professional"
+    select_time: "Time"
     personal_data: "About You"
 
   ######################################################

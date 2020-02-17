@@ -8,12 +8,12 @@ class Lead < ApplicationRecord
   belongs_to :location
   belongs_to :client
   #-----------------------validation-------------------#
-  validates :comment, length: { maximum: 500 }
   validates :first_name, :last_name, length: { maximum: 144 }
+  validates :comment, length: { maximum: 500 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
 
   validates :location_id,     presence: true, if: :active_or_location?
-  validates :service_id,      presence: true, if: :active_or_service?
+  validates :service_id,      presence: true, if: :active_or_service? 
   validates :member_id,  presence: true, if: :active_or_member?
   validates :first_name, :last_name, :phone_number, :conditions_consent, presence: true, if: :active_or_personal_data?
   def active?

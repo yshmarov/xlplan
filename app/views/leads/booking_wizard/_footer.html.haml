@@ -2,7 +2,7 @@
   .card-footer{class: "#{'bg-info' if current_page?(lead_booking_wizard_path(:select_service, lead_id: @lead.slug))}"}
     = model_icon('Service')
     %b= t('wicked.select_service') + ":"
-    = @lead.service
+    = @lead.service.name_price_duration_description
     .float-right
       = link_to lead_booking_wizard_path(:select_service, lead_id: @lead.slug) do
         .btn.btn-outline-warning.btn-sm
