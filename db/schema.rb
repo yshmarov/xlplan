@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_163208) do
+ActiveRecord::Schema.define(version: 2020_02_17_195309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -355,8 +355,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_163208) do
     t.string "slug"
     t.boolean "online_booking", default: true
     t.boolean "active", default: true
-    t.index ["name"], name: "index_services_on_name", unique: true
-    t.index ["service_category_id"], name: "index_services_on_service_category_id"
     t.index ["slug"], name: "index_services_on_slug", unique: true
     t.index ["tenant_id"], name: "index_services_on_tenant_id"
   end

@@ -17,13 +17,9 @@ class Client < ApplicationRecord
   validates :gender, inclusion: %w(male female undisclosed)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :email, :phone_number, length: { maximum: 255 }
-
-
-
   #-----------------------relationships-------------------#
   has_many :transactions, as: :payable, dependent: :restrict_with_error
   has_many :leads, dependent: :restrict_with_error
-
   has_many :events, dependent: :restrict_with_error
   has_many :jobs, through: :events
   has_many :services, through: :jobs

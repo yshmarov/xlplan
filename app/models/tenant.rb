@@ -25,10 +25,16 @@ class Tenant < ApplicationRecord
   has_many :leads, dependent: :destroy
   has_many :roles, dependent: :destroy
   #-----------------------validation-------------------#
-  validates_presence_of :name, :plan, :default_currency, :locale, :industry
-  validates_uniqueness_of :name
-  validates_uniqueness_of :subdomain, allow_blank: true
-  validates :subdomain, length: { minimum: 3, maximum: 40 }, allow_blank: true
+  validates :name, :plan, :default_currency, :locale, :industry, presence: true
+  validates :name, uniqueness: true
+
+  validates :subdomain, uniqueness: true, case_sensitive: false, allow_blank: true
+  validates :subdomain, format: { with: /\A[A-Za-z0-9-]+\z/, message: "not a valid subdomain" }
+  validates :subdomain, exclusion: { in: %w(support blog billing help api www host admin en ru pl ua us), message: "%{value} is reserved." }
+  validates :subdomain, length: { maximum: 20 }
+  before_validation do
+    self.subdomain.downcase! if attribute_present?("subdomain")
+  end  
 
   validates :name, length: { maximum: 40 } #in schema it is 40, but 20 is better
   validates :description, length: { maximum: 500 }

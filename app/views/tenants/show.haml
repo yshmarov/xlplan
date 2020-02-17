@@ -12,6 +12,9 @@
         %b= model_class.human_attribute_name(:name) + ':'
         = @tenant.name
         .row
+        %b= model_class.human_attribute_name(:subdomain) + ':'
+        = @tenant.subdomain
+        .row
         %b= model_class.human_attribute_name(:locale) + ':'
         = @tenant.locale.upcase
         .row
@@ -138,7 +141,7 @@
             /    )
           %tr
             %td
-              .fa.fa-user-tie
+              .fa.fa-users
               = t('static_pages.pricing.employees')
             %td= t('static_pages.pricing.unlimited')
             %td
