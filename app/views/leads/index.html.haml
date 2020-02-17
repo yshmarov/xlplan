@@ -6,6 +6,8 @@
       %b= t('sidebar.online_booking')
       .badge.badge-info
         = @leads.count
+      .badge.badge-danger
+        = @leads.active.count
       .float-right
         - if Rails.env.development?
           = link_to 'WIZARD', leads_path, method: :post, class: 'btn btn-danger btn-sm'

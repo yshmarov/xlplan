@@ -30,5 +30,4 @@ class ChartsController < ApplicationController
   def events_per_day
     render json: Event.is_confirmed.group_by_day(:starts_at).sum("client_price/100")
   end
-
 end

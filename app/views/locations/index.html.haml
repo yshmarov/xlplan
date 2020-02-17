@@ -42,7 +42,7 @@
           %td
             - if location.city.present?
               .row
-              .fa.fa-map-marker-alt.mr.mr-2
+              .fa.fa-map-marker-alt
               = location.address_line
             - if location.phone_number.present?
               .row
@@ -71,6 +71,7 @@
                 .fa.fa-envelope
                 = location.email
           - unless location.address_line.blank?
+            /%td 
             /.row
             /= location.address_line
             /.row

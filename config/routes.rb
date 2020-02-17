@@ -95,8 +95,6 @@ Rails.application.routes.draw do
   get 'dashboard/transaction_stats'
   get 'dashboard/lead_stats'
   get 'dashboard/member_salary'
-
-  #get 'charts/monthly_events'
   namespace :charts do
     get 'monthly_events'
     get 'finances_client_due_price_per_month'

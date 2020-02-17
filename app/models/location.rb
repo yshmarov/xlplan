@@ -12,6 +12,7 @@ class Location < ApplicationRecord
   geocoded_by :address_line
   #after_validation :geocode
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  #after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? || obj.city.present? and obj.city_changed? }
   #-----------------------relationships-------------------#
   has_many :members, dependent: :nullify
   has_many :skills, through: :members

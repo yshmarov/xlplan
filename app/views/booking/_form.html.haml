@@ -1,0 +1,34 @@
+-# frozen_string_literal: true
+= simple_form_for(@lead, method: :post, url: create_path) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+  .form-inputs
+    = recaptcha_tags
+    %br
+    = f.input :first_name
+    = f.error :first_name
+    = f.input :last_name
+    = f.input :phone_number, hint: 'Country code & phone number: +380505532699'
+    = f.input :email
+    /= f.input :starts_at, :minute_step => 15, start_year: Date.today.year
+    = f.input :comment
+    - if @services.any?
+      /= f.association :service, as: :radio_buttons, collection: @services
+      /= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description
+      = f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
+      /, input_html: {value: @lead.service_id || params[:service_id]}
+      /= f.label :service
+      /= f.error :service_id, class: 'text-danger'
+      /= f.select :service_id, @services.map{|c| [c.full_name_with_price, c.id]}, {include_blank: true}, class: 'selectize'
+    - if @locations.any?
+      = f.association :location, as: :radio_buttons, collection: @locations, label_method: :name_and_address
+      /= f.association :location, collection: @locations, prompt: "Any location"
+    - if @members.any?
+      = f.association :member, as: :radio_buttons, collection: @members
+    = f.input :coupon, input_html: { autocomplete: 'nope' }
+    = f.input :conditions_consent
+
+    = f.input :ip_address, input_html: {value: @ip_address}, as: :hidden
+    = f.input :referer, input_html: {value: @referer}, as: :hidden
+  .form-actions
+    = f.button :submit, class: 'btn btn-success btn-block'
