@@ -3,15 +3,6 @@
   = f.error_notification
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
   .form-inputs
-    .text-center
-      - if @client.avatar.attached?
-        %img.rounded{:alt => "XLPLAN", :src => "#{url_for(@client.avatar)}", :width => "200px"}/
-      - else
-        .far.fa-user{:style => "font-size:60px"}
-        .row
-        = f.label :avatar
-      %p
-      = f.file_field :avatar
     = f.input :first_name, input_html: { autocomplete: 'nope' }
     = f.input :last_name, input_html: { autocomplete: 'nope' }
     - if policy(@client).show_phone?

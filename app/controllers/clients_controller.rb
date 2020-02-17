@@ -148,7 +148,6 @@ class ClientsController < ApplicationController
       params.require(:client).permit(:first_name, :last_name, :date_of_birth, :gender, :email, :code,
                                      :phone_number, :lead_source,
                                      :personal_data_consent, :event_created_notifications, :marketing_notifications,
-                                     :avatar, 
                                      :country, :city, :zip, :address,
                                      tag_ids: [])
     end

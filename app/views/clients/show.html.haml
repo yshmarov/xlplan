@@ -60,10 +60,6 @@
                 %p
                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.back"))
       .card-body
-        - if @client.avatar.attached?
-          .text-center
-            = image_tag @client.avatar, width: "200px", class: "mx-auto d-inline align-top rounded"
-        .row
         %b= model_class.human_attribute_name(:full_name) + ':'
         = @client.full_name
         - if policy(@client).show_phone?

@@ -21,7 +21,6 @@ class Client < ApplicationRecord
 
 
   #-----------------------relationships-------------------#
-  has_one_attached :avatar
   has_many :transactions, as: :payable, dependent: :restrict_with_error
   has_many :leads, dependent: :restrict_with_error
 
