@@ -28,10 +28,11 @@ class Tenant < ApplicationRecord
   validates :name, :plan, :default_currency, :locale, :industry, presence: true
   validates :name, uniqueness: true
 
-  validates :subdomain, uniqueness: true, case_sensitive: false, allow_blank: true, length: { in: 3..20 }
   #validates :subdomain, format: { with: /\A[\w\-]+\Z/i, message: "not a valid subdomain" }
-  validates :subdomain, format: {with: %r{\A[a-z](?:[a-z0-9-]*[a-z0-9])?\z}i, message: "not a valid subdomain"}
-  validates :subdomain, exclusion: { in: %w(support blog billing help api www host admin), message: "%{value} is reserved." }
+  validates :subdomain, uniqueness: true, case_sensitive: false, allow_blank: true,
+    length: { in: 3..20 }, 
+    format: {with: %r{\A[a-z](?:[a-z0-9-]*[a-z0-9])?\z}i, message: "not a valid subdomain"},
+    exclusion: { in: %w(support blog billing help api www host admin), message: "%{value} is reserved." }
   before_validation do
     self.subdomain = subdomain.try(:downcase) 
     #self.subdomain.downcase! if attribute_present?("subdomain")
@@ -87,11 +88,22 @@ class Tenant < ApplicationRecord
   end
   # ------------------------------------------------------------------------
   def self.tenant_signup(user, tenant, other = nil)
-    #  StartupJob.queue_startup( tenant, user, other )
-    # any special seeding required for a new organizational tenant
-    #
-
+    Role.create!(name: "manager") #initially only admin and specialist are created.
+    Tag.create!(name: "potential")
+    Tag.create!(name: "contact_required")
+    Tag.create!(name: "regular")
+    Tag.create!(name: "VIP")
+    Tag.create!(name: "lost_client")
+    Tag.create!(name: "blacklist")
+    Location.create!(name: tenant.name)
+    Location.first.workplaces.create(name: "Studio-1")
+    CashAccount.create!(name: "Cash")
+    CashAccount.create!(name: "Card")
+    ServiceCategory.create!(name: "Massage")
+    Service.create!(name: "Head", service_category: ServiceCategory.first, duration: 30, client_price: 10000, member_percent: 50)
+    Service.create!(name: "Body", service_category: ServiceCategory.first, duration: 60, client_price: 20000, member_percent: 50)
+    Client.create!(first_name: "Yaroslav", last_name: "Shmarov", email: "yshmarov@gmail.com", phone_number: "+48537628023", gender: "male")
     Member.create_org_admin(user)
-    #
+    Member.first.update_attributes!(location_id: Location.first.id)
   end
 end
