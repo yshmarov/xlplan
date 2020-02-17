@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_13_154810) do
+ActiveRecord::Schema.define(version: 2020_02_17_163208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -403,6 +403,7 @@ ActiveRecord::Schema.define(version: 2020_02_13_154810) do
     t.text "description"
     t.string "time_zone", default: "UTC"
     t.string "instagram", limit: 40
+    t.string "subdomain", limit: 20
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
