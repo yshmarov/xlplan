@@ -1066,7 +1066,7 @@ ru:
         location: "Филиал"
         member: "Сотрудник"
         service: "Услуга"
-        starts_at: "Желаемое время"
+        starts_at: "Время"
         created_at: "Дата создания"
         updated_at: "Дата изменения"
         conditions_consent: "Согласен на передачу и обработку данных"

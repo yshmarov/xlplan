@@ -1089,7 +1089,7 @@ en:
         location: "Location"
         member: "Employee"
         service: "Service"
-        starts_at: "Preferred time"
+        starts_at: "Time"
         created_at: "Created"
         updated_at: "Updated"
         conditions_consent: "I agree to the terms and conditions"
