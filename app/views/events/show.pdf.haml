@@ -11,12 +11,7 @@
         .row
         = @event.workplace.location
         = @event.workplace.location.phone_number
-        - if @event.workplace.location.address?
-          = @event.workplace.location.address[:country]
-          = @event.workplace.location.address[:city]
-          = @event.workplace.location.address[:street]
-          = @event.workplace.location.address[:zip]
-
+        = @event.workplace.location.address_line
         .row
         #{l(@event.starts_at, format: "%a")} #{l(@event.starts_at, format: "%d/%b/%Y %H:%M")} -  #{l(@event.ends_at, format: "%H:%M")} (#{@event.duration} min)
         .row

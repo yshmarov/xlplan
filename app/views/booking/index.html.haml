@@ -3,6 +3,27 @@
 = provide(:description, 'Управление салоном красоты, ведение клиентов онлайн, программа для СТО и автомоек, онлайн запись в косметологию и бьюти-салоны, финансовая статистика')
 = provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
 
+/.container-fluid
+/  = Location.all.unscoped.active.online_booking.has_address.count
+/.card-columns
+/  - Location.all.unscoped.includes(:workplaces).order('workplaces.events_count DESC').each do |location|
+/    .card
+/      .card-header
+/        Name:
+/        = location.tenant.name
+/        = location.name
+/      .card-body
+/        Address:
+/        = location.address_line
+/      .card-footer
+/        Events:
+/        = location.workplaces.map(&:events_count).sum
+/        .row
+/        Rating:
+/        .row
+/        Comments:
+/    %p
+
 .container-fluid
   .row
     .col-lg-2

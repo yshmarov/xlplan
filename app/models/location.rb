@@ -34,6 +34,7 @@ class Location < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }
+  scope :has_address, ->{ where("address <> ''") }
   def self.active_or_id(record_id)
     where('id = ? OR (active=true)', record_id)    
   end

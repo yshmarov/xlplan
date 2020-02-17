@@ -1,4 +1,5 @@
 heroku run rake db:migrate
+sudo service postgresql96 restart
 
 ___________________________________
 FIND TOP 50 FILES BY SIZE

@@ -1057,9 +1057,6 @@ ru:
         payment_method: "счёт"
         created_at: "дата создания"
         event: "встреча"
-        payment_methods:
-          cash: "наличные"
-          credit_card: "карта"
       lead:
         first_name: "Имя"
         last_name: "Фамилия"

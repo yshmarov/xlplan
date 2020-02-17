@@ -40,37 +40,47 @@
                 - if workplace.events_count.zero?
                   = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
           %td
-            .btn-group-vertical
-              - if location.city.present?
-                .btn.btn-dark.btn-sm
-                  .fa.fa-map-marker-alt.mr.mr-2
-                  = location.address_line
-              - if location.phone_number.present?
-                = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm" do
-                  .fa.fa-phone
-                  = location.phone_number
-              - if location.whatsapp.present?
-                /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-                = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm", :target => "_blank" do
-                  .fab.fa-whatsapp
-                  = location.whatsapp
-              - if location.viber.present?
-                = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm" do
-                  .fab.fa-viber
-                  = location.viber
-              - if location.telegram.present?
-                = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm" do
-                  .fab.fa-telegram-plane
-                  = location.telegram
-              - if location.email.present?
-                = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm" do
-                  .fa.fa-envelope
-                  = location.email
-            /- unless location.address_line.blank?
-            /  .row
-            /  Coordinates: #{location.latitude} #{location.longitude}
-            /  .row
-            /  = image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=#{location.latitude},#{location.longitude}&zoom=7&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", class: 'img-fluid img-rounded', alt: "#{location.name} on the map"
+            - if location.city.present?
+              .row
+              .fa.fa-map-marker-alt.mr.mr-2
+              = location.address_line
+            - if location.phone_number.present?
+              .row
+              = link_to "tel:#{location.phone_number}" do
+                .fa.fa-phone
+                = location.phone_number
+            - if location.whatsapp.present?
+              .row
+              /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
+              = link_to "https://wa.me/#{location.whatsapp}", :target => "_blank" do
+                .fab.fa-whatsapp
+                = location.whatsapp
+            - if location.viber.present?
+              .row
+              = link_to "viber://chat?number=#{location.viber}" do
+                .fab.fa-viber
+                = location.viber
+            - if location.telegram.present?
+              .row
+              = link_to "tg://resolve?domain=#{location.telegram}" do
+                .fab.fa-telegram-plane
+                = location.telegram
+            - if location.email.present?
+              .row
+              = link_to "mailto:#{location.email}" do
+                .fa.fa-envelope
+                = location.email
+          - unless location.address_line.blank?
+            /.row
+            /= location.address_line
+            /.row
+            /Coordinates: #{location.latitude} #{location.longitude}
+            /.row
+            /= image_tag "https://geocoder.ls.hereapi.com/6.2/geocode.json?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE&searchtext=425+W+Randolph+Chicago"
+            /= image_tag "https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE"
+            /works
+            /%img.location-map{"ng-show" => "location.show_map", "ng-src" => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :src => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :style => "", :width => "166"}/
+            /= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=#{location.latitude},#{location.longitude}&zoom=15&size=640x400&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY", class: 'img-fluid img-rounded', alt: "#{location.name} on the map"
           %td= active_label(location.active)
           %td= active_label(location.online_booking)
 %br
