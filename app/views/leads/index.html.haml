@@ -1,46 +1,13 @@
 - model_class = Lead
 .card
   .card-header
-    .row
-      .col-md-6
-        %h5
-          .fa.fa-globe-africa
-          %b= t('sidebar.online_booking')
-          .badge.badge-info
-            = @leads.count
-      .col-md-6
-        .float-right
-          - if Rails.env.development?
-            = link_to 'WIZARD', leads_path, method: :post, class: 'btn btn-danger btn-sm'
-          .row
-          = link_to t('sidebar.public_page'), booking_show_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
-          / COPY TO CLIPBOARD WITH JAVASCRIPT
-          %input#myInput{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}"}
-          / The button used to copy the text
-          %button{:onclick => "myFunction()"}
-            .fa.fa-copy
-          :javascript
-            function myFunction() {
-              var copyText = document.getElementById("myInput");
-              copyText.select(); 
-              copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-              document.execCommand("copy");
-            }
-          .row
-          = link_to t('sidebar.online_booking'), new_booking_path(Tenant.current_tenant), class: 'btn btn-success btn-sm'
-          / COPY TO CLIPBOARD WITH JAVASCRIPT
-          %input#myInput2{:readonly => "readonly", :type => "text", :value => "xlplan.com/booking/#{Tenant.current_tenant.id}/new"}
-          / The button used to copy the text
-          %button{:onclick => "myFunction2()"}
-            .fa.fa-copy
-          :javascript
-            function myFunction2() {
-              var copyText = document.getElementById("myInput2");
-              copyText.select(); 
-              copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-              document.execCommand("copy");
-            }
-
+    %h5
+      .fa.fa-globe-africa
+      %b= t('sidebar.online_booking')
+      .badge.badge-info
+        = @leads.count
+      .float-right
+        - if Rails.env.development?
+          = link_to 'WIZARD', leads_path, method: :post, class: 'btn btn-danger btn-sm'
 = render 'index'
-
 != pagy_bootstrap_nav(@pagy)

@@ -33,7 +33,7 @@ class Leads::BookingWizardController < ApplicationController
     case step
     when :select_service
       @favicon = 'Service'
-      @services = Service.online_booking.active
+      @services = Service.active.online_booking.joins(:skills).distinct
     when :select_location
       @favicon = 'Location'
       @locations = Location.active.online_booking.order('created_at ASC').joins(:skills).where(skills: {service_category_id: @lead.service.service_category_id})
@@ -45,12 +45,9 @@ class Leads::BookingWizardController < ApplicationController
     when :personal_data
       @favicon = 'Client'
     end
-
     params[:lead][:status] = step.to_s
     params[:lead][:status] = 'active' if step == steps.last
-    #@lead.update_attributes(params[:lead])
     @lead.update lead_params
-
     render_wizard @lead
   end
 
@@ -73,8 +70,8 @@ class Leads::BookingWizardController < ApplicationController
     end
 
     def lead_params
-      params.require(:lead).permit(:first_name, :last_name, :phone_number, :email, :comment, 
-                :location_id, :member_id, :service_id, 
-                :starts_at, :coupon, :conditions_consent, :status)
+      params.require(:lead).permit(:location_id, :member_id, :service_id,
+                :starts_at, 
+                :first_name, :last_name, :phone_number, :email, :comment, :coupon, :conditions_consent)
     end
 end

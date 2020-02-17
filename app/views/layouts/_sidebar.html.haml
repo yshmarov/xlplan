@@ -89,6 +89,9 @@
           .fa-fw.fa-color-1.fa.fa-chevron-circle-down
           #{t('sidebar.more')}
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown7"}
+          = link_to booking_show_path(Tenant.current_tenant), class: "dropdown-item" do 
+            .fa.fa-globe-africa
+            = t('sidebar.public_page')
           = link_to events_path, class: "dropdown-item" do 
             .fa.fa-calendar-alt
             = t('sidebar.events')
