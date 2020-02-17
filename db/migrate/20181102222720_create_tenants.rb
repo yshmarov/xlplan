@@ -3,6 +3,7 @@ class CreateTenants < ActiveRecord::Migration[5.2]
     create_table :tenants do |t|
       t.references :tenant, foreign_key: true
       t.string :name, :limit => 40, null: false
+      t.string :subdomain, :limit => 20, null: false
       t.string :plan, :limit => 40, null: false, default: "demo"
       t.string :default_currency, :limit => 3, null: false, default: "usd"
       t.string :locale, :limit => 2, null: false, default: 'en'
@@ -16,6 +17,7 @@ class CreateTenants < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_index :tenants, :name
+    add_index :tenants, :subdomain
     add_index :tenants, :plan
     add_index :tenants, :default_currency
     add_index :tenants, :locale

@@ -28,12 +28,13 @@ class Tenant < ApplicationRecord
   validates :name, :plan, :default_currency, :locale, :industry, presence: true
   validates :name, uniqueness: true
 
-  validates :subdomain, uniqueness: true, case_sensitive: false, allow_blank: true
-  validates :subdomain, format: { with: /\A[A-Za-z0-9-]+\z/, message: "not a valid subdomain" }
-  validates :subdomain, exclusion: { in: %w(support blog billing help api www host admin en ru pl ua us), message: "%{value} is reserved." }
-  validates :subdomain, length: { maximum: 20 }
+  validates :subdomain, uniqueness: true, case_sensitive: false, allow_blank: true, length: { in: 3..20 }
+  #validates :subdomain, format: { with: /\A[\w\-]+\Z/i, message: "not a valid subdomain" }
+  validates :subdomain, format: {with: %r{\A[a-z](?:[a-z0-9-]*[a-z0-9])?\z}i, message: "not a valid subdomain"}
+  validates :subdomain, exclusion: { in: %w(support blog billing help api www host admin), message: "%{value} is reserved." }
   before_validation do
-    self.subdomain.downcase! if attribute_present?("subdomain")
+    self.subdomain = subdomain.try(:downcase) 
+    #self.subdomain.downcase! if attribute_present?("subdomain")
   end  
 
   validates :name, length: { maximum: 40 } #in schema it is 40, but 20 is better
@@ -80,31 +81,17 @@ class Tenant < ApplicationRecord
     end
     return tenant
   end
-
-  # ------------------------------------------------------------------------
-  # new_signups_not_permitted? -- returns true if no further signups allowed
-  # args: params from user input; might contain a special 'coupon' code
-  #       used to determine whether or not to allow another signup
   # ------------------------------------------------------------------------
   def self.new_signups_not_permitted?(params)
     return false
   end
-
   # ------------------------------------------------------------------------
-  # tenant_signup -- setup a new tenant in the system
-  # CALLBACK from devise RegistrationsController (milia override)
-  # AFTER user creation and current_tenant established
-  # args:
-  #   user  -- new user  obj
-  #   tenant -- new tenant obj
-  #   other  -- any other parameter string from initial request
-  # ------------------------------------------------------------------------
-    def self.tenant_signup(user, tenant, other = nil)
-      #  StartupJob.queue_startup( tenant, user, other )
-      # any special seeding required for a new organizational tenant
-      #
+  def self.tenant_signup(user, tenant, other = nil)
+    #  StartupJob.queue_startup( tenant, user, other )
+    # any special seeding required for a new organizational tenant
+    #
 
-      Member.create_org_admin(user)
-      #
-    end
+    Member.create_org_admin(user)
+    #
+  end
 end

@@ -19,6 +19,5 @@ class CreateServices < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :services, :name, unique: true
   end
 end
