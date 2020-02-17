@@ -14,8 +14,9 @@
           = f.error_notification
           = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
         
-          = f.input :name, required: true, class: "form-control"
-          = f.input :locale, collection: [['Русский', 'ru'], ['English', 'en']], include_blank: false
+          = f.input :name
+          = f.input :subdomain
+          = f.input :locale, collection: I18n.available_locales, include_blank: false
           /= f.label :default_currency
           /= f.error :default_currency, class: 'text-danger'
           /= f.select :default_currency, Money::Currency.table, {include_blank: true}, class: 'selectize'

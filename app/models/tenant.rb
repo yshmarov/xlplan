@@ -26,7 +26,10 @@ class Tenant < ApplicationRecord
   has_many :roles, dependent: :destroy
   #-----------------------validation-------------------#
   validates_presence_of :name, :plan, :default_currency, :locale, :industry
-  validates_uniqueness_of :name, :subdomain
+  validates_uniqueness_of :name
+  validates_uniqueness_of :subdomain, allow_blank: true
+  validates :subdomain, length: { minimum: 3, maximum: 40 }, allow_blank: true
+
   validates :name, length: { maximum: 40 } #in schema it is 40, but 20 is better
   validates :description, length: { maximum: 500 }
   validates :plan, length: { maximum: 10 } #in schema it is 40, but 10 is better

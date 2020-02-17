@@ -408,6 +408,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_163208) do
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
     t.index ["plan"], name: "index_tenants_on_plan"
+    t.index ["subdomain"], name: "index_tenants_on_subdomain"
     t.index ["tenant_id"], name: "index_tenants_on_tenant_id"
   end
 

@@ -55,7 +55,7 @@ class AfterSignupWizardController < ApplicationController
     end
 
     def tenant_params
-      params.require(:tenant).permit(:name, :default_currency, :locale, :time_zone,
+      params.require(:tenant).permit(:name, :subdomain, :default_currency, :locale, :time_zone,
                       :industry, :logo, :website, :online_booking, :description, :instagram)
     end
 
