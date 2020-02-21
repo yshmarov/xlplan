@@ -17,6 +17,7 @@
           %th= sort_link @ransack_tenants, :locale, "Locale"
           %th= sort_link @ransack_tenants, :default_currency, "Currency"
           %th= sort_link @ransack_tenants, :created_at, "Created"
+          %th= sort_link @ransack_tenants, :online_booking, "OnlineBooking"
   
           %th.bg-warning Client
           %th.bg-warning Service
@@ -44,7 +45,9 @@
             %td
               = tenant.created_at.strftime("%d/%m/%y")
               (#{distance_of_time_in_words Time.now, tenant.created_at} ago)
-            %td= Client.unscoped.where(tenant_id: tenant.id).count 
+            %td= active_label(tenant.online_booking)
+
+            %td= Client.unscoped.where(tenant_id: tenant.id).count
             %td= Service.unscoped.where(tenant_id: tenant.id).count 
             %td= ServiceCategory.unscoped.where(tenant_id: tenant.id).count 
             %td= Event.unscoped.where(tenant_id: tenant.id).count 
@@ -88,8 +91,6 @@
                 %td= member.phone_number
                 %td= member.time_zone
   %p
-  .container.table-responsive
-    = will_paginate @tenants, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
   All users
   .table-responsive
     %table#table1

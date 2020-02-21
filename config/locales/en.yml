@@ -308,6 +308,10 @@ en:
 
   ######################################################
   wicked:
+    tenant_settings: "Organisation"
+    profile_settings: "Profile"
+    location_settings: "Location"
+
     select_service: "Service"
     select_location: "Location"
     select_member: "Employee"

@@ -308,6 +308,10 @@ ru:
 
   ######################################################
   wicked:
+    tenant_settings: "Организация"
+    profile_settings: "Профиль"
+    location_settings: "Филиал"
+
     select_service: "Услуга"
     select_location: "Место"
     select_member: "Специалист"

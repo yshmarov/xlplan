@@ -1,5 +1,9 @@
-heroku run rake db:migrate
+cd xlplan
+git status
 sudo service postgresql96 restart
+
+git push heroku master
+heroku run rake db:migrate
 
 ___________________________________
 FIND TOP 50 FILES BY SIZE

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery with: :exception
-  protect_from_forgery
+  protect_from_forgery with: :exception
+  #protect_from_forgery
 
   before_action :authenticate_tenant!
   ##    milia defines a default max_tenants, invalid_tenant exception handling

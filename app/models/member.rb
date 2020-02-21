@@ -39,9 +39,6 @@ class Member < ApplicationRecord
   #-----------------------callbacks-------------------#
   after_create do
     self.update_attributes!(time_zone: Tenant.current_tenant.time_zone)
-  end
-
-  after_create do
     if self.user.present?
       update_column :email, (user.email) #update_first_member_email
     end

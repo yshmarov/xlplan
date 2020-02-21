@@ -14,6 +14,7 @@ class Location < ApplicationRecord
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
   #after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? || obj.city.present? and obj.city_changed? }
   #-----------------------relationships-------------------#
+  #belongs_to :tenant
   has_many :members, dependent: :nullify
   has_many :skills, through: :members
   has_many :workplaces, inverse_of: :location, dependent: :restrict_with_error
@@ -35,7 +36,7 @@ class Location < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
   scope :online_booking, -> { where(online_booking: true) }
-  scope :has_address, ->{ where("address <> ''") }
+  scope :has_address, ->{ where("address <> ''").where("zip <> ''").where("city <> ''").where("country <> ''") }
   def self.active_or_id(record_id)
     where('id = ? OR (active=true)', record_id)    
   end

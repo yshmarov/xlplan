@@ -10,14 +10,14 @@
     = favicon_link_tag 'logo.png'
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     - if Rails.env.production?
       = render 'layouts/google_analytics'
     /needed on static_pages and on devise registration. does not work well with turbolinks
     /= render 'layouts/facebook_chat'
-  - if user_signed_in? && current_user.member.present?
-    %body#body-human
+  %body#body-human
+    - if user_signed_in? && current_user.member.present?
       #wrapper
         - if Tenant.current_tenant.plan == "blocked"
           = render 'layouts/paywall'
@@ -29,8 +29,7 @@
         /X demo days left. Order system 
         = yield
         = rjv_tags
-  - else
-    %body#body-human
+    - else
       #padding-top
       = render 'layouts/header'
       = render 'layouts/messages'

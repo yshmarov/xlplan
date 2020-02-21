@@ -36,6 +36,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   #config.active_storage.service = :amazon_development
+  #config.active_storage.service = :amazon_production
   config.active_storage.service = :local
 
   # True - If I want to see errors in mailer sending.

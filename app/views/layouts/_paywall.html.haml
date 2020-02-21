@@ -1,4 +1,4 @@
-#myModal.modal.d-block{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#myModal.modal.bg-danger.d-block{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-xl
     .modal-content
       .modal-header
@@ -12,10 +12,13 @@
           пробный период пользования программой окончен.
           %p
           Для дальнейшего пользования нужно приобрести лицензию.
-          %p
-          %a{:href => "https://www.xlplan.com/pricing/"} Тарифы
-        .py-4
-      .modal-footer
-        %h4
-          Свяжитесь с нами
+          %hr
+          .text-center
+            %a{:href => "https://www.xlplan.com/pricing/"} Тарифы
+          %hr
+          .text-center
+            Свяжитесь с нами
+          .row
           = mail_to "support@xlplan.com"
+          .float-right
+            = tel_to "+48-537-628-023"

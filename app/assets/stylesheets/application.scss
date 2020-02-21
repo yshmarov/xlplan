@@ -35,15 +35,12 @@ li.active-underline a{
   text-decoration: underline;
 }
 
-.fc-agendaDay-view .fc-today { background: white !important; }
-
-.gradient-purple {
-  background: linear-gradient(to left, #6610f2 , #2a4054);
-}
-
+/* general app background color */
 #body-human {
   background: #f8f0e6;
 }
+
+.fc-agendaDay-view .fc-today { background: white !important; }
 
 .headimage {
   max-width: 100%;
@@ -69,22 +66,6 @@ input[type=radio] {
   @extend .table, .table-hover, .table-responsive-xl, .table-bordered, .table-sm, .bg-white
 }
 /* thead { @extend .bg-primary } */  
-
-.fa-update {
-  @extend .fa-edit;
-}
-
-.fa-create {
-  @extend .fa-plus-square;
-}
-
-.fa-destroy {
-  @extend .fa-trash;
-}
-
-.fa-change_status {
-  @extend .fa-calendar-check;
-}
 
 .fa-color-1{
     color: white;

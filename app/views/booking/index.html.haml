@@ -2,98 +2,98 @@
   XLPLAN | Online booking
 = provide(:description, 'Управление салоном красоты, ведение клиентов онлайн, программа для СТО и автомоек, онлайн запись в косметологию и бьюти-салоны, финансовая статистика')
 = provide(:keywords, 'xlplan, online booking, features, salon, management software, crm, erp, employee calendar, calendar')
-
-.row
-  .col-lg-2
-    - Tenant.industries.each do |key, value|
-      /= k
-      .row
-      - if @q.industry_cont.to_s == value.to_s
-        .fa.fa-angle-double-right
-      = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-dark'
-  .col-lg-10
-    .container.mx-auto.text-center
-      %h1= t('.online_booking')
-      .p-3
-      %h5
-        = t('.description')
-
-      .p-3
-      .form-inline{:style => "text-align: center;"}
-        = search_form_for @q, url: booking_path do |f|
-          .input-group
-            = f.search_field :name_cont, autocomplete: 'off', placeholder: t('activerecord.attributes.tenant.name'), class: 'form-control-lg'
-            /= f.search_field :services_name_cont, autocomplete: 'off', placeholder: t('sidebar.search_client'), class: 'form-control-lg'
-            %span.input-group-append
-              %button.btn.btn-primary.btn-lg{:type => "submit"}
-                %span.fa.fa-search{"aria-hidden" => "true"}
-      - if params.has_key?(:q)
-        %p
-        .text-center
-          %h3
-            = I18n.t(@q.industry_cont, scope: [:static_pages, :landing_page])
-            = link_to booking_path, class: 'btn btn-sm btn-secondary' do
-              .fa.fa-redo
-    %hr
-
-    .card-columns
-      /= Location.all.unscoped.active.online_booking.has_address.count
-      - Location.all.unscoped.active.online_booking.has_address.includes(:workplaces).order('workplaces.events_count DESC').each do |location|
-        .card
-          .card-header
-            = location.tenant.name
-          - if location.tenant.logo.attached?
-            .card-footer
-              = image_tag location.tenant.logo, width: "100px", class: "mx-auto d-inline align-top"
-          .card-footer
-            = location.address_line
-          .card-footer
-            Events:
-            = location.workplaces.map(&:events_count).sum
-            .row
-            Rating:
-            .row
-            Comments:
-        %p
-
-    %br
-    - @tenants.each do |tenant|
-      .card.card-header.bg-light
+.container
+  .row
+    .col-lg-2
+      - Tenant.industries.each do |key, value|
+        /= k
         .row
-          .col-md-2
-            .text-center
-              - if tenant.logo.attached?
-                = image_tag tenant.logo, width: "100px", class: "mx-auto d-inline align-top"
-              - else
-                .fa.fa-image{:style => "font-size:50px"}
-          .col-md-4
-            %b= link_to tenant.name, booking_show_path(tenant)
-            .row
-            %small= I18n.t(tenant.industry, scope: [:static_pages, :landing_page])
-            /%small= link_to I18n.t(tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: tenant.industry})
-            .row
-            .fa.fa-map-marker-alt
-            /= tenant.locations.count
-            = Location.unscoped.active.online_booking.where(tenant_id: tenant.id).count
-            /= Location.unscoped.active.online_booking.where(tenant_id: tenant.id).pluck(:city).compact
-
-          .col-md-6
-            - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
-              .card.card-header.bg-white
-                .row
-                  .col-lg-6
-                    .form-inline
-                      .fa.fa-hand-paper.mr.mr-2
-                      %b= service.name
-                    .form-inline
-                      .fa.fa-clock.mr.mr-2
-                      = service.duration
-                      min
-                    .form-inline
-                      .fa.fa-tag.mr.mr-2
-                      = number_to_currency(service.client_price_cents, unit: "#{tenant.default_currency.upcase}", format: "%n %u")
-                  .col-lg-6.text-right
-                    = link_to new_booking_path(tenant, service_id: service.id), class: 'btn btn-success btn-sm' do 
-                      = t('sidebar.online_booking')
-                %small= service.description
-      %p
+        - if @q.industry_cont.to_s == value.to_s
+          .fa.fa-angle-double-right
+        = link_to I18n.t(value, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: value}), class: 'text-dark'
+    .col-lg-10
+      .container.mx-auto.text-center
+        %h1= t('.online_booking')
+        .p-3
+        %h5
+          = t('.description')
+  
+        .p-3
+        .form-inline{:style => "text-align: center;"}
+          = search_form_for @q, url: booking_path do |f|
+            .input-group
+              = f.search_field :name_cont, autocomplete: 'off', placeholder: t('activerecord.attributes.tenant.name'), class: 'form-control-lg'
+              /= f.search_field :services_name_cont, autocomplete: 'off', placeholder: t('sidebar.search_client'), class: 'form-control-lg'
+              %span.input-group-append
+                %button.btn.btn-primary.btn-lg{:type => "submit"}
+                  %span.fa.fa-search{"aria-hidden" => "true"}
+        - if params.has_key?(:q)
+          %p
+          .text-center
+            %h3
+              = I18n.t(@q.industry_cont, scope: [:static_pages, :landing_page])
+              = link_to booking_path, class: 'btn btn-sm btn-secondary' do
+                .fa.fa-redo
+      %hr
+      %br
+      - @tenants.each do |tenant|
+        .card.card-header.bg-light
+          .row
+            .col-md-2
+              .text-center
+                - if tenant.logo.attached?
+                  = image_tag tenant.logo, width: "100px", class: "mx-auto d-inline align-top"
+                - else
+                  .fa.fa-image{:style => "font-size:50px"}
+            .col-md-4
+              %b= link_to tenant.name, booking_show_path(tenant)
+              .row
+              %small= I18n.t(tenant.industry, scope: [:static_pages, :landing_page])
+              /%small= link_to I18n.t(tenant.industry, scope: [:static_pages, :landing_page]), booking_path(q: {industry_cont: tenant.industry})
+              .row
+              .fa.fa-map-marker-alt
+              /= tenant.locations.count
+              = Location.unscoped.active.online_booking.where(tenant_id: tenant.id).count
+              /= Location.unscoped.active.online_booking.where(tenant_id: tenant.id).pluck(:city).compact
+  
+            .col-md-6
+              - Service.unscoped.online_booking.where(tenant_id: tenant.id).order(jobs_count: :desc).limit(3).each do |service|
+                .card.card-header.bg-white
+                  .row
+                    .col-lg-6
+                      .form-inline
+                        .fa.fa-hand-paper.mr.mr-2
+                        %b= service.name
+                      .form-inline
+                        .fa.fa-clock.mr.mr-2
+                        = service.duration
+                        min
+                      .form-inline
+                        .fa.fa-tag.mr.mr-2
+                        = number_to_currency(service.client_price_cents, unit: "#{tenant.default_currency.upcase}", format: "%n %u")
+                    .col-lg-6.text-right
+                      = link_to new_booking_path(tenant, service_id: service.id), class: 'btn btn-success btn-sm' do 
+                        = t('sidebar.online_booking')
+                  %small= service.description
+        %p
+/.card-columns
+/  /= Location.all.unscoped.active.online_booking.has_address.count
+/  - @locations.each do |location|
+/    .card
+/      .card-header
+/        = location.tenant.name
+/      - if location.tenant.logo.attached?
+/        .card-footer
+/          = image_tag location.tenant.logo, width: "100px", class: "mx-auto d-inline align-top"
+/      .card-footer
+/        = location.address_line
+/      .card-footer
+/        Events:
+/        = location.workplaces.map(&:events_count).sum
+/        .row
+/        Rating:
+/        .row
+/        Comments:
+/    %p
+/    %small= I18n.t(location.tenant.industry, scope: [:static_pages, :landing_page])
+/  %p

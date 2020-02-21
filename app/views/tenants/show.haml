@@ -42,6 +42,7 @@
         .row
         - if @tenant.logo.attached?
           = image_tag @tenant.logo, height: "50px", class: "mx-auto d-inline align-top rounded"
+          /= url_for @tenant.logo.variant resize: "100x100"
           /= image_tag url_for(@tenant.logo)
         /%b= @tenant.logo
         .row
