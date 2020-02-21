@@ -6,6 +6,10 @@ git push heroku master
 heroku run rake db:migrate
 
 rails db:drop db:create db:migrate
+
+rails db:schema:dump
+rails db:migrate:status
+
 ___________________________________
 FIND TOP 50 FILES BY SIZE
 heroku run bash

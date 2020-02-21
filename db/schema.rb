@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "transactions_id"
     t.index ["slug"], name: "index_cash_accounts_on_slug", unique: true
     t.index ["tenant_id"], name: "index_cash_accounts_on_tenant_id"
+    t.index ["transactions_id"], name: "index_cash_accounts_on_transactions_id"
   end
 
   create_table "client_tags", force: :cascade do |t|
@@ -88,24 +90,26 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.string "email"
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
-    t.integer "balance", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "comments_count", default: 0, null: false
-    t.integer "transactions_count", default: 0, null: false
-    t.integer "events_count", default: 0, null: false
-    t.string "slug"
-    t.integer "transactions_sum", default: 0, null: false
-    t.integer "event_expences_sum", default: 0, null: false
-    t.boolean "personal_data_consent", default: true
-    t.boolean "event_created_notifications", default: true
-    t.boolean "marketing_notifications", default: true
-    t.string "lead_source", default: "direct"
-    t.string "code"
     t.string "country"
     t.string "city"
     t.string "zip"
     t.string "address"
+    t.string "lead_source", default: "direct"
+    t.string "personal_data_consent", default: "t"
+    t.string "boolean", default: "t"
+    t.string "event_created_notifications", default: "t"
+    t.string "marketing_notifications", default: "t"
+    t.integer "transactions_sum", default: 0, null: false
+    t.integer "event_expences_sum", default: 0, null: false
+    t.integer "balance", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
+    t.integer "transactions_count", default: 0, null: false
+    t.integer "events_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.string "code"
     t.index ["slug"], name: "index_clients_on_slug", unique: true
     t.index ["tenant_id"], name: "index_clients_on_tenant_id"
   end
@@ -140,9 +144,9 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.string "birthday"
     t.string "gender"
     t.string "relation"
+    t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "client_id"
     t.index ["client_id"], name: "index_contacts_on_client_id"
     t.index ["tenant_id"], name: "index_contacts_on_tenant_id"
   end
@@ -154,34 +158,18 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.integer "duration", default: 0, null: false
     t.datetime "ends_at"
     t.integer "event_price", default: 0, null: false
+    t.integer "event_due_price", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.string "status_color", default: "blue"
     t.text "notes"
+    t.integer "jobs_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "jobs_count", default: 0, null: false
     t.string "slug"
-    t.integer "event_due_price", default: 0, null: false
-    t.bigint "workplace_id"
     t.index ["client_id"], name: "index_events_on_client_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
     t.index ["tenant_id"], name: "index_events_on_tenant_id"
-    t.index ["workplace_id"], name: "index_events_on_workplace_id"
-  end
-
-  create_table "expences", force: :cascade do |t|
-    t.bigint "tenant_id"
-    t.integer "amount", default: 0, null: false
-    t.string "payment_method", default: "cash", null: false
-    t.string "expendable_type"
-    t.integer "expendable_id"
-    t.string "slug"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["expendable_id"], name: "index_expences_on_expendable_id"
-    t.index ["expendable_type"], name: "index_expences_on_expendable_type"
-    t.index ["slug"], name: "index_expences_on_slug", unique: true
-    t.index ["tenant_id"], name: "index_expences_on_tenant_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -203,16 +191,16 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.bigint "member_id"
     t.integer "service_duration", default: 0, null: false
     t.integer "service_member_percent", default: 0, null: false
+    t.integer "service_client_price", default: 0, null: false
     t.integer "client_price", default: 0, null: false
     t.integer "client_due_price", default: 0, null: false
     t.integer "member_price", default: 0, null: false
     t.integer "member_due_price", default: 0, null: false
+    t.integer "add_amount", default: 0, null: false
+    t.integer "production_cost", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.integer "add_amount", default: 0, null: false
-    t.integer "production_cost", default: 0, null: false
-    t.integer "service_client_price", default: 0, null: false
     t.index ["event_id"], name: "index_jobs_on_event_id"
     t.index ["member_id"], name: "index_jobs_on_member_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
@@ -230,16 +218,16 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.bigint "location_id"
     t.bigint "service_id"
     t.bigint "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "client_id"
     t.datetime "starts_at"
-    t.string "slug"
+    t.string "coupon", limit: 144
+    t.string "status"
     t.boolean "conditions_consent"
     t.string "referer"
     t.string "ip_address"
-    t.string "coupon", limit: 144
-    t.string "status"
-    t.bigint "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["client_id"], name: "index_leads_on_client_id"
     t.index ["location_id"], name: "index_leads_on_location_id"
     t.index ["member_id"], name: "index_leads_on_member_id"
@@ -253,21 +241,21 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.string "name", limit: 50, null: false
     t.string "phone_number", limit: 144
     t.string "email", limit: 144
-    t.integer "balance", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "members_count", default: 0, null: false
-    t.string "slug"
-    t.integer "events_amount_sum", default: 0, null: false
-    t.boolean "online_booking", default: true
-    t.string "viber", limit: 40
-    t.string "telegram", limit: 40
-    t.string "whatsapp", limit: 40
-    t.boolean "active", default: true
     t.string "country"
     t.string "city"
     t.string "zip"
     t.string "address"
+    t.string "viber", limit: 40
+    t.string "telegram", limit: 40
+    t.string "whatsapp", limit: 40
+    t.boolean "online_booking", default: true
+    t.boolean "active", default: true
+    t.integer "locations", default: 0, null: false
+    t.integer "members_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
     t.float "latitude"
     t.float "longitude"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
@@ -283,22 +271,23 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.string "email", limit: 255
     t.date "date_of_birth"
     t.string "gender", default: "undisclosed"
-    t.integer "balance", default: 0, null: false
-    t.bigint "location_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "jobs_count", default: 0, null: false
-    t.string "slug"
-    t.string "time_zone", default: "UTC"
-    t.integer "event_earnings_sum", default: 0, null: false
-    t.integer "transactions_sum", default: 0, null: false
-    t.integer "transactions_count", default: 0, null: false
-    t.boolean "online_booking", default: true
-    t.boolean "active", default: true
     t.string "country"
     t.string "city"
     t.string "zip"
     t.string "address"
+    t.string "time_zone", default: "UTC"
+    t.boolean "active", default: true
+    t.boolean "online_booking", default: true
+    t.integer "balance", default: 0, null: false
+    t.integer "transactions_sum", default: 0, null: false
+    t.integer "event_earnings_sum", default: 0, null: false
+    t.integer "transactions_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
+    t.integer "jobs_count", default: 0, null: false
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["location_id"], name: "index_members_on_location_id"
     t.index ["slug"], name: "index_members_on_slug", unique: true
     t.index ["tenant_id"], name: "index_members_on_tenant_id"
@@ -306,13 +295,13 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
   end
 
   create_table "operating_hours", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "member_id"
     t.integer "day_of_week"
     t.time "closes"
     t.time "opens"
     t.datetime "valid_from"
     t.datetime "valid_through"
-    t.bigint "tenant_id"
-    t.bigint "member_id"
     t.index ["member_id"], name: "index_operating_hours_on_member_id"
     t.index ["tenant_id"], name: "index_operating_hours_on_tenant_id"
   end
@@ -332,9 +321,10 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
   create_table "service_categories", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 144, null: false
+    t.integer "services_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "services_count", default: 0, null: false
     t.string "slug"
     t.index ["slug"], name: "index_service_categories_on_slug", unique: true
     t.index ["tenant_id"], name: "index_service_categories_on_tenant_id"
@@ -349,12 +339,13 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.integer "client_price", default: 0, null: false
     t.integer "member_percent", default: 0, null: false
     t.integer "member_price", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "jobs_count", default: 0, null: false
-    t.string "slug"
+    t.integer "integer", default: 0, null: false
     t.boolean "online_booking", default: true
     t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["service_category_id"], name: "index_services_on_service_category_id"
     t.index ["slug"], name: "index_services_on_slug", unique: true
     t.index ["tenant_id"], name: "index_services_on_tenant_id"
@@ -391,18 +382,18 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
+    t.string "subdomain", limit: 20, null: false
     t.string "plan", limit: 40, default: "demo", null: false
     t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "industry", limit: 144, default: "other", null: false
     t.string "website", limit: 500
-    t.boolean "online_booking", default: false
-    t.text "description"
-    t.string "time_zone", default: "UTC"
+    t.string "description", limit: 500
     t.string "instagram", limit: 40
-    t.string "subdomain", limit: 20
+    t.string "time_zone", default: "UTC"
+    t.boolean "online_booking", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
@@ -420,14 +411,12 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
   create_table "transactions", force: :cascade do |t|
     t.bigint "tenant_id"
     t.integer "amount", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "payable_id"
     t.string "payable_type"
-    t.string "slug"
     t.string "comment", limit: 144
-    t.bigint "cash_account_id"
-    t.index ["cash_account_id"], name: "index_transactions_on_cash_account_id"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["payable_id"], name: "index_transactions_on_payable_id"
     t.index ["payable_type"], name: "index_transactions_on_payable_type"
     t.index ["slug"], name: "index_transactions_on_slug", unique: true
@@ -435,6 +424,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "time_zone", default: "UTC"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -453,7 +443,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "time_zone", default: "UTC"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -474,10 +463,13 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
     t.bigint "tenant_id"
     t.bigint "location_id"
     t.string "name", limit: 20, null: false
+    t.integer "events_count", default: 0, null: false
+    t.integer "integer", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.integer "events_count", default: 0, null: false
+    t.bigint "events_id"
+    t.index ["events_id"], name: "index_workplaces_on_events_id"
     t.index ["location_id"], name: "index_workplaces_on_location_id"
     t.index ["slug"], name: "index_workplaces_on_slug", unique: true
     t.index ["tenant_id"], name: "index_workplaces_on_tenant_id"
@@ -496,8 +488,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
   add_foreign_key "contacts", "tenants"
   add_foreign_key "events", "clients"
   add_foreign_key "events", "tenants"
-  add_foreign_key "events", "workplaces"
-  add_foreign_key "expences", "tenants"
   add_foreign_key "jobs", "events"
   add_foreign_key "jobs", "members"
   add_foreign_key "jobs", "services"
@@ -511,7 +501,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_232340) do
   add_foreign_key "members", "locations"
   add_foreign_key "members", "tenants"
   add_foreign_key "members", "users"
-  add_foreign_key "operating_hours", "members"
   add_foreign_key "operating_hours", "tenants"
   add_foreign_key "roles", "tenants"
   add_foreign_key "service_categories", "tenants"
