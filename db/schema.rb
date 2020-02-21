@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_232346) do
+ActiveRecord::Schema.define(version: 2020_02_17_232350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,10 +67,8 @@ ActiveRecord::Schema.define(version: 2020_02_17_232346) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "transactions_id"
     t.index ["slug"], name: "index_cash_accounts_on_slug", unique: true
     t.index ["tenant_id"], name: "index_cash_accounts_on_tenant_id"
-    t.index ["transactions_id"], name: "index_cash_accounts_on_transactions_id"
   end
 
   create_table "client_tags", force: :cascade do |t|
@@ -167,9 +165,11 @@ ActiveRecord::Schema.define(version: 2020_02_17_232346) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.bigint "workplaces_id"
     t.index ["client_id"], name: "index_events_on_client_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
     t.index ["tenant_id"], name: "index_events_on_tenant_id"
+    t.index ["workplaces_id"], name: "index_events_on_workplaces_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -382,6 +382,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_232346) do
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
+    t.string "subdomain"
     t.string "plan", limit: 40, default: "demo", null: false
     t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
@@ -393,11 +394,11 @@ ActiveRecord::Schema.define(version: 2020_02_17_232346) do
     t.boolean "online_booking", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "subdomain"
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
     t.index ["plan"], name: "index_tenants_on_plan"
+    t.index ["subdomain"], name: "index_tenants_on_subdomain"
     t.index ["tenant_id"], name: "index_tenants_on_tenant_id"
   end
 
@@ -416,6 +417,8 @@ ActiveRecord::Schema.define(version: 2020_02_17_232346) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cash_accounts_id"
+    t.index ["cash_accounts_id"], name: "index_transactions_on_cash_accounts_id"
     t.index ["payable_id"], name: "index_transactions_on_payable_id"
     t.index ["payable_type"], name: "index_transactions_on_payable_type"
     t.index ["slug"], name: "index_transactions_on_slug", unique: true
@@ -467,8 +470,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_232346) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.bigint "events_id"
-    t.index ["events_id"], name: "index_workplaces_on_events_id"
     t.index ["location_id"], name: "index_workplaces_on_location_id"
     t.index ["slug"], name: "index_workplaces_on_slug", unique: true
     t.index ["tenant_id"], name: "index_workplaces_on_tenant_id"
