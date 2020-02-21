@@ -81,13 +81,12 @@
               .badge.badge-success
                 = t('clients_yes_next_event')
           %td
-            = link_to "tel:#{client.phone_number}", class: "button" do
-              = number_to_phone(client.phone_number)
+            = tel_to client.phone_number
             - if client.phone_number.present?
-              = link_to "viber://chat?number=#{client.phone_number}", class: "button" do
+              = link_to "viber://chat?number=#{client.phone_number}" do
                 .fab.fa-viber
             .row
-            = link_to "mailto:#{client.email}", class: "button" do
+            = link_to "mailto:#{client.email}" do
               = client.email
           /%td= client.code
           %td= client.date_of_birth

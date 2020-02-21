@@ -25,7 +25,7 @@
               %b= number_to_currency(event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
             .row
             .btn-group
-              = link_to '', event, class: "btn btn-primary fa fa-calendar-alt btn-sm"
+              = link_to '', event, class: "btn btn-primary fa fa-search btn-sm"
               = link_to '', edit_event_path(event), class: "btn btn-warning fa fa-edit btn-sm" if policy(event).edit?
               = link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(event).destroy?
         .col-md-3
@@ -35,9 +35,8 @@
           - if event.client.phone_number.present? && policy(Client).show_phone?
             .row
             .fa.fa-phone
-            = link_to "tel:#{event.client.phone_number}", class: "button" do
-              #{number_to_phone(event.client.phone_number)}
-            = link_to "viber://chat?number=#{event.client.phone_number}", class: "button" do
+            = tel_to event.client.phone_number
+            = link_to "viber://chat?number=#{event.client.phone_number}" do
               .fab.fa-viber
         .col-md-3
           .fa.fa-map-marker-alt
