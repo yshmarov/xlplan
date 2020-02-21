@@ -5,6 +5,7 @@ sudo service postgresql96 restart
 git push heroku master
 heroku run rake db:migrate
 
+rails db:drop db:create db:migrate
 ___________________________________
 FIND TOP 50 FILES BY SIZE
 heroku run bash
