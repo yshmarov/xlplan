@@ -25,6 +25,19 @@
           = f.input :website
           = f.input :instagram
           = f.input :description, :input_html => {:rows => 5}
+          ///ACTIVE_STORAGE LOGO
+          .text-center
+            - if @tenant.logo.attached?
+              = image_tag @tenant.logo, height: "50px", class: "mx-auto d-inline align-top rounded"
+              /%img.rounded{:alt => "XLPLAN", :src => "#{url_for(@tenant.logo)}", :height => "200px"}/
+            - else
+              .far.fa-calendar-check{:style => "font-size:60px"}
+              .row
+              = f.label :logo
+            %p
+            = f.file_field :logo
+            %p
+          ///END ACTIVE_STORAGE LOGO
           = f.button :submit
         %hr
         .float-right

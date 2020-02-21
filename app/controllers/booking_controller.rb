@@ -10,8 +10,10 @@ class BookingController < ApplicationController
   end
 
   def show
-    if @tenant.online_booking == 'false' || @tenant.plan == 'blocked'
-      redirect_to booking_path, alert: 'This page is currently offline.'
+    unless current_user
+      if @tenant.online_booking == false || @tenant.plan == 'blocked'
+        redirect_to booking_path, alert: 'This page is currently offline.'
+      end
     end
     @members = Member.active.online_booking.order('created_at ASC')
     @locations = Location.active.online_booking

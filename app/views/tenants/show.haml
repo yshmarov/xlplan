@@ -30,13 +30,13 @@
         %b= model_class.human_attribute_name(:industry) + ':'
         = I18n.t(@tenant.industry, scope: [:static_pages, :landing_page])
         .row
-        %b= model_class.human_attribute_name(:instagram) + ':'
-        - if @tenant.instagram.present?
-          = link_to @tenant.instagram, "http://www.instagram.com/#{@tenant.instagram}", target: :_blank
-        .row
         %b= model_class.human_attribute_name(:website) + ':'
         - if @tenant.website.present?
           = link_to @tenant.website, "http://#{@tenant.website}", target: :_blank
+        .row
+        %b= model_class.human_attribute_name(:instagram) + ':'
+        - if @tenant.instagram.present?
+          = link_to @tenant.instagram, "http://www.instagram.com/#{@tenant.instagram}", target: :_blank
         .row
         %b= model_class.human_attribute_name(:logo) + ':'
         .row

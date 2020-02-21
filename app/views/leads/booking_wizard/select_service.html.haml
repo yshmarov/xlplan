@@ -13,6 +13,7 @@
           = I18n.t(step.to_s, scope: [:wicked])
       .card-body
         = render layout: 'form' do |f|
+          /= f.input :service_id, collection: @service_categories, as: :grouped_select, group_method: :services, label_method: :name_price_duration_description, class: 'selectize'
           /= f.association :service, as: :radio_buttons, collection: @services, label_method: :name_price_duration_description, checked: params[:service_id]
           = f.association :service, collection: @services, label_method: :name_price_duration_description, label: false, checked: params[:service_id]
           /= f.input :ip_address, input_html: {value: @ip_address}, as: :hidden

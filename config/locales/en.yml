@@ -875,6 +875,8 @@ en:
         default_currency: "Currency"
         industy: "Industry"
         website: "Website"
+        instagram: "Instagram"
+        subdomain: "Subdomain"
         logo: "Logo"
         description: "Public description"
         online_booking: "Online booking"

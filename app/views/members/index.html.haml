@@ -64,7 +64,8 @@
           %td= member.date_of_birth
           %td= gender_label(member.gender)
           %td= member.address_line
-          %td= link_to member.location, location_path(member.location)
+          %td
+            = link_to member.location, location_path(member.location) if member.location.present?
           %td= active_label(member.active)
           %td= active_label(member.online_booking)
           %td

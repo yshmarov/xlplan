@@ -1,6 +1,7 @@
 - content_for :title do
   = @tenant.name
 
+= @tenant.online_booking
 .container-fluid
   /custom locale for this page. quick workaround without going to application_controller
   - I18n.locale = @tenant.locale
