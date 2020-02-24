@@ -38,7 +38,11 @@ class ApplicationController < ActionController::Base
       else
         lang = 'en'
       end
-      I18n.locale = lang
+      if I18n.available_locales.map(&:to_s).include?(lang)
+        I18n.locale = lang
+      else
+        I18n.locale = 'en'
+      end
     end
   
     def set_time_zone(&block)
