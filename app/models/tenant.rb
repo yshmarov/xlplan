@@ -32,7 +32,7 @@ class Tenant < ApplicationRecord
   validates :subdomain, uniqueness: true, case_sensitive: false, allow_blank: true,
     length: { in: 3..20 }, 
     format: {with: %r{\A[a-z](?:[a-z0-9-]*[a-z0-9])?\z}i, message: "not a valid subdomain"},
-    exclusion: { in: %w(support blog billing help api www host admin), message: "%{value} is reserved." }
+    exclusion: { in: %w(app dashboard support blog billing help api www host admin), message: "%{value} is reserved." }
   before_validation do
     self.subdomain = subdomain.try(:downcase) 
     #self.subdomain.downcase! if attribute_present?("subdomain")
