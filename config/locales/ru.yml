@@ -845,7 +845,7 @@ ru:
         industry: "Сфера деятельности"
         website: "Веб-сайт"
         instagram: "Instagram"
-        subdomain: "Никнейм"
+        subdomain: "Субдомен"
         logo: "Логотип"
         description: "Публичное описание"
         online_booking: "Онлайн запись"

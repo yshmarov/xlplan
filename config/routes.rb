@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  constraints subdomain: 'app' do
+    get 'static_pages/landing_page'
+  end
+
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
   get 'features', to: 'static_pages#features'

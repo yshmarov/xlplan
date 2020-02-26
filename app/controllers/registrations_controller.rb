@@ -12,25 +12,20 @@ def create
   coupon_params = sign_up_params_coupon
 
   sign_out_session!
-     # next two lines prep signup view parameters
+  # prep signup view parameters
   prep_signup_view( tenant_params, user_params, coupon_params )
-     # validate recaptcha first unless not enabled
+
   if !::Milia.use_recaptcha  ||  verify_recaptcha
     Tenant.transaction  do
       @tenant = Tenant.create_new_tenant( tenant_params, user_params, coupon_params)
       if @tenant.errors.empty?   # tenant created
-
         initiate_tenant( @tenant )    # first time stuff for new tenant
-
         devise_create( user_params )   # devise resource(user) creation; sets resource
-
         @user.add_role(:admin)
-
         if resource.errors.empty?   #  SUCCESS!
           log_action( "signup user/tenant success", resource )
-            # do any needed tenant initial setup
+          # do any needed tenant initial setup
           Tenant.tenant_signup(resource, @tenant, coupon_params)
-
           TenantMailer.tenant_created(@tenant).deliver_now
         else  # user creation failed; force tenant rollback
           log_action( "signup user create failed", resource )
@@ -114,7 +109,6 @@ end   # def create
   def after_sign_up_path_for(resource) # path after creating a tenant
     headers['refresh'] = "0;url=#{root_path}"
     #root_path
-    #start_path
     after_signup_wizard_path(:tenant_settings)
   end
 # ------------------------------------------------------------------------------
