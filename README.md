@@ -1,3 +1,8 @@
+PublicActivity::Activity.where(trackable_type: "InboundPayment").count
+PublicActivity::Activity.where(trackable_type: "InboundPayment").each do |x|
+  x.update_attributes!(trackable_type: "Transaction")
+end
+
 cd xlplan
 git status
 sudo service postgresql96 restart
