@@ -373,6 +373,7 @@ ru:
     close_events: 'Отметить'
     debtors: "Должники"
     events: 'Встречи'
+    leads: "Заявки"
     transactions: 'Транзакции'
     clients: 'Клиенты'
     members: 'Сотрудники'

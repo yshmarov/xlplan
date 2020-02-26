@@ -373,6 +373,7 @@ en:
     close_events: 'Mark Events'
     debtors: 'Debtors'
     events: 'Events'
+    leads: "Leads"
     transactions: 'Transactions'
     clients: 'Clients'
     members: 'Employees'

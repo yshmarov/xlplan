@@ -81,7 +81,7 @@
       %li{class: "#{'active font-weight-bold' if current_page?(leads_path)}"}
         = link_to leads_path, class: "nav-link" do
           .fa-fw.fa-color-special.fa.fa-globe-africa
-          #{t('sidebar.online_booking')} 
+          #{t('sidebar.leads')} 
           - if Lead.active.has_no_client.count > 0
             #{content_tag :span, Lead.active.count, class: 'badge badge-danger'} 
       %li.nav-item.dropdown

@@ -15,37 +15,37 @@
             .row
             %small= link_to 'Remove Avatar', delete_avatar_member_path(@member.avatar.id), method: :delete, data: { confirm: 'Are you sure?' } 
         .row
-        %b= model_class.human_attribute_name(:full_name) + ':'
+        %b= model_class.human_attribute_name(:full_name).capitalize + ':'
         = @member.full_name
         .row
-        %b= model_class.human_attribute_name(:phone_number) + ':'
+        %b= model_class.human_attribute_name(:phone_number).capitalize + ':'
         = link_to "tel:#{@member.phone_number}", class: "button" do
           #{number_to_phone(@member.phone_number)}
         - if @member.phone_number.present?
           = link_to "viber://chat?number=#{@member.phone_number}", class: "button" do
             .fab.fa-viber
         .row
-        %b= model_class.human_attribute_name(:email) + ':'
+        %b= model_class.human_attribute_name(:email).capitalize + ':'
         - if @member.email.present?
           = link_to @member.email, "mailto:#{@member.email}"
         .row
-        %b= model_class.human_attribute_name(:date_of_birth) + ':'
+        %b= model_class.human_attribute_name(:date_of_birth).capitalize + ':'
         - if @member.date_of_birth.present?
           = @member.date_of_birth.strftime('%d/%b/%Y') 
           (#{@member.age})
         .row
-        %b= model_class.human_attribute_name(:gender) + ':'
+        %b= model_class.human_attribute_name(:gender).capitalize + ':'
         = gender_label(@member.gender)
         .row
-        %b= model_class.human_attribute_name(:address) + ':'
+        %b= model_class.human_attribute_name(:address).capitalize + ':'
         = @member.address_line
         .row
-        %b= model_class.human_attribute_name(:active) + ':'
+        %b= model_class.human_attribute_name(:active).capitalize + ':'
         = active_label(@member.active)
         %hr
         %b
           .fa.fa-hand-paper
-          = model_class.human_attribute_name(:skills) + ':'
+          = model_class.human_attribute_name(:skills).capitalize + ':'
         - if @member.skills.any?
           %small
             - @member.skills.each do |skill|
@@ -53,25 +53,25 @@
                 = skill.service_category
         .row
         .fa.fa-map-marker-alt
-        = model_class.human_attribute_name(:location_id) + ':'
+        = model_class.human_attribute_name(:location_id).capitalize + ':'
         = link_to @member.location, location_path(@member.location) if @member.location.present?
         .row
-        %b= model_class.human_attribute_name(:online_booking) + ':'
+        %b= model_class.human_attribute_name(:online_booking).capitalize + ':'
         = active_label(@member.online_booking)
         - if policy(@member).show_money?
           %hr
           .fa.fa-hand-paper
-          %b= model_class.human_attribute_name(:event_earnings_sum) + ':'
+          %b= model_class.human_attribute_name(:event_earnings_sum).capitalize + ':'
           = number_to_currency(@member.event_earnings_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.jobs_count})
           .row
           .fa.fa-hand-holding-usd
-          %b= model_class.human_attribute_name(:transactions_sum) + ':'
+          %b= model_class.human_attribute_name(:transactions_sum).capitalize + ':'
           = number_to_currency(@member.transactions_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
           (#{@member.transactions_count})
           .row
           .fa.fa-balance-scale
-          %b= model_class.human_attribute_name(:balance) + ':'
+          %b= model_class.human_attribute_name(:balance).capitalize + ':'
           = number_to_currency(@member.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
     %p
   - if @member.user.present?
@@ -81,11 +81,11 @@
           .fa.fa-lock
           %b= t('.access_rights')
         .card-body
-          %b= model_class.human_attribute_name(:time_zone) + ':'
+          %b= model_class.human_attribute_name(:time_zone).capitalize + ':'
           = @member.time_zone
           /= @member.user.time_zone
           .row
-          %b= model_class.human_attribute_name(:created_at) + ':'
+          %b= model_class.human_attribute_name(:created_at).capitalize + ':'
           = @member.user.created_at.strftime('%d/%b/%Y, %H:%M')
           .row
           %b= t('.confirmed_at')
@@ -98,7 +98,7 @@
             = link_to t('.edit_password'), edit_user_registration_path, class: 'btn btn-sm btn-warning'
           - if @member.user.present?
             .row
-            %b= model_class.human_attribute_name(:roles) + ':'
+            %b= model_class.human_attribute_name(:roles).capitalize + ':'
             - @member.user.roles.where.not("name = 'owner'").each do |r| 
               = role_label(r.name)
           - if policy(@member.user).destroy? && @member.user.present?

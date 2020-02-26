@@ -60,35 +60,35 @@
                 %p
                 %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"}= t('.cancel', :default => t("helpers.links.back"))
       .card-body
-        %b= model_class.human_attribute_name(:full_name) + ':'
+        %b= model_class.human_attribute_name(:full_name).capitalize + ':'
         = @client.full_name
         - if policy(@client).show_phone?
           .row
-          %b= model_class.human_attribute_name(:phone_number) + ':'
+          %b= model_class.human_attribute_name(:phone_number).capitalize + ':'
           = link_to "tel:#{@client.phone_number}", class: "button" do
             #{number_to_phone(@client.phone_number)}
           - if @client.phone_number.present?
             = link_to "viber://chat?number=#{@client.phone_number}", class: "button" do
               .fab.fa-viber
         /.row
-        /%b= model_class.human_attribute_name(:code) + ':'
+        /%b= model_class.human_attribute_name(:code).capitalize + ':'
         /= @client.code
         .row
-        %b= model_class.human_attribute_name(:email) + ':'
+        %b= model_class.human_attribute_name(:email).capitalize + ':'
         %a{:href => "mailto:#{@client.email}"}= @client.email
         .row
-        %b= model_class.human_attribute_name(:date_of_birth) + ':'
+        %b= model_class.human_attribute_name(:date_of_birth).capitalize + ':'
         - if @client.date_of_birth.present?
           = @client.date_of_birth.strftime('%d/%b/%Y') 
           (#{@client.age})
         .row
-        %b= model_class.human_attribute_name(:gender) + ':'
+        %b= model_class.human_attribute_name(:gender).capitalize + ':'
         = gender_label(@client.gender)
         .row
-        %b= model_class.human_attribute_name(:address) + ':'
+        %b= model_class.human_attribute_name(:address).capitalize + ':'
         = @client.address_line
         .row
-        %b= model_class.human_attribute_name(:lead_source) + ':'
+        %b= model_class.human_attribute_name(:lead_source).capitalize + ':'
         = I18n.t(@client.lead_source, scope: [:activerecord, :attributes, :client, :lead_sources])
         .row
         - if @client.client_tags.any?
@@ -109,46 +109,46 @@
 
         %hr
         .fa.fa-calendar-check
-        %b= model_class.human_attribute_name(:event_expences_sum) + ':'
+        %b= model_class.human_attribute_name(:event_expences_sum).capitalize + ':'
         = number_to_currency(@client.event_expences_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         (#{@client.events_count})
         .row
         .fa.fa-hand-holding-usd
-        %b= model_class.human_attribute_name(:transactions_sum) + ':'
+        %b= model_class.human_attribute_name(:transactions_sum).capitalize + ':'
         = number_to_currency(@client.transactions_sum_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         (#{@client.transactions_count})
         .row
         .fa.fa-balance-scale
-        %b= model_class.human_attribute_name(:balance) + ':'
+        %b= model_class.human_attribute_name(:balance).capitalize + ':'
         = number_to_currency(@client.balance_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
         .row
         .fa.fa-arrow-left
-        %b= model_class.human_attribute_name(:last_event) + ':'
+        %b= model_class.human_attribute_name(:last_event).capitalize + ':'
         - if @client.last_event.present?
           = distance_of_time_in_words(Time.now, @client.last_event)
         .row
         .fa.fa-arrow-right
-        %b= model_class.human_attribute_name(:next_event) + ':'
+        %b= model_class.human_attribute_name(:next_event).capitalize + ':'
         - if @client.next_event.present?
           = distance_of_time_in_words(Time.now, @client.next_event) 
         .row
         .fa.fa-dollar-sign
-        %b= model_class.human_attribute_name(:average_confirmed_check) + ':'
+        %b= model_class.human_attribute_name(:average_confirmed_check).capitalize + ':'
         = @client.average_confirmed_check
         .row
         .fa.fa-clock
-        %b= model_class.human_attribute_name(:created_at) + ':'
+        %b= model_class.human_attribute_name(:created_at).capitalize + ':'
         #{l(@client.created_at, format: "%a")} #{l(@client.created_at, format: "%d/%b/%Y %H:%M")}
 
         %hr
         %small
-          %b= model_class.human_attribute_name(:personal_data_consent) + ':'
+          %b= model_class.human_attribute_name(:personal_data_consent).capitalize + ':'
           = active_label(@client.personal_data_consent)
           %br
-          %b= model_class.human_attribute_name(:event_created_notifications) + ':'
+          %b= model_class.human_attribute_name(:event_created_notifications).capitalize + ':'
           = active_label(@client.event_created_notifications)
           %br
-          %b= model_class.human_attribute_name(:marketing_notifications) + ':'
+          %b= model_class.human_attribute_name(:marketing_notifications).capitalize + ':'
           = active_label(@client.marketing_notifications)
     %p
   .col-lg-8
