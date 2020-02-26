@@ -332,7 +332,8 @@ en:
   clients_no_gender: "No gender"
   clients_no_events: "No events"
   clients_no_future_events: "Active clients without future events"
-  clients_uncategorized: "Uncategorized"
+  clients_yes_next_event: "Has planned events"
+  clients_untagged: "Untagged"
   created_today: "Created today"
   services: 'Services'
   service: 'Service'
@@ -371,21 +372,16 @@ en:
     events_tomorrow: 'Events tomorrow'
     close_events: 'Mark Events'
     debtors: 'Debtors'
-    bday_today: "Bday today"
-    no_gender: "Clients without gender"
     events: 'Events'
     transactions: 'Transactions'
-    all_events: 'All events'
-    all_transactions: 'All transactions'
     clients: 'Clients'
     members: 'Employees'
     services: 'Services'
     locations: 'Locations'
-    member_expences: 'Employee Expences'
     activity: 'Activity'
     more: "More"
     settings: 'Settings'
-    :: "Organisation settings"
+    tenant: "Organisation"
     service_categories: "Service Categories"
     stats: 'Stats'
     my_page: 'My Page'
@@ -401,6 +397,7 @@ en:
     public_page: "Public page"
     dashboard: "Pulse"
     categories: "Categories"
+    cash_accounts: "Cash Accounts"
 
   ######################################################
 
@@ -465,7 +462,6 @@ en:
 
       control_business: "Control"
       all_business_data_secure_in_one_place: "Access all your business information in one place."
-      manage_workload: "Manage all business processes."
       online_calendar: "Online calendar: you will always be on track of your business, whereever you are."
       more_professional: "Professional software for modern business."
 
@@ -576,7 +572,7 @@ en:
       automatic_stats: "Automatic business analytics"
       automatic_client_segmentation: "Automatic customer segmentation"
       smart_reminders: "Smart reminders"
-   ######################################################
+  ######################################################
 
   booking:
     index:
@@ -603,13 +599,6 @@ en:
     activity:
       activity: "Activity"
       ago: "ago"
-    expence_stats:
-      expence_stats: "Expence stats"
-      per_day: "By day"
-      per_month: "By month"
-      current_month: "Today"
-      expences_per_month: "Expences by month"
-      expence_types: "Expence types"
     client_stats:
       client_stats: 'Client stats'
       created_per_month: 'Created by month'
@@ -627,7 +616,7 @@ en:
       member_salary: "Salary"
       jobs: "Jobs"
       hours_worked: "Hours worked"
-      payments: "Client Payments"
+      payments: "Price of events"
       expences: "Employee comission"
       confirmed: "Confirmed"
       cancelled: "Cancelled"
@@ -655,15 +644,15 @@ en:
       location_popularity: 'Location popularity'
       service_popularity: 'Service popularity'
       current_month: "Today"
-    payment_stats:
-      payment_stats: 'Payment stats'
+    transaction_stats:
+      transaction_stats: 'Payment stats'
       per_day: "By day"
       per_month: "By month"
       quantity: "Quantity"
       amount: "Amount"
       current_month: "Today"
-      payments_per_month: 'Payments per month'
-      payments_per_day: 'Payments per day'
+      transactions_per_month: 'Payments per month'
+      transactions_per_day: 'Payments per day'
     lead_stats:
       lead_stats: 'Online Booking stats'
       created_per_month: 'Created by month'
@@ -673,6 +662,9 @@ en:
 
   ######################################################
 
+  cash_accounts:
+    index:
+      title: "Cash Accounts"
   contacts:
     index:
       create_client: "Create Client"
@@ -686,21 +678,8 @@ en:
       title: "Payment"
     new:
       title: "Create Payment"
-    edit:
-      title: "Edit Payment"
     create:
       success: 'Payment was successfully created.'
-  expences:
-    index:
-      title: "Expences"
-    show:
-      title: "Expence"
-    new:
-      title: "Create Expence"
-    edit:
-      title: "Edit Expence"
-    create:
-      success: 'Expence was successfully created.'
   locations:
     index:
       title: "Locations"
@@ -780,7 +759,6 @@ en:
       no_show: "Client No Show"
       no_show_refunded: "No Show Refund"
     show:
-      #client_paid: "Create Payment"
       email_client: "Email client"
       email_members: "Email employee"
       planned: "Planned"
@@ -814,18 +792,6 @@ en:
     mark_no_show_refunded:
       success: "Marked No Show Refund"
   tenants:
-    show:
-      counters: "Counters"
-      events: "Events"
-      jobs: "Jobs"
-      clients: "Clients"
-      members: "Employees"
-      services: "Services"
-      locations: "Locations"
-      transactions: "Payments"
-      expences: "Expences"
-      comments: "Comments"
-      service_categories: "Service Categories"
     edit:
       title: "Edit organisation settings"
     edit_plan:
@@ -835,17 +801,19 @@ en:
 
   activerecord:
     models:
-      tenant: "Organisation settings"
-      event: "Event"
-      job: "Job"
-      service: "Service"
-      service_category: "Category"
-      location: "Location"
-      member: "Employee"
+      cash_account: "Cash Account"
       client: "Client"
       comment: "Comment"
-      transaction: "Payment"
       contact: "Contact"
+      event: "Event"
+      job: "Task"
+      lead: "Lead"
+      location: "Location"
+      service: "Service"
+      service_category: "Category"
+      member: "Employee"
+      transaction: "Payment"
+      tenant: "Organisation"
 
     attributes:
       contact:
@@ -923,7 +891,7 @@ en:
         member_id: "Employee"
         member: "Employee"
         service_duration: "Duration, min."
-        service_member_percent: "Employee %"
+        service_member_percent: "Employee share"
         client_price: "Client Price"
         client_due_price: "Client Due Price"
         member_price: "Employee Price"
@@ -950,7 +918,7 @@ en:
         client_price_cents: "Client Price"
         member_price: "Employee Price"
         member_price_cents: "Employee Price"
-        member_percent: "Employee %"
+        member_percent: "Employee share"
         active: "Active"
         jobs_count: "Jobs count"
         online_booking: "Online booking"
@@ -1000,10 +968,11 @@ en:
         street: "Street"
         zip: "ZIP"
         active: "Active"
-        jobs_due_price_sum: "Price of all jobs"
-        jobs_due_price_sum_cents: "Price of all jobs"
-        expences_amount_sum: "Payments sum"
-        expences_amount_sum_cents: "Payments sum"
+        event_earnings_sum: "Price of all jobs"
+        event_earnings_sum_cents: "Price of all jobs"
+        transactions_sum: "Payments sum"
+        transactions_sum_cents: "Payments sum"
+        transactions_count: "Transaction count"
         balance: "Balance"
         location_id: "Location"
         location: "Location"
@@ -1022,6 +991,7 @@ en:
         full_name: "Name"
         name: "Name"
         phone_number: "Phone"
+        code: "Code"
         email: "Email"
         date_of_birth: "Date of birth"
         address: "Address"
@@ -1048,8 +1018,8 @@ en:
         personal_data_consent: "Personal data consent"
         event_created_notifications: "Event creation notifications"
         marketing_notifications: "Marketing notifications"
-        jobs_amount_sum: "Job price"
-        payments_amount_sum: "Payment amount"
+        event_expences_sum: "Job price"
+        transactions_sum: "Payment amount"
         lead_source: "Lead source"
         lead_sources:
           direct: "direct"
@@ -1072,6 +1042,11 @@ en:
           lost_client: "Lost client"
           blacklist: "Blacklist"
         average_confirmed_check: "Average paycheck"
+      cash_account:
+        name: "name"
+        active: "active"
+        transactions_count: "transactions count"
+        balance: "balance"
       transaction:
         id: "Transaction #"
         payable_type: "Destination"

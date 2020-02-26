@@ -381,7 +381,7 @@ ru:
     activity: 'История'
     more: "Ещё"
     settings: "Настройки"
-    tenant: "Настройки организации"
+    tenant: "Организация"
     service_categories: "Категории услуг"
     stats: 'Отчёты'
     my_page: 'Мой Кабинет'
@@ -434,12 +434,12 @@ ru:
       designed_for: "Для кого создан XLPLAN"
       #industries
       beauty_industry: "Индустрия красоты"
-      cosmetology: "Косметология"
-      tattoo_studio: "Тату студия"
       hair_beauty_barbershop: "Салон красоты"
       spa: "СПА-салон"
       sauna: "Сауна"
       solarium: "Солярий"
+      cosmetology: "Косметология"
+      tattoo_studio: "Тату студия"
       #industries
       private_medicine: "Частная медицина"
       stomatology: "Стоматология"
@@ -617,6 +617,7 @@ ru:
       jobs: "Работ"
       hours_worked: "Часов"
       payments: "Цена встреч"
+      expences: "Доля сотрудника"
       confirmed: "Состоявшиеся"
       cancelled: "Отмененные"
     event_stats:
@@ -805,14 +806,14 @@ ru:
       comment: "Комментарий"
       contact: "Контакт"
       event: "Встреча"
-      job: "Работа"
-      lead: "Онлайн запись"
+      job: "Задача"
+      lead: "Заявка"
       location: "Филиал"
-      member: "Сотрудник"
-      service_category: "Категория услуг"
       service: "Услуга"
-      tenant: "Настройки организации"
+      service_category: "Категория услуг"
+      member: "Сотрудник"
       transaction: "Транзакция"
+      tenant: "Организация"
 
     attributes:
       contact:
@@ -890,7 +891,7 @@ ru:
         member_id: "Сотрудник"
         member: "Сотрудник"
         service_duration: "Длительность, мин."
-        service_member_percent: "% Сотрудника"
+        service_member_percent: "Доля сотрудника"
         client_price: "Цена для клиента"
         client_due_price: "Конечная цена для клиента"
         member_price: "Оплата сотруднику"
@@ -917,7 +918,7 @@ ru:
         client_price_cents: "Цена Клиента"
         member_price: "Цена Сотрудника"
         member_price_cents: "Цена Сотрудника"
-        member_percent: "% Сотрудника"
+        member_percent: "Доля сотрудника"
         active: "Активный"
         jobs_count: "Кол. Работ"
         online_booking: "Онлайн запись"
@@ -1040,10 +1041,6 @@ ru:
           VIP: "VIP"
           lost_client: "утерян"
           blacklist: "чёрный список"
-        #genders:
-        #  undisclosed: "Не выбран"
-        #  male: "Мужской"
-        #  female: "Женский"
         average_confirmed_check: "средний чек"
       cash_account:
         name: "название"
@@ -1066,6 +1063,7 @@ ru:
       lead:
         first_name: "Имя"
         last_name: "Фамилия"
+        full_name: "Имя"
         phone_number: "Тел."
         email: "Email"
         comment: "Комментарий"
