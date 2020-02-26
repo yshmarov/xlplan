@@ -36,6 +36,13 @@
     - else
       #accordion.collapse
         = render 'clients/search_fields'
+
+/%br
+/.card-columns
+/  - @clients.each do |client|
+/    = render 'cards_index', client: client
+/%br
+
 .table-responsive
   %table#table1
     %thead.header-fixed
@@ -70,7 +77,6 @@
               - client.client_tags.each do |client_tag|
                 .badge.badge-info
                   = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
-
             - if client.debtors?
               .badge.badge-danger
                 = t('clients_debtors')
@@ -86,8 +92,7 @@
               = link_to "viber://chat?number=#{client.phone_number}" do
                 .fab.fa-viber
             .row
-            = link_to "mailto:#{client.email}" do
-              = client.email
+            = mail_to client.email
           /%td= client.code
           %td= client.date_of_birth
           %td= gender_label(client.gender)

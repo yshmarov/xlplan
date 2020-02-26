@@ -1,0 +1,28 @@
+%small
+  .card
+    .card-header
+      = link_to client.full_name, client_path(client)
+    .card-body
+      = tel_to client.phone_number
+      .row
+      = mail_to client.email
+      - if client.client_tags.any?
+        .row
+        - client.client_tags.each do |client_tag|
+          .badge.badge-info
+            = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
+      - if client.debtors?
+        .badge.badge-danger
+          = t('clients_debtors')
+      - if client.no_gender?
+        .badge.badge-warning
+          = t('clients_no_gender')
+      - if client.next_event.present?
+        .badge.badge-success
+          = t('clients_yes_next_event')
+    .card-footer
+      .text-right
+        .btn-group
+          = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
+          = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
+    

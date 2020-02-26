@@ -26,8 +26,7 @@
             .fab.fa-viber
         .row
         %b= model_class.human_attribute_name(:email).capitalize + ':'
-        - if @member.email.present?
-          = link_to @member.email, "mailto:#{@member.email}"
+        = mail_to @member.email
         .row
         %b= model_class.human_attribute_name(:date_of_birth).capitalize + ':'
         - if @member.date_of_birth.present?

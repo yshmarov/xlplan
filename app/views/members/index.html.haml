@@ -59,8 +59,7 @@
               = link_to "viber://chat?number=#{member.phone_number}", class: "button" do
                 .fab.fa-viber
             .row
-            = link_to "mailto:#{member.email}", class: "button" do
-              = member.email
+            = mail_to member.email
           %td= member.date_of_birth
           %td= gender_label(member.gender)
           %td= member.address_line

@@ -46,30 +46,20 @@
               = location.address_line
             - if location.phone_number.present?
               .row
-              = link_to "tel:#{location.phone_number}" do
-                .fa.fa-phone
-                = location.phone_number
+              = tel_to location.phone_number
             - if location.whatsapp.present?
-              .row
               /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
               = link_to "https://wa.me/#{location.whatsapp}", :target => "_blank" do
                 .fab.fa-whatsapp
-                = location.whatsapp
             - if location.viber.present?
-              .row
               = link_to "viber://chat?number=#{location.viber}" do
                 .fab.fa-viber
-                = location.viber
             - if location.telegram.present?
-              .row
               = link_to "tg://resolve?domain=#{location.telegram}" do
                 .fab.fa-telegram-plane
-                = location.telegram
             - if location.email.present?
               .row
-              = link_to "mailto:#{location.email}" do
-                .fa.fa-envelope
-                = location.email
+              = mail_to location.email
           - unless location.address_line.blank?
             /%td 
             /.row

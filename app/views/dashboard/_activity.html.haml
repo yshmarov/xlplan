@@ -12,6 +12,7 @@
         - if a.owner.present? && a.owner.member
           = link_to a.owner.to_s, member_path(a.owner.member.id)
         %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
+        %span{:class => "fa fa-#{a.key.match(/\.(.*)/)[1]}"}
         = a.key
         - if a.trackable
           - if a.trackable_type == 'Comment'

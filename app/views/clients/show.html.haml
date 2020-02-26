@@ -75,7 +75,7 @@
         /= @client.code
         .row
         %b= model_class.human_attribute_name(:email).capitalize + ':'
-        %a{:href => "mailto:#{@client.email}"}= @client.email
+        = mail_to @client.email
         .row
         %b= model_class.human_attribute_name(:date_of_birth).capitalize + ':'
         - if @client.date_of_birth.present?
