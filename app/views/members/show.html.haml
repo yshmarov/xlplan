@@ -110,6 +110,11 @@
     %p
 
 /= @member.available_timeslots
+/%hr
+/- @member.events.is_upcoming.each do |e|
+/  .row
+/  = e.starts_at
+/  /= e.starts_at - e.ends_at
 /
 /%hr
 /
