@@ -2,6 +2,22 @@ Rails.application.routes.draw do
   constraints subdomain: 'app' do
     get 'static_pages/landing_page'
   end
+  #get 'static_pages/pricing', constraints: {subdomain: 'admin'}
+  get 'pricing', to: 'static_pages#pricing', constraints: {subdomain: 'admin'}
+  constraints subdomain: "api" do
+    scope module: "api" do
+      get 'static_pages/features'
+    end
+  end
+  #get 'cars', to: 'cars#index'
+  #post 'cars', to: 'cars#create'
+  #get 'cars/new', to: 'cars#new', as: :new_car
+  #get 'cars/:id/edit', to: 'cars#edit', as: :edit_car
+  #get 'cars/:id', to: 'cars#show', as: :car
+  #put 'cars/:id', to: 'cars#update'
+  #patch 'cars/:id', to: 'cars#update'
+  #delete 'cars/:id', to: 'cars#destroy'
+  #post 'leads/create', to: 'leads#create', as: :create_a_lead
 
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
