@@ -115,3 +115,5 @@ gem "icalendar"                                                                 
 gem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards
 
 gem 'geocoder'
+
+gem 'devise_invitable', '~> 2.0.0'
