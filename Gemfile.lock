@@ -79,7 +79,7 @@ GEM
     autoprefixer-rails (9.7.4)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.276.0)
+    aws-partitions (1.278.0)
     aws-sdk-core (3.90.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -92,7 +92,7 @@ GEM
       aws-sdk-core (~> 3, >= 3.83.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.1.0)
+    aws-sigv4 (1.1.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
     bindex (0.8.1)
@@ -228,7 +228,7 @@ GEM
       activerecord (>= 5.2.1)
     popper_js (1.16.0)
     public_suffix (4.0.3)
-    puma (4.3.1)
+    puma (4.3.2)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -381,12 +381,12 @@ DEPENDENCIES
   money-rails
   omnicontacts
   pagy
-  pg (>= 0.18, < 2.0)
+  pg
   public_activity!
   puma (~> 4.1)
   pundit
   rack-attack
-  rails (~> 5.2.3)
+  rails (~> 5.2.4.1)
   rails-i18n
   ransack
   recaptcha
