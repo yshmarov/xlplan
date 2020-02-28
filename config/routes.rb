@@ -38,10 +38,11 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, :controllers => { 
-    :registrations => 'registrations',
-    :confirmations => 'confirmations',
-    :sessions => 'milia/sessions', 
-    :passwords => 'milia/passwords', 
+    registrations: 'registrations',
+    confirmations: 'confirmations',
+    sessions: 'milia/sessions', 
+    passwords: 'milia/passwords', 
+    invitations: 'invitations'
   }
 
   resources :users, only: [:destroy, :edit, :update]
@@ -49,6 +50,7 @@ Rails.application.routes.draw do
     member do
       delete :delete_avatar
       get :calendar
+  		patch :invite_user
     end
   end
   resources :after_signup_wizard

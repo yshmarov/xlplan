@@ -104,7 +104,8 @@
               = t('.no_access')
               - if member.active?
                 - if member.email.present?
-                  = t('.invite_user')
+                  /= t('.invite_user')
+                  = link_to "Invite", invite_user_member_path(member), method: :patch, class: 'btn btn-xs btn-success'
                   /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-md-2'
                   /Devise invitable here
                   /- if policy(User).create?
