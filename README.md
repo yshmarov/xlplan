@@ -3,6 +3,10 @@ PublicActivity::Activity.where(trackable_type: "InboundPayment").each do |x|
   x.update_attributes!(trackable_type: "Transaction")
 end
 
+git branch invitations
+git checkout invitations
+git push --set-upstream origin invitations 
+
 cd xlplan
 git status
 sudo service postgresql96 restart
