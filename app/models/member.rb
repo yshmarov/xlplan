@@ -17,7 +17,10 @@ class Member < ApplicationRecord
   validates :gender, inclusion: %w(male female undisclosed)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :email, :phone_number, length: { maximum: 255 }
-  validates :user_id, uniqueness: true, allow_blank: true #presence: true
+  #validates :user_id, uniqueness: true, allow_blank: true #presence: true
+  #validates_uniqueness_of :user_id, scope: :tenant_id
+  validates_uniqueness_of :email, scope: :tenant_id, allow_blank: true
+
   has_many :operating_hours, inverse_of: :member, dependent: :destroy
   accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true
   #-----------------------relationships-------------------#
@@ -120,19 +123,9 @@ class Member < ApplicationRecord
       end
     end
   end
-  ################MILIA MEMBER#################
-  DEFAULT_ADMIN = {
-    last_name:  "Admin",
-    first_name: "Admin"
-  }
-
-  def self.create_new_member(user, params)
-    # add any other initialization for a new member
-    return user.create_member( params )
-  end
-
+  ################MILIA ORG ADMIN MEMBER#################
   def self.create_org_admin(user)
-    new_member = create_new_member(user, DEFAULT_ADMIN)
+    new_member = create_new_member(user, last_name: "Admin", first_name: "Admin")
     unless new_member.errors.empty?
       raise ArgumentError, new_member.errors.full_messages.uniq.join(", ")
     end

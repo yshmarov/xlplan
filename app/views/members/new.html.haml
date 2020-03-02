@@ -8,17 +8,8 @@
           .fa.fa-user-tie
           =t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize
         %hr
-        /= render 'form'
-        = simple_form_for @member do |f|
-          = f.input :first_name, autofocus: true
-          = f.error :first_name, class: 'text-danger'
-          = f.input :last_name
-          = f.error :last_name, class: 'text-danger'
-          = simple_fields_for @user do |w|
-            = w.input :email
-            /= w.error :email, class: 'text-danger'
-          %hr
-          = f.button :submit, 'Create user and send invitation', class: 'btn btn-success'
+        = render 'form'
+        /= simple_form_for @member do |f|
         %p
         = link_to t('.cancel', :default => t("helpers.links.cancel")), clients_path, :class => 'btn btn-danger'
 

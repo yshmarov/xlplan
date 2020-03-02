@@ -106,6 +106,9 @@
                 - if member.email.present?
                   /= t('.invite_user')
                   = link_to "Invite", invite_user_member_path(member), method: :patch, class: 'btn btn-xs btn-success'
+                  = member.user.present?
+                  - if member.user.present?
+                    = member.user.invitation_accepted_at?
                   /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-md-2'
                   /Devise invitable here
                   /- if policy(User).create?
@@ -121,3 +124,5 @@
 /= Tenant.current_tenant.users.count
 /- Tenant.current_tenant.users.each do |user| 
 /  %p= user.email
+
+= User.all.unscoped.count

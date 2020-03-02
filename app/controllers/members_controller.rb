@@ -14,8 +14,13 @@ class MembersController < ApplicationController
   end
 
 	def invite_user
+	  #User.create!(email: @member.email)
     authorize @member, :create?
-    User.invite!(email: @member.personal_email, member_id: @member.id)
+    #User.invite!(email: @member.email, member_id: @member.id)
+    #User.invite!(email: @member.email)
+    @user = User.invite!(email: @member.email, tenant_id: @member.tenant_id)
+    @member.user_id = @user.id
+    @user.tenants << @member.tenant
     redirect_to members_path, notice: "Invitation sent to #{@member.full_name}"
 	end
 
@@ -37,25 +42,21 @@ class MembersController < ApplicationController
 
   def new
     @member = Member.new
-    @user   = User.new
-    #authorize @member
-    #authorize @user
+    authorize @member
     #7.times { @location.operating_hours.build}
   end
 
   def create
-    @user   = User.new( user_params )
-    #authorize @member
-    #authorize @user
-
-    # ok to create user, member
-    if @user.save_and_invite_member() && @user.create_member( member_params )
-      flash[:notice] = "New member added and invitation email sent to #{@user.email}."
-      redirect_to @user.member
-    else
-      #flash[:error] = "errors occurred!"
-      @member = Member.new( member_params ) # only used if need to revisit form
-      render :new
+    @member = Member.new(member_params)
+    authorize @member
+    respond_to do |format|
+      if @member.save
+        format.html { redirect_to @member, notice: 'Employee was successfully created.' }
+        format.json { render :show, status: :created, location: @member }
+      else
+        format.html { render :new }
+        format.json { render json: @member.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -94,9 +95,5 @@ class MembersController < ApplicationController
       :country, :city, :zip, :address,
       service_category_ids: [],
       operating_hours_attributes: [:id, :day_of_week, :closes, :opens, :valid_from, :valid_through, :_destroy])
-    end
-
-    def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
     end
 end
