@@ -3,7 +3,6 @@ class CreateServiceCategories < ActiveRecord::Migration[5.2]
     create_table :service_categories do |t|
       t.belongs_to :tenant, index: true, foreign_key: true
       t.string :name, :limit => 144, null: false
-
       t.integer :services_count, :integer, default: 0, null: false
 
       t.timestamps

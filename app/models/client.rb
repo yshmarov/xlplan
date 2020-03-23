@@ -74,8 +74,4 @@ class Client < ApplicationRecord
       event_expences_sum/events_count/100.to_d
     end
   end
-  
-  def full_name_with_code
-    full_name + " " + code.to_s
-  end
 end

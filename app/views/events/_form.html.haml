@@ -11,7 +11,7 @@
     - unless @client.present?
       = f.label :client
       = f.error :client, class: 'text-danger'
-      = f.select :client_id, @clients.map{|c| [c.full_name_with_code, c.id]}, {include_blank: true}, class: 'selectize'
+      = f.select :client_id, @clients.map{|c| [c.full_name, c.id]}, {include_blank: true}, class: 'selectize'
     - else
       = f.input :client_id, input_html: {value: @client.id}, as: :hidden
 

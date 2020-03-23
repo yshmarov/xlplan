@@ -25,10 +25,7 @@ class Location < ApplicationRecord
   #, :reject_if => proc { |attributes| attributes['events_count'].zero? }
   #-----------------------validation-------------------#
   validates_uniqueness_of :name, scope: :tenant_id
-  validates :name, presence: true
-  validates :name, length: { maximum: 50 }
-  validates :phone_number, length: { maximum: 144 }
-  validates :email, length: { maximum: 144 }
+  validates :name, presence: true, length: { maximum: 50 }
   validates :address, length: { maximum: 255 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
