@@ -11,11 +11,12 @@ amazon_production:
   #access_key_id: "AKIAIUGSINPRMF5Y7Y7A"
   #secret_access_key: "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"
   #bucket: "xlplan-active-storage2"
-  access_key_id: "AKIAT7WZE2FUUHDGR265"
-  secret_access_key: "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"
+  #access_key_id: "AKIAT7WZE2FUUHDGR265"
+  #secret_access_key: "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"
+  access_key_id: "AKIA5RINJLYGFFYTDUEH"
+  secret_access_key: "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"
   bucket: "xlplan-activestorage-zahoruiko"
   region: "eu-central-1"
-
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 

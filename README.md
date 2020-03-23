@@ -5,7 +5,7 @@ rvm install ruby-2.6.5
 rvm --default use 2.6.5
 rvm uninstall 2.6.3
 gem install rails -v 5.2.4.1
-# postgresql setup
+# postgresql setup aws c9
 sudo apt install postgresql libpq-dev
 sudo su postgres
 createuser --interactive
@@ -18,6 +18,11 @@ bundle update
 rake db:create
 rake db:migrate
 rails s
+# heroku aws c9
+npm uninstall -g heroku-cli
+sudo snap install heroku --classic
+npm install -g heroku
+heroku git:remote -a xlplan
 
 
 
