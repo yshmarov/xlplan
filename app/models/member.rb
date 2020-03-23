@@ -124,8 +124,18 @@ class Member < ApplicationRecord
     end
   end
   ################MILIA ORG ADMIN MEMBER#################
+  DEFAULT_ADMIN = {
+    last_name:  "Admin",
+    first_name: "Admin"
+  }
+
+  def self.create_new_member(user, params)
+    # add any other initialization for a new member
+    return user.create_member( params )
+  end
+
   def self.create_org_admin(user)
-    new_member = create_new_member(user, last_name: "Admin", first_name: "Admin")
+    new_member = create_new_member(user, DEFAULT_ADMIN)
     unless new_member.errors.empty?
       raise ArgumentError, new_member.errors.full_messages.uniq.join(", ")
     end

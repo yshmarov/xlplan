@@ -24,7 +24,7 @@ sudo snap install heroku --classic
 npm install -g heroku
 heroku git:remote -a xlplan
 
-
+################################
 
 PublicActivity::Activity.where(trackable_type: "InboundPayment").count
 PublicActivity::Activity.where(trackable_type: "InboundPayment").each do |x|
