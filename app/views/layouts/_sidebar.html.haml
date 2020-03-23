@@ -19,7 +19,7 @@
     %ul.navbar-nav.ml-md-auto.d-md-flex
       = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
         .input-group
-          = f.search_field :first_name_or_last_name_or_phone_number_or_email_or_code_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
+          = f.search_field :first_name_or_last_name_or_phone_number_or_email_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
           %span.input-group-append
             %button.btn.btn-primary.btn-sm{:type => "submit"}
               %span.fa.fa-search{"aria-hidden" => "true"}

@@ -67,9 +67,7 @@ class LocationsController < ApplicationController
     end
 
     def location_params
-      params.require(:location).permit(:name, :phone_number, :email, :active, :online_booking,
-          :viber, :whatsapp, :telegram,
-          :country, :city, :zip, :address,
+      params.require(:location).permit(:name, :active, :online_booking, :country, :city, :zip, :address,
           workplaces_attributes: [:id, :name, :_destroy])
     end
 end

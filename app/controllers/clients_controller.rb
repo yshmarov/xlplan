@@ -146,7 +146,7 @@ class ClientsController < ApplicationController
     end
 
     def client_params
-      params.require(:client).permit(:first_name, :last_name, :date_of_birth, :gender, :email, :code,
+      params.require(:client).permit(:first_name, :last_name, :date_of_birth, :gender, :email,
                                      :phone_number, :lead_source,
                                      :personal_data_consent, :event_created_notifications, :marketing_notifications,
                                      :country, :city, :zip, :address,

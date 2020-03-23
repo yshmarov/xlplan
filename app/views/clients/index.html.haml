@@ -16,7 +16,7 @@
         .col-lg-4
           .input-group
             .mr-md-2
-            = f.search_field :first_name_or_last_name_or_phone_number_or_email_or_code_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
+            = f.search_field :first_name_or_last_name_or_phone_number_or_email_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
             %span.input-group-append
               %button.btn.btn-primary.btn-sm{:type => "submit"}
                 %span.fa.fa-search{"aria-hidden" => "true"}
@@ -50,7 +50,6 @@
         %th
         %th= sort_link @ransack_clients, :last_name
         %th= model_class.human_attribute_name(:contacts)
-        /%th= sort_link @ransack_clients, :code
         %th= sort_link @ransack_clients, :date_of_birth
         %th= sort_link @ransack_clients, :gender
         %th= sort_link @ransack_clients, :address
@@ -93,7 +92,6 @@
                 .fab.fa-viber
             .row
             = mail_to client.email
-          /%td= client.code
           %td= client.date_of_birth
           %td= gender_label(client.gender)
           %td= client.address_line

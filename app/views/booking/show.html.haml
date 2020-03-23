@@ -36,8 +36,8 @@
         = link_to "http://#{@tenant.website}", target: :_blank do
           .fa.fa-globe-africa
           = @tenant.website
-      %hr
       - if @tenant.description.present?
+        %hr
         %small= simple_format(@tenant.description)
       %p
       = link_to t('sidebar.online_booking'), new_booking_path(@tenant), class: 'btn btn btn-success'
@@ -51,35 +51,8 @@
             .card-header.bg-light
               .text-center
                 %b= location.name
-              .row
-              .btn-group-vertical
-                - if location.city.present?
-                  .btn.btn-dark.btn-sm
-                    .fa.fa-map-marker-alt.mr.mr-2
-                    = location.country
-                    = location.city
-                    = location.zip
-                    = location.address
-                - if location.phone_number.present?
-                  = link_to "tel:#{location.phone_number}", class: "btn btn-primary btn-sm" do
-                    .fa.fa-phone
-                    = location.phone_number
-                - if location.whatsapp.present?
-                  = link_to "https://wa.me/#{location.whatsapp}", class: "btn btn-success btn-sm", :target => "_blank" do
-                    .fab.fa-whatsapp
-                    = location.whatsapp
-                - if location.viber.present?
-                  = link_to "viber://chat?number=#{location.viber}", class: "btn btn-purple btn-sm" do
-                    .fab.fa-viber
-                    = location.viber
-                - if location.telegram.present?
-                  = link_to "tg://resolve?domain=#{location.telegram}", class: "btn btn-info btn-sm" do
-                    .fab.fa-telegram-plane
-                    = location.telegram
-                - if location.email.present?
-                  = link_to "mailto:#{location.email}", class: "btn btn-secondary btn-sm" do
-                    .fa.fa-envelope
-                    = location.email
+                .row
+                = location.address_line
           %p
       - if @members.any?
         .text-center
@@ -125,11 +98,4 @@
                       = t('sidebar.online_booking')
                 %small= service.description
           %p
-    /.col-lg-5
-    /- set_var 'locale', @tenant.locale
-    /- set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s}}
-    // - set_var 'events', @jobs.map{|e| {id: e.id, title: "XXX", resourceId: e.member_id.to_s, start: e.event.starts_at, end: e.event.ends_at, url: event_path(e.event), color: "grey"}}
-    /- set_var 'events', @events.map{|e| {resourceIds: e.jobs.collect{|r| r.member_id}, title: "BUSY", start: e.starts_at, end: e.ends_at, color: "grey"}}
-    /  #event_calendar
-    /  %p
-  /%br
+%br

@@ -5,17 +5,10 @@
 
   .form-inputs
     = f.input :name, input_html: { autocomplete: 'off' }
-    /= f.input :phone_number, hint: 'Country code & phone number: +XXXXXXXXXXXX'
-    /= f.input :viber, hint: 'Country code & phone: +XXXXXXXXXXXX'
-    /= f.input :whatsapp, hint: 'Country code & phone: XXXXXXXXXXXX'
-    /= f.input :telegram, hint: 'Nickname: georgewashington'
-    /= f.input :email
-    / #### ADDRESS FIELD STARTS HERE ####
     = f.input :country, as: :string
     = f.input :city
     = f.input :zip
     = f.input :address
-    / #### ADDRESS FIELD ENDS HERE ####
     = f.input :active
     = f.input :online_booking
 

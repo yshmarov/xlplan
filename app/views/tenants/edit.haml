@@ -28,6 +28,12 @@
           = f.input :instagram
           = f.input :description, :input_html => {:rows => 5}
 
+          /= f.input :phone_number, hint: 'Country code & phone number: +XXXXXXXXXXXX'
+          /= f.input :viber, hint: 'Country code & phone: +XXXXXXXXXXXX'
+          /= f.input :whatsapp, hint: 'Country code & phone: XXXXXXXXXXXX'
+          /= f.input :telegram, hint: 'Nickname: georgewashington'
+          /= f.input :email
+
           ///ACTIVE_STORAGE LOGO
           .text-center
             - if @tenant.logo.attached?

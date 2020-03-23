@@ -40,26 +40,7 @@
                 - if workplace.events_count.zero?
                   = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
           %td
-            - if location.city.present?
-              .row
-              .fa.fa-map-marker-alt
-              = location.address_line
-            - if location.phone_number.present?
-              .row
-              = tel_to location.phone_number
-            - if location.whatsapp.present?
-              /= link_to "https://api.whatsapp.com/send?phone=380505532698&text=&source=&data=", class: "button", :target => "_blank" do
-              = link_to "https://wa.me/#{location.whatsapp}", :target => "_blank" do
-                .fab.fa-whatsapp
-            - if location.viber.present?
-              = link_to "viber://chat?number=#{location.viber}" do
-                .fab.fa-viber
-            - if location.telegram.present?
-              = link_to "tg://resolve?domain=#{location.telegram}" do
-                .fab.fa-telegram-plane
-            - if location.email.present?
-              .row
-              = mail_to location.email
+            = location.address_line
           - unless location.address_line.blank?
             /%td 
             /.row
