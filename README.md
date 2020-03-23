@@ -1,3 +1,26 @@
+
+# RoR version
+rvm list
+rvm install ruby-2.6.5
+rvm --default use 2.6.5
+rvm uninstall 2.6.3
+gem install rails -v 5.2.4.1
+# postgresql setup
+sudo apt install postgresql libpq-dev
+sudo su postgres
+createuser --interactive
+ubuntu
+y 
+exit
+pg_config --version
+# run app
+bundle update
+rake db:create
+rake db:migrate
+rails s
+
+
+
 PublicActivity::Activity.where(trackable_type: "InboundPayment").count
 PublicActivity::Activity.where(trackable_type: "InboundPayment").each do |x|
   x.update_attributes!(trackable_type: "Transaction")

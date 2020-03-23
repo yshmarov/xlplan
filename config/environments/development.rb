@@ -1,7 +1,7 @@
 Rails.application.configure do
   #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   #config.action_mailer.default_url_options = { :host => 'd4db634c21ab4b44baaef6d890ed8d63.vfs.cloud9.us-east-1.amazonaws.com', :protocol => 'https' }
-  config.action_mailer.default_url_options = { :host => 'https://fdf6745ffcec48eba753d9e797638e24.vfs.cloud9.us-east-1.amazonaws.com'}
+  config.action_mailer.default_url_options = { :host => 'https://640dca0e85b348c6b157be353f912575.vfs.cloud9.us-east-1.amazonaws.com'}
 
   #config.action_mailer.delivery_method = :smtp
   config.action_mailer.delivery_method = :test
