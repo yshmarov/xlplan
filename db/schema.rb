@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_150413) do
+ActiveRecord::Schema.define(version: 2020_03_23_225422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,11 +165,11 @@ ActiveRecord::Schema.define(version: 2020_02_28_150413) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.bigint "workplaces_id"
+    t.bigint "workplace_id"
     t.index ["client_id"], name: "index_events_on_client_id"
     t.index ["slug"], name: "index_events_on_slug", unique: true
     t.index ["tenant_id"], name: "index_events_on_tenant_id"
-    t.index ["workplaces_id"], name: "index_events_on_workplaces_id"
+    t.index ["workplace_id"], name: "index_events_on_workplace_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -417,8 +417,8 @@ ActiveRecord::Schema.define(version: 2020_02_28_150413) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "cash_accounts_id"
-    t.index ["cash_accounts_id"], name: "index_transactions_on_cash_accounts_id"
+    t.bigint "cash_account_id"
+    t.index ["cash_account_id"], name: "index_transactions_on_cash_account_id"
     t.index ["payable_id"], name: "index_transactions_on_payable_id"
     t.index ["payable_type"], name: "index_transactions_on_payable_type"
     t.index ["slug"], name: "index_transactions_on_slug", unique: true
