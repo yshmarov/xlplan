@@ -71,6 +71,7 @@
               = f.select :jobs_service_name_cont, Service.all.map{|c| [c.name, c.name]}, {include_blank: Service.all.length > 1}, class: 'selectize'
               .row
               = f.submit
+%p
 = render 'events/index'
 %p
 .container.table-responsive

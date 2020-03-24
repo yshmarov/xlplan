@@ -14,9 +14,9 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.string :address
       t.string :lead_source, default: "direct"
 
-      t.string :personal_data_consent, :boolean, default: true
-      t.string :event_created_notifications, :boolean, default: true
-      t.string :marketing_notifications, :boolean, default: true
+      t.boolean :personal_data_consent, default: true
+      t.boolean :event_created_notifications, default: true
+      t.boolean :marketing_notifications, default: true
 
       t.integer :transactions_sum, default: 0, null: false
       t.integer :event_expences_sum, default: 0, null: false

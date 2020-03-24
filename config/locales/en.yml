@@ -1050,7 +1050,7 @@ en:
         balance: "balance"
       transaction:
         id: "Transaction #"
-        payable_type: "Destination"
+        payable_type: "Source"
         payable_id: "Account"
         member: "Employee"
         client: "Client"

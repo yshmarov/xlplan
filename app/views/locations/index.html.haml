@@ -12,47 +12,76 @@
           = link_to t('.new', :default => t("helpers.links.new")), new_location_path, class: 'btn btn-sm btn-primary'
         - else
           = link_to "<i class='fa-fw fa fa-lock'></i> #{t("helpers.links.new")}".html_safe, edit_plan_path, class: "btn btn-sm btn-danger"
-.table-responsive
-  %table#table1
-    %thead
-      %tr
-        %th
-        %th= model_class.human_attribute_name(:name)
-        %th= model_class.human_attribute_name(:workplaces)
-        %th= model_class.human_attribute_name(:address)
-        %th= model_class.human_attribute_name(:active)
-        %th= model_class.human_attribute_name(:online_booking)
-    %tbody
-      - @locations.each do |location|
-        %tr
-          %td
-            .btn-group
-              = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
-              = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
-          %td= location.name
-          %td
-            - location.workplaces.each do |workplace|
-              .row
-              = workplace.name
-              .float-right
-                .far.fa-calendar-alt
-                = workplace.events_count
-                - if workplace.events_count.zero?
-                  = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
-          %td
-            = location.address_line
-          - unless location.address_line.blank?
-            /%td 
-            /.row
-            /= location.address_line
-            /.row
-            /Coordinates: #{location.latitude} #{location.longitude}
-            /.row
-            /= image_tag "https://geocoder.ls.hereapi.com/6.2/geocode.json?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE&searchtext=425+W+Randolph+Chicago"
-            /= image_tag "https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE"
-            /works
-            /%img.location-map{"ng-show" => "location.show_map", "ng-src" => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :src => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :style => "", :width => "166"}/
-            /= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=#{location.latitude},#{location.longitude}&zoom=15&size=640x400&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY", class: 'img-fluid img-rounded', alt: "#{location.name} on the map"
-          %td= active_label(location.active)
-          %td= active_label(location.online_booking)
+%p
+.card-columns
+  - @locations.each do |location|
+    .card
+      .card-header
+        .fa.fa-map-marker-alt
+        = link_to location.name, location_path(location)
+      .card-body
+        %b= model_class.human_attribute_name(:active) + ':'
+        = active_label(location.active)
+        .row
+        %b= model_class.human_attribute_name(:online_booking) + ':'
+        = active_label(location.online_booking)
+      .card-footer
+        %b= model_class.human_attribute_name(:address) + ':'
+        = location.address_line
+        - unless location.address_line.blank?
+          /= location.address_line
+          /.row
+          /Coordinates: #{location.latitude} #{location.longitude}
+          /.row
+          /= image_tag "https://geocoder.ls.hereapi.com/6.2/geocode.json?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE&searchtext=425+W+Randolph+Chicago"
+          /= image_tag "https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE"
+          /works
+          /%img.location-map{"ng-show" => "location.show_map", "ng-src" => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :src => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :style => "", :width => "166"}/
+          /= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=#{location.latitude},#{location.longitude}&zoom=15&size=640x400&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY", class: 'img-fluid img-rounded', alt: "#{location.name} on the map"
+      .card-footer
+        %b= model_class.human_attribute_name(:workplaces) + ':'
+        - location.workplaces.each do |workplace|
+          .row
+          = workplace.name
+          .float-right
+            .far.fa-calendar-alt
+            = workplace.events_count
+            - if workplace.events_count.zero?
+              = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
+      .card-footer
+        .text-right
+          .btn-group
+            = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
+            = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
+
+/.table-responsive
+/  %table#table1
+/    %thead
+/      %tr
+/        %th
+/        %th= model_class.human_attribute_name(:name)
+/        %th= model_class.human_attribute_name(:workplaces)
+/        %th= model_class.human_attribute_name(:address)
+/        %th= model_class.human_attribute_name(:active)
+/        %th= model_class.human_attribute_name(:online_booking)
+/    %tbody
+/      - @locations.each do |location|
+/        %tr
+/          %td
+/            .btn-group
+/              = link_to '', edit_location_path(location), class: "btn btn-warning fa fa-edit btn-sm" if policy(location).update?
+/              = link_to '', location, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(location).destroy?
+/          %td= location.name
+/          %td
+/            - location.workplaces.each do |workplace|
+/              .row
+/              = workplace.name
+/              .float-right
+/                .far.fa-calendar-alt
+/                = workplace.events_count
+/                - if workplace.events_count.zero?
+/                  = link_to '', workplace, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"
+/          %td= location.address_line
+/          %td= active_label(location.active)
+/          %td= active_label(location.online_booking)
 %br
