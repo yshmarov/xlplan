@@ -31,9 +31,6 @@
         %th
         %th= sort_link @ransack_members, :last_name
         %th= model_class.human_attribute_name(:contacts)
-        %th= sort_link @ransack_members, :date_of_birth
-        %th= sort_link @ransack_members, :gender
-        %th= sort_link @ransack_members, :address
         %th= sort_link @ransack_members, :location_id
         %th= sort_link @ransack_members, :active
         %th= sort_link @ransack_members, :online_booking
@@ -53,16 +50,12 @@
               = link_to '', member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(member).destroy?
           %td= link_to member.full_name, member_path(member)
           %td
-            = link_to "tel:#{member.phone_number}", class: "button" do
-              = number_to_phone(member.phone_number)
+            = tel_to member.phone_number
             - if member.phone_number.present?
-              = link_to "viber://chat?number=#{member.phone_number}", class: "button" do
+              = link_to "viber://chat?number=#{member.phone_number}" do
                 .fab.fa-viber
             .row
             = mail_to member.email
-          %td= member.date_of_birth
-          %td= gender_label(member.gender)
-          %td= member.address_line
           %td
             = link_to member.location, location_path(member.location) if member.location.present?
           %td= active_label(member.active)

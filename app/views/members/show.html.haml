@@ -6,8 +6,9 @@
         .fa.fa-user-tie
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
-          = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm" if policy(@member).edit?
-          = link_to '', @member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@member).destroy?
+          .btn-group
+            = link_to '', edit_member_path(@member), class: "btn btn-warning fa fa-edit btn-sm" if policy(@member).edit?
+            = link_to '', @member, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@member).destroy?
       .card-body
         - if @member.avatar.attached?
           .text-center
@@ -19,29 +20,14 @@
         = @member.full_name
         .row
         %b= model_class.human_attribute_name(:phone_number).capitalize + ':'
-        = link_to "tel:#{@member.phone_number}", class: "button" do
-          #{number_to_phone(@member.phone_number)}
+        = tel_to @member.phone_number
         - if @member.phone_number.present?
-          = link_to "viber://chat?number=#{@member.phone_number}", class: "button" do
+          = link_to "viber://chat?number=#{@member.phone_number}" do
             .fab.fa-viber
         .row
         %b= model_class.human_attribute_name(:email).capitalize + ':'
         = mail_to @member.email
         .row
-        %b= model_class.human_attribute_name(:date_of_birth).capitalize + ':'
-        - if @member.date_of_birth.present?
-          = @member.date_of_birth.strftime('%d/%b/%Y') 
-          (#{@member.age})
-        .row
-        %b= model_class.human_attribute_name(:gender).capitalize + ':'
-        = gender_label(@member.gender)
-        .row
-        %b= model_class.human_attribute_name(:address).capitalize + ':'
-        = @member.address_line
-        .row
-        %b= model_class.human_attribute_name(:active).capitalize + ':'
-        = active_label(@member.active)
-        %hr
         %b
           .fa.fa-hand-paper
           = model_class.human_attribute_name(:skills).capitalize + ':'
@@ -54,6 +40,9 @@
         .fa.fa-map-marker-alt
         = model_class.human_attribute_name(:location_id).capitalize + ':'
         = link_to @member.location, location_path(@member.location) if @member.location.present?
+        .row
+        %b= model_class.human_attribute_name(:active).capitalize + ':'
+        = active_label(@member.active)
         .row
         %b= model_class.human_attribute_name(:online_booking).capitalize + ':'
         = active_label(@member.online_booking)

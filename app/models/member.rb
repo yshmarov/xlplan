@@ -14,7 +14,6 @@ class Member < ApplicationRecord
   validates :first_name, :last_name, length: { maximum: 144 }
   validates :slug, uniqueness: true
   validates :slug, uniqueness: { case_sensitive: false }
-  validates :gender, inclusion: %w(male female undisclosed)
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :email, :phone_number, length: { maximum: 255 }
   #validates :user_id, uniqueness: true, allow_blank: true #presence: true

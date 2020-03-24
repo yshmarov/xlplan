@@ -90,9 +90,8 @@ class MembersController < ApplicationController
     end
   
     def member_params
-      params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :date_of_birth, :gender, :time_zone,
+      params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :time_zone,
       :active, :location_id, :avatar, :online_booking,
-      :country, :city, :zip, :address,
       service_category_ids: [],
       operating_hours_attributes: [:id, :day_of_week, :closes, :opens, :valid_from, :valid_through, :_destroy])
     end
