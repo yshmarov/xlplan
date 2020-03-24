@@ -12,7 +12,7 @@
       /= f.label :member
       /= f.label :client
       = f.label :payable_type
-      = f.select :payable_id, @clients.map{|c| [c.full_name_with_code, c.id]}, {include_blank: true}, class: 'selectize'
+      = f.select :payable_id, @clients.map{|c| [c.full_name, c.id]}, {include_blank: true}, class: 'selectize'
       = f.error :payable_id, class: 'text-danger'
       /= f.input :payable_id, collection: @clients, class: 'selectize'
       /= f.input :payable_id, collection: @clients, input_html: { class: 'selectize' }

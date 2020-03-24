@@ -34,7 +34,7 @@
   .card-footer
     .far.fa-address-book
     %b= model_class.human_attribute_name(:client_id) + ':'
-    = link_to @event.client.full_name_with_code, client_path(@event.client)
+    = link_to @event.client.full_name, client_path(@event.client)
     .btn-group
       - if @event.client.phone_number.present? && policy(Client).show_phone?
         = link_to "tel:#{@event.client.phone_number}", class: "btn btn-sm btn-outline-secondary" do
