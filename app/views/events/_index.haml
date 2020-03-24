@@ -1,21 +1,38 @@
 - @events.each do |event|
+  /.card
+  /  .card-header
+  /    - if policy(event).edit?
+  /      .dropdown
+  /        %button#dropdownMenuButton.btn.btn-sm.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+  /          = status_label(event.status)
+  /        .dropdown-menu{"aria-labelledby" => "dropdownMenuButton"}
+  /          .btn-group-vertical
+  /            = link_to t('events.show.planned'), mark_planned_event_path(event), method: :patch, class: 'btn btn-sm btn-primary' unless event.planned?
+  /            = link_to t('events.show.confirmed'), mark_confirmed_event_path(event), method: :patch, class: 'btn btn-sm btn-success' unless event.confirmed?
+  /            = link_to t('events.show.no_show'), mark_no_show_event_path(event), method: :patch, class: 'btn btn-sm btn-danger' unless event.no_show?
+  /            = link_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger' unless event.member_cancelled?
+  /            = link_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger' unless event.client_cancelled?
+  /            = link_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(event), method: :patch, class: 'btn btn-sm btn-success' unless event.no_show_refunded?
+  /          %a.dropdown-item{:href => "#"} Action
+  /          %a.dropdown-item{:href => "#"} Another action
+  /          %a.dropdown-item{:href => "#"} Something else here
   .card
     .card-header
       .row
         .col-md-2
           .text-center
             - if policy(event).edit?
-              .dropdown.show
+              .dropdown
                 %a#dropdownMenuLink.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                   = status_label(event.status)
                 .dropdown-menu{"aria-labelledby" => "dropdownMenuLink"}
                   .btn-group-vertical
                     = link_to t('events.show.planned'), mark_planned_event_path(event), method: :patch, class: 'btn btn-sm btn-primary' unless event.planned?
                     = link_to t('events.show.confirmed'), mark_confirmed_event_path(event), method: :patch, class: 'btn btn-sm btn-success' unless event.confirmed?
-                    = link_to t('events.show.no_show'), mark_no_show_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless event.no_show?
-                    = link_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless event.member_cancelled?
-                    = link_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger mr-sm-2' unless event.client_cancelled?
-                    = link_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(event), method: :patch, class: 'btn btn-sm btn-success mr-sm-2' unless event.no_show_refunded?
+                    = link_to t('events.show.no_show'), mark_no_show_event_path(event), method: :patch, class: 'btn btn-sm btn-danger' unless event.no_show?
+                    = link_to t('events.show.member_cancelled'), mark_member_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger' unless event.member_cancelled?
+                    = link_to t('events.show.client_cancelled'), mark_client_cancelled_event_path(event), method: :patch, class: 'btn btn-sm btn-danger' unless event.client_cancelled?
+                    = link_to t('events.show.no_show_refunded'), mark_no_show_refunded_event_path(event), method: :patch, class: 'btn btn-sm btn-success' unless event.no_show_refunded?
             - else
               = status_label(event.status)
             .row
@@ -32,7 +49,7 @@
           .far.fa-address-book
           = link_to event.client.full_name, client_path(event.client)
           .row
-          - if event.client.phone_number.present? && policy(Client).show_phone?
+          - if event.client.phone_number.present?
             .row
             .fa.fa-phone
             = tel_to event.client.phone_number

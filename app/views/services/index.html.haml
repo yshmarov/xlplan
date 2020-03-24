@@ -69,7 +69,10 @@
           %td= active_label(service.online_booking)
           %td= l(service.updated_at, format: "%a %d/%b/%Y %H:%M")
           %td= l(service.created_at, format: "%a %d/%b/%Y %H:%M")
-          %td= service.members.pluck(:first_name, :last_name).compact.join(' ')
+          %td
+            - service.members.each do |member|
+              = link_to member.full_name, member_path(member)
+          /%td= service.members.pluck(:first_name, :last_name).compact.join(' ')
 .container.table-responsive
   = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

@@ -15,6 +15,10 @@
       .card-header
         .far.fa-hand-paper
         = service_category.name
+        .float-right
+          .btn-group
+            = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
+            = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?
       .card-body
         .fa.fa-hand-paper
         = model_class.human_attribute_name(:services_count) + ':'
@@ -23,11 +27,6 @@
         .fa.fa-user-tie
         = model_class.human_attribute_name(:members_count) + ':'
         = service_category.skills.count
-      .card-footer
-        .text-right
-          .btn-group
-            = link_to '', edit_service_category_path(service_category), class: "btn btn-warning fa fa-edit btn-sm" if policy(service_category).edit?
-            = link_to '', service_category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(service_category).destroy?
 /.table-responsive-xl
 /  %table#table1
 /    %thead
