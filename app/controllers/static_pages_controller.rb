@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :authenticate_tenant!, :only => [:landing_page, :features, :pricing, :privacy_policy, :terms_of_service, :stats]
+  skip_before_action :authenticate_tenant!, :only => [:landing_page, :stats]
 
   def landing_page
     if current_user
