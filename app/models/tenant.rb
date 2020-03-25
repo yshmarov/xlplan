@@ -44,7 +44,7 @@ class Tenant < ApplicationRecord
 
   validates :name, uniqueness: true, length: { maximum: 40 } #in schema it is 40, but 20 is better
   validates :description, length: { maximum: 500 }
-  validates :plan, length: { maximum: 10 }, inclusion: %w(demo bronze silver gold blocked solo mini max) #in schema it is 40, but 10 is better
+  validates :plan, length: { maximum: 10 }, inclusion: %w(demo blocked solo mini max) #in schema it is 40, but 10 is better
   validates :industry, length: { maximum: 144 }
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }

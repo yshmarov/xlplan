@@ -21,14 +21,14 @@
     - if user_signed_in? && current_user.member.present?
       - if Tenant.current_tenant.plan == "blocked"
         = render 'layouts/paywall'
-      - unless current_user.confirmed_at
-        = render 'layouts/not_confirmed'
       /- if Tenant.current_tenant.plan = "demo" && (Tenant.current_tenant.created_at+7.days) < Time.now
       /X demo days left. Order system 
 
       #wrapper
         = render 'layouts/sidebar'
         = render 'layouts/messages'
+        - unless current_user.confirmed_at
+          = render 'layouts/not_confirmed'
         = yield
         = rjv_tags
 
