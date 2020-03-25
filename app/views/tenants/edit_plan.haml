@@ -23,19 +23,19 @@
                   = f.label :plan_demo, "Demo", class: 'badge badge-info'
               %th
                 %h3
-                  = f.radio_button :plan, :bronze
+                  = f.radio_button :plan, :solo
                   .row
-                  = f.label :plan_bronze, "Bronze", class: 'badge badge-danger'
+                  = f.label :plan_solo, "Solo", class: 'badge badge-danger'
               %th
                 %h3
-                  = f.radio_button :plan, :silver
+                  = f.radio_button :plan, :mini
                   .row
-                  = f.label :plan_silver, "Silver", class: 'badge badge-secondary'
+                  = f.label :plan_mini, "Mini", class: 'badge badge-secondary'
               %th
                 %h3
-                  = f.radio_button :plan, :gold
+                  = f.radio_button :plan, :max
                   .row
-                  = f.label :plan_gold, "Gold", class: 'badge badge-warning'
+                  = f.label :plan_max, "Max", class: 'badge badge-warning'
           %tbody.text-center
             %tr
               %td= t('static_pages.pricing.price')

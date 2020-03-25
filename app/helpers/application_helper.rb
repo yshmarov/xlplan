@@ -68,11 +68,11 @@ module ApplicationHelper
 				#Other models
 				when 'demo'
 					content_tag(:span, plan.titleize, class: 'badge badge-info')
-				when 'bronze'
+				when 'solo'
 					content_tag(:span, plan.titleize, class: 'badge badge-danger')
-				when 'silver'
+				when 'mini'
 					content_tag(:span, plan.titleize, class: 'badge badge-secondary')
-				when 'gold'
+				when 'max'
 					content_tag(:span, plan.titleize, class: 'badge badge-warning')
 				when 'blocked'
 					content_tag(:span, plan.titleize, class: 'badge badge-primary')

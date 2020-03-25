@@ -44,7 +44,7 @@ class Tenant < ApplicationRecord
 
   validates :name, uniqueness: true, length: { maximum: 40 } #in schema it is 40, but 20 is better
   validates :description, length: { maximum: 500 }
-  validates :plan, length: { maximum: 10 }, inclusion: %w(demo bronze silver gold blocked) #in schema it is 40, but 10 is better
+  validates :plan, length: { maximum: 10 }, inclusion: %w(demo bronze silver gold blocked solo mini max) #in schema it is 40, but 10 is better
   validates :industry, length: { maximum: 144 }
   validates :default_currency, length: { maximum: 3 }
   validates :locale, length: { maximum: 2 }
@@ -63,10 +63,10 @@ class Tenant < ApplicationRecord
 
   ###plan limits###
   def can_create_locations?
-    (plan == 'bronze' && locations.count < 1) || (plan == 'silver' && locations.count < 1) || (plan == 'gold') || (plan == 'demo')
+    (plan == 'solo' && locations.count < 1) || (plan == 'mini' && locations.count < 1) || (plan == 'max') || (plan == 'demo')
   end
   def can_create_members?
-    (plan == 'bronze' && members.count < 1) || (plan == 'silver' && members.count < 5) || (plan == 'gold') || (plan == 'demo')
+    (plan == 'solo' && members.count < 1) || (plan == 'mini' && members.count < 5) || (plan == 'max') || (plan == 'demo')
   end
 
   ###milia###

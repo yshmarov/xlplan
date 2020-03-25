@@ -8,7 +8,7 @@
     .badge.badge-default
       .far.fa-calendar-check
       %small XLPLAN
-  %p
+  %hr
   = link_to new_user_session_path, class: 'btn btn-outline-success' do
     = t("header.sign_in")
   %p
@@ -21,6 +21,8 @@
   %hr
   = link_to "https://www.xlplan.com", target: :_blank do
     Back to website
+  %p
+  = link_to t("footer.online_booking"), booking_path
   %p
   © #{Time.now.year}
   = link_to "https://www.xlplan.com", target: :_blank do
