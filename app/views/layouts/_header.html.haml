@@ -1,8 +1,8 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
   %a.text-dark.navbar-brand{:href => "/"}
     .text-white
-      %i.far.fa-calendar-check
-      .badge.badge-default.text-white XLPLAN
+      .far.fa-calendar-check
+      XLPLAN
     /.text-secondary
     /  .fa-color-indigo
     /    .far.fa-calendar-check
@@ -34,12 +34,6 @@
         /%li
         /  = link_to booking_path, class: "nav-link text-light" do 
         /    %b= t('header.online_booking')
-        %li
-          = link_to features_path, class: "nav-link text-light" do 
-            %b= t('header.features')
-        %li
-          = link_to pricing_path, class: "nav-link text-light" do 
-            %b= t('header.pricing')
       %ul.nav.navbar-nav.navbar-right
         = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-warning mr-sm-2'
         /.mr.mt-1

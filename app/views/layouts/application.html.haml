@@ -14,6 +14,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     - if Rails.env.production?
       = render 'layouts/google_analytics'
+      /= render 'layouts/hotjar'
     /needed on static_pages and on devise registration. does not work well with turbolinks
     /= render 'layouts/facebook_chat'
   %body#body-human
@@ -40,6 +41,7 @@
       /      = render 'layouts/messages'
       /      = yield
       /      = rjv_tags
+
     - else
       #padding-top
       = render 'layouts/header'
@@ -48,4 +50,3 @@
       = yield
       /rjv_tags for booking/ new_lead SELECTIZE
       = rjv_tags
-      = render 'layouts/footer'

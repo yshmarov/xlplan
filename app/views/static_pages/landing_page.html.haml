@@ -1,267 +1,46 @@
-- if Rails.env.production?
-  %head
-    = render 'layouts/hotjar'
 = provide(:description, 'XLPLAN is a cloud-based service business management software. Employee calendars, business processes automation, analytics and reporting. Save time while managing your salon easily. Free trial!')
 = provide(:keywords, 'xlplan, salon, management software, crm, erp, employee calendar, calendar')
 /%title UKR.NET: Всі новини України, останні новини дня в Україні та Світі
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
-.container-fluid
-  .row
-    .col-lg-5.order-1.order-lg-0
-      .p-3
-      %h1
-        %b XLPLAN
-        %small= t('.hero')
-      .row
-      %p
-      = link_to t("header.sign_in"), new_user_session_path, class: 'btn btn-lg btn-warning'
-      = link_to t("header.sign_up"), new_user_registration_path, class: 'btn btn-lg btn-success'
-      %p
-      %h5
-        .font-weight-light= t('.hero_description')
-      %p
-    .col-lg-7.order-0.order-lg-1
-      = image_tag "https://i.imgur.com/TWpk1pv.png", style: 'height:auto;width:100%;'
-
-%hr
-.container
-  .row
-    .col-lg-6
-      %h2
-        %b.bg-warning.rounded.text-center= t('.features')
-      %ol.list-unstyled.mt-4
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
-            = t('.online_booking_for_clients')
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
-            = t('.simple_and_intuitive_online_calendar')
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
-            = t('.automatic_event_reminders')
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
-            = t('.client_database_with_payments_and_visit_history')
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
-            = t('.automatic_employee_salary_calculation')
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
-            = t('.real_time_stats_and_reports')
-        %li.d-flex.mb-2.mt-2.aos-init{"data-aos" => "fade-up"}
-          %i.fas.fa-check-circle.fa-lg.text-primary.mr-1.mt-2.mb-2.ml-0{"aria-hidden" => "true"}
-          %span.pl-2.pt-1
-            = t('.solo_small_network')
-      = link_to t(".see_all_features"), features_path, class: 'btn btn-lg btn-warning text-dark'
-      %p
-    .col-lg-6
-      .embed-responsive.embed-responsive-16by9
-        %iframe{:allow => "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "315", :src => "https://www.youtube.com/embed/ojXjR33bPOY", :width => "560"}
-      %h6
-        %small
-          .text-center= t('.how_it_works')
-%hr
-.container.mt-4
-  %h2.text-center
-    %b.bg-warning.rounded.text-center= t('.designed_for')
+.container-fluid.text-center
+  %h2
+    .badge.badge-default
+      .far.fa-calendar-check
+      %small XLPLAN
   %p
-  .row
-    .col-md-4
-      .card.shadow-lg.p-3.mb-5.bg-white.rounded
-        .card-body
-          .text-center
-            %i.fa.fa-hand-holding-heart{:style => "font-size:40px"}
-            %p
-            %h5.card-title= t('.beauty_industry')
-          %hr
-          .fa.fa-syringe
-          = t('.cosmetology')
-          %p
-          .fa.fa-dragon
-          = t('.tattoo_studio')
-          %p
-          .fa.fa-cut
-          = t('.hair_beauty_barbershop')
-          %p
-          .fa.fa-sun
-          = t('.solarium')
-          %p
-          .fa.fa-spa
-          = t('.spa')
-          %p
-          .fa.fa-hot-tub
-          = t('.sauna')
-      %p
-    .col-md-4
-      .card.shadow-lg.p-3.mb-5.bg-white.rounded
-        .card-body
-          .text-center
-            %i.fa.fa-hospital{:style => "font-size:40px"}
-            %p
-            %h5.card-title= t('.private_medicine')
-          %hr
-          .fa.fa-user-md
-          = t('.private_clinic')
-          %p
-          .fa.fa-sign-language
-          = t('.massage')
-          %p
-          .fa.fa-eye
-          = t('.ophtalmologist')
-          %p
-          .fa.fa-notes-medical
-          = t('.psychologist')
-          %p
-          .fa.fa-tooth
-          = t('.stomatology')
-          %p
-          .fa.fa-dog
-          = t('.veterinary_clinic')
-      %p
-    .col-md-4
-      .card.shadow-lg.p-3.mb-5.bg-white.rounded
-        .card-body
-          .text-center
-            %i.fa.fa-user-tie{:style => "font-size:40px"}
-            %p
-            %h5.card-title= t('.professional_services')
-          %hr
-          .fa.fa-user-graduate
-          = t('.tutors')
-          %p
-          .fa.fa-user-tie
-          = t('.business_consulting')
-          %p
-          .fa.fa-wrench
-          .fa.fa-people-carry
-          = t('.field_services')
-          %p
-          .fa.fa-broom
-          = t('.cleaning_services')
-          %p
-          .fa.fa-balance-scale
-          = t('.legal_consulting')
-          %p
-          .fa.fa-car-side
-          = t('.car_services')
-  .text-center
-    = link_to t(".apply_for_a_demo"), new_booking_path(2), class: 'btn btn-lg btn-success'
+  = link_to new_user_session_path, class: 'btn btn-outline-success' do
+    = t("header.sign_in")
   %p
-
-%hr
-
-.container-fluid
-  %h2.text-center
-    %b.bg-warning.rounded.text-center= t('.why_do_you_need_it')
-  .row.text-center.mt-4
-    .col-lg-4
-      .card.shadow-lg.p-3.mb-5.bg-white.rounded
-        .card-body
-          .py-3.text-center
-            %h1
-              .badge.badge-warning 1
-          .card-body
-            %h4.card-title= t('.control_business')
-            %p.card-text
-              = t('.all_business_data_secure_in_one_place')
-              .row
-              = t('.online_calendar')
-              /.row
-              /= t('.more_professional')
-    .col-lg-4
-      .card.shadow-lg.p-3.mb-5.bg-white.rounded
-        .card-body
-          .py-3.text-center
-            %h1
-              .badge.badge-warning 2
-          .card-body
-            %h4.card-title= t('.save_time')
-            %p.card-text
-              = t('.quick_search')
-              .row
-              = t('.automation')
-    .col-lg-4
-      .card.shadow-lg.p-3.mb-5.bg-white.rounded
-        .card-body
-          .py-3.text-center
-            %h1
-              .badge.badge-warning 3
-          .card-body
-            %h4.card-title= t('.increase_revenue_and_grow')
-            %p.card-text
-              = t('.dont_lose_clients')
-              .row
-              = t('.make_data_drived_descisions')
-              /.row
-              /= t('.growth_of_your_business_is_easier_to_manage')
-%p
-:css
-  .parallax { 
-    /* The image used */
-    background-image: url("https://i.imgur.com/qk3jy13.jpg");
-    /* Set a specific height */
-    height: 300px; 
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-/ Container element
-.container-fluid
-  .jumbotron.parallax.text-center
-    %h2.text-center
-      %b.bg-warning.rounded.text-center= t('.small_investment')
-    %p
-    = link_to t(".pricing"), pricing_path, class: 'btn btn-lg btn-warning text-dark'
-
-.container.text-center
-  %h2.text-center
-    %b.bg-warning.rounded.text-center= t('.technology')
+  = link_to new_user_registration_path, class: 'btn btn-outline-success' do
+    = t("header.sign_up")
   %p
-  .card-group
-    .card
-      .card-body
-        %i.fa.fa-shield-alt.text-primary.fa-3x{:style => "font-size:50px;"}
-        %h5.card-title= t('.security')
-        %p.card-text
-          %small.text-muted= t('.security2')
-    .card
-      .card-body
-        %i.fa.fa-user-secret.text-primary.fa-3x{:style => "font-size:50px;"}
-        %h5.card-title= t('.anonimity')
-        %p.card-text
-          %small.text-muted= t('.anonimity2')
-    .card
-      .card-body
-        %i.fa.fa-lock.text-primary.fa-3x{:style => "font-size:50px;"}
-        %h5.card-title= t('.user_roles')
-        %p.card-text
-          %small.text-muted= t('.user_roles2')
-  .card-group
-    .card
-      .card-body
-        %i.fa.fa-cloud-upload-alt.text-primary.fa-3x{:style => "font-size:50px;"}
-        %h5.card-title= t('.in_the_cloud')
-        %p.card-text
-          %small.text-muted= t('.in_the_cloud2')
-    .card
-      .card-body
-        %i.fa.fa-mobile-alt.text-primary.fa-3x{:style => "font-size:50px;"}
-        %i.fa.fa-laptop.text-primary.fa-3x{:style => "font-size:50px;"}
-        %h5.card-title= t('.any_device')
-        %p.card-text
-          %small.text-muted= t('.any_device2')
-    .card
-      .card-body
-        %i.fa.fa-cloud-download-alt.text-primary.fa-3x{:style => "font-size:50px;"}
-        %h5.card-title= t('.export')
-        %p.card-text
-          %small.text-muted= t('.export2')
+  = link_to new_booking_path(2), class: 'btn btn-outline-success' do
+    .far.fa-calendar-check
+    = t(".apply_for_a_demo")
+  %hr
+  = link_to "https://www.xlplan.com", target: :_blank do
+    Back to website
+  %p
+  © #{Time.now.year}
+  = link_to "https://www.xlplan.com", target: :_blank do
+    XLPLAN.com
+  %p
+  .fa.fa-envelope
+  = mail_to 'support@xlplan.com'
+  %p
+  .fa.fa-phone
+  = link_to "tel:+48-537-628-023", class: "button" do
+    +48-537-628-023
+  /.fab.fa-viber
+  /.fab.fa-telegram
+  /.fab.fa-whatsapp
+  %hr
+  = link_to "https://www.instagram.com/xlplan_com/", target: :_blank do
+    %i.fab.fa-instagram{:style => "font-size:25px;color:blue"}
+  = link_to "https://www.youtube.com/channel/UCPc7-Qx0mowN8EI8Yg7Lycw", target: :_blank do
+    %i.fab.fa-youtube{:style => "font-size:25px;color:blue"}
+  = link_to "https://www.linkedin.com/company/18937424/", target: :_blank do
+    %i.fab.fa-linkedin{:style => "font-size:25px;color:blue"}
+  = link_to "https://www.facebook.com/xlplan/", target: :_blank do
+    %i.fab.fa-facebook{:style => "font-size:25px;color:blue"}

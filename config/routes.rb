@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get 'static_pages/landing_page'
   end
   #get 'static_pages/pricing', constraints: {subdomain: 'admin'}
-  get 'pricing', to: 'static_pages#pricing', constraints: {subdomain: 'admin'}
+  #get 'pricing', to: 'static_pages#pricing', constraints: {subdomain: 'admin'}
   constraints subdomain: "api" do
     scope module: "api" do
       get 'static_pages/features'
@@ -21,10 +21,6 @@ Rails.application.routes.draw do
 
   get 'static_pages/landing_page'
   root to: 'static_pages#landing_page'
-  get 'features', to: 'static_pages#features'
-  get 'pricing', to: 'static_pages#pricing'
-  get 'privacy_policy', to: 'static_pages#privacy_policy'
-  get 'terms_of_service', to: 'static_pages#terms_of_service'
   get 'stats', to: 'static_pages#stats' #total stats for the superadmin
 
   get 'booking', to: 'booking#index'

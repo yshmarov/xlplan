@@ -7,18 +7,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def features
-  end
-  
-  def pricing
-  end
-
-  def privacy_policy
-  end
-  
-  def terms_of_service
-  end
-  
   before_action :authenticate, only: :stats
   def stats
     @ransack_tenants = Tenant.all.search(params[:tenants_search], search_key: :tenants_search)
