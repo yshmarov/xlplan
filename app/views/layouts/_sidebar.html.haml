@@ -116,43 +116,42 @@
           = link_to after_signup_wizard_path(:tenant_settings), class: 'dropdown-item' do
             .fa.fa-rocket
             = t('sidebar.start')
-      - if current_user.has_role?(:admin)
-        %li.nav-item.dropdown
-          %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            .fa-fw.fa-color-special.fa.fa-chart-line
-            #{t('sidebar.stats')}
-            .badge.badge-dark admin
-          .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown2"}
-            /controller_name == 'dashboard'
-            /.dropdown-item{class: "#{'active font-weight-bold' if current_page?(dashboard_member_salary_path)}"}
-            /  = link_to dashboard_member_salary_path, class: "nav-link" do 
-            /    .fa.fa-dollar-sign
-            /    .fa.fa-users
-            /    = t('dashboard.member_salary.member_salary')
-            = link_to dashboard_member_salary_path, class: "dropdown-item" do 
-              .fa.fa-dollar-sign
-              .fa.fa-users
-              = t('dashboard.member_salary.member_salary')
-            = link_to dashboard_transaction_stats_path, class: "dropdown-item" do 
-              .fa.fa-chart-line
-              .fa.fa-exchange-alt
-              = t('sidebar.transactions')
-            = link_to dashboard_event_stats_path, class: "dropdown-item" do 
-              .fa.fa-chart-line
-              .far.fa-calendar-alt
-              = t('sidebar.events')
-            = link_to dashboard_client_stats_path, class: "dropdown-item" do 
-              .fa.fa-chart-line
-              .far.fa-address-book
-              = t('sidebar.clients')
-            = link_to dashboard_member_stats_path, class: "dropdown-item" do 
-              .fa.fa-chart-line
-              .fa.fa-users
-              = t('sidebar.members')
-            = link_to dashboard_lead_stats_path, class: "dropdown-item" do 
-              .fa.fa-chart-line
-              .fa.fa-globe-africa
-              = t('sidebar.online_booking')
+      %li.nav-item.dropdown
+        %a#navbarDropdown2.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+          .fa-fw.fa-color-special.fa.fa-chart-line
+          #{t('sidebar.stats')}
+          .badge.badge-dark admin
+        .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown2"}
+          /controller_name == 'dashboard'
+          /.dropdown-item{class: "#{'active font-weight-bold' if current_page?(dashboard_member_salary_path)}"}
+          /  = link_to dashboard_member_salary_path, class: "nav-link" do 
+          /    .fa.fa-dollar-sign
+          /    .fa.fa-users
+          /    = t('dashboard.member_salary.member_salary')
+          = link_to dashboard_member_salary_path, class: "dropdown-item" do 
+            .fa.fa-dollar-sign
+            .fa.fa-users
+            = t('dashboard.member_salary.member_salary')
+          = link_to dashboard_transaction_stats_path, class: "dropdown-item" do 
+            .fa.fa-chart-line
+            .fa.fa-exchange-alt
+            = t('sidebar.transactions')
+          = link_to dashboard_event_stats_path, class: "dropdown-item" do 
+            .fa.fa-chart-line
+            .far.fa-calendar-alt
+            = t('sidebar.events')
+          = link_to dashboard_client_stats_path, class: "dropdown-item" do 
+            .fa.fa-chart-line
+            .far.fa-address-book
+            = t('sidebar.clients')
+          = link_to dashboard_member_stats_path, class: "dropdown-item" do 
+            .fa.fa-chart-line
+            .fa.fa-users
+            = t('sidebar.members')
+          = link_to dashboard_lead_stats_path, class: "dropdown-item" do 
+            .fa.fa-chart-line
+            .fa.fa-globe-africa
+            = t('sidebar.online_booking')
         %li{class: "#{'active font-weight-bold' if current_page?(settings_show_path)}"}
           = link_to settings_show_path, class: "nav-link" do 
             .fa-fw.fa-color-special.fa.fa-cog
@@ -174,3 +173,7 @@
       /  #{t('sidebar.stats')}
       /%ul#stats.sub-menu.collapse
       /  .nav-item= link_to "<i class='fa-color-special fa-fw fa fa-hand-holding-usd'></i> #{t('sidebar.transactions')}".html_safe, dashboard_payments_path, class: "nav-link"
+      /%li.nav-item.dropdown
+      /  %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"} Dropdown
+      /  .dropdown-menu
+      /    %a.dropdown-item{:href => "#"} Link 1

@@ -22,3 +22,5 @@
           = mail_to "support@xlplan.com"
           .float-right
             = tel_to "+48-537-628-023"
+      .modal-footer
+        = link_to t('sidebar.logout'), destroy_user_session_path, :method => :delete

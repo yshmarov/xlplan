@@ -8,29 +8,36 @@
     %meta{:content => "XLPLAN.com", :name => "author"}/
     %title= content_for?(:title) ? yield(:title) : "XLPLAN | #{@org_name}"
     = favicon_link_tag 'logo.png'
-
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-
     - if Rails.env.production?
       = render 'layouts/google_analytics'
     /needed on static_pages and on devise registration. does not work well with turbolinks
     /= render 'layouts/facebook_chat'
   %body#body-human
     - if user_signed_in? && current_user.member.present?
+      - if Tenant.current_tenant.plan == "blocked"
+        = render 'layouts/paywall'
+      - unless current_user.confirmed_at
+        = render 'layouts/not_confirmed'
+      /- if Tenant.current_tenant.plan = "demo" && (Tenant.current_tenant.created_at+7.days) < Time.now
+      /X demo days left. Order system 
+
       #wrapper
-        - if Tenant.current_tenant.plan == "blocked"
-          = render 'layouts/paywall'
         = render 'layouts/sidebar'
-        = render 'layouts/messages'
-        - unless current_user.confirmed_at
-          = render 'layouts/not_confirmed'
-        /- if Tenant.current_tenant.plan = "demo" && (Tenant.current_tenant.created_at+7.days) < Time.now
-        /X demo days left. Order system 
         = yield
         = rjv_tags
+      /%p
+      /.container-fluid
+      /  .row
+      /    .col-lg-2
+      /      = render 'layouts/sidebar_pills'
+      /    .col-lg-10
+      /      = render 'layouts/messages'
+      /      = yield
+      /      = rjv_tags
     - else
       #padding-top
       = render 'layouts/header'
