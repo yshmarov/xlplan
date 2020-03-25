@@ -50,7 +50,7 @@ class Event < ApplicationRecord
     services = self.services.pluck(:name).join(', ')
     time = self.starts_at.strftime("%A %d/%b/%Y %H:%M").to_s
     location = self.workplace.location.to_s
-    phone = self.workplace.location.phone_number.to_s
+    phone = self.members.first.phone_number.to_s
     address = self.workplace.location.address_line.to_s
     services + " " + time + " " + location + " " + phone + " " + address 
     #services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 

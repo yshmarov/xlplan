@@ -130,7 +130,7 @@ class EventsController < ApplicationController
     authorize @event, :edit?
     if @event.client.email.present? && @event.client.event_created_notifications?
       Event.public_activity_off
-      EventMailer.client_event_created(@event).deliver_now
+      EventMailer.client_event_created(@event).deliver_later
       Event.public_activity_on
     end
 		redirect_to @event, notice: "Email invitation sent to #{@event.client.email}"
@@ -140,7 +140,7 @@ class EventsController < ApplicationController
     authorize @event, :edit?
     if @event.users.distinct.pluck(:email).present?
       Event.public_activity_off
-      EventMailer.member_event_created(@event).deliver_now
+      EventMailer.member_event_created(@event).deliver_later
       Event.public_activity_on
     end
 		redirect_to @event, notice: "Email invitation sent to #{@event.users.pluck(:email)}"
