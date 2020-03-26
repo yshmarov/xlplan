@@ -3,6 +3,13 @@
     = link_to calendar_member_path(current_user.member), class: "nav-link" do 
       .fa-fw.fa-color-special.far.fa-calendar-alt
       = t('sidebar.calendar')
+  /SEARCH CLIENT IN SIDEBAR
+  .nav-item.nav-link
+    = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
+      = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control-sm', style: 'float: left; width: 80%; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
+      %span.input-group-append
+        %button.btn.btn-primary.btn-sm{:type => "submit"}
+          %span.fa.fa-search{"aria-hidden" => "true"}
   /CREATE NEW
   %li.nav-item{class: "#{'active font-weight-bold' if current_page?(new_event_path)}"}
     = link_to new_event_path, class: "nav-link" do 
@@ -124,6 +131,7 @@
         .fa-fw.fa-color-special.fa.fa-cog
         = t('sidebar.settings')
         .badge.badge-dark admin
+  /USERDATA
   %li.nav-item.dropdown
     %a#userDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
       .fa-fw.fa-color-special.fa.fa-user
@@ -133,13 +141,6 @@
       = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item"
       = link_to t('sidebar.account_settings'), edit_user_registration_path, class: "dropdown-item"
       = link_to t('sidebar.logout'), destroy_user_session_path, :method => :delete, class: "dropdown-item"
-  /SEARCH CLIENT IN SIDEBAR
-  .nav-item.nav-link
-    = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
-      = f.search_field :first_name_or_last_name_or_phone_number_cont, class: 'form-control-sm', style: 'float: left; width: 80%; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
-      %span.input-group-append
-        %button.btn.btn-primary.btn-sm{:type => "submit"}
-          %span.fa.fa-search{"aria-hidden" => "true"}
   .nav-item.text-center
     %small powered by XLPLAN
     = plan_label(Tenant.current_tenant.plan)

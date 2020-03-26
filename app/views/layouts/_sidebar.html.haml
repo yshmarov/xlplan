@@ -68,13 +68,15 @@
         = link_to clients_path, class: "nav-link" do 
           .fa-fw.fa-color-special.far.fa-address-book
           = t('sidebar.clients')
-      %li{class: "#{'active font-weight-bold' if current_page?(members_path)}"}
+      /%li{class: "#{'active font-weight-bold' if current_page?(members_path)}"}
+      %li{class: "#{'active font-weight-bold' if controller_name == "members"}"}
         = link_to members_path, class: "nav-link" do 
           .fa-fw.fa-color-special.fa.fa-users
           = t('sidebar.members')
       /%li{:class => "#{current_page?(services_path) ? 'active' : ''}"}
       /rails 6 https://blog.bigbinary.com/2020/02/04/rails-6-1-introduces-class_names-helper.html
-      %li{class: "#{'active font-weight-bold' if current_page?(services_path)}"}
+      /%li{class: "#{'active font-weight-bold' if current_page?(services_path)}"}
+      %li{class: "#{'active font-weight-bold' if controller_name == "services"}"}
         = link_to services_path, class: "nav-link" do 
           .fa-fw.fa-color-special.far.fa-hand-paper
           = t('sidebar.services')

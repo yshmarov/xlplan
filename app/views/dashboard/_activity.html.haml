@@ -20,7 +20,8 @@
           - elsif a.trackable_type == 'Job'
             = link_to a.trackable.to_s, a.trackable.event
           - else
-            = link_to a.trackable, a.trackable
+            - if a.trackable.present?
+              = link_to a.trackable, a.trackable
           - if a.parameters.present?
             /= a.parameters.empty?
             - unless a.parameters == "{}"
