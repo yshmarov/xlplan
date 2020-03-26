@@ -141,7 +141,8 @@
       = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item"
       = link_to t('sidebar.account_settings'), edit_user_registration_path, class: "dropdown-item"
       = link_to t('sidebar.logout'), destroy_user_session_path, :method => :delete, class: "dropdown-item"
-  .nav-item.text-center
+  %hr
+  .nav-item.text-center.text-light
     %small powered by XLPLAN
     = plan_label(Tenant.current_tenant.plan)
     %p

@@ -35,9 +35,12 @@
       /%p
       /.container-fluid
       /  .row
-      /    .col-lg-2
-      /      = render 'layouts/sidebar_pills'
-      /    .col-lg-10
+      /    .col-xl-2
+      /      /nav-pills hover color & text color
+      /      /collapsed to navbar
+      /      #pills-background.rounded
+      /        = render 'layouts/sidebar_pills'
+      /    .col-xl-10
       /      = render 'layouts/messages'
       /      = yield
       /      = rjv_tags

@@ -1,7 +1,7 @@
 - model_class = Client
 /= render 'clients/form'
 = search_form_for @ransack_clients, as: :clients_search, url: @ransack_path do |f|
-  .card.bg-light
+  .card
     .card-header
       .row
         .col-lg-4
