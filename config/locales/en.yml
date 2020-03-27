@@ -839,6 +839,7 @@ en:
         id: "ID #"
         name: "Organisation Name"
         plan: "Plan"
+        theme: "Theme"
         language: "Language"
         locale: "Language"
         default_currency: "Currency"

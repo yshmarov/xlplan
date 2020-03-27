@@ -4,10 +4,7 @@ class DashboardController < ApplicationController
   end
 
   def calendar
-    @members = Member.active.order('created_at ASC')
-    @locations = Location.all.includes(:workplaces)
-    @jobs = Job.includes(:service, :member, :event => [:client, :workplace]).group_by { |job| [job.event, job.member] }
-    render 'dashboard/calendar'
+    redirect_to calendar_list_members_path
   end
 
   def client_stats

@@ -68,8 +68,8 @@
         = link_to clients_path, class: "nav-link" do 
           .fa-fw.fa-color-special.far.fa-address-book
           = t('sidebar.clients')
-      /%li{class: "#{'active font-weight-bold' if current_page?(members_path)}"}
-      %li{class: "#{'active font-weight-bold' if controller_name == "members"}"}
+      /%li{class: "#{'active font-weight-bold' if controller_name == "members"}"}
+      %li{class: "#{'active font-weight-bold' if current_page?(members_path)}"}
         = link_to members_path, class: "nav-link" do 
           .fa-fw.fa-color-special.fa.fa-users
           = t('sidebar.members')

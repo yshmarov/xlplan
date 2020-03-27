@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:destroy, :edit, :update]
   resources :members do
+    get :calendar_list, on: :collection
     member do
       delete :delete_avatar
       get :calendar

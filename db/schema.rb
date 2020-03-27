@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_24_165556) do
+ActiveRecord::Schema.define(version: 2020_03_27_134950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -387,6 +387,7 @@ ActiveRecord::Schema.define(version: 2020_03_24_165556) do
     t.boolean "online_booking", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "theme", default: "classic", null: false
     t.index ["default_currency"], name: "index_tenants_on_default_currency"
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"

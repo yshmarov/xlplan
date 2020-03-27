@@ -1,5 +1,5 @@
 - set_var 'locale', Tenant.current_tenant.locale
-- if controller_name == 'dashboard' && action_name == 'calendar'
+- if controller_name == 'members' && action_name == 'calendar_list'
   - set_var 'resources', @members.map{|z| {id: z.id, title: z.short_name.to_s, location: z.location.to_s}}
   - set_var 'events', @jobs.map{|(event, member), services| { id: event.id, 
     title: event.client.full_name.to_s + "// " + services.collect{|r| r.service.name}.join(", ").to_s, 
@@ -44,8 +44,8 @@
   .col-lg-3
     #datepicker
     %ul
-      %li{class: "#{'active-underline' if current_page?(calendar_path)}"}
-        = link_to t('sidebar.members'), calendar_path
+      %li{class: "#{'active-underline' if current_page?(calendar_list_members_path)}"}
+        = link_to t('sidebar.members'), calendar_list_members_path
       %ul
         - @members.each do |member|
           %li{class: "#{'active-underline' if current_page?(calendar_member_path(member))}"}

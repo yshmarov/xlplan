@@ -1,4 +1,9 @@
 .nav.nav-pills.flex-column
+  .nav-item.text-center.text-light
+    .nav-link
+      = image_tag Tenant.current_tenant.logo, size: '20x20', alt: "that's me", class: 'rounded'
+      %small{:style => "word-break: break-all;"}= Tenant.current_tenant.name
+
   %li.nav-item{class: "#{'active font-weight-bold' if current_page?(calendar_member_path(current_user.member))}"}
     = link_to calendar_member_path(current_user.member), class: "nav-link" do 
       .fa-fw.fa-color-special.far.fa-calendar-alt
@@ -141,9 +146,9 @@
       = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item"
       = link_to t('sidebar.account_settings'), edit_user_registration_path, class: "dropdown-item"
       = link_to t('sidebar.logout'), destroy_user_session_path, :method => :delete, class: "dropdown-item"
-  %hr
   .nav-item.text-center.text-light
-    %small powered by XLPLAN
-    = plan_label(Tenant.current_tenant.plan)
+    .nav-link
+      %small powered by XLPLAN
+      = plan_label(Tenant.current_tenant.plan)
     %p
 

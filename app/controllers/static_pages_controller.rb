@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def landing_page
     if current_user
-      redirect_to calendar_path
+      redirect_to calendar_list_members_path
     end
   end
 
