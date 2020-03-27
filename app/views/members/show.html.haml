@@ -2,7 +2,7 @@
 .row
   .col-lg-4
     .card
-      .card-header
+      .card-header#pills-background
         .fa.fa-user-tie
         =t '.title', :default => model_class.model_name.human.titleize
         .float-right
@@ -65,7 +65,7 @@
   - if @member.user.present?
     .col-lg-8
       .card
-        .card-header
+        .card-header#pills-background
           .fa.fa-lock
           %b= t('.access_rights')
         .card-body

@@ -23,6 +23,9 @@ npm uninstall -g heroku-cli
 sudo snap install heroku --classic
 npm install -g heroku
 heroku git:remote -a xlplan
+# push to heroku
+git push heroku master
+heroku run rake db:migrate
 
 ################################
 

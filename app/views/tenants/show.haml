@@ -2,7 +2,7 @@
 .row
   .col-lg-5
     .card
-      .card-header
+      .card-header#pills-background
         .fa.fa-cog
         %b=t '.title', :default => model_class.model_name.human.titleize
         .badge.badge-dark admin
@@ -61,7 +61,7 @@
           (#{distance_of_time_in_words Time.now, @tenant.created_at})
     %p
   .col-lg-7
-    .card
+    .card#pills-background
       .card-header
         %b= model_class.human_attribute_name(:plan) + ':'
         = plan_label(@tenant.plan)

@@ -3,7 +3,7 @@
   .col-lg-3
   .col-lg-6
     .card
-      .card-body
+      .card-header#pills-background
         %h5
           = t('members.show.edit_roles')
           \:
@@ -11,7 +11,7 @@
             = @user.member.full_name
           - else
             = @user.email
-        %hr
+      .card-body
         = simple_form_for @user do |f|
           = f.collection_check_boxes :role_ids, Role.where.not("name = 'owner'").all, :id, :name
           = f.error :roles, class: 'text-danger'
