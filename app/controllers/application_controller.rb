@@ -58,6 +58,8 @@ class ApplicationController < ActionController::Base
     #navbar search
     def set_global_search_variable
       @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
+      @event_close_count = Event.close.count
+      @client_debtors_count = Client.debtors.count
     end
   
     #online?

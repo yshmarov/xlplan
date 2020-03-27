@@ -32,16 +32,16 @@
       .fa-color-special.fa.fa-hand-holding-usd.fa-fw
       = t('sidebar.new_payment')
   /LINKS WITH COUNTERS
-  - if Event.close.count > 0
+  - if @event_close_count > 0
     %li.nav-item{class: "#{'active font-weight-bold' if current_page?(close_events_path)}"}
       = link_to close_events_path, class: "nav-link" do
         .fa-fw.fa-color-special.far.fa-calendar-check
-        #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
-  - if Client.debtors.count > 0
+        #{t('sidebar.close_events')} #{content_tag :span, @event_close_count, class: 'badge badge-danger'} 
+  - if @client_debtors_count > 0
     %li.nav-item{class: "#{'active font-weight-bold' if current_page?(debtors_clients_path)}"}
       = link_to debtors_clients_path, class: "nav-link" do
         .fa-fw.fa-color-special.far.fa-address-book
-        #{t('sidebar.debtors')} #{content_tag :span, Client.debtors.count, class: 'badge badge-danger'} 
+        #{t('sidebar.debtors')} #{content_tag :span, @client_debtors_count, class: 'badge badge-danger'} 
   /LINKS
   %li.nav-item{class: "#{'active font-weight-bold' if current_page?(clients_path)}"}
     = link_to clients_path, class: "nav-link" do 
