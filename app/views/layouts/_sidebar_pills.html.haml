@@ -148,7 +148,10 @@
       = link_to t('sidebar.logout'), destroy_user_session_path, :method => :delete, class: "dropdown-item"
   .nav-item.text-center.text-light
     .nav-link
-      %small powered by XLPLAN
+      %small
+        powered by 
+        = link_to "https://www.xlplan.com", target: :_blank do
+          XLPLAN
       = plan_label(Tenant.current_tenant.plan)
     %p
 
