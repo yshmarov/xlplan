@@ -1,7 +1,7 @@
 .nav.nav-pills.flex-column
   .nav-item.text-center.text-light
-    .nav-link
-      = image_tag Tenant.current_tenant.logo, size: '20x20', alt: "that's me", class: 'rounded'
+    = link_to root_path, class: 'nav-link' do
+      = image_tag Tenant.current_tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
       %small{:style => "word-break: break-all;"}= Tenant.current_tenant.name
 
   %li.nav-item{class: "#{'active font-weight-bold' if current_page?(calendar_member_path(current_user.member))}"}
@@ -59,7 +59,7 @@
       = t('sidebar.services')
   %li.nav-item{class: "#{'active font-weight-bold' if current_page?(leads_path)}"}
     = link_to leads_path, class: "nav-link" do
-      .fa-fw.fa-color-special.fa.fa-globe-africa
+      .fa-fw.fa-color-special.far.fa-envelope
       #{t('sidebar.leads')} 
       - if Lead.active.has_no_client.count > 0
         #{content_tag :span, Lead.active.count, class: 'badge badge-danger'} 
@@ -153,5 +153,4 @@
         = link_to "https://www.xlplan.com", target: :_blank do
           XLPLAN
       = plan_label(Tenant.current_tenant.plan)
-    %p
 

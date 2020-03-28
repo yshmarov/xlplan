@@ -6,19 +6,24 @@
         .col-md-3
           %h5
             .fa.fa-calendar-alt
-            %b= t "#{controller_name}_#{action_name}"
+            %b=t '.title', :default => model_class.model_name.human.pluralize.titleize
+            /%b= t "#{controller_name}_#{action_name}"
             .badge.badge-info
               = @events.count
         .col-md-6
-          .btn-group.btn-group-sm
-            = link_to events_path, class: "btn btn-outline-secondary" do
-              #{t('sidebar.events')} #{content_tag :span, Event.count, class: 'badge badge-info'} 
-            = link_to close_events_path, class: "btn btn-outline-secondary" do
-              #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
-            = link_to today_events_path, class: "btn btn-outline-secondary" do
-              #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
-            = link_to tomorrow_events_path, class: "btn btn-outline-secondary" do
-              #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
+          .nav
+            %li.nav-item{class: "#{'active' if current_page?(events_path)}"}
+              = link_to events_path, class: "nav-link" do
+                #{t('sidebar.events')} #{content_tag :span, Event.count, class: 'badge badge-info'} 
+            %li.nav-item{class: "#{'active' if current_page?(close_events_path)}"}
+              = link_to close_events_path, class: "nav-link" do
+                #{t('sidebar.close_events')} #{content_tag :span, Event.close.count, class: 'badge badge-danger'} 
+            %li.nav-item{class: "#{'active' if current_page?(today_events_path)}"}
+              = link_to today_events_path, class: "nav-link" do
+                #{t('sidebar.events_today')} #{content_tag :span, Event.today.count, class: 'badge badge-info'} 
+            %li.nav-item{class: "#{'active' if current_page?(tomorrow_events_path)}"}
+              = link_to tomorrow_events_path, class: "nav-link" do
+                #{t('sidebar.events_tomorrow')} #{content_tag :span, Event.tomorrow.count, class: 'badge badge-info'} 
         .col-md-3
           .float-right
             - unless params.has_key?(:q)
