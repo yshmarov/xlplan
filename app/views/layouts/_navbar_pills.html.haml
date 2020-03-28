@@ -1,0 +1,16 @@
+/%nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
+%nav.navbar.navbar-expand-lg.navbar-dark.sticky-top
+  %a.navbar-brand{:href => "/"}
+    .text-light
+      = image_tag "logo.png", size: "25x25", class: "mx-auto d-inline align-top", :alt => "avatar"
+      %b
+        XLPLAN
+  - if current_user
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto
+        %li{class: "#{'active font-weight-bold card bg-secondary' if controller_name == "ideas"}"}
+          = link_to root_path, class: 'nav-link' do
+            .far.fa-lightbulb
+            Calendar

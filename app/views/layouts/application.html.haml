@@ -24,21 +24,13 @@
       /- if Tenant.current_tenant.plan = "demo" && (Tenant.current_tenant.created_at+7.days) < Time.now
       /X demo days left. Order system 
 
-      - if Tenant.current_tenant.theme == "classic"
-        #wrapper
-          = render 'layouts/sidebar'
-          = render 'layouts/messages'
-          - unless current_user.confirmed_at
-            = render 'layouts/not_confirmed'
-          = yield
-          = rjv_tags
-      - else
+      - if Tenant.current_tenant.theme == "modern"
+        .d-xl-none
+          = render 'layouts/navbar_pills'
         %p
         .container-fluid
           .row
             .col-xl-2
-              /nav-pills hover color & text color
-              /collapsed to navbar
               .d-none.d-xl-block.sticky-top
                 #pills-background.rounded
                   = render 'layouts/sidebar_pills'
@@ -46,6 +38,14 @@
               = render 'layouts/messages'
               = yield
               = rjv_tags
+      - else
+        #wrapper
+          = render 'layouts/sidebar'
+          = render 'layouts/messages'
+          - unless current_user.confirmed_at
+            = render 'layouts/not_confirmed'
+          = yield
+          = rjv_tags
 
     - else
       #padding-top
