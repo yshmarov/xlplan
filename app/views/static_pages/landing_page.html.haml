@@ -3,46 +3,51 @@
 /%title UKR.NET: Всі новини України, останні новини дня в Україні та Світі
 /%meta{:content => "Свіжі новини України, останні новини з-за кордону, новини політики, економіки, спорту, культури, технологій, шоу-бизнесу...", :name => "description"}/
 /%meta{:content => "новини, україна, відео, новини україни, україна новини, політика, економіка, випадки, технології, спорт, здоров'я, культура, за кордоном, курйози, фоторепортаж, фото, відеорепортаж, відео", :name => "keywords"}/
-.container-fluid.text-center
-  %h2
-    .badge.badge-default
-      .far.fa-calendar-check
-      %small XLPLAN
-  %hr
-  = link_to new_user_session_path, class: 'btn btn-outline-success' do
-    = t("header.sign_in")
-  %p
-  = link_to new_user_registration_path, class: 'btn btn-outline-success' do
-    = t("header.sign_up")
-  %p
-  = link_to new_booking_path(2), class: 'btn btn-outline-success' do
-    .far.fa-calendar-check
-    = t(".apply_for_a_demo")
-  %hr
-  = link_to "https://www.xlplan.com", target: :_blank do
-    Back to website
-  %p
-  = link_to t("footer.online_booking"), booking_path
-  %p
-  © #{Time.now.year}
-  = link_to "https://www.xlplan.com", target: :_blank do
-    XLPLAN.com
-  %p
-  .fa.fa-envelope
-  = mail_to 'support@xlplan.com'
-  %p
-  .fa.fa-phone
-  = link_to "tel:+48-537-628-023", class: "button" do
-    +48-537-628-023
-  /.fab.fa-viber
-  /.fab.fa-telegram
-  /.fab.fa-whatsapp
-  %hr
-  = link_to "https://www.instagram.com/xlplan_com/", target: :_blank do
-    %i.fab.fa-instagram{:style => "font-size:25px;color:blue"}
-  = link_to "https://www.youtube.com/channel/UCPc7-Qx0mowN8EI8Yg7Lycw", target: :_blank do
-    %i.fab.fa-youtube{:style => "font-size:25px;color:blue"}
-  = link_to "https://www.linkedin.com/company/18937424/", target: :_blank do
-    %i.fab.fa-linkedin{:style => "font-size:25px;color:blue"}
-  = link_to "https://www.facebook.com/xlplan/", target: :_blank do
-    %i.fab.fa-facebook{:style => "font-size:25px;color:blue"}
+.row
+  .col-md-4
+  .col-md-4
+    .card.text-center
+      .card-header
+        .badge.badge-default
+          .far.fa-calendar-check
+          XLPLAN
+        .row
+        %small CRM for appointment-based business management
+      .card-body
+        = link_to new_user_session_path, class: 'btn btn-success btn-block' do
+          = t("header.sign_in")
+        %p
+        = link_to new_user_registration_path, class: 'btn btn-success btn-block' do
+          = t("header.sign_up")
+        %p
+        = link_to new_booking_path(2), class: 'btn btn-success btn-block' do
+          .far.fa-calendar-check
+          = t(".apply_for_a_demo")
+      .card-footer
+        = link_to "https://www.xlplan.com", target: :_blank do
+          Back to website
+        %p
+        = link_to t("footer.online_booking"), booking_path
+        %p
+        © #{Time.now.year}
+        = link_to "https://www.xlplan.com", target: :_blank do
+          XLPLAN.com
+        %p
+        .fa.fa-envelope
+        = mail_to 'support@xlplan.com'
+        %p
+        .fa.fa-phone
+        = link_to "tel:+48-537-628-023", class: "button" do
+          +48-537-628-023
+        /.fab.fa-viber
+        /.fab.fa-telegram
+        /.fab.fa-whatsapp
+      .card-footer
+        = link_to "https://www.instagram.com/xlplan_com/", target: :_blank do
+          %i.fab.fa-instagram{:style => "font-size:25px;color:blue"}
+        = link_to "https://www.youtube.com/channel/UCPc7-Qx0mowN8EI8Yg7Lycw", target: :_blank do
+          %i.fab.fa-youtube{:style => "font-size:25px;color:blue"}
+        = link_to "https://www.linkedin.com/company/18937424/", target: :_blank do
+          %i.fab.fa-linkedin{:style => "font-size:25px;color:blue"}
+        = link_to "https://www.facebook.com/xlplan/", target: :_blank do
+          %i.fab.fa-facebook{:style => "font-size:25px;color:blue"}

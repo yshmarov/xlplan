@@ -26,6 +26,7 @@ heroku git:remote -a xlplan
 # push to heroku
 git push heroku master
 heroku run rake db:migrate
+# to create a user google recaptcha has to be either configured or disabled. disable in milia.rb file
 
 ################################
 
