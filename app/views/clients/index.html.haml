@@ -36,81 +36,101 @@
     - else
       #accordion.collapse
         = render 'clients/search_fields'
+  
+  /%br
+  /.card-columns
+  /  - @clients.each do |client|
+  /    = render 'cards_index', client: client
+  /%br
 
-/%br
-/.card-columns
-/  - @clients.each do |client|
-/    = render 'cards_index', client: client
-/%br
-
-.table-responsive
-  %table#table1
-    %thead.header-fixed
-      %tr
-        %th
-        %th= sort_link @ransack_clients, :last_name
-        %th= model_class.human_attribute_name(:contacts)
-        %th= sort_link @ransack_clients, :date_of_birth
-        %th= sort_link @ransack_clients, :gender
-        %th= sort_link @ransack_clients, :address
-        %th= sort_link @ransack_clients, :lead_source
-        %th= sort_link @ransack_clients, :events_count
-        %th= sort_link @ransack_clients, :event_expences_sum
-        %th= sort_link @ransack_clients, :transactions_count
-        %th= sort_link @ransack_clients, :transactions_sum
-        %th= sort_link @ransack_clients, :balance
-        %th
-          .fa.fa-comment-alt
-        %th= sort_link @ransack_clients, :created_at
-    %tbody
-      - @clients.each do |client|
+  .table-responsive
+    %table#table1
+      %thead.header-fixed
         %tr
-          %td
-            .btn-group
-              = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
-              = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
-          %td
-            = link_to client.full_name, client_path(client)
-            - if client.client_tags.any?
+          %th
+          %th= sort_link @ransack_clients, :last_name
+          %th= model_class.human_attribute_name(:contacts)
+          %th= sort_link @ransack_clients, :date_of_birth
+          %th= sort_link @ransack_clients, :gender
+          %th= sort_link @ransack_clients, :address
+          %th= sort_link @ransack_clients, :lead_source
+          %th= sort_link @ransack_clients, :events_count
+          %th= sort_link @ransack_clients, :event_expences_sum
+          %th= sort_link @ransack_clients, :transactions_count
+          %th= sort_link @ransack_clients, :transactions_sum
+          %th= sort_link @ransack_clients, :balance
+          %th
+            .fa.fa-comment-alt
+          %th= sort_link @ransack_clients, :created_at
+      /%thead.header-fixed
+      /  %tr
+      /    %th= f.submit
+      /    %th
+      /      = f.search_field :first_name_or_last_name_cont, class: 'form-control-sm', placeholder: t('activerecord.attributes.client.name'), :autocomplete => :off
+      /    %th
+      /      = f.search_field :phone_number_or_email_cont, class: 'form-control-sm', placeholder: t('activerecord.attributes.client.contacts'), :autocomplete => :off
+      /    %th
+      /    %th
+      /    %th
+      /      = f.search_field :address_or_country_or_zip_or_city_cont, class: 'form-control-sm', placeholder: t('activerecord.attributes.client.address'), :autocomplete => :off
+      /    %th
+      /      = f.search_field :lead_source_cont, class: 'form-control-sm', placeholder: t('activerecord.attributes.client.lead_source'), :autocomplete => :off
+      /    %th
+      /    %th
+      /    %th
+      /    %th
+      /    %th
+      /    %th
+      /    %th
+      %tbody
+        - @clients.each do |client|
+          %tr
+            %td
+              .btn-group
+                = link_to '', edit_client_path(client), class: "btn btn-warning fa fa-edit btn-sm"  if policy(client).edit?
+                = link_to '', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm"  if policy(client).destroy?
+            %td
+              = link_to client.full_name, client_path(client)
+              - if client.client_tags.any?
+                .row
+                - client.client_tags.each do |client_tag|
+                  .badge.badge-info
+                    = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
+              - if client.debtors?
+                .badge.badge-danger
+                  = t('clients_debtors')
+              - if client.no_gender?
+                .badge.badge-warning
+                  = t('clients_no_gender')
+              - if client.next_event.present?
+                .badge.badge-success
+                  = t('clients_yes_next_event')
+            %td
+              = tel_to client.phone_number
+              - if client.phone_number.present?
+                = link_to "viber://chat?number=#{client.phone_number}" do
+                  .fab.fa-viber
               .row
-              - client.client_tags.each do |client_tag|
-                .badge.badge-info
-                  = I18n.t(client_tag.tag, scope: [:activerecord, :attributes, :client, :tags])
-            - if client.debtors?
-              .badge.badge-danger
-                = t('clients_debtors')
-            - if client.no_gender?
-              .badge.badge-warning
-                = t('clients_no_gender')
-            - if client.next_event.present?
-              .badge.badge-success
-                = t('clients_yes_next_event')
-          %td
-            = tel_to client.phone_number
-            - if client.phone_number.present?
-              = link_to "viber://chat?number=#{client.phone_number}" do
-                .fab.fa-viber
-            .row
-            = mail_to client.email
-          %td= client.date_of_birth
-          %td= gender_label(client.gender)
-          %td= client.address_line
-          %td= client.lead_source
-          %td= client.events_count
-          %td= client.event_expences_sum_cents
-          %td= client.transactions_count
-          %td= client.transactions_sum_cents
-          %td= client.balance_cents
-          %td= client.comments.count
-          /%td{:style => "word-wrap: break-word;min-width: 100%;max-width: 150px;"}
-          /  - if client.comments.any?
-          /    = client.comments.first.content
-          /    - if client.comments.size > 1
-          /      = link_to "+ #{client.comments.count - 1} comments", client_path(client)          
-          /    /= pluralize(client.comments.count - 1, 'comment')
-          %td= l(client.created_at, format: "%a %d/%b/%Y %H:%M")
-          /with AJAX
-          /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
+              = mail_to client.email
+            %td= client.date_of_birth
+            %td= gender_label(client.gender)
+            %td= client.address_line
+            %td= client.lead_source
+            %td= client.events_count
+            %td= client.event_expences_sum_cents
+            %td= client.transactions_count
+            %td= client.transactions_sum_cents
+            %td= client.balance_cents
+            %td= client.comments.count
+            /%td{:style => "word-wrap: break-word;min-width: 100%;max-width: 150px;"}
+            /  - if client.comments.any?
+            /    = client.comments.first.content
+            /    - if client.comments.size > 1
+            /      = link_to "+ #{client.comments.count - 1} comments", client_path(client)          
+            /    /= pluralize(client.comments.count - 1, 'comment')
+            %td= l(client.created_at, format: "%a %d/%b/%Y %H:%M")
+            /with AJAX
+            /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
 .container.table-responsive
   = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 %br

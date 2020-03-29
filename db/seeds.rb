@@ -6,7 +6,7 @@ PublicActivity.enabled = false
 # locale: 'ru'
 #})
 #t.save!
-Tenant.set_current_tenant(4)
+Tenant.set_current_tenant(1)
 #first_user = User.create!(email: 'yshmarov@gmail.com', password: 'yshmarov@gmail.com', password_confirmation: 'yshmarov@gmail.com')
 #Member.create!(first_name: "Albert", last_name: "Einstein", user_id: first_user.id)
 #first_user.add_role(:admin)
