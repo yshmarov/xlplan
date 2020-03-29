@@ -76,10 +76,10 @@ GEM
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (9.7.4)
+    autoprefixer-rails (9.7.5)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.286.0)
+    aws-partitions (1.290.0)
     aws-sdk-core (3.92.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -142,7 +142,7 @@ GEM
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
     execjs (2.7.0)
-    faker (2.10.2)
+    faker (2.11.0)
       i18n (>= 1.6, < 2)
     ffi (1.12.2)
     font-awesome-sass (5.12.0)
@@ -399,7 +399,7 @@ DEPENDENCIES
   puma
   pundit
   rack-attack
-  rails (~> 5.2.4.1)
+  rails (~> 5.2.4.2)
   rails-erd
   rails-i18n
   ransack
