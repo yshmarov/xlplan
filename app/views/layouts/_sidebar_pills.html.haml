@@ -1,8 +1,8 @@
 .nav.nav-pills.flex-column
   .nav-item.text-center.text-light
     = link_to root_path, class: 'nav-link' do
-      = image_tag Tenant.current_tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
-      %small{:style => "word-break: break-all;"}= Tenant.current_tenant.name
+      = image_tag @tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
+      %small{:style => "word-break: break-all;"}= @tenant.name
 
   %li.nav-item{class: "#{'active font-weight-bold' if current_page?(calendar_member_path(current_user.member))}"}
     = link_to calendar_member_path(current_user.member), class: "nav-link" do 
@@ -68,7 +68,7 @@
       .fa-fw.fa-color-special.fa.fa-chevron-circle-down
       #{t('sidebar.more')}
     .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown7"}
-      = link_to booking_show_path(Tenant.current_tenant), class: "dropdown-item" do 
+      = link_to booking_show_path(@tenant), class: "dropdown-item" do 
         .fa.fa-globe-africa
         = t('sidebar.public_page')
       = link_to events_path, class: "dropdown-item" do 
@@ -152,5 +152,5 @@
         powered by 
         = link_to "https://www.xlplan.com", target: :_blank do
           XLPLAN
-      = plan_label(Tenant.current_tenant.plan)
+      = plan_label(@tenant.plan)
 
