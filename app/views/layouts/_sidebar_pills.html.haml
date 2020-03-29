@@ -61,8 +61,8 @@
     = link_to leads_path, class: "nav-link" do
       .fa-fw.fa-color-special.far.fa-envelope
       #{t('sidebar.leads')} 
-      - if Lead.active.has_no_client.count > 0
-        #{content_tag :span, Lead.active.count, class: 'badge badge-danger'} 
+      - if @lead_active_no_client_count > 0
+        #{content_tag :span, @lead_active_no_client_count, class: 'badge badge-danger'} 
   %li.nav-item.dropdown
     %a#navbarDropdown7.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
       .fa-fw.fa-color-special.fa.fa-chevron-circle-down

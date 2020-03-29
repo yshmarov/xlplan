@@ -60,6 +60,7 @@ class ApplicationController < ActionController::Base
       @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
       @event_close_count = Event.close.count
       @client_debtors_count = Client.debtors.count
+      @lead_active_no_client_count = Lead.active.has_no_client.count
     end
   
     #online?

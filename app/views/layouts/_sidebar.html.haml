@@ -3,20 +3,12 @@
     %i.far.fa-calendar-check
     .badge.badge-default 
       XLPLAN
-      /XLPLAN | #{@org_name}
       = plan_label(Tenant.current_tenant.plan)
-  /%a
-  /  = link_to calendar_member_path(id: current_user.member.id), class: 'navbar-brand' do
-  /    /= image_tag "logo and name.png", height: "25px", class: "mx-auto d-inline align-top", :alt => "logo"
-  /    %i.far.fa-calendar-check
-  /    .badge.badge-default 
-  /      XLPLAN | #{@org_name}
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
-    /  - if Tenant.current_tenant.logo.attached?
-    /    = image_tag Tenant.current_tenant.logo, height: "30px", class: "mx-auto d-inline align-top rounded"
     %ul.navbar-nav.ml-md-auto.d-md-flex
+      /SEARCH IN NAVBAR
       = search_form_for @ransack_clients, as: :clients_search, url: clients_path do |f|
         .input-group
           = f.search_field :first_name_or_last_name_or_phone_number_or_email_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: t('sidebar.search_client'), :autocomplete => :off
@@ -73,9 +65,6 @@
         = link_to members_path, class: "nav-link" do 
           .fa-fw.fa-color-special.fa.fa-users
           = t('sidebar.members')
-      /%li{:class => "#{current_page?(services_path) ? 'active' : ''}"}
-      /rails 6 https://blog.bigbinary.com/2020/02/04/rails-6-1-introduces-class_names-helper.html
-      /%li{class: "#{'active font-weight-bold' if current_page?(services_path)}"}
       %li{class: "#{'active font-weight-bold' if controller_name == "services"}"}
         = link_to services_path, class: "nav-link" do 
           .fa-fw.fa-color-special.far.fa-hand-paper
@@ -84,8 +73,8 @@
         = link_to leads_path, class: "nav-link" do
           .fa-fw.fa-color-special.fa.fa-globe-africa
           #{t('sidebar.leads')} 
-          - if Lead.active.has_no_client.count > 0
-            #{content_tag :span, Lead.active.count, class: 'badge badge-danger'} 
+          - if @lead_active_no_client_count > 0
+            #{content_tag :span, @lead_active_no_client_count, class: 'badge badge-danger'} 
       %li.nav-item.dropdown
         %a#navbarDropdown7.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           .fa-fw.fa-color-special.fa.fa-chevron-circle-down
@@ -124,12 +113,6 @@
           #{t('sidebar.stats')}
           .badge.badge-dark admin
         .dropdown-menu#sidebardropdown{"aria-labelledby" => "navbarDropdown2"}
-          /controller_name == 'dashboard'
-          /.dropdown-item{class: "#{'active font-weight-bold' if current_page?(dashboard_member_salary_path)}"}
-          /  = link_to dashboard_member_salary_path, class: "nav-link" do 
-          /    .fa.fa-dollar-sign
-          /    .fa.fa-users
-          /    = t('dashboard.member_salary.member_salary')
           = link_to dashboard_member_salary_path, class: "dropdown-item" do 
             .fa.fa-dollar-sign
             .fa.fa-users
