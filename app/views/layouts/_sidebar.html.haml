@@ -1,7 +1,10 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
   %a
     = link_to root_path, class: 'navbar-brand' do
-      = image_tag @tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
+      - if @tenant.logo.present?
+        = image_tag @tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
+      - else
+        .fa.fa-calendar-check
       %small{:style => "word-break: break-all;"}= @tenant.name
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
