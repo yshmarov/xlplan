@@ -32,7 +32,6 @@ end
 
 #frontend
 gem 'haml'                                                                      # HAML
-gem "haml-rails"                                                                # convert .erb to .haml files
 gem 'bootstrap'                                                                 # bootstrap
 gem 'jquery-rails'                                                              # for bootstrap
 gem 'simple_form'                                                               #SIMPLE_FORM
@@ -43,9 +42,8 @@ gem 'momentjs-rails'
 gem 'rjv'                                                                       
 #authentication & authorization
 gem 'devise'                                                                    #USER AUTHENTICATION
-gem 'activerecord-session_store', github: 'rails/activerecord-session_store'    
-gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git'             #MULTIPLE COMPANIES IN 1 PROGRAM
-#gem 'milia', github: 'jekuno/milia', branch: 'issue#76'                        
+gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git'             #MULTITENANCY
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'    #MULTITENANCY FOR STORING TENANT IN SESSION
 gem "rolify"                                                                    #USER ROLES
 gem "pundit"                                                                    #WHAT CAN USERS WITH DIFFERENT ROLES DO
 #charts
@@ -55,11 +53,8 @@ gem 'groupdate'                                                                 
 gem 'will_paginate'                                                             #PAGINATION
 gem 'will_paginate-bootstrap4'                                                  #STYLE FOR PAGINATION
 gem 'pagy'                                                                      #PAGINATION
+#data
 gem 'ransack'                                                                   #SEARCH
-
-#gem 'validates_timeliness', '~> 5.0.0.alpha3'
-#gem 'validates_overlap'
-
 gem 'money-rails'                                                               #HANDLING MONEY IN THE DATABASE
 gem "selectize-rails"                                                           #
 gem "cocoon"                                                                    #
@@ -77,14 +72,12 @@ gem "omnicontacts"                                                              
 
 group :production do
   gem 'exception_notification'                                                    #EMAIL ERRORS FOR PRODUCTION
+  gem "aws-sdk-s3"                                                                #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
 end
 gem 'rack-attack'                                                               #LIMIT BOT SIGN UPS. FOR PRODUCTION
-#group :production do
-gem "aws-sdk-s3"                                                                #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
 gem "recaptcha"                                                                 #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
-#end
 
-gem 'wicked_pdf'                                                                #GENERATE PDF FOR ROR
+gem 'wicked_pdf'                                                                #GENERATE PDF FROM HTML
 group :production do
   gem 'wkhtmltopdf-heroku', '2.12.5.0'                                          #HTML TO PDF LIBRARY
 end
@@ -99,3 +92,6 @@ gem 'wicked'                                                                    
 gem 'geocoder'
 
 gem 'devise_invitable', '~> 2.0.0'
+
+#gem 'validates_timeliness', '~> 5.0.0.alpha3'
+#gem 'validates_overlap'

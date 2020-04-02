@@ -1,9 +1,8 @@
 %nav.navbar.fixed-top.navbar-expand-lg.navbar-dark
-  %a.navbar-brand{:href => "/"}
-    %i.far.fa-calendar-check
-    .badge.badge-default 
-      XLPLAN
-      = plan_label(@tenant.plan)
+  %a
+    = link_to root_path, class: 'navbar-brand' do
+      = image_tag @tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
+      %small{:style => "word-break: break-all;"}= @tenant.name
   %a.navbar-toggler{"data-target" => ".sidebar", "data-toggle" => "collapse", :href => ""}
     %span.navbar-toggler-icon
   .collapse.navbar-collapse.sidebar
@@ -142,6 +141,11 @@
             .fa-fw.fa-color-special.fa.fa-cog
             = t('sidebar.settings')
             .badge.badge-dark admin
+        %li.nav-item
+          = link_to "https://www.xlplan.com", target: :_blank, class: "nav-link" do
+            %small
+              powered by XLPLAN
+            = plan_label(@tenant.plan)
     %ul.navbar-nav.ml-md-auto.d-md-flex
       %li.nav-item.dropdown
         %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}

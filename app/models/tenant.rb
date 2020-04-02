@@ -29,7 +29,7 @@ class Tenant < ApplicationRecord
   #validates :subdomain, presence: true, uniqueness: true, case_sensitive: false,
   #  length: { in: 3..100 }, 
   #  format: {with: %r{\A[a-z](?:[a-z0-9-]*[a-z0-9])?\z}i, message: "not a valid subdomain"},
-  #  exclusion: { in: %w(app dashboard support blog billing help api www host admin), message: "%{value} is reserved." }
+  #  exclusion: { in: %w(app apps dashboard support blog billing help api www host admin), message: "%{value} is reserved." }
   #validates :subdomain, format: { with: /\A[\w\-]+\Z/i, message: "not a valid subdomain" }
   before_create do
     def generate_token

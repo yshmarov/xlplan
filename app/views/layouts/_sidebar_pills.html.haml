@@ -146,11 +146,8 @@
       = link_to t('sidebar.profile_settings'), edit_member_path(current_user.member), class: "dropdown-item"
       = link_to t('sidebar.account_settings'), edit_user_registration_path, class: "dropdown-item"
       = link_to t('sidebar.logout'), destroy_user_session_path, :method => :delete, class: "dropdown-item"
-  .nav-item.text-center.text-light
-    .nav-link
+  %li.nav-item
+    = link_to "https://www.xlplan.com", target: :_blank, class: "nav-link" do
       %small
-        powered by 
-        = link_to "https://www.xlplan.com", target: :_blank do
-          XLPLAN
+        powered by XLPLAN
       = plan_label(@tenant.plan)
-
