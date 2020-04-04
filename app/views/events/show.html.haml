@@ -32,13 +32,13 @@
     - else
       = status_label(@event.status)
     %b= model_class.human_attribute_name(:event_price_cents) + ':'
-    %b= number_to_currency(@event.event_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+    %b= number_to_currency(@event.event_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
     .row
     %b
       .form-inline
         = model_class.human_attribute_name(:event_due_price) + ':'
         .text-success.mr.ml-1
-          = number_to_currency(@event.event_due_price_cents, unit: "#{Tenant.current_tenant.default_currency.upcase}", format: "%n %u")
+          = number_to_currency(@event.event_due_price_cents, unit: "#{@tenant.default_currency.upcase}", format: "%n %u")
   .card-footer
     .far.fa-address-book
     %b= model_class.human_attribute_name(:client_id) + ':'
