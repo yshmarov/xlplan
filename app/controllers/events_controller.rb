@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy, 
               :mark_planned, :mark_confirmed, :mark_no_show,
               :mark_member_cancelled, :mark_client_cancelled, :mark_no_show_refunded,
-              :send_email_to_client, :send_email_to_members]
+              :send_email_to_client, :send_email_to_members, :create_duplicate]
 
   def index
     @q = Event.ransack(params[:q])
@@ -31,6 +31,15 @@ class EventsController < ApplicationController
     render 'index'
   end
 
+  ### BUTTONS ###
+  def create_duplicate
+    authorize @event, :update?
+    Event.public_activity_off
+    new_event = Event.create(workplace: @event.workplace, client: @event.client, jobs: @event.jobs, status: 'planned', starts_at: @event.starts_at)
+    Event.public_activity_on
+    new_event.create_activity :create_duplicate, parameters: {original: @event.slug}
+		redirect_to new_event, notice: "Duplicate created from #{@event.slug}"
+  end
   ##### BUTTONS TO CHANGE STATUS #####
 	def mark_planned
     authorize @event, :update?

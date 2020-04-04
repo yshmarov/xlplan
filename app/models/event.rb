@@ -7,13 +7,14 @@ class Event < ApplicationRecord
   tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
-  friendly_id :to_s, use: :slugged
+  friendly_id :generated_slug, use: :slugged
+  def generated_slug
+    require 'securerandom' 
+    @random_slug ||= persisted? ? friendly_id : SecureRandom.hex(4)
+  end
+
   def to_s
-    if client_id.present? && workplace_id.present?
-      client.full_name.to_s + "/" + workplace.to_s + "/" + starts_at.to_s
-    else
-      id
-    end
+    slug
   end
   #-----------------------relationships-------------------#
   has_many_attached :files
@@ -50,10 +51,8 @@ class Event < ApplicationRecord
     services = self.services.pluck(:name).join(', ')
     time = self.starts_at.strftime("%A %d/%b/%Y %H:%M").to_s
     location = self.workplace.location.to_s
-    phone = self.members.first.phone_number.to_s
     address = self.workplace.location.address_line.to_s
-    services + " " + time + " " + location + " " + phone + " " + address 
-    #services + " " + time + " " + location + " " + phone + " " + address + "XLPLAN.com" 
+    services + " " + time + " " + location + " " + address 
   end
   #-----------------------callbacks-------------------#
   #update_status_color OK

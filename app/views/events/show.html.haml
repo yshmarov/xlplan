@@ -3,11 +3,19 @@
   .card-header{:style => "border-color:#{@event.status_color}; border-width: 3px;"}
     .fa.fa-calendar-alt
     =t '.title', :default => model_class.model_name.human.titleize
+    = link_to @event.slug, @event
     .float-right
       .btn-group
-        = link_to '', event_path(@event, format: :pdf), class: "btn btn-primary fa fa-file-pdf btn-sm", target: :_blank
-        = link_to '', edit_event_path(@event), class: "btn btn-warning fa fa-edit btn-sm" if policy(@event).edit?
-        = link_to '', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash btn-sm" if policy(@event).destroy?
+        = link_to event_path(@event, format: :pdf), class: "btn btn-primary btn-sm", target: :_blank do
+          .fa.fa-file-pdf
+        - if policy(@event).edit?
+          = link_to edit_event_path(@event), class: "btn btn-warning btn-sm" do
+            .fa.fa-edit
+        = link_to create_duplicate_event_path(@event), method: :patch, data: { confirm: 'Create a copy?' }, class: 'btn btn-sm btn-primary' do
+          .fa.fa-copy
+        - if policy(@event).destroy?
+          = link_to @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" do
+            .fa.fa-trash
   .card-footer
     - if policy(@event).edit?
       .dropdown.show

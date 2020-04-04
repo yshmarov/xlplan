@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     resources :transactions, except: [:edit, :update]
     get :close, :today, :tomorrow, on: :collection
   	member do
+  		patch :create_duplicate
   		patch :mark_planned
   		patch :mark_confirmed
   		patch :mark_member_cancelled
