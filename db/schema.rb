@@ -93,10 +93,9 @@ ActiveRecord::Schema.define(version: 2020_03_27_134950) do
     t.string "zip"
     t.string "address"
     t.string "lead_source", default: "direct"
-    t.string "personal_data_consent", default: "t"
-    t.string "boolean", default: "t"
-    t.string "event_created_notifications", default: "t"
-    t.string "marketing_notifications", default: "t"
+    t.boolean "personal_data_consent", default: true
+    t.boolean "event_created_notifications", default: true
+    t.boolean "marketing_notifications", default: true
     t.integer "transactions_sum", default: 0, null: false
     t.integer "event_expences_sum", default: 0, null: false
     t.integer "balance", default: 0, null: false
@@ -238,25 +237,18 @@ ActiveRecord::Schema.define(version: 2020_03_27_134950) do
   create_table "locations", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 50, null: false
-    t.string "phone_number", limit: 144
-    t.string "email", limit: 144
     t.string "country"
     t.string "city"
     t.string "zip"
     t.string "address"
-    t.string "viber", limit: 40
-    t.string "telegram", limit: 40
-    t.string "whatsapp", limit: 40
+    t.float "latitude"
+    t.float "longitude"
     t.boolean "online_booking", default: true
     t.boolean "active", default: true
-    t.integer "locations", default: 0, null: false
     t.integer "members_count", default: 0, null: false
-    t.integer "integer", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
-    t.float "latitude"
-    t.float "longitude"
     t.index ["slug"], name: "index_locations_on_slug", unique: true
     t.index ["tenant_id"], name: "index_locations_on_tenant_id"
   end
