@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
           #template: "transactions/show.html.haml",
           #format.pdf {render template: "payments/report", pdf: 'report'}   # Excluding ".pdf" extension.
           #format.pdf {render template: "projects/report", pdf: "invoice #{@project.id}"}
-          layout: "pdf.haml",
+          layout: "pdf.html.haml",
           orientation: "Portrait",
           lowquality: true,
           zoom: 1,

@@ -85,7 +85,7 @@ class ClientsController < ApplicationController
           render pdf: "Client #{@client.full_name}",
           page_size: 'A4',
           template: "clients/show.pdf.haml",
-          layout: "pdf.haml",
+          layout: "pdf.html.haml",
           orientation: "Portrait",
           lowquality: true,
           zoom: 1,
