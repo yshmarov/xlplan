@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.6'
 
 gem 'rails', '~> 5.2.4.2'
 gem 'pg'
@@ -36,29 +36,29 @@ gem 'bootstrap' # bootstrap
 gem 'jquery-rails' # for bootstrap
 gem 'simple_form' #SIMPLE_FORM
 gem 'font-awesome-sass' #FONT_AWESOME ICONS FOR DESIGN
+#authentication & authorization
+gem 'devise' #AUTHENTICATION
+gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git' #MULTITENANCY
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store' #MULTITENANCY FOR STORING TENANT IN SESSION
+gem "rolify" #USER ROLES
+gem "pundit" #AUTHORIZATION
+#charts
+gem "chartkick" #EASY CHARTS FOR RAILS
+gem 'groupdate' #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
+#data
+gem 'pagy' #PAGINATION
+gem 'ransack' #SEARCH
+gem 'money-rails' #HANDLING MONEY IN THE DATABASE
+gem 'public_activity', github: 'chaps-io/public_activity' #A SEPARATE TABLE TO SAVE THE HISTORY OF EACH "CRUD" ACTION.
+gem 'friendly_id' #CUSTOM ID (NOT ALPHABETIC NUMBER)
+gem 'rails-i18n'
+#javascript
 #calendar
 gem 'fullcalendar-rails' #FULLCALENDAR.IO in Rails
 gem 'momentjs-rails' 
 gem 'rjv' 
-#authentication & authorization
-gem 'devise' #USER AUTHENTICATION
-gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git' #MULTITENANCY
-gem 'activerecord-session_store', github: 'rails/activerecord-session_store' #MULTITENANCY FOR STORING TENANT IN SESSION
-gem "rolify" #USER ROLES
-gem "pundit" #WHAT CAN USERS WITH DIFFERENT ROLES DO
-#charts
-gem "chartkick" #EASY CHARTS FOR RAILS
-gem 'groupdate' #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
-#design
-gem 'pagy' #PAGINATION
-#data
-gem 'ransack' #SEARCH
-gem 'money-rails' #HANDLING MONEY IN THE DATABASE
-gem "selectize-rails" #
+gem "selectize-rails" #selectize.js - select or create
 gem "cocoon" #
-gem 'public_activity', github: 'chaps-io/public_activity' #A SEPARATE TABLE TO SAVE THE HISTORY OF EACH "CRUD" ACTION.
-gem 'friendly_id' #CUSTOM ID (NOT ALPHABETIC NUMBER)
-gem 'rails-i18n'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
 
@@ -76,12 +76,8 @@ gem 'rack-attack' #LIMIT BOT SIGN UPS. FOR PRODUCTION
 gem "recaptcha" #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
 
 gem 'wicked_pdf' #GENERATE PDF FROM HTML
-group :production do
-  gem 'wkhtmltopdf-heroku', '2.12.5.0' #HTML TO PDF LIBRARY
-end
-group :development do
-  gem 'wkhtmltopdf-binary' #HTML TO PDF LIBRARY
-end
+gem 'wkhtmltopdf-binary', group: :development
+gem 'wkhtmltopdf-heroku', group: :production
 
 #gem "mini_magic"
 gem "icalendar" #Send calendar events to other calendar appsgem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards
