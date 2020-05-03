@@ -9,7 +9,7 @@
       /.badge.badge-danger
       /  = @leads.active.count
       .float-right
-        - if Rails.env.development?
-          = link_to 'WIZARD', leads_path, method: :post, class: 'btn btn-danger btn-sm'
+        = link_to leads_path, method: :post, class: 'btn btn-success btn-sm' do
+          .fa.fa-magic
 = render 'index'
 != pagy_bootstrap_nav(@pagy)
