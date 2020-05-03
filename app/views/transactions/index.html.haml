@@ -28,5 +28,5 @@
           = f.hidden_field :created_at_datelteq
     = render 'transactions/index'
 .container.table-responsive
-  = will_paginate @transactions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  != pagy_bootstrap_nav(@pagy)
 %br

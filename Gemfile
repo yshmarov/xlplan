@@ -50,8 +50,6 @@ gem "pundit" #WHAT CAN USERS WITH DIFFERENT ROLES DO
 gem "chartkick" #EASY CHARTS FOR RAILS
 gem 'groupdate' #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
 #design
-gem 'will_paginate' #PAGINATION
-gem 'will_paginate-bootstrap4' #STYLE FOR PAGINATION
 gem 'pagy' #PAGINATION
 #data
 gem 'ransack' #SEARCH

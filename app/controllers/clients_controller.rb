@@ -1,22 +1,23 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
+  include Pagy::Backend
 
   def index
     @ransack_clients = Client.ransack(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+    @pagy, @clients = pagy(@ransack_clients.result.includes(:client_tags).order("created_at DESC"))
     @ransack_path = clients_path
   end
 
   def bday_today
     @ransack_clients = Client.bday_today.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+    @pagy, @clients = pagy(@ransack_clients.result.includes(:client_tags).order("created_at DESC"))
     @ransack_path = bday_today_clients_path
     render 'index'
   end
 
   def untagged
     @ransack_clients = Client.untagged.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+    @pagy, @clients = pagy(@ransack_clients.result.includes(:client_tags).order("created_at DESC"))
     @ransack_path = untagged_clients_path
     render 'index'
   end
@@ -24,7 +25,7 @@ class ClientsController < ApplicationController
   def debtors
     #with negative balance
     @ransack_clients = Client.debtors.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+    @pagy, @clients = pagy(@ransack_clients.result.includes(:client_tags).order("created_at DESC"))
     @ransack_path = debtors_clients_path
     render 'index'
   end
@@ -32,7 +33,7 @@ class ClientsController < ApplicationController
   def no_gender
     #gender is undisclosed
     @ransack_clients = Client.no_gender.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+    @pagy, @clients = pagy(@ransack_clients.result.includes(:client_tags).order("created_at DESC"))
     @ransack_path = no_gender_clients_path
     render 'index'
   end
@@ -40,7 +41,7 @@ class ClientsController < ApplicationController
   def no_events
     #gender is undisclosed
     @ransack_clients = Client.no_events.search(params[:clients_search], search_key: :clients_search)
-    @clients = @ransack_clients.result.includes(:client_tags).paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+    @pagy, @clients = pagy(@ransack_clients.result.includes(:client_tags).order("created_at DESC"))
     @ransack_path = no_events_clients_path
     render 'index'
   end
@@ -48,7 +49,7 @@ class ClientsController < ApplicationController
   #def no_future_events
   #  #gender is undisclosed
   #  @ransack_clients = Client.no_future_events.search(params[:clients_search], search_key: :clients_search)
-  #  @clients = @ransack_clients.result.paginate(:page => params[:page], per_page: 15).order("created_at DESC")
+  #  @pagy, @clients = pagy(@ransack_clients.result.includes(:client_tags).order("created_at DESC"))
   #  @ransack_path = no_future_events_clients_path
   #  render 'index'
   #end

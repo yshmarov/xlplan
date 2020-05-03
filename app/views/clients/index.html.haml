@@ -132,5 +132,5 @@
             /with AJAX
             /= link_to "Delete", client_path(client), { method: "delete", remote: true, data: { confirm: "Are you sure?" } }
 .container.table-responsive
-  = will_paginate @clients, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  != pagy_bootstrap_nav(@pagy)
 %br

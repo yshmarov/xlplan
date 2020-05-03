@@ -82,5 +82,5 @@
 
 %p
 .container.table-responsive
-  = will_paginate @contacts, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  != pagy_bootstrap_nav(@pagy)
 %br

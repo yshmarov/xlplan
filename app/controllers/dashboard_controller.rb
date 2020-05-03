@@ -1,6 +1,8 @@
 class DashboardController < ApplicationController
+  include Pagy::Backend
+
   def activity
-    @activities = PublicActivity::Activity.paginate(:page => params[:page], per_page: 50).order("created_at DESC").where(tenant_id: Tenant.current_tenant.id)
+    @pagy, @activities = pagy(PublicActivity::Activity.order("created_at DESC").where(tenant_id: Tenant.current_tenant.id))
   end
 
   def calendar

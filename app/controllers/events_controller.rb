@@ -3,30 +3,31 @@ class EventsController < ApplicationController
               :mark_planned, :mark_confirmed, :mark_no_show,
               :mark_member_cancelled, :mark_client_cancelled, :mark_no_show_refunded,
               :send_email_to_client, :send_email_to_members, :create_duplicate]
+  include Pagy::Backend
 
   def index
     @q = Event.ransack(params[:q])
-    @events = @q.result.includes(:workplace, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("starts_at DESC")
+    @pagy, @events = pagy(@q.result.includes(:workplace, :client, :jobs).order("starts_at DESC"))
     @ransack_path = events_path
   end
 
   def close
     @q = Event.close.ransack(params[:q])
-    @events = @q.result.includes(:workplace, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("starts_at DESC")
+    @pagy, @events = pagy(@q.result.includes(:workplace, :client, :jobs).order("starts_at DESC"))
     @ransack_path = close_events_path
     render 'index'
   end
 
   def today
     @q = Event.today.ransack(params[:q])
-    @events = @q.result.includes(:workplace, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("starts_at DESC")
+    @pagy, @events = pagy(@q.result.includes(:workplace, :client, :jobs).order("starts_at DESC"))
     @ransack_path = today_events_path
     render 'index'
   end
 
   def tomorrow
     @q = Event.tomorrow.ransack(params[:q])
-    @events = @q.result.includes(:workplace, :client, :jobs).paginate(:page => params[:page], per_page: 15).order("starts_at DESC")
+    @pagy, @events = pagy(@q.result.includes(:workplace, :client, :jobs).order("starts_at DESC"))
     @ransack_path = tomorrow_events_path
     render 'index'
   end

@@ -82,5 +82,5 @@
     = render 'events/event', event: event
 %p
 .container.table-responsive
-  = will_paginate @events, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  != pagy_bootstrap_nav(@pagy)
 %br

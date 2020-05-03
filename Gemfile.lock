@@ -336,9 +336,6 @@ GEM
       railties (>= 3.0.7)
     wicked_pdf (2.0.2)
       activesupport
-    will_paginate (3.3.0)
-    will_paginate-bootstrap4 (0.2.2)
-      will_paginate (~> 3.0, >= 3.0.0)
     wkhtmltopdf-binary (0.12.5.4)
     wkhtmltopdf-heroku (2.12.5.0)
     xpath (3.2.0)
@@ -401,8 +398,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   wicked
   wicked_pdf
-  will_paginate
-  will_paginate-bootstrap4
   wkhtmltopdf-binary
   wkhtmltopdf-heroku (= 2.12.5.0)
 

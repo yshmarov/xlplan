@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  include Pagy::Backend
+
   def import
     #IMPORT CONTACTS FROM GOOGLE
     @contacts = request.env['omnicontacts.contacts']
@@ -35,7 +37,7 @@ class ContactsController < ApplicationController
 
   def index
     #SHOW ALL CONTACTS
-    @contacts = Contact.paginate(:page => params[:page], per_page: 50).order("created_at DESC")
+    @pagy, @contacts = pagy(Contact.order("created_at DESC"))
     #@clients = Client.all #for selectize
     #render 'index'
   end

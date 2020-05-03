@@ -74,5 +74,5 @@
               = link_to member.full_name, member_path(member)
           /%td= service.members.pluck(:first_name, :last_name).compact.join(' ')
 .container.table-responsive
-  = will_paginate @services, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
+  != pagy_bootstrap_nav(@pagy)
 %br

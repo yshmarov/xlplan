@@ -1,11 +1,10 @@
 class ServicesController < ApplicationController
   before_action :set_service, only: [:show, :edit, :update, :destroy]
+  include Pagy::Backend
 
   def index
     @q = Service.ransack(params[:q])
-    #@services = @q.result.includes(:service_category).paginate(:page => params[:page], per_page: 50).order("service_category_id DESC")
-    #@services = @q.result.includes(:service_category).paginate(:page => params[:page], per_page: 50).order(:service_category_id, updated_at: :desc)
-    @services = @q.result.includes(:service_category, :members, :skills).paginate(:page => params[:page], per_page: 50).order(service_category_id: :desc, updated_at: :desc) 
+    @pagy, @services = pagy(@q.result.includes(:service_category, :members, :skills).order(service_category_id: :desc, updated_at: :desc))
   end
 
   def show
