@@ -1,7 +1,8 @@
 .nav.nav-pills.flex-column
   .nav-item.text-center.text-light
     = link_to root_path, class: 'nav-link' do
-      = image_tag @tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
+      - if @tenant.logo.attached?
+        = image_tag @tenant.logo, size: '20x20', alt: "logo", class: 'rounded'
       %small{:style => "word-break: break-all;"}= @tenant.name
 
   %li.nav-item{class: "#{'active font-weight-bold' if current_page?(calendar_member_path(current_user.member))}"}
