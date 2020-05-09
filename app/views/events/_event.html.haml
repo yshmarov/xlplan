@@ -1,19 +1,21 @@
 .card{:style => "border-color:#{event.status_color}; border-width: 2px;"}
   .card-header{:style => "border-color:#{event.status_color}; border-width: 2px;"}
-    Event
-    = link_to event.slug, event
-    .float-right
-      .btn-group
-        = link_to event_path(event, format: :pdf), class: "btn btn-primary btn-sm", target: :_blank do
-          .fa.fa-file-pdf
-        - if policy(event).edit?
-          = link_to edit_event_path(event), class: "btn btn-warning btn-sm" do
-            .fa.fa-edit
-        = link_to create_duplicate_event_path(event), method: :patch, data: { confirm: 'Create a copy?' }, class: 'btn btn-sm btn-primary' do
-          .fa.fa-copy
-        - if policy(event).destroy?
-          = link_to event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" do
-            .fa.fa-trash
+    .row
+      .col-lg-6
+        .fa.fa-calendar-alt
+        = link_to event.slug, event
+      .col-lg-6
+        .btn-group
+          = link_to event_path(event, format: :pdf), class: "btn btn-primary btn-sm", target: :_blank do
+            .fa.fa-file-pdf
+          - if policy(event).edit?
+            = link_to edit_event_path(event), class: "btn btn-warning btn-sm" do
+              .fa.fa-edit
+          = link_to create_duplicate_event_path(event), method: :patch, data: { confirm: 'Create a copy?' }, class: 'btn btn-sm btn-primary' do
+            .fa.fa-copy
+          - if policy(event).destroy?
+            = link_to event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" do
+              .fa.fa-trash
   .card-footer
     - if policy(event).edit?
       .dropdown.show
