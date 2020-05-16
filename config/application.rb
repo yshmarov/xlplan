@@ -8,7 +8,6 @@ Bundler.require(*Rails.groups)
 
 module Xlplan
   class Application < Rails::Application
-    config.middleware.use Rack::Attack     
     # uncomment to ensure a common layout for devise forms
     #   config.to_prepare do   # Devise
     #     Devise::SessionsController.layout "sign"
