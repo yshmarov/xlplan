@@ -31,7 +31,7 @@ group :test do
 end
 
 #frontend
-gem 'haml' # HAML
+gem 'haml-rails' # HAML
 gem 'bootstrap' # bootstrap
 gem 'jquery-rails' # for bootstrap
 gem 'simple_form' #SIMPLE_FORM
