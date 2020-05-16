@@ -17,14 +17,14 @@
     %thead
       %tr
         %th= f.submit
-        %th= f.text_field :slug_cont, class: "form-control", placeholder: model_class.human_attribute_name(:id), style: 'float: left; width: 100%; display: block'
+        %th= f.text_field :slug_cont, class: "form-control-sm", placeholder: model_class.human_attribute_name(:id), style: 'float: left; width: 100%; display: block'
         %th
         %th= f.select :cash_account_id_eq, options_from_collection_for_select(CashAccount.all, :id, :name, @q.cash_account_id_eq), { :include_blank => true }, :class => "form-control-sm", style: 'width: 120px'
         %th
         %th
         %th
         %th
-          = f.date_field :created_at_gteq, class: 'form-control'
+          = f.date_field :created_at_gteq, class: 'form-control-sm'
           = f.hidden_field :created_at_datelteq
     = render 'transactions/index'
 .container.table-responsive

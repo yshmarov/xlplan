@@ -49,16 +49,15 @@ gem 'wicked' #turn conrollers (forms) into step-by-step wizards
 gem 'wicked_pdf' #GENERATE PDF FROM HTML
 gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
-
-#javascript
 #calendar
 gem 'fullcalendar-rails' #FULLCALENDAR.IO in Rails WEBPACKER
 gem 'momentjs-rails' # WEBPACKER
 gem 'rjv' 
+#javascript
 gem "selectize-rails" #selectize.js - select or create WEBPACKER
 gem "cocoon" # WEBPACKER
-gem 'bootstrap-datepicker-rails'
-gem 'bootstrap4-datetime-picker-rails'
+gem 'bootstrap-datepicker-rails' # IN CALENDAR SIDEBAR
+gem 'bootstrap4-datetime-picker-rails' #IN EVENT FORM
 #API
 gem "omnicontacts" #IMPORT CONTACTS FROM GOOGLE
 gem "recaptcha" #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
@@ -70,7 +69,6 @@ end
 
 #gem "mini_magic"
 gem "icalendar" #Send calendar events to other calendar apps
-
 gem 'geocoder'
 gem 'rails-i18n'
 #gem 'validates_timeliness', '~> 5.0.0.alpha3'
