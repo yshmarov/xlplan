@@ -19,20 +19,22 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rails-erd' #uml; sudo apt-get install graphviz; bundle exec erd
+  gem 'faker' #FILL THE DATABASE WITH FAKE DATA
 end
 
-#frontend
-gem 'haml-rails' # HAML
-gem 'bootstrap' # bootstrap
+#basic
+gem 'haml-rails'
+gem 'bootstrap' # bootstrap4 WEBPACKER
 gem 'jquery-rails' # for bootstrap
-gem 'simple_form' #SIMPLE_FORM
-gem 'font-awesome-sass' #FONT_AWESOME ICONS FOR DESIGN
-#authentication & authorization
-gem 'devise' #AUTHENTICATION
+gem 'simple_form'
+gem 'font-awesome-sass' #FONT_AWESOME ICONS
+#auth
+gem 'devise'
 gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git' #MULTITENANCY
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store' #MULTITENANCY FOR STORING TENANT IN SESSION
 gem "rolify" #USER ROLES
 gem "pundit" #AUTHORIZATION
+gem 'devise_invitable', '~> 2.0.0'
 #charts
 gem "chartkick" #EASY CHARTS FOR RAILS
 gem 'groupdate' #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
@@ -40,43 +42,36 @@ gem 'groupdate' #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
 gem 'pagy' #PAGINATION
 gem 'ransack' #SEARCH
 gem 'money-rails' #HANDLING MONEY IN THE DATABASE
-gem 'public_activity', github: 'chaps-io/public_activity' #A SEPARATE TABLE TO SAVE THE HISTORY OF EACH "CRUD" ACTION.
-gem 'friendly_id' #CUSTOM ID (NOT ALPHABETIC NUMBER)
-gem 'rails-i18n'
+gem 'public_activity', github: 'chaps-io/public_activity' #TABLE WITH CRUD HISTORY
+gem 'friendly_id'
+gem 'wicked' #turn conrollers (forms) into step-by-step wizards
+#PDF
+gem 'wicked_pdf' #GENERATE PDF FROM HTML
+gem 'wkhtmltopdf-binary', group: :development
+gem 'wkhtmltopdf-heroku', group: :production
+
 #javascript
 #calendar
-gem 'fullcalendar-rails' #FULLCALENDAR.IO in Rails
-gem 'momentjs-rails' 
+gem 'fullcalendar-rails' #FULLCALENDAR.IO in Rails WEBPACKER
+gem 'momentjs-rails' # WEBPACKER
 gem 'rjv' 
-gem "selectize-rails" #selectize.js - select or create
-gem "cocoon" #
+gem "selectize-rails" #selectize.js - select or create WEBPACKER
+gem "cocoon" # WEBPACKER
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap4-datetime-picker-rails'
-
-group :development do
-  gem 'faker' #FILL THE DATABASE WITH FAKE DATA
-end
-
+#API
 gem "omnicontacts" #IMPORT CONTACTS FROM GOOGLE
+gem "recaptcha" #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
 
 group :production do
   gem 'exception_notification' #EMAIL ERRORS FOR PRODUCTION
   gem "aws-sdk-s3" #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
 end
-gem 'rack-attack' #LIMIT BOT SIGN UPS. FOR PRODUCTION
-gem "recaptcha" #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
-
-gem 'wicked_pdf' #GENERATE PDF FROM HTML
-gem 'wkhtmltopdf-binary', group: :development
-gem 'wkhtmltopdf-heroku', group: :production
 
 #gem "mini_magic"
-gem "icalendar" #Send calendar events to other calendar appsgem 'wicked'                                                                    #turn conrollers (forms) into step-by-step wizards
-gem 'wicked' #turn conrollers (forms) into step-by-step wizards
+gem "icalendar" #Send calendar events to other calendar apps
 
 gem 'geocoder'
-
-gem 'devise_invitable', '~> 2.0.0'
-
+gem 'rails-i18n'
 #gem 'validates_timeliness', '~> 5.0.0.alpha3'
 #gem 'validates_overlap'

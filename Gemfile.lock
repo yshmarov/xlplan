@@ -219,8 +219,6 @@ GEM
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     rack (2.2.2)
-    rack-attack (6.3.0)
-      rack (>= 1.0, < 3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.2)
@@ -367,7 +365,6 @@ DEPENDENCIES
   public_activity!
   puma
   pundit
-  rack-attack
   rails (~> 5.2.4.2)
   rails-erd
   rails-i18n
