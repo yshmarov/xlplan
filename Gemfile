@@ -69,7 +69,6 @@ end
 
 #gem "mini_magic"
 gem "icalendar" #Send calendar events to other calendar apps
-gem 'geocoder'
 gem 'rails-i18n'
 #gem 'validates_timeliness', '~> 5.0.0.alpha3'
 #gem 'validates_overlap'

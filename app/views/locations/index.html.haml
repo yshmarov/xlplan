@@ -32,16 +32,6 @@
       .card-footer
         %b= model_class.human_attribute_name(:address) + ':'
         = location.address_line
-        - unless location.address_line.blank?
-          /= location.address_line
-          /.row
-          /Coordinates: #{location.latitude} #{location.longitude}
-          /.row
-          /= image_tag "https://geocoder.ls.hereapi.com/6.2/geocode.json?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE&searchtext=425+W+Randolph+Chicago"
-          /= image_tag "https://1.base.maps.ls.hereapi.com/maptile/2.1/maptile/newest/normal.day/13/4400/2686/256/png8?apiKey=bBLsvEWoGjJ2IqkHwH4e0QswpEzX_mE_7AP3MWoSTQE"
-          /works
-          /%img.location-map{"ng-show" => "location.show_map", "ng-src" => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :src => "https://maps.googleapis.com/maps/api/staticmap?center=%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070&zoom=15&scale=1&size=166x250&maptype=roadmap&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xff0000%7Clabel:%7C%D0%A0%D0%BE%D0%BA%D0%BE%D1%81%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2070", :style => "", :width => "166"}/
-          /= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{location.latitude},#{location.longitude}&markers=#{location.latitude},#{location.longitude}&zoom=15&size=640x400&key=AIzaSyDF7oC9bCVeoH-hIMU05E_CdtolT_3PKDY", class: 'img-fluid img-rounded', alt: "#{location.name} on the map"
       .card-footer
         %b= model_class.human_attribute_name(:workplaces) + ':'
         - location.workplaces.each do |workplace|
