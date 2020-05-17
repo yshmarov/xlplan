@@ -22,9 +22,9 @@ class CreateClients < ActiveRecord::Migration[5.2]
       t.integer :event_expences_sum, default: 0, null: false
       t.integer :balance, default: 0, null: false
 
-      t.integer :comments_count, :integer, default: 0, null: false
-      t.integer :transactions_count, :integer, default: 0, null: false
-      t.integer :events_count, :integer, default: 0, null: false
+      t.integer :comments_count, default: 0, null: false
+      t.integer :transactions_count, default: 0, null: false
+      t.integer :events_count, default: 0, null: false
 
       t.timestamps
     end

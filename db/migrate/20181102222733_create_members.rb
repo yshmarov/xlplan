@@ -14,8 +14,8 @@ class CreateMembers < ActiveRecord::Migration[5.2]
       t.integer :balance, default: 0, null: false
       t.integer :transactions_sum, default: 0, null: false
       t.integer :event_earnings_sum, default: 0, null: false
-      t.integer :transactions_count, :integer, default: 0, null: false
-      t.integer :jobs_count, :integer, default: 0, null: false
+      t.integer :transactions_count, default: 0, null: false
+      t.integer :jobs_count, default: 0, null: false
 
       t.belongs_to :location, foreign_key: true
 
