@@ -23,9 +23,9 @@ group :development do
 end
 
 #basic
-gem 'haml-rails'
+gem 'haml'
 gem 'bootstrap' # bootstrap4 WEBPACKER
-gem 'jquery-rails' # for bootstrap
+gem 'jquery-rails', '~> 4.3.5' # for bootstrap
 gem 'simple_form'
 gem 'font-awesome-sass' #FONT_AWESOME ICONS
 #auth
