@@ -100,7 +100,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_134950) do
     t.integer "event_expences_sum", default: 0, null: false
     t.integer "balance", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
-    t.integer "integer", default: 0, null: false
     t.integer "transactions_count", default: 0, null: false
     t.integer "events_count", default: 0, null: false
     t.datetime "created_at", null: false
@@ -267,7 +266,6 @@ ActiveRecord::Schema.define(version: 2020_03_27_134950) do
     t.integer "transactions_sum", default: 0, null: false
     t.integer "event_earnings_sum", default: 0, null: false
     t.integer "transactions_count", default: 0, null: false
-    t.integer "integer", default: 0, null: false
     t.integer "jobs_count", default: 0, null: false
     t.bigint "location_id"
     t.datetime "created_at", null: false

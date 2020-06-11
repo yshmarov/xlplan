@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.7.1'
 
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '~> 5.2.4.3'
 gem 'pg'
 gem 'puma'
 gem 'sass-rails', '>= 6'
@@ -25,7 +25,7 @@ end
 #basic
 gem 'haml'
 gem 'bootstrap' # bootstrap4 WEBPACKER
-gem 'jquery-rails', '~> 4.3.5' # for bootstrap
+gem 'jquery-rails', '~> 4.3.5' # for bootstrap WEBPACKER
 gem 'simple_form'
 gem 'font-awesome-sass' #FONT_AWESOME ICONS
 #auth
@@ -56,8 +56,8 @@ gem 'rjv'
 #javascript
 gem "selectize-rails" #selectize.js - select or create WEBPACKER
 gem "cocoon" # WEBPACKER
-gem 'bootstrap-datepicker-rails' # IN CALENDAR SIDEBAR
-gem 'bootstrap4-datetime-picker-rails' #IN EVENT FORM
+gem 'bootstrap-datepicker-rails' # IN CALENDAR SIDEBAR. WEBPACKER?
+gem 'bootstrap4-datetime-picker-rails' #IN EVENT FORM. WEBPACKER?
 #API
 gem "omnicontacts" #IMPORT CONTACTS FROM GOOGLE
 gem "recaptcha" #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
