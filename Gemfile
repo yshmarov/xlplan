@@ -31,7 +31,7 @@ gem 'font-awesome-sass' #FONT_AWESOME ICONS
 #auth
 gem 'devise'
 gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git' #MULTITENANCY
-gem 'activerecord-session_store', github: 'rails/activerecord-session_store' #MULTITENANCY FOR STORING TENANT IN SESSION
+gem 'activerecord-session_store' #MULTITENANCY FOR STORING TENANT IN SESSION
 gem "rolify" #USER ROLES
 gem "pundit" #AUTHORIZATION
 gem 'devise_invitable', '~> 2.0.0'

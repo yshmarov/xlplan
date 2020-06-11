@@ -16,17 +16,6 @@ GIT
       devise (~> 4.2)
       rails (~> 5.0)
 
-GIT
-  remote: https://github.com/rails/activerecord-session_store.git
-  revision: 1c5636d09b1761537c1764b1d71f3775e665f895
-  specs:
-    activerecord-session_store (1.1.3)
-      actionpack (>= 5.2)
-      activerecord (>= 5.2)
-      multi_json (~> 1.11, >= 1.11.2)
-      rack (>= 2.0.0, < 3)
-      railties (>= 5.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,6 +51,12 @@ GEM
       activemodel (= 5.2.4.3)
       activesupport (= 5.2.4.3)
       arel (>= 9.0)
+    activerecord-session_store (1.1.3)
+      actionpack (>= 4.0)
+      activerecord (>= 4.0)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 1.5.2, < 3)
+      railties (>= 4.0)
     activestorage (5.2.4.3)
       actionpack (= 5.2.4.3)
       activerecord (= 5.2.4.3)
@@ -317,7 +312,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-session_store!
+  activerecord-session_store
   aws-sdk-s3
   bootsnap (>= 1.4.2)
   bootstrap
