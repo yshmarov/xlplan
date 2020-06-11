@@ -66,6 +66,7 @@ group :production do
   gem 'exception_notification' #EMAIL ERRORS FOR PRODUCTION
   #gem "aws-sdk-s3" #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
   gem 'aws-sdk-s3', '~> 1.67'
+  gem 'aws-sdk-kms', '~> 1.33'
 end
 
 #gem "mini_magic"
