@@ -65,10 +65,7 @@ gem "recaptcha" #CAPTCHA. SO THAT BOTS DON'T SIGN UP. FOR PRODUCTION
 group :production do
   gem 'exception_notification' #EMAIL ERRORS FOR PRODUCTION
   gem "aws-sdk-s3" #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
-  #gem 'aws-sdk-s3', '~> 1.67'
-  #gem 'aws-sdk-kms', '~> 1.34.1'
 end
-#gem "aws-sdk-s3" #STORING FILES (IMAGES AND ATTACHMENTS). FOR PRODUCTION
 
 #gem "mini_magic"
 gem "icalendar" #Send calendar events to other calendar apps
