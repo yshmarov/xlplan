@@ -10,7 +10,7 @@ Milia.setup do |config|
 
   # whitelist tenant params list
   # example: [:name]
-  config.whitelist_tenant_params = [:locale, :subdomain]
+  config.whitelist_tenant_params = [:locale]
 
   # whitelist coupon params list
   # example: [:coupon]
