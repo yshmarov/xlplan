@@ -37,8 +37,7 @@ Rails.application.routes.draw do
     registrations: 'registrations',
     confirmations: 'confirmations',
     sessions: 'milia/sessions', 
-    passwords: 'milia/passwords', 
-    invitations: 'invitations'
+    passwords: 'milia/passwords'
   }
 
   resources :users, only: [:destroy, :edit, :update]
@@ -47,7 +46,6 @@ Rails.application.routes.draw do
     member do
       delete :delete_avatar
       get :calendar
-  		patch :invite_user
     end
   end
   resources :after_signup_wizard

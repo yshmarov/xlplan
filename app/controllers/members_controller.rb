@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy, :calendar, :invite_user]
+  before_action :set_member, only: [:show, :edit, :update, :destroy, :calendar]
 
   def index
     @ransack_members = Member.ransack(params[:members_search], search_key: :members_search)
@@ -19,17 +19,6 @@ class MembersController < ApplicationController
     @jobs = @member.jobs.includes(:service, :event => [:client, :workplace]).group_by { |job| [job.event, job.member] }
     render 'dashboard/calendar'
   end
-
-	def invite_user
-	  #User.create!(email: @member.email)
-    authorize @member, :create?
-    #User.invite!(email: @member.email, member_id: @member.id)
-    #User.invite!(email: @member.email)
-    @user = User.invite!(email: @member.email, tenant_id: @member.tenant_id)
-    @member.user_id = @user.id
-    @user.tenants << @member.tenant
-    redirect_to members_path, notice: "Invitation sent to #{@member.full_name}"
-	end
 
   def show
     authorize @member

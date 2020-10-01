@@ -34,7 +34,6 @@ gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git' #MULTITENANC
 gem 'activerecord-session_store' #MULTITENANCY FOR STORING TENANT IN SESSION
 gem "rolify" #USER ROLES
 gem "pundit" #AUTHORIZATION
-gem 'devise_invitable', '~> 2.0.0'
 #charts
 gem "chartkick" #EASY CHARTS FOR RAILS
 gem 'groupdate' #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK

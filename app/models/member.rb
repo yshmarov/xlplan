@@ -16,9 +16,11 @@ class Member < ApplicationRecord
   validates :slug, uniqueness: { case_sensitive: false }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validates :email, :phone_number, length: { maximum: 255 }
+
+  validates :user_id, uniqueness: true, allow_blank: true #presence: true
   #validates :user_id, uniqueness: true, allow_blank: true #presence: true
   #validates_uniqueness_of :user_id, scope: :tenant_id
-  validates_uniqueness_of :email, scope: :tenant_id, allow_blank: true
+  #validates_uniqueness_of :email, scope: :tenant_id, allow_blank: true
 
   has_many :operating_hours, inverse_of: :member, dependent: :destroy
   accepts_nested_attributes_for :operating_hours, reject_if: :all_blank, allow_destroy: true

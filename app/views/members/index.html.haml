@@ -74,45 +74,6 @@
           /%td= member.transactions_sum_cents
           /%td= member.balance_cents
           %td
-            /////////////////////user account/////////////////////
-            - if member.user.present?
-              = member.user.email
-              .row
-              /////////////////////user roles/////////////////////
-              /= member.user.roles.where.not("name = 'owner'").collect{|r| r.name}.to_sentence
-              - member.user.roles.where.not("name = 'owner'").each do |r| 
-                = role_label(r.name)
-              - if member.user.confirmed_at?
-                .row
-                = t('.has_access')
-              - else
-                .row
-                /= t('.no_access_resend_invitation_email')
-                = t('.no_access')
-              - unless member == current_user.member
-                - if member.user.present?
-                  .row
-                  = link_to "<i class='fa-fw fa fa-trash'></i> #{t('.delete_access')}".html_safe, member.user, method: :delete, data: { confirm: 'Are you sure?' }, class: "badge badge-danger" if policy(member.user).destroy?
-            - else
-              = t('.no_access')
-              - if member.active?
-                - if member.email.present?
-                  /= t('.invite_user')
-                  = link_to "Invite", invite_user_member_path(member), method: :patch, class: 'btn btn-xs btn-success'
-                  = member.user.present?
-                  - if member.user.present?
-                    = member.user.invitation_accepted_at?
-                  /= button_to t('.invite_user'), invite_user_member_path(member), method: :patch, class: 'btn btn-sm btn-primary mr-md-2'
-                  /Devise invitable here
-                  /- if policy(User).create?
-                  /  = simple_form_for(User.new, url: user_invitation_path) do |z|
-                  /    = z.input :email, input_html: {value: member.email}, as: :hidden
-                  /    = z.input :member_id, input_html: {value: member.id}, as: :hidden
-                  /    = z.button :submit, 'Invite', class: "btn btn-success btn-sm"
-                - else
-                  = t('.add_email_to_invite_user')
-              - else
-                = t('.terminated')
 /%br
 /= Tenant.current_tenant.users.count
 /- Tenant.current_tenant.users.each do |user| 
