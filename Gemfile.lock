@@ -305,7 +305,6 @@ GEM
       railties (>= 3.0.7)
     wicked_pdf (2.1.0)
       activesupport
-    wkhtmltopdf-binary (0.12.6.2)
     wkhtmltopdf-heroku (2.12.5.0)
 
 PLATFORMS
@@ -360,7 +359,6 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   wicked
   wicked_pdf
-  wkhtmltopdf-binary
   wkhtmltopdf-heroku
 
 RUBY VERSION

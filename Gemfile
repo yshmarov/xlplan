@@ -47,7 +47,7 @@ gem 'friendly_id'
 gem 'wicked' #turn conrollers (forms) into step-by-step wizards
 #PDF
 gem 'wicked_pdf' #GENERATE PDF FROM HTML
-gem 'wkhtmltopdf-binary', group: :development
+#gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
 #calendar
 gem 'fullcalendar-rails' #FULLCALENDAR.IO in Rails WEBPACKER

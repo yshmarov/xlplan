@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_25_122123) do
+ActiveRecord::Schema.define(version: 2020_03_27_134950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -365,6 +365,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_122123) do
   create_table "tenants", force: :cascade do |t|
     t.bigint "tenant_id"
     t.string "name", limit: 40, null: false
+    t.string "subdomain"
     t.string "plan", limit: 40, default: "demo", null: false
     t.string "default_currency", limit: 3, default: "usd", null: false
     t.string "locale", limit: 2, default: "en", null: false
@@ -381,6 +382,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_122123) do
     t.index ["locale"], name: "index_tenants_on_locale"
     t.index ["name"], name: "index_tenants_on_name"
     t.index ["plan"], name: "index_tenants_on_plan"
+    t.index ["subdomain"], name: "index_tenants_on_subdomain"
     t.index ["tenant_id"], name: "index_tenants_on_tenant_id"
   end
 
