@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '2.7.2'
 
 gem 'rails', '~> 5.2.4.3'
 gem 'pg'
@@ -23,29 +23,29 @@ group :development do
 end
 
 #basic
-gem 'haml'
-gem 'bootstrap' # bootstrap4 WEBPACKER
-gem 'jquery-rails', '~> 4.3.5' # for bootstrap WEBPACKER
-gem 'simple_form'
-gem 'font-awesome-sass' #FONT_AWESOME ICONS
+gem 'haml' # OK
+gem 'bootstrap' # TO DO WEBPACKER
+gem 'jquery-rails', '~> 4.3.5' # TO DO WEBPACKER
+gem 'simple_form' # OK
+gem 'font-awesome-sass' # TO DO WEBPACKER
 #auth
-gem 'devise'
-gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git' #MULTITENANCY
-gem 'activerecord-session_store' #MULTITENANCY FOR STORING TENANT IN SESSION
-gem "rolify" #USER ROLES
-gem "pundit" #AUTHORIZATION
+gem 'devise' # OK
+gem 'milia', '~>1.3', :git => 'https://github.com/jekuno/milia.git' # MULTITENANCY
+gem 'activerecord-session_store' # MULTITENANCY FOR STORING TENANT IN SESSION (not in use currently?)
+gem "rolify" # MEMBER ROLES
+gem "pundit" # AUTHORIZATION
 #charts
-gem "chartkick" #EASY CHARTS FOR RAILS
-gem 'groupdate' #GROUPING BY PERIOD MADE EASY. NEEDED FOR CHARTKICK
+gem "chartkick" # CHARTS
+gem 'groupdate' #GROUPING BY PERIOD. NEEDED FOR CHARTKICK
 #data
-gem 'pagy' #PAGINATION
-gem 'ransack' #SEARCH
-gem 'money-rails' #HANDLING MONEY IN THE DATABASE
-gem 'public_activity', github: 'chaps-io/public_activity' #TABLE WITH CRUD HISTORY
+gem 'pagy' # PAGINATION
+gem 'ransack' # SEARCH
+gem 'money-rails' # HANDLING MONEY
+gem 'public_activity', github: 'chaps-io/public_activity' # TABLE WITH CRUD HISTORY
 gem 'friendly_id'
-gem 'wicked' #turn conrollers (forms) into step-by-step wizards
+gem 'wicked' # turn conrollers (forms) into step-by-step wizards
 #PDF
-gem 'wicked_pdf' #GENERATE PDF FROM HTML
+gem 'wicked_pdf' # GENERATE PDF FROM HTML
 #gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
 #calendar
