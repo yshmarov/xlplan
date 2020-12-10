@@ -2,12 +2,12 @@ class Tenant < ApplicationRecord
   #-----------------------gem milia-------------------#
   acts_as_universal_and_determines_tenant
   #-----------------------gem public_activity-------------------#
-  #include PublicActivity::Model
-  #tracked owner: Proc.new{ |controller, model| controller.current_user }
-  #tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
+  # include PublicActivity::Model
+  # tracked owner: Proc.new{ |controller, model| controller.current_user }
+  # tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
   #-----------------------relationships-------------------#
   has_one_attached :logo
-  #has_many :activities, dependent: :destroy
+  # has_many :activities, dependent: :destroy
   has_many :clients, dependent: :destroy
   has_many :client_tags, dependent: :destroy
   has_many :tags, dependent: :destroy
@@ -26,51 +26,54 @@ class Tenant < ApplicationRecord
   has_many :roles, dependent: :destroy
   #-----------------------validation-------------------#
   validates :name, :plan, :default_currency, :locale, :industry, :time_zone, presence: true
-  validates :name, uniqueness: true, length: { maximum: 40 } #in schema it is 40, but 20 is better
-  validates :description, length: { maximum: 500 }
-  validates :plan, length: { maximum: 10 }, inclusion: %w(demo blocked solo mini max) #in schema it is 40, but 10 is better
-  validates :industry, length: { maximum: 144 }
-  validates :default_currency, length: { maximum: 3 }
-  validates :locale, length: { maximum: 2 }
+  validates :name, uniqueness: true, length: {maximum: 40} # in schema it is 40, but 20 is better
+  validates :description, length: {maximum: 500}
+  validates :plan, length: {maximum: 10}, inclusion: %w[demo blocked solo mini max] # in schema it is 40, but 10 is better
+  validates :industry, length: {maximum: 144}
+  validates :default_currency, length: {maximum: 3}
+  validates :locale, length: {maximum: 2}
   #-----------------------scopes-------------------#
   scope :online_booking, -> { where(online_booking: true) }
-  scope :not_blocked, -> { where.not(plan: 'blocked') }
+  scope :not_blocked, -> { where.not(plan: "blocked") }
 
-  ###select industry###
+  # ##select industry###
   INDUSTRIES = [:hair_beauty_barbershop, :cosmetology, :solarium, :tattoo_studio, :spa, :sauna,
-  :private_clinic, :stomatology, :ophtalmologist, :psychologist, :veterinary_clinic, :massage,
-  :car_services, :legal_consulting, :business_consulting, :field_services, :cleaning_services, :tutors,
-  :other]
+    :private_clinic, :stomatology, :ophtalmologist, :psychologist, :veterinary_clinic, :massage,
+    :car_services, :legal_consulting, :business_consulting, :field_services, :cleaning_services, :tutors,
+    :other]
   def self.industries
     INDUSTRIES.map { |industry| [I18n.t(industry, scope: [:static_pages, :landing_page]), industry] }
   end
 
-  ###plan limits###
+  # ##plan limits###
   def can_create_locations?
-    (plan == 'solo' && locations.count < 1) || (plan == 'mini' && locations.count < 1) || (plan == 'max') || (plan == 'demo')
-  end
-  def can_create_members?
-    (plan == 'solo' && members.count < 1) || (plan == 'mini' && members.count < 5) || (plan == 'max') || (plan == 'demo')
+    (plan == "solo" && locations.count < 1) || (plan == "mini" && locations.count < 1) || (plan == "max") || (plan == "demo")
   end
 
-  ###milia###
+  def can_create_members?
+    (plan == "solo" && members.count < 1) || (plan == "mini" && members.count < 5) || (plan == "max") || (plan == "demo")
+  end
+
+  # ##milia###
   def self.create_new_tenant(tenant_params, user_params, coupon_params)
-    #tenant = Tenant.new(:name => tenant_params[:name])
+    # tenant = Tenant.new(:name => tenant_params[:name])
     tenant = Tenant.new(tenant_params)
     if new_signups_not_permitted?(coupon_params)
-      raise ::Milia::Control::MaxTenantExceeded, "Sorry, new accounts not permitted at this time" 
-    else 
-      tenant.save    # create the tenant
+      raise ::Milia::Control::MaxTenantExceeded, "Sorry, new accounts not permitted at this time"
+    else
+      tenant.save # create the tenant
     end
-    return tenant
+    tenant
   end
+
   # ------------------------------------------------------------------------
   def self.new_signups_not_permitted?(params)
-    return false
+    false
   end
+
   # ------------------------------------------------------------------------
   def self.tenant_signup(user, tenant, other = nil)
-    Role.create!(name: "manager") #initially only admin and specialist are created.
+    Role.create!(name: "manager") # initially only admin and specialist are created.
     Tag.create!(name: "potential")
     Tag.create!(name: "contact_required")
     Tag.create!(name: "regular")

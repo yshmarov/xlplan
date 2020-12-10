@@ -2,12 +2,12 @@ class ServiceCategoriesController < ApplicationController
   before_action :set_service_category, only: [:edit, :update, :destroy]
 
   def index
-    @service_categories = ServiceCategory.all.order('updated_at DESC')
+    @service_categories = ServiceCategory.all.order("updated_at DESC")
   end
 
   def new
     @service_category = ServiceCategory.new
-    #@service_categories = ServiceCategory.order(:name)
+    # @service_categories = ServiceCategory.order(:name)
     authorize @service_category
   end
 
@@ -21,10 +21,10 @@ class ServiceCategoriesController < ApplicationController
 
     respond_to do |format|
       if @service_category.save
-        format.html { redirect_to service_categories_path, notice: 'Service category was successfully created.' }
+        format.html { redirect_to service_categories_path, notice: "Service category was successfully created." }
         format.json { render json: @service_category }
       else
-        #@service_categories = ServiceCategory.order(:name)
+        # @service_categories = ServiceCategory.order(:name)
         format.html { render :new }
         format.json { render json: {errors: @service_category.errors.full_messages} }
       end
@@ -34,7 +34,7 @@ class ServiceCategoriesController < ApplicationController
   def update
     authorize @service_category
     if @service_category.update(service_category_params)
-      redirect_to service_categories_url, notice: 'Service category was successfully updated.'
+      redirect_to service_categories_url, notice: "Service category was successfully updated."
     else
       render :edit
     end
@@ -44,18 +44,19 @@ class ServiceCategoriesController < ApplicationController
     authorize @service_category
     @service_category.destroy
     if @service_category.errors.present?
-      redirect_to service_categories_url, alert: 'Service Category has associated services or skills. Can not delete.'
+      redirect_to service_categories_url, alert: "Service Category has associated services or skills. Can not delete."
     else
-      redirect_to service_categories_url, notice: 'Service Category was successfully destroyed.'
+      redirect_to service_categories_url, notice: "Service Category was successfully destroyed."
     end
   end
 
   private
-    def set_service_category
-      @service_category = ServiceCategory.friendly.find(params[:id])
-    end
 
-    def service_category_params
-      params.require(:service_category).permit(:name)
-    end
+  def set_service_category
+    @service_category = ServiceCategory.friendly.find(params[:id])
+  end
+
+  def service_category_params
+    params.require(:service_category).permit(:name)
+  end
 end

@@ -26,6 +26,5 @@ class AddFriendlyIdToAll < ActiveRecord::Migration[5.2]
 
     add_column :leads, :slug, :string
     add_index :leads, :slug, unique: true
-
   end
 end

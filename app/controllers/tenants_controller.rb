@@ -10,9 +10,9 @@ class TenantsController < ApplicationController
 
   def show
     authorize @tenant
-    #@tenant = Tenant.current_tenant
+    # @tenant = Tenant.current_tenant
   end
-  
+
   def update
     authorize @tenant
     if @tenant.update(tenant_params)
@@ -28,15 +28,15 @@ class TenantsController < ApplicationController
     session[:tenant_id] = Tenant.current_tenant.id
     redirect_to home_index_path, notice: "Switched to settings #{@tenant.name}"
   end
-  
+
   private
-  
+
   def set_tenant
     @tenant = Tenant.find(Tenant.current_tenant_id)
   end
-  
+
   def tenant_params
     params.require(:tenant).permit(:name, :default_currency, :locale, :time_zone, :theme,
-                    :industry, :logo, :website, :online_booking, :description, :instagram)
+      :industry, :logo, :website, :online_booking, :description, :instagram)
   end
 end

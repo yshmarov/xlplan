@@ -6,20 +6,20 @@ class Transaction < ApplicationRecord
   belongs_to :cash_account, touch: true, counter_cache: true
   #-----------------------validation-------------------#
   validates :amount, :amount_cents, :cash_account, :payable_id, :payable_type, presence: true
-  validates :amount, :amount_cents, :numericality => {:greater_than => -10000000000, :less_than => 10000000000}
+  validates :amount, :amount_cents, numericality: {greater_than: -10000000000, less_than: 10000000000}
   validates :slug, uniqueness: true
-  validates :slug, uniqueness: { case_sensitive: false }
+  validates :slug, uniqueness: {case_sensitive: false}
   #-----------------------gem money-------------------#
   monetize :amount, as: :amount_cents
   #-----------------------gem public_activity-------------------#
   include PublicActivity::Model
-  tracked owner: Proc.new{ |controller, model| controller.current_user }
-  tracked tenant_id: Proc.new{ Tenant.current_tenant.id }
+  tracked owner: proc { |controller, model| controller.current_user }
+  tracked tenant_id: proc { Tenant.current_tenant.id }
   #-----------------------gem friendly_id-------------------#
   extend FriendlyId
   friendly_id :generated_slug, use: :slugged
   def generated_slug
-    require 'securerandom' 
+    require "securerandom"
     @random_slug ||= persisted? ? friendly_id : SecureRandom.hex(4)
   end
 

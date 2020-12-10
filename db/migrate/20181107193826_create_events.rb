@@ -12,16 +12,15 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.integer :event_due_price, default: 0, null: false
 
       t.integer :status, default: 0, null: false
-      t.string :status_color, default: 'blue'
+      t.string :status_color, default: "blue"
 
-      t.text :notes, :limit => 500
+      t.text :notes, limit: 500
 
       t.integer :jobs_count, :integer, default: 0, null: false
 
       t.timestamps
 
-      #add_index :events, :status
-
+      # add_index :events, :status
     end
   end
 end

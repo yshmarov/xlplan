@@ -9,10 +9,8 @@ Ransack.configure do |config|
     config.add_predicate rp, arel_predicate: ap, wants_array: true
   end
 
-  config.add_predicate 'datelteq',
-    arel_predicate: 'lteq',
+  config.add_predicate "datelteq",
+    arel_predicate: "lteq",
     formatter: proc { |v| v.end_of_day },
     type: :date
-
-
 end

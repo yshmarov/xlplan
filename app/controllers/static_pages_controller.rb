@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :authenticate_tenant!, :only => [:landing_page, :stats]
+  skip_before_action :authenticate_tenant!, only: [:landing_page, :stats]
 
   def landing_page
     if current_user
@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
   end
 
   protected
-  
+
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
       username == "passa" && password == "usera"

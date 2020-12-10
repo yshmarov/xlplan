@@ -19,7 +19,7 @@ class CashAccountsController < ApplicationController
     authorize @cash_account
     respond_to do |format|
       if @cash_account.save
-        format.html { redirect_to cash_accounts_url, notice: 'Cash account was successfully created.' }
+        format.html { redirect_to cash_accounts_url, notice: "Cash account was successfully created." }
         format.json { render :show, status: :created, location: @cash_account }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class CashAccountsController < ApplicationController
     authorize @cash_account
     respond_to do |format|
       if @cash_account.update(cash_account_params)
-        format.html { redirect_to cash_accounts_url, notice: 'Cash account was successfully updated.' }
+        format.html { redirect_to cash_accounts_url, notice: "Cash account was successfully updated." }
         format.json { render :show, status: :ok, location: @cash_account }
       else
         format.html { render :edit }
@@ -45,17 +45,18 @@ class CashAccountsController < ApplicationController
     authorize @cash_account
     @cash_account.destroy
     respond_to do |format|
-      format.html { redirect_to cash_accounts_url, notice: 'Cash account was successfully destroyed.' }
+      format.html { redirect_to cash_accounts_url, notice: "Cash account was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    def set_cash_account
-      @cash_account = CashAccount.friendly.find(params[:id])
-    end
 
-    def cash_account_params
-      params.require(:cash_account).permit(:name, :active)
-    end
+  def set_cash_account
+    @cash_account = CashAccount.friendly.find(params[:id])
+  end
+
+  def cash_account_params
+    params.require(:cash_account).permit(:name, :active)
+  end
 end

@@ -22,11 +22,11 @@ class LocationPolicy < ApplicationPolicy
   end
 
   def destroy?
-    #@record.events.none? && @record.members.none? && admin
+    # @record.events.none? && @record.members.none? && admin
     @record.events.none? && admin
-    #@record.events.none?
-    #@record.workplaces.none?
-    #@record.members.none? && admin
-    #admin
+    # @record.events.none?
+    # @record.workplaces.none?
+    # @record.members.none? && admin
+    # admin
   end
 end

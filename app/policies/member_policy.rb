@@ -28,9 +28,9 @@ class MemberPolicy < ApplicationPolicy
   def update?
     admin_or_manager_or_this_member
   end
-  
+
   def destroy?
-    admin && @record.jobs.none? && @record.user.nil?  && @record.transactions.none?
+    admin && @record.jobs.none? && @record.user.nil? && @record.transactions.none?
   end
 
   def admin_or_manager_or_this_member

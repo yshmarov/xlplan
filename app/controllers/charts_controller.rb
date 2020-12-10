@@ -8,15 +8,15 @@ class ChartsController < ApplicationController
   end
 
   def members_jobs_per_member_per_month_quantity
-    render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).group_by_month('events.starts_at').count} }
+    render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: ["confirmed", "no_show_refunded"]}).group_by_month("events.starts_at").count} }
   end
 
   def members_confirmed_client_price_per_month
-    render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).group_by_month('events.starts_at').sum('client_due_price / 100')}}
+    render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: ["confirmed", "no_show_refunded"]}).group_by_month("events.starts_at").sum("client_due_price / 100")} }
   end
 
-  def members_confirmed_earnings_per_month  
-    render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: ['confirmed', 'no_show_refunded']}).group_by_month('events.starts_at').sum('member_due_price / 100')}}
+  def members_confirmed_earnings_per_month
+    render json: Member.all.map { |member| {name: member.full_name, data: member.jobs.joins(:event).where(events: {status: ["confirmed", "no_show_refunded"]}).group_by_month("events.starts_at").sum("member_due_price / 100")} }
   end
 
   def transactions_per_day

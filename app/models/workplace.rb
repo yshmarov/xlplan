@@ -7,13 +7,14 @@ class Workplace < ApplicationRecord
   has_many :jobs, through: :events
   #-----------------------validation-------------------#
   validates :name, presence: true
-  validates :name, length: { maximum: 20 }
+  validates :name, length: {maximum: 20}
   validates_uniqueness_of :name, scope: :location_id
   def to_s
-    #name
-    #name + "/" + location.name
+    # name
+    # name + "/" + location.name
     location.name + "/" + name
   end
+
   def short_name
     to_s
   end
@@ -21,7 +22,7 @@ class Workplace < ApplicationRecord
   extend FriendlyId
   friendly_id :generated_slug, use: :slugged
   def generated_slug
-    require 'securerandom' 
+    require "securerandom"
     @random_slug ||= persisted? ? friendly_id : SecureRandom.hex(4)
   end
 end

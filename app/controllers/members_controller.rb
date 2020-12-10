@@ -7,23 +7,23 @@ class MembersController < ApplicationController
   end
 
   def calendar_list
-    @members = Member.active.order('created_at ASC')
+    @members = Member.active.order("created_at ASC")
     @locations = Location.all.includes(:workplaces)
-    @jobs = Job.includes(:service, :member, :event => [:client, :workplace]).group_by { |job| [job.event, job.member] }
-    render 'dashboard/calendar'
+    @jobs = Job.includes(:service, :member, event: [:client, :workplace]).group_by { |job| [job.event, job.member] }
+    render "dashboard/calendar"
   end
 
   def calendar
-    @members = Member.active.order('created_at ASC')
+    @members = Member.active.order("created_at ASC")
     @locations = Location.all.includes(:workplaces)
-    @jobs = @member.jobs.includes(:service, :event => [:client, :workplace]).group_by { |job| [job.event, job.member] }
-    render 'dashboard/calendar'
+    @jobs = @member.jobs.includes(:service, event: [:client, :workplace]).group_by { |job| [job.event, job.member] }
+    render "dashboard/calendar"
   end
 
   def show
     authorize @member
   end
-  
+
   def edit
     authorize @member
   end
@@ -31,15 +31,15 @@ class MembersController < ApplicationController
   def delete_avatar
     avatar = ActiveStorage::Attachment.find(params[:id])
     avatar.purge # or use purge_later
-    #redirect_to @member
-    redirect_to members_url, notice: 'Avatar deleted.'
-    #redirect_back(fallback_location: members_path)
+    # redirect_to @member
+    redirect_to members_url, notice: "Avatar deleted."
+    # redirect_back(fallback_location: members_path)
   end
 
   def new
     @member = Member.new
     authorize @member
-    #7.times { @location.operating_hours.build}
+    # 7.times { @location.operating_hours.build}
   end
 
   def create
@@ -47,7 +47,7 @@ class MembersController < ApplicationController
     authorize @member
     respond_to do |format|
       if @member.save
-        format.html { redirect_to @member, notice: 'Employee was successfully created.' }
+        format.html { redirect_to @member, notice: "Employee was successfully created." }
         format.json { render :show, status: :created, location: @member }
       else
         format.html { render :new }
@@ -58,10 +58,10 @@ class MembersController < ApplicationController
 
   def update
     authorize @member
-    #@member.avatar.attach(params[:avatar])
+    # @member.avatar.attach(params[:avatar])
     respond_to do |format|
       if @member.update(member_params)
-        format.html { redirect_to @member, notice: 'Member was successfully updated.' }
+        format.html { redirect_to @member, notice: "Member was successfully updated." }
         format.json { render :show, status: :ok, location: @member }
       else
         format.html { render :edit }
@@ -74,21 +74,22 @@ class MembersController < ApplicationController
     authorize @member
     @member.destroy
     if @member.errors.present?
-      redirect_to @member, alert: 'Member has associated jobs. Can not delete.'
+      redirect_to @member, alert: "Member has associated jobs. Can not delete."
     else
-      redirect_to members_url, notice: 'Member was successfully destroyed.'
+      redirect_to members_url, notice: "Member was successfully destroyed."
     end
   end
 
   private
-    def set_member
-      @member = Member.friendly.find(params[:id])
-    end
-  
-    def member_params
-      params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :time_zone,
+
+  def set_member
+    @member = Member.friendly.find(params[:id])
+  end
+
+  def member_params
+    params.require(:member).permit(:first_name, :last_name, :phone_number, :email, :time_zone,
       :active, :location_id, :avatar, :online_booking,
       service_category_ids: [],
       operating_hours_attributes: [:id, :day_of_week, :closes, :opens, :valid_from, :valid_through, :_destroy])
-    end
+  end
 end

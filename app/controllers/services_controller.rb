@@ -27,7 +27,7 @@ class ServicesController < ApplicationController
 
     respond_to do |format|
       if @service.save
-        format.html { redirect_to services_url, notice: 'Service was successfully created.' }
+        format.html { redirect_to services_url, notice: "Service was successfully created." }
         format.json { render :show, status: :created, location: @service }
       else
         format.html { render :new }
@@ -40,7 +40,7 @@ class ServicesController < ApplicationController
     authorize @service
     respond_to do |format|
       if @service.update(service_params)
-        format.html { redirect_to services_url, notice: 'Service was successfully updated.' }
+        format.html { redirect_to services_url, notice: "Service was successfully updated." }
         format.json { render :show, status: :ok, location: @service }
       else
         format.html { render :edit }
@@ -53,20 +53,21 @@ class ServicesController < ApplicationController
     authorize @service
     @service.destroy
     if @service.errors.present?
-      redirect_to services_url, alert: 'Service has associated jobs. Can not delete.'
+      redirect_to services_url, alert: "Service has associated jobs. Can not delete."
     else
-      redirect_to services_url, notice: 'Service was successfully destroyed.'
+      redirect_to services_url, notice: "Service was successfully destroyed."
     end
   end
 
   private
-    def set_service
-      @service = Service.friendly.find(params[:id])
-    end
 
-    def service_params
-      params.require(:service).permit(:service_category_id, :name, :description, :duration, 
-          :client_price, :member_price, :client_price_cents, :member_price_cents, :member_percent,
-          :active, :online_booking)
-    end
+  def set_service
+    @service = Service.friendly.find(params[:id])
+  end
+
+  def service_params
+    params.require(:service).permit(:service_category_id, :name, :description, :duration,
+      :client_price, :member_price, :client_price_cents, :member_price_cents, :member_percent,
+      :active, :online_booking)
+  end
 end

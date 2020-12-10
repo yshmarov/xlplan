@@ -14,17 +14,17 @@ class EventPolicy < ApplicationPolicy
   end
 
   def create?
-    admin_or_manager_or_specialist 
+    admin_or_manager_or_specialist
   end
 
   def edit?
     @record.planned? || admin_or_manager
-    #admin || @record.event.planned? && manager || @record.event.planned? && @user.has_role?(:owner, @record.event)
-    #admin || @record.event.planned? && manager || @record.event.planned? && @record.member_id == @user.member.id
-    #@record.event.planned? && admin_or_manager_or_owner
-    #admin_or_manager_or_owner
-    #admin || manager ||  @record.member_id == @user.member.id
-    #@record.planned? && admin_or_manager || @record.planned? && @user.has_role?(:owner, @record)
+    # admin || @record.event.planned? && manager || @record.event.planned? && @user.has_role?(:owner, @record.event)
+    # admin || @record.event.planned? && manager || @record.event.planned? && @record.member_id == @user.member.id
+    # @record.event.planned? && admin_or_manager_or_owner
+    # admin_or_manager_or_owner
+    # admin || manager ||  @record.member_id == @user.member.id
+    # @record.planned? && admin_or_manager || @record.planned? && @user.has_role?(:owner, @record)
   end
 
   def update?

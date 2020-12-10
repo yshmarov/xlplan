@@ -1,9 +1,9 @@
 Rails.application.configure do
-  #config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  #config.action_mailer.default_url_options = { :host => '1f03a2fe42b54592b253d79bdc218de1.vfs.cloud9.eu-central-1.amazonaws.com', :protocol => 'https' }
-  config.action_mailer.default_url_options = { :host => 'https://1f03a2fe42b54592b253d79bdc218de1.vfs.cloud9.eu-central-1.amazonaws.com'}
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { :host => '1f03a2fe42b54592b253d79bdc218de1.vfs.cloud9.eu-central-1.amazonaws.com', :protocol => 'https' }
+  config.action_mailer.default_url_options = {host: "https://1f03a2fe42b54592b253d79bdc218de1.vfs.cloud9.eu-central-1.amazonaws.com"}
 
-  #config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.delivery_method = :smtp
   config.action_mailer.delivery_method = :test
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -21,12 +21,12 @@ Rails.application.configure do
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false
@@ -35,8 +35,8 @@ Rails.application.configure do
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
-  #config.active_storage.service = :amazon_development
-  #config.active_storage.service = :amazon_production
+  # config.active_storage.service = :amazon_development
+  # config.active_storage.service = :amazon_production
   config.active_storage.service = :local
 
   # True - If I want to see errors in mailer sending.

@@ -1,6 +1,6 @@
-require_relative 'boot'
+require_relative "boot"
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -27,13 +27,12 @@ module Xlplan
 
     # Whitelist locales available for the application
     I18n.available_locales = [:en, :ru]
-    #I18n.enforce_available_locales = false
-     
+    # I18n.enforce_available_locales = false
+
     # Set default locale to something other than :en
     I18n.default_locale = :en
 
-    config.time_zone = 'UTC'
-    #config.action_mailer.default_url_options = { host: 'example.com' }
-
+    config.time_zone = "UTC"
+    # config.action_mailer.default_url_options = { host: 'example.com' }
   end
 end

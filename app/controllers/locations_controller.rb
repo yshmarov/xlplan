@@ -1,16 +1,16 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
-  #include StatusHelper
+  # include StatusHelper
 
   def index
     @locations = Location.includes(:workplaces)
   end
 
   def show
-    @members = Member.active.order('created_at ASC')
+    @members = Member.active.order("created_at ASC")
     @locations = Location.all
-    @events = @location.events.includes(:workplace, :client, :jobs => [:member, :service])
-    render 'dashboard/calendar'
+    @events = @location.events.includes(:workplace, :client, jobs: [:member, :service])
+    render "dashboard/calendar"
   end
 
   def new
@@ -29,7 +29,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
-        format.html { redirect_to locations_url, notice: 'Location was successfully created.' }
+        format.html { redirect_to locations_url, notice: "Location was successfully created." }
         format.json { render :show, status: :created, location: @location }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LocationsController < ApplicationController
     authorize @location
     respond_to do |format|
       if @location.update(location_params)
-        format.html { redirect_to locations_url, notice: 'Location was successfully updated.' }
+        format.html { redirect_to locations_url, notice: "Location was successfully updated." }
         format.json { render :show, status: :ok, location: @location }
       else
         format.html { render :edit }
@@ -55,19 +55,20 @@ class LocationsController < ApplicationController
     authorize @location
     @location.destroy
     if @location.errors.present?
-      redirect_to locations_url, alert: 'Location has associated records. Can not delete.'
+      redirect_to locations_url, alert: "Location has associated records. Can not delete."
     else
-      redirect_to locations_url, notice: 'Location was successfully destroyed.'
+      redirect_to locations_url, notice: "Location was successfully destroyed."
     end
   end
 
   private
-    def set_location
-      @location = Location.friendly.find(params[:id])
-    end
 
-    def location_params
-      params.require(:location).permit(:name, :active, :online_booking, :country, :city, :zip, :address,
-          workplaces_attributes: [:id, :name, :_destroy])
-    end
+  def set_location
+    @location = Location.friendly.find(params[:id])
+  end
+
+  def location_params
+    params.require(:location).permit(:name, :active, :online_booking, :country, :city, :zip, :address,
+      workplaces_attributes: [:id, :name, :_destroy])
+  end
 end

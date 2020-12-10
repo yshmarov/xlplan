@@ -1,6 +1,6 @@
 class EventMailer < ApplicationMailer
-  #default to: -> { Admin.pluck(:email) }, from: 'notification@example.com'
-  #/rails/mailers/event_mailer/member_event_created
+  # default to: -> { Admin.pluck(:email) }, from: 'notification@example.com'
+  # /rails/mailers/event_mailer/member_event_created
 
   def client_event_created(event)
     @event = event
@@ -9,36 +9,36 @@ class EventMailer < ApplicationMailer
     event_end = @event.ends_at.strftime("%Y%m%dT%H%M%S%Z")
     @location = "#{@event.workplace.location.name}, #{@event.workplace.location.address_line}"
 
-    @summary = "#{@event.services.pluck(:name).join(', ')} (#{Tenant.current_tenant.name})"
-    @description = "#{@event.services.pluck(:name).join(', ')}.
+    @summary = "#{@event.services.pluck(:name).join(", ")} (#{Tenant.current_tenant.name})"
+    @description = "#{@event.services.pluck(:name).join(", ")}.
                     #{Tenant.current_tenant.name},
                     #{@event.workplace.location.name},
                     #{@event.workplace.location.phone_number},
-                    #{@event.workplace.location.address_line}. 
+                    #{@event.workplace.location.address_line}.
                     Powered by XLPLAN https://www.xlplan.com"
 
-    #@organiser = @event.members.distinct.pluck(:email)
+    # @organiser = @event.members.distinct.pluck(:email)
     @organiser = "mailto:#{@event.users.pluck(:email)}"
-    #@attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
-    #@attendee = %w(mailto: #{@event.client.email})
+    # @attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
+    # @attendee = %w(mailto: #{@event.client.email})
 
     ical = Icalendar::Calendar.new
-    e = Icalendar::Event.new    
+    e = Icalendar::Event.new
     e.dtstart = Icalendar::Values::DateTime.new event_start
-    e.dtend   = Icalendar::Values::DateTime.new event_end
-    e.location = @location      
-    e.summary = @summary   
+    e.dtend = Icalendar::Values::DateTime.new event_end
+    e.location = @location
+    e.summary = @summary
     e.description = @description
 
     e.organizer = @organiser
-    e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: 'Office Manager')
-    #e.attendee  = @attendee   
+    e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: "Office Manager")
+    # e.attendee  = @attendee
 
-    ical.add_event(e)    
-    ical.append_custom_property('METHOD', 'REQUEST')
-    #mail.attachments['slackminder.ics'] = { mime_type: 'application/ics', content: ical.to_ical }
-    mail.attachments['booking.ics'] = { :mime_type => 'text/calendar', content: ical.to_ical }
-    mail(to: @event.client.email, subject: 'Booking created in XLPLAN.com')
+    ical.add_event(e)
+    ical.append_custom_property("METHOD", "REQUEST")
+    # mail.attachments['slackminder.ics'] = { mime_type: 'application/ics', content: ical.to_ical }
+    mail.attachments["booking.ics"] = {mime_type: "text/calendar", content: ical.to_ical}
+    mail(to: @event.client.email, subject: "Booking created in XLPLAN.com")
   end
 
   def member_event_created(event)
@@ -48,53 +48,53 @@ class EventMailer < ApplicationMailer
     event_end = @event.ends_at.strftime("%Y%m%dT%H%M%S%Z")
     @location = "#{@event.workplace.location.name}, #{@event.workplace.location.address_line}"
 
-    @summary = "#{@event.services.pluck(:name).join(', ')} (#{Tenant.current_tenant.name})"
-    @description = "#{@event.services.pluck(:name).join(', ')}.
+    @summary = "#{@event.services.pluck(:name).join(", ")} (#{Tenant.current_tenant.name})"
+    @description = "#{@event.services.pluck(:name).join(", ")}.
                     #{@event.client.full_name},
                     #{@event.client.phone_number},
                     #{Tenant.current_tenant.name},
                     #{@event.workplace.location.name},
                     #{@event.workplace.location.phone_number},
-                    #{@event.workplace.location.address_line}. 
+                    #{@event.workplace.location.address_line}.
                     Powered by XLPLAN.com"
 
-    #@organiser = @event.members.distinct.pluck(:email)
+    # @organiser = @event.members.distinct.pluck(:email)
     @organiser = "mailto:#{@event.users.pluck(:email)}"
-    #@attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
-    #@attendee = %w(mailto: #{@event.client.email})
+    # @attendee = %w(mailto:abc@example.com mailto:xyz@example.com)
+    # @attendee = %w(mailto: #{@event.client.email})
 
     ical = Icalendar::Calendar.new
-    e = Icalendar::Event.new    
+    e = Icalendar::Event.new
     e.dtstart = Icalendar::Values::DateTime.new event_start
-    e.dtend   = Icalendar::Values::DateTime.new event_end
-    e.location = @location      
-    e.summary = @summary   
+    e.dtend = Icalendar::Values::DateTime.new event_end
+    e.location = @location
+    e.summary = @summary
     e.description = @description
 
     e.organizer = @organiser
-    e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: 'Office Manager')
-    #e.attendee  = @attendee   
+    e.organizer = Icalendar::Values::CalAddress.new(@organiser, cn: "Office Manager")
+    # e.attendee  = @attendee
 
-    ical.add_event(e)    
-    ical.append_custom_property('METHOD', 'REQUEST')
-    mail.attachments['booking.ics'] = { :mime_type => 'text/calendar', content: ical.to_ical }
-    mail(to: @event.users.distinct.pluck(:email), subject: 'Booking created in XLPLAN.com')
+    ical.add_event(e)
+    ical.append_custom_property("METHOD", "REQUEST")
+    mail.attachments["booking.ics"] = {mime_type: "text/calendar", content: ical.to_ical}
+    mail(to: @event.users.distinct.pluck(:email), subject: "Booking created in XLPLAN.com")
   end
 
   def welcome_email(user)
     @user = user
-    mail(to: @user.email, subject: 'Welcome to XLPLAN.com')
-    #@greeting = "Hi"
+    mail(to: @user.email, subject: "Welcome to XLPLAN.com")
+    # @greeting = "Hi"
   end
 
   def welcome_email_actionmailer
     @user = params[:user]
-    @url  = 'http://xlplan.com/login'
+    @url = "http://xlplan.com/login"
     @greeting = "Hi Bro!"
-    #mail to: user.email, subject: "Sign Up Confirmation"
-    #mail(to: @user.email, subject: 'Welcome to My Awesome Site')
-    #email_with_name = %("#{@user.name}" <#{@user.email}>)
-    mail(to: User.with_role(:admin).pluck(:email), subject: 'Welcome to My Awesome Site')
+    # mail to: user.email, subject: "Sign Up Confirmation"
+    # mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    # email_with_name = %("#{@user.name}" <#{@user.email}>)
+    mail(to: User.with_role(:admin).pluck(:email), subject: "Welcome to My Awesome Site")
   end
 
   def new_registration(user)
@@ -103,7 +103,7 @@ class EventMailer < ApplicationMailer
   end
 
   def event_created
-    #@user = params[:user]
-    mail(to: "yshmarov@gmail.com", subject: 'Event created')
+    # @user = params[:user]
+    mail(to: "yshmarov@gmail.com", subject: "Event created")
   end
 end

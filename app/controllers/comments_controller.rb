@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   def new
     @comment = @commentable.comments.new
   end
-  
+
   def create
     Comment.public_activity_off
     @comment = @commentable.comments.new comment_params
@@ -19,14 +19,14 @@ class CommentsController < ApplicationController
       redirect_to @commentable, notice: "Comment created."
     else
       redirect_to @commentable, alert: "Comment can't be empty."
-      #render :new
+      # render :new
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
     authorize @comment
-    #@comment.destroy
+    # @comment.destroy
     if @comment.destroy
       redirect_to @commentable, notice: "Comment deleted."
     end
@@ -35,13 +35,12 @@ class CommentsController < ApplicationController
   private
 
   def load_commentable
-    resource, id = request.path.split('/')[1,2]
+    resource, id = request.path.split("/")[1, 2]
     @commentable = resource.singularize.classify.constantize.friendly.find(id)
-
   end
 
   def comment_params
     params.require(:comment).permit(:content)
-    #params.require(:comment).permit(:content)
+    # params.require(:comment).permit(:content)
   end
 end

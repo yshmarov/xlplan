@@ -5,7 +5,7 @@ class CreateTransactions < ActiveRecord::Migration[5.2]
       t.integer :amount, default: 0, null: false
       t.integer :payable_id
       t.string :payable_type
-      t.string :comment, :limit => 144
+      t.string :comment, limit: 144
       t.string :slug
 
       t.timestamps
