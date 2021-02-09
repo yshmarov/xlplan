@@ -272,3 +272,30 @@ Things you may want to cover:
 
 ## Demo
 ![](https://media.giphy.com/media/yMEow45RqC8HrOmmsD/giphy.gif)
+
+
+DELETING A TENANT
+```
+PublicActivity.enabled = false
+Tenant.set_current_tenant(4)
+Contact.delete_all
+Client.delete_all
+ClientTag.delete_all
+Tag.delete_all
+Comment.delete_all
+Transaction.delete_all
+Job.delete_all
+Event.delete_all
+Member.delete_all
+Workplace.delete_all
+Location.delete_all
+Service.delete_all
+ServiceCategory.delete_all
+CashAccount.delete_all
+Skill.delete_all
+Lead.delete_all
+Role.all.unscoped.where(tenant_id: 4).delete_all
+PublicActivity::Activity.where(tenant_id: 4).delete_all
+target = Tenant.find 4
+target.destroy
+```
