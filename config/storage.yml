@@ -6,9 +6,10 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+# the below API keys are also invalid. Put your AWS S3 keys instead.
 amazon_production:
   service: S3
-  access_key_id: "AKIA5RINJLYGFFYTDUEH"
-  secret_access_key: "UcDfFzN3ztxVhTLtlj9BfiQg2OO3pT3Hnc12tXFM"
-  bucket: "xlplan-activestorage-zahoruiko"
-  region: "eu-central-1"
+  access_key_id: "XXXXXXXXXXXXXXXXXXXXXX"
+  secret_access_key: "XXXXXXXXXXXXXXXXXXXXXX"
+  bucket: "XXXXXXXXXXXXXXXXXXXXXX"
+  region: "XXXXXXXXXXXXXXXXXXXXXX"

@@ -1,7 +1,7 @@
 Recaptcha.configure do |config|
   # v3 dev
-  config.site_key = "6Ld0oK4UAAAAAFMX_tobWyLYjnzGXDGWmjbZCRfo"
-  config.secret_key = "6Ld0oK4UAAAAAIzp1UY0fLon1wbUMoNUgaXVEEDA"
+  config.site_key = "XXXXXXXXXXXXXXXXXXXXXX"
+  config.secret_key = "XXXXXXXXXXXXXXXXXXXXXX"
 
   # v3 dev
   # config.site_key  = '6LeuZ64UAAAAAEH1cLfZ7OYTaOwA2eN84TicvS_e'

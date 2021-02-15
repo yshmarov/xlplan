@@ -1,4 +1,13 @@
 
+for simplicity the app does not currently have any credentials.
+google recaptcha
+
+production.rb / environment.rb - SendGrid or alternative email provider
+storage.yml - AWS S3 storage
+omnicontacts.rb - Google People API
+_google_analytics.html.haml - 
+
+
 # RoR version
 rvm list
 rvm install ruby-2.6.5
@@ -277,15 +286,16 @@ Things you may want to cover:
 DELETING A TENANT
 ```
 PublicActivity.enabled = false
-Tenant.set_current_tenant(4)
+ten = 2
+Tenant.set_current_tenant(ten)
 Contact.delete_all
-Client.delete_all
 ClientTag.delete_all
 Tag.delete_all
 Comment.delete_all
 Transaction.delete_all
 Job.delete_all
 Event.delete_all
+Client.delete_all
 Member.delete_all
 Workplace.delete_all
 Location.delete_all
@@ -294,8 +304,8 @@ ServiceCategory.delete_all
 CashAccount.delete_all
 Skill.delete_all
 Lead.delete_all
-Role.all.unscoped.where(tenant_id: 4).delete_all
-PublicActivity::Activity.where(tenant_id: 4).delete_all
-target = Tenant.find 4
+Role.all.unscoped.where(tenant_id: ten).delete_all
+PublicActivity::Activity.where(tenant_id: ten).delete_all
+target = Tenant.find ten
 target.destroy
 ```
