@@ -52,4 +52,8 @@ class User < ApplicationRecord
     #  self.add_role(:specialist)
     # end
   end
+  
+  after_create do
+    self.confirm
+  end
 end
