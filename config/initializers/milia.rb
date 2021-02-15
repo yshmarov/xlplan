@@ -1,6 +1,6 @@
 Milia.setup do |config|
   config.use_coupon = false
-  config.use_recaptcha = true
+  config.use_recaptcha = false
   config.signout_to_root = true # false to return to the sign-in form (devise default)
   config.use_airbrake = false # exception_notification gem alternative
 

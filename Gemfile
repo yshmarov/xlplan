@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.2"
+ruby "2.7.1"
 
 gem "rails", "~> 5.2.4.3"
 gem "pg"
@@ -70,5 +70,3 @@ end
 # gem "mini_magic"
 gem "icalendar" # Send calendar events to other calendar apps
 gem "rails-i18n"
-# gem 'validates_timeliness', '~> 5.0.0.alpha3'
-# gem 'validates_overlap'
